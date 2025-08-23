@@ -38,6 +38,26 @@ Your discoveries are stored in **7 CSV files** in `ghidra/J90280.05.rep/` - thes
 - **`enums.csv`** - Logical groupings (CAN_MSG_TYPE, PARAM_VALIDATION, etc.) 
 - **`arrays.csv`** - Arrays/buffers (parameter_buffer[16], sensor_data_buffer[256], etc.)
 
+### **🔄 CSV Sorting Standards (Team Collaboration)**
+
+**All CSV files are sorted to prevent merge conflicts during team collaboration:**
+
+- **`function_renames.csv`**: Sorted by **address** (hex)
+- **`global_variables.csv`**: Sorted by **address** (hex) 
+- **`structure_definitions.csv`**: Sorted by **struct_name**, then **field_name**
+- **`constants.csv`**: Sorted by **address** (hex)
+- **`labels.csv`**: Sorted by **address** (hex)
+- **`enums.csv`**: Sorted by **enum_name**, then **value**
+- **`arrays.csv`**: Sorted by **address** (hex)
+
+**Why this matters:**
+- ✅ **No merge conflicts** when team members add entries
+- ✅ **Predictable ordering** makes entries easy to find
+- ✅ **Code reviewable** discoveries in consistent format
+- ✅ **Scalable to large teams** with systematic organization
+
+**When adding new entries, they will automatically sort into the correct position.**
+
 ## **🔄 The Perfect Workflow**
 
 ### **Iterative Analysis:**
