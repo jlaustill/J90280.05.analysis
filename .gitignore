@@ -5530,10 +5530,6 @@ vc_hdrs.h
 # Decomposed domain
 processor*
 
-# logfiles
-log.*
-*log
-
 # paraview/ParaFoam
 *.foam
 *.OpenFOAM
@@ -10881,7 +10877,6 @@ xmlrpc.php
 /includes
 /misc
 /profiles
-/scripts
 /themes
 
 ### InforCRM template
