@@ -13,3 +13,8 @@ address,newName
 0xd57c,param_system_update
 0x2a418,engineParamCanBuilder
 0x2a57e,configParamCanBuilder
+0x1c33e,diagnosticParamRequestHandler
+0x1c776,diagnosticStatusRequestHandler  
+0x1c7ca,diagnosticErrorHandler
+0xd57c,paramSystemModeController
+0x18f82,activeParamReadFunction

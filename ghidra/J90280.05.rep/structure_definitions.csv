@@ -26,3 +26,31 @@ eeprom_param_t,,pttlslmx,word,2,PTO throttle limit maximum (0.101)
 param_lookup_args_t,,calculated_block,dword,4,Block × 256 × 4 calculation result
 param_lookup_args_t,,offset,word,2,Parameter offset within block
 param_lookup_args_t,,result_value,word,2,Retrieved parameter value (capped at 32000)
+j1939_diagnostic_msg_t,0x800f34,message_type,byte,1,J1939 diagnostic message type (17=param 19=status 255=error)
+j1939_diagnostic_msg_t,,processing_state,byte,1,Message processing state buffer
+j1939_diagnostic_msg_t,,param_request,word,2,Requested parameter block/offset
+j1939_diagnostic_msg_t,,response_buffer,word,2,Response message buffer pointer
+j1939_diagnostic_msg_t,,data_length,byte,1,Response data length
+j1939_diagnostic_msg_t,,priority,byte,1,J1939 message priority level
+j1939_diagnostic_msg_t,,source_address,byte,1,Source ECU address
+j1939_diagnostic_msg_t,,destination_address,byte,1,Destination tool address
+diagnostic_state_buffer_t,0x809654,system_mode,word,2,Parameter system operation mode (1=active 11=cached)
+diagnostic_state_buffer_t,,cached_value,word,2,Cached parameter value for responses
+diagnostic_state_buffer_t,,status_register,word,2,Diagnostic operation status flags
+diagnostic_state_buffer_t,,active_request_flag,byte,1,Flag indicating active parameter request
+parameter_request_t,,eeprom_block,word,2,Target EEPROM memory block
+parameter_request_t,,param_offset,word,2,Parameter offset within block
+parameter_request_t,,lookup_function,byte,1,Function ID (1=lookup1 2=lookup2 3=lookup3)
+parameter_request_t,,validation_result,byte,1,Parameter validation status
+parameter_response_t,,param_value,word,2,Retrieved parameter value
+parameter_response_t,,scaling_applied,byte,1,Flag indicating if scaling was applied
+parameter_response_t,,error_code,byte,1,Error code (0=success non-zero=error)
+parameter_response_t,,timestamp,dword,4,Response generation timestamp
+calterm_protocol_t,,command_id,byte,1,CalTerm command identifier
+calterm_protocol_t,,parameter_count,byte,1,Number of parameters in request/response
+calterm_protocol_t,,data_payload,byte,8,Parameter data payload (up to 8 bytes)
+calterm_protocol_t,,checksum,byte,1,Message integrity checksum
+insite_protocol_t,,function_code,byte,1,Insite function code
+insite_protocol_t,,live_data_request,byte,1,Live data monitoring request flag
+insite_protocol_t,,response_data,byte,6,Live parameter response data
+insite_protocol_t,,status_flags,byte,1,Monitoring status flags
