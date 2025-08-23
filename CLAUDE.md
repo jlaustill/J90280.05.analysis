@@ -1,4 +1,0 @@
-- Please never tell me to go try something again, this project is about reverse engineering the firmware, NOT manual testing.
-- docs/common_parameters.json contains a reverse engineered set of calterm paramters from e2m files, always reference it when in doubt
-- NEVER make assumptions, ZERO acceptions! If definitive proof isn't available, ask the user for more data!
-- the playbook should only contain steps the user should take to replay. It should NOT contain findings, notes, todo's or anything else ZERO EXCEPTIONS
