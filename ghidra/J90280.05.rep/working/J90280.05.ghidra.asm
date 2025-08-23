@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sat Aug 23 14:35:42 MDT 2025
+; Sat Aug 23 14:59:30 MDT 2025
 ;
 
 0000440c: move.l   -(A0),D0            
@@ -23594,7 +23594,7 @@
 0001c76a: move.w   #0x19,(0x6,A4)      
 0001c770: movem.l  SP,{  D2 D3 D4 D5 A2 A3 A4 A5}
 0001c774: rts      <UNSUPPORTED>       
-0001c776: link.w   A6,-0x4              ; Case 19 handler entry point
+0001c776: link.w   A6,-0x4              ; DIAGNOSTIC_STATUS_HANDLER = 0x1c776 (Expected: J1939 diagnostic status request handler (message type 19))
 0001c77a: movem.l  {  A3 A2},SP        
 0001c77e: movea.l  (0x8,A6),A2         
 0001c782: movea.l  #0x800f34,A3        
@@ -23616,7 +23616,7 @@
 0001c7c0: movem.l  -0xc,A6,{  A2 A3}   
 0001c7c6: unlk     A6                  
 0001c7c8: rts      <UNSUPPORTED>       
-0001c7ca: link.w   A6,-0x4              ; Case 255 handler entry point
+0001c7ca: link.w   A6,-0x4              ; DIAGNOSTIC_ERROR_HANDLER = 0x1c7ca (Expected: J1939 diagnostic error/default handler (message type 255))
 0001c7ce: movem.l  {  A4 A3 A2},SP     
 0001c7d2: movea.l  (0x8,A6),A2         
 0001c7d6: movea.l  #0x800f34,A3        
