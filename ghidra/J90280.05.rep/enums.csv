@@ -13,6 +13,13 @@ DIAGNOSTIC_MESSAGE_TYPES,16,VP44Handler,VP44 pump communication handler
 DIAGNOSTIC_MESSAGE_TYPES,17,ParameterRequestHandler,Alternative handler for parameter requests
 DIAGNOSTIC_MESSAGE_TYPES,19,StatusRequestHandler,Third handler for status/diagnostic requests
 DIAGNOSTIC_MESSAGE_TYPES,255,ErrorDefaultHandler,Error/default case handler
+DUAL_CAN_CONTROLLERS,0,CAN_CONTROLLER_MAIN,Primary CAN controller (SSCNLTOB)
+DUAL_CAN_CONTROLLERS,1,CAN_CONTROLLER_1,Secondary CAN controller 1 (SSC1LTOB)
+DUAL_CAN_J1939_SOURCE_ADDR,1,J1939_SOURCE_ADDR_1,J1939 source address 1 (JCSA1)
+DUAL_CAN_J1939_SOURCE_ADDR,2,J1939_SOURCE_ADDR_2,J1939 source address 2 (JCSA2)
+DUAL_CAN_J1939_SOURCE_ADDR,3,J1939_SOURCE_ADDR_3,J1939 source address 3 (JCSA3)
+DUAL_CAN_J1939_SOURCE_ADDR,4,J1939_SOURCE_ADDR_4,J1939 source address 4 (JCSA4)
+DUAL_CAN_J1939_SOURCE_ADDR,5,J1939_SOURCE_ADDR_5,J1939 source address 5 (JCSA5)
 EEPROM_MEMORY_BLOCKS,0,DATA_PLATE_BLOCK,Data plate identifier block
 EEPROM_MEMORY_BLOCKS,9,PRIMARY_BLOCK,Main parameter memory block (PTESLOLM etc.)
 EFILIVE_COMPATIBILITY,1,MultiDimensionalTableSupport,5-stage table interpolation system confirmed
@@ -36,10 +43,12 @@ J1939_THROTTLE_ENABLE,2,JC39ENFG,J1939 message enable flags table
 J1939_THROTTLE_ENABLE,3,AS01CF,ASG throttle mode compensation filter coef. 1
 J1939_THROTTLE_ENABLE,4,AS02CF,ASG throttle mode compensation filter coef. 2
 J1939_THROTTLE_ENABLE,5,AS03CF,ASG throttle mode compensation filter coef. 3
-PARAMETER_SYSTEM_MODES,1,ActiveParameterRead,Active EEPROM parameter reading mode
-PARAMETER_SYSTEM_MODES,2,ActiveParameterRead,Active EEPROM parameter reading mode (alternate)
-PARAMETER_SYSTEM_MODES,11,CachedParameterRead,Cached parameter value retrieval
-PARAMETER_SYSTEM_MODES,12,SpecialParameterHandling,Special parameter processing mode
+MC68336_CAN_BUFFERS,1,CAN_BUFFER_1,CAN parameter message buffer 1 (0x803066)
+MC68336_CAN_BUFFERS,2,CAN_BUFFER_2,CAN parameter message buffer 2 (0x803056)
+MC68336_CAN_BUFFERS,3,CAN_BUFFER_3,CAN parameter message buffer 3 (0x80306e)
+MC68336_CAN_BUFFERS,4,CAN_BUFFER_4,CAN parameter message buffer 4 (0x80303e)
+NETWORK_TYPE_SELECTION,0,J1922_PROTOCOL,J1922 network protocol selection
+NETWORK_TYPE_SELECTION,1,J1939_PROTOCOL,J1939 network protocol selection
 PARAM_ACCESS_FUNCTIONS,1,LOOKUP_1,param_lookup_1 function (0xd632)
 PARAM_ACCESS_FUNCTIONS,2,LOOKUP_2,param_lookup_2 function (0xd69c)
 PARAM_ACCESS_FUNCTIONS,3,LOOKUP_3,param_lookup_3 function (0xd756)
@@ -47,6 +56,10 @@ PARAM_BLOCK_SIZE,256,BLOCK_MULTIPLIER,Parameter block size multiplier
 PARAM_CAN_FLOW,1,EEPROM_TO_TABLE,EEPROM parameter → memory table
 PARAM_CAN_FLOW,2,TABLE_TO_BUFFER,Memory table → CAN buffer
 PARAM_CAN_FLOW,3,BUFFER_TO_NETWORK,CAN buffer → J1939 transmission
+PARAMETER_SYSTEM_MODES,1,ActiveParameterRead,Active EEPROM parameter reading mode
+PARAMETER_SYSTEM_MODES,2,ActiveParameterRead,Active EEPROM parameter reading mode (alternate)
+PARAMETER_SYSTEM_MODES,11,CachedParameterRead,Cached parameter value retrieval
+PARAMETER_SYSTEM_MODES,12,SpecialParameterHandling,Special parameter processing mode
 PARAM_SHIFT_OPERATIONS,2,DWORD_SHIFT,32-bit addressing (lsll #2)
 PARAM_SHIFT_OPERATIONS,8,BLOCK_SHIFT,Block×256 calculation (lsll #8)
 PARAM_VALIDATION,32000,SAFETY_LIMIT,Maximum allowed parameter value
