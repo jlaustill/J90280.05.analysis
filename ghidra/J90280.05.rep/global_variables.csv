@@ -24,3 +24,10 @@ address,name,type,comment
 0x80d0ae,jcthkctd_calc_input,word,JCTHKCTD throttle kickdown calculation input variable
 0x80d0c2,param_scaling_factor,word,Parameter scaling factor used in calculations
 0x80d0c6,asthrfes_calc_input,word,ASTHRFES throttle position speed calculation input variable
+0x80d49a,cached_parameter_value,word,Cached parameter value for diagnostic responses
+0x80d49c,diagnostic_status_register,word,Diagnostic operation status and mode flags
+0x8441816,param_table_aux_diag,word,Auxiliary parameter table for diagnostic access (0x80cfd8)
+0x8441846,diagnostic_result_buffer,word,Diagnostic parameter read result buffer (0x80cff6)
+0x809654,param_system_mode,word,Current parameter system operation mode (1=active 11=cached etc)
+0x800f34,diagnostic_message_state,byte,J1939 diagnostic message processing state buffer
+0x800f42,diagnostic_response_buffer,word,J1939 diagnostic response message buffer pointer

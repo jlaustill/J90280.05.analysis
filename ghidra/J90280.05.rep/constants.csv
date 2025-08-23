@@ -35,3 +35,9 @@ address,constant_name,value,comment
 0xd8b4,INTERP_SCALE_FACTOR,3,Interpolation scaling factor (value × 3)
 0xd8b4,PARAM_INTERPOLATE_FUNC,0xd8b4,Core table interpolation function (EFILive-compatible)
 0xd8b8,INTERP_SHIFT_BITS,8,Interpolation bit shift amount
+0x00fffa11,MC68336_TIMER_REG1,0x00fffa11,MC68336 Timer Module Register 1
+0x00fffa19,MC68336_TIMER_REG2,0x00fffa19,MC68336 Timer Module Register 2
+0x00fffa22,MC68336_TIMER_REG3,0x00fffa22,MC68336 Timer Module Register 3
+0x00fffa24,MC68336_TIMER_REG4,0x00fffa24,MC68336 Timer Module Register 4
+0x00fffa27,MC68336_WATCHDOG_REG,0x00fffa27,MC68336 Watchdog Timer Control Register
+0x1199,CAN_CONTROLLER_BASE,0x1199,Base address for dual CAN controller parameters

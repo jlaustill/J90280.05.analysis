@@ -27,3 +27,9 @@ address,label_name,comment
 0xd700,param_block_calc_3,Block×256×4 calculation pattern (param_lookup_3)
 0xd75a,param_table3_load,Load parameter table 3 address (0x80CFDE)
 0xd7a6,param_block_calc_4,Block×256×4 calculation pattern (fourth caller)
+0x0000ec34,mc68336_watchdog_init_1,MC68336 watchdog initialization sequence 1
+0x0000ec6c,mc68336_watchdog_init_2,MC68336 watchdog initialization sequence 2
+0x0000ece2,mc68336_watchdog_init_3,MC68336 watchdog initialization sequence 3
+0x0000ed1a,mc68336_watchdog_init_4,MC68336 watchdog initialization sequence 4
+0x0000edf0,mc68336_watchdog_service_1,MC68336 watchdog service routine 1
+0x0000ee40,mc68336_watchdog_service_2,MC68336 watchdog service routine 2
