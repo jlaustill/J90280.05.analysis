@@ -56,7 +56,22 @@ Your discoveries are stored in **7 CSV files** in `ghidra/J90280.05.rep/` - thes
 - ✅ **Code reviewable** discoveries in consistent format
 - ✅ **Scalable to large teams** with systematic organization
 
-**When adding new entries, they will automatically sort into the correct position.**
+### **🤖 Automated CSV Sorting**
+
+**Never worry about CSV ordering again!** 
+
+Run the setup script once after cloning:
+```bash
+./setup-hooks.sh
+```
+
+This configures a **pre-commit hook** that automatically:
+- ✅ **Sorts all CSV files** according to standardization rules  
+- ✅ **Prevents merge conflicts** before they happen
+- ✅ **Re-stages sorted files** automatically during commit
+- ✅ **Shows colorful feedback** about what was sorted
+
+**When adding new entries, they will automatically sort into the correct position during git commit.**
 
 ## **🔄 The Perfect Workflow**
 

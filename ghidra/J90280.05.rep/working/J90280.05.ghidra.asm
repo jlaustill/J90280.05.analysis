@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sat Aug 23 09:39:16 MDT 2025
+; Sat Aug 23 14:35:42 MDT 2025
 ;
 
 0000440c: move.l   -(A0),D0            
@@ -7234,7 +7234,7 @@
 0000d67c: move.l   D0,D2               
 0000d67e: move.w   D3w,-(SP)           
 0000d680: move.l   D2,-(SP)            
-0000d682: jsr      0x00012afa           ; DWORD_SHIFT_BITS = 2 (Expected: 32-bit parameter addressing (lsll #2))
+0000d682: jsr      0x00012afa           ; PARAM_SAFETY_LIMIT = 32000 (Expected: Parameter value safety limit (max allowed))
 0000d688: addq.l   0x6,SP              
 0000d68a: move.w   D0w,(A2)            
 0000d68c: cmpi.w   #0x7d00,(A2)        
@@ -8752,7 +8752,7 @@
 0000ec2a: movea.l  #0x804882,A2        
 0000ec30: bra.b    0x0000ec54          
 0000ec32: move.l   (A3)+,(A2)+         
-0000ec34: move.b   #0x55,(0x00fffa27).l
+0000ec34: move.b   #0x55,(0x00fffa27).l ; MC68336 watchdog initialization sequence 1
 0000ec3c: move.b   #-0x56,(0x00fffa27).l
 0000ec44: move.b   #0x55,(0x00ffd00f).l
 0000ec4c: move.b   #-0x56,(0x00ffd00f).l
@@ -8762,7 +8762,7 @@
 0000ec62: movea.l  #0x80488e,A2        
 0000ec68: bra.b    0x0000ec8c          
 0000ec6a: move.l   (A3)+,(A2)+         
-0000ec6c: move.b   #0x55,(0x00fffa27).l
+0000ec6c: move.b   #0x55,(0x00fffa27).l ; MC68336 watchdog initialization sequence 2
 0000ec74: move.b   #-0x56,(0x00fffa27).l
 0000ec7c: move.b   #0x55,(0x00ffd00f).l
 0000ec84: move.b   #-0x56,(0x00ffd00f).l
@@ -8789,7 +8789,7 @@
 0000ecd8: movea.l  #0x804882,A2        
 0000ecde: bra.b    0x0000ed02          
 0000ece0: move.l   (A3)+,(A2)+         
-0000ece2: move.b   #0x55,(0x00fffa27).l
+0000ece2: move.b   #0x55,(0x00fffa27).l ; MC68336 watchdog initialization sequence 3
 0000ecea: move.b   #-0x56,(0x00fffa27).l
 0000ecf2: move.b   #0x55,(0x00ffd00f).l
 0000ecfa: move.b   #-0x56,(0x00ffd00f).l
@@ -8799,7 +8799,7 @@
 0000ed10: movea.l  #0x80488e,A2        
 0000ed16: bra.b    0x0000ed3a          
 0000ed18: move.l   (A3)+,(A2)+         
-0000ed1a: move.b   #0x55,(0x00fffa27).l
+0000ed1a: move.b   #0x55,(0x00fffa27).l ; MC68336 watchdog initialization sequence 4
 0000ed22: move.b   #-0x56,(0x00fffa27).l
 0000ed2a: move.b   #0x55,(0x00ffd00f).l
 0000ed32: move.b   #-0x56,(0x00ffd00f).l
@@ -8855,7 +8855,7 @@
 0000ede8: addq.l   0x4,SP              
 0000edea: move.l   D0,D2               
 0000edec: bne.w    0x0000ef62          
-0000edf0: move.b   #0x55,(0x00fffa27).l
+0000edf0: move.b   #0x55,(0x00fffa27).l ; MC68336 watchdog service routine 1
 0000edf8: move.b   #-0x56,(0x00fffa27).l
 0000ee00: move.b   #0x55,(0x00ffd00f).l
 0000ee08: move.b   #-0x56,(0x00ffd00f).l
@@ -8870,7 +8870,7 @@
 0000ee38: beq.b    0x0000ee40          
 0000ee3a: moveq    0x1,D0              
 0000ee3c: bra.w    0x0000ef76          
-0000ee40: move.b   #0x55,(0x00fffa27).l
+0000ee40: move.b   #0x55,(0x00fffa27).l ; MC68336 watchdog service routine 2
 0000ee48: move.b   #-0x56,(0x00fffa27).l
 0000ee50: move.b   #0x55,(0x00ffd00f).l
 0000ee58: move.b   #-0x56,(0x00ffd00f).l
@@ -23287,7 +23287,7 @@
 0001c334: movem.l  -0x18,A6,{  D2 A2 A3 A4 A5}
 0001c33a: unlk     A6                  
 0001c33c: rts      <UNSUPPORTED>       
-0001c33e: link.w   A6,-0x4              ; DIAGNOSTIC_PARAM_HANDLER = 0x1c33e (Expected: J1939 diagnostic parameter request handler (message type 17))
+0001c33e: link.w   A6,-0x4              ; J1939_MSG_HANDLER_17 = 0x1c33e (Expected: J1939 message handler for type 17 (throttle processing))
 0001c342: movem.l  {  A2 D3 D2},SP     
 0001c346: movea.l  (0x8,A6),A2         
 0001c34a: movea.l  #0x800f34,A1        
@@ -23594,7 +23594,7 @@
 0001c76a: move.w   #0x19,(0x6,A4)      
 0001c770: movem.l  SP,{  D2 D3 D4 D5 A2 A3 A4 A5}
 0001c774: rts      <UNSUPPORTED>       
-0001c776: link.w   A6,-0x4              ; DIAGNOSTIC_STATUS_HANDLER = 0x1c776 (Expected: J1939 diagnostic status request handler (message type 19))
+0001c776: link.w   A6,-0x4              ; Case 19 handler entry point
 0001c77a: movem.l  {  A3 A2},SP        
 0001c77e: movea.l  (0x8,A6),A2         
 0001c782: movea.l  #0x800f34,A3        
@@ -23616,7 +23616,7 @@
 0001c7c0: movem.l  -0xc,A6,{  A2 A3}   
 0001c7c6: unlk     A6                  
 0001c7c8: rts      <UNSUPPORTED>       
-0001c7ca: link.w   A6,-0x4              ; DIAGNOSTIC_ERROR_HANDLER = 0x1c7ca (Expected: J1939 diagnostic error/default handler (message type 255))
+0001c7ca: link.w   A6,-0x4              ; Case 255 handler entry point
 0001c7ce: movem.l  {  A4 A3 A2},SP     
 0001c7d2: movea.l  (0x8,A6),A2         
 0001c7d6: movea.l  #0x800f34,A3        

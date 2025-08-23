@@ -26,3 +26,15 @@ reference_table_t,0x8086F6,base_reference,word,2,Base reference value
 reference_table_t,,config_byte,byte,1,Configuration flags
 reference_table_t,,limit_value,word,2,Parameter limits
 reference_table_t,,scale_factor,word,2,Scaling factor
+mc68336_dual_can_t,0x1199,sscnltob_main_controller,word,2,Main CAN controller last message object (SSCNLTOB)
+mc68336_dual_can_t,,ssc1ltob_controller_1,word,2,CAN controller 1 last message object (SSC1LTOB)
+j1939_source_addresses_t,0x10E7,jcsa1_source_addr_1,word,2,J1939 source address 1 (JCSA1)
+j1939_source_addresses_t,,jcsa2_source_addr_2,word,2,J1939 source address 2 (JCSA2)
+j1939_source_addresses_t,,jcsa3_source_addr_3,word,2,J1939 source address 3 (JCSA3)
+j1939_source_addresses_t,,jcsa4_source_addr_4,word,2,J1939 source address 4 (JCSA4)
+j1939_source_addresses_t,,jcsa5_source_addr_5,word,2,J1939 source address 5 (JCSA5)
+network_type_switches_t,,jcnes1sw_type_1,byte,1,Network type switch 1 (0=J1922 1=J1939)
+network_type_switches_t,,jcnes2sw_type_2,byte,1,Network type switch 2 (0=J1922 1=J1939)
+network_type_switches_t,,jcnes3sw_type_3,byte,1,Network type switch 3 (0=J1922 1=J1939)
+network_type_switches_t,,jcnes4sw_type_4,byte,1,Network type switch 4 (0=J1922 1=J1939)
+network_type_switches_t,,jcnes5sw_type_5,byte,1,Network type switch 5 (0=J1922 1=J1939)
