@@ -47,5 +47,3 @@ address,constant_name,value,comment
 0xd618,BLOCK_SHIFT_BITS,8,Block×256 calculation (lsll #8)
 0xd682,DWORD_SHIFT_BITS,2,32-bit parameter addressing (lsll #2)
 0xd682,PARAM_SAFETY_LIMIT,32000,Parameter value safety limit (max allowed)
-=======
->>>>>>> origin/main
