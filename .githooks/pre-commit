@@ -1,0 +1,125 @@
+#!/bin/bash
+
+# Pre-commit hook to automatically sort CSV files according to J90280.05 analysis standards
+# This prevents merge conflicts by ensuring consistent ordering
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${YELLOW}🔄 Auto-sorting CSV files for merge conflict prevention...${NC}"
+
+# Function to sort CSV file by address (hex)
+sort_by_address() {
+    local file="$1"
+    local temp_file="${file}.tmp"
+    
+    # Keep header line, sort the rest by hex address using custom hex sort
+    head -n1 "$file" > "$temp_file"
+    
+    # Use awk to convert hex to decimal for proper sorting, then sort
+    tail -n+2 "$file" | awk -F',' '
+    {
+        # Convert hex address to decimal for sorting
+        addr = $1
+        gsub(/0x/, "", addr)  # Remove 0x prefix
+        decimal_addr = strtonum("0x" addr)
+        print decimal_addr "," $0
+    }' | sort -t',' -k1,1n | cut -d',' -f2- >> "$temp_file"
+    
+    mv "$temp_file" "$file"
+}
+
+# Function to sort CSV file by struct_name then field_name
+sort_by_struct_field() {
+    local file="$1"
+    local temp_file="${file}.tmp"
+    
+    # Keep header line, sort by struct_name (column 1) then field_name (column 3)
+    head -n1 "$file" > "$temp_file"
+    tail -n+2 "$file" | sort -t',' -k1,1 -k3,3 >> "$temp_file"
+    mv "$temp_file" "$file"
+}
+
+# Function to sort CSV file by enum_name then value
+sort_by_enum_value() {
+    local file="$1"
+    local temp_file="${file}.tmp"
+    
+    # Keep header line, sort by enum_name (column 1) then value (column 2 as number)
+    head -n1 "$file" > "$temp_file"
+    tail -n+2 "$file" | sort -t',' -k1,1 -k2,2n >> "$temp_file"
+    mv "$temp_file" "$file"
+}
+
+# Track if any files were modified
+FILES_MODIFIED=0
+
+# Process each CSV file type according to our standards
+CSV_BASE_DIR="ghidra/J90280.05.rep"
+
+if [ -d "$CSV_BASE_DIR" ]; then
+    # Address-sorted files
+    for file in "$CSV_BASE_DIR/constants.csv" "$CSV_BASE_DIR/labels.csv" "$CSV_BASE_DIR/global_variables.csv" "$CSV_BASE_DIR/function_renames.csv"; do
+        if [ -f "$file" ] && git diff --cached --name-only | grep -q "$file"; then
+            echo "  📊 Sorting $file by address..."
+            BEFORE_HASH=$(md5sum "$file" 2>/dev/null || echo "")
+            sort_by_address "$file"
+            AFTER_HASH=$(md5sum "$file" 2>/dev/null || echo "")
+            
+            if [ "$BEFORE_HASH" != "$AFTER_HASH" ]; then
+                git add "$file"
+                FILES_MODIFIED=1
+                echo -e "    ${GREEN}✅ Sorted and re-staged${NC}"
+            else
+                echo -e "    ${GREEN}✅ Already sorted${NC}"
+            fi
+        fi
+    done
+    
+    # Struct field sorted files
+    if [ -f "$CSV_BASE_DIR/structure_definitions.csv" ] && git diff --cached --name-only | grep -q "$CSV_BASE_DIR/structure_definitions.csv"; then
+        echo "  📊 Sorting structure_definitions.csv by struct_name + field_name..."
+        BEFORE_HASH=$(md5sum "$CSV_BASE_DIR/structure_definitions.csv" 2>/dev/null || echo "")
+        sort_by_struct_field "$CSV_BASE_DIR/structure_definitions.csv"
+        AFTER_HASH=$(md5sum "$CSV_BASE_DIR/structure_definitions.csv" 2>/dev/null || echo "")
+        
+        if [ "$BEFORE_HASH" != "$AFTER_HASH" ]; then
+            git add "$CSV_BASE_DIR/structure_definitions.csv"
+            FILES_MODIFIED=1
+            echo -e "    ${GREEN}✅ Sorted and re-staged${NC}"
+        else
+            echo -e "    ${GREEN}✅ Already sorted${NC}"
+        fi
+    fi
+    
+    # Enum value sorted files
+    if [ -f "$CSV_BASE_DIR/enums.csv" ] && git diff --cached --name-only | grep -q "$CSV_BASE_DIR/enums.csv"; then
+        echo "  📊 Sorting enums.csv by enum_name + value..."
+        BEFORE_HASH=$(md5sum "$CSV_BASE_DIR/enums.csv" 2>/dev/null || echo "")
+        sort_by_enum_value "$CSV_BASE_DIR/enums.csv"
+        AFTER_HASH=$(md5sum "$CSV_BASE_DIR/enums.csv" 2>/dev/null || echo "")
+        
+        if [ "$BEFORE_HASH" != "$AFTER_HASH" ]; then
+            git add "$CSV_BASE_DIR/enums.csv"
+            FILES_MODIFIED=1
+            echo -e "    ${GREEN}✅ Sorted and re-staged${NC}"
+        else
+            echo -e "    ${GREEN}✅ Already sorted${NC}"
+        fi
+    fi
+fi
+
+if [ $FILES_MODIFIED -eq 1 ]; then
+    echo -e "${YELLOW}📝 CSV files were automatically sorted and re-staged for commit${NC}"
+    echo -e "${GREEN}🚀 This ensures merge-conflict-free collaboration!${NC}"
+else
+    echo -e "${GREEN}✅ All CSV files are properly sorted${NC}"
+fi
+
+echo -e "${GREEN}🎉 Pre-commit CSV sorting complete!${NC}"
+exit 0
