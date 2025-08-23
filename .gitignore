@@ -9468,7 +9468,6 @@ coverage*[.json, .xml, .info]
 # Ionide (cross platform F# VS Code tools) working folder
 
 ### Crystal template
-/docs/
 /.shards/
 *.dwarf
 
