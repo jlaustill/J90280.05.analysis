@@ -1,0 +1,13 @@
+address,newName
+0x1C538,vp44FuelTempHandler
+0x1C846,canMessageDispatcher
+0x29C52,buildCanMessage
+0xE180,sendJ1939Msg
+0xE052,sendJ1939SingleFrame
+0x1C10E,sendJ1939MultiFrame
+0x12afa,param_address_calc
+0xd632,param_lookup_1
+0xd69c,param_lookup_2
+0xd756,param_lookup_3
+0xd8b4,param_interpolate
+0xd57c,param_system_update

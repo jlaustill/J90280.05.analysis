@@ -1,0 +1,21 @@
+struct_name,address,field_name,field_type,field_size,comment
+parameter_table_t,0x80CFD6,param_table_1,word,2,Main parameter values
+parameter_table_t,,param_table_2,word,2,Secondary parameters
+parameter_table_t,,param_table_3,word,2,Tertiary parameters
+parameter_table_t,,param_table_4,word,2,Additional parameters
+parameter_table_t,,calculated_1,word,2,Calculated values
+parameter_table_t,,calculated_2,word,2,More calculated values
+parameter_table_t,,calculated_3,word,2,Additional calculated
+parameter_table_t,,calculated_4,word,2,Final calculated values
+parameter_table_t,,result_buffer,word,2,Final result storage
+reference_table_t,0x8086F6,base_reference,word,2,Base reference value
+reference_table_t,,scale_factor,word,2,Scaling factor
+reference_table_t,,limit_value,word,2,Parameter limits
+reference_table_t,,config_byte,byte,1,Configuration flags
+can_param_msg_t,,msg_id,byte,1,Message identifier
+can_param_msg_t,,param_1,byte,1,First parameter byte
+can_param_msg_t,,param_2,byte,1,Second parameter byte
+can_param_msg_t,,param_3,byte,1,Third parameter byte
+can_param_msg_t,,param_4,byte,1,Fourth parameter byte
+can_param_msg_t,,checksum,byte,1,Message checksum
+can_param_msg_t,,timestamp,word,2,Message timestamp
