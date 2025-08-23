@@ -264,7 +264,6 @@ fabric.properties
 
 ###################
 
-*.bin
 
 ### Bitrise template
 .bitrise.secrets.yml
@@ -3439,7 +3438,6 @@ test.php
 *.tar
 *.gz.[0-9]
 *.sql
-*.csv
 *.xml
 *.psd
 *.[oa]
