@@ -1,21 +1,13 @@
 # Non jetbrains
-# Ghidra project files and generated content
-*.gpr
-*.rep/
+# Ghidra generated content
 *.lock
 
 # Ghidra working files
-ghidra/*/versioned/
 ghidra/*/user/
 ghidra/*/idata/
 
-# Ghidra database files
-*.gbf
-
 # Ghidra temporary and state files
 projectState
-project.prp
-*.prp
 
 ### Bower template
 bower_components
@@ -55,7 +47,6 @@ DataDigger/DataDigger*.log
 /debug/
 
 # General files
-.gitignore
 *.tmp
 *.bak
 *.bck
