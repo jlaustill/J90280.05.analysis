@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sat Aug 23 07:46:55 MDT 2025
+; Sat Aug 23 09:39:16 MDT 2025
 ;
 
 0000440c: move.l   -(A0),D0            
@@ -7147,7 +7147,7 @@
 0000d572: movem.l  -0x20,A6,{  D2 D3 A2 A3 A4 A5}
 0000d578: unlk     A6                  
 0000d57a: rts      <UNSUPPORTED>       
-0000d57c: movem.l  {  A5 A4 A3 A2 D3 D2},SP
+0000d57c: movem.l  {  A5 A4 A3 A2 D3 D2},SP ; PARAM_SYSTEM_CONTROLLER = 0xd57c (Expected: Parameter system mode controller for diagnostic requests)
 0000d580: movea.l  #0x80cfd8,A2        
 0000d586: movea.l  #0x80cff6,A3        
 0000d58c: movea.l  #0x809654,A4        
@@ -7197,7 +7197,7 @@
 0000d612: move.l   D0,D2               
 0000d614: move.w   D3w,-(SP)           
 0000d616: move.l   D2,-(SP)            
-0000d618: jsr      0x00012afa          
+0000d618: jsr      0x00012afa           ; BLOCK_SHIFT_BITS = 8 (Expected: Block×256 calculation (lsll #8))
 0000d61e: addq.l   0x6,SP              
 0000d620: move.w   D0w,(A2)            
 0000d622: cmpi.w   #0x7d00,(A2)        
@@ -7206,8 +7206,8 @@
 0000d62c: movem.l  SP,{  D2 D3 A2 A3 A4 A5}
 0000d630: rts      <UNSUPPORTED>       
 0000d632: movem.l  {  A3 A2 D3 D2},SP   ; PARAM_SAFETY_LIMIT = 32000 (Expected: Parameter value safety limit (max allowed))
-0000d636: movea.l  #0x80cfd6,A2        
-0000d63c: movea.l  #0x8086f6,A3        
+0000d636: movea.l  #0x80cfd6,A2         ; Load parameter table 1 address (0x80CFD6)
+0000d63c: movea.l  #0x8086f6,A3         ; Load reference table address (0x8086F6)
 0000d642: move.w   (0x008086c2).l,D3w  
 0000d648: sub.w    (A3),D3w            
 0000d64a: tst.w    D3w                 
@@ -7234,7 +7234,7 @@
 0000d67c: move.l   D0,D2               
 0000d67e: move.w   D3w,-(SP)           
 0000d680: move.l   D2,-(SP)            
-0000d682: jsr      0x00012afa          
+0000d682: jsr      0x00012afa           ; DWORD_SHIFT_BITS = 2 (Expected: 32-bit parameter addressing (lsll #2))
 0000d688: addq.l   0x6,SP              
 0000d68a: move.w   D0w,(A2)            
 0000d68c: cmpi.w   #0x7d00,(A2)        
@@ -7243,7 +7243,7 @@
 0000d696: movem.l  SP,{  D2 D3 A2 A3}  
 0000d69a: rts      <UNSUPPORTED>       
 0000d69c: movem.l  {  A4 A3 A2 D3 D2},SP
-0000d6a0: movea.l  #0x80cfda,A2        
+0000d6a0: movea.l  #0x80cfda,A2         ; Load parameter table 2 address (0x80CFDA)
 0000d6a6: movea.l  #0x8000d8,A3        
 0000d6ac: movea.l  #0x8086f6,A4        
 0000d6b2: moveq    0x0,D2              
@@ -7276,7 +7276,7 @@
 0000d6fa: lsl.l    #0x2,D2             
 0000d6fc: move.w   D3w,-(SP)           
 0000d6fe: move.l   D2,-(SP)            
-0000d700: jsr      0x00012afa          
+0000d700: jsr      0x00012afa           ; Block×256×4 calculation pattern (param_lookup_3)
 0000d706: addq.l   0x6,SP              
 0000d708: move.w   D0w,(A2)            
 0000d70a: cmpi.w   #0x7d00,(A2)        
@@ -7294,7 +7294,7 @@
 0000d74c: move.l   #0x807f72,(0x10,A0) 
 0000d754: rts      <UNSUPPORTED>       
 0000d756: movem.l  {  A3 A2 D3 D2},SP  
-0000d75a: movea.l  #0x80cfdc,A2        
+0000d75a: movea.l  #0x80cfdc,A2         ; Load parameter table 3 address (0x80CFDE)
 0000d760: movea.l  #0x8086f6,A3        
 0000d766: moveq    0x0,D2              
 0000d768: move.w   (0x0080d0aa).l,D2w  
@@ -7322,7 +7322,7 @@
 0000d7a0: lsl.l    #0x2,D2             
 0000d7a2: move.w   D3w,-(SP)           
 0000d7a4: move.l   D2,-(SP)            
-0000d7a6: jsr      0x00012afa          
+0000d7a6: jsr      0x00012afa           ; Block×256×4 calculation pattern (fourth caller)
 0000d7ac: addq.l   0x6,SP              
 0000d7ae: move.w   D0w,(A2)            
 0000d7b0: cmpi.w   #0x7d00,(A2)        
@@ -7401,7 +7401,7 @@
 0000d8aa: move.w   D0w,(0x0080cff4).l  
 0000d8b0: movea.l  (SP)+,A2            
 0000d8b2: rts      <UNSUPPORTED>       
-0000d8b4: movem.l  {  D3 D2},SP         ; INTERP_SCALE_FACTOR = 3 (Expected: Interpolation scaling factor (value × 3))
+0000d8b4: movem.l  {  D3 D2},SP         ; PARAM_INTERPOLATE_FUNC = 0xd8b4 (Expected: Core table interpolation function (EFILive-compatible))
 0000d8b8: movea.l  #0x8086f6,A0         ; INTERP_SHIFT_BITS = 8 (Expected: Interpolation bit shift amount)
 0000d8be: move.w   (0xc,SP),D2w        
 0000d8c2: sub.w    (A0),D2w            
@@ -19597,7 +19597,7 @@
 00018f6c: move.w   (0x008037b4).l,(0x0080ccf6).l
 00018f76: move.w   (0x008037b4).l,(0x0080d4cc).l
 00018f80: rts      <UNSUPPORTED>       
-00018f82: movem.l  {  A5 A4 A3 A2 D6 D5 D4 D3 D2},SP
+00018f82: movem.l  {  A5 A4 A3 A2 D6 D5 D4 D3 D2},SP ; ACTIVE_PARAM_READ_FUNC = 0x18f82 (Expected: Active parameter reading function for diagnostic requests)
 00018f86: movea.l  #0x800404,A2        
 00018f8c: movea.l  #0x8003f0,A3        
 00018f92: movea.l  #0x809d4c,A4        
@@ -23287,7 +23287,7 @@
 0001c334: movem.l  -0x18,A6,{  D2 A2 A3 A4 A5}
 0001c33a: unlk     A6                  
 0001c33c: rts      <UNSUPPORTED>       
-0001c33e: link.w   A6,-0x4              ; Case 17 handler entry point
+0001c33e: link.w   A6,-0x4              ; DIAGNOSTIC_PARAM_HANDLER = 0x1c33e (Expected: J1939 diagnostic parameter request handler (message type 17))
 0001c342: movem.l  {  A2 D3 D2},SP     
 0001c346: movea.l  (0x8,A6),A2         
 0001c34a: movea.l  #0x800f34,A1        
@@ -23594,7 +23594,7 @@
 0001c76a: move.w   #0x19,(0x6,A4)      
 0001c770: movem.l  SP,{  D2 D3 D4 D5 A2 A3 A4 A5}
 0001c774: rts      <UNSUPPORTED>       
-0001c776: link.w   A6,-0x4              ; Case 19 handler entry point
+0001c776: link.w   A6,-0x4              ; DIAGNOSTIC_STATUS_HANDLER = 0x1c776 (Expected: J1939 diagnostic status request handler (message type 19))
 0001c77a: movem.l  {  A3 A2},SP        
 0001c77e: movea.l  (0x8,A6),A2         
 0001c782: movea.l  #0x800f34,A3        
@@ -23616,7 +23616,7 @@
 0001c7c0: movem.l  -0xc,A6,{  A2 A3}   
 0001c7c6: unlk     A6                  
 0001c7c8: rts      <UNSUPPORTED>       
-0001c7ca: link.w   A6,-0x4              ; Case 255 handler entry point
+0001c7ca: link.w   A6,-0x4              ; DIAGNOSTIC_ERROR_HANDLER = 0x1c7ca (Expected: J1939 diagnostic error/default handler (message type 255))
 0001c7ce: movem.l  {  A4 A3 A2},SP     
 0001c7d2: movea.l  (0x8,A6),A2         
 0001c7d6: movea.l  #0x800f34,A3        
@@ -37523,7 +37523,7 @@
 00029c66: move.b   (0x00802fec).l,D0b   ; Fuel percentage storage point
 00029c6c: andi.b   #-0x10,D0b          
 00029c70: bne.w    0x0002a086          
-00029c74: clr.w    (0x4,A5)             ; Timing advance storage point
+00029c74: clr.w    (0x4,A5)             ; TIMING_ADVANCE_STORE = 0x29C74 (Expected: CAN message timing advance storage point)
 00029c78: tst.b    (0x00804e7c).l      
 00029c7e: bne.b    0x00029cb8          
 00029c80: tst.b    (0x00804e9c).l      
@@ -38063,13 +38063,14 @@
 0002a3ba: move.b   #-0x2,(A2)          
 0002a3be: jsr      0x0000d57c          
 0002a3c4: moveq    0x0,D0              
-0002a3c6: move.w   (0x0080cfd8).l,D0w  
+0002a3c6: move.w   (0x0080cfd8).l,D0w   ; Extract param_table_main.param_table_2 >> 8
 0002a3cc: asr.l    #0x8,D0             
-0002a3ce: addi.b   #0x7d,D0b           
+; Constant: CAN_PARAM_OFFSET = 0x7d
+0002a3ce: addi.b   #0x7d,D0b            ; CAN_PARAM_OFFSET = 0x7d (Parameter offset added to CAN data (125 decimal))
 0002a3d2: move.b   D0b,(0x1,A3)        
-0002a3d6: jsr      0x0000d632          
+0002a3d6: jsr      0x0000d632           ; Call param_lookup_1 for CAN transmission
 0002a3dc: moveq    0x0,D0              
-0002a3de: move.w   (0x0080cfd6).l,D0w  
+0002a3de: move.w   (0x0080cfd6).l,D0w   ; Extract param_table_main.param_table_1 >> 8
 0002a3e4: asr.l    #0x8,D0             
 0002a3e6: addi.b   #0x7d,D0b           
 0002a3ea: move.b   D0b,(0x2,A3)        
@@ -38140,9 +38141,9 @@
 0002a4ea: tst.w    (0x00809d50).l      
 0002a4f0: bne.b    0x0002a4f6          
 0002a4f2: ori.b    #0x1,(A2)           
-0002a4f6: jsr      0x0000d69c          
+0002a4f6: jsr      0x0000d69c           ; Call param_lookup_2 for CAN transmission
 0002a4fc: moveq    0x0,D0              
-0002a4fe: move.w   (0x0080cfda).l,D0w  
+0002a4fe: move.w   (0x0080cfda).l,D0w   ; Extract param_table_main.param_table_3 >> 8
 0002a504: asr.l    #0x8,D0             
 0002a506: move.b   D0b,(0x2,A3)        
 0002a50a: pea      (0x803056).l        
@@ -38173,9 +38174,9 @@
 0002a582: movem.l  {  A3 A2},SP        
 0002a586: movea.l  #0x803066,A2        
 0002a58c: movea.l  #0x803066,A3        
-0002a592: jsr      0x0000d756          
+0002a592: jsr      0x0000d756           ; Call param_lookup_3 for CAN transmission
 0002a598: moveq    0x0,D0              
-0002a59a: move.w   (0x0080cfdc).l,D0w  
+0002a59a: move.w   (0x0080cfdc).l,D0w   ; Extract param_table_main.param_table_4 >> 8
 0002a5a0: asr.l    #0x8,D0             
 0002a5a2: move.b   D0b,(A3)            
 0002a5a4: addi.b   #0x7d,(A3)          

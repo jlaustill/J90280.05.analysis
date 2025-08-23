@@ -19,3 +19,10 @@ can_param_msg_t,,param_3,byte,1,Third parameter byte
 can_param_msg_t,,param_4,byte,1,Fourth parameter byte
 can_param_msg_t,,checksum,byte,1,Message checksum
 can_param_msg_t,,timestamp,word,2,Message timestamp
+eeprom_param_t,0x060006,pteslolm,word,2,PTO setpoint low limit (700.0 RPM)
+eeprom_param_t,,pteshilm,word,2,PTO setpoint high limit (3000.0 RPM)
+eeprom_param_t,,ptmnrfes,word,2,PTO minimum RPM for engagement (700.0 RPM)
+eeprom_param_t,,pttlslmx,word,2,PTO throttle limit maximum (0.101)
+param_lookup_args_t,,calculated_block,dword,4,Block × 256 × 4 calculation result
+param_lookup_args_t,,offset,word,2,Parameter offset within block
+param_lookup_args_t,,result_value,word,2,Retrieved parameter value (capped at 32000)

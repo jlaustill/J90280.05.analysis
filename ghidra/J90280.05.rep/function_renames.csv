@@ -11,3 +11,5 @@ address,newName
 0xd756,param_lookup_3
 0xd8b4,param_interpolate
 0xd57c,param_system_update
+0x2a418,engineParamCanBuilder
+0x2a57e,configParamCanBuilder
