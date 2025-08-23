@@ -1524,7 +1524,6 @@ Debug
 *.dic
 *_callertable.txt
 *.user.dic
-*.asm
 *.c.ini
 *.h.ini
 *.cp
@@ -10437,7 +10436,7 @@ warnings.log
 
 # Ignore all JENKINS_HOME except jobs directory, root xml config, and
 # .gitignore file.
-/*
+
 !/jobs
 !/*.xml
 
