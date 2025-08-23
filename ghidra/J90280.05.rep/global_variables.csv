@@ -1,4 +1,19 @@
 address,name,type,comment
+0x106B,j1939_speed_control_flags,word,J1939 speed control and engine braking interaction flags
+0x10E8,j1939_speed_control_status,word,J1939 speed control status register (JCRPGVSS location)
+0x117D,cruise_control_reference_speed,word,Cruise control reference speed input (CRRF location)
+0x80303e,can_param_msg_buf_4,byte,CAN parameter message buffer 4 (engine params)
+0x803056,can_param_msg_buf_2,byte,CAN parameter message buffer 2 (secondary params)
+0x803066,can_param_msg_buf_1,byte,CAN parameter message buffer 1 (config data)
+0x80306e,can_param_msg_buf_3,byte,CAN parameter message buffer 3 (config + limits)
+0x800f34,diagnostic_message_state,byte,J1939 diagnostic message processing state buffer
+0x800f42,diagnostic_response_buffer,word,J1939 diagnostic response message buffer pointer
+0x8086C2,param_scale_factor,word,Scaling reference
+0x8086E0,param_limit_value,word,Parameter limits
+0x8086E3,param_config_byte,byte,Configuration flags
+0x8086F6,param_ref_base,word,Parameter reference base (lookup table for param_lookup_1)
+0x809654,param_system_mode,word,Current parameter system operation mode (1=active 11=cached etc)
+0x80C408,current_engine_param,word,Current engine parameter
 0x80CFD6,param_table_main,word,Primary parameter storage (param_lookup_1 target)
 0x80CFD8,param_table_aux,word,Auxiliary parameters
 0x80CFDA,param_table_ctrl,word,Control parameters (param_lookup_2 target)
@@ -8,26 +23,11 @@ address,name,type,comment
 0x80CFE2,calculated_3,word,Additional calculated
 0x80CFE4,calculated_4,word,Final calculated values
 0x80CFE6,result_buffer,word,Final result storage
-0x8086F6,param_ref_base,word,Parameter reference base (lookup table for param_lookup_1)
-0x8086C2,param_scale_factor,word,Scaling reference
-0x8086E0,param_limit_value,word,Parameter limits
-0x8086E3,param_config_byte,byte,Configuration flags
-0x80C408,current_engine_param,word,Current engine parameter
-0x803066,can_param_msg_buf_1,byte,CAN parameter message buffer 1 (config data)
-0x803056,can_param_msg_buf_2,byte,CAN parameter message buffer 2 (secondary params)
-0x80306e,can_param_msg_buf_3,byte,CAN parameter message buffer 3 (config + limits)
-0x80303e,can_param_msg_buf_4,byte,CAN parameter message buffer 4 (engine params)
-0x0080d0aa,fsmxthfl_calc_input,word,FSMXTHFL calculation input variable (_DAT_0080d0aa)
-0x0080d0ae,jcthkctd_calc_input,word,JCTHKCTD throttle kickdown calculation input variable
-0x0080d0c6,asthrfes_calc_input,word,ASTHRFES throttle position speed calculation input variable
-0x0080d0c2,param_scaling_factor,word,Parameter scaling factor used in calculations
-0x106B,j1939_speed_control_flags,word,J1939 speed control and engine braking interaction flags
-0x10E8,j1939_speed_control_status,word,J1939 speed control status register (JCRPGVSS location)
-0x117D,cruise_control_reference_speed,word,Cruise control reference speed input (CRRF location)
-0x800f34,diagnostic_message_state,byte,J1939 diagnostic message processing state buffer
-0x800f42,diagnostic_response_buffer,word,J1939 diagnostic response message buffer pointer
-0x809654,param_system_mode,word,Current parameter system operation mode (1=active 11=cached etc)
-0x80d49c,diagnostic_status_register,word,Diagnostic operation status and mode flags
+0x80d0aa,fsmxthfl_calc_input,word,FSMXTHFL calculation input variable (_DAT_0080d0aa)
+0x80d0ae,jcthkctd_calc_input,word,JCTHKCTD throttle kickdown calculation input variable
+0x80d0c2,param_scaling_factor,word,Parameter scaling factor used in calculations
+0x80d0c6,asthrfes_calc_input,word,ASTHRFES throttle position speed calculation input variable
 0x80d49a,cached_parameter_value,word,Cached parameter value for diagnostic responses
+0x80d49c,diagnostic_status_register,word,Diagnostic operation status and mode flags
 0x8441816,param_table_aux_diag,word,Auxiliary parameter table for diagnostic access (0x80cfd8)
 0x8441846,diagnostic_result_buffer,word,Diagnostic parameter read result buffer (0x80cff6)
