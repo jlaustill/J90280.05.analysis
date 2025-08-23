@@ -21,15 +21,8 @@ sort_by_address() {
     # Keep header line, sort the rest by hex address using custom hex sort
     head -n1 "$file" > "$temp_file"
     
-    # Use awk to convert hex to decimal for proper sorting, then sort
-    tail -n+2 "$file" | awk -F',' '
-    {
-        # Convert hex address to decimal for sorting
-        addr = $1
-        gsub(/0x/, "", addr)  # Remove 0x prefix
-        decimal_addr = strtonum("0x" addr)
-        print decimal_addr "," $0
-    }' | sort -t',' -k1,1n | cut -d',' -f2- >> "$temp_file"
+    # Use a simpler approach with GNU sort's version sort which handles hex better
+    tail -n+2 "$file" | sort -t',' -k1,1V >> "$temp_file"
     
     mv "$temp_file" "$file"
 }
