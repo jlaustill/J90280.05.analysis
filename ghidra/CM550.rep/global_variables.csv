@@ -1,4 +1,5 @@
 address,name,type,comment
+0x0100003A,data_plt_module_id,word,Cummins module identifier (EN=0x454E for CM550/VP44 family)
 0x80C408,current_engine_rpm,word,Current engine RPM value
 0x80CFD6,param_table_main,word,Primary parameter storage (param_lookup_1 target)
 0x80CFD8,param_table_aux,word,Auxiliary parameters

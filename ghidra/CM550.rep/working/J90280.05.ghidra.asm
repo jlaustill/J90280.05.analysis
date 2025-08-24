@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sun Aug 24 08:53:31 MDT 2025
+; Sun Aug 24 13:44:51 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -263,10 +263,6 @@
 0000a596: rts      <UNSUPPORTED>       
 0000a598: movea.l  #0x80001a,A0        
 0000a59e: move.w   #0x2,(0x0080001a).l 
-0000a5a6: move.l   #0x80632c,(0x2,A0)  
-0000a5ae: move.l   #0x806340,(0x8,A0)  
-0000a5b6: move.w   #0x400,(0x008091c6).l
-0000a5be: rts      <UNSUPPORTED>       
 0000a5c0: move.w   #0x1,(0x008091e0).l 
 0000a5c8: move.w   (0x008037b4).l,(0x008091c8).l
 0000a5d2: rts      <UNSUPPORTED>       
@@ -948,10 +944,6 @@
 0000b080: move.w   #0x2,(0x8,A1)       
 0000b086: move.l   #0x806e5a,(0x10,A1) 
 0000b08e: move.w   (0x0080926e).l,(0x6,A0)
-0000b096: move.l   #0x808862,(0x2,A0)  
-0000b09e: move.l   #0x808876,(0x8,A0)  
-0000b0a6: move.w   #0x2,(0x00800064).l 
-0000b0ae: rts      <UNSUPPORTED>       
 0000b0b0: movea.l  #0x80d494,A1        
 0000b0b6: movea.l  #0x809658,A0        
 0000b0bc: move.w   (A0),D0w            
@@ -1280,9 +1272,6 @@
 0000b572: rts      <UNSUPPORTED>       
 0000b574: movea.l  #0x800096,A0        
 0000b57a: move.w   #0x2,(0x00800096).l 
-0000b582: move.l   #0x807886,(0x2,A0)  
-0000b58a: move.l   #0x807892,(0x8,A0)  
-0000b592: rts      <UNSUPPORTED>       
 0000b594: movem.l  {  A5 A4 A3 A2 D2},SP
 0000b598: movea.l  #0x8000a8,A2        
 0000b59e: movea.l  #0x809cfe,A3        
@@ -3346,7 +3335,7 @@
 0000d572: movem.l  -0x20,A6,{  D2 D3 A2 A3 A4 A5}
 0000d578: unlk     A6                  
 0000d57a: rts      <UNSUPPORTED>       
-0000d57c: movem.l  {  A5 A4 A3 A2 D3 D2},SP ; PARAM_SYSTEM_CONTROLLER = 0xd57c (Expected: Parameter system mode controller for diagnostic requests)
+0000d57c: movem.l  {  A5 A4 A3 A2 D3 D2},SP ; Parameter system diagnostic mode controller
 0000d580: movea.l  #0x80cfd8,A2        
 0000d586: movea.l  #0x80cff6,A3        
 0000d58c: movea.l  #0x809654,A4        
@@ -3396,7 +3385,7 @@
 0000d612: move.l   D0,D2               
 0000d614: move.w   D3w,-(SP)           
 0000d616: move.l   D2,-(SP)            
-0000d618: jsr      0x00012afa           ; BLOCK_SHIFT_BITS = 8 (Expected: Block×256 calculation (lsll #8))
+0000d618: jsr      0x00012afa           ; Block×256×4 calculation pattern (param_lookup_1)
 0000d61e: addq.l   0x6,SP              
 0000d620: move.w   D0w,(A2)            
 0000d622: cmpi.w   #0x7d00,(A2)        
@@ -3433,7 +3422,7 @@
 0000d67c: move.l   D0,D2               
 0000d67e: move.w   D3w,-(SP)           
 0000d680: move.l   D2,-(SP)            
-0000d682: jsr      0x00012afa           ; PARAM_SAFETY_LIMIT = 32000 (Expected: Parameter value safety limit (max allowed))
+0000d682: jsr      0x00012afa           ; Block×256×4 calculation pattern (param_lookup_2)
 0000d688: addq.l   0x6,SP              
 0000d68a: move.w   D0w,(A2)            
 0000d68c: cmpi.w   #0x7d00,(A2)        
@@ -15624,7 +15613,7 @@
 00018f6c: move.w   (0x008037b4).l,(0x0080ccf6).l
 00018f76: move.w   (0x008037b4).l,(0x0080d4cc).l
 00018f80: rts      <UNSUPPORTED>       
-00018f82: movem.l  {  A5 A4 A3 A2 D6 D5 D4 D3 D2},SP ; ACTIVE_PARAM_READ_FUNC = 0x18f82 (Expected: Active parameter reading function for diagnostic requests)
+00018f82: movem.l  {  A5 A4 A3 A2 D6 D5 D4 D3 D2},SP ; Active EEPROM parameter reading for diagnostics
 00018f86: movea.l  #0x800404,A2        
 00018f8c: movea.l  #0x8003f0,A3        
 00018f92: movea.l  #0x809d4c,A4        
@@ -16166,6 +16155,16 @@
 0001973c: addq.w   0x1,(0x00800418).l  
 00019742: movem.l  SP,{ D0 D1 A0 A1}   
 00019746: rte      <UNSUPPORTED>       
+0001974a: movea.l  #0x80041a,A0        
+00019750: movea.l  #0x19738,A2         
+00019756: movea.l  A0,A1               
+00019758: bra.b    0x0001975c          
+0001975a: move.w   (A2)+,(A1)+         
+0001975c: cmpa.l   #0x19748,A2         
+00019762: bcs.b    0x0001975a          
+00019764: move.l   A0,(0x00808e3e).l   
+0001976a: movea.l  (SP)+,A2            
+0001976c: rts      <UNSUPPORTED>       
 0001976e: movem.l  {  A1 A0 D1 D0},SP  
 00019772: addq.w   0x1,(0x0080061a).l  
 00019778: movem.l  SP,{ D0 D1 A0 A1}   
@@ -19287,7 +19286,7 @@
 0001c334: movem.l  -0x18,A6,{  D2 A2 A3 A4 A5}
 0001c33a: unlk     A6                  
 0001c33c: rts      <UNSUPPORTED>       
-0001c33e: link.w   A6,-0x4              ; J1939_MSG_HANDLER_17 = 0x1c33e (Expected: J1939 message handler for type 17 (throttle processing))
+0001c33e: link.w   A6,-0x4              ; CalTerm/Insite parameter request handler entry point
 0001c342: movem.l  {  A2 D3 D2},SP     
 0001c346: movea.l  (0x8,A6),A2         
 0001c34a: movea.l  #0x800f34,A1        
@@ -19594,7 +19593,7 @@
 0001c76a: move.w   #0x19,(0x6,A4)      
 0001c770: movem.l  SP,{  D2 D3 D4 D5 A2 A3 A4 A5}
 0001c774: rts      <UNSUPPORTED>       
-0001c776: link.w   A6,-0x4              ; DIAGNOSTIC_STATUS_HANDLER = 0x1c776 (Expected: J1939 diagnostic status request handler (message type 19))
+0001c776: link.w   A6,-0x4              ; CalTerm/Insite status request handler entry point
 0001c77a: movem.l  {  A3 A2},SP        
 0001c77e: movea.l  (0x8,A6),A2         
 0001c782: movea.l  #0x800f34,A3        
@@ -19616,7 +19615,7 @@
 0001c7c0: movem.l  -0xc,A6,{  A2 A3}   
 0001c7c6: unlk     A6                  
 0001c7c8: rts      <UNSUPPORTED>       
-0001c7ca: link.w   A6,-0x4              ; DIAGNOSTIC_ERROR_HANDLER = 0x1c7ca (Expected: J1939 diagnostic error/default handler (message type 255))
+0001c7ca: link.w   A6,-0x4              ; CalTerm/Insite diagnostic error handler entry point
 0001c7ce: movem.l  {  A4 A3 A2},SP     
 0001c7d2: movea.l  (0x8,A6),A2         
 0001c7d6: movea.l  #0x800f34,A3        
@@ -19653,21 +19652,22 @@
 0001c84e: cmpi.w   #0x8,(0x4,A2)       
 0001c854: bne.b    0x0001c8b0          
 0001c856: movea.l  (0x6,A2),A0         
-0001c85a: move.b   (A0),D2b             ; CAN_MSG_VP44_FUEL = 16 (Expected: CAN message type for VP44 fuel temperature)
+0001c85a: move.b   (A0),D2b             ; VP44 handler case - reads byte 0
 0001c85c: moveq    0x0,D0              
 0001c85e: move.b   D2b,D0b             
 ; Constant: CAN_MSG_ALT_HANDLER = 17
-0001c860: moveq    0x11,D1              ; CAN_MSG_ALT_HANDLER = 17 (CAN message type for alternative handler)
+0001c860: moveq    0x11,D1              ; CAN_MSG_ALT_HANDLER = 17 (CAN message type for alternative handler (moveq #17))
 0001c862: cmp.b    D1b,D0b             
 0001c864: beq.b    0x0001c87e          
-0001c866: moveq    0x10,D1              ; CAN_MSG_THIRD_HANDLER = 19 (Expected: CAN message type for third handler)
+; Constant: CAN_MSG_VP44_FUEL = 16
+0001c866: moveq    0x10,D1              ; CAN_MSG_VP44_FUEL = 16 (CAN message type for VP44 fuel (moveq #16) - CORRECTED from original)
 0001c868: cmp.b    D1b,D0b             
 0001c86a: beq.b    0x0001c88c          
 0001c86c: moveq    0x13,D1             
 0001c86e: cmp.b    D1b,D0b             
 0001c870: beq.b    0x0001c89a          
 ; Constant: CAN_MSG_ERROR_DEFAULT = 255
-0001c872: cmpi.b   #-0x1,D0b            ; CAN_MSG_ERROR_DEFAULT = 255 (CAN message error/default case (0xFF))
+0001c872: cmpi.b   #-0x1,D0b            ; CAN_MSG_ERROR_DEFAULT = 255 (CAN message error/default case (cmpib #-1 = 0xFF))
 0001c876: beq.b    0x0001c8a8          
 0001c878: movem.l  SP,{  D2 A2}        
 0001c87c: rts      <UNSUPPORTED>       
@@ -22586,14 +22586,6 @@
 0001f23e: movea.l  #0x801742,A1        
 0001f244: movea.l  #0x801736,A0        
 0001f24a: move.w   (0x0080c408).l,(0x6,A0)
-0001f252: move.l   #0x80883a,(0x2,A0)  
-0001f25a: move.l   #0x80884e,(0x8,A0)  
-0001f262: move.w   #0x2,(0x00801736).l 
-0001f26a: move.w   (0x0080926e).l,(0x6,A1)
-0001f272: move.l   #0x808862,(0x2,A1)  
-0001f27a: move.l   #0x808876,(0x8,A1)  
-0001f282: move.w   #0x2,(0x00801742).l 
-0001f28a: rts      <UNSUPPORTED>       
 0001f28c: clr.w    (0x0080d0b4).l      
 0001f292: clr.w    (0x0080d050).l      
 0001f298: clr.w    (0x0080d0b2).l      
@@ -23858,6 +23850,37 @@
 000203f2: movem.l  -0x1c,A6,{  D2 D3 D4 D5 A2 A3}
 000203f8: unlk     A6                  
 000203fa: rts      <UNSUPPORTED>       
+00020404: movea.l  #0x8088be,A1        
+0002040a: movea.l  #0x80c404,A0        
+00020410: move.w   (A0),D0w            
+00020412: mulu.w   (0x008088bc).l,D0   
+00020418: lsr.l    #0x4,D0             
+0002041a: moveq    0x0,D1              
+0002041c: move.w   (0x008088ba).l,D1w  
+00020422: add.l    D1,D0               
+00020424: moveq    0x0,D1              
+00020426: move.w   (A1),D1w            
+00020428: add.l    D1,D0               
+0002042a: bge.b    0x00020430          
+0002042c: moveq    0xf,D1              
+0002042e: add.l    D1,D0               
+00020430: asr.l    #0x4,D0             
+00020432: move.w   D0w,(0x0080d0cc).l  
+00020438: move.w   (A0),D0w            
+0002043a: mulu.w   (0x008088b8).l,D0   
+00020440: lsr.l    #0x4,D0             
+00020442: moveq    0x0,D1              
+00020444: move.w   (0x008088b6).l,D1w  
+0002044a: add.l    D1,D0               
+0002044c: moveq    0x0,D1              
+0002044e: move.w   (A1),D1w            
+00020450: add.l    D1,D0               
+00020452: bge.b    0x00020458          
+00020454: moveq    0xf,D1              
+00020456: add.l    D1,D0               
+00020458: asr.l    #0x4,D0             
+0002045a: move.w   D0w,(0x0080d0ca).l  
+00020460: rts      <UNSUPPORTED>       
 00020462: movea.l  #0x810000,A0        
 00020468: movea.l  A0,SP               
 0002046a: clr.b    (0x00fffc04).l      
@@ -25367,6 +25390,31 @@
 0002558c: movem.l  -0x20,A6,{  D2 D3 D4 D5 A2 A3 A4}
 00025592: unlk     A6                  
 00025594: rts      <UNSUPPORTED>       
+00025596: move.w   #0x604f,(0x00fffa00).l
+0002559e: move.w   #0x7f08,(0x00fffa04).l
+000255a6: move.b   #-0x57,(0x00fffa11).l
+000255ae: move.b   #-0x2,(0x00fffa15).l
+000255b6: move.b   #0x1,(0x00fffa17).l 
+000255be: move.b   #-0x1,(0x00fffa19).l
+000255c6: move.b   #-0x37,(0x00fffa1d).l
+000255ce: move.b   #0x30,(0x00fffa1f).l
+000255d6: move.b   #-0x62,(0x00fffa21).l
+000255de: move.w   #0x2bbf,(0x00fffa44).l
+000255e6: clr.w    (0x00fffa46).l      
+000255ec: move.w   #0x5,(0x00fffa48).l 
+000255f4: move.w   #0x6830,(0x00fffa4a).l
+000255fc: move.w   #-0x7ffd,(0x00fffa4c).l
+00025604: move.w   #0x5830,(0x00fffa4e).l
+0002560c: move.w   #-0x7ffd,(0x00fffa50).l
+00025614: move.w   #0x3830,(0x00fffa52).l
+0002561c: move.w   #-0x30,(0x00fffa54).l
+00025624: move.w   #0x5830,(0x00fffa56).l
+0002562c: move.w   #0x5,(0x00fffa58).l 
+00025634: move.w   #0x7030,(0x00fffa5a).l
+0002563c: move.w   #-0x28,(0x00fffa5c).l
+00025644: move.w   #0x5bf0,(0x00fffa5e).l
+0002564c: move.w   #-0x38,(0x00fffa60).l
+00025654: move.w   #0x5bf0,(0x00fffa62).l
 0002565c: clr.w    (0x00fffa64).l      
 00025662: clr.w    (0x00fffa66).l      
 00025668: move.w   #-0x5,(0x00fffa68).l
@@ -29413,7 +29461,7 @@
 00029c66: move.b   (0x00802fec).l,D0b   ; Fuel percentage storage point
 00029c6c: andi.b   #-0x10,D0b          
 00029c70: bne.w    0x0002a086          
-00029c74: clr.w    (0x4,A5)             ; TIMING_ADVANCE_STORE = 0x29C74 (Expected: CAN message timing advance storage point)
+00029c74: clr.w    (0x4,A5)             ; Timing advance storage point
 00029c78: tst.b    (0x00804e7c).l      
 00029c7e: bne.b    0x00029cb8          
 00029c80: tst.b    (0x00804e9c).l      
@@ -29955,8 +30003,8 @@
 0002a3c4: moveq    0x0,D0              
 0002a3c6: move.w   (0x0080cfd8).l,D0w   ; Extract param_table_main.param_table_2 >> 8
 0002a3cc: asr.l    #0x8,D0             
-; Constant: CAN_PARAM_OFFSET = 0x7d
-0002a3ce: addi.b   #0x7d,D0b            ; CAN_PARAM_OFFSET = 0x7d (Parameter offset added to CAN data (125 decimal))
+; Constant: CAN_PARAM_OFFSET = 125
+0002a3ce: addi.b   #0x7d,D0b            ; CAN_PARAM_OFFSET = 125 (Parameter offset added to CAN data (addib #125))
 0002a3d2: move.b   D0b,(0x1,A3)        
 0002a3d6: jsr      0x0000d632           ; Call param_lookup_1 for CAN transmission
 0002a3dc: moveq    0x0,D0              
@@ -36567,11 +36615,6 @@
 00030c44: move.w   #0x2,(0x8,A0)       
 00030c4a: move.l   #0x80735c,(0xa,A0)  
 00030c52: move.w   #0x2,(0x008033c2).l 
-00030c5a: move.l   #0x807352,(0x2,A0)  
-00030c62: move.l   #0x807366,(0x10,A0) 
-00030c6a: clr.w    (0x00809a34).l      
-00030c70: clr.w    (0x00809a32).l      
-00030c76: rts      <UNSUPPORTED>       
 00030c78: move.l   A2,-(SP)            
 00030c7a: movea.l  #0x8033c2,A2        
 00030c80: move.w   (0x00803614).l,D0w  
@@ -41640,4 +41683,4 @@
 00035938: unlk     A6                  
 0003593a: rts      <UNSUPPORTED>       
 
-; Export complete - 41632 instructions exported
+; Export complete - 41674 instructions exported

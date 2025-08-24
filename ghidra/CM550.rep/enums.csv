@@ -52,6 +52,12 @@ NETWORK_TYPE_SELECTION,1,J1939_PROTOCOL,J1939 network protocol selection
 PARAM_ACCESS_FUNCTIONS,1,LOOKUP_1,param_lookup_1 function (0xd632)
 PARAM_ACCESS_FUNCTIONS,2,LOOKUP_2,param_lookup_2 function (0xd69c)
 PARAM_ACCESS_FUNCTIONS,3,LOOKUP_3,param_lookup_3 function (0xd756)
+CUMMINS_MODULE_IDS,0x454E,MODULE_EN,Cummins EN module family (CM550 VP44 ECUs)
+CUMMINS_MODULE_IDS,0x4E41,MODULE_AN,Hypothetical AN module family
+CUMMINS_MODULE_IDS,0x4445,MODULE_DE,Hypothetical DE module family  
+INCAL_VARIANTS,0x41,VARIANT_A,InCal calibration variant A
+INCAL_VARIANTS,0x42,VARIANT_B,InCal calibration variant B
+INCAL_VARIANTS,0x43,VARIANT_C,InCal calibration variant C (ENC)
 PARAM_BLOCK_SIZE,256,BLOCK_MULTIPLIER,Parameter block size multiplier
 PARAM_CAN_FLOW,1,EEPROM_TO_TABLE,EEPROM parameter → memory table
 PARAM_CAN_FLOW,2,TABLE_TO_BUFFER,Memory table → CAN buffer

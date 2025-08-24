@@ -1,4 +1,6 @@
 address,label_name,comment
+0x0100003A,cummins_module_id,Cummins module identifier field (EN=0x454E)
+0x3662E,module_lookup_table_en,Module ID lookup table entry for EN family
 0x0000ec6c,mc68336_watchdog_init_2,MC68336 watchdog initialization sequence 2
 0x0000ec34,mc68336_watchdog_init_1,MC68336 watchdog initialization sequence 1
 0x0000ece2,mc68336_watchdog_init_3,MC68336 watchdog initialization sequence 3
