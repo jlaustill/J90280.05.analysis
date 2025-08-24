@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sun Aug 24 13:44:51 MDT 2025
+; Sun Aug 24 14:36:58 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -249,16 +249,21 @@
 0000a532: move.w   (0x008037b4).l,(A2) 
 0000a538: movem.l  SP,{  A2 A3}        
 0000a53c: rts      <UNSUPPORTED>       
-0000a53e: move.l   #-0x80000000,(0x0080002a).l
-0000a548: move.l   #0x8062f4,(0x00800026).l
+; Constant: DMA_CONTROLLER_SETUP = 0x80000000
+0000a53e: move.l   #-0x80000000,(0x0080002a).l ; DMA_CONTROLLER_SETUP = 0x80000000 (DMA enable flag value (high bit set))
+; Constant: DMA_DESC_ADDR_1 = 0x8062F4
+0000a548: move.l   #0x8062f4,(0x00800026).l ; DMA_DESC_ADDR_1 = 0x8062F4 (DMA descriptor 1 address pointer)
 0000a552: move.l   #-0x80000000,(0x00800032).l
-0000a55c: move.l   #0x8062f6,(0x0080002e).l
+; Constant: DMA_DESC_ADDR_2 = 0x8062F6
+0000a55c: move.l   #0x8062f6,(0x0080002e).l ; DMA_DESC_ADDR_2 = 0x8062F6 (DMA descriptor 2 address pointer)
 0000a566: clr.w    (0x0080000c).l      
 0000a56c: rts      <UNSUPPORTED>       
 0000a56e: movea.l  #0x80000e,A0        
 0000a574: move.w   #0x2,(0x0080000e).l 
-0000a57c: move.l   #0x806304,(0x2,A0)  
-0000a584: move.l   #0x806318,(0x8,A0)  
+; Constant: DMA_SOURCE_ADDR_1 = 0x806304
+0000a57c: move.l   #0x806304,(0x2,A0)   ; DMA_SOURCE_ADDR_1 = 0x806304 (DMA transfer source address 1)
+; Constant: DMA_DEST_ADDR_1 = 0x806318
+0000a584: move.l   #0x806318,(0x8,A0)   ; DMA_DEST_ADDR_1 = 0x806318 (DMA transfer destination address 1)
 0000a58c: move.w   (0x00807f3c).l,(0x008091c4).l
 0000a596: rts      <UNSUPPORTED>       
 0000a598: movea.l  #0x80001a,A0        
@@ -5829,16 +5834,6 @@
 0000fa0c: pea      (0x8034f8).l        
 0000fa12: clr.w    -(SP)               
 0000fa14: jsr      0x000131d6          
-0000fa1a: addq.l   0x8,SP              
-0000fa1c: cmpi.b   #0x1,D0b            
-0000fa20: bne.b    0x0000fa2c          
-0000fa22: clr.b    (0x0080d3f3).l      
-0000fa28: moveq    0xb,D0              
-0000fa2a: rts      <UNSUPPORTED>       
-0000fa2c: move.b   #0x1,(0x0080d406).l 
-0000fa34: clr.w    (0x0080d19e).l      
-0000fa3a: move.b   #-0x1,D0b           
-0000fa3e: rts      <UNSUPPORTED>       
 0000fa40: move.l   A2,-(SP)            
 0000fa42: movea.l  #0x2725a,A2         
 0000fa48: pea      (0xf86a).l          
@@ -18294,12 +18289,6 @@
 0001b4ec: move.l   A4,-(SP)            
 0001b4ee: move.w   A3w,-(SP)           
 0001b4f0: jsr      0x000131d6          
-0001b4f6: addq.l   0x8,SP              
-0001b4f8: cmpi.b   #0x1,D0b            
-0001b4fc: bne.b    0x0001b506          
-0001b4fe: moveq    0xb,D0              
-0001b500: movem.l  SP,{  D2 D3 D4 D5 A2 A3 A4 A5}
-0001b504: rts      <UNSUPPORTED>       
 0001b506: move.w   D3w,-(SP)           
 0001b508: move.l   A4,-(SP)            
 0001b50a: movea.l  #-0x7fcb08,A0       
@@ -25656,13 +25645,6 @@
 000259ee: move.l   (0x0080d3e2).l,-(SP)
 000259f4: move.w   A2w,-(SP)           
 000259f6: jsr      0x000131d6          
-000259fc: addq.l   0x8,SP              
-000259fe: cmpi.b   #0x1,D0b            
-00025a02: bne.b    0x00025a0e          
-00025a04: jsr      A5                  
-00025a06: moveq    0x4,D0              
-00025a08: movem.l  SP,{  D2 D3 D4 D5 A2 A3 A4 A5}
-00025a0c: rts      <UNSUPPORTED>       
 00025a0e: adda.l   D5,A2               
 00025a10: suba.l   #0x1000000,A2       
 00025a16: clr.b    D2b                 
@@ -41683,4 +41665,4 @@
 00035938: unlk     A6                  
 0003593a: rts      <UNSUPPORTED>       
 
-; Export complete - 41674 instructions exported
+; Export complete - 41651 instructions exported

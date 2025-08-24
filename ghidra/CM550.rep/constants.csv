@@ -6,3 +6,10 @@ address,constant_name,value,comment
 0x2A3CE,CAN_PARAM_OFFSET,125,Parameter offset added to CAN data (addib #125)
 0x0100003A,DATA_PLT_MODULE_ID_ADDR,0x0100003A,Address of Cummins module identifier field
 0x3662E,MODULE_ID_LOOKUP_TABLE,0x454E,Module ID lookup table entry for EN family
+0x0000A53E,DMA_CONTROLLER_SETUP,0x80000000,DMA enable flag value (high bit set)
+0x0000A548,DMA_DESC_ADDR_1,0x8062F4,DMA descriptor 1 address pointer
+0x0000A55C,DMA_DESC_ADDR_2,0x8062F6,DMA descriptor 2 address pointer
+0x0000A57C,DMA_SOURCE_ADDR_1,0x806304,DMA transfer source address 1  
+0x0000A584,DMA_DEST_ADDR_1,0x806318,DMA transfer destination address 1
+0x0000A5A6,DMA_SOURCE_ADDR_2,0x80632C,DMA transfer source address 2
+0x0000A5AE,DMA_DEST_ADDR_2,0x806340,DMA transfer destination address 2

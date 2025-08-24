@@ -20,4 +20,14 @@ address,newName
 0xd69c,param_lookup_2
 0xd632,param_lookup_1
 0xd756,param_lookup_3
-0x131d6,dataPlateMemoryCopy
+0x131d6,circularBufferWrite
+0x0000f9f0,canMessageBufferLogger
+0x000258e0,memoryPatchingSystem
+0x0001b37a,memoryOperationDispatcher
+0x0001f1e0,memcpy
+0x0002b544,addressRangeValidator
+0x0001b7ca,addressLookupFunction
+0x00027e98,systemSecurityCheck
+0x0000a53e,dmaControllerSetup1
+0x0000a56e,dmaDescriptorSetup1
+0x0000a598,dmaDescriptorSetup2
