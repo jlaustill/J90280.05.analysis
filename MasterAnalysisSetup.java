@@ -17,7 +17,7 @@ public class MasterAnalysisSetup extends GhidraScript {
         println("Running all bulk analysis scripts in optimal order...");
         println("");
         
-        int totalScripts = 9;
+        int totalScripts = 8;
         int currentScript = 0;
         
         try {
@@ -63,27 +63,11 @@ public class MasterAnalysisSetup extends GhidraScript {
             runScript("BulkConstantCreator.java");
             println("✓ Constants documented\n");
             
-            // Step 8: Rename Local Variables
-            currentScript++;
-            println("[" + currentScript + "/" + totalScripts + "] Renaming local variables...");
-            runScript("BulkLocalVariableRenamer.java");
-            println("✓ Local variables renamed\n");
-            
-            // Step 9: Create Enums
+            // Step 8: Rename Local Variables (Simple & Robust)
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating enums...");
             runScript("BulkEnumCreator.java");
             println("✓ Enums created\n");
-            
-            // Step 8: Create Arrays (moved to end as it may conflict with other data)
-            // Commented out by default since arrays can be more disruptive
-            // Uncomment if you want arrays created automatically
-            /*
-            currentScript++;
-            println("[" + currentScript + "/" + totalScripts + "] Creating arrays...");
-            runScript("BulkArrayCreator.java");
-            println("✓ Arrays created\n");
-            */
             
             println("🎉 MASTER ANALYSIS SETUP COMPLETE!");
             println("========================================");

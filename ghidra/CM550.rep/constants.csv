@@ -1,57 +1,6 @@
 address,constant_name,value,comment
-0x00fffa11,MC68336_TIMER_REG1,0x00fffa11,MC68336 Timer Module Register 1
-0x00fffa19,MC68336_TIMER_REG2,0x00fffa19,MC68336 Timer Module Register 2
-0x00fffa22,MC68336_TIMER_REG3,0x00fffa22,MC68336 Timer Module Register 3
-0x00fffa24,MC68336_TIMER_REG4,0x00fffa24,MC68336 Timer Module Register 4
-0x00fffa27,MC68336_WATCHDOG_REG,0x00fffa27,MC68336 Watchdog Timer Control Register
 0x1C5B6,VP44_FUEL_TEMP_OFFSET,112,VP44 fuel temperature sensor offset (movew #112)
-0x1C85A,CAN_MSG_VP44_FUEL,16,CAN message type for VP44 fuel temperature
-0x1C860,CAN_MSG_ALT_HANDLER,17,CAN message type for alternative handler
-0x1C866,CAN_MSG_THIRD_HANDLER,19,CAN message type for third handler
-0x1C872,CAN_MSG_ERROR_DEFAULT,255,CAN message error/default case (0xFF)
-0x1c7ca,DIAGNOSTIC_ERROR_HANDLER,0x1c7ca,J1939 diagnostic error/default handler (message type 255)
-0x1c33e,DIAGNOSTIC_PARAM_HANDLER,0x1c33e,J1939 diagnostic parameter request handler (message type 17)
-0x1c33e,J1939_MSG_HANDLER_17,0x1c33e,J1939 message handler for type 17 (throttle processing)
-0x1c776,DIAGNOSTIC_STATUS_HANDLER,0x1c776,J1939 diagnostic status request handler (message type 19)
-0x2a3ce,CAN_PARAM_OFFSET,0x7d,Parameter offset added to CAN data (125 decimal)
-0x06FFE8C,EEPROM_END_ADDR,0x06FFE8C,EEPROM parameter end address (DATA_PLT)
-0x07F0FEF1,CruiseControlVehicleSpeedEnableValue,0x07F0FEF1,Value to enable CCVS (Cruise Control/Vehicle Speed) message reception
-0x07F00400,TorqueSpeedControl1EnableValue,0x07F00400,Value to enable TSC1 (Torque Speed Control) message reception
-0x10F1,JCCNRXFT_EEPROM_BLOCK,0x10F1,J1939 CAN receive message filter EEPROM block
-0x12afa,BLOCK_MULTIPLIER,256,Block address calculation multiplier
-0x12afe,VALIDATION_DIVISOR,65535,Address validation divisor (Block × 65535)
-0x18f82,ACTIVE_PARAM_READ_FUNC,0x18f82,Active parameter reading function for diagnostic requests
-0x29C8A,RPM_MULTIPLIER,4,RPM scaling factor (lsll #2 = multiply by 4)
-0x1266,VP44_RPM_FUEL_DIVISOR,4710,RPM×fuel calculation divisor ((RPM×FuelParam)/4710)
-0x80c408,CURRENT_ENGINE_RPM_ADDR,0x80c408,Memory address of current engine RPM value
-0x29C74,TIMING_ADVANCE_STORE,0x29C74,CAN message timing advance storage point
-0x80CFD6,PARAM_TABLE_BASE,0x80CFD6,Parameter table base address
-0x80d0ae,JCTHKCTD_CALC_INPUT,0x80d0ae,JCTHKCTD calculation input variable
-0x80d0c2,PARAM_SCALING_FACTOR,0x80d0c2,Parameter scaling factor (typically #256)
-0x80d0c6,ASTHRFES_CALC_INPUT,0x80d0c6,ASTHRFES calculation input variable
-0x103B,TIMING_4D_TABLE_BLOCK,0x103B,4DTBTA (4D timing base table advance) EEPROM block
-0x105A,FSMXTHFL_BLOCK,0x105A,FSMXTHFL memory block (4186 decimal)
-0x111B,JCCCBCEA_EEPROM_BLOCK,0x111B,Cruise control/vehicle speed message enable EEPROM block
-0x1199,CAN_CONTROLLER_BASE,0x1199,Base address for dual CAN controller parameters
-0x6400,PARAM_BLOCK_MULTIPLIER,0x6400,Parameter Block×256×4 calculation (25600 decimal)
-0x8086F6,REF_TABLE_BASE,0x8086F6,Reference table base address
-0x8588C,FSMXTHFL_EEPROM_ADDR,0x8588C,FSMXTHFL (Fueling at 100% throttle) EEPROM address
-0x060006,pto_engine_rpm_min_PTESLOLM,700,PTO engine RPM minimum setpoint limit (700 RPM)
-0x060008,pto_engine_rpm_max_PTESHILM,3000,PTO engine RPM maximum setpoint limit (3000 RPM)
-0x060014,asg_engine_rpm_min_ASTLMNMN,0,ASG minimum allowed engine speed (0-3000 RPM)
-0x060016,asg_engine_rpm_max_ASTLMNMX,3000,ASG maximum allowed engine speed (0-3000 RPM)
-0x11A78,engine_cranking_rpm_limit_CSCDESTR,125,Engine speed limit for cold crank sync determination (125 RPM)
-0x100B30,engine_running_rpm_threshold_CSCKES,300,RPM threshold above which engine is considered running (300 RPM)
-0x060006,EEPROM_BASE_ADDR,0x060006,EEPROM parameter base address (first param PTESLOLM)
-0x80303e,CAN_BUFFER_BASE_4,0x80303e,CAN parameter message buffer 4
-0x80306e,CAN_BUFFER_BASE_3,0x80306e,CAN parameter message buffer 3
-0x803056,CAN_BUFFER_BASE_2,0x803056,CAN parameter message buffer 2
-0x803066,CAN_BUFFER_BASE_1,0x803066,CAN parameter message buffer 1
-0x8392500,DIAGNOSTIC_STATE_BUFFER,0x8392500,J1939 diagnostic message state buffer (0x800f34)
-0xd8b4,INTERP_SCALE_FACTOR,3,Interpolation scaling factor (value × 3)
-0xd8b4,PARAM_INTERPOLATE_FUNC,0xd8b4,Core table interpolation function (EFILive-compatible)
-0xd8b8,INTERP_SHIFT_BITS,8,Interpolation bit shift amount
-0xd57c,PARAM_SYSTEM_CONTROLLER,0xd57c,Parameter system mode controller for diagnostic requests
-0xd618,BLOCK_SHIFT_BITS,8,Block×256 calculation (lsll #8)
-0xd682,DWORD_SHIFT_BITS,2,32-bit parameter addressing (lsll #2)
-0xd682,PARAM_SAFETY_LIMIT,32000,Parameter value safety limit (max allowed)
+0x1C860,CAN_MSG_ALT_HANDLER,17,CAN message type for alternative handler (moveq #17)
+0x1C866,CAN_MSG_VP44_FUEL,16,CAN message type for VP44 fuel (moveq #16) - CORRECTED from original
+0x1C872,CAN_MSG_ERROR_DEFAULT,255,CAN message error/default case (cmpib #-1 = 0xFF)
+0x2A3CE,CAN_PARAM_OFFSET,125,Parameter offset added to CAN data (addib #125)

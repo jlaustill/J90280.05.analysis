@@ -57,7 +57,6 @@ PARAM_CAN_FLOW,1,EEPROM_TO_TABLE,EEPROM parameter → memory table
 PARAM_CAN_FLOW,2,TABLE_TO_BUFFER,Memory table → CAN buffer
 PARAM_CAN_FLOW,3,BUFFER_TO_NETWORK,CAN buffer → J1939 transmission
 PARAMETER_SYSTEM_MODES,1,ActiveParameterRead,Active EEPROM parameter reading mode
-PARAMETER_SYSTEM_MODES,2,ActiveParameterRead,Active EEPROM parameter reading mode (alternate)
 PARAMETER_SYSTEM_MODES,11,CachedParameterRead,Cached parameter value retrieval
 PARAMETER_SYSTEM_MODES,12,SpecialParameterHandling,Special parameter processing mode
 PARAM_SHIFT_OPERATIONS,2,DWORD_SHIFT,32-bit addressing (lsll #2)
