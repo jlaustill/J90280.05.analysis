@@ -17,7 +17,7 @@ public class MasterAnalysisSetup extends GhidraScript {
         println("Running all bulk analysis scripts in optimal order...");
         println("");
         
-        int totalScripts = 7;
+        int totalScripts = 9;
         int currentScript = 0;
         
         try {
@@ -33,31 +33,43 @@ public class MasterAnalysisSetup extends GhidraScript {
             runScript("BulkFunctionRenamer.java");
             println("✓ Functions renamed\n");
             
-            // Step 3: Create Global Variables
-            currentScript++;
-            println("[" + currentScript + "/" + totalScripts + "] Creating global variables...");
-            runScript("BulkVariableCreator.java");
-            println("✓ Global variables created\n");
-            
-            // Step 4: Create Structures
+            // Step 3: Create Structures
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating structures...");
             runScript("BulkStructureCreator.java");
             println("✓ Structures created\n");
             
-            // Step 5: Create Labels
+            // Step 4: Rename Function Parameters
+            currentScript++;
+            println("[" + currentScript + "/" + totalScripts + "] Renaming function parameters...");
+            runScript("BulkFunctionParameterRenamer.java");
+            println("✓ Function parameters renamed\n");
+            
+            // Step 5: Create Global Variables
+            currentScript++;
+            println("[" + currentScript + "/" + totalScripts + "] Creating global variables...");
+            runScript("BulkVariableCreator.java");
+            println("✓ Global variables created\n");
+            
+            // Step 6: Create Labels
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating labels...");
             runScript("BulkLabelCreator.java");
             println("✓ Labels created\n");
             
-            // Step 6: Document Constants
+            // Step 7: Document Constants
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Documenting constants...");
             runScript("BulkConstantCreator.java");
             println("✓ Constants documented\n");
             
-            // Step 7: Create Enums
+            // Step 8: Rename Local Variables
+            currentScript++;
+            println("[" + currentScript + "/" + totalScripts + "] Renaming local variables...");
+            runScript("BulkLocalVariableRenamer.java");
+            println("✓ Local variables renamed\n");
+            
+            // Step 9: Create Enums
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating enums...");
             runScript("BulkEnumCreator.java");
@@ -78,10 +90,12 @@ public class MasterAnalysisSetup extends GhidraScript {
             println("Your firmware is now fully analyzed with:");
             println("✅ Proper memory layout (MC68336 architecture)");
             println("✅ Named functions with semantic meaning");
-            println("✅ Typed global variables");
-            println("✅ Data structures applied to memory");
+            println("✅ Data structures defined with nested types");
+            println("✅ Function parameters with proper names and types");
+            println("✅ Typed global variables using custom structures");
             println("✅ Meaningful labels for control flow");
             println("✅ Documented constants (no more magic numbers)");
+            println("✅ Properly named and typed local variables");
             println("✅ Organized enums for switch statements");
             println("");
             println("🔧 Manual Steps (if needed):");
@@ -91,7 +105,9 @@ public class MasterAnalysisSetup extends GhidraScript {
             println("");
             println("📁 Your CSV files are your knowledge database:");
             println("• function_renames.csv - Function names");
+            println("• function_parameters.csv - Function parameter names and types");
             println("• global_variables.csv - Variable definitions");  
+            println("• local_variables.csv - Local variable renames and types");
             println("• structure_definitions.csv - Data structures");
             println("• labels.csv - Control flow labels");
             println("• constants.csv - Magic number meanings");

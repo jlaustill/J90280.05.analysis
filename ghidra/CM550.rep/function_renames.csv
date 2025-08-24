@@ -6,12 +6,15 @@ address,newName
 0x1c33e,diagnosticParamRequestHandler
 0x1c776,diagnosticStatusRequestHandler
 0x2a57e,configParamCanBuilder
-0x2a418,engineParamCanBuilder
+0x2a418,vp44EngineRpmCanBuilder
+0x2a2f2,buildPgn61444_ProprietarySpeed
 0x12afa,param_address_calc
 0x18f82,activeParamReadFunction
 0x29C52,buildCanMessage
 0xE052,sendJ1939SingleFrame
 0xE180,sendJ1939Msg
+0x357f6,tableInterpolationLookup
+0x357e4,rpmFuelCalculation
 0xd8b4,param_interpolate
 0xd57c,paramSystemModeController
 0xd69c,param_lookup_2

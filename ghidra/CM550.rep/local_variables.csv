@@ -1,0 +1,3 @@
+function_address,function_name,old_variable_name,new_variable_name,type,comment
+0x0002a2f2,buildPgn61444_ProprietarySpeed,local_6,rpmHighByte,uint8_t,High byte of RPM value for PGN 61444
+0x0002a2f2,buildPgn61444_ProprietarySpeed,uStack_5,rpmLowByte,uint8_t,Low byte of RPM value for PGN 61444

@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sat Aug 23 19:06:30 MDT 2025
+; Sun Aug 24 08:53:31 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -7988,7 +7988,7 @@
 00011a72: bcs.b    0x00011a76          
 00011a74: clr.w    (A3)                
 00011a76: move.w   (A4),D0w            
-00011a78: andi.w   #0x1,D0w            
+00011a78: andi.w   #0x1,D0w             ; engine_cranking_rpm_limit_CSCDESTR = 125 (Expected: Engine speed limit for cold crank sync determination (125 RPM))
 00011a7c: beq.b    0x00011a88          
 00011a7e: jsr      0x0001133c          
 00011a84: clr.w    (A4)                

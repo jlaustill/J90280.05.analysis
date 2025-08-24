@@ -5,7 +5,7 @@ address,array_name,element_type,element_count,comment
 0x8086C0,scale_factor_table,word,16,Scaling factors for parameter interpolation
 0x800000,sensor_data_buffer,byte,256,Raw sensor data collection buffer
 0x800100,can_message_buffer,byte,64,CAN message assembly/parsing buffer
-0x800200,lookup_table_rpm,word,32,RPM-based lookup table (64 bytes)
+0x800200,engine_rpm_lookup_table,word,32,Engine RPM-based lookup table for fuel/timing calculations (64 bytes)
 0x800300,lookup_table_fuel,word,32,Fuel-based lookup table (64 bytes)
 0x800400,calibration_data,word,64,Calibration constants array (128 bytes)
 0x801000,eeprom_mirror,byte,1024,EEPROM data mirror in RAM (1KB)

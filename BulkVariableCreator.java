@@ -66,9 +66,32 @@ public class BulkVariableCreator extends GhidraScript {
                         // Get data type
                         DataType dataType = getDataType(typeStr);
                         if (dataType == null) {
-                            println("✗ " + addressStr + ": Unknown data type '" + typeStr + "'");
-                            failCount++;
-                            continue;
+                            // Try to find custom structure type
+                            dataType = currentProgram.getDataTypeManager().getDataType(typeStr);
+                            if (dataType != null) {
+                                println("  Found custom type '" + typeStr + "' in DataTypeManager");
+                            } else {
+                                println("✗ " + addressStr + ": Unknown data type '" + typeStr + "'");
+                                println("  Available primitive types: uint8_t, uint16_t, uint32_t, byte, word, dword");
+                                println("  Searching for custom structures in DataTypeManager...");
+                                
+                                // Debug: List available structures
+                                java.util.Iterator<DataType> dtIter = currentProgram.getDataTypeManager().getAllDataTypes();
+                                int structCount = 0;
+                                while (dtIter.hasNext() && structCount < 5) {
+                                    DataType dt = dtIter.next();
+                                    if (dt instanceof Structure) {
+                                        println("    Found structure: " + dt.getName());
+                                        structCount++;
+                                    }
+                                }
+                                if (structCount == 0) {
+                                    println("    No structures found in DataTypeManager");
+                                }
+                                
+                                failCount++;
+                                continue;
+                            }
                         }
                         
                         // Clear existing data at this address
@@ -135,6 +158,7 @@ public class BulkVariableCreator extends GhidraScript {
     // Helper method to convert string type to Ghidra DataType
     private DataType getDataType(String typeString) {
         switch (typeString.toLowerCase()) {
+            case "uint8_t":
             case "byte":
             case "uint8":
             case "char":
