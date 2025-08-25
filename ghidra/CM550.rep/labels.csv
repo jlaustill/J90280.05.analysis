@@ -27,6 +27,12 @@ address,label_name,comment
 0x1c7ca,diagnostic_error_handler,CalTerm/Insite diagnostic error handler entry point
 0x1c33e,diagnostic_param_request_handler,CalTerm/Insite parameter request handler entry point
 0x1c776,diagnostic_status_request_handler,CalTerm/Insite status request handler entry point
+0x8037B6,can_priority_table_start,Start of CAN message priority lookup table
+0x8037CC,can_priority_dm983,CAN priority lookup for DM-983 diagnostic message
+0x80CFC3,j1939_source_addr_primary,Primary J1939 source address (0xC3 = 195)
+0x80CFCD,j1939_source_addr_secondary,Secondary J1939 source address (0xCD = 205)
+0x80304E,diagnostic_status_buffer,Diagnostic status data (0xF0/F4/F8 based on conditions)
+0x803064,diagnostic_unused_buffer,Diagnostic message unused buffer space
 0x2a3c6,can_param_extract_1,Extract param_table_main.param_table_2 >> 8
 0x2a3d6,param1_to_can_call,Call param_lookup_1 for CAN transmission
 0x2a3de,can_param_extract_2,Extract param_table_main.param_table_1 >> 8
@@ -58,3 +64,45 @@ address,label_name,comment
 0x808f0a,main_loop_callback, The function that main loop actually runs
 0x800358,main_loop_phase_index, The phase the main loop is int
 0x800356,main_loop_counter, How many times hath the main loop ran?
+0x2aba4,cummins_proprietary_tsc_builder,Cummins proprietary torque/speed control message builder (PGN 15728640)
+0x2aade,torque_control_data_builder,Builds torque control status data for Cummins TSC message
+0x2ada8,fuel_economy_pgn_65266_builder,J1939 fuel economy message builder (PGN 65266)
+0x2acd0,fuel_economy_data_builder,Calculates and builds fuel economy data for J1939 message
+0x2b1f6,retarder_config_pgn_65249_builder,J1939 retarder configuration message builder (PGN 65249)
+0x2b0cc,retarder_config_data_builder,Builds retarder torque-speed curve data for J1939 message
+0x27dd4,retarder_mode_thresholds_setup,Sets up retarder mode threshold lookup tables for RPM-based mode selection
+0x35560,lookup_table_interpolation,General-purpose lookup table interpolation function
+0x2956a,ambient_conditions_pgn_65269_builder,J1939 ambient conditions message builder (PGN 65269)
+0x295d4,ambient_conditions_data_builder,Builds ambient conditions sensor data and status flags
+0x2a8da,engine_fluid_level_pgn_65263_builder,J1939 engine fluid level/pressure message builder (PGN 65263)
+0x2a93a,engine_fluid_level_data_builder,Processes engine fluid pressures and temperatures for J1939 message
+0x2aee2,engine_hours_pgn_65252_builder,J1939 engine hours and revolutions message builder (PGN 65252)
+0x2afca,intake_manifold_pgn_65526_builder,J1939 intake manifold air temperature and pressure message builder (PGN 65526)
+0x2b060,cruise_control_pgn_65264_builder,J1939 cruise control and vehicle speed message builder (PGN 65264)
+0x2b338,electronic_brake_pgn_65527_builder,J1939 electronic brake system message builder (PGN 65527)
+0x29a86,engine_coolant_pgn_65226_builder,J1939 engine coolant temperature message builder (PGN 65226)
+0x2a222,diagnostic_dm8_pgn_65232_builder,J1939 diagnostic DM8 test results message builder (PGN 65232)
+0x1af38,timer_scheduler_setup,Timer/scheduler configuration with intervals and timeouts (15 calls with various timing parameters)
+0x27300,system_control_function_1,System control wrapper function calling core system control (FUN_0001b1b4)
+0x1b1b4,core_system_control_function,Core system control function called by multiple control wrappers (failed decompile)
+0x273c0,system_control_function_2,Simple system control wrapper calling core system control function
+0x27514,system_control_function_3,Simple system control wrapper calling core system control function
+0x27e86,system_control_function_4,Simple system control wrapper calling core system control function
+0x2793e,diagnostic_data_dump,Comprehensive diagnostic data dump - transmits complete engine status via 6 J1939 messages plus additional CAN operations
+0x29868,engine_serial_number_pgn_65259_builder,J1939 engine information with ASCII serial number message builder (PGN 65259) with immediate transmission
+0x2aa74,engine_temperature_pgn_65262_builder,J1939 comprehensive engine temperature message builder (coolant/fuel/oil/turbo/intercooler) PGN 65262 with immediate transmission
+0x2ac7a,intake_exhaust_conditions_pgn_65257_builder,J1939 intake/exhaust conditions message builder PGN 65257 with immediate transmission
+0x2ae60,io_control_pgn_65244_builder,J1939 input/output control message builder PGN 65244 with immediate transmission
+0x2b29e,vehicle_distance_pgn_65248_builder,J1939 vehicle distance information message builder PGN 65248 with immediate transmission
+0x2b3fc,vehicle_hours_pgn_65255_builder,J1939 vehicle hours information message builder PGN 65255 with immediate transmission
+0x29bf4,diagnostic_dm2_pgn_65227_builder,J1939 diagnostic DM2 previously active fault codes message builder PGN 65227 with immediate transmission
+0x2732e,can_transmission_trigger,Simple CAN transmission trigger function
+0x2a090,diagnostic_dm4_pgn_65229_builder,J1939 diagnostic DM4 freeze frame data message builder PGN 65229 with immediate transmission
+0x2a1a0,diagnostic_dm5_pgn_65230_builder,J1939 diagnostic DM5 clear previously active codes message builder PGN 65230 with immediate transmission
+0x2a29c,diagnostic_dm11_pgn_65234_builder,J1939 diagnostic DM11 clear active codes message builder PGN 65234 with immediate transmission
+0x1c0c2,system_function_5x_caller,Simple wrapper that calls core system function 5 times
+0x2725a,core_system_function,Core system function called multiple times by various wrappers (failed decompile)
+0x1bd58,system_function_1x_caller,Simple wrapper that calls core system function once
+0x1b762,system_function_6x_parameterized,Complex wrapper calling core system function 6 times with specific parameter sequences (0xb56e, 0x45)
+0xfa40,system_function_8x_maximum,Maximum intensity wrapper calling core system function 8 times with no parameters
+0x1b172,system_function_4x_parameterized_alt,Alternative parameterized wrapper calling core system function 4 times with different parameter sequence (0xb07e, 0x10)

@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sun Aug 24 20:00:33 MDT 2025
+; Mon Aug 25 13:45:55 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -5834,7 +5834,7 @@
 0000fa0c: pea      (0x8034f8).l        
 0000fa12: clr.w    -(SP)               
 0000fa14: jsr      0x000131d6          
-0000fa40: move.l   A2,-(SP)            
+0000fa40: move.l   A2,-(SP)             ; Maximum intensity wrapper calling core system function 8 times with no parameters
 0000fa42: movea.l  #0x2725a,A2         
 0000fa48: pea      (0xf86a).l          
 0000fa4e: move.w   #0x1,-(SP)          
@@ -17827,7 +17827,7 @@
 0001af28: move.w   (0x008084a2).l,(0x0080cfcc).l
 0001af32: movem.l  SP,{  A2 A3}        
 0001af36: rts      <UNSUPPORTED>       
-0001af38: movem.l  {  A3 A2 D2},SP     
+0001af38: movem.l  {  A3 A2 D2},SP      ; Timer/scheduler configuration with intervals and timeouts (15 calls with various timing parameters)
 0001af3c: movea.l  #0x800768,A3        
 0001af42: movea.l  #0x800769,A1        
 0001af48: tst.l    (0x10,SP)           
@@ -18013,7 +18013,7 @@
 0001b16a: bsr.w    0x0001b082          
 0001b16e: addq.l   0x6,SP              
 0001b170: rts      <UNSUPPORTED>       
-0001b172: movem.l  {  A3 A2},SP        
+0001b172: movem.l  {  A3 A2},SP         ; SYSTEM_PARAM_ALT_2 = 0x10 (Expected: Alternative system function parameter value 2 (16 decimal))
 0001b176: movea.l  #0x2725a,A2         
 0001b17c: movea.l  #0x1b07e,A3         
 0001b182: move.l   A3,-(SP)            
@@ -18031,7 +18031,7 @@
 0001b1aa: lea      (0x14,SP),SP        
 0001b1ae: movem.l  SP,{  A2 A3}        
 0001b1b2: rts      <UNSUPPORTED>       
-0001b1b4: move.l   A2,-(SP)            
+0001b1b4: move.l   A2,-(SP)             ; Core system control function called by multiple control wrappers (failed decompile)
 0001b1b6: movea.l  #0x8007aa,A1        
 0001b1bc: cmpi.b   #0xa,(A1)           
 0001b1c0: bne.b    0x0001b1c8          
@@ -18464,7 +18464,7 @@
 0001b75a: movea.l  (-0xc,A6),A2        
 0001b75e: unlk     A6                  
 0001b760: rts      <UNSUPPORTED>       
-0001b762: movem.l  {  A3 A2},SP        
+0001b762: movem.l  {  A3 A2},SP         ; SYSTEM_PARAM_2 = 0x45 (Expected: System function parameter value 2 (69 decimal))
 0001b766: movea.l  #0x2725a,A2         
 0001b76c: movea.l  #0x1b56e,A3         
 0001b772: move.l   A3,-(SP)            
@@ -18856,7 +18856,7 @@
 0001bd4e: movem.l  -0x2c,A6,{  A2 A3 A4 A5}
 0001bd54: unlk     A6                  
 0001bd56: rts      <UNSUPPORTED>       
-0001bd58: pea      (0x1bc9c).l         
+0001bd58: pea      (0x1bc9c).l          ; Simple wrapper that calls core system function once
 0001bd5e: move.w   #0x41,-(SP)         
 0001bd62: jsr      0x0002725a          
 0001bd68: addq.l   0x6,SP              
@@ -19115,7 +19115,7 @@
 0001c0ba: movea.l  (-0xc,A6),A2        
 0001c0be: unlk     A6                  
 0001c0c0: rts      <UNSUPPORTED>       
-0001c0c2: move.l   A2,-(SP)            
+0001c0c2: move.l   A2,-(SP)             ; Simple wrapper that calls core system function 5 times
 0001c0c4: movea.l  #0x2725a,A2         
 0001c0ca: pea      (0x1bf18).l         
 0001c0d0: move.w   #0x43,-(SP)         
@@ -27210,7 +27210,7 @@
 00027254: rts      <UNSUPPORTED>       
 00027256: moveq    0x6,D0              
 00027258: rts      <UNSUPPORTED>       
-0002725a: move.l   A2,-(SP)            
+0002725a: move.l   A2,-(SP)             ; Core system function called multiple times by various wrappers (failed decompile)
 0002725c: movea.l  #0x801998,A1        
 00027262: cmpi.b   #0x20,(A1)          
 00027266: bne.b    0x0002726e          
@@ -27268,7 +27268,7 @@
 000272f8: addq.l   0x6,SP              
 000272fa: movem.l  SP,{  D2 D3 D4 A2 A3}
 000272fe: rts      <UNSUPPORTED>       
-00027300: pea      (0x2729a).l         
+00027300: pea      (0x2729a).l          ; System control wrapper function calling core system control (FUN_0001b1b4)
 00027306: move.w   #-0x1100,-(SP)      
 0002730a: jsr      0x0001b1b4          
 00027310: addq.l   0x6,SP              
@@ -27280,7 +27280,7 @@
 00027324: jsr      0x00029476          
 0002732a: addq.l   0x6,SP              
 0002732c: rts      <UNSUPPORTED>       
-0002732e: pea      (0x27314).l         
+0002732e: pea      (0x27314).l          ; Simple CAN transmission trigger function
 00027334: move.w   #-0x134,-(SP)       
 00027338: jsr      0x0002787e          
 0002733e: addq.l   0x6,SP              
@@ -27327,7 +27327,7 @@
 000273b8: addq.l   0x6,SP              
 000273ba: movem.l  SP,{  A2 A3 A4 A5}  
 000273be: rts      <UNSUPPORTED>       
-000273c0: pea      (0x27342).l         
+000273c0: pea      (0x27342).l          ; Simple system control wrapper calling core system control function
 000273c6: move.w   #-0x1d00,-(SP)      
 000273ca: jsr      0x0001b1b4          
 000273d0: addq.l   0x6,SP              
@@ -27415,7 +27415,7 @@
 00027506: move.w   #0x1,(0x0080d016).l 
 0002750e: movem.l  SP,{  A2 A3 A4}     
 00027512: rts      <UNSUPPORTED>       
-00027514: pea      (0x273d4).l         
+00027514: pea      (0x273d4).l          ; Simple system control wrapper calling core system control function
 0002751a: move.w   #-0xffe,-(SP)       
 0002751e: jsr      0x0001b1b4          
 00027524: addq.l   0x6,SP              
@@ -27696,7 +27696,7 @@
 00027936: addq.l   0x6,SP              
 00027938: movem.l  SP,{  D2 D3 A2 A3 A4}
 0002793c: rts      <UNSUPPORTED>       
-0002793e: move.l   A2,-(SP)            
+0002793e: move.l   A2,-(SP)             ; Comprehensive diagnostic data dump - transmits complete engine status via 6 J1939 messages plus additional CAN operations
 00027940: movea.l  #0x2787e,A2         
 00027946: pea      (0x278be).l         
 0002794c: move.w   #-0x1600,-(SP)      
@@ -28013,7 +28013,7 @@
 00027dc8: clr.w    (0x0080d038).l      
 00027dce: movem.l  SP,{  D2 D3 D4 A2 A3 A4 A5}
 00027dd2: rts      <UNSUPPORTED>       
-00027dd4: movem.l  {  A3 A2},SP        
+00027dd4: movem.l  {  A3 A2},SP         ; RETARDER_MODE_THRESHOLD_TABLES = 3 (Expected: Number of retarder mode threshold lookup tables)
 00027dd8: movea.l  #0x801a5a,A2        
 00027dde: movea.l  #0x801a4e,A3        
 00027de4: movea.l  #0x807952,A1        
@@ -28051,7 +28051,7 @@
 00027e7e: addq.l   0x4,SP              
 00027e80: movem.l  SP,{  D2 A2}        
 00027e84: rts      <UNSUPPORTED>       
-00027e86: pea      (0x27e3e).l         
+00027e86: pea      (0x27e3e).l          ; Simple system control wrapper calling core system control function
 00027e8c: clr.w    -(SP)               
 00027e8e: jsr      0x0001b1b4          
 00027e94: addq.l   0x6,SP              
@@ -28967,7 +28967,7 @@
 00029564: addq.l   0x4,SP              
 00029566: move.l   (SP)+,D2            
 00029568: rts      <UNSUPPORTED>       
-0002956a: movea.l  #0x801aac,A1        
+0002956a: movea.l  #0x801aac,A1         ; AMBIENT_CONDITIONS_PGN_65269 = 0xFEF500 (Expected: J1939 ambient conditions message PGN 65269)
 00029570: movea.l  #0x801a9e,A0        
 00029576: move.l   #0xfef500,(0x00801a9e).l
 00029580: move.w   (0x008037b8).l,D0w  
@@ -28986,7 +28986,7 @@
 000295c6: move.b   #-0x1,(0x5,A1)      
 000295cc: move.w   #-0x1,(0x6,A1)      
 000295d2: rts      <UNSUPPORTED>       
-000295d4: link.w   A6,-0x4             
+000295d4: link.w   A6,-0x4              ; AMBIENT_TEMP_CONVERSION_FACTOR = 412 (Expected: Temperature conversion factor for ambient data (0x19C))
 000295d8: movem.l  {  A4 A3 A2},SP     
 000295dc: movea.l  #0x801ac4,A3        
 000295e2: movea.l  A3,A4               
@@ -29169,7 +29169,7 @@
 00029860: addq.l   0x4,SP              
 00029862: movem.l  SP,{  A2 A3}        
 00029866: rts      <UNSUPPORTED>       
-00029868: movea.l  #0x801ace,A0        
+00029868: movea.l  #0x801ace,A0         ; ENGINE_SERIAL_PGN_65259 = 0xFEEB00 (Expected: J1939 engine information with serial number message PGN 65259)
 0002986e: move.l   #0xfeeb00,(0x00801ace).l
 00029878: move.w   (0x008037bc).l,D0w  
 0002987e: andi.l   #0x7,D0             
@@ -29318,7 +29318,7 @@
 00029a7e: addq.l   0x4,SP              
 00029a80: movem.l  SP,{  D2 D3 D4 A2 A3 A4 A5}
 00029a84: rts      <UNSUPPORTED>       
-00029a86: movea.l  #0x801afa,A1        
+00029a86: movea.l  #0x801afa,A1         ; ENGINE_COOLANT_PGN_65226 = 0xFECA00 (Expected: J1939 engine coolant temperature message PGN 65226)
 00029a8c: movea.l  #0x801b08,A0        
 00029a92: move.l   #0xfeca00,(0x00801afa).l
 00029a9c: move.w   (0x008037be).l,D0w  
@@ -29418,7 +29418,7 @@
 00029bec: addq.l   0x4,SP              
 00029bee: movem.l  SP,{  D2 D3 D4 A2 A3 A4 A5}
 00029bf2: rts      <UNSUPPORTED>       
-00029bf4: movea.l  #0x802200,A1        
+00029bf4: movea.l  #0x802200,A1         ; DIAGNOSTIC_DM2_PGN_65227 = 0xFECB00 (Expected: J1939 diagnostic DM2 previously active fault codes message PGN 65227)
 00029bfa: movea.l  #0x80220e,A0        
 00029c00: move.l   #0xfecb00,(0x00802200).l
 00029c0a: move.w   (0x008037c0).l,D0w  
@@ -29802,7 +29802,7 @@
 0002a086: movem.l  -0x24,A6,{  D2 D3 D4 D5 A2 A3 A4 A5}
 0002a08c: unlk     A6                  
 0002a08e: rts      <UNSUPPORTED>       
-0002a090: move.l   A2,-(SP)            
+0002a090: move.l   A2,-(SP)             ; DIAGNOSTIC_DM4_PGN_65229 = 0xFECD00 (Expected: J1939 diagnostic DM4 freeze frame data message PGN 65229)
 0002a092: movea.l  #0x802906,A1        
 0002a098: movea.l  #0x802914,A0        
 0002a09e: move.l   #0xfecd00,(0x00802906).l
@@ -29866,7 +29866,7 @@
 0002a196: movem.l  -0x14,A6,{  A2 A3 A4 A5}
 0002a19c: unlk     A6                  
 0002a19e: rts      <UNSUPPORTED>       
-0002a1a0: movea.l  #0x802fee,A0        
+0002a1a0: movea.l  #0x802fee,A0         ; DIAGNOSTIC_DM5_PGN_65230 = 0xFECE00 (Expected: J1939 diagnostic DM5 clear previously active codes message PGN 65230)
 0002a1a6: move.l   #0xfece00,(0x00802fee).l
 0002a1b0: move.w   (0x008037c4).l,D0w  
 0002a1b6: andi.l   #0x7,D0             
@@ -29891,7 +29891,7 @@
 0002a218: jsr      0x0000e180          
 0002a21e: unlk     A6                  
 0002a220: rts      <UNSUPPORTED>       
-0002a222: movea.l  #0x803014,A1        
+0002a222: movea.l  #0x803014,A1         ; DIAGNOSTIC_DM8_PGN_65232 = 0xFED000 (Expected: J1939 diagnostic DM8 test results message PGN 65232)
 0002a228: movea.l  #0x803006,A0        
 0002a22e: move.l   #0xfed000,(0x00803006).l
 0002a238: move.w   (0x008037c6).l,D0w  
@@ -29914,7 +29914,7 @@
 0002a292: jsr      0x0000e180          
 0002a298: addq.l   0x8,SP              
 0002a29a: rts      <UNSUPPORTED>       
-0002a29c: movea.l  #0x80301e,A0        
+0002a29c: movea.l  #0x80301e,A0         ; DIAGNOSTIC_DM11_PGN_65234 = 0xFED200 (Expected: J1939 diagnostic DM11 clear active codes message PGN 65234)
 0002a2a2: move.l   #0xfed200,(0x0080301e).l
 0002a2ac: move.w   (0x008037c8).l,D0w  
 0002a2b2: andi.l   #0x7,D0             
@@ -30072,7 +30072,7 @@
 0002a516: addq.l   0x4,SP              
 0002a518: movem.l  SP,{  A2 A3 A4 A5}  
 0002a51c: rts      <UNSUPPORTED>       
-0002a51e: move.l   A2,-(SP)            
+0002a51e: move.l   A2,-(SP)             ; CUMMINS_DM_983_PGN = 0xF00300 (Expected: Cummins proprietary diagnostic message DM-983 (PGN F00300))
 0002a520: movea.l  #0x803056,A2        
 0002a526: move.l   #0xf00300,(0x00803056).l
 0002a530: move.w   (0x008037cc).l,D0w  
@@ -30110,7 +30110,7 @@
 0002a5d0: movem.l  -0xc,A6,{  A2 A3}   
 0002a5d6: unlk     A6                  
 0002a5d8: rts      <UNSUPPORTED>       
-0002a5da: movea.l  #0x80306e,A0        
+0002a5da: movea.l  #0x80306e,A0         ; SECONDARY_PARAM_PGN = 0xFEDF00 (Expected: Secondary parameter message PGN (FEDF00))
 0002a5e0: move.l   #0xfedf00,(0x0080306e).l
 0002a5ea: move.w   (0x008037ce).l,D0w  
 0002a5f0: andi.l   #0x7,D0             
@@ -30237,7 +30237,7 @@
 0002a7ee: movem.l  -0x18,A6,{  D2 A2 A3 A4 A5}
 0002a7f4: unlk     A6                  
 0002a7f6: rts      <UNSUPPORTED>       
-0002a7f8: movea.l  #0x80309a,A1        
+0002a7f8: movea.l  #0x80309a,A1         ; EXTENDED_DIAG_PGN = 0xFEE300 (Expected: Extended diagnostic data message PGN (FEE300))
 0002a7fe: movea.l  #0x80307e,A0        
 0002a804: move.l   #0xfee300,(0x0080309a).l
 0002a80e: move.w   (0x008037d0).l,D0w  
@@ -30302,7 +30302,7 @@
 0002a8d4: addq.l   0x4,SP              
 0002a8d6: move.l   (SP)+,D2            
 0002a8d8: rts      <UNSUPPORTED>       
-0002a8da: movea.l  #0x8030b8,A1        
+0002a8da: movea.l  #0x8030b8,A1         ; ENGINE_FLUID_LEVEL_PGN_65263 = 0xFEEF00 (Expected: J1939 engine fluid level/pressure message PGN 65263)
 0002a8e0: movea.l  #0x8030aa,A0        
 0002a8e6: move.l   #0xfeef00,(0x008030aa).l
 0002a8f0: move.w   (0x008037d2).l,D0w  
@@ -30319,7 +30319,7 @@
 0002a92c: move.b   #-0x1,(0x7,A1)      
 0002a932: move.b   #-0x1,(0x1,A1)      
 0002a938: rts      <UNSUPPORTED>       
-0002a93a: link.w   A6,-0x4             
+0002a93a: link.w   A6,-0x4              ; ENGINE_TEMP_BASE_OFFSET = 6400 (Expected: Engine temperature base offset for fluid calculations (0x1900))
 0002a93e: movem.l  {  A5 A4 A3 A2},SP  
 0002a942: lea      (-0x2,A6),A2        
 0002a946: movea.l  #0x8030d0,A3        
@@ -30420,7 +30420,7 @@
 0002aa6a: movem.l  -0x14,A6,{  A2 A3 A4 A5}
 0002aa70: unlk     A6                  
 0002aa72: rts      <UNSUPPORTED>       
-0002aa74: movea.l  #0x8030d0,A1        
+0002aa74: movea.l  #0x8030d0,A1         ; ENGINE_TEMPERATURE_PGN_65262 = 0xFEEE00 (Expected: J1939 engine temperature message PGN 65262 (coolant/fuel/oil/turbo/intercooler temps))
 0002aa7a: movea.l  #0x8030c2,A0        
 0002aa80: move.l   #0xfeee00,(0x008030c2).l
 0002aa8a: move.w   (0x008037d8).l,D0w  
@@ -30440,7 +30440,7 @@
 0002aad4: jsr      0x0002787e          
 0002aada: addq.l   0x6,SP              
 0002aadc: rts      <UNSUPPORTED>       
-0002aade: movem.l  {  A4 A3 A2},SP     
+0002aade: movem.l  {  A4 A3 A2},SP      ; Builds torque control status data for Cummins TSC message
 0002aae2: movea.l  #0x8030da,A2        
 0002aae8: movea.l  #0x8096b0,A3        
 0002aaee: movea.l  #0x8030da,A4        
@@ -30493,7 +30493,7 @@
 0002ab9c: addq.l   0x4,SP              
 0002ab9e: movem.l  SP,{  A2 A3 A4}     
 0002aba2: rts      <UNSUPPORTED>       
-0002aba4: move.l   A2,-(SP)            
+0002aba4: move.l   A2,-(SP)             ; CUMMINS_TSC_PGN_15728640 = 0xF00000 (Expected: Cummins proprietary torque/speed control message PGN 15728640)
 0002aba6: movea.l  #0x8030e2,A2        
 0002abac: move.l   #0xf00000,(0x008030e2).l
 0002abb6: move.w   (0x008037d6).l,D0w  
@@ -30541,7 +30541,7 @@
 0002ac70: movem.l  -0xc,A6,{  A2 A3}   
 0002ac76: unlk     A6                  
 0002ac78: rts      <UNSUPPORTED>       
-0002ac7a: movea.l  #0x8030f2,A0        
+0002ac7a: movea.l  #0x8030f2,A0         ; INTAKE_EXHAUST_CONDITIONS_PGN_65257 = 0xFEE900 (Expected: J1939 intake/exhaust conditions message PGN 65257)
 0002ac80: move.l   #0xfee900,(0x008030f2).l
 0002ac8a: move.w   (0x008037da).l,D0w  
 0002ac90: andi.l   #0x7,D0             
@@ -30557,9 +30557,9 @@
 0002acc6: jsr      0x0002787e          
 0002accc: addq.l   0x6,SP              
 0002acce: rts      <UNSUPPORTED>       
-0002acd0: link.w   A6,-0x4             
+0002acd0: link.w   A6,-0x4              ; FUEL_ECONOMY_MAX_VALUE = 3212 (Expected: Maximum fuel economy value (0xC8C))
 0002acd4: movem.l  {  A5 A4 A3 A2 D2},SP
-0002acd8: movea.l  #0x80310c,A2        
+0002acd8: movea.l  #0x80310c,A2         ; FUEL_ECONOMY_CONVERSION_FACTOR = 8502 (Expected: Fuel economy calculation conversion factor (0x2136))
 0002acde: lea      (-0x2,A6),A3        
 0002ace2: lea      (-0x2,A6),A4        
 0002ace6: lea      (-0x2,A6),A5        
@@ -30621,7 +30621,7 @@
 0002ad9e: movem.l  -0x18,A6,{  D2 A2 A3 A4 A5}
 0002ada4: unlk     A6                  
 0002ada6: rts      <UNSUPPORTED>       
-0002ada8: movea.l  #0x803114,A0        
+0002ada8: movea.l  #0x803114,A0         ; FUEL_ECONOMY_PGN_65266 = 0xFEF200 (Expected: J1939 fuel economy message PGN 65266)
 0002adae: move.l   #0xfef200,(0x00803114).l
 0002adb8: move.w   (0x008037dc).l,D0w  
 0002adbe: andi.l   #0x7,D0             
@@ -30660,7 +30660,7 @@
 0002ae58: movea.l  (-0x8,A6),A2        
 0002ae5c: unlk     A6                  
 0002ae5e: rts      <UNSUPPORTED>       
-0002ae60: movea.l  #0x803128,A0        
+0002ae60: movea.l  #0x803128,A0         ; IO_CONTROL_PGN_65244 = 0xFEDC00 (Expected: J1939 input/output control message PGN 65244)
 0002ae66: move.l   #0xfedc00,(0x00803128).l
 0002ae70: move.w   (0x008037de).l,D0w  
 0002ae76: andi.l   #0x7,D0             
@@ -30687,7 +30687,7 @@
 0002aed8: jsr      0x0000e180          
 0002aede: addq.l   0x4,SP              
 0002aee0: rts      <UNSUPPORTED>       
-0002aee2: movea.l  #0x80314e,A1        
+0002aee2: movea.l  #0x80314e,A1         ; ENGINE_HOURS_PGN_65252 = 0xFEE400 (Expected: J1939 engine hours/revolutions message PGN 65252)
 0002aee8: movea.l  #0x803140,A0        
 0002aeee: move.l   #0xfee400,(0x00803140).l
 0002aef8: move.w   (0x008037e0).l,D0w  
@@ -30748,7 +30748,7 @@
 0002afc4: addq.l   0x4,SP              
 0002afc6: move.l   (SP)+,D2            
 0002afc8: rts      <UNSUPPORTED>       
-0002afca: movea.l  #0x803166,A1        
+0002afca: movea.l  #0x803166,A1         ; INTAKE_MANIFOLD_PGN_65526 = 0xFEF600 (Expected: J1939 intake manifold air temperature and pressure message PGN 65526)
 0002afd0: movea.l  #0x803158,A0        
 0002afd6: move.l   #0xfef600,(0x00803158).l
 0002afe0: move.w   (0x008037e2).l,D0w  
@@ -30776,7 +30776,7 @@
 0002b056: jsr      0x0000e180          
 0002b05c: addq.l   0x8,SP              
 0002b05e: rts      <UNSUPPORTED>       
-0002b060: movea.l  #0x80317e,A1        
+0002b060: movea.l  #0x80317e,A1         ; CRUISE_CONTROL_PGN_65264 = 0xFEF000 (Expected: J1939 cruise control and vehicle speed message PGN 65264)
 0002b066: movea.l  #0x803170,A0        
 0002b06c: move.l   #0xfef000,(0x00803170).l
 0002b076: move.w   (0x008037e6).l,D0w  
@@ -30795,8 +30795,8 @@
 0002b0be: move.b   #-0x1,(0x6,A1)      
 0002b0c4: move.b   #-0x1,(0x7,A1)      
 0002b0ca: rts      <UNSUPPORTED>       
-0002b0cc: link.w   A6,-0x4             
-0002b0d0: movem.l  {  A3 A2},SP        
+0002b0cc: link.w   A6,-0x4              ; RETARDER_STEPS_MAX = 20 (Expected: Maximum retarder steps configuration (0x14))
+0002b0d0: movem.l  {  A3 A2},SP         ; RETARDER_TORQUE_OFFSET = 125 (Expected: Retarder torque offset value (0x7D from 125 formula))
 0002b0d4: movea.l  #0x803188,A2        
 0002b0da: lea      (-0x2,A6),A3        
 0002b0de: lea      (-0x2,A6),A1        
@@ -30865,7 +30865,7 @@
 0002b1ec: movem.l  -0xc,A6,{  A2 A3}   
 0002b1f2: unlk     A6                  
 0002b1f4: rts      <UNSUPPORTED>       
-0002b1f6: movea.l  #0x80319a,A0        
+0002b1f6: movea.l  #0x80319a,A0         ; RETARDER_CONFIG_PGN_65249 = 0xFEE100 (Expected: J1939 retarder configuration message PGN 65249)
 0002b1fc: move.l   #0xfee100,(0x0080319a).l
 0002b206: move.w   (0x008037e8).l,D0w  
 0002b20c: andi.l   #0x7,D0             
@@ -30898,7 +30898,7 @@
 0002b294: jsr      0x0000e180          
 0002b29a: unlk     A6                  
 0002b29c: rts      <UNSUPPORTED>       
-0002b29e: movea.l  #0x8031aa,A0        
+0002b29e: movea.l  #0x8031aa,A0         ; VEHICLE_DISTANCE_PGN_65248 = 0xFEE000 (Expected: J1939 vehicle distance information message PGN 65248)
 0002b2a4: move.l   #0xfee000,(0x008031aa).l
 0002b2ae: move.w   (0x008037ea).l,D0w  
 0002b2b4: andi.l   #0x7,D0             
@@ -30934,7 +30934,7 @@
 0002b330: movea.l  (-0x8,A6),A2        
 0002b334: unlk     A6                  
 0002b336: rts      <UNSUPPORTED>       
-0002b338: movea.l  #0x8031d0,A1        
+0002b338: movea.l  #0x8031d0,A1         ; ELECTRONIC_BRAKE_PGN_65527 = 0xFEF700 (Expected: J1939 electronic brake system message PGN 65527)
 0002b33e: movea.l  #0x8031c2,A0        
 0002b344: move.l   #0xfef700,(0x008031c2).l
 0002b34e: move.w   (0x008037ec).l,D0w  
@@ -30972,7 +30972,7 @@
 0002b3f2: jsr      0x0000e180          
 0002b3f8: unlk     A6                  
 0002b3fa: rts      <UNSUPPORTED>       
-0002b3fc: movea.l  #0x8031da,A0        
+0002b3fc: movea.l  #0x8031da,A0         ; VEHICLE_HOURS_PGN_65255 = 0xFEE700 (Expected: J1939 vehicle hours information message PGN 65255)
 0002b402: move.l   #0xfee700,(0x008031da).l
 0002b40c: move.w   (0x008037ee).l,D0w  
 0002b412: andi.l   #0x7,D0             
@@ -41337,7 +41337,7 @@
 00035554: andi.w   #-0x21,(0x00805e14).l
 0003555c: move     (SP)+,SR            
 0003555e: rts      <UNSUPPORTED>       
-00035560: move.l   A2,-(SP)            
+00035560: move.l   A2,-(SP)             ; LOOKUP_TABLE_INTERPOLATION_FUNC = 0x35560 (Expected: Address of lookup table interpolation function)
 00035562: move.l   A3,-(SP)            
 00035564: movea.l  (0xc,SP),A2         
 00035568: movea.l  (0x2,A2),A0         
