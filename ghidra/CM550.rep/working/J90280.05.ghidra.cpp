@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Mon Aug 25 13:45:56 MDT 2025
+// Mon Aug 25 14:04:20 MDT 2025
 
 
 //
@@ -11497,7 +11497,7 @@ undefined8 main_loop(void)
 void scheduler_init(void)
 
 {
-  _DAT_0080976e = 0;
+  _schedule_armed = 0;
   _DAT_0080977a = 5;
   _DAT_0080977c = 200;
   _DAT_0080977e = 0x9b7;
@@ -11523,7 +11523,7 @@ void mainLoopTaskSchedulerInit(void)
 {
   undefined4 *puVar1;
   
-  if (_DAT_0080976e != 0) {
+  if (_schedule_armed != 0) {
     if (_main_loop_counter == 0) {
       for (puVar1 = (undefined4 *)&DAT_00809782; puVar1 < &DAT_00809a02; puVar1 = puVar1 + 4) {
         *puVar1 = 0;
@@ -11554,7 +11554,7 @@ void mainLoopTaskSchedulerInit(void)
 void FUN_00017bf2(void)
 
 {
-  if (_DAT_0080976e != 0) {
+  if (_schedule_armed != 0) {
     _DAT_00800354 = _DAT_00fff404 - _DAT_0080035a;
     if (*(ushort *)(_DAT_0080035c + 2) < _DAT_00800354) {
       *(ushort *)(_DAT_0080035c + 2) = _DAT_00800354;
@@ -11586,7 +11586,7 @@ void FUN_00017c6e(void)
 
 {
   while (_DAT_0080c812 == 0) {
-    if (_DAT_0080976e != 0) {
+    if (_schedule_armed != 0) {
       for (_DAT_00809778 = 0; _DAT_00809778 < _DAT_00809776; _DAT_00809778 = _DAT_00809778 + 1) {
       }
       _DAT_00809772 = _DAT_00809772 + 1;

@@ -285,3 +285,4 @@ address,name,type,comment
 0x8030d0,engine_temp_processed1,byte,Processed engine temperature value 1
 0x8030d1,engine_temp_processed2,byte,Processed engine temperature value 2
 0x8030d2,engine_fluid_calc_result,word,Engine fluid calculation result
+0x80976e,schedule_armed,uint16_t,Seems to be an init/armed flag for the main_loop

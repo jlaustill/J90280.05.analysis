@@ -106,3 +106,4 @@ address,label_name,comment
 0x1b762,system_function_6x_parameterized,Complex wrapper calling core system function 6 times with specific parameter sequences (0xb56e, 0x45)
 0xfa40,system_function_8x_maximum,Maximum intensity wrapper calling core system function 8 times with no parameters
 0x1b172,system_function_4x_parameterized_alt,Alternative parameterized wrapper calling core system function 4 times with different parameter sequence (0xb07e, 0x10)
+0x80976e,schedule_armed,Seems to be an init/armed flag for the main_loop
