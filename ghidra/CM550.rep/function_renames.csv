@@ -8,6 +8,8 @@ address,newName
 0x2a57e,configParamCanBuilder
 0x2a418,vp44EngineRpmCanBuilder
 0x2a2f2,buildPgn61444_ProprietarySpeed
+0x17b3a,scheduler_init
+0x175ba,main_loop
 0x12afa,param_address_calc
 0x18f82,activeParamReadFunction
 0x29C52,buildCanMessage
@@ -31,3 +33,7 @@ address,newName
 0x0000a53e,dmaControllerSetup1
 0x0000a56e,dmaDescriptorSetup1
 0x0000a598,dmaDescriptorSetup2
+0x00025596,system_startup
+0x00020462,mainSystemInitialization
+0x0000f4ea,firmwareDataCopyToWorkingMemory
+0x00026ec4,clearWorkingMemory

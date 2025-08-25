@@ -49,7 +49,6 @@ public class BulkEnumCreator extends GhidraScript {
         String csvPath = getProjectRootFolder().getProjectLocator().getProjectDir() + 
                         "/enums.csv";
         
-        println("Reading enum definitions from: " + csvPath);
         
         Map<String, EnumDef> enums = new HashMap<>();
         
@@ -103,8 +102,6 @@ public class BulkEnumCreator extends GhidraScript {
             return;
         }
         
-        println("Found " + enums.size() + " enums to create");
-        println("==========================================");
         
         DataTypeManager dtm = currentProgram.getDataTypeManager();
         int successCount = 0;
@@ -131,7 +128,6 @@ public class BulkEnumCreator extends GhidraScript {
                 // Add enum to data type manager
                 DataType addedEnum = dtm.addDataType(enumType, DataTypeConflictHandler.REPLACE_HANDLER);
                 
-                println("✓ Created enum " + enumDef.name + " with " + enumDef.members.size() + " members");
                 successCount++;
                 println("");
                 
@@ -141,18 +137,9 @@ public class BulkEnumCreator extends GhidraScript {
             }
         }
         
-        println("==========================================");
         println("Results: " + successCount + " successful, " + failCount + " failed");
         
         if (successCount > 0) {
-            println("\nSuccessfully created " + successCount + " enums!");
-            println("You can find them in the Data Type Manager under your program category.");
-            println("Use these enums to replace magic numbers in switch statements and comparisons.");
-            println("\nTo apply an enum to a variable or parameter:");
-            println("1. Right-click on the variable/parameter");
-            println("2. Select 'Retype Variable' or 'Retype Global'"); 
-            println("3. Choose your enum from the data type list");
-            println("\nSwitch statements will now show enum member names instead of raw numbers!");
         }
     }
 }

@@ -52,3 +52,127 @@ address,name,type,comment
 0x806318,dma_desc_dest_addr2,dword,DMA descriptor 2 destination address pointer
 0x80632c,dma_desc_source_addr3,dword,DMA descriptor 3 source address pointer
 0x806340,dma_desc_dest_addr3,dword,DMA descriptor 3 destination address pointer
+0xFFFA00,sim_mcr,word,System Integration Module Master Control Register
+0xFFFA04,sim_avr,word,SIM Auto Vector Register  
+0xFFFA11,sim_rsr,byte,SIM Reset Status Register
+0xFFFA15,sim_sypcr,byte,System Protection Control Register
+0xFFFA17,sim_swiv,byte,Software Interrupt Vector
+0xFFFA19,sim_swsr,byte,Software Service Register (watchdog)
+0xFFFA44,sim_csbarbt,word,Chip Select Base Address Register - Boot ROM
+0xFFFA46,sim_csorbt,word,Chip Select Option Register - Boot ROM
+0xFFFA48,sim_csbar0,word,Chip Select Base Address Register 0
+0xFFFA4A,sim_csor0,word,Chip Select Option Register 0
+0x37EAE,firmware_data_source,byte,Source address for firmware data copying to working memory (10KB)
+0xFFFA00,sim_mcr,word,SIM Module Configuration Register
+0xFFFA02,sim_simtr,word,SIM Module Test Register
+0xFFFA04,sim_avr,word,SIM Auto Vector Register
+0xFFFA06,sim_rsr,word,SIM Reset Status Register
+0xFFFA08,sim_syncr,word,SIM Clock Synthesizer Control Register
+0xFFFA0A,sim_sypcr,word,SIM System Protection Control Register
+0xFFFA0C,sim_swiv,word,SIM Software Interrupt Vector Register
+0xFFFA0E,sim_swsr,word,SIM Software Service Register
+0xFFFA10,sim_ddir,word,SIM Data Direction Register
+0xFFFA12,sim_dpar,word,SIM Data Polarity Register
+0xFFFA14,sim_ddrd,word,SIM Data Direction Register D
+0xFFFA16,sim_dpard,word,SIM Data Polarity Register D
+0xFFFA18,sim_picr,word,SIM Periodic Interrupt Control Register
+0xFFFA1A,sim_pitr,word,SIM Periodic Interrupt Timer Register
+0xFFFA1C,sim_swsr2,word,SIM Software Service Register 2
+0xFFFA20,sim_csbar0,word,SIM Chip Select Base Address Register 0
+0xFFFA22,sim_csor0,word,SIM Chip Select Option Register 0
+0xFFFA24,sim_csbar1,word,SIM Chip Select Base Address Register 1
+0xFFFA26,sim_csor1,word,SIM Chip Select Option Register 1
+0xFFFA28,sim_csbar2,word,SIM Chip Select Base Address Register 2
+0xFFFA2A,sim_csor2,word,SIM Chip Select Option Register 2
+0xFFFA2C,sim_csbar3,word,SIM Chip Select Base Address Register 3
+0xFFFA2E,sim_csor3,word,SIM Chip Select Option Register 3
+0xFFFA30,sim_csbar4,word,SIM Chip Select Base Address Register 4
+0xFFFA32,sim_csor4,word,SIM Chip Select Option Register 4
+0xFFFA34,sim_csbar5,word,SIM Chip Select Base Address Register 5
+0xFFFA36,sim_csor5,word,SIM Chip Select Option Register 5
+0xFFFA38,sim_csbar6,word,SIM Chip Select Base Address Register 6
+0xFFFA3A,sim_csor6,word,SIM Chip Select Option Register 6
+0xFFFA3C,sim_csbar7,word,SIM Chip Select Base Address Register 7
+0xFFFA3E,sim_csor7,word,SIM Chip Select Option Register 7
+0xFFFA40,sim_csbar8,word,SIM Chip Select Base Address Register 8
+0xFFFA42,sim_csor8,word,SIM Chip Select Option Register 8
+0xFFFA44,sim_csbar9,word,SIM Chip Select Base Address Register 9
+0xFFFA46,sim_csor9,word,SIM Chip Select Option Register 9
+0xFFFA48,sim_csbar10,word,SIM Chip Select Base Address Register 10
+0xFFFA4A,sim_csor10,word,SIM Chip Select Option Register 10
+0xFFFB00,qsm_qmcr,word,QSM Master Control Register
+0xFFFB02,qsm_qtest,word,QSM Test Register
+0xFFFB04,qsm_qilr,word,QSM Interrupt Level Register
+0xFFFB06,qsm_qivr,word,QSM Interrupt Vector Register
+0xFFFB08,sccr0,word,SCI Control Register 0
+0xFFFB0A,sccr1,word,SCI Control Register 1
+0xFFFB0C,scsr,word,SCI Status Register
+0xFFFB0E,scdr,word,SCI Data Register
+0xFFFB10,qsm_portqs,word,QSM Port QS Data Register
+0xFFFB12,qsm_pqspar,word,QSM Port QS Pin Assignment Register
+0xFFFB14,qsm_ddrqs,word,QSM Data Direction Register QS
+0xFFFB16,spcr0,word,SPI Control Register 0
+0xFFFB18,spcr1,word,SPI Control Register 1
+0xFFFB1A,spcr2,word,SPI Control Register 2
+0xFFFB1C,spcr3,word,SPI Control Register 3
+0xFFFB1E,spsr,word,SPI Status Register
+0xFFFC00,tpu_tpumcr,word,TPU Master Control Register
+0xFFFC02,tpu_tcr,word,TPU Test Configuration Register
+0xFFFC04,tpu_dscr,word,TPU Development Support Control Register
+0xFFFC06,tpu_dssr,word,TPU Development Support Status Register
+0xFFFC08,tpu_ticr,word,TPU Interrupt Configuration Register
+0xFFFC0A,tpu_cier,word,TPU Channel Interrupt Enable Register
+0xFFFC0C,tpu_cfsr0,word,TPU Channel Function Select Register 0
+0xFFFC0E,tpu_cfsr1,word,TPU Channel Function Select Register 1
+0xFFFC10,tpu_cfsr2,word,TPU Channel Function Select Register 2
+0xFFFC12,tpu_cfsr3,word,TPU Channel Function Select Register 3
+0xFFFC14,tpu_hsqr0,word,TPU Host Sequence Register 0
+0xFFFC16,tpu_hsqr1,word,TPU Host Sequence Register 1
+0xFFFC18,tpu_hssr0,word,TPU Host Service Status Register 0
+0xFFFC1A,tpu_hssr1,word,TPU Host Service Status Register 1
+0xFFFC1C,tpu_cpr0,word,TPU Channel Priority Register 0
+0xFFFC1E,tpu_cpr1,word,TPU Channel Priority Register 1
+0xFFFD00,qadc_qadcmcr,word,QADC Master Control Register
+0xFFFD02,qadc_qadctest,word,QADC Test Register
+0xFFFD04,qadc_qadcilr,word,QADC Interrupt Level Register
+0xFFFD06,qadc_qadcivr,word,QADC Interrupt Vector Register
+0xFFFD08,qadc_portqa,word,QADC Port QA Data Register
+0xFFFD0A,qadc_portqb,word,QADC Port QB Data Register
+0xFFFD0C,qadc_ddrqa,word,QADC Data Direction Register QA
+0xFFFD0E,qadc_ddrqb,word,QADC Data Direction Register QB
+0xFFFE00,can1_canmcr,word,CAN 1 Master Control Register
+0xFFFE02,can1_canbtcr,word,CAN 1 Bit Timing Configuration Register
+0xFFFE04,can1_cantcr,word,CAN 1 Test Control Register
+0xFFFE06,can1_canacr,word,CAN 1 Acceptance Control Register
+0xFFFE08,can1_cantaak,word,CAN 1 Transmit Acknowledge Register
+0xFFFE0A,can1_cantbsel,word,CAN 1 Transmit Buffer Selection Register
+0xFFFE0C,can1_canidac,word,CAN 1 Identifier Acceptance Control Register
+0xFFFE0E,can1_reserved,word,CAN 1 Reserved Register
+0xFFFE10,can1_canrxerr,word,CAN 1 Receive Error Counter Register
+0xFFFE12,can1_cantxerr,word,CAN 1 Transmit Error Counter Register
+0xFFFE14,can1_canidar0,word,CAN 1 Identifier Acceptance Register 0
+0xFFFE16,can1_canidar1,word,CAN 1 Identifier Acceptance Register 1
+0xFFFE18,can1_canidar2,word,CAN 1 Identifier Acceptance Register 2
+0xFFFE1A,can1_canidar3,word,CAN 1 Identifier Acceptance Register 3
+0xFFFE1C,can1_canidmr0,word,CAN 1 Identifier Mask Register 0
+0xFFFE1E,can1_canidmr1,word,CAN 1 Identifier Mask Register 1
+0xFFFE20,can1_canidmr2,word,CAN 1 Identifier Mask Register 2
+0xFFFE22,can1_canidmr3,word,CAN 1 Identifier Mask Register 3
+0xFFFE80,can2_canmcr,word,CAN 2 Master Control Register
+0xFFFE82,can2_canbtcr,word,CAN 2 Bit Timing Configuration Register
+0xFFFE84,can2_cantcr,word,CAN 2 Test Control Register
+0xFFFE86,can2_canacr,word,CAN 2 Acceptance Control Register
+0xFFFE88,can2_cantaak,word,CAN 2 Transmit Acknowledge Register
+0xFFFE8A,can2_cantbsel,word,CAN 2 Transmit Buffer Selection Register
+0xFFFE8C,can2_canidac,word,CAN 2 Identifier Acceptance Control Register
+0xFFFE8E,can2_reserved,word,CAN 2 Reserved Register
+0xFFFE90,can2_canrxerr,word,CAN 2 Receive Error Counter Register
+0xFFFE92,can2_cantxerr,word,CAN 2 Transmit Error Counter Register
+0xFFFE94,can2_canidar0,word,CAN 2 Identifier Acceptance Register 0
+0xFFFE96,can2_canidar1,word,CAN 2 Identifier Acceptance Register 1
+0xFFFE98,can2_canidar2,word,CAN 2 Identifier Acceptance Register 2
+0xFFFE9A,can2_canidar3,word,CAN 2 Identifier Acceptance Register 3
+0xFFFE9C,can2_canidmr0,word,CAN 2 Identifier Mask Register 0
+0xFFFE9E,can2_canidmr1,word,CAN 2 Identifier Mask Register 1
+0xFFFEA0,can2_canidmr2,word,CAN 2 Identifier Mask Register 2
+0xFFFEA2,can2_canidmr3,word,CAN 2 Identifier Mask Register 3

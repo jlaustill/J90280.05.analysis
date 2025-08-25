@@ -26,7 +26,6 @@ public class BulkArrayCreator extends GhidraScript {
         String csvPath = getProjectRootFolder().getProjectLocator().getProjectDir() + 
                         "/arrays.csv";
         
-        println("Reading array definitions from: " + csvPath);
         
         // Read CSV file and create arrays
         try (BufferedReader br = new BufferedReader(new FileReader(csvPath))) {
@@ -35,7 +34,6 @@ public class BulkArrayCreator extends GhidraScript {
             int successCount = 0;
             int failCount = 0;
             
-            println("==========================================");
             
             while ((line = br.readLine()) != null) {
                 // Skip header line
@@ -110,9 +108,6 @@ public class BulkArrayCreator extends GhidraScript {
                         if (newSymbol != null) {
                             // Set comment on the array
                             setEOLComment(addr, comment);
-                            
-                            println("✓ " + addressStr + ": " + arrayName + "[" + elementCount + "] (" + 
-                                   elementTypeStr + ", " + totalSize + " bytes) - " + comment);
                             successCount++;
                         } else {
                             println("✗ " + addressStr + ": Failed to create symbol '" + arrayName + "'");
@@ -129,13 +124,10 @@ public class BulkArrayCreator extends GhidraScript {
                 }
             }
             
-            println("==========================================");
             println("Results: " + successCount + " successful, " + failCount + " failed");
             
             if (successCount > 0) {
-                println("\nSuccessfully created " + successCount + " arrays!");
                 println("Arrays are now properly typed and named in the listing.");
-                println("You can find them in the Symbol Tree under 'Arrays' or 'Global' namespace.");
                 println("\nArray benefits:");
                 println("• Proper indexing: array[0], array[1], array[2]...");
                 println("• Size validation: Prevents out-of-bounds access");

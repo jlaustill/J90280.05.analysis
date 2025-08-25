@@ -13,3 +13,7 @@ address,constant_name,value,comment
 0x0000A584,DMA_DEST_ADDR_1,0x806318,DMA transfer destination address 1
 0x0000A5A6,DMA_SOURCE_ADDR_2,0x80632C,DMA transfer source address 2
 0x0000A5AE,DMA_DEST_ADDR_2,0x806340,DMA transfer destination address 2
+0x0000804A,RESET_VECTOR,0x00025596,System reset vector pointing to systemResetHandler
+0x00037EAE,FIRMWARE_DATA_START,0x37EAE,Start address of firmware data copied to working memory
+0x008062D2,WORKING_MEM_START,0x8062D2,Start of working memory for firmware data (10KB)
+0x00808AB2,WORKING_MEM_END,0x808AB2,End of working memory for firmware data

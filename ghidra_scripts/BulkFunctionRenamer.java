@@ -24,7 +24,6 @@ public class BulkFunctionRenamer extends GhidraScript {
         String csvPath = getProjectRootFolder().getProjectLocator().getProjectDir() + 
                         "/function_renames.csv";
         
-        println("Reading function renames from: " + csvPath);
         
         Map<String, String> functionRenames = new HashMap<>();
         
@@ -54,8 +53,6 @@ public class BulkFunctionRenamer extends GhidraScript {
             return;
         }
         
-        println("Found " + functionRenames.size() + " functions to rename");
-        println("==========================================");
         
         // Apply renames
         int successCount = 0;
@@ -78,7 +75,6 @@ public class BulkFunctionRenamer extends GhidraScript {
                 if (func != null) {
                     String oldName = func.getName();
                     func.setName(newName, SourceType.USER_DEFINED);
-                    println("✓ " + addressStr + ": " + oldName + " → " + newName);
                     successCount++;
                 } else {
                     println("✗ " + addressStr + ": No function found at this address");
@@ -93,12 +89,9 @@ public class BulkFunctionRenamer extends GhidraScript {
             }
         }
         
-        println("==========================================");
         println("Results: " + successCount + " successful, " + failCount + " failed");
-        
-        if (successCount > 0) {
-            println("\nSuccessfully renamed " + successCount + " functions!");
-            println("You can now update your CSV file with new addresses/names and re-run this script.");
+        if (failCount == 0) {
+            println("✓ Functions renamed");
         }
     }
 }

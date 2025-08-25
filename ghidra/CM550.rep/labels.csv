@@ -44,3 +44,9 @@ address,label_name,comment
 0xd636,param_table1_load,Load parameter table 1 address (0x80CFD6)
 0xd682,param_block_calc_2,Block×256×4 calculation pattern (param_lookup_2)
 0xd700,param_block_calc_3,Block×256×4 calculation pattern (param_lookup_3)
+0xfffa22,REG_SIM_PICR,Periodic Interrupt Control Reg
+0xFFFA24,REG_SIM_PITR, Periodic Interrupt Timer Reg
+0xFFFA27,REG_SIM_SWSR, Software Watchdog Service Reg
+0x808f0a,main_loop_callback, The function that main loop actually runs
+0x800358,main_loop_phase_index, The phase the main loop is int
+0x800356,main_loop_counter, How many times hath the main loop ran?

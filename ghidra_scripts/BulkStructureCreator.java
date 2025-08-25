@@ -61,7 +61,6 @@ public class BulkStructureCreator extends GhidraScript {
         String csvPath = getProjectRootFolder().getProjectLocator().getProjectDir() + 
                         "/structure_definitions.csv";
         
-        println("Reading structure definitions from: " + csvPath);
         
         Map<String, StructDef> structures = new HashMap<>();
         
@@ -110,8 +109,6 @@ public class BulkStructureCreator extends GhidraScript {
             return;
         }
         
-        println("Found " + structures.size() + " structures to create");
-        println("==========================================");
         
         DataTypeManager dtm = currentProgram.getDataTypeManager();
         int successCount = 0;
@@ -142,7 +139,6 @@ public class BulkStructureCreator extends GhidraScript {
                         // Try to find custom structure type in DataTypeManager
                         fieldDataType = findDataTypeByName(dtm, field.type);
                         if (fieldDataType != null) {
-                            println("    Found custom type '" + field.type + "' in DataTypeManager: " + fieldDataType.getClass().getSimpleName());
                         }
                     }
                     if (fieldDataType != null) {
@@ -175,7 +171,6 @@ public class BulkStructureCreator extends GhidraScript {
                 
                 // Add structure to data type manager
                 DataType addedStruct = dtm.addDataType(struct, DataTypeConflictHandler.REPLACE_HANDLER);
-                println("  ✓ Added '" + structDef.name + "' to DataTypeManager (size: " + addedStruct.getLength() + " bytes)");
                 
                 // Apply structure to memory if address is specified
                 if (!structDef.address.isEmpty()) {
@@ -195,13 +190,11 @@ public class BulkStructureCreator extends GhidraScript {
                         // Create data with the structure
                         Data data = createData(addr, addedStruct);
                         if (data != null) {
-                            println("✓ Applied " + structDef.name + " at address " + structDef.address);
                         }
                     } catch (Exception e) {
                         println("✗ Failed to apply structure at " + structDef.address + ": " + e.getMessage());
                     }
                 } else {
-                    println("✓ Created structure " + structDef.name + " (no address specified)");
                 }
                 
                 successCount++;
@@ -213,12 +206,9 @@ public class BulkStructureCreator extends GhidraScript {
             }
         }
         
-        println("==========================================");
         println("Results: " + successCount + " successful, " + failCount + " failed");
         
         if (successCount > 0) {
-            println("\nSuccessfully created " + successCount + " structures!");
-            println("You can find them in the Data Type Manager window.");
             println("Update your CSV file with new structures and re-run this script.");
         }
     }

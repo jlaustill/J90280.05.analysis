@@ -24,7 +24,6 @@ public class BulkLabelCreator extends GhidraScript {
         String csvPath = getProjectRootFolder().getProjectLocator().getProjectDir() + 
                         "/labels.csv";
         
-        println("Reading labels from: " + csvPath);
         
         // Read CSV file and create labels
         try (BufferedReader br = new BufferedReader(new FileReader(csvPath))) {
@@ -33,7 +32,6 @@ public class BulkLabelCreator extends GhidraScript {
             int successCount = 0;
             int failCount = 0;
             
-            println("==========================================");
             
             while ((line = br.readLine()) != null) {
                 // Skip header line
@@ -80,7 +78,6 @@ public class BulkLabelCreator extends GhidraScript {
                         if (hasFunctionSymbol) {
                             // Add comment to existing function instead of creating new label
                             setEOLComment(addr, comment);
-                            println("✓ " + addressStr + ": Added comment to function '" + existingName + "' - " + comment);
                         } else {
                             // Remove any existing non-function symbols
                             for (Symbol symbol : existingSymbols) {
@@ -94,7 +91,6 @@ public class BulkLabelCreator extends GhidraScript {
                             if (newSymbol != null) {
                                 // Add comment
                                 setEOLComment(addr, comment);
-                                println("✓ " + addressStr + ": Created label '" + labelName + "' - " + comment);
                             } else {
                                 println("✗ " + addressStr + ": Failed to create label '" + labelName + "'");
                                 failCount++;
@@ -114,14 +110,9 @@ public class BulkLabelCreator extends GhidraScript {
                 }
             }
             
-            println("==========================================");
             println("Results: " + successCount + " successful, " + failCount + " failed");
-            
-            if (successCount > 0) {
-                println("\nSuccessfully processed " + successCount + " labels!");
-                println("Labels and comments are now visible in the listing.");
-                println("You can find them in the Symbol Tree under 'Labels' namespace.");
-                println("Function addresses received comments instead of new labels.");
+            if (failCount == 0) {
+                println("✓ Labels created");
             }
             
         } catch (IOException e) {

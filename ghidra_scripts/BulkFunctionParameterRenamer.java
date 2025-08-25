@@ -28,7 +28,6 @@ public class BulkFunctionParameterRenamer extends GhidraScript {
         String csvPath = getProjectRootFolder().getProjectLocator().getProjectDir() + 
                         "/function_parameters.csv";
         
-        println("Reading function parameters from: " + csvPath);
         
         FunctionManager functionManager = currentProgram.getFunctionManager();
         DataTypeManager dtm = currentProgram.getDataTypeManager();
@@ -40,7 +39,6 @@ public class BulkFunctionParameterRenamer extends GhidraScript {
             int successCount = 0;
             int failCount = 0;
             
-            println("==========================================");
             
             while ((line = br.readLine()) != null) {
                 // Skip header line
@@ -92,7 +90,6 @@ public class BulkFunctionParameterRenamer extends GhidraScript {
                             // Try to find custom structure type
                             dataType = findDataTypeByName(dtm, newTypeStr);
                             if (dataType != null) {
-                                println("  Found custom type '" + newTypeStr + "' in DataTypeManager: " + dataType.getClass().getSimpleName());
                             }
                         }
                         if (dataType == null) {
@@ -143,10 +140,6 @@ public class BulkFunctionParameterRenamer extends GhidraScript {
                             function.updateFunction(null, null, java.util.Arrays.asList(parameters), 
                                                    Function.FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS, 
                                                    true, SourceType.USER_DEFINED);
-                            
-                            println("✓ " + functionAddressStr + " (" + functionName + "): Parameter[" + paramIndex + 
-                                   "] " + oldName + " (" + oldType + ") → " + newParamName + " (" + newTypeStr + 
-                                   ") - " + comment);
                             successCount++;
                             
                         } catch (Exception e) {
@@ -165,13 +158,10 @@ public class BulkFunctionParameterRenamer extends GhidraScript {
                 }
             }
             
-            println("==========================================");
             println("Results: " + successCount + " successful, " + failCount + " failed");
             
             if (successCount > 0) {
-                println("\nSuccessfully renamed/retyped " + successCount + " function parameters!");
                 println("Parameter changes will be visible in the Decompiler view.");
-                println("Functions now have proper parameter names and types.");
             }
             
         } catch (IOException e) {

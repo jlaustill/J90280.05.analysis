@@ -26,7 +26,6 @@ public class BulkVariableCreator extends GhidraScript {
         String csvPath = getProjectRootFolder().getProjectLocator().getProjectDir() + 
                         "/global_variables.csv";
         
-        println("Reading global variables from: " + csvPath);
         
         // Read CSV file and create variables
         try (BufferedReader br = new BufferedReader(new FileReader(csvPath))) {
@@ -35,7 +34,6 @@ public class BulkVariableCreator extends GhidraScript {
             int successCount = 0;
             int failCount = 0;
             
-            println("==========================================");
             
             while ((line = br.readLine()) != null) {
                 // Skip header line
@@ -69,7 +67,6 @@ public class BulkVariableCreator extends GhidraScript {
                             // Try to find custom structure type
                             dataType = currentProgram.getDataTypeManager().getDataType(typeStr);
                             if (dataType != null) {
-                                println("  Found custom type '" + typeStr + "' in DataTypeManager");
                             } else {
                                 println("✗ " + addressStr + ": Unknown data type '" + typeStr + "'");
                                 println("  Available primitive types: uint8_t, uint16_t, uint32_t, byte, word, dword");
@@ -122,7 +119,6 @@ public class BulkVariableCreator extends GhidraScript {
                             // Set comment on the data
                             setEOLComment(addr, comment);
                             
-                            println("✓ " + addressStr + ": " + varName + " (" + typeStr + ") - " + comment);
                             successCount++;
                         } else {
                             println("✗ " + addressStr + ": Failed to create symbol '" + varName + "'");
@@ -139,13 +135,9 @@ public class BulkVariableCreator extends GhidraScript {
                 }
             }
             
-            println("==========================================");
             println("Results: " + successCount + " successful, " + failCount + " failed");
             
             if (successCount > 0) {
-                println("\nSuccessfully created " + successCount + " global variables!");
-                println("Variables are now named and typed in the Symbol Tree.");
-                println("You can find them under Global namespace in the Symbol Tree window.");
             }
             
         } catch (IOException e) {

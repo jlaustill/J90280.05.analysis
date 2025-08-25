@@ -23,7 +23,6 @@ public class BulkConstantCreator extends GhidraScript {
         String csvPath = getProjectRootFolder().getProjectLocator().getProjectDir() + 
                         "/constants.csv";
         
-        println("Reading constants from: " + csvPath);
         
         // Read CSV file and add constant comments
         try (BufferedReader br = new BufferedReader(new FileReader(csvPath))) {
@@ -32,7 +31,6 @@ public class BulkConstantCreator extends GhidraScript {
             int successCount = 0;
             int failCount = 0;
             
-            println("==========================================");
             
             while ((line = br.readLine()) != null) {
                 // Skip header line
@@ -111,7 +109,6 @@ public class BulkConstantCreator extends GhidraScript {
                             setEOLComment(addr, fullComment);
                             setPreComment(addr, "Constant: " + constantName + " = " + valueStr);
                             
-                            println("✓ " + addressStr + ": " + constantName + " = " + valueStr + " - " + comment);
                             successCount++;
                         } else {
                             // Still add comment but note the value mismatch
@@ -132,14 +129,10 @@ public class BulkConstantCreator extends GhidraScript {
                 }
             }
             
-            println("==========================================");
             println("Results: " + successCount + " successful, " + failCount + " failed");
             
             if (successCount > 0) {
-                println("\nSuccessfully processed " + successCount + " constants!");
                 println("Constants are now documented with meaningful names and explanations.");
-                println("Look for EOL comments and pre-comments in the listing view.");
-                println("Magic numbers now have clear semantic meaning!");
             }
             
         } catch (IOException e) {
