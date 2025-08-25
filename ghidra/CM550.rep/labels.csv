@@ -10,8 +10,16 @@ address,label_name,comment
 0x1C7CA,handler_case_255_entry,Case 255 handler entry point
 0x1C33E,handler_case_17_entry,Case 17 handler entry point
 0x1C85A,switch_case_16,VP44 handler case - reads byte 0
-0x1C88E,call_vp44_handler,Branch to VP44 handler (bsrw 0x1c538)
-0x1C538,vp44_fuel_temp_entry,VP44 fuel temperature handler entry point
+0x1C88E,call_vp44_fuel_handler,Branch to VP44 fuel handler (bsrw 0x1c538)
+0x1C538,vp44_handler_entry,VP44 fuel temperature processing entry point
+0x2A428,vp44_data_packing_start,Begin VP44 message data field construction
+0x24984,vp44_fuel_high_calc,Calculate VP44 fuel amount high byte (param_table_aux + 125)
+0x24986,vp44_fuel_low_calc,Calculate VP44 fuel amount low byte (param_table_main + 125)
+0x24987,vp44_rpm_low_pack,Pack RPM low byte into VP44 message
+0x24989,vp44_rpm_high_pack,Pack RPM high byte into VP44 message
+0x24991,vp44_message_send,Send complete VP44 0x100 command message
+0x00020918,can_transmission_loop_start,Main CAN message transmission scheduler
+0x00020980,vp44_builder_call,JSR call to VP44 0x100 command builder
 0x1C776,handler_case_19_entry,Case 19 handler entry point
 0x1C860,switch_case_17,Alternative handler case
 0x1C866,switch_case_19,Third handler case

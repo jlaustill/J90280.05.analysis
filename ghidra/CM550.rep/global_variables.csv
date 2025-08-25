@@ -18,11 +18,21 @@ address,name,type,comment
 0x80d49c,diagnostic_status_register,word,Diagnostic operation status and mode flags
 0x800f34,diagnostic_message_state,byte,J1939 diagnostic message processing state buffer
 0x800f42,diagnostic_response_buffer,word,J1939 diagnostic response message buffer pointer
+0x800f5e,vp44_response_buffer,byte,VP44 fuel temperature response message processing buffer
 0x8086C2,param_scale_factor,word,Scaling reference
 0x8086E0,param_limit_value,word,Parameter limits
 0x8086E3,param_config_byte,byte,Configuration flags
 0x8086F6,param_ref_base,word,Parameter reference base (lookup table for param_lookup_1)
 0x803036,j1939_tx_msg_buffer,byte,J1939 transmission message buffer with data and header
+0x80303e,vp44_cmd_msg_buffer,byte,VP44 0x100 command message header
+0x80303f,vp44_fuel_amount_high,byte,VP44 fuel amount high byte (param_table_aux>>8 + 125)
+0x803040,vp44_fuel_amount_low,byte,VP44 fuel amount low byte (param_table_main>>8 + 125) 
+0x803041,vp44_timing_byte3,byte,VP44 timing advance data byte 3
+0x803042,vp44_timing_byte4,byte,VP44 timing advance data byte 4
+0x803043,vp44_timing_byte5,byte,VP44 timing advance data byte 5  
+0x803044,vp44_timing_byte6,byte,VP44 timing advance data byte 6
+0x803045,vp44_rpm_low,byte,VP44 RPM×4 low byte (current_engine_rpm & 0xFF)
+0x803046,vp44_rpm_high,byte,VP44 RPM×4 high byte (current_engine_rpm >> 8)
 0x80306e,can_param_msg_buf_3,byte,CAN parameter message buffer 3 (config + limits)
 0x803056,can_param_msg_buf_2,byte,CAN parameter message buffer 2 (secondary params)
 0x803066,can_param_msg_buf_1,byte,CAN parameter message buffer 1 (config data)

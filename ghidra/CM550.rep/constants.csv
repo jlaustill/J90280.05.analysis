@@ -3,7 +3,9 @@ address,constant_name,value,comment
 0x1C860,CAN_MSG_ALT_HANDLER,17,CAN message type for alternative handler (moveq #17)
 0x1C866,CAN_MSG_VP44_FUEL,16,CAN message type for VP44 fuel (moveq #16) - CORRECTED from original
 0x1C872,CAN_MSG_ERROR_DEFAULT,255,CAN message error/default case (cmpib #-1 = 0xFF)
-0x2A3CE,CAN_PARAM_OFFSET,125,Parameter offset added to CAN data (addib #125)
+0x2A3CE,VP44_FUEL_OFFSET,125,VP44 fuel amount offset (param_table + 125)
+0x2A41E,VP44_MSG_HEADER,0xF00400,VP44 message format identifier for 0x100 commands
+0x00020980,VP44_CMD_BUILDER_CALL,0x2A418,JSR call to VP44 command message builder
 0x0100003A,DATA_PLT_MODULE_ID_ADDR,0x0100003A,Address of Cummins module identifier field
 0x3662E,MODULE_ID_LOOKUP_TABLE,0x454E,Module ID lookup table entry for EN family
 0x0000A53E,DMA_CONTROLLER_SETUP,0x80000000,DMA enable flag value (high bit set)

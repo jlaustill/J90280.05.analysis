@@ -7,12 +7,20 @@ CAN_MSG_TYPE,16,VP44_FUEL_TEMP,VP44 fuel temperature message
 CAN_MSG_TYPE,17,ALTERNATIVE_MSG,Alternative message handler
 CAN_MSG_TYPE,19,THIRD_MSG,Third message handler
 CAN_MSG_TYPE,255,ERROR_DEFAULT,Error/default case message
-CAN_PARAM_BUILDERS,1,ENGINE_BUILDER,engineParamCanBuilder function (0x2a418)
+CAN_PARAM_BUILDERS,1,VP44_CMD_BUILDER,vp44Command0x100Builder function (0x2a418)
 CAN_PARAM_BUILDERS,2,CONFIG_BUILDER,configParamCanBuilder function (0x2a57e)
 DIAGNOSTIC_MESSAGE_TYPES,16,VP44Handler,VP44 pump communication handler
 DIAGNOSTIC_MESSAGE_TYPES,17,ParameterRequestHandler,Alternative handler for parameter requests
 DIAGNOSTIC_MESSAGE_TYPES,19,StatusRequestHandler,Third handler for status/diagnostic requests
 DIAGNOSTIC_MESSAGE_TYPES,255,ErrorDefaultHandler,Error/default case handler
+VP44_DATA_FIELDS,1,FUEL_HIGH_BYTE,Fuel amount high byte (param_table_aux>>8 + 125)
+VP44_DATA_FIELDS,2,FUEL_LOW_BYTE,Fuel amount low byte (param_table_main>>8 + 125)  
+VP44_DATA_FIELDS,3,RESERVED_ZERO_1,Reserved/zero byte 3
+VP44_DATA_FIELDS,4,RESERVED_ZERO_2,Reserved/zero byte 4
+VP44_DATA_FIELDS,5,TIMING_BYTE1,Injection timing advance (byte 5)
+VP44_DATA_FIELDS,6,TIMING_BYTE2,Injection timing advance (byte 6)
+VP44_DATA_FIELDS,7,RPM_LOW_BYTE,Engine RPM×4 low byte (current_engine_rpm & 0xFF)
+VP44_DATA_FIELDS,8,RPM_HIGH_BYTE,Engine RPM×4 high byte (current_engine_rpm >> 8)
 DUAL_CAN_CONTROLLERS,0,CAN_CONTROLLER_MAIN,Primary CAN controller (SSCNLTOB)
 DUAL_CAN_CONTROLLERS,1,CAN_CONTROLLER_1,Secondary CAN controller 1 (SSC1LTOB)
 DUAL_CAN_J1939_SOURCE_ADDR,1,J1939_SOURCE_ADDR_1,J1939 source address 1 (JCSA1)

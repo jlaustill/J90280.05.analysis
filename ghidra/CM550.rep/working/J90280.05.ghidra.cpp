@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Sun Aug 24 18:07:21 MDT 2025
+// Sun Aug 24 20:00:34 MDT 2025
 
 
 //
@@ -3461,19 +3461,19 @@ void FUN_0000e02c(void)
 
 
 //
-// Function: sendJ1939SingleFrame @ 0x0000e052
+// Function: sendCanSingleFrame @ 0x0000e052
 // ERROR: Failed to decompile
 //
 
 //
-// Function: sendJ1939Msg @ 0x0000e180
+// Function: sendCanMessage @ 0x0000e180
 //
 
-void sendJ1939Msg(j1939_header_t *msg_header)
+void sendCanMessage(j1939_header_t *msg_header)
 
 {
   if (msg_header->length < 9) {
-    sendJ1939SingleFrame(msg_header->id);
+    sendCanSingleFrame(msg_header->id);
     return;
   }
   sendJ1939MultiFrame(&msg_header->id);
@@ -15489,7 +15489,7 @@ undefined4 FUN_0001bc9c(undefined1 *param_1)
     local_19 = uVar1;
     local_18 = uVar2;
     local_c = &local_1a;
-    uVar3 = sendJ1939SingleFrame(local_12,(short)((uint)&local_1a >> 0x10));
+    uVar3 = sendCanSingleFrame(local_12,(short)((uint)&local_1a >> 0x10));
     uVar3 = CONCAT31((int3)((uint)uVar3 >> 8),0xff);
   }
   else {
@@ -15588,7 +15588,7 @@ undefined4 FUN_0001bd76(byte *param_1,undefined1 *param_2,uint param_3)
     param_2 = param_2 + -0x7fcb08;
   }
   memcpy(puVar11 + bVar8,param_2,CONCAT22(uVar10,(short)((uint)puVar12 >> 0x10)));
-  uVar6 = sendJ1939Msg(msg_header);
+  uVar6 = sendCanMessage(msg_header);
   return CONCAT31((int3)((uint)uVar6 >> 8),0xff);
 }
 
@@ -15773,7 +15773,7 @@ void sendJ1939MultiFrame(uint *param_1)
       puVar1[5] = 0;
       puVar1[6] = bVar3;
       puVar1[7] = 0;
-      sendJ1939SingleFrame(_DAT_00800f48);
+      sendCanSingleFrame(_DAT_00800f48);
       if (DAT_00800f3b == '\0') {
         *_diagnostic_response_buffer = '\x12';
         _DAT_00800f48 = *param_1 & 0xff00ffff | 0xeb0000;
@@ -15827,7 +15827,7 @@ void sendJ1939MultiFrame(uint *param_1)
       puVar1[5] = cStack_5;
       puVar1[6] = bVar3;
       puVar1[7] = 0;
-      sendJ1939SingleFrame(*(undefined4 *)(pcVar6 + 0x12));
+      sendCanSingleFrame(*(undefined4 *)(pcVar6 + 0x12));
       if (pcVar6[7] == '\0') {
         **(char **)(pcVar6 + 0xc) = '\x10';
         *(uint *)(pcVar6 + 0x12) = *param_1 & 0xff0000ff | 0xebff00;
@@ -15910,7 +15910,7 @@ void FUN_0001c3d2(undefined4 param_1)
   local_1e = (undefined1)((uint)param_1 >> 8);
   puVar3[2] = local_1e;
   puVar3[3] = 0;
-  sendJ1939SingleFrame(local_12);
+  sendCanSingleFrame(local_12);
   return;
 }
 
@@ -15954,7 +15954,7 @@ void FUN_0001c440(undefined4 param_1)
   local_1e = (undefined1)((uint)param_1 >> 8);
   uStack_16 = local_1e;
   local_15 = 0;
-  sendJ1939SingleFrame(local_12);
+  sendCanSingleFrame(local_12);
   return;
 }
 
@@ -15991,7 +15991,7 @@ undefined1 FUN_0001c4c0(undefined4 param_1,undefined2 param_2)
   local_1e = (undefined1)((ushort)param_2 >> 8);
   uStack_16 = local_1e;
   local_15 = 0;
-  sendJ1939SingleFrame(local_12);
+  sendCanSingleFrame(local_12);
   return local_13;
 }
 
@@ -16022,12 +16022,12 @@ void vp44FuelTempHandler(undefined4 *param_1)
   cVar3 = *(char *)((int)param_1 + 3);
   local_8 = CONCAT11(*(undefined1 *)(iVar1 + 2),*(undefined1 *)(iVar1 + 1));
   uVar4 = (undefined1)((ushort)in_D0w >> 8);
-  if ((((DAT_00800f5e == '\x01') && (cVar3 != DAT_00800f69)) || (bVar2 != 0xef)) ||
+  if ((((vp44_response_buffer == 1) && (cVar3 != DAT_00800f69)) || (bVar2 != 0xef)) ||
      (0x6a4 < local_8)) {
     FUN_0001c3d2((uint)CONCAT21(CONCAT11(uVar4,cVar3),bVar2) << 8);
   }
   else {
-    DAT_00800f5e = '\x01';
+    vp44_response_buffer = 1;
     _DAT_00800f66 = *param_1;
     _DAT_00800f60 = local_6;
     DAT_00800f5f = *(byte *)(iVar1 + 3);
@@ -16042,7 +16042,7 @@ void vp44FuelTempHandler(undefined4 *param_1)
     cVar5 = FUN_0001c4c0(CONCAT22(CONCAT11(uVar4,cVar3),CONCAT11(uVar4,1)),0xef00);
     if (cVar5 != '\0') {
       FUN_0001c3d2(CONCAT22(CONCAT11(extraout_var,cVar3),_DAT_00800f60));
-      DAT_00800f5e = '\0';
+      vp44_response_buffer = 0;
     }
   }
   return;
@@ -16073,8 +16073,8 @@ void FUN_0001c60e(int param_1)
   undefined1 *puVar9;
   undefined1 *puVar10;
   
-  if (((*(short *)(param_1 + 4) == 8) && (cVar2 = *(char *)(param_1 + 3), DAT_00800f5e == '\x01'))
-     && (cVar2 == DAT_00800f69)) {
+  if (((*(short *)(param_1 + 4) == 8) && (cVar2 = *(char *)(param_1 + 3), vp44_response_buffer == 1)
+      ) && (cVar2 == DAT_00800f69)) {
     bVar1 = **(byte **)(param_1 + 6);
     if (bVar1 == DAT_00800f62) {
       if (bVar1 == DAT_00800f5f) {
@@ -16095,7 +16095,7 @@ void FUN_0001c60e(int param_1)
       if (DAT_00800f63 == '\0') {
         if (bVar1 == DAT_00800f5f) {
           FUN_0001c440(CONCAT22((short)CONCAT31((int3)((uint)puVar3 >> 8),cVar2),_DAT_00800f60));
-          DAT_00800f5e = 0;
+          vp44_response_buffer = 0;
           _DAT_00800f6c = &DAT_00800f78;
           FUN_0002729a(&DAT_00800f66);
           return;
@@ -16113,7 +16113,7 @@ void FUN_0001c60e(int param_1)
                                       (short)CONCAT31(uVar4,DAT_00800f62)),_DAT_00800f60);
         if (cVar6 != '\0') {
           FUN_0001c3d2(CONCAT22((short)CONCAT31(extraout_var_00,cVar2),_DAT_00800f60));
-          DAT_00800f5e = 0;
+          vp44_response_buffer = 0;
           return;
         }
       }
@@ -16127,7 +16127,7 @@ void FUN_0001c60e(int param_1)
                                    ),_DAT_00800f60);
       if (cVar6 != '\0') {
         FUN_0001c3d2(CONCAT22((short)CONCAT31(extraout_var,cVar2),_DAT_00800f60));
-        DAT_00800f5e = 0;
+        vp44_response_buffer = 0;
         return;
       }
     }
@@ -16177,9 +16177,9 @@ void diagnosticErrorHandler(int param_1)
     *_diagnostic_response_buffer = 10;
     diagnostic_message_state = 0;
   }
-  else if (((DAT_00800f5e == '\x01') && (*(char *)(param_1 + 3) == DAT_00800f69)) &&
+  else if (((vp44_response_buffer == 1) && (*(char *)(param_1 + 3) == DAT_00800f69)) &&
           (local_6 == _DAT_00800f60)) {
-    DAT_00800f5e = '\0';
+    vp44_response_buffer = 0;
   }
   return;
 }
@@ -16187,10 +16187,10 @@ void diagnosticErrorHandler(int param_1)
 
 
 //
-// Function: canMessageDispatcher @ 0x0001c846
+// Function: vp44CanMessageDispatcher @ 0x0001c846
 //
 
-void canMessageDispatcher(int param_1)
+void vp44CanMessageDispatcher(int param_1)
 
 {
   char cVar1;
@@ -16323,7 +16323,7 @@ void FUN_0001c8b6(uint param_1)
     *(int *)(&DAT_00800eec + iVar3) = *(int *)(&DAT_00800eec + iVar3) + 1;
     *puVar7 = *puVar1;
   }
-  sendJ1939SingleFrame(*(undefined4 *)(&DAT_00800ef6 + iVar3));
+  sendCanSingleFrame(*(undefined4 *)(&DAT_00800ef6 + iVar3));
   if ((&DAT_00800eeb)[iVar3] == '\0') {
     if (*pcVar6 == '\x01') {
       **(undefined1 **)(&DAT_00800ef0 + iVar3) = 0x11;
@@ -16398,7 +16398,7 @@ void FUN_0001c996(void)
       *pbVar7 = *pbVar8;
       pbVar8 = pbVar8 + 1;
     }
-    sendJ1939SingleFrame(_DAT_00800f48);
+    sendCanSingleFrame(_DAT_00800f48);
     if (DAT_00800f3b != '\0') break;
     *_diagnostic_response_buffer = 0x13;
     bVar5 = bVar5 + 1;
@@ -16421,7 +16421,7 @@ void FUN_0001cabe(void)
 
 {
   if (_DAT_00800f64 == 0) {
-    DAT_00800f5e = 0;
+    vp44_response_buffer = 0;
     return;
   }
   _DAT_00800f64 = _DAT_00800f64 + -1;
@@ -16448,7 +16448,7 @@ void FUN_0001cad6(void)
   if (diagnostic_message_state == 1) {
     FUN_0001c996();
   }
-  if (DAT_00800f5e == '\x01') {
+  if (vp44_response_buffer == 1) {
     FUN_0001cabe();
   }
   return;
@@ -20239,19 +20239,19 @@ void FUN_000207b6(void)
   } while (bVar1 < 0x10);
   DAT_00ffc800 = DAT_00ffc800 & 0xfe;
   FUN_0000c144();
-  FUN_00020918();
+  canTransmissionScheduler();
   return;
 }
 
 
 
 //
-// Function: FUN_00020918 @ 0x00020918
+// Function: canTransmissionScheduler @ 0x00020918
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00020918(void)
+void canTransmissionScheduler(void)
 
 {
   byte bVar1;
@@ -20275,9 +20275,9 @@ void FUN_00020918(void)
     bVar3 = bVar3 + 1;
     puVar6 = puVar6 + 1;
   } while (bVar3 < 4);
-  FUN_000294ea();
-  FUN_00029796();
-  vp44EngineRpmCanBuilder();
+  canBufferSetup1();
+  j1939MessageSetup_PGN_FEF100();
+  vp44Command0x100Builder();
   FUN_0002a51e();
   FUN_0002a5da();
   FUN_0002a7f8();
@@ -20379,6 +20379,137 @@ void FUN_00020918(void)
     bVar3 = bVar3 + 4;
     puVar7[5] = (&DAT_008088ea)[bVar5];
     puVar7 = puVar7 + 0x10;
+  }
+  DAT_00ffd800 = DAT_00ffd800 | 10;
+  return;
+}
+
+
+
+//
+// Function: mainCanTransmissionLoop @ 0x00020980
+//
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void mainCanTransmissionLoop(void)
+
+{
+  byte bVar1;
+  uint uVar2;
+  byte bVar3;
+  byte bVar4;
+  byte bVar5;
+  undefined1 *puVar6;
+  int unaff_A3;
+  code *unaff_A4;
+  int *unaff_A5;
+  
+  vp44Command0x100Builder();
+  FUN_0002a51e();
+  FUN_0002a5da();
+  FUN_0002a7f8();
+  FUN_0002aba4();
+  FUN_0002ada8();
+  FUN_0002b1f6();
+  FUN_00027dd4();
+  FUN_0002956a();
+  FUN_0002a8da();
+  FUN_0002aee2();
+  FUN_0002afca();
+  FUN_0002b060();
+  FUN_0002b338();
+  FUN_00029a86();
+  FUN_0002a222();
+  (*unaff_A4)(0,100);
+  (*unaff_A4)(0,0x14);
+  (*unaff_A4)(0,0x32);
+  (*unaff_A4)(0,0xfa);
+  (*unaff_A4)(0,5000);
+  (*unaff_A4)(1,100);
+  (*unaff_A4)(0,100);
+  (*unaff_A4)(1,5000);
+  (*unaff_A4)(0,1000);
+  (*unaff_A4)(0,500);
+  (*unaff_A4)(0,100);
+  (*unaff_A4)(0,1000);
+  (*unaff_A4)(0,500);
+  (*unaff_A4)(0,1000);
+  (*unaff_A4)(0,1000);
+  FUN_00027300();
+  FUN_00027e86();
+  FUN_00027514();
+  FUN_0002793e();
+  FUN_000273c0();
+  FUN_0001c0c2();
+  FUN_0001bd58();
+  FUN_0001b762();
+  FUN_0000fa40();
+  FUN_0001b172();
+  _DAT_0080cfb6 = _DAT_00809d48 + 1;
+  _DAT_00809d48 = _DAT_00809d48 + 8;
+  uVar2 = (uint)_DAT_0080cfb6;
+  _DAT_0080cfb8 = _DAT_00809d48;
+  *unaff_A5 = (int)(&DAT_00ffd800 + uVar2 * 0x10);
+  (&DAT_00ffd800)[uVar2 * 0x10] = 0x55;
+  *(undefined1 *)(*unaff_A5 + 1) = 0xfb;
+  *(undefined1 *)*unaff_A5 = 0xef;
+  *(undefined1 *)(*unaff_A5 + 6) = 4;
+  puVar6 = &DAT_00ffd810 + (uint)_DAT_0080cfb6 * 0x10;
+  uVar2 = (uint)_DAT_0080cfc2;
+  bVar5 = DAT_0080cfc3 << 3;
+  bVar3 = 0;
+  for (bVar4 = 0; bVar4 < _DAT_008088de; bVar4 = bVar4 + 1) {
+    *puVar6 = 0x99;
+    puVar6[6] = 4;
+    puVar6[1] = 0xdf;
+    puVar6[2] = *(undefined1 *)(unaff_A3 + (uint)bVar3);
+    puVar6[3] = (byte)((int)(uVar2 & 0xe0) >> 5) |
+                *(byte *)(unaff_A3 + (uint)(byte)(bVar3 + 1)) & 0xf8;
+    bVar1 = bVar3 + 3;
+    puVar6[4] = bVar5 | *(byte *)(unaff_A3 + (uint)(byte)(bVar3 + 2)) & 7;
+    bVar3 = bVar3 + 4;
+    puVar6[5] = *(undefined1 *)(unaff_A3 + (uint)bVar1);
+    puVar6 = puVar6 + 0x10;
+  }
+  for (bVar4 = 0; bVar4 < _DAT_008088e0; bVar4 = bVar4 + 1) {
+    *puVar6 = 0x99;
+    puVar6[1] = 0xdf;
+    puVar6[6] = 4;
+    puVar6[2] = *(undefined1 *)(unaff_A3 + (uint)bVar3);
+    puVar6[3] = *(undefined1 *)(unaff_A3 + (uint)(byte)(bVar3 + 1));
+    bVar5 = bVar3 + 3;
+    puVar6[4] = *(undefined1 *)(unaff_A3 + (uint)(byte)(bVar3 + 2));
+    bVar3 = bVar3 + 4;
+    puVar6[5] = *(undefined1 *)(unaff_A3 + (uint)bVar5);
+    puVar6 = puVar6 + 0x10;
+  }
+  uVar2 = (uint)_DAT_0080cfcc;
+  bVar5 = DAT_0080cfcd << 3;
+  for (bVar4 = 0; bVar4 < _DAT_008088e2; bVar4 = bVar4 + 1) {
+    *puVar6 = 0x99;
+    puVar6[1] = 0xdf;
+    puVar6[6] = 4;
+    puVar6[2] = *(undefined1 *)(unaff_A3 + (uint)bVar3);
+    puVar6[3] = (byte)((int)(uVar2 & 0xe0) >> 5) |
+                *(byte *)(unaff_A3 + (uint)(byte)(bVar3 + 1)) & 0xf8;
+    bVar1 = bVar3 + 3;
+    puVar6[4] = bVar5 | *(byte *)(unaff_A3 + (uint)(byte)(bVar3 + 2)) & 7;
+    bVar3 = bVar3 + 4;
+    puVar6[5] = *(undefined1 *)(unaff_A3 + (uint)bVar1);
+    puVar6 = puVar6 + 0x10;
+  }
+  for (bVar4 = 0; bVar4 < _DAT_008088e4; bVar4 = bVar4 + 1) {
+    *puVar6 = 0x99;
+    puVar6[1] = 0xdf;
+    puVar6[6] = 4;
+    puVar6[2] = *(undefined1 *)(unaff_A3 + (uint)bVar3);
+    puVar6[3] = *(undefined1 *)(unaff_A3 + (uint)(byte)(bVar3 + 1));
+    bVar5 = bVar3 + 3;
+    puVar6[4] = *(undefined1 *)(unaff_A3 + (uint)(byte)(bVar3 + 2));
+    bVar3 = bVar3 + 4;
+    puVar6[5] = *(undefined1 *)(unaff_A3 + (uint)bVar5);
+    puVar6 = puVar6 + 0x10;
   }
   DAT_00ffd800 = DAT_00ffd800 | 10;
   return;
@@ -21011,7 +21142,7 @@ void FUN_000251f4(void)
     if (bVar2 == 0) {
       uVar1 = FUN_00025108();
       if ((char)uVar1 == '\0') {
-        if ((_FUN_000294ea == -0x6789abcd) || (_FUN_000294ea == -0x6789abce)) {
+        if ((_canBufferSetup1 == -0x6789abcd) || (_canBufferSetup1 == -0x6789abce)) {
           pcVar3 = (code *)&SUB_70003002;
         }
         else {
@@ -22650,7 +22781,7 @@ void FUN_00027314(int param_1)
 void FUN_0002732e(void)
 
 {
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -22917,7 +23048,7 @@ void FUN_00027528(int param_1)
 
 
 //
-// Function: FUN_0002787e @ 0x0002787e
+// Function: canTransmissionController @ 0x0002787e
 // ERROR: Failed to decompile
 //
 
@@ -22969,12 +23100,12 @@ void FUN_0002793e(void)
   FUN_0002ae60();
   FUN_0002b29e();
   FUN_0002b3fc();
-  FUN_0002787e();
-  FUN_0002787e();
-  FUN_0002787e();
-  FUN_0002787e();
-  FUN_0002787e();
-  FUN_0002787e();
+  canTransmissionController();
+  canTransmissionController();
+  canTransmissionController();
+  canTransmissionController();
+  canTransmissionController();
+  canTransmissionController();
   FUN_00029a86();
   FUN_00029bf4();
   FUN_0002732e();
@@ -24072,19 +24203,19 @@ void FUN_00029476(int param_1,undefined4 param_2)
   DAT_00801a99 = **(undefined1 **)(param_1 + 6);
   DAT_00801a9a = *(undefined1 *)(*(int *)(param_1 + 6) + 1);
   DAT_00801a9b = *(undefined1 *)(*(int *)(param_1 + 6) + 2);
-  sendJ1939Msg((j1939_header_t *)&DAT_00801a86);
+  sendCanMessage((j1939_header_t *)&DAT_00801a86);
   return;
 }
 
 
 
 //
-// Function: FUN_000294ea @ 0x000294ea
+// Function: canBufferSetup1 @ 0x000294ea
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_000294ea(void)
+void canBufferSetup1(void)
 
 {
   _DAT_00801a8a = 8;
@@ -24109,7 +24240,7 @@ void FUN_00029522(void)
 
 {
   DAT_00801aac = (undefined1)((((uint)_DAT_008092f2 * 2 >> 7) * 0x1afa) / 1000);
-  sendJ1939Msg((j1939_header_t *)&DAT_00801a9e);
+  sendCanMessage((j1939_header_t *)&DAT_00801a9e);
   return;
 }
 
@@ -24206,19 +24337,19 @@ void FUN_000295d4(void)
   else {
     DAT_00801aca = 0x1f;
   }
-  sendJ1939Msg((j1939_header_t *)&DAT_00801ab6);
+  sendCanMessage((j1939_header_t *)&DAT_00801ab6);
   return;
 }
 
 
 
 //
-// Function: FUN_00029796 @ 0x00029796
+// Function: j1939MessageSetup_PGN_FEF100 @ 0x00029796
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00029796(void)
+void j1939MessageSetup_PGN_FEF100(void)
 
 {
   _DAT_00801ab6 = CONCAT13((char)((_DAT_008037ba & 7) << 2),0xfef100);
@@ -24228,7 +24359,7 @@ void FUN_00029796(void)
   _DAT_00801ac0 = &DAT_00801acc;
   DAT_00801ac4 = 0xf3;
   DAT_00801acb = 0xff;
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -24274,7 +24405,7 @@ void FUN_000297fc(void)
     puVar2 = puVar2 + 1;
     puVar3 = puVar3 + 1;
   } while (bVar1 < 4);
-  sendJ1939Msg((j1939_header_t *)&DAT_00801ace);
+  sendCanMessage((j1939_header_t *)&DAT_00801ace);
   return;
 }
 
@@ -24294,7 +24425,7 @@ void FUN_00029868(void)
   _DAT_00801ad4 = &DAT_00801adc;
   _DAT_00801ad8 = &DAT_00801af8;
   _DAT_00801ace = CONCAT31(_DAT_00801ace,DAT_0080cfc3);
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -24351,7 +24482,7 @@ byte * FUN_000298d8(byte *param_1,undefined4 param_2)
       puVar6 = puVar6 + 1;
       puVar7 = puVar7 + 1;
     }
-    msg_header = (j1939_header_t *)sendJ1939Msg(msg_header);
+    msg_header = (j1939_header_t *)sendCanMessage(msg_header);
   }
   return (byte *)msg_header;
 }
@@ -24406,7 +24537,7 @@ byte FUN_00029976(void)
         puVar5 = puVar5 + 1;
       }
     }
-    bVar3 = sendJ1939Msg((j1939_header_t *)&DAT_00801afa);
+    bVar3 = sendCanMessage((j1939_header_t *)&DAT_00801afa);
   }
   return bVar3;
 }
@@ -24428,7 +24559,7 @@ void FUN_00029a86(void)
   _DAT_00801afa = CONCAT31(_DAT_00801afa,DAT_0080cfc3);
   DAT_00801b09 = 0xff;
   DAT_00801b0d = DAT_00801b0d & 0x7f;
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -24482,7 +24613,7 @@ byte FUN_00029ae4(void)
         puVar5 = puVar5 + 1;
       }
     }
-    bVar3 = sendJ1939Msg((j1939_header_t *)&DAT_00802200);
+    bVar3 = sendCanMessage((j1939_header_t *)&DAT_00802200);
   }
   return bVar3;
 }
@@ -24504,7 +24635,7 @@ void FUN_00029bf4(void)
   _DAT_00802200 = CONCAT31(_DAT_00802200,DAT_0080cfc3);
   DAT_0080220f = 0xff;
   DAT_00802213 = DAT_00802213 & 0x7f;
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -24635,7 +24766,7 @@ byte buildCanMessage(void)
         bVar5 = bVar5 + 1;
       } while (bVar5 < 0x14);
     }
-    bVar5 = sendJ1939Msg((j1939_header_t *)&DAT_00802906);
+    bVar5 = sendCanMessage((j1939_header_t *)&DAT_00802906);
   }
   return bVar5;
 }
@@ -24666,7 +24797,7 @@ void FUN_0002a090(void)
     puVar2 = puVar2 + 0x49;
     bVar1 = bVar1 + 1;
   } while (bVar1 < 0x14);
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -24699,7 +24830,7 @@ void FUN_0002a100(void)
     local_6 = local_6 | 0x100;
   }
   _DAT_00803002 = FUN_0001bc52(&local_6);
-  sendJ1939Msg((j1939_header_t *)&DAT_00802fee);
+  sendCanMessage((j1939_header_t *)&DAT_00802fee);
   return;
 }
 
@@ -24719,7 +24850,7 @@ void FUN_0002a1a0(void)
   _DAT_00802ff4 = &DAT_00802ffc;
   _DAT_00802ff8 = &DAT_00803004;
   _DAT_00802fee = CONCAT31(_DAT_00802fee,DAT_0080cfc3);
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -24736,7 +24867,7 @@ void FUN_0002a1f6(undefined4 param_1)
 {
   DAT_00803014 = param_1._1_1_;
   _DAT_00803016 = FUN_0001bc52((undefined2 *)((int)&param_1 + 2));
-  sendJ1939Msg((j1939_header_t *)&DAT_00803006);
+  sendCanMessage((j1939_header_t *)&DAT_00803006);
   return;
 }
 
@@ -24778,7 +24909,7 @@ void FUN_0002a29c(void)
   _DAT_00803024 = &DAT_0080302c;
   _DAT_00803028 = &DAT_00803034;
   _DAT_0080301e = CONCAT31(_DAT_0080301e,DAT_0080cfc3);
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -24849,7 +24980,7 @@ void buildPgn61444_ProprietarySpeed(void)
     j1939_tx_msg_buffer = 0xfe;
   }
   paramSystemModeController();
-                    /* Constant: CAN_PARAM_OFFSET = 125 */
+                    /* Constant: VP44_FUEL_OFFSET = 125 */
   DAT_00803037 = (char)(param_table_aux >> 8) + '}';
   param_lookup_1();
   DAT_00803038 = (char)(param_table_main >> 8) + '}';
@@ -24857,25 +24988,26 @@ void buildPgn61444_ProprietarySpeed(void)
   DAT_00803039 = uStack_5;
   local_6 = (undefined1)(current_engine_rpm >> 8);
   DAT_0080303a = local_6;
-  sendJ1939Msg((j1939_header_t *)&DAT_0080303e);
+  sendCanMessage((j1939_header_t *)&vp44_cmd_msg_buffer);
   return;
 }
 
 
 
 //
-// Function: vp44EngineRpmCanBuilder @ 0x0002a418
+// Function: vp44Command0x100Builder @ 0x0002a418
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void vp44EngineRpmCanBuilder(void)
+void vp44Command0x100Builder(void)
 
 {
-  _DAT_0080303e = CONCAT13((char)((_DAT_008037ca & 7) << 2),0xf00400);
-  _DAT_0080303e = CONCAT31(_DAT_0080303e,DAT_0080cfc3);
-  _DAT_00803042 = 5;
-  _DAT_00803044 = &j1939_tx_msg_buffer;
+                    /* Constant: VP44_MSG_HEADER = 0xF00400 */
+  _vp44_cmd_msg_buffer = CONCAT13((char)((_DAT_008037ca & 7) << 2),0xf00400);
+  _vp44_cmd_msg_buffer = CONCAT31(_vp44_cmd_msg_buffer,DAT_0080cfc3);
+  _vp44_timing_byte4 = 5;
+  _vp44_timing_byte6 = &j1939_tx_msg_buffer;
   _DAT_00803048 = &DAT_0080304c;
   return;
 }
@@ -24925,7 +25057,7 @@ LAB_0002a4ea:
   }
   param_lookup_2();
   DAT_00803050 = (undefined1)(param_table_ctrl >> 8);
-  sendJ1939Msg((j1939_header_t *)&can_param_msg_buf_2);
+  sendCanMessage((j1939_header_t *)&can_param_msg_buf_2);
   return;
 }
 
@@ -24946,7 +25078,7 @@ void FUN_0002a51e(void)
   _DAT_0080305c = &DAT_0080304e;
   _DAT_00803060 = &DAT_00803064;
   FUN_0000d71a();
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -24969,7 +25101,7 @@ void configParamCanBuilder(void)
   local_6 = (undefined1)(param_limit_value >> 8);
   DAT_00803068 = local_6;
   DAT_00803069 = param_config_byte;
-  sendJ1939Msg((j1939_header_t *)&can_param_msg_buf_3);
+  sendCanMessage((j1939_header_t *)&can_param_msg_buf_3);
   return;
 }
 
@@ -25072,7 +25204,7 @@ byte FUN_0002a61e(void)
       }
     }
     DAT_00803099 = (char)(uVar2 >> 8) + '}';
-    bVar1 = sendJ1939Msg((j1939_header_t *)&DAT_0080309a);
+    bVar1 = sendCanMessage((j1939_header_t *)&DAT_0080309a);
   }
   return bVar1;
 }
@@ -25113,7 +25245,7 @@ void FUN_0002a856(void)
 {
   DAT_008030be = (undefined1)((int)((uint)(((int)(uint)_DAT_008092b0 >> 7) * 0x1afa) / 1000) >> 1);
   DAT_008030bb = (undefined1)((int)((uint)(((int)(uint)_DAT_00809242 >> 7) * 0x1afa) / 1000) >> 2);
-  sendJ1939Msg((j1939_header_t *)&DAT_008030aa);
+  sendCanMessage((j1939_header_t *)&DAT_008030aa);
   return;
 }
 
@@ -25191,7 +25323,7 @@ void FUN_0002a93a(void)
     local_6 = -0x500;
     _DAT_008030d2 = FUN_0001bc52(&local_6);
   }
-  sendJ1939Msg((j1939_header_t *)&DAT_008030c2);
+  sendCanMessage((j1939_header_t *)&DAT_008030c2);
   return;
 }
 
@@ -25214,7 +25346,7 @@ void FUN_0002aa74(void)
   _DAT_008030d4 = 0xffff;
   DAT_008030d6 = 0xff;
   DAT_008030d7 = 0xff;
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -25267,7 +25399,7 @@ void FUN_0002aade(void)
     FUN_0000dc28();
     DAT_008030db = '}' - (char)((ushort)_DAT_00809d40 >> 8);
   }
-  sendJ1939Msg((j1939_header_t *)&DAT_008030e2);
+  sendCanMessage((j1939_header_t *)&DAT_008030e2);
   return;
 }
 
@@ -25310,7 +25442,7 @@ void FUN_0002abf2(void)
   local_8 = _DAT_00804bb8 >> 2;
   local_8 = FUN_000357d2(local_8,0x39c2c3,1000000);
   _DAT_00803104 = FUN_0001bc1e(&local_8);
-  sendJ1939Msg((j1939_header_t *)&DAT_008030f2);
+  sendCanMessage((j1939_header_t *)&DAT_008030f2);
   return;
 }
 
@@ -25330,7 +25462,7 @@ void FUN_0002ac7a(void)
   _DAT_008030f8 = &DAT_00803100;
   _DAT_008030fc = &DAT_00803108;
   _DAT_008030f2 = CONCAT31(_DAT_008030f2,DAT_0080cfc3);
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -25370,7 +25502,7 @@ void FUN_0002acd0(void)
   DAT_00803110 = uStack_5;
   local_6 = (undefined1)(uVar1 >> 8);
   DAT_00803111 = local_6;
-  sendJ1939Msg((j1939_header_t *)&DAT_00803114);
+  sendCanMessage((j1939_header_t *)&DAT_00803114);
   return;
 }
 
@@ -25411,7 +25543,7 @@ void FUN_0002adec(void)
   _DAT_00803136 = FUN_0001bc1e(&local_8);
   local_8 = FUN_000357d2(_DAT_00804bcc,0x14,0x40);
   _DAT_0080313a = FUN_0001bc1e(&local_8);
-  sendJ1939Msg((j1939_header_t *)&DAT_00803128);
+  sendCanMessage((j1939_header_t *)&DAT_00803128);
   return;
 }
 
@@ -25431,7 +25563,7 @@ void FUN_0002ae60(void)
   _DAT_0080312e = &DAT_00803136;
   _DAT_00803132 = &DAT_0080313e;
   _DAT_00803128 = CONCAT31(_DAT_00803128,DAT_0080cfc3);
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -25474,7 +25606,7 @@ void FUN_0002af52(void)
 {
   DAT_00803167 = (undefined1)((short)(((_DAT_00809258 >> 7) * 0x1afa) / 1000) >> 1);
   DAT_00803168 = (char)(((_DAT_008091ea >> 7) * 5 + -0xa0) / 9) + '(';
-  sendJ1939Msg((j1939_header_t *)&DAT_00803158);
+  sendCanMessage((j1939_header_t *)&DAT_00803158);
   return;
 }
 
@@ -25588,7 +25720,7 @@ byte FUN_0002b0cc(void)
     DAT_00803198 = uStack_5;
     local_6 = (undefined1)((ushort)_DAT_0080894a >> 8);
     DAT_00803199 = local_6;
-    bVar1 = sendJ1939Msg((j1939_header_t *)&DAT_0080319a);
+    bVar1 = sendCanMessage((j1939_header_t *)&DAT_0080319a);
   }
   return bVar1;
 }
@@ -25629,7 +25761,7 @@ void FUN_0002b23a(void)
   _DAT_008031b8 = FUN_0001bc1e(&local_8);
   local_8 = FUN_000357d2(_DAT_00804bc0,0x3268,10000);
   _DAT_008031bc = FUN_0001bc1e(&local_8);
-  sendJ1939Msg((j1939_header_t *)&DAT_008031aa);
+  sendCanMessage((j1939_header_t *)&DAT_008031aa);
   return;
 }
 
@@ -25649,7 +25781,7 @@ void FUN_0002b29e(void)
   _DAT_008031b0 = &DAT_008031b8;
   _DAT_008031b4 = &DAT_008031c0;
   _DAT_008031aa = CONCAT31(_DAT_008031aa,DAT_0080cfc3);
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -25668,7 +25800,7 @@ void FUN_0002b2f4(void)
   
   local_6 = (undefined2)((uint)_DAT_00809308 * 0x14 >> 3);
   _DAT_008031d6 = FUN_0001bc52(&local_6);
-  sendJ1939Msg((j1939_header_t *)&DAT_008031c2);
+  sendCanMessage((j1939_header_t *)&DAT_008031c2);
   return;
 }
 
@@ -25712,7 +25844,7 @@ void FUN_0002b398(void)
   _DAT_008031e8 = FUN_0001bc1e(&local_8);
   local_8 = FUN_000357d2(_DAT_00804bd4,0x14,0x40);
   _DAT_008031ec = FUN_0001bc1e(&local_8);
-  sendJ1939Msg((j1939_header_t *)&DAT_008031da);
+  sendCanMessage((j1939_header_t *)&DAT_008031da);
   return;
 }
 
@@ -25732,7 +25864,7 @@ void FUN_0002b3fc(void)
   _DAT_008031e0 = &DAT_008031e8;
   _DAT_008031e4 = &DAT_008031f0;
   _DAT_008031da = CONCAT31(_DAT_008031da,DAT_0080cfc3);
-  FUN_0002787e();
+  canTransmissionController();
   return;
 }
 
@@ -34364,4 +34496,4 @@ undefined8 tableInterpolationLookup(short *param_1)
 
 
 
-// Export complete - 766 functions processed
+// Export complete - 767 functions processed

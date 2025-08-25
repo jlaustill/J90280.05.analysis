@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sun Aug 24 18:07:20 MDT 2025
+; Sun Aug 24 20:00:33 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -19405,7 +19405,7 @@
 0001c52e: movem.l  -0x24,A6,{  A2 A3}  
 0001c534: unlk     A6                  
 0001c536: rts      <UNSUPPORTED>       
-0001c538: link.w   A6,-0x4              ; VP44 fuel temperature handler entry point
+0001c538: link.w   A6,-0x4              ; VP44 fuel temperature processing entry point
 0001c53c: movem.l  {  A5 A4 A3 A2 D3 D2},SP
 0001c540: movea.l  (0x8,A6),A3         
 0001c544: movea.l  #0x800f5e,A4        
@@ -19666,7 +19666,7 @@
 0001c886: movem.l  SP,{  D2 A2}        
 0001c88a: rts      <UNSUPPORTED>       
 0001c88c: move.l   A2,-(SP)            
-0001c88e: bsr.w    0x0001c538           ; Branch to VP44 handler (bsrw 0x1c538)
+0001c88e: bsr.w    0x0001c538           ; Branch to VP44 fuel handler (bsrw 0x1c538)
 0001c892: addq.l   0x4,SP              
 0001c894: movem.l  SP,{  D2 A2}        
 0001c898: rts      <UNSUPPORTED>       
@@ -24071,7 +24071,7 @@
 0002090e: movem.l  -0x14,A6,{  D2 A2 A3 A4}
 00020914: unlk     A6                  
 00020916: rts      <UNSUPPORTED>       
-00020918: movem.l  {  A5 A4 A3 A2 D5 D4 D3 D2},SP
+00020918: movem.l  {  A5 A4 A3 A2 D5 D4 D3 D2},SP ; Main CAN message transmission scheduler
 0002091c: movea.l  #0x8088ea,A3        
 00020922: movea.l  #0x1af38,A4         
 00020928: movea.l  #0x80cf8c,A5        
@@ -24091,7 +24091,7 @@
 00020972: bcs.b    0x00020968          
 00020974: jsr      0x000294ea          
 0002097a: jsr      0x00029796          
-00020980: jsr      0x0002a418          
+00020980: jsr      0x0002a418           ; VP44_CMD_BUILDER_CALL = 0x2A418 (Expected: JSR call to VP44 command message builder)
 00020986: jsr      0x0002a51e          
 0002098c: jsr      0x0002a5da          
 00020992: jsr      0x0002a7f8          
@@ -29985,8 +29985,8 @@
 0002a3c4: moveq    0x0,D0              
 0002a3c6: move.w   (0x0080cfd8).l,D0w   ; Extract param_table_main.param_table_2 >> 8
 0002a3cc: asr.l    #0x8,D0             
-; Constant: CAN_PARAM_OFFSET = 125
-0002a3ce: addi.b   #0x7d,D0b            ; CAN_PARAM_OFFSET = 125 (Parameter offset added to CAN data (addib #125))
+; Constant: VP44_FUEL_OFFSET = 125
+0002a3ce: addi.b   #0x7d,D0b            ; VP44_FUEL_OFFSET = 125 (VP44 fuel amount offset (param_table + 125))
 0002a3d2: move.b   D0b,(0x1,A3)        
 0002a3d6: jsr      0x0000d632           ; Call param_lookup_1 for CAN transmission
 0002a3dc: moveq    0x0,D0              
@@ -30003,8 +30003,9 @@
 0002a414: unlk     A6                  
 0002a416: rts      <UNSUPPORTED>       
 0002a418: movea.l  #0x80303e,A0        
-0002a41e: move.l   #0xf00400,(0x0080303e).l
-0002a428: move.w   (0x008037ca).l,D0w  
+; Constant: VP44_MSG_HEADER = 0xF00400
+0002a41e: move.l   #0xf00400,(0x0080303e).l ; VP44_MSG_HEADER = 0xF00400 (VP44 message format identifier for 0x100 commands)
+0002a428: move.w   (0x008037ca).l,D0w   ; Begin VP44 message data field construction
 0002a42e: andi.l   #0x7,D0             
 0002a434: lsl.l    #0x2,D0             
 0002a436: andi.b   #-0x1d,(A0)         
