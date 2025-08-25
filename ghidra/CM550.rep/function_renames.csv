@@ -40,5 +40,5 @@ address,newName
 0x00020980,mainCanTransmissionLoop
 0x00020918,canTransmissionScheduler
 0x000294ea,canBufferSetup1
-0x00029796,j1939MessageSetup_PGN_FEF100
+0x00029796,j1939MessageSetup_PGN_65265
 0x0002787e,canTransmissionController

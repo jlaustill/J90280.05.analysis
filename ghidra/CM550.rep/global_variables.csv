@@ -42,6 +42,15 @@ address,name,type,comment
 0x80c1fa,circular_buffer_data,byte,Circular buffer data storage (512 bytes)
 0x80bdfa,circular_buffer_metadata,word,Circular buffer metadata/timestamps
 0x80d1a4,system_logging_state,word,System data logging state flag (1=active 2=error mode)
+0x801a8a,can_buffer_setup1_size,byte,CAN buffer 1 message size (set to 8 bytes)
+0x801a8c,can_buffer_setup1_data_ptr,dword,CAN buffer 1 data pointer to 0x801a94
+0x801a90,can_buffer_setup1_unused_ptr,dword,CAN buffer 1 unused/padding pointer to 0x801a9c
+0x801a94,can_buffer_setup1_data,byte,CAN buffer 1 data array (8 bytes with 0xFF padding)
+0x801ab6,j1939_pgn_65265_header,dword,J1939 PGN 65265 message header (engine data)
+0x801aba,j1939_pgn_65265_size,byte,J1939 PGN 65265 message size (7 bytes)
+0x801abc,j1939_pgn_65265_data_ptr,dword,J1939 PGN 65265 data pointer
+0x801ac0,j1939_pgn_65265_unused_ptr,dword,J1939 PGN 65265 unused pointer
+0x801ac4,j1939_pgn_65265_data_byte1,byte,J1939 PGN 65265 first data byte (0xF3)
 0x8034f8,can_message_buffer_start,byte,Start of CAN message buffer array for logging (906 bytes)
 0x803882,can_message_buffer_end,byte,End marker for CAN message buffer logging range
 0x80d3a6,memory_patch_array,byte,Memory patch descriptor array (6 bytes per entry: addr size data)
