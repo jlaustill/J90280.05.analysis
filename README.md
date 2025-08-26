@@ -88,8 +88,8 @@ This configures a **pre-commit hook** that automatically:
 ## **📤 Claude Code Integration**
 
 **ghidra_scripts/ExportAnalysisResults.java** creates:
-- **`working/J90280.05.ghidra.asm`** - Assembly with meaningful names/comments
-- **`working/J90280.05.ghidra.cpp`** - C++ decompilation with types
+- **`ghidra/CM550.rep/working/J90280.05.ghidra.asm`** - Assembly with meaningful names/comments
+- **`ghidra/CM550.rep/working/J90280.05.ghidra.cpp`** - C++ decompilation with types
 
 **Claude Code instantly sees your latest Ghidra analysis!**
 

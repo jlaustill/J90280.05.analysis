@@ -40,7 +40,6 @@ address,name,type,comment
 0x80306e,can_param_msg_buf_3,byte,CAN parameter message buffer 3 (config + limits)
 0x803056,can_param_msg_buf_2,byte,CAN parameter message buffer 2 (secondary params)
 0x803066,can_param_msg_buf_1,byte,CAN parameter message buffer 1 (config data)
-0x809654,param_system_mode,word,Current parameter system operation mode (1=active 11=cached etc)
 0x80c3fc,circular_buffer_write_index,word,Circular buffer write index (512 entries max)
 0x80c3fe,circular_buffer_count,word,Number of entries in circular buffer
 0x80c1fa,circular_buffer_data,byte,Circular buffer data storage (512 bytes)
