@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Mon Aug 25 14:04:19 MDT 2025
+; Mon Aug 25 18:26:48 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -8402,7 +8402,7 @@
 000120f6: ori.b    #0x8,(A5)           
 000120fa: bra.b    0x00012116          
 000120fc: clr.w    (0x00800236).l      
-00012102: cmpi.w   #0x1,(0x0080374c).l 
+00012102: cmpi.w   #0x1,(0x0080374c).l  ; VP44 CAN pin switching decision controller - monitors 6 VP44 health conditions to select primary vs emergency CAN pins
 0001210a: bne.b    0x00012112          
 0001210c: andi.b   #-0x3,(A5)          
 00012110: bra.b    0x00012116          
@@ -8508,7 +8508,7 @@
 000122c6: movem.l  -0x30,A6,{  D2 D3 D4 D5 A2 A3 A4 A5}
 000122cc: unlk     A6                  
 000122ce: rts      <UNSUPPORTED>       
-000122d0: link.w   A6,0x0              
+000122d0: link.w   A6,0x0               ; Critical I/O control and CAN pin switching function called 40x per major cycle - updates hardware I/O ports and switches between primary/VP44 CAN pins
 000122d4: move.l   D2,-(SP)            
 000122d6: movea.l  #0x80bdee,A1        
 000122dc: movea.l  #0x80bdee,A0        
@@ -13781,7 +13781,7 @@
 000172ae: andi.w   #-0x3,(0x00fffe20).l
 000172b6: movem.l  SP,{ D0 D1 A0 A1 A2 A3 A4}
 000172ba: rte      <UNSUPPORTED>       
-000172bc: jsr      0x000122d0          
+000172bc: jsr      0x000122d0           ; Ultimate wrapper function called in every phase of 40-phase scheduler - literally just calls ioControlAndCanPinSwitching and returns
 000172c2: rts      <UNSUPPORTED>       
 000172c4: jsr      0x0001b1f4          
 000172ca: jsr      0x0001cc38          
@@ -14312,7 +14312,7 @@
 00017b74: move.l   #0x175ba,(0x00808f0a).l
 00017b7e: move.w   #0x27,(0x00fffa24).l
 00017b86: rts      <UNSUPPORTED>       
-00017b88: movem.l  {  A3 A2},SP        
+00017b88: movem.l  {  A3 A2},SP         ; Main loop task scheduler initialization and timer synchronization - initializes 40-slot task queue on first run and maintains timer sync every loop
 00017b8c: movea.l  #0x800356,A1        
 00017b92: movea.l  #0x809782,A0        
 00017b98: tst.w    (0x0080976e).l      

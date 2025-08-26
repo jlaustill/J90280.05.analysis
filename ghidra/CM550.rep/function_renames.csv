@@ -89,3 +89,5 @@ address,newName
 0xfa40,systemFunction8xMaximum
 0x1b172,systemFunction4xParameterizedAlt
 0x17b88,mainLoopTaskSchedulerInit
+0x122d0,ioControlAndCanPinSwitching
+0x172bc,ioControlAndCanPinSwitchingWrapper

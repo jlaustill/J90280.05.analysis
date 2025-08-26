@@ -155,3 +155,10 @@ can_priority_lookup_table_t,0x8037b6,fee3_priority,byte,1,Priority for PGN FEE30
 can_priority_lookup_table_t,0x8037b6,fef1_priority,byte,1,Priority for PGN FEF100 message,
 can_priority_lookup_table_t,0x8037b6,feeb_priority,byte,1,Priority for PGN FEEB00 message,
 can_priority_lookup_table_t,0x8037b6,feca_priority,byte,1,Priority for PGN FECA00 (DM1) message,
+scheduler_phase_slot_t,0x809782,last_execution_time,dword,4,Timer value of last task execution,
+scheduler_phase_slot_t,0x809782,runtime_ticks,word,2,Task runtime duration in timer ticks,
+scheduler_phase_slot_t,0x809782,deadline_ticks,word,2,Task execution deadline (0xFFFF = disabled),
+scheduler_phase_slot_t,0x809782,execution_count,word,2,Number of times task has been executed,
+scheduler_phase_slot_t,0x809782,overrun_count,word,2,Number of deadline overruns detected,
+scheduler_phase_slot_t,0x809782,reserved,dword,4,Reserved/padding bytes for alignment,
+scheduler_phase_table_t,0x809782,phase_slots,scheduler_phase_slot_t,640,Array of 40 scheduler phase slots (16 bytes each),scheduler_phase_slot_t

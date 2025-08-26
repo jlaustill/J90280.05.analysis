@@ -106,4 +106,8 @@ address,label_name,comment
 0x1b762,system_function_6x_parameterized,Complex wrapper calling core system function 6 times with specific parameter sequences (0xb56e, 0x45)
 0xfa40,system_function_8x_maximum,Maximum intensity wrapper calling core system function 8 times with no parameters
 0x1b172,system_function_4x_parameterized_alt,Alternative parameterized wrapper calling core system function 4 times with different parameter sequence (0xb07e, 0x10)
-0x80976e,schedule_armed,Seems to be an init/armed flag for the main_loop
+0x17b88,main_loop_task_scheduler_init,Main loop task scheduler initialization and timer synchronization - initializes 40-slot task queue on first run and maintains timer sync every loop
+0x80976e,schedule_armed,Scheduler enable flag - when set enables main loop task scheduling system
+0x122d0,io_control_and_can_pin_switching,Critical I/O control and CAN pin switching function called 40x per major cycle - updates hardware I/O ports and switches between primary/VP44 CAN pins
+0x12104,vp44_can_pin_switching_controller,VP44 CAN pin switching decision controller - monitors 6 VP44 health conditions to select primary vs emergency CAN pins
+0x172bc,io_control_and_can_pin_switching_wrapper,Ultimate wrapper function called in every phase of 40-phase scheduler - literally just calls ioControlAndCanPinSwitching and returns

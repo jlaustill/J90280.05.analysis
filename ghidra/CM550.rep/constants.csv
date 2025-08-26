@@ -62,3 +62,6 @@ address,constant_name,value,comment
 0x0001B762,SYSTEM_PARAM_2,0x45,System function parameter value 2 (69 decimal)
 0x0001B172,SYSTEM_PARAM_ALT_1,0xB07E,Alternative system function parameter value 1 (45182 decimal)
 0x0001B172,SYSTEM_PARAM_ALT_2,0x10,Alternative system function parameter value 2 (16 decimal)
+0x00000020,VP44_PIN_SET_SELECTOR_BIT,32,Bit 5 in CAN_PIN_SWITCHING_CONTROL_FLAGS - when set uses pin set A otherwise pin set B for VP44 emergency
+0x00000800,CAN_ID_PATTERN_PIN_SET_A,2048,CAN identifier pattern when using primary pin set (normal operation)
+0x00000400,CAN_ID_PATTERN_PIN_SET_B,1024,CAN identifier pattern when using VP44 emergency pin set (failover mode)

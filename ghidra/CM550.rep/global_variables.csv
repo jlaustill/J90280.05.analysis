@@ -285,4 +285,21 @@ address,name,type,comment
 0x8030d0,engine_temp_processed1,byte,Processed engine temperature value 1
 0x8030d1,engine_temp_processed2,byte,Processed engine temperature value 2
 0x8030d2,engine_fluid_calc_result,word,Engine fluid calculation result
-0x80976e,schedule_armed,uint16_t,Seems to be an init/armed flag for the main_loop
+0x80976e,schedule_armed,word,Scheduler enable flag - when set enables main loop task scheduling system
+0x809782,scheduler_phase_table,scheduler_phase_table_t,40-slot task scheduler phase table (16 bytes per slot)
+0xFFFA22,REG_SIM_PICR,word,MC68336 Periodic Interrupt Control Register
+0xFFFA24,REG_SIM_PITR,word,MC68336 Periodic Interrupt Timer Register  
+0xFFFA27,REG_SIM_SWSR,byte,MC68336 Software Watchdog Service Register
+0xFFF404,hardware_timer_register,dword,Hardware timer register for main loop timing synchronization
+0x80BDC6,vp44_communication_status,byte,VP44 communication health flags - bit 1 indicates active/healthy VP44 communication
+0x80BDF3,can_pin_switching_control_flags,byte,CAN pin switching control - bit 5 (0x20) selects primary vs VP44 emergency pins
+0x80C9C6,engine_control_system_ready,word,Engine control system ready flag - must be 0 for normal pin operation
+0x80969E,vp44_injection_system_active,word,VP44 injection system active flag - forces emergency pins when set
+0x80C810,engine_operating_mode,word,Engine operating mode - mode 5 is critical VP44 timing mode
+0x8035D4,vp44_status_flags_1,word,VP44 status flags 1 - bit 6 (0x40) affects pin switching
+0x8035EC,vp44_status_flags_2,word,VP44 status flags 2 - bit 1 (0x02) affects pin switching in mode 5
+0x80BDEE,io_control_source_register,byte,I/O control source data register - copied directly to hardware I/O port 1 (0xFFD004) 40x per major cycle
+0x80BDEF,io_control_flags,byte,I/O control flags register - processed with bit manipulation and sent to I/O port 2 (0xFFD006)
+0x80BDF0,sim_data_direction_control,byte,SIM data direction control register - controls input/output direction for SIM pins
+0xFFD004,SIM_CAN_CONTROL_PORT_1,byte,SIM CAN control port 1 - hardware I/O for CAN pin switching updated 40x per major cycle
+0xFFD006,SIM_CAN_CONTROL_PORT_2,byte,SIM CAN control port 2 - processed I/O for CAN pin switching updated 40x per major cycle
