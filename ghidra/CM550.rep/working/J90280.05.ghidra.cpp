@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Mon Aug 25 18:26:49 MDT 2025
+// Mon Aug 25 21:17:24 MDT 2025
 
 
 //
@@ -10450,27 +10450,27 @@ void ioControlAndCanPinSwitchingWrapper(void)
 
 
 //
-// Function: FUN_000172c4 @ 0x000172c4
+// Function: evenPhaseSchedulerTaskSet @ 0x000172c4
 //
 
-void FUN_000172c4(void)
+void evenPhaseSchedulerTaskSet(void)
 
 {
-  FUN_0001b1f4();
-  FUN_0001cc38();
-  FUN_0001b9da();
-  FUN_0001cad6();
-  FUN_00035298();
+  timerBasedTaskScheduler();
+  systemStatusProcessor();
+  memoryRegisterController();
+  messageQueueDispatcher();
+  systemStatusMonitor();
   return;
 }
 
 
 
 //
-// Function: FUN_000172e4 @ 0x000172e4
+// Function: oddPhaseSchedulerTaskSet @ 0x000172e4
 //
 
-void FUN_000172e4(void)
+void oddPhaseSchedulerTaskSet(void)
 
 {
   FUN_0001b314();
@@ -11110,7 +11110,7 @@ undefined8 main_loop(void)
   switch(_main_loop_phase_index) {
   case 0:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_000173f4();
     FUN_00017440();
@@ -11121,7 +11121,7 @@ undefined8 main_loop(void)
     break;
   case 1:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_000173f6();
     FUN_0001744e();
@@ -11131,7 +11131,7 @@ undefined8 main_loop(void)
     break;
   case 2:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_00017404();
     FUN_0001745c();
@@ -11141,7 +11141,7 @@ undefined8 main_loop(void)
     break;
   case 3:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_00017412();
     FUN_00017464();
@@ -11150,7 +11150,7 @@ undefined8 main_loop(void)
     break;
   case 4:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_00017426();
     FUN_0001746c();
@@ -11160,7 +11160,7 @@ undefined8 main_loop(void)
     break;
   case 5:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_00017434();
     FUN_00017486();
@@ -11169,7 +11169,7 @@ undefined8 main_loop(void)
     break;
   case 6:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_0001743c();
     FUN_0001748e();
@@ -11179,7 +11179,7 @@ undefined8 main_loop(void)
     break;
   case 7:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_0001743e();
     FUN_00017496();
@@ -11189,7 +11189,7 @@ undefined8 main_loop(void)
     break;
   case 8:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_000173f4();
     FUN_0001749e();
@@ -11199,7 +11199,7 @@ undefined8 main_loop(void)
     break;
   case 9:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_000173f6();
     FUN_000174a6();
@@ -11209,7 +11209,7 @@ undefined8 main_loop(void)
     break;
   case 10:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_00017404();
     FUN_00017440();
@@ -11219,7 +11219,7 @@ undefined8 main_loop(void)
     break;
   case 0xb:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_00017412();
     FUN_0001744e();
@@ -11229,7 +11229,7 @@ undefined8 main_loop(void)
     break;
   case 0xc:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_00017426();
     FUN_0001745c();
@@ -11239,7 +11239,7 @@ undefined8 main_loop(void)
     break;
   case 0xd:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_00017434();
     FUN_00017464();
@@ -11249,7 +11249,7 @@ undefined8 main_loop(void)
     break;
   case 0xe:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_0001743c();
     FUN_0001746c();
@@ -11259,7 +11259,7 @@ undefined8 main_loop(void)
     break;
   case 0xf:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_0001743e();
     FUN_00017486();
@@ -11271,7 +11271,7 @@ undefined8 main_loop(void)
     break;
   case 0x10:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_000173f4();
     FUN_0001748e();
@@ -11281,7 +11281,7 @@ undefined8 main_loop(void)
     break;
   case 0x11:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_000173f6();
     FUN_00017496();
@@ -11290,7 +11290,7 @@ undefined8 main_loop(void)
     break;
   case 0x12:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_00017404();
     FUN_0001749e();
@@ -11300,7 +11300,7 @@ undefined8 main_loop(void)
     break;
   case 0x13:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_00017412();
     FUN_000174a6();
@@ -11309,7 +11309,7 @@ undefined8 main_loop(void)
     break;
   case 0x14:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_00017426();
     FUN_00017440();
@@ -11318,7 +11318,7 @@ undefined8 main_loop(void)
     break;
   case 0x15:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_00017434();
     FUN_0001744e();
@@ -11327,7 +11327,7 @@ undefined8 main_loop(void)
     break;
   case 0x16:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_0001743c();
     FUN_0001745c();
@@ -11336,7 +11336,7 @@ undefined8 main_loop(void)
     break;
   case 0x17:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_0001743e();
     FUN_00017464();
@@ -11345,7 +11345,7 @@ undefined8 main_loop(void)
     break;
   case 0x18:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_000173f4();
     FUN_0001746c();
@@ -11354,7 +11354,7 @@ undefined8 main_loop(void)
     break;
   case 0x19:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_000173f6();
     FUN_00017486();
@@ -11363,7 +11363,7 @@ undefined8 main_loop(void)
     break;
   case 0x1a:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_00017404();
     FUN_0001748e();
@@ -11372,7 +11372,7 @@ undefined8 main_loop(void)
     break;
   case 0x1b:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_00017412();
     FUN_00017496();
@@ -11381,7 +11381,7 @@ undefined8 main_loop(void)
     break;
   case 0x1c:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_00017426();
     FUN_0001749e();
@@ -11390,7 +11390,7 @@ undefined8 main_loop(void)
     break;
   case 0x1d:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_00017434();
     FUN_000174a6();
@@ -11399,7 +11399,7 @@ undefined8 main_loop(void)
     break;
   case 0x1e:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_0001743c();
     FUN_00017440();
@@ -11408,7 +11408,7 @@ undefined8 main_loop(void)
     break;
   case 0x1f:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_0001743e();
     FUN_0001744e();
@@ -11417,7 +11417,7 @@ undefined8 main_loop(void)
     break;
   case 0x20:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_000173f4();
     FUN_0001745c();
@@ -11426,7 +11426,7 @@ undefined8 main_loop(void)
     break;
   case 0x21:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_000173f6();
     FUN_00017464();
@@ -11435,7 +11435,7 @@ undefined8 main_loop(void)
     break;
   case 0x22:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_00017404();
     FUN_0001746c();
@@ -11444,7 +11444,7 @@ undefined8 main_loop(void)
     break;
   case 0x23:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_00017412();
     FUN_00017486();
@@ -11453,7 +11453,7 @@ undefined8 main_loop(void)
     break;
   case 0x24:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_000172f8();
     FUN_00017426();
     FUN_0001748e();
@@ -11462,7 +11462,7 @@ undefined8 main_loop(void)
     break;
   case 0x25:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_00017334();
     FUN_00017434();
     FUN_00017496();
@@ -11471,7 +11471,7 @@ undefined8 main_loop(void)
     break;
   case 0x26:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172c4();
+    evenPhaseSchedulerTaskSet();
     FUN_00017366();
     FUN_0001743c();
     FUN_0001749e();
@@ -11480,7 +11480,7 @@ undefined8 main_loop(void)
     break;
   case 0x27:
     ioControlAndCanPinSwitchingWrapper();
-    FUN_000172e4();
+    oddPhaseSchedulerTaskSet();
     FUN_000173b0();
     FUN_0001743e();
     FUN_000174a6();
@@ -11536,8 +11536,7 @@ void mainLoopTaskSchedulerInit(void)
   if (schedule_armed != 0) {
     if (_main_loop_counter == 0) {
       for (psVar1 = &scheduler_phase_table_t_00809782;
-          psVar1 < (scheduler_phase_table_t *)&DAT_00809a02;
-          psVar1 = (scheduler_phase_table_t *)&psVar1->field_0x10) {
+          psVar1 < (scheduler_phase_table_t *)&DAT_00809a02; psVar1 = psVar1 + 1) {
         (psVar1->phase_slots).last_execution_time = 0;
         (psVar1->phase_slots).runtime_ticks = 0;
         (psVar1->phase_slots).deadline_ticks = 0xffff;
@@ -14804,12 +14803,12 @@ void systemFunction4xParameterizedAlt(void)
 //
 
 //
-// Function: FUN_0001b1f4 @ 0x0001b1f4
+// Function: timerBasedTaskScheduler @ 0x0001b1f4
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined * FUN_0001b1f4(void)
+undefined * timerBasedTaskScheduler(void)
 
 {
   char cVar1;
@@ -15300,12 +15299,12 @@ void FUN_0001b916(undefined4 param_1)
 
 
 //
-// Function: FUN_0001b9da @ 0x0001b9da
+// Function: memoryRegisterController @ 0x0001b9da
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_0001b9da(void)
+uint memoryRegisterController(void)
 
 {
   undefined2 uVar1;
@@ -15862,18 +15861,18 @@ void sendJ1939MultiFrame(uint *param_1)
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void diagnosticParamRequestHandler(int param_1)
+void diagnosticParamRequestHandler(can_std_rx_desc_t *rx_msg)
 
 {
   byte bVar1;
   byte bVar2;
   short local_6;
   
-  bVar1 = *(byte *)(*(int *)(param_1 + 6) + 2);
-  local_6 = (ushort)*(byte *)(*(int *)(param_1 + 6) + 6) << 8;
-  if ((((diagnostic_message_state == 1) && (*(char *)(param_1 + 3) == DAT_00800f35)) &&
+  bVar1 = rx_msg->data_ptr[2];
+  local_6 = (ushort)rx_msg->data_ptr[6] << 8;
+  if ((((diagnostic_message_state == 1) && ((char)rx_msg->id == DAT_00800f35)) &&
       (bVar1 <= DAT_00800f38)) && (local_6 == _DAT_00800f36)) {
-    bVar2 = *(byte *)(*(int *)(param_1 + 6) + 1);
+    bVar2 = rx_msg->data_ptr[1];
     if (bVar2 == 0) {
       _DAT_00800f46 = 0x37;
     }
@@ -15891,10 +15890,10 @@ void diagnosticParamRequestHandler(int param_1)
 
 
 //
-// Function: FUN_0001c3d2 @ 0x0001c3d2
+// Function: messageErrorHandler @ 0x0001c3d2
 //
 
-void FUN_0001c3d2(undefined4 param_1)
+void messageErrorHandler(undefined4 param_1)
 
 {
   undefined1 *puVar1;
@@ -15933,8 +15932,6 @@ void FUN_0001c3d2(undefined4 param_1)
 // Function: FUN_0001c440 @ 0x0001c440
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void FUN_0001c440(undefined4 param_1)
 
 {
@@ -15944,7 +15941,7 @@ void FUN_0001c440(undefined4 param_1)
   undefined1 uStack_1c;
   undefined1 uStack_1b;
   undefined1 uStack_1a;
-  undefined1 uStack_19;
+  byte bStack_19;
   undefined1 uStack_18;
   undefined1 uStack_17;
   undefined1 uStack_16;
@@ -15957,11 +15954,11 @@ void FUN_0001c440(undefined4 param_1)
   local_e = 8;
   local_c = &uStack_1c;
   uStack_1c = 0x13;
-  uStack_1f = (undefined1)_DAT_00800f6a;
+  uStack_1f = (undefined1)vp44_additional_data;
   uStack_1b = uStack_1f;
-  local_20 = (undefined1)((ushort)_DAT_00800f6a >> 8);
+  local_20 = (undefined1)(vp44_additional_data >> 8);
   uStack_1a = local_20;
-  uStack_19 = DAT_00800f5f;
+  bStack_19 = vp44_sequence_number;
   uStack_18 = 0xff;
   uStack_17 = 0;
   local_1e = (undefined1)((uint)param_1 >> 8);
@@ -15974,10 +15971,10 @@ void FUN_0001c440(undefined4 param_1)
 
 
 //
-// Function: FUN_0001c4c0 @ 0x0001c4c0
+// Function: vp44MessageTransmitter @ 0x0001c4c0
 //
 
-undefined1 FUN_0001c4c0(undefined4 param_1,undefined2 param_2)
+undefined1 vp44MessageTransmitter(undefined4 param_1,undefined2 param_2)
 
 {
   undefined1 local_1e;
@@ -16016,45 +16013,45 @@ undefined1 FUN_0001c4c0(undefined4 param_1,undefined2 param_2)
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void vp44FuelTempHandler(undefined4 *param_1)
+void vp44FuelTempHandler(can_std_rx_desc_t *rx_msg)
 
 {
-  int iVar1;
+  byte *pbVar1;
   byte bVar2;
-  char cVar3;
+  byte bVar3;
   undefined1 uVar4;
   undefined1 extraout_var;
   undefined2 in_D0w;
   char cVar5;
   undefined2 local_8;
-  short local_6;
+  word local_6;
   
-  iVar1 = *(int *)((int)param_1 + 6);
-  bVar2 = *(byte *)(iVar1 + 6);
+  pbVar1 = rx_msg->data_ptr;
+  bVar2 = pbVar1[6];
   local_6 = (ushort)bVar2 << 8;
-  cVar3 = *(char *)((int)param_1 + 3);
-  local_8 = CONCAT11(*(undefined1 *)(iVar1 + 2),*(undefined1 *)(iVar1 + 1));
+  bVar3 = (byte)rx_msg->id;
+  local_8 = CONCAT11(pbVar1[2],pbVar1[1]);
   uVar4 = (undefined1)((ushort)in_D0w >> 8);
-  if ((((vp44_response_buffer == 1) && (cVar3 != DAT_00800f69)) || (bVar2 != 0xef)) ||
+  if ((((vp44_response_buffer == 1) && (bVar3 != vp44_expected_sequence)) || (bVar2 != 0xef)) ||
      (0x6a4 < local_8)) {
-    FUN_0001c3d2((uint)CONCAT21(CONCAT11(uVar4,cVar3),bVar2) << 8);
+    messageErrorHandler((uint)CONCAT21(CONCAT11(uVar4,bVar3),bVar2) << 8);
   }
   else {
     vp44_response_buffer = 1;
-    _DAT_00800f66 = *param_1;
-    _DAT_00800f60 = local_6;
-    DAT_00800f5f = *(byte *)(iVar1 + 3);
-    _DAT_00800f6a = local_8;
+    _vp44_message_data = rx_msg->id;
+    vp44_message_id = local_6;
+    vp44_sequence_number = pbVar1[3];
+    vp44_additional_data = local_8;
                     /* Constant: VP44_FUEL_TEMP_OFFSET = 112 */
-    _DAT_00800f64 = 0x70;
-    DAT_00800f62 = 1;
-    DAT_00800f63 = DAT_00800f5f;
-    if (5 < DAT_00800f5f) {
-      DAT_00800f63 = 5;
+    _vp44_timeout_counter = 0x70;
+    vp44_retry_flag = 1;
+    vp44_retry_count = vp44_sequence_number;
+    if (5 < vp44_sequence_number) {
+      vp44_retry_count = 5;
     }
-    cVar5 = FUN_0001c4c0(CONCAT22(CONCAT11(uVar4,cVar3),CONCAT11(uVar4,1)),0xef00);
+    cVar5 = vp44MessageTransmitter(CONCAT22(CONCAT11(uVar4,bVar3),CONCAT11(uVar4,1)),0xef00);
     if (cVar5 != '\0') {
-      FUN_0001c3d2(CONCAT22(CONCAT11(extraout_var,cVar3),_DAT_00800f60));
+      messageErrorHandler(CONCAT22(CONCAT11(extraout_var,bVar3),vp44_message_id));
       vp44_response_buffer = 0;
     }
   }
@@ -16073,7 +16070,7 @@ void FUN_0001c60e(int param_1)
 
 {
   byte bVar1;
-  char cVar2;
+  byte bVar2;
   undefined1 *puVar3;
   undefined3 uVar4;
   undefined3 extraout_var;
@@ -16086,12 +16083,12 @@ void FUN_0001c60e(int param_1)
   undefined1 *puVar9;
   undefined1 *puVar10;
   
-  if (((*(short *)(param_1 + 4) == 8) && (cVar2 = *(char *)(param_1 + 3), vp44_response_buffer == 1)
-      ) && (cVar2 == DAT_00800f69)) {
+  if (((*(short *)(param_1 + 4) == 8) && (bVar2 = *(byte *)(param_1 + 3), vp44_response_buffer == 1)
+      ) && (bVar2 == vp44_expected_sequence)) {
     bVar1 = **(byte **)(param_1 + 6);
-    if (bVar1 == DAT_00800f62) {
-      if (bVar1 == DAT_00800f5f) {
-        bVar8 = DAT_00800f6b + bVar1 * -7 + 7;
+    if (bVar1 == vp44_retry_flag) {
+      if (bVar1 == vp44_sequence_number) {
+        bVar8 = (char)vp44_additional_data + bVar1 * -7 + 7;
       }
       else {
         bVar8 = 7;
@@ -16103,43 +16100,45 @@ void FUN_0001c60e(int param_1)
         *puVar9 = *puVar10;
         puVar9 = puVar9 + 1;
       }
-      DAT_00800f62 = DAT_00800f62 + 1;
-      DAT_00800f63 = DAT_00800f63 + -1;
-      if (DAT_00800f63 == '\0') {
-        if (bVar1 == DAT_00800f5f) {
-          FUN_0001c440(CONCAT22((short)CONCAT31((int3)((uint)puVar3 >> 8),cVar2),_DAT_00800f60));
+      vp44_retry_flag = vp44_retry_flag + 1;
+      vp44_retry_count = vp44_retry_count - 1;
+      if (vp44_retry_count == 0) {
+        if (bVar1 == vp44_sequence_number) {
+          FUN_0001c440(CONCAT22((short)CONCAT31((int3)((uint)puVar3 >> 8),bVar2),vp44_message_id));
           vp44_response_buffer = 0;
           _DAT_00800f6c = &DAT_00800f78;
-          FUN_0002729a(&DAT_00800f66);
+          FUN_0002729a(&vp44_message_data);
           return;
         }
-        iVar5 = ((uint)DAT_00800f5f - (uint)DAT_00800f62) + 1;
+        iVar5 = ((uint)vp44_sequence_number - (uint)vp44_retry_flag) + 1;
         if (iVar5 < 6) {
-          DAT_00800f63 = (DAT_00800f5f - DAT_00800f62) + '\x01';
-          iVar5 = CONCAT31((int3)((uint)iVar5 >> 8),DAT_00800f63);
+          vp44_retry_count = (vp44_sequence_number - vp44_retry_flag) + 1;
+          iVar5 = CONCAT31((int3)((uint)iVar5 >> 8),vp44_retry_count);
         }
         else {
-          DAT_00800f63 = '\x05';
+          vp44_retry_count = 5;
         }
         uVar4 = (undefined3)((uint)iVar5 >> 8);
-        cVar6 = FUN_0001c4c0(CONCAT22((short)CONCAT31(uVar4,cVar2),
-                                      (short)CONCAT31(uVar4,DAT_00800f62)),_DAT_00800f60);
+        cVar6 = vp44MessageTransmitter
+                          (CONCAT22((short)CONCAT31(uVar4,bVar2),
+                                    (short)CONCAT31(uVar4,vp44_retry_flag)),vp44_message_id);
         if (cVar6 != '\0') {
-          FUN_0001c3d2(CONCAT22((short)CONCAT31(extraout_var_00,cVar2),_DAT_00800f60));
+          messageErrorHandler(CONCAT22((short)CONCAT31(extraout_var_00,bVar2),vp44_message_id));
           vp44_response_buffer = 0;
           return;
         }
       }
       else {
-        _DAT_00800f64 = 0x19;
+        _vp44_timeout_counter = 0x19;
       }
     }
     else {
       uVar4 = (undefined3)((uint)in_D0 >> 8);
-      cVar6 = FUN_0001c4c0(CONCAT22((short)CONCAT31(uVar4,cVar2),(short)CONCAT31(uVar4,DAT_00800f62)
-                                   ),_DAT_00800f60);
+      cVar6 = vp44MessageTransmitter
+                        (CONCAT22((short)CONCAT31(uVar4,bVar2),
+                                  (short)CONCAT31(uVar4,vp44_retry_flag)),vp44_message_id);
       if (cVar6 != '\0') {
-        FUN_0001c3d2(CONCAT22((short)CONCAT31(extraout_var,cVar2),_DAT_00800f60));
+        messageErrorHandler(CONCAT22((short)CONCAT31(extraout_var,bVar2),vp44_message_id));
         vp44_response_buffer = 0;
         return;
       }
@@ -16156,13 +16155,13 @@ void FUN_0001c60e(int param_1)
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void diagnosticStatusRequestHandler(int param_1)
+void diagnosticStatusRequestHandler(can_std_rx_desc_t *rx_msg)
 
 {
-  undefined2 local_6;
+  short local_6;
   
-  if ((diagnostic_message_state == 1) && (DAT_00800f35 == *(char *)(param_1 + 3))) {
-    local_6 = (ushort)*(byte *)(*(int *)(param_1 + 6) + 6) << 8;
+  if ((diagnostic_message_state == 1) && (DAT_00800f35 == (char)rx_msg->id)) {
+    local_6 = (ushort)rx_msg->data_ptr[6] << 8;
     if (local_6 == _DAT_00800f36) {
       *_diagnostic_response_buffer = 9;
       diagnostic_message_state = 0;
@@ -16179,19 +16178,20 @@ void diagnosticStatusRequestHandler(int param_1)
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void diagnosticErrorHandler(int param_1)
+void diagnosticErrorHandler(can_std_rx_desc_t *rx_msg)
 
 {
-  undefined2 local_6;
+  byte bVar1;
+  word local_6;
   
-  local_6 = (ushort)*(byte *)(*(int *)(param_1 + 6) + 6) << 8;
-  if (((diagnostic_message_state == 1) && (*(char *)(param_1 + 3) == DAT_00800f35)) &&
-     (local_6 == _DAT_00800f36)) {
+  local_6 = (ushort)rx_msg->data_ptr[6] << 8;
+  bVar1 = (byte)rx_msg->id;
+  if (((diagnostic_message_state == 1) && (bVar1 == DAT_00800f35)) && (local_6 == _DAT_00800f36)) {
     *_diagnostic_response_buffer = 10;
     diagnostic_message_state = 0;
   }
-  else if (((vp44_response_buffer == 1) && (*(char *)(param_1 + 3) == DAT_00800f69)) &&
-          (local_6 == _DAT_00800f60)) {
+  else if (((vp44_response_buffer == 1) && (bVar1 == vp44_expected_sequence)) &&
+          (local_6 == vp44_message_id)) {
     vp44_response_buffer = 0;
   }
   return;
@@ -16203,32 +16203,32 @@ void diagnosticErrorHandler(int param_1)
 // Function: vp44CanMessageDispatcher @ 0x0001c846
 //
 
-void vp44CanMessageDispatcher(int param_1)
+void vp44CanMessageDispatcher(can_std_rx_desc_t *rx_msg)
 
 {
-  char cVar1;
+  byte bVar1;
   
-  if (*(short *)(param_1 + 4) == 8) {
-    cVar1 = **(char **)(param_1 + 6);
+  if (rx_msg->length == 8) {
+    bVar1 = *rx_msg->data_ptr;
                     /* Constant: CAN_MSG_ALT_HANDLER = 17 */
-    if (cVar1 == '\x11') {
-      diagnosticParamRequestHandler(param_1);
+    if (bVar1 == 0x11) {
+      diagnosticParamRequestHandler(rx_msg);
       return;
     }
                     /* Constant: CAN_MSG_VP44_FUEL = 16 */
-    if (cVar1 == '\x10') {
-      vp44FuelTempHandler((undefined4 *)param_1);
+    if (bVar1 == 0x10) {
+      vp44FuelTempHandler(rx_msg);
       return;
     }
-    if (cVar1 == '\x13') {
-      diagnosticStatusRequestHandler(param_1);
+    if (bVar1 == 0x13) {
+      diagnosticStatusRequestHandler(rx_msg);
       return;
     }
                     /* Constant: CAN_MSG_ERROR_DEFAULT = 255 */
-    if (cVar1 != -1) {
+    if (bVar1 != 0xff) {
       return;
     }
-    diagnosticErrorHandler(param_1);
+    diagnosticErrorHandler(rx_msg);
   }
   return;
 }
@@ -16242,7 +16242,7 @@ void vp44CanMessageDispatcher(int param_1)
 void FUN_0001c87e(void)
 
 {
-  int unaff_A2;
+  can_std_rx_desc_t *unaff_A2;
   
   diagnosticParamRequestHandler(unaff_A2);
   return;
@@ -16257,7 +16257,7 @@ void FUN_0001c87e(void)
 void FUN_0001c88c(void)
 
 {
-  undefined4 *unaff_A2;
+  can_std_rx_desc_t *unaff_A2;
   
   vp44FuelTempHandler(unaff_A2);
   return;
@@ -16272,7 +16272,7 @@ void FUN_0001c88c(void)
 void FUN_0001c89a(void)
 
 {
-  int unaff_A2;
+  can_std_rx_desc_t *unaff_A2;
   
   diagnosticStatusRequestHandler(unaff_A2);
   return;
@@ -16287,7 +16287,7 @@ void FUN_0001c89a(void)
 void FUN_0001c8a8(void)
 
 {
-  int unaff_A2;
+  can_std_rx_desc_t *unaff_A2;
   
   diagnosticErrorHandler(unaff_A2);
   return;
@@ -16296,10 +16296,10 @@ void FUN_0001c8a8(void)
 
 
 //
-// Function: FUN_0001c8b6 @ 0x0001c8b6
+// Function: unknownMessageHandler @ 0x0001c8b6
 //
 
-void FUN_0001c8b6(uint param_1)
+void unknownMessageHandler(uint param_1)
 
 {
   undefined1 *puVar1;
@@ -16353,12 +16353,12 @@ void FUN_0001c8b6(uint param_1)
 
 
 //
-// Function: FUN_0001c996 @ 0x0001c996
+// Function: diagnosticMessageProcessor @ 0x0001c996
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0001c996(void)
+void diagnosticMessageProcessor(void)
 
 {
   byte bVar1;
@@ -16425,44 +16425,44 @@ void FUN_0001c996(void)
 
 
 //
-// Function: FUN_0001cabe @ 0x0001cabe
+// Function: vp44ResponseTimeoutHandler @ 0x0001cabe
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0001cabe(void)
+void vp44ResponseTimeoutHandler(void)
 
 {
-  if (_DAT_00800f64 == 0) {
+  if (_vp44_timeout_counter == 0) {
     vp44_response_buffer = 0;
     return;
   }
-  _DAT_00800f64 = _DAT_00800f64 + -1;
+  _vp44_timeout_counter = _vp44_timeout_counter + -1;
   return;
 }
 
 
 
 //
-// Function: FUN_0001cad6 @ 0x0001cad6
+// Function: messageQueueDispatcher @ 0x0001cad6
 //
 
-void FUN_0001cad6(void)
+void messageQueueDispatcher(void)
 
 {
   ushort in_stack_00000000;
   
   if (DAT_00800ee4 == '\x01') {
-    FUN_0001c8b6((uint)in_stack_00000000);
+    unknownMessageHandler((uint)in_stack_00000000);
   }
   if (DAT_00800f04 == '\x01') {
-    FUN_0001c8b6(CONCAT22(1,in_stack_00000000));
+    unknownMessageHandler(CONCAT22(1,in_stack_00000000));
   }
   if (diagnostic_message_state == 1) {
-    FUN_0001c996();
+    diagnosticMessageProcessor();
   }
   if (vp44_response_buffer == 1) {
-    FUN_0001cabe();
+    vp44ResponseTimeoutHandler();
   }
   return;
 }
@@ -16564,12 +16564,12 @@ void FUN_0001cbfe(void)
 
 
 //
-// Function: FUN_0001cc38 @ 0x0001cc38
+// Function: systemStatusProcessor @ 0x0001cc38
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_0001cc38(void)
+uint systemStatusProcessor(void)
 
 {
   bool bVar1;
@@ -34138,12 +34138,12 @@ void FUN_00035228(void)
 
 
 //
-// Function: FUN_00035298 @ 0x00035298
+// Function: systemStatusMonitor @ 0x00035298
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00035298(void)
+void systemStatusMonitor(void)
 
 {
   bool bVar1;

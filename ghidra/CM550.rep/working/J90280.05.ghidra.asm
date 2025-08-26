@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Mon Aug 25 18:26:48 MDT 2025
+; Mon Aug 25 21:17:23 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -5098,7 +5098,7 @@
 0000eef4: pea      (-0x2,A6)           
 0000eef8: pea      (0x803500).l        
 0000eefe: jsr      A5                  
-0000ef00: lea      (0xa,SP),SP         
+0000ef00: lea      (0xa,SP),SP          ; VP44_RESPONSE_FORMAT_ID = 61184 (Expected: VP44 response format identifier (0xEF00) for message transmission)
 0000ef04: clr.w    D2w                 
 0000ef06: bra.b    0x0000ef14          
 0000ef08: jsr      A4                  

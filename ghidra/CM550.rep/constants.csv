@@ -65,3 +65,10 @@ address,constant_name,value,comment
 0x00000020,VP44_PIN_SET_SELECTOR_BIT,32,Bit 5 in CAN_PIN_SWITCHING_CONTROL_FLAGS - when set uses pin set A otherwise pin set B for VP44 emergency
 0x00000800,CAN_ID_PATTERN_PIN_SET_A,2048,CAN identifier pattern when using primary pin set (normal operation)
 0x00000400,CAN_ID_PATTERN_PIN_SET_B,1024,CAN identifier pattern when using VP44 emergency pin set (failover mode)
+0x000000EF,VP44_MESSAGE_TYPE_IDENTIFIER,239,VP44 message type identifier (0xEF) for message validation
+0x00000011,VP44_COMMAND_MESSAGE_TYPE,17,VP44 command message type in CAN frame data
+0x00000013,VP44_STATUS_MESSAGE_TYPE,19,VP44 status/response message type in CAN frame data
+0x0000EF00,VP44_RESPONSE_FORMAT_ID,61184,VP44 response format identifier (0xEF00) for message transmission
+0x000018EC,J1939_VP44_TRANSPORT_PGN,6380,J1939 transport protocol PGN prefix for VP44 communication
+0x000006A4,VP44_MAX_MESSAGE_LENGTH,1700,Maximum VP44 message data length (1700 bytes)
+0x00000005,VP44_MAX_RETRY_COUNT,5,Maximum VP44 message retry attempts

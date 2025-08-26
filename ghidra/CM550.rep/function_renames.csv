@@ -91,3 +91,15 @@ address,newName
 0x17b88,mainLoopTaskSchedulerInit
 0x122d0,ioControlAndCanPinSwitching
 0x172bc,ioControlAndCanPinSwitchingWrapper
+0x172c4,evenPhaseSchedulerTaskSet
+0x172e4,oddPhaseSchedulerTaskSet
+0x1b1f4,timerBasedTaskScheduler
+0x1cc38,systemStatusProcessor
+0x1b9da,memoryRegisterController
+0x1cad6,messageQueueDispatcher
+0x35298,systemStatusMonitor
+0x1cabe,vp44ResponseTimeoutHandler
+0x1c4c0,vp44MessageTransmitter
+0x1c996,diagnosticMessageProcessor
+0x1c3d2,messageErrorHandler
+0x1c8b6,unknownMessageHandler

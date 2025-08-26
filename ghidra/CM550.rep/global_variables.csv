@@ -303,3 +303,11 @@ address,name,type,comment
 0x80BDF0,sim_data_direction_control,byte,SIM data direction control register - controls input/output direction for SIM pins
 0xFFD004,SIM_CAN_CONTROL_PORT_1,byte,SIM CAN control port 1 - hardware I/O for CAN pin switching updated 40x per major cycle
 0xFFD006,SIM_CAN_CONTROL_PORT_2,byte,SIM CAN control port 2 - processed I/O for CAN pin switching updated 40x per major cycle
+0x800F5F,vp44_sequence_number,byte,VP44 message sequence number for retry logic (max 5 retries)
+0x800F60,vp44_message_id,word,VP44 message identifier stored during response processing
+0x800F62,vp44_retry_flag,byte,VP44 retry flag (set to 1 when response pending)
+0x800F63,vp44_retry_count,byte,VP44 actual retry count (limited to max 5)
+0x800F64,vp44_timeout_counter,byte,VP44 response timeout countdown (starts at 112 ticks = VP44_FUEL_TEMP_OFFSET)
+0x800F66,vp44_message_data,dword,VP44 stored message command/data during response processing
+0x800F69,vp44_expected_sequence,byte,Expected VP44 sequence number for response validation
+0x800F6A,vp44_additional_data,word,VP44 additional message data storage

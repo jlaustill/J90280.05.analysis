@@ -132,42 +132,32 @@ public class BulkStructureCreator extends GhidraScript {
                 // Create new structure
                 Structure struct = new StructureDataType(structDef.name, 0);
                 
-                // Add fields to structure
+                int offset = 0;
+
+                // Add fields to structure with explicit offsets
                 for (StructField field : structDef.fields) {
                     DataType fieldDataType = getDataType(field.type);
-                    if (fieldDataType == null) {
-                        // Try to find custom structure type in DataTypeManager
-                        fieldDataType = findDataTypeByName(dtm, field.type);
-                        if (fieldDataType != null) {
-                        }
+                    if (fieldDataType == null) fieldDataType = findDataTypeByName(dtm, field.type);
+
+                    // If it's a 1-byte scalar and caller wants N>1, build an array
+                    if (fieldDataType != null
+                        && field.size > fieldDataType.getLength()
+                        && fieldDataType.getLength() == 1) {
+                        fieldDataType = new ArrayDataType(fieldDataType, field.size, fieldDataType.getLength());
                     }
+
                     if (fieldDataType != null) {
-                        // For array types (like uint8_t with size > 1), create array
-                        if (field.size > fieldDataType.getLength() && fieldDataType.getLength() == 1) {
-                            fieldDataType = new ArrayDataType(fieldDataType, field.size, fieldDataType.getLength());
-                            println("    Created array type: " + field.type + "[" + field.size + "]");
-                        }
-                        struct.add(fieldDataType, field.size, field.name, field.comment);
-                        println("  + " + field.name + " (" + field.type + ", " + field.size + " bytes): " + field.comment);
+                        int len = fieldDataType.getLength();
+                        // Force the field at the current offset (no automatic padding)
+                        struct.insertAtOffset(offset, fieldDataType, len, field.name, field.comment);
+                        offset += len;
+                        println(String.format("  + %-16s @0x%02X (%s, %d bytes)",
+                                field.name, (offset - len), fieldDataType.getDisplayName(), len));
                     } else {
                         println("  ! Unknown data type: " + field.type + " for field " + field.name);
-                        println("    Available primitive types: uint8_t, uint16_t, uint32_t, uint64_t, etc.");
-                        println("    Searching DataTypeManager for custom types...");
-                        // List available custom types for debugging
-                        java.util.Iterator<DataType> dtIter = dtm.getAllDataTypes();
-                        int customTypeCount = 0;
-                        while (dtIter.hasNext() && customTypeCount < 10) {
-                            DataType dt = dtIter.next();
-                            if (dt instanceof Structure) {
-                                println("      Found structure: " + dt.getName());
-                                customTypeCount++;
-                            }
-                        }
-                        if (customTypeCount == 0) {
-                            println("      No custom structures found in DataTypeManager");
-                        }
                     }
                 }
+
                 
                 // Add structure to data type manager
                 DataType addedStruct = dtm.addDataType(struct, DataTypeConflictHandler.REPLACE_HANDLER);
@@ -215,38 +205,35 @@ public class BulkStructureCreator extends GhidraScript {
     
     // Helper method to convert string type to Ghidra DataType
     private DataType getDataType(String typeString) {
-        switch (typeString.toLowerCase()) {
-            case "uint8_t":
-            case "byte":
-            case "uint8":
-            case "char":
-                return new ByteDataType();
-            case "uint16_t":
-            case "word":
-            case "uint16":
-            case "short":
-                return new WordDataType();
-            case "uint32_t":
-            case "dword":
-            case "uint32":
-            case "int":
-                return new DWordDataType();
-            case "uint64_t":
-            case "qword":
-            case "uint64":
-            case "long":
-                return new QWordDataType();
-            case "float":
-                return new FloatDataType();
-            case "double":
-                return new DoubleDataType();
-            case "pointer":
-            case "ptr":
-                return new PointerDataType();
+        String t = typeString.trim();
+
+        // ptr:<base> e.g., "ptr:uint8_t" or "ptr:j1939_header_t"
+        if (t.toLowerCase().startsWith("ptr:")) {
+            String baseName = t.substring(4).trim();
+            DataType base = getDataType(baseName);
+            if (base == null) base = findDataTypeByName(currentProgram.getDataTypeManager(), baseName);
+            if (base == null) base = new VoidDataType(); // pointer to void as last resort
+            int ptrSize = currentProgram.getDefaultPointerSize();
+            return new PointerDataType(base, ptrSize, currentProgram.getDataTypeManager());
+        }
+
+        switch (t.toLowerCase()) {
+            case "uint8_t": case "byte": case "uint8": case "char":
+                return ByteDataType.dataType;
+            case "uint16_t": case "word": case "uint16": case "short":
+                return WordDataType.dataType;
+            case "uint32_t": case "dword": case "uint32": case "int":
+                return DWordDataType.dataType;
+            case "uint64_t": case "qword": case "uint64": case "long":
+                return QWordDataType.dataType;
+            case "float":  return FloatDataType.dataType;
+            case "double": return DoubleDataType.dataType;
             default:
-                return null;
+                // maybe it's a user-defined struct name
+                return findDataTypeByName(currentProgram.getDataTypeManager(), typeString);
         }
     }
+
     
     // Helper method to find DataType by name (handles category paths)
     private DataType findDataTypeByName(DataTypeManager dtm, String typeName) {
