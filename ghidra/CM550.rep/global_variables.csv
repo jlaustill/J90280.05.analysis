@@ -22,8 +22,6 @@ address,name,type,comment
 0x80cfcd,j1939_source_address_secondary,byte,J1939 source address for secondary functions (0xCD = 205 decimal)
 0x80304e,diagnostic_status_data,byte,Diagnostic status data buffer (0xF0/F4/F8 based on conditions)
 0x803064,diagnostic_buffer_unused,byte,Diagnostic message unused data buffer pointer target
-0x800f34,diagnostic_message_state,byte,J1939 diagnostic message processing state buffer
-0x800f42,diagnostic_response_buffer,word,J1939 diagnostic response message buffer pointer
 0x800f5e,vp44_response_buffer,byte,VP44 fuel temperature response message processing buffer
 0x8086C2,param_scale_factor,word,Scaling reference
 0x8086E0,param_limit_value,word,Parameter limits

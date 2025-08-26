@@ -47,7 +47,6 @@ address,label_name,comment
 0x29C74,timing_advance_store,Timing advance storage point
 0x80d49a,cached_param_value,Cached parameter value for diagnostic response
 0x80d49c,diagnostic_mode_status,Diagnostic operation mode status register
-0x800f34,diagnostic_message_state,J1939 diagnostic message processing state
 0x809654,param_system_mode_flag,Parameter system current operation mode
 0xd6a0,param_table2_load,Load parameter table 2 address (0x80CFDA)
 0xd7a6,param_block_calc_4,Block×256×4 calculation pattern (fourth caller)

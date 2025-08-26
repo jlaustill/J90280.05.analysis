@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Mon Aug 25 21:17:24 MDT 2025
+// Mon Aug 25 22:08:06 MDT 2025
 
 
 //
@@ -15750,49 +15750,53 @@ void sendJ1939MultiFrame(uint *param_1)
   undefined2 uVar2;
   byte bVar3;
   ushort uVar4;
-  undefined1 *puVar5;
-  char *pcVar6;
-  undefined1 local_8;
-  undefined1 uStack_7;
-  char cStack_5;
+  word wVar5;
+  byte *pbVar6;
+  byte *pbVar7;
+  char *pcVar8;
+  byte local_8;
+  byte bStack_7;
+  byte bStack_5;
   
-  puVar1 = _DAT_00800f4e;
+  pbVar6 = diag_tp_state_t_00800f34.tx_cm_buf;
   bVar3 = *(byte *)((int)param_1 + 1);
   uVar4 = *(ushort *)((int)param_1 + 1);
-  cStack_5 = (char)uVar4;
-  if ((bVar3 < 0xf0) && (cStack_5 != -1)) {
-    if (diagnostic_message_state == 0) {
-      diagnostic_message_state = 1;
-      DAT_00800f35 = cStack_5;
-      _DAT_00800f36 = uVar4 & 0xff00;
-      _DAT_00800f3c = *(ushort *)(param_1 + 1);
-      DAT_00800f38 = (char)((int)(_DAT_00800f3c - 1) / 7) + '\x01';
-      DAT_00800f3a = 0;
-      _DAT_00800f3e = *(undefined4 *)((int)param_1 + 6);
-      _DAT_00800f48 = *param_1 & 0xff00ffff | 0xec0000;
-      _DAT_00800f4c = 8;
-      _DAT_00800f46 = 0x37;
-      _diagnostic_response_buffer = *(char **)((int)param_1 + 10);
-      puVar5 = _DAT_00800f4e + 1;
-      *_DAT_00800f4e = 0x10;
-      uVar4 = _DAT_00800f3c;
-      uStack_7 = (undefined1)_DAT_00800f3c;
-      *puVar5 = uStack_7;
-      local_8 = (undefined1)(uVar4 >> 8);
-      puVar1[2] = local_8;
-      puVar1[3] = DAT_00800f38;
-      puVar1[4] = 0xff;
-      puVar1[5] = 0;
-      puVar1[6] = bVar3;
-      puVar1[7] = 0;
-      sendCanSingleFrame(_DAT_00800f48);
-      if (DAT_00800f3b == '\0') {
-        *_diagnostic_response_buffer = '\x12';
-        _DAT_00800f48 = *param_1 & 0xff00ffff | 0xeb0000;
+  bStack_5 = (byte)uVar4;
+  if ((bVar3 < 0xf0) && (bStack_5 != 0xff)) {
+    if (diag_tp_state_t_00800f34.diag_state == 0) {
+      diag_tp_state_t_00800f34.diag_state = 1;
+      diag_tp_state_t_00800f34.expected_id_low = bStack_5;
+      diag_tp_state_t_00800f34.expected_guard = uVar4 & 0xff00;
+      diag_tp_state_t_00800f34.total_bytes = *(word *)(param_1 + 1);
+      diag_tp_state_t_00800f34.total_packets =
+           (char)((int)(diag_tp_state_t_00800f34.total_bytes - 1) / 7) + 1;
+      diag_tp_state_t_00800f34.req_count = 0;
+      diag_tp_state_t_00800f34.src_data_ptr = *(byte **)((int)param_1 + 6);
+      diag_tp_state_t_00800f34.tx_header_id = *param_1 & 0xff00ffff | 0xec0000;
+      diag_tp_state_t_00800f34.tx_length = 8;
+      diag_tp_state_t_00800f34.status_code = 0;
+      diag_tp_state_t_00800f34.reserved_0x47 = 0x37;
+      diag_tp_state_t_00800f34.resp_byte_ptr = *(byte **)((int)param_1 + 10);
+      pbVar7 = diag_tp_state_t_00800f34.tx_cm_buf + 1;
+      *diag_tp_state_t_00800f34.tx_cm_buf = 0x10;
+      wVar5 = diag_tp_state_t_00800f34.total_bytes;
+      bStack_7 = (byte)diag_tp_state_t_00800f34.total_bytes;
+      *pbVar7 = bStack_7;
+      local_8 = (byte)(wVar5 >> 8);
+      pbVar6[2] = local_8;
+      pbVar6[3] = diag_tp_state_t_00800f34.total_packets;
+      pbVar6[4] = 0xff;
+      pbVar6[5] = 0;
+      pbVar6[6] = bVar3;
+      pbVar6[7] = 0;
+      sendCanSingleFrame(diag_tp_state_t_00800f34.tx_header_id);
+      if (diag_tp_state_t_00800f34.pre_status == 0) {
+        *diag_tp_state_t_00800f34.resp_byte_ptr = 0x12;
+        diag_tp_state_t_00800f34.tx_header_id = *param_1 & 0xff00ffff | 0xeb0000;
       }
       else {
-        *_diagnostic_response_buffer = DAT_00800f3b;
-        diagnostic_message_state = 0;
+        *diag_tp_state_t_00800f34.resp_byte_ptr = diag_tp_state_t_00800f34.pre_status;
+        diag_tp_state_t_00800f34.diag_state = 0;
       }
     }
     else {
@@ -15801,52 +15805,52 @@ void sendJ1939MultiFrame(uint *param_1)
   }
   else {
     if ((byte)*param_1 == _DAT_0080cfc2) {
-      pcVar6 = &DAT_00800ee4;
+      pcVar8 = &DAT_00800ee4;
     }
     else {
       if ((byte)*param_1 != _DAT_0080cfcc) {
         **(undefined1 **)((int)param_1 + 10) = 3;
         return;
       }
-      pcVar6 = &DAT_00800f04;
+      pcVar8 = &DAT_00800f04;
     }
-    if (*pcVar6 == '\x01') {
+    if (*pcVar8 == '\x01') {
       **(undefined1 **)((int)param_1 + 10) = 2;
     }
     else {
-      *pcVar6 = '\x01';
-      *(undefined2 *)(pcVar6 + 2) = *(undefined2 *)(param_1 + 1);
-      pcVar6[1] = (char)((int)(*(ushort *)(pcVar6 + 2) - 1) / 7) + '\x01';
-      pcVar6[6] = '\x01';
-      pcVar6[4] = '\0';
-      pcVar6[5] = '\x01';
-      *(undefined4 *)(pcVar6 + 8) = *(undefined4 *)((int)param_1 + 6);
-      *(uint *)(pcVar6 + 0x12) = *param_1 & 0xff0000ff | 0xecff00;
-      pcVar6[0x16] = '\0';
-      pcVar6[0x17] = '\b';
-      pcVar6[0x10] = '\0';
-      pcVar6[0x11] = '\x05';
-      *(undefined4 *)(pcVar6 + 0xc) = *(undefined4 *)((int)param_1 + 10);
-      puVar1 = *(undefined1 **)(pcVar6 + 0x18);
+      *pcVar8 = '\x01';
+      *(undefined2 *)(pcVar8 + 2) = *(undefined2 *)(param_1 + 1);
+      pcVar8[1] = (char)((int)(*(ushort *)(pcVar8 + 2) - 1) / 7) + '\x01';
+      pcVar8[6] = '\x01';
+      pcVar8[4] = '\0';
+      pcVar8[5] = '\x01';
+      *(undefined4 *)(pcVar8 + 8) = *(undefined4 *)((int)param_1 + 6);
+      *(uint *)(pcVar8 + 0x12) = *param_1 & 0xff0000ff | 0xecff00;
+      pcVar8[0x16] = '\0';
+      pcVar8[0x17] = '\b';
+      pcVar8[0x10] = '\0';
+      pcVar8[0x11] = '\x05';
+      *(undefined4 *)(pcVar8 + 0xc) = *(undefined4 *)((int)param_1 + 10);
+      puVar1 = *(undefined1 **)(pcVar8 + 0x18);
       *puVar1 = 0x20;
-      uVar2 = *(undefined2 *)(pcVar6 + 2);
-      uStack_7 = (undefined1)uVar2;
-      puVar1[1] = uStack_7;
-      local_8 = (undefined1)((ushort)uVar2 >> 8);
+      uVar2 = *(undefined2 *)(pcVar8 + 2);
+      bStack_7 = (byte)uVar2;
+      puVar1[1] = bStack_7;
+      local_8 = (byte)((ushort)uVar2 >> 8);
       puVar1[2] = local_8;
-      puVar1[3] = pcVar6[1];
+      puVar1[3] = pcVar8[1];
       puVar1[4] = 0xff;
-      puVar1[5] = cStack_5;
+      puVar1[5] = bStack_5;
       puVar1[6] = bVar3;
       puVar1[7] = 0;
-      sendCanSingleFrame(*(undefined4 *)(pcVar6 + 0x12));
-      if (pcVar6[7] == '\0') {
-        **(char **)(pcVar6 + 0xc) = '\x10';
-        *(uint *)(pcVar6 + 0x12) = *param_1 & 0xff0000ff | 0xebff00;
+      sendCanSingleFrame(*(undefined4 *)(pcVar8 + 0x12));
+      if (pcVar8[7] == '\0') {
+        **(char **)(pcVar8 + 0xc) = '\x10';
+        *(uint *)(pcVar8 + 0x12) = *param_1 & 0xff0000ff | 0xebff00;
       }
       else {
-        **(char **)(pcVar6 + 0xc) = pcVar6[7];
-        *pcVar6 = '\0';
+        **(char **)(pcVar8 + 0xc) = pcVar8[7];
+        *pcVar8 = '\0';
       }
     }
   }
@@ -15859,28 +15863,30 @@ void sendJ1939MultiFrame(uint *param_1)
 // Function: diagnosticParamRequestHandler @ 0x0001c33e
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void diagnosticParamRequestHandler(can_std_rx_desc_t *rx_msg)
 
 {
   byte bVar1;
   byte bVar2;
-  short local_6;
+  word local_6;
   
   bVar1 = rx_msg->data_ptr[2];
   local_6 = (ushort)rx_msg->data_ptr[6] << 8;
-  if ((((diagnostic_message_state == 1) && ((char)rx_msg->id == DAT_00800f35)) &&
-      (bVar1 <= DAT_00800f38)) && (local_6 == _DAT_00800f36)) {
+  if ((((diag_tp_state_t_00800f34.diag_state == 1) &&
+       ((byte)rx_msg->id == diag_tp_state_t_00800f34.expected_id_low)) &&
+      (bVar1 <= diag_tp_state_t_00800f34.total_packets)) &&
+     (local_6 == diag_tp_state_t_00800f34.expected_guard)) {
     bVar2 = rx_msg->data_ptr[1];
     if (bVar2 == 0) {
-      _DAT_00800f46 = 0x37;
+      diag_tp_state_t_00800f34.status_code = 0;
+      diag_tp_state_t_00800f34.reserved_0x47 = 0x37;
     }
     else {
-      DAT_00800f39 = bVar1;
-      DAT_00800f3a = bVar2;
-      if ((int)(uint)DAT_00800f38 < (int)((uint)bVar2 + (uint)bVar1 + -1)) {
-        DAT_00800f3a = (DAT_00800f38 - bVar1) + 1;
+      diag_tp_state_t_00800f34.req_start = bVar1;
+      diag_tp_state_t_00800f34.req_count = bVar2;
+      if ((int)(uint)diag_tp_state_t_00800f34.total_packets < (int)((uint)bVar2 + (uint)bVar1 + -1))
+      {
+        diag_tp_state_t_00800f34.req_count = (diag_tp_state_t_00800f34.total_packets - bVar1) + 1;
       }
     }
   }
@@ -16153,18 +16159,17 @@ void FUN_0001c60e(int param_1)
 // Function: diagnosticStatusRequestHandler @ 0x0001c776
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void diagnosticStatusRequestHandler(can_std_rx_desc_t *rx_msg)
 
 {
-  short local_6;
+  word local_6;
   
-  if ((diagnostic_message_state == 1) && (DAT_00800f35 == (char)rx_msg->id)) {
+  if ((diag_tp_state_t_00800f34.diag_state == 1) &&
+     (diag_tp_state_t_00800f34.expected_id_low == (byte)rx_msg->id)) {
     local_6 = (ushort)rx_msg->data_ptr[6] << 8;
-    if (local_6 == _DAT_00800f36) {
-      *_diagnostic_response_buffer = 9;
-      diagnostic_message_state = 0;
+    if (local_6 == diag_tp_state_t_00800f34.expected_guard) {
+      *diag_tp_state_t_00800f34.resp_byte_ptr = 9;
+      diag_tp_state_t_00800f34.diag_state = 0;
     }
   }
   return;
@@ -16176,8 +16181,6 @@ void diagnosticStatusRequestHandler(can_std_rx_desc_t *rx_msg)
 // Function: diagnosticErrorHandler @ 0x0001c7ca
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void diagnosticErrorHandler(can_std_rx_desc_t *rx_msg)
 
 {
@@ -16186,9 +16189,11 @@ void diagnosticErrorHandler(can_std_rx_desc_t *rx_msg)
   
   local_6 = (ushort)rx_msg->data_ptr[6] << 8;
   bVar1 = (byte)rx_msg->id;
-  if (((diagnostic_message_state == 1) && (bVar1 == DAT_00800f35)) && (local_6 == _DAT_00800f36)) {
-    *_diagnostic_response_buffer = 10;
-    diagnostic_message_state = 0;
+  if (((diag_tp_state_t_00800f34.diag_state == 1) &&
+      (bVar1 == diag_tp_state_t_00800f34.expected_id_low)) &&
+     (local_6 == diag_tp_state_t_00800f34.expected_guard)) {
+    *diag_tp_state_t_00800f34.resp_byte_ptr = 10;
+    diag_tp_state_t_00800f34.diag_state = 0;
   }
   else if (((vp44_response_buffer == 1) && (bVar1 == vp44_expected_sequence)) &&
           (local_6 == vp44_message_id)) {
@@ -16356,8 +16361,6 @@ void unknownMessageHandler(uint param_1)
 // Function: diagnosticMessageProcessor @ 0x0001c996
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void diagnosticMessageProcessor(void)
 
 {
@@ -16370,55 +16373,56 @@ void diagnosticMessageProcessor(void)
   byte *pbVar7;
   byte *pbVar8;
   
-  bVar6 = DAT_00800f3a;
-  bVar3 = DAT_00800f39;
-  if (DAT_00800f3a == 0) {
-    if (_DAT_00800f46 == 0) {
-      *_diagnostic_response_buffer = 6;
-      diagnostic_message_state = 0;
+  bVar6 = diag_tp_state_t_00800f34.req_count;
+  bVar3 = diag_tp_state_t_00800f34.req_start;
+  if (diag_tp_state_t_00800f34.req_count == 0) {
+    if (diag_tp_state_t_00800f34._18_2_ == 0) {
+      *diag_tp_state_t_00800f34.resp_byte_ptr = 6;
+      diag_tp_state_t_00800f34.diag_state = 0;
       return;
     }
-    _DAT_00800f46 = _DAT_00800f46 + -1;
+    diag_tp_state_t_00800f34._18_2_ = diag_tp_state_t_00800f34._18_2_ + -1;
     return;
   }
-  if (DAT_00800f3a < 0xb) {
-    DAT_00800f3a = '\0';
-    _DAT_00800f46 = 0x70;
+  if (diag_tp_state_t_00800f34.req_count < 0xb) {
+    diag_tp_state_t_00800f34.req_count = 0;
+    diag_tp_state_t_00800f34.status_code = 0;
+    diag_tp_state_t_00800f34.reserved_0x47 = 0x70;
   }
   else {
     bVar6 = 10;
-    DAT_00800f39 = DAT_00800f39 + 10;
-    DAT_00800f3a = DAT_00800f3a - 10;
+    diag_tp_state_t_00800f34.req_start = diag_tp_state_t_00800f34.req_start + 10;
+    diag_tp_state_t_00800f34.req_count = diag_tp_state_t_00800f34.req_count - 10;
   }
-  pbVar8 = (byte *)(_DAT_00800f3e + (uint)bVar3 * 7 + -7);
+  pbVar8 = diag_tp_state_t_00800f34.src_data_ptr + (uint)bVar3 * 7 + -7;
   bVar5 = 0;
   cVar4 = bVar3 * '\a' + -7;
   while( true ) {
-    pbVar7 = _DAT_00800f4e;
+    pbVar7 = diag_tp_state_t_00800f34.tx_cm_buf;
     if (bVar6 <= bVar5) {
       return;
     }
-    if (bVar3 == DAT_00800f38) {
-      bVar2 = (DAT_00800f3d - cVar4) + 1;
-      _DAT_00800f4c = (ushort)bVar2;
+    if (bVar3 == diag_tp_state_t_00800f34.total_packets) {
+      bVar2 = ((char)diag_tp_state_t_00800f34.total_bytes - cVar4) + 1;
+      diag_tp_state_t_00800f34.tx_length = (word)bVar2;
     }
     else {
       bVar2 = 8;
     }
     cVar4 = cVar4 + '\a';
-    *_DAT_00800f4e = bVar3;
+    *diag_tp_state_t_00800f34.tx_cm_buf = bVar3;
     for (bVar1 = 0; pbVar7 = pbVar7 + 1, (int)(uint)bVar1 < (int)(bVar2 - 1); bVar1 = bVar1 + 1) {
       *pbVar7 = *pbVar8;
       pbVar8 = pbVar8 + 1;
     }
-    sendCanSingleFrame(_DAT_00800f48);
-    if (DAT_00800f3b != '\0') break;
-    *_diagnostic_response_buffer = 0x13;
+    sendCanSingleFrame(diag_tp_state_t_00800f34.tx_header_id);
+    if (diag_tp_state_t_00800f34.pre_status != 0) break;
+    *diag_tp_state_t_00800f34.resp_byte_ptr = 0x13;
     bVar5 = bVar5 + 1;
     bVar3 = bVar3 + 1;
   }
-  *_diagnostic_response_buffer = 7;
-  diagnostic_message_state = 0;
+  *diag_tp_state_t_00800f34.resp_byte_ptr = 7;
+  diag_tp_state_t_00800f34.diag_state = 0;
   return;
 }
 
@@ -16458,7 +16462,7 @@ void messageQueueDispatcher(void)
   if (DAT_00800f04 == '\x01') {
     unknownMessageHandler(CONCAT22(1,in_stack_00000000));
   }
-  if (diagnostic_message_state == 1) {
+  if (diag_tp_state_t_00800f34.diag_state == 1) {
     diagnosticMessageProcessor();
   }
   if (vp44_response_buffer == 1) {
@@ -16506,7 +16510,7 @@ void FUN_0001cb6e(void)
 {
   _DAT_00800efc = &DAT_00800f24;
   _DAT_00800f1c = &DAT_00800f2c;
-  _DAT_00800f4e = &DAT_00800f56;
+  diag_tp_state_t_00800f34.tx_cm_buf = &DAT_00800f56;
   _DAT_00800f6c = &DAT_00800f78;
   coreSystemControlFunction();
   coreSystemControlFunction();
