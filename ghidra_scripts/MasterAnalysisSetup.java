@@ -51,29 +51,29 @@ public class MasterAnalysisSetup extends GhidraScript {
             runScript("BulkFunctionParameterRenamer.java");
             println("✓ Function parameters renamed\n");
             
-            // Step 6: Create Global Variables
+            // Step 6: Create Enums (must be before global variables for enum types)
+            currentScript++;
+            println("[" + currentScript + "/" + totalScripts + "] Creating enums...");
+            runScript("BulkEnumCreator.java");
+            println("✓ Enums created\n");
+            
+            // Step 7: Create Global Variables (now after enums so enum types are available)
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating global variables...");
             runScript("BulkVariableCreator.java");
             println("✓ Global variables created\n");
             
-            // Step 7: Create Labels
+            // Step 8: Create Labels
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating labels...");
             runScript("BulkLabelCreator.java");
             println("✓ Labels created\n");
             
-            // Step 8: Document Constants
+            // Step 9: Document Constants
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Documenting constants...");
             runScript("BulkConstantCreator.java");
             println("✓ Constants documented\n");
-            
-            // Step 9: Create Enums
-            currentScript++;
-            println("[" + currentScript + "/" + totalScripts + "] Creating enums...");
-            runScript("BulkEnumCreator.java");
-            println("✓ Enums created\n");
             
             println("🎉 MASTER ANALYSIS SETUP COMPLETE!");
             println("========================================");

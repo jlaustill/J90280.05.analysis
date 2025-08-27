@@ -1,4 +1,4 @@
-enum_name,value,member_name,comment
+enum_name,value,member_name,comment,size
 CAN_BUFFER_OFFSETS,0x36,STATUS_BYTE,CAN message status byte offset
 CAN_BUFFER_OFFSETS,0x37,PARAM_BYTE_1,First parameter byte offset
 CAN_BUFFER_OFFSETS,0x38,PARAM_BYTE_2,Second parameter byte offset
@@ -8,6 +8,14 @@ CAN_MSG_TYPE,17,ALTERNATIVE_MSG,Alternative message handler
 CAN_MSG_TYPE,19,THIRD_MSG,Third message handler
 CAN_MSG_TYPE,255,ERROR_DEFAULT,Error/default case message
 CAN_PARAM_BUILDERS,1,VP44_CMD_BUILDER,vp44Command0x100Builder function (0x2a418)
+ENGINE_OPERATING_MODE,1,IDLE,Engine idle/startup mode,2
+ENGINE_OPERATING_MODE,2,LOW_RPM_RUNNING,Low RPM running mode,2
+ENGINE_OPERATING_MODE,3,HIGH_RPM_RUNNING,High RPM running mode,2
+ENGINE_OPERATING_MODE,4,VP44_INJECTION_ACTIVE,VP44 injection system active mode,2
+ENGINE_OPERATING_MODE,5,HIGH_PERFORMANCE,High performance/load mode,2
+ENGINE_OPERATING_MODE,6,TRANSITIONAL_MODE_6,Transitional operating mode 6,2
+ENGINE_OPERATING_MODE,7,TRANSITIONAL_MODE_7,Transitional operating mode 7,2
+ENGINE_OPERATING_MODE,8,FAULT_EMERGENCY,Fault/emergency mode,2
 CAN_PARAM_BUILDERS,2,CONFIG_BUILDER,configParamCanBuilder function (0x2a57e)
 DIAGNOSTIC_MESSAGE_TYPES,16,VP44Handler,VP44 pump communication handler
 DIAGNOSTIC_MESSAGE_TYPES,17,ParameterRequestHandler,Alternative handler for parameter requests

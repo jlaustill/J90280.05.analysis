@@ -109,3 +109,31 @@ address,label_name,comment
 0x122d0,io_control_and_can_pin_switching,Critical I/O control and CAN pin switching function called 40x per major cycle - updates hardware I/O ports and switches between primary/VP44 CAN pins
 0x12104,vp44_can_pin_switching_controller,VP44 CAN pin switching decision controller - monitors 6 VP44 health conditions to select primary vs emergency CAN pins
 0x172bc,io_control_and_can_pin_switching_wrapper,Ultimate wrapper function called in every phase of 40-phase scheduler - literally just calls ioControlAndCanPinSwitching and returns
+0x80741f,cylinder_count_FLMXCYCU,Cylinder count parameter from CalTerm FLMXCYCU
+0x807d1a,load_min_rpm_DCMNLOES,Load minimum RPM parameter from CalTerm DCMNLOES
+0x80a221,next_injected_cylinder_FLCYCU,Next injected cylinder parameter from CalTerm FLCYCU
+0x8074a8,FLRPERTD,Max allowed RPM difference between ECM and PCM measurements
+0x8074b0,FLMXRPCN,Max allowed RPM for calibration error sanity check
+0x8074b6,FLPXRPTD,Engine RPM threshold to start counting 112 messages for stuck relay error
+0x8074c2,FLPIRP02,Speed threshold for high speed intake air temperature error debounce
+0x8074cc,FLIVESTD,Idle select error disabled below this RPM
+0x807090,EPIMSRRP,RPM threshold to reach before intake manifold temperature errors
+0x8070fc,EPCBSRRP,RPM threshold to cross for logging crank blowby pressure fault
+0x807c0a,DGLSRSOF,Offset added to LSG reference speed for RPM limit birth test
+0x807d18,DCMNHIES,Duty cycle monitor high RPM limit for load factor calculation
+0x807d1a,DCMNLOES,Duty cycle monitor low RPM limit for load factor calculation
+0x807ed8,CSCKES,RPM above which engine is considered running (not cranking)
+0x807efc,CKCDLES,Crank low coolant temperature RPM
+0x807f04,CKCDIMES,Crank low intake manifold temperature RPM
+0x807f16,CKFLRMES,Crank exit fuel ramp RPM
+0x807f38,EPMXDQRP,Maximum engine RPM when fully derated (severity index = 1.0)
+0x808162,JC39P3RP,J1939 engine speed point 3 RPM in engine config map
+0x808164,JC39P4RP,J1939 engine speed point 4 RPM in engine config map
+0x80d1d4,EPCBRLSA,Pointer to crank blowby pressure RPM limit threshold
+0x80d288,EPESLM,Maximum RPM allowed due to exhaust particulate filter derating
+0x80d64c,APLMES,RPM derate supplied by application group
+0x1000416,ESCS,Conversion factor from hardware time units to RPM
+0x1000436,EPNTDQRP,Maximum engine speed when no derate in effect (HSG brake RPM)
+0x1000648,ZVCNLMES,Maximum allowable engine speed when vehicle below breakpoint
+0x80d4c4,loopCounter,Main loop execution counter (incremented every cycle)
+0x809688,engineRunCounter,Engine run-time counter (incremented when not idle)
