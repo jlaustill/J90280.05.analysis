@@ -8,6 +8,12 @@ j1939_header_t,,length,uint16_t,2,Message data length for single/multi-frame dec
 diagnostic_state_buffer_t,0x809654,diagnostic_mode,word,2,Parameter system operation mode (state machine 1-12),,in_qa
 diagnostic_state_buffer_t,0x809654,reserved,word,2,Padding/reserved space,,in_qa
 diagnostic_state_buffer_t,0x809654,computed_value,word,2,Calculated parameter value from table lookups,,in_qa
+# CalTerm EPFLTB - Max fueling derate as function of RPM
+derate_table_EPFLTB,0x8071A8,derate_values,word,34,Max fueling derate lookup table - RPM vs %FU (17 entries),,Verified
+# CalTerm DCMNESTB - Duty cycle monitor x-axis rpm values for mapping
+duty_cycle_monitor_DCMNESTB,0x807d1e,rpm_thresholds,word,18,Duty cycle monitor RPM threshold points (9 entries),,guess
+# CalTerm CPDSZA - Data axis for desired cylinder pressure table (PSIA vs RPM)
+desired_cylinder_pressure_CPDSZA,0x606a4,pressure_table,word,182,Desired cylinder pressure lookup table - PSIA vs RPM (7x13 entries),,Verified
 parameter_response_t,,error_code,byte,1,Error code (0=success non-zero=error),,guess
 parameter_response_t,,param_value,word,2,Retrieved parameter value,,guess
 parameter_response_t,,scaling_applied,byte,1,Flag indicating if scaling was applied,,guess

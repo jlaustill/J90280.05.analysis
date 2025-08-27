@@ -42,13 +42,21 @@ public class BulkVariableCreator extends GhidraScript {
                     continue;
                 }
                 
-                // Parse CSV: address,name,type,comment
+                // Parse CSV: address,name,type,comment,length,calterm_type,unit,data_pattern
                 String[] parts = line.split(",");
                 if (parts.length >= 4) {
                     String addressStr = parts[0].trim();
                     String varName = parts[1].trim();
                     String typeStr = parts[2].trim();
                     String comment = parts[3].trim();
+                    
+                    // Enhanced fields for better type detection
+                    int length = parts.length > 4 && !parts[4].trim().isEmpty() ? 
+                                Integer.parseInt(parts[4].trim()) : 2;
+                    int caltermType = parts.length > 5 && !parts[5].trim().isEmpty() ? 
+                                     Integer.parseInt(parts[5].trim()) : 0;
+                    String unit = parts.length > 6 ? parts[6].trim() : "";
+                    String dataPattern = parts.length > 7 ? parts[7].trim() : "";
                     
                     try {
                         // Parse address
@@ -61,29 +69,34 @@ public class BulkVariableCreator extends GhidraScript {
                         
                         Address addr = toAddr(addressLong);
                         
-                        // Get data type
-                        DataType dataType = getDataType(typeStr);
+                        // Get data type using enhanced information
+                        DataType dataType = getEnhancedDataType(typeStr, length, caltermType, dataPattern, unit);
                         if (dataType == null) {
-                            // Try to find custom structure type
-                            dataType = currentProgram.getDataTypeManager().getDataType(typeStr);
+                            // Try to find custom structure or enum type
+                            dataType = findDataTypeByName(currentProgram.getDataTypeManager(), typeStr);
                             if (dataType != null) {
+                                println("✓ " + addressStr + ": Found custom data type '" + typeStr + "' (" + dataType.getClass().getSimpleName() + ")");
                             } else {
                                 println("✗ " + addressStr + ": Unknown data type '" + typeStr + "'");
                                 println("  Available primitive types: uint8_t, uint16_t, uint32_t, byte, word, dword");
                                 println("  Searching for custom structures in DataTypeManager...");
                                 
-                                // Debug: List available structures
+                                // Debug: List available structures and enums
                                 java.util.Iterator<DataType> dtIter = currentProgram.getDataTypeManager().getAllDataTypes();
                                 int structCount = 0;
-                                while (dtIter.hasNext() && structCount < 5) {
+                                int enumCount = 0;
+                                while (dtIter.hasNext() && (structCount + enumCount) < 10) {
                                     DataType dt = dtIter.next();
                                     if (dt instanceof Structure) {
                                         println("    Found structure: " + dt.getName());
                                         structCount++;
+                                    } else if (dt instanceof ghidra.program.model.data.Enum) {
+                                        println("    Found enum: " + dt.getName());
+                                        enumCount++;
                                     }
                                 }
-                                if (structCount == 0) {
-                                    println("    No structures found in DataTypeManager");
+                                if (structCount == 0 && enumCount == 0) {
+                                    println("    No structures or enums found in DataTypeManager");
                                 }
                                 
                                 failCount++;
@@ -116,8 +129,15 @@ public class BulkVariableCreator extends GhidraScript {
                         // Create new symbol
                         Symbol newSymbol = symbolTable.createLabel(addr, varName, SourceType.USER_DEFINED);
                         if (newSymbol != null) {
-                            // Set comment on the data
-                            setEOLComment(addr, comment);
+                            // Enhanced comment with CalTerm metadata
+                            String enhancedComment = comment;
+                            if (!unit.isEmpty() || caltermType != 0 || !dataPattern.isEmpty()) {
+                                enhancedComment += String.format(" [%s%s%s]", 
+                                    !unit.isEmpty() ? unit : "NONE",
+                                    caltermType != 0 ? " CT:" + caltermType : "",
+                                    !dataPattern.isEmpty() ? " " + dataPattern : "");
+                            }
+                            setEOLComment(addr, enhancedComment);
                             
                             successCount++;
                         } else {
@@ -144,6 +164,70 @@ public class BulkVariableCreator extends GhidraScript {
             println("Error reading CSV file: " + e.getMessage());
             println("Make sure global_variables.csv is in your project root directory");
             return;
+        }
+    }
+    
+    // Enhanced data type creation using CalTerm metadata
+    private DataType getEnhancedDataType(String typeStr, int length, int caltermType, String dataPattern, String unit) {
+        // If explicit type provided, try it first
+        DataType explicitType = getDataType(typeStr);
+        if (explicitType != null) {
+            return explicitType;
+        }
+        
+        // Use CalTerm type patterns for intelligent type selection
+        switch (caltermType) {
+            case 0: // Individual runtime values - use appropriate primitive
+                return getPrimitiveByLength(length);
+                
+            case 4: // X-axis arrays (RPM, fueling, throttle axes)
+                if (dataPattern.contains("axis") || dataPattern.contains("AXIS")) {
+                    return createArrayType(length, "word"); // Axis values typically 16-bit
+                }
+                return getPrimitiveByLength(length);
+                
+            case 6: // Z-axis lookup tables (timing, fuel tables)
+                if (dataPattern.contains("lookup") || dataPattern.contains("table") || 
+                    dataPattern.contains("LOOKUP") || dataPattern.contains("TABLE")) {
+                    return createArrayType(length, "word"); // Table values typically 16-bit
+                }
+                return getPrimitiveByLength(length);
+                
+            case 2: case 3: case 5: case 8: case 18: case 21: case 25:
+                // Linearization tables - always arrays for conversion
+                if (dataPattern.contains("linearization") || dataPattern.contains("LINEARIZATION")) {
+                    return createArrayType(length, "word");
+                }
+                return getPrimitiveByLength(length);
+                
+            default:
+                return getPrimitiveByLength(length);
+        }
+    }
+    
+    // Helper method to create primitive type based on length
+    private DataType getPrimitiveByLength(int length) {
+        switch (length) {
+            case 1: return new ByteDataType();
+            case 2: return new WordDataType();
+            case 4: return new DWordDataType();
+            case 8: return new QWordDataType();
+            default: return new WordDataType(); // Default to word
+        }
+    }
+    
+    // Helper method to create array types
+    private DataType createArrayType(int elementCount, String elementTypeStr) {
+        DataType elementType = getDataType(elementTypeStr);
+        if (elementType == null) {
+            elementType = new WordDataType(); // Default to word elements
+        }
+        
+        try {
+            return new ArrayDataType(elementType, elementCount, elementType.getLength());
+        } catch (Exception e) {
+            // If array creation fails, return element type
+            return elementType;
         }
     }
     
@@ -177,5 +261,17 @@ public class BulkVariableCreator extends GhidraScript {
             default:
                 return null;
         }
+    }
+    
+    // Helper method to find DataType by name (handles both structures and enums)
+    private DataType findDataTypeByName(DataTypeManager dtm, String typeName) {
+        java.util.Iterator<DataType> dtIter = dtm.getAllDataTypes();
+        while (dtIter.hasNext()) {
+            DataType dt = dtIter.next();
+            if (dt.getName().equals(typeName)) {
+                return dt;
+            }
+        }
+        return null;
     }
 }

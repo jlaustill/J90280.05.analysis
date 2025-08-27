@@ -17,6 +17,15 @@ public class SetupMemoryMap extends GhidraScript {
     public void run() throws Exception {
         Memory memory = currentProgram.getMemory();
         
+        // Show existing memory blocks first
+        println("📋 Existing memory blocks:");
+        for (MemoryBlock block : memory.getBlocks()) {
+            println("   " + block.getName() + ": 0x" + 
+                   Long.toHexString(block.getStart().getOffset()).toUpperCase() + " - 0x" + 
+                   Long.toHexString(block.getEnd().getOffset()).toUpperCase() + 
+                   " (" + block.getSize() + " bytes)");
+        }
+        println();
         
         try {
             // 1. Internal Flash (Code) - Already exists, skip
@@ -59,7 +68,11 @@ public class SetupMemoryMap extends GhidraScript {
             createMemoryBlock(memory, "External_Memory", 0x800000, 0x100000, 
                             true, true, false, "External memory for sensor data, CAN buffers, lookup tables");
             
-            // 6. EEPROM Memory (Data Plate region)
+            // 6. CalTerm Parameter Storage Area (0x00060000 range)
+            createMemoryBlock(memory, "CalTerm_Parameter_Storage", 0x00060000, 0x10000, 
+                            true, true, false, "CalTerm parameter storage area for lookup tables and configuration data");
+            
+            // 7. EEPROM Memory (Data Plate region)
             createMemoryBlock(memory, "EEPROM_DataPlate", 0x01000000, 0x2000, 
                             true, true, false, "8KB EEPROM containing Cummins data plate and configuration");
             

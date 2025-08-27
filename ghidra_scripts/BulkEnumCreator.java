@@ -35,10 +35,12 @@ public class BulkEnumCreator extends GhidraScript {
     // Enum definition class
     private class EnumDef {
         String name;
+        int size;
         List<EnumMember> members;
         
-        EnumDef(String name) {
+        EnumDef(String name, int size) {
             this.name = name;
+            this.size = size;
             this.members = new ArrayList<>();
         }
     }
@@ -64,13 +66,14 @@ public class BulkEnumCreator extends GhidraScript {
                     continue;
                 }
                 
-                // Parse CSV: enum_name,value,member_name,comment
+                // Parse CSV: enum_name,value,member_name,comment,size
                 String[] parts = line.split(",");
                 if (parts.length >= 4) {
                     String enumName = parts[0].trim();
                     String valueStr = parts[1].trim();
                     String memberName = parts[2].trim();
                     String comment = parts[3].trim();
+                    String sizeStr = (parts.length >= 5) ? parts[4].trim() : "4"; // Default to 4 bytes
                     
                     // Parse value
                     long value;
@@ -85,10 +88,19 @@ public class BulkEnumCreator extends GhidraScript {
                         continue;
                     }
                     
+                    // Parse size
+                    int enumSize;
+                    try {
+                        enumSize = Integer.parseInt(sizeStr);
+                    } catch (NumberFormatException e) {
+                        println("✗ Invalid size format: " + sizeStr + " for " + enumName + ", defaulting to 4");
+                        enumSize = 4;
+                    }
+                    
                     // Get or create enum definition
                     EnumDef enumDef = enums.get(enumName);
                     if (enumDef == null) {
-                        enumDef = new EnumDef(enumName);
+                        enumDef = new EnumDef(enumName, enumSize);
                         enums.put(enumName, enumDef);
                     }
                     
@@ -112,8 +124,9 @@ public class BulkEnumCreator extends GhidraScript {
             try {
                 println("Creating enum: " + enumDef.name);
                 
-                // Create new enum (32-bit by default for compatibility)
-                EnumDataType enumType = new EnumDataType(enumDef.name, 4);
+                // Create new enum with size from CSV
+                EnumDataType enumType = new EnumDataType(enumDef.name, enumDef.size);
+                println("  Size: " + enumDef.size + " bytes");
                 
                 // Add members to enum
                 for (EnumMember member : enumDef.members) {
