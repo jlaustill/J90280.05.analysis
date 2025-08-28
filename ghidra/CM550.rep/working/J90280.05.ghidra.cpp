@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Wed Aug 27 17:13:05 MDT 2025
+// Wed Aug 27 18:30:11 MDT 2025
 
 
 //
@@ -895,8 +895,8 @@ ushort FUN_0000b18c(void)
 {
   undefined4 uVar1;
   
-  if (((engine_operating_mode == 1) || (engine_operating_mode == 2)) || (engine_operating_mode == 6)
-     ) {
+  if (((engine_operating_mode == IDLE) || (engine_operating_mode == LOW_RPM_RUNNING)) ||
+     (engine_operating_mode == TRANSITIONAL_MODE_6)) {
     _DAT_00809676 = 1;
     _DAT_00809678 = _DAT_00806fae;
     _DAT_0080967a = 1;
@@ -1123,7 +1123,7 @@ ulonglong FUN_0000b47e(void)
   ulonglong uVar3;
   
   uVar1 = (undefined2)((uint)in_D0 >> 0x10);
-  if (((_DAT_008035d6 & 0x20) == 0) || (engine_operating_mode != 3)) {
+  if (((_DAT_008035d6 & 0x20) == 0) || (engine_operating_mode != HIGH_RPM_RUNNING)) {
     _DAT_00809682 = _DAT_00807f3c;
     return CONCAT44(CONCAT22(uVar1,_DAT_008035d6),in_D1) & 0xffff0020ffffffff;
   }
@@ -2060,7 +2060,7 @@ uint FUN_0000c8c2(void)
   uint in_D0;
   uint uVar2;
   
-  if (engine_operating_mode == 3) {
+  if (engine_operating_mode == HIGH_RPM_RUNNING) {
     if (((_DAT_00805df4 & 0x400) == 0) || ((_DAT_008068c6 & 0x400) == 0)) {
       in_D0 = 0;
     }
@@ -4581,7 +4581,7 @@ undefined4 FUN_0000f906(byte *param_1,undefined4 param_2)
   dword local_8;
   
   uVar3 = (ushort)((uint)unaff_A2 >> 0x10);
-  if (engine_operating_mode == 1) {
+  if (engine_operating_mode == IDLE) {
     while (uVar1 = FUN_00013134(), (char)uVar1 == '\0') {
       FUN_00013240();
       FUN_0002bb2e(CONCAT22(500,uVar3));
@@ -5308,7 +5308,7 @@ uint FUN_000107a4(void)
   undefined8 uVar7;
   
   uVar2 = CONCAT22((short)((uint)in_D0 >> 0x10),_DAT_00803618) & 0xffff0001;
-  if (((_DAT_00803618 & 1) != 0) && (engine_operating_mode != 1)) {
+  if (((_DAT_00803618 & 1) != 0) && (engine_operating_mode != IDLE)) {
     if (_DAT_00804a1c == 0) {
       _DAT_00804a14 = engineRunCounter;
     }
@@ -7438,7 +7438,7 @@ uint FUN_000132c8(void)
     _DAT_0080c404 = _DAT_00809cb8;
     current_engine_rpm = _DAT_00809cb8;
   }
-  if (engine_operating_mode == 1) {
+  if (engine_operating_mode == IDLE) {
     uVar1 = vp44_communication_status & 1;
     if ((vp44_communication_status & 1) == 0) {
       system_logging_state = 0;
@@ -7557,8 +7557,8 @@ void FUN_000138fe(void)
 void FUN_00013930(void)
 
 {
-  if (((engine_operating_mode == 2) || (engine_operating_mode == 6)) || (engine_operating_mode == 7)
-     ) {
+  if (((engine_operating_mode == LOW_RPM_RUNNING) || (engine_operating_mode == TRANSITIONAL_MODE_6))
+     || (engine_operating_mode == TRANSITIONAL_MODE_7)) {
     _DAT_0080c800 = _DAT_0080c80e + _DAT_0080c802;
     if (_DAT_00807d3e < _DAT_0080c800) {
       _DAT_0080c800 = _DAT_00807d3e;
@@ -7655,8 +7655,8 @@ void FUN_00013a1e(void)
 void FUN_00013bd8(void)
 
 {
-  if (((engine_operating_mode == 2) || (engine_operating_mode == 6)) || (engine_operating_mode == 7)
-     ) {
+  if (((engine_operating_mode == LOW_RPM_RUNNING) || (engine_operating_mode == TRANSITIONAL_MODE_6))
+     || (engine_operating_mode == TRANSITIONAL_MODE_7)) {
     FUN_00013a1e();
     if (current_engine_rpm < _DAT_0080c804) {
       _DAT_0080c7ea = _DAT_0080c7f8;
@@ -7823,8 +7823,8 @@ void FUN_00013e82(void)
 void FUN_00013ecc(void)
 
 {
-  if (((engine_operating_mode == 2) || (engine_operating_mode == 6)) || (engine_operating_mode == 7)
-     ) {
+  if (((engine_operating_mode == LOW_RPM_RUNNING) || (engine_operating_mode == TRANSITIONAL_MODE_6))
+     || (engine_operating_mode == TRANSITIONAL_MODE_7)) {
     _DAT_0080c80a = _DAT_0080c9ae;
     _DAT_0080c9ae = _DAT_0080c7ea;
     _DAT_0080c9b0 = 5;
@@ -7844,8 +7844,8 @@ void FUN_00013ecc(void)
 void FUN_00013f06(void)
 
 {
-  if (((_DAT_008002cc == 1) && (engine_operating_mode == 2)) ||
-     ((_DAT_008002cc == 3 && (engine_operating_mode == 7)))) {
+  if (((_DAT_008002cc == 1) && (engine_operating_mode == LOW_RPM_RUNNING)) ||
+     ((_DAT_008002cc == 3 && (engine_operating_mode == TRANSITIONAL_MODE_7)))) {
     FUN_00013c6a();
     FUN_00013d86();
     FUN_00013d66();
@@ -7866,7 +7866,7 @@ void FUN_00013f06(void)
 void FUN_00013f46(void)
 
 {
-  if ((engine_operating_mode == 6) && (current_engine_rpm < _DAT_0080c800)) {
+  if ((engine_operating_mode == TRANSITIONAL_MODE_6) && (current_engine_rpm < _DAT_0080c800)) {
     if ((int)(uint)_DAT_00807d4e < (int)((uint)_DAT_00807f3c - (uint)_DAT_0080c80c)) {
       _DAT_0080c80c = _DAT_00807d4e + _DAT_0080c80c;
     }
@@ -7880,7 +7880,7 @@ void FUN_00013f46(void)
       _DAT_0080c80e = _DAT_008037b4;
     }
   }
-  if ((_DAT_008002ce == 7) && (engine_operating_mode == 1)) {
+  if ((_DAT_008002ce == 7) && (engine_operating_mode == IDLE)) {
     _DAT_0080c80c = 0;
     _DAT_0080c80e = 0;
   }
@@ -7899,12 +7899,12 @@ void FUN_00013f46(void)
 void FUN_00013fe2(void)
 
 {
-  if ((((engine_operating_mode == 2) || (engine_operating_mode == 6)) &&
-      (_DAT_00807d58 < current_engine_rpm)) &&
+  if ((((engine_operating_mode == LOW_RPM_RUNNING) || (engine_operating_mode == TRANSITIONAL_MODE_6)
+       ) && (_DAT_00807d58 < current_engine_rpm)) &&
      (_DAT_0080c806 = _DAT_00807d5a + _DAT_0080c806, _DAT_00807d5c < _DAT_0080c806)) {
     _DAT_0080c806 = _DAT_00807d5c;
   }
-  if ((_DAT_008002d0 != 3) && (engine_operating_mode == 3)) {
+  if ((_DAT_008002d0 != 3) && (engine_operating_mode == HIGH_RPM_RUNNING)) {
     _DAT_0080c806 = 0;
   }
   _DAT_008002d0 = engine_operating_mode;
@@ -7922,17 +7922,17 @@ void FUN_00013fe2(void)
 void FUN_0001403e(void)
 
 {
-  if (engine_operating_mode == 3) {
+  if (engine_operating_mode == HIGH_RPM_RUNNING) {
     _DAT_0080c7ee = _DAT_0080c7ee + 1;
   }
-  if (engine_operating_mode == 1) {
+  if (engine_operating_mode == IDLE) {
     _DAT_0080c7ee = 0;
     _DAT_00800288 = 0;
   }
-  if (engine_operating_mode == 2) {
+  if (engine_operating_mode == LOW_RPM_RUNNING) {
     _DAT_0080c7f0 = _DAT_0080c7f0 + 1;
   }
-  else if ((_DAT_008002d2 == 7) && (engine_operating_mode == 1)) {
+  else if ((_DAT_008002d2 == 7) && (engine_operating_mode == IDLE)) {
     _DAT_0080c7f0 = 0;
   }
   _DAT_008002d2 = engine_operating_mode;
@@ -7950,7 +7950,8 @@ void FUN_0001403e(void)
 void FUN_00014090(void)
 
 {
-  if (((_DAT_008002d4 == 3) && (engine_operating_mode == 7)) && (_DAT_00807d52 < _DAT_0080c7ee)) {
+  if (((_DAT_008002d4 == 3) && (engine_operating_mode == TRANSITIONAL_MODE_7)) &&
+     (_DAT_00807d52 < _DAT_0080c7ee)) {
     _DAT_0080c80c = _DAT_00807d54;
     _DAT_0080c80e = _DAT_00807d56;
   }
@@ -8000,42 +8001,42 @@ void FUN_00014174(void)
 
 {
   switch(engine_operating_mode) {
-  case 1:
+  case IDLE:
     if ((_DAT_00807d64 < current_engine_rpm) && (_DAT_00804d84 == 0)) {
-      engine_operating_mode = 2;
+      engine_operating_mode = LOW_RPM_RUNNING;
     }
     else if ((((vp44_communication_status & 1) == 0) && (_DAT_0080d450 == 0)) ||
             (_DAT_0080c996 == 1)) {
-      engine_operating_mode = 8;
+      engine_operating_mode = FAULT_EMERGENCY;
     }
     break;
-  case 2:
+  case LOW_RPM_RUNNING:
     if (_DAT_00807d64 < current_engine_rpm) {
       if (current_engine_rpm < _DAT_0080c7fc) {
         if (_DAT_00807d4c < _DAT_0080c7f0) {
-          engine_operating_mode = 6;
+          engine_operating_mode = TRANSITIONAL_MODE_6;
         }
         else if ((((vp44_communication_status & 1) == 0) && (_DAT_0080d450 == 0)) ||
                 (_DAT_0080c996 == 1)) {
-          engine_operating_mode = 8;
+          engine_operating_mode = FAULT_EMERGENCY;
         }
       }
       else {
-        engine_operating_mode = 3;
+        engine_operating_mode = HIGH_RPM_RUNNING;
       }
     }
     else {
-      engine_operating_mode = 1;
+      engine_operating_mode = IDLE;
     }
     break;
-  case 3:
+  case HIGH_RPM_RUNNING:
     if (vp44_injection_system_active == 1) {
-      engine_operating_mode = 4;
+      engine_operating_mode = VP44_INJECTION_ACTIVE;
     }
     else if (_DAT_0080c7fa < current_engine_rpm) {
       if ((((vp44_communication_status & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1))
       {
-        engine_operating_mode = 8;
+        engine_operating_mode = FAULT_EMERGENCY;
       }
       else if (current_engine_rpm < _DAT_00807d5e) {
         _DAT_008002d6 = 0;
@@ -8043,31 +8044,31 @@ void FUN_00014174(void)
       else {
         _DAT_008002d6 = _DAT_008002d6 + 1;
         if (_DAT_00807d62 < _DAT_008002d6) {
-          engine_operating_mode = 5;
+          engine_operating_mode = HIGH_PERFORMANCE;
           _DAT_008002d6 = 0;
         }
       }
     }
     else {
-      engine_operating_mode = 7;
+      engine_operating_mode = TRANSITIONAL_MODE_7;
     }
     break;
-  case 4:
+  case VP44_INJECTION_ACTIVE:
     if (vp44_injection_system_active == 0) {
-      engine_operating_mode = 3;
+      engine_operating_mode = HIGH_RPM_RUNNING;
     }
     else if ((((vp44_communication_status & 1) == 0) && (_DAT_0080d450 == 0)) ||
             (_DAT_0080c996 == 1)) {
-      engine_operating_mode = 8;
+      engine_operating_mode = FAULT_EMERGENCY;
     }
     break;
-  case 5:
+  case HIGH_PERFORMANCE:
     if (current_engine_rpm < _DAT_00807d60) {
-      engine_operating_mode = 3;
+      engine_operating_mode = HIGH_RPM_RUNNING;
     }
     else if ((((vp44_communication_status & 1) == 0) && (_DAT_0080d450 == 0)) ||
             (_DAT_0080c996 == 1)) {
-      engine_operating_mode = 8;
+      engine_operating_mode = FAULT_EMERGENCY;
     }
     _DAT_00805df6 = _DAT_00805df6 | 0x8000;
     _DAT_00805e36 = _DAT_00805e36 | 0x8000;
@@ -8081,42 +8082,42 @@ void FUN_00014174(void)
       *(word *)(&DAT_00804c6c + (short)_DAT_00804d82 * 8) = current_engine_rpm;
     }
     break;
-  case 6:
+  case TRANSITIONAL_MODE_6:
     if (_DAT_00807d64 < current_engine_rpm) {
       if (current_engine_rpm < _DAT_0080c7fc) {
         if ((((vp44_communication_status & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1)
            ) {
-          engine_operating_mode = 8;
+          engine_operating_mode = FAULT_EMERGENCY;
         }
       }
       else {
-        engine_operating_mode = 3;
+        engine_operating_mode = HIGH_RPM_RUNNING;
       }
     }
     else {
-      engine_operating_mode = 1;
+      engine_operating_mode = IDLE;
     }
     break;
-  case 7:
+  case TRANSITIONAL_MODE_7:
     if (_DAT_00807d64 < current_engine_rpm) {
       if (current_engine_rpm < _DAT_0080c7fc) {
         if ((((vp44_communication_status & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1)
            ) {
-          engine_operating_mode = 8;
+          engine_operating_mode = FAULT_EMERGENCY;
         }
       }
       else {
-        engine_operating_mode = 3;
+        engine_operating_mode = HIGH_RPM_RUNNING;
       }
     }
     else {
-      engine_operating_mode = 1;
+      engine_operating_mode = IDLE;
     }
     break;
-  case 8:
+  case FAULT_EMERGENCY:
     if ((((_DAT_0080c996 == 1) && (current_engine_rpm == 0)) ||
         ((_DAT_0080c996 == 0 && ((vp44_communication_status & 1) != 0)))) &&
-       ((engine_operating_mode = 1, current_engine_rpm == 0 && (_DAT_0080c996 == 1)))) {
+       ((engine_operating_mode = IDLE, current_engine_rpm == 0 && (_DAT_0080c996 == 1)))) {
       _DAT_0080c996 = 0;
     }
     if (((current_engine_rpm == 0) && ((vp44_communication_status & 1) == 0)) &&
@@ -8125,9 +8126,9 @@ void FUN_00014174(void)
     }
     break;
   default:
-    engine_operating_mode = 1;
+    engine_operating_mode = IDLE;
   }
-  if (((engine_operating_mode != 5) && ((_DAT_00805df6 & 0x8000) != 0)) &&
+  if (((engine_operating_mode != HIGH_PERFORMANCE) && ((_DAT_00805df6 & 0x8000) != 0)) &&
      ((_DAT_00805e36 & 0x8000) == 0)) {
     _DAT_00805df6 = _DAT_00805df6 & 0x7fff;
     *(short *)(&DAT_00804c6e + (short)_DAT_00804d82 * 8) =
@@ -8151,7 +8152,7 @@ void FUN_00014174(void)
 void FUN_00014536(void)
 
 {
-  engine_operating_mode = 1;
+  engine_operating_mode = IDLE;
   DAT_008002d8 = 0;
   return;
 }
@@ -8680,8 +8681,8 @@ ushort FUN_00014d6a(void)
   ushort *puVar8;
   
   uVar3 = (ushort)((uint)unaff_D2 >> 0x10);
-  if ((((_DAT_008035d8 & 1) == 0) || (engine_operating_mode == 8)) || (engine_operating_mode == 1))
-  {
+  if ((((_DAT_008035d8 & 1) == 0) || (engine_operating_mode == FAULT_EMERGENCY)) ||
+     (engine_operating_mode == IDLE)) {
     _DAT_0080c998 = 0;
     uVar3 = 0;
     puVar7 = &DAT_0080c814;
@@ -11514,17 +11515,17 @@ void scheduler_init(void)
 void mainLoopTaskSchedulerInit(void)
 
 {
-  word *pwVar1;
+  scheduler_phase_table_t *psVar1;
   
   if (schedule_armed != 0) {
     if (_main_loop_counter == 0) {
-      for (pwVar1 = &scheduler_phase_table; pwVar1 < &DAT_00809a02; pwVar1 = pwVar1 + 8) {
-        pwVar1[0] = 0;
-        pwVar1[1] = 0;
-        pwVar1[2] = 0;
-        pwVar1[3] = 0xffff;
-        pwVar1[4] = 0;
-        pwVar1[5] = 0;
+      for (psVar1 = &scheduler_phase_table; psVar1 < (scheduler_phase_table_t *)&DAT_00809a02;
+          psVar1 = psVar1 + 1) {
+        (psVar1->phase_slots).last_execution_time = 0;
+        (psVar1->phase_slots).runtime_ticks = 0;
+        (psVar1->phase_slots).deadline_ticks = 0xffff;
+        (psVar1->phase_slots).execution_count = 0;
+        (psVar1->phase_slots).overrun_count = 0;
       }
       _DAT_00809770 = 0;
       _DAT_00809772 = 0;
@@ -11675,31 +11676,32 @@ ushort FUN_00017d40(void)
     _DAT_0080d494 = _DAT_0080379e;
     _DAT_0080d496 = 0xd;
   }
-  if (engine_operating_mode == 1) {
+  if (engine_operating_mode == IDLE) {
     _DAT_0080c9a4 = 0;
     _DAT_0080c9a6 = 0x1a;
   }
   else {
-    if (engine_operating_mode == 8) {
+    if (engine_operating_mode == FAULT_EMERGENCY) {
       _DAT_0080c9a6 = 0x1b;
       _DAT_0080c9a4 = _DAT_0080849e;
     }
-    else if (engine_operating_mode == 5) {
+    else if (engine_operating_mode == HIGH_PERFORMANCE) {
       _DAT_0080c9a6 = 0x19;
       _DAT_0080c9a4 = _DAT_00807f40;
     }
     else {
       uVar1 = _DAT_008035d6 & 2;
       if (uVar1 == 0) {
-        if (engine_operating_mode == 4) {
+        if (engine_operating_mode == VP44_INJECTION_ACTIVE) {
           _DAT_0080c9a6 = 0x18;
           _DAT_0080c9a4 = _DAT_00807f3e;
         }
-        else if ((engine_operating_mode == 2) || (engine_operating_mode == 6)) {
+        else if ((engine_operating_mode == LOW_RPM_RUNNING) ||
+                (engine_operating_mode == TRANSITIONAL_MODE_6)) {
           _DAT_0080c9a6 = 0x16;
           _DAT_0080c9a4 = _DAT_0080c7e8;
         }
-        else if (engine_operating_mode == 3) {
+        else if (engine_operating_mode == HIGH_RPM_RUNNING) {
           if ((_DAT_00800360 == 2) || (_DAT_00800360 == 6)) {
             uVar1 = FUN_0001e78e();
             _DAT_00809652 = _DAT_0080c7e8;
@@ -11716,7 +11718,7 @@ ushort FUN_00017d40(void)
         }
         else {
           _DAT_0080c9a4 = unaff_D2w;
-          if (engine_operating_mode == 7) {
+          if (engine_operating_mode == TRANSITIONAL_MODE_7) {
             if (((diagnostic_state_buffer_t_00809654.diagnostic_mode == 0xb) &&
                 (_DAT_0080d496 == 0x14)) || (uVar1 = _DAT_00809652, _DAT_00809652 < _DAT_0080d494))
             {
@@ -12100,9 +12102,9 @@ ushort FUN_0001842c(void)
   if (((((vp44_communication_status & 1) != 0) && (engine_control_system_ready == 0)) &&
       ((vp44_injection_system_active == 0 ||
        (uVar1 = vp44_status_flags_1 & 0x40, (vp44_status_flags_1 & 0x40) == 0)))) &&
-     (((engine_operating_mode == 5 &&
+     (((engine_operating_mode == HIGH_PERFORMANCE &&
        (uVar1 = vp44_status_flags_2 & 2, (vp44_status_flags_2 & 2) == 0)) ||
-      (engine_operating_mode != 5)))) {
+      (engine_operating_mode != HIGH_PERFORMANCE)))) {
     can_pin_switching_control_flags = can_pin_switching_control_flags | 0x20;
     return uVar1;
   }
@@ -12522,8 +12524,8 @@ ushort FUN_00018c62(void)
       }
       if (((_DAT_0080d17a == 0) || (uVar1 = _DAT_008035d8 & 8, (_DAT_008035d8 & 8) != 0)) &&
          ((_DAT_008096a6 == 0 &&
-          ((engine_operating_mode == 3 && (uVar1 = _DAT_0080926e, _DAT_00808490 < _DAT_0080926e)))))
-         ) {
+          ((engine_operating_mode == HIGH_RPM_RUNNING &&
+           (uVar1 = _DAT_0080926e, _DAT_00808490 < _DAT_0080926e)))))) {
         if (((_DAT_00805dfa & 0x100) == 0) || ((_DAT_008068cc & 0x100) == 0)) {
           uVar1 = 0;
         }
@@ -12539,7 +12541,8 @@ ushort FUN_00018c62(void)
     }
     else if (_DAT_0080cc6c == 1) {
       _DAT_0080cc6e = _DAT_0080cc6e - 1;
-      if ((((_DAT_0080d17a != 0) && ((_DAT_008035d8 & 8) == 0)) || (engine_operating_mode != 3)) ||
+      if ((((_DAT_0080d17a != 0) && ((_DAT_008035d8 & 8) == 0)) ||
+          (engine_operating_mode != HIGH_RPM_RUNNING)) ||
          (((_DAT_0080926e <= _DAT_00808490 || (_DAT_008003e6 != 0)) ||
           ((_DAT_008003ea != 0 || (_DAT_008003ee != 0)))))) {
         _DAT_0080cc6c = 0;
@@ -12557,7 +12560,7 @@ ushort FUN_00018c62(void)
       if ((_DAT_008035da & 4) == 0) {
         if ((((_DAT_0080d17a != 0) && (uVar1 = _DAT_008035d8 & 8, (_DAT_008035d8 & 8) == 0)) ||
             (_DAT_008096a6 != 0)) ||
-           (((engine_operating_mode != 3 || (_DAT_008003e6 != 0)) ||
+           (((engine_operating_mode != HIGH_RPM_RUNNING || (_DAT_008003e6 != 0)) ||
             ((_DAT_008003ea != 0 || (_DAT_008003ee != 0)))))) {
           _DAT_0080cc6c = 0;
         }
@@ -12583,12 +12586,12 @@ ushort FUN_00018c62(void)
       }
     }
     else if (_DAT_0080cc6c == 3) {
-      if ((_DAT_008096a6 != 0) || (engine_operating_mode == 1)) {
+      if ((_DAT_008096a6 != 0) || (engine_operating_mode == IDLE)) {
         _DAT_0080cc6c = 0;
         return uVar1;
       }
     }
-    else if ((_DAT_0080cc6c == 4) && (engine_operating_mode == 1)) {
+    else if ((_DAT_0080cc6c == 4) && (engine_operating_mode == IDLE)) {
       _DAT_0080cc6c = 0;
     }
   }
@@ -17636,7 +17639,7 @@ uint FUN_0001db66(void)
   undefined2 uVar3;
   
   uVar3 = (undefined2)((uint)unaff_D2 >> 0x10);
-  if (((DAT_0080bdc7 & 0x80) != 0) && (engine_operating_mode == 1)) {
+  if (((DAT_0080bdc7 & 0x80) != 0) && (engine_operating_mode == IDLE)) {
     DAT_00801684 = 1;
     if (((DAT_0080bdc7 & 0x80) == 0) || (DAT_00801687 != '\0')) {
       if (((DAT_0080bdc7 & 0x20) == 0) || (DAT_00801685 != '\0')) {
@@ -17989,7 +17992,8 @@ void FUN_0001e140(void)
   if ((_DAT_0080d050 != 0) || (DAT_0080169a != '\0')) {
     FUN_0001e050();
   }
-  if (((_DAT_0080373c != 0) && (_DAT_0080d04e != 0)) && (engine_operating_mode == 3)) {
+  if (((_DAT_0080373c != 0) && (_DAT_0080d04e != 0)) && (engine_operating_mode == HIGH_RPM_RUNNING))
+  {
     FUN_0001e0d6();
   }
   DAT_00801685 = -((DAT_0080bdc7 & 0x20) != 0) & 1;
@@ -18750,7 +18754,7 @@ void FUN_0001ee5c(void)
   else {
     bVar1 = true;
   }
-  if (engine_operating_mode == 1) {
+  if (engine_operating_mode == IDLE) {
     _DAT_0080171e = 0;
     if (bVar2) {
       _DAT_0080d094 = _DAT_00808830;
@@ -18759,11 +18763,12 @@ void FUN_0001ee5c(void)
       _DAT_0080d094 = 0;
     }
   }
-  else if (engine_operating_mode != 2) {
+  else if (engine_operating_mode != LOW_RPM_RUNNING) {
     if ((bVar2) && (_DAT_0080171e < _DAT_00808832)) {
       _DAT_0080171e = _DAT_0080171e + 1;
     }
-    if ((engine_operating_mode == 3) && ((_DAT_00808832 <= _DAT_0080171e || (!bVar2)))) {
+    if ((engine_operating_mode == HIGH_RPM_RUNNING) &&
+       ((_DAT_00808832 <= _DAT_0080171e || (!bVar2)))) {
       if (_DAT_00808834 < _DAT_0080d094) {
         _DAT_0080d094 = _DAT_0080d094 - _DAT_00808834;
       }
@@ -23912,7 +23917,7 @@ void FUN_00028638(void)
       }
     }
   }
-  if (((engine_operating_mode == 8) && (_DAT_00801a7e != 8)) &&
+  if (((engine_operating_mode == FAULT_EMERGENCY) && (_DAT_00801a7e != 8)) &&
      ((_DAT_00801a7a != 0 || _DAT_00801a78 != 0 || (_DAT_00801a7c != 0)))) {
     _DAT_00805f88 = _DAT_00805f88 + 1;
     _DAT_00801a78 = 0;
@@ -25898,7 +25903,7 @@ void incrementCounters(void)
 
 {
   loopCounter = loopCounter + 1;
-  if (engine_operating_mode != 1) {
+  if (engine_operating_mode != IDLE) {
     engineRunCounter = engineRunCounter + 1;
   }
   return;
@@ -27951,7 +27956,7 @@ void FUN_0002dc1e(void)
 {
   ushort uVar1;
   
-  if ((_DAT_008071ae <= _DAT_008096a6) && (engine_operating_mode != 1)) {
+  if ((_DAT_008071ae <= _DAT_008096a6) && (engine_operating_mode != IDLE)) {
     if (_DAT_0080975c == 0) {
       _DAT_00803292 = 0xffff;
     }
@@ -29948,7 +29953,7 @@ LAB_0002ffea:
     _DAT_00809a04 = 5;
   }
   else {
-    if (((engine_operating_mode == 8) || (engine_operating_mode == 1)) &&
+    if (((engine_operating_mode == FAULT_EMERGENCY) || (engine_operating_mode == IDLE)) &&
        ((_DAT_00809a04 == 4 || (_DAT_00809a04 == 3)))) {
       _DAT_00803362 = _DAT_00803362 + 1;
     }
@@ -29965,11 +29970,14 @@ LAB_0002ffea:
   else if (_DAT_00809a04 == 1) {
     _DAT_00809a04 = 2;
   }
-  else if (((engine_operating_mode == 2) || (engine_operating_mode == 6)) && (_DAT_00809a04 == 2)) {
+  else if (((engine_operating_mode == LOW_RPM_RUNNING) ||
+           (engine_operating_mode == TRANSITIONAL_MODE_6)) && (_DAT_00809a04 == 2)) {
     _DAT_00809a04 = 3;
   }
-  else if ((((engine_operating_mode == 3) || (engine_operating_mode == 4)) ||
-           ((engine_operating_mode == 7 || (engine_operating_mode == 5)))) &&
+  else if ((((engine_operating_mode == HIGH_RPM_RUNNING) ||
+            (engine_operating_mode == VP44_INJECTION_ACTIVE)) ||
+           ((engine_operating_mode == TRANSITIONAL_MODE_7 ||
+            (engine_operating_mode == HIGH_PERFORMANCE)))) &&
           ((_DAT_00809a04 == 2 || (_DAT_00809a04 == 3)))) {
     _DAT_00809a04 = 4;
   }
@@ -30578,20 +30586,20 @@ void FUN_00030ac0(void)
     return;
   }
   switch(engine_operating_mode) {
-  case 1:
-  case 8:
+  case IDLE:
+  case FAULT_EMERGENCY:
     _DAT_008033ba = 1;
     break;
-  case 2:
-  case 6:
-  case 7:
+  case LOW_RPM_RUNNING:
+  case TRANSITIONAL_MODE_6:
+  case TRANSITIONAL_MODE_7:
     _DAT_008033ba = 2;
     break;
-  case 3:
-  case 4:
+  case HIGH_RPM_RUNNING:
+  case VP44_INJECTION_ACTIVE:
     _DAT_008033ba = 3;
     break;
-  case 5:
+  case HIGH_PERFORMANCE:
     _DAT_008033ba = 4;
   }
   if (engine_control_system_ready != 0) {
@@ -31627,7 +31635,7 @@ uint FUN_00031c60(void)
   
   _DAT_008033ea = _DAT_00809706;
   _DAT_008033ec = _DAT_00809708;
-  if (engine_operating_mode == 1) {
+  if (engine_operating_mode == IDLE) {
     _DAT_00809706 = 0;
     _DAT_00809708 = 0;
     FUN_00031b78(0xf);
@@ -33499,9 +33507,9 @@ void FUN_000344e8(void)
           }
           if (!bVar2) {
             switch(engine_operating_mode) {
-            case 2:
-            case 6:
-            case 7:
+            case LOW_RPM_RUNNING:
+            case TRANSITIONAL_MODE_6:
+            case TRANSITIONAL_MODE_7:
               if (_DAT_0080744e < _DAT_00809afc) {
                 DAT_008034c6 = DAT_008034c6 + 1;
                 if (DAT_00807402 <= DAT_008034c6) {
@@ -33522,7 +33530,7 @@ void FUN_000344e8(void)
               DAT_008034c5 = 0;
               DAT_008034c7 = 0;
               return;
-            case 3:
+            case HIGH_RPM_RUNNING:
               if (_DAT_0080744c < _DAT_00809afc) {
                 DAT_008034c5 = DAT_008034c5 + 1;
                 if (DAT_00807402 <= DAT_008034c5) {
@@ -33703,11 +33711,11 @@ void FUN_00034a32(void)
     _DAT_008034d6 = 0;
     return;
   }
-  if (engine_operating_mode == 1) {
+  if (engine_operating_mode == IDLE) {
     DAT_008034d8 = 0;
     return;
   }
-  if (engine_operating_mode == 8) {
+  if (engine_operating_mode == FAULT_EMERGENCY) {
     DAT_008034d8 = 0;
     return;
   }
@@ -34240,7 +34248,8 @@ void FUN_0003544a(void)
 
 {
   engine_control_system_ready = (ushort)DAT_008034a0;
-  if (((engine_operating_mode != 5) && (engine_operating_mode != 8)) && (DAT_008034a0 != 1)) {
+  if (((engine_operating_mode != HIGH_PERFORMANCE) && (engine_operating_mode != FAULT_EMERGENCY)) &&
+     (DAT_008034a0 != 1)) {
     DAT_008034a1 = 1;
     return;
   }

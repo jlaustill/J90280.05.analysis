@@ -76,7 +76,7 @@ public class BulkStructureCreator extends GhidraScript {
                     continue;
                 }
                 
-                // Parse CSV: struct_name,address,field_name,field_type,field_size,comment,depends_on
+                // Parse CSV: struct_name,address,field_name,type,size,comment,dependency,Status
                 String[] parts = line.split(",");
                 if (parts.length >= 6) {
                     String structName = parts[0].trim();

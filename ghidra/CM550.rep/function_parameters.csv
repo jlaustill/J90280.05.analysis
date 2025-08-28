@@ -1,10 +1,7 @@
 function_address,function_name,param_index,new_name,new_type,comment
-0x0000e180,sendJ1939Msg,0,msg_header,j1939_header_t*,Pointer to J1939 message header structure
-0x000131d6,circularBufferWrite,0,source_data,uint8_t*,Pointer to source data to write
-0x000131d6,circularBufferWrite,1,byte_count,uint16_t,Number of bytes to write
-0x000131d6,circularBufferWrite,2,metadata_value,uint16_t,Metadata/timestamp value to store
-0x0001c846,vp44CanMessageHandler,0,rx_msg,can_std_rx_desc_t*,Function that appears to handle messages received from the vp44
+0x0000e180,sendCanMessage,0,msg_header,j1939_header_t*,Pointer to J1939 message header structure
+0x0001c846,vp44CanMessageDispatcher,0,rx_msg,can_std_rx_desc_t*,Function that appears to handle messages received from the vp44
 0x0001c538,vp44FuelTempHandler,0,rx_msg,can_std_rx_desc_t*,Function that appears to handle fuel temp from the vp44, maybe?
 0x0001c33e,diagnosticParamRequestHandler,0,rx_msg,can_std_rx_desc_t*,Function that appears to handle diagnostic messages received from the vp44
-0x0001c776,diagnosticParamRequestHandler,0,rx_msg,can_std_rx_desc_t*,Function that appears to handle diagnostic status requests from the vp44, maybe?
+0x0001c776,diagnosticStatusRequestHandler,0,rx_msg,can_std_rx_desc_t*,Function that appears to handle diagnostic status requests from the vp44, maybe?
 0x0001c7ca,diagnosticErrorHandler,0,rx_msg,can_std_rx_desc_t*,Function that appears to handle diagnostic errors from the vp44, maybe?
