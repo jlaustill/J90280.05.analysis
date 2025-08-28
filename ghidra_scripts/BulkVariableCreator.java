@@ -69,11 +69,11 @@ public class BulkVariableCreator extends GhidraScript {
                         
                         Address addr = toAddr(addressLong);
                         
-                        // Get data type using enhanced information
-                        DataType dataType = getEnhancedDataType(typeStr, length, caltermType, dataPattern, unit);
+                        // Try custom structure or enum type first
+                        DataType dataType = findDataTypeByName(currentProgram.getDataTypeManager(), typeStr);
                         if (dataType == null) {
-                            // Try to find custom structure or enum type
-                            dataType = findDataTypeByName(currentProgram.getDataTypeManager(), typeStr);
+                            // Fall back to enhanced data type detection
+                            dataType = getEnhancedDataType(typeStr, length, caltermType, dataPattern, unit);
                             if (dataType != null) {
                                 println("✓ " + addressStr + ": Found custom data type '" + typeStr + "' (" + dataType.getClass().getSimpleName() + ")");
                             } else {

@@ -158,19 +158,11 @@ vp44_message_t,0x800F64,timeout_counter,byte,1,VP44 timeout countdown (112 ticks
 vp44_message_t,0x800F66,message_data,dword,4,VP44 stored command/data,,needs_review
 vp44_message_t,0x800F69,expected_sequence,byte,1,Expected sequence for validation,,needs_review
 vp44_message_t,0x800F6A,additional_data,word,2,Additional message data,,needs_review
-vp44_can_payload_t,0x0,msg_type,byte,1,VP44 message type (0x10/0x11/0x13),,guess
-vp44_can_payload_t,0x1,addl_lo,byte,1,Additional data (low),,guess
-vp44_can_payload_t,0x2,addl_hi,byte,1,Additional data (high),,guess
-vp44_can_payload_t,0x3,sequence,byte,1,Sequence number,,guess
-vp44_can_payload_t,0x4,reserved0,byte,1,Reserved,,guess
-vp44_can_payload_t,0x5,reserved1,byte,1,Reserved,,guess
-vp44_can_payload_t,0x6,msg_id_hi,byte,1,Must be 0xEF,,guess
-vp44_can_payload_t,0x7,unused,byte,1,Unused,,guess
 can_std_rx_desc_t,,id,uint32_t,4,11-bit CAN ID stored in 32-bit (ABI),,Verified
 can_std_rx_desc_t,,length,uint16_t,2,DLC,,Verified
 can_std_rx_desc_t,,data_ptr,ptr:uint8_t,4,Pointer to payload bytes,,Verified
 # at 0x800F34,Status
-diag_tp_state_t,0x800F34,diag_state,byte,1,State flag (0=idle,1=active),,Verified
+diag_tp_state_t,0x800F34,diag_state,byte,1,State flag: 0=idle 1=active,,Verified
 diag_tp_state_t,0x800F34,expected_id_low,byte,1,Expected low byte of std CAN ID,,Verified
 diag_tp_state_t,0x800F34,expected_guard,word,2,Guard word; must match (payload[6]<<8),,Verified
 diag_tp_state_t,0x800F34,total_packets,byte,1,((total_bytes-1)/7)+1,,Verified
