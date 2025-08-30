@@ -4268,3 +4268,228 @@ address,label_name,comment
 0x0080c7c6,oil_pressure_mode_selector,Oil pressure protection mode selector (0=min, 1=custom, 2=shutdown)
 0x0080709e,custom_oil_pressure_threshold,Custom oil pressure protection threshold value
 0x0080969a,protection_system_enable_flag,Master engine protection system enable flag
+0x0002cb6a,boost_pressure_control_and_diagnostics,Boost pressure control with EPF and water-in-fuel diagnostics
+0x00803228,boost_pressure_raw_reading,Raw boost pressure sensor reading
+0x00803264,boost_pressure_filtered_value,Filtered boost pressure calculation result
+0x00803226,boost_pressure_current_delta,Current boost pressure delta measurement
+0x0080326e,epf_fault_timer,EPF (Exhaust Particulate Filter) fault detection timer
+0x00803266,boost_pressure_baseline,Boost pressure baseline reference value
+0x00803262,boost_pressure_target,Target boost pressure for control system
+0x00803270,boost_pressure_control_active,Boost pressure control system active flag
+0x008096ee,diagnostic_boost_mode_flag,Diagnostic boost pressure test mode flag
+0x008096f6,boost_pressure_setpoint,Boost pressure control setpoint
+0x008096f8,boost_pressure_feedback,Boost pressure feedback sensor value
+0x008096ea,boost_pressure_error,Boost pressure control error (setpoint - feedback)
+0x008096ec,boost_pressure_control_output,Boost pressure controller output signal
+0x00803256,water_in_fuel_sensor_flag1,Water-in-fuel sensor detection flag 1
+0x00803258,water_in_fuel_sensor_flag2,Water-in-fuel sensor detection flag 2
+0x0080c9a4,current_fuel_demand_value,Current fuel demand/reference value for boost control
+0x00803224,boost_pressure_command,Boost pressure command value (used in diagnostic mode 9)
+0x0080969c,target_boost_pressure_base,Base target boost pressure value
+0x0080bdcc,sensor_status_register,Sensor status register (bits indicate sensor connectivity)
+0x0080973c,boost_pressure_max_target,Maximum boost pressure target value
+0x00017434,boost_pressure_control_wrapper,Useless wrapper that just calls boost_pressure_control_and_diagnostics
+0x00010504,vp44_communication_state_machine,VP44 fuel pump communication state machine and buffer management
+0x00804bde,vp44_command_id,VP44 command identifier for communication protocol
+0x00804be8,vp44_buffer_start,Start of VP44 communication data buffer
+0x00804be4,vp44_buffer_size,Size of VP44 communication buffer
+0x00804be0,vp44_comm_mode,VP44 communication mode selector
+0x00804be2,vp44_comm_state,VP44 communication state variable
+0x008001be,vp44_init_flag,VP44 initialization completion flag
+0x008001b8,vp44_state_machine_index,VP44 state machine current index (0-3)
+0x008001c0,vp44_buffer_count,Number of active entries in VP44 buffer
+0x008001c4,vp44_block_size,VP44 data block size for transmission
+0x008001c2,vp44_total_data_size,Total data size for VP44 transmission
+0x008001bc,vp44_transmission_index,Current transmission index in VP44 buffer
+0x008001b4,vp44_transmission_address,Current transmission memory address
+0x00809d86,vp44_transmission_active,VP44 transmission active flag
+0x00809d72,vp44_base_address,VP44 communication base memory address
+0x00809d76,vp44_end_address,VP44 communication end memory address
+0x00809d82,vp44_current_read_address,Current read address for VP44 communication
+0x00809d7a,vp44_current_write_address,Current write address for VP44 communication
+0x00011c28,vp44_status_data_collector,VP44 status data collection and buffer management
+0x0080bde4,vp44_status_buffer_start,Start of VP44 status data buffer (8 bytes)
+0x0080bde5,vp44_status_byte1,VP44 status data byte 1
+0x0080bde6,vp44_status_byte2,VP44 status data byte 2
+0x0080bde7,vp44_status_byte3,VP44 status data byte 3
+0x0080bde8,vp44_status_byte4,VP44 status data byte 4
+0x0080bde9,vp44_status_byte5,VP44 status data byte 5
+0x0080bdea,vp44_status_byte6,VP44 status data byte 6 (always 0)
+0x0080bdeb,vp44_status_byte7,VP44 status data byte 7
+0x0080bdec,vp44_status_byte8,VP44 status data byte 8
+0x00800242,vp44_buffer_index,VP44 status buffer circular index
+0x00800244,vp44_status_array_0,VP44 status data array slot 0
+0x00800248,vp44_status_array_1,VP44 status data array slot 1
+0x0080024c,vp44_status_array_2,VP44 status data array slot 2
+0x00800250,vp44_status_array_3,VP44 status data array slot 3
+0x00800254,vp44_extended_array_0,VP44 extended status array slot 0
+0x00800258,vp44_extended_array_1,VP44 extended status array slot 1
+0x0080025c,vp44_extended_array_2,VP44 extended status array slot 2
+0x00800260,vp44_extended_array_3,VP44 extended status array slot 3
+0x00800264,vp44_third_array_0,VP44 third status array slot 0
+0x00807c72,vp44_xor_mask_1,VP44 data XOR mask for encryption/validation 1
+0x00807c76,vp44_xor_mask_2,VP44 data XOR mask for encryption/validation 2
+0x00803614,vp44_flag_register_1,VP44 control flags register 1 (bits 0x400, 0x800)
+0x00803616,vp44_flag_register_2,VP44 control flags register 2 (bits 0x1, 0x2, 0x4)
+0x0080023e,vp44_mask_array,VP44 bit mask array for status processing
+0x0080378a,vp44_forced_status_1,VP44 forced status bits 1
+0x0080378b,vp44_forced_status_2,VP44 forced status bits 2  
+0x0080378c,vp44_forced_status_3,VP44 forced status bits 3
+0x0080378d,vp44_forced_status_4,VP44 forced status bits 4
+0x0080378e,vp44_forced_status_5,VP44 forced status bits 5
+0x0080378f,vp44_forced_status_6,VP44 forced status bits 6
+0x0080374e,vp44_extended_processing_enable,VP44 extended status processing enable flag
+0x000132c8,engine_fault_monitoring_and_rpm_calculation,Central engine fault monitoring, RPM calculation, and system status management
+0x0080c422,engine_fault_timer_1,Engine fault detection timer 1 (RPM-related)
+0x0080c424,engine_fault_timer_2,Engine fault detection timer 2 (system-related) 
+0x0080c426,engine_fault_timer_3,Engine fault detection timer 3 (throttle-related)
+0x0080c418,engine_rpm_calculation_param_1,Engine RPM calculation parameter 1
+0x0080c416,engine_rpm_calculation_param_2,Engine RPM calculation parameter 2
+0x0080c428,engine_rpm_calculation_param_3,Engine RPM calculation parameter 3
+0x0080c76c,engine_fault_counter_1,Engine fault accumulator counter 1
+0x0080c76e,engine_fault_counter_2,Engine fault accumulator counter 2  
+0x0080c770,engine_fault_counter_3,Engine fault accumulator counter 3 (throttle)
+0x0080c76a,engine_fault_counter_4,Engine fault accumulator counter 4
+0x0080c768,engine_fault_counter_5,Engine fault accumulator counter 5
+0x00805df6,engine_fault_status_register_1,Primary engine fault status register (bits: 0x400, 0x800, 0x1000, 0x4000)
+0x00805e36,engine_fault_status_register_2,Secondary engine fault status register (fault confirmation)
+0x00805e16,engine_fault_status_register_3,Tertiary engine fault status register (throttle faults)
+0x00805e56,engine_fault_status_register_4,Quaternary engine fault status register (throttle fault confirmation)
+0x0080c40a,engine_divisor_param_1,Engine calculation divisor parameter 1
+0x0080c40e,engine_divisor_param_2,Engine calculation divisor parameter 2  
+0x00807cee,engine_fault_threshold_1,Engine fault detection threshold 1
+0x00807cf0,engine_fault_threshold_2,Engine fault detection threshold 2
+0x00807ce2,engine_system_status_flags,Engine system status control flags (bits 0x0C)
+0x00807cbe,engine_calculation_constant_1,Engine RPM calculation constant 1
+0x0080c42a,engine_rpm_source_selector,Engine RPM source selection (0=timer1, 1=timer2, 2=timer3)
+0x0080c404,current_engine_fuel_demand,Current engine fuel demand value
+0x0080c406,current_engine_rpm_raw,Current engine RPM raw value
+0x00807cc2,engine_rpm_base_frequency,Engine RPM calculation base frequency constant
+0x0080c776,engine_rpm_divisor_1,Engine RPM calculation divisor 1
+0x0080c77a,engine_rpm_divisor_2,Engine RPM calculation divisor 2
+0x00809cba,engine_override_enable,Engine RPM override enable flag
+0x00809cb8,engine_override_rpm_value,Engine RPM override value
+0x0080c78e,engine_callback_function_ptr,Engine callback function pointer
+0x0002bc2a,vp44_rpm_derate_monitor,VP44 status monitoring and RPM derate control
+0x00809d5a,rpm_derate_timer,RPM derate timer for VP44 protection
+0x00809d58,rpm_derate_status,RPM derate status flag
+0x0000e200,rpm_derate_calculation_and_fault_processing,RPM derate calculation and engine fault condition processing
+0x008035de,engine_control_flags_register,Engine control flags register (bit 0x400 for derate enable)
+0x00809d64,derate_mode_selector,RPM derate mode selector (0=normal, 1=override)
+0x00800150,current_derate_target,Current RPM derate target value
+0x008092c6,normal_derate_reference,Normal mode RPM derate reference value
+0x00809d62,override_derate_reference,Override mode RPM derate reference value
+0x00804bb6,derate_threshold_base,RPM derate threshold base value
+0x00809d5c,calculated_derate_amount,Calculated RPM derate amount
+0x008079d6,derate_scaling_factor,RPM derate scaling factor for calculations
+0x00800152,derate_status_flag,RPM derate status flag
+0x00809d60,derate_override_flag,RPM derate override flag
+0x00809d4c,active_derate_value,Active RPM derate value applied to engine
+0x00809d5e,derate_timer_status,RPM derate timer status
+0x00809d50,derate_threshold_exceeded,Flag indicating derate threshold exceeded
+0x00805dfa,engine_fault_register_a,Engine fault register A (bits 0x8, 0x10, 0x20)
+0x008068cc,engine_fault_register_b,Engine fault register B (confirmation bits)
+0x00805e3a,engine_fault_register_c,Engine fault register C (fault acknowledgment)
+0x0001848e,fuel_timing_calculation_with_fault_checking,Fuel timing calculation with engine fault condition checking
+0x0080c9aa,fuel_timing_mode_selector,Fuel timing calculation mode selector
+0x008003b6,rpm_input_for_fuel_table_1,Engine RPM input for fuel lookup table 1
+0x008003b0,fuel_lookup_table_1_base,Base address for fuel lookup table 1
+0x008003ca,rpm_input_for_fuel_table_2,Engine RPM input for fuel lookup table 2  
+0x008003c4,fuel_lookup_table_2_base,Base address for fuel lookup table 2
+0x0080c9d8,calculated_fuel_timing_value,Calculated fuel timing value output
+0x008003aa,fuel_correction_input,Input value for fuel correction lookup
+0x008003a4,fuel_correction_table_base,Base address for fuel correction table
+0x008068c8,engine_fault_confirmation_register,Engine fault confirmation register
+0x0000afa0,diagnostic_fuel_calculation_with_vp44_monitoring,Diagnostic fuel calculation with VP44 status monitoring
+0x00800056,diagnostic_rpm_input,Engine RPM input for diagnostic fuel calculation
+0x0080005e,diagnostic_secondary_input,Secondary input value for diagnostic calculation
+0x00800050,diagnostic_fuel_table_base,Base address for diagnostic fuel lookup table
+0x00806f9e,vp44_override_fuel_value,VP44 override fuel value when VP44 fault detected
+0x0080006a,diagnostic_correction_input,Input value for diagnostic fuel correction
+0x00800064,diagnostic_correction_table_base,Base address for diagnostic correction table
+0x00809258,diagnostic_sensor_reading,Diagnostic sensor reading value
+0x00809d2c,derate_base_value,Base value for derate calculations
+0x00809d2e,derate_min_limit,Minimum limit for derate interpolation
+0x00809d30,derate_max_limit,Maximum limit for derate interpolation
+0x00809d16,calculated_derate_output,Final calculated derate output value
+0x00809d18,derate_status_flag,Derate application status flag
+0x00809d36,derate_min_limit_ptr,Pointer to minimum derate limit table
+0x00809d3a,derate_max_limit_ptr,Pointer to maximum derate limit table
+0x00809cfe,target_engine_rpm,Governor calculated target engine RPM
+0x0080c9a8,diagnostic_parameter_buffer,Buffer for diagnostic parameter values
+0x00808926,oil_pressure_rate_limit_step,Rate limiting step size for oil pressure transitions
+# Key DAT variables from our engine management functions:
+
+# From engine_speed_governor (FUN_0000b656):
+0x00809cfe,target_engine_rpm,Governor calculated target engine RPM
+
+# From oil_pressure_protection_controller (FUN_0002604e): 
+0x00808926,oil_pressure_rate_limit_step,Rate limiting step size for oil pressure transitions
+
+# From diagnostic_parameter_handler (FUN_000181cc):
+0x0080c9a8,diagnostic_parameter_buffer,Buffer for diagnostic parameter values
+
+# From derate_application_controller (FUN_0000bf2e):
+0x00809d2c,derate_base_value,Base value for derate calculations
+0x00809d2e,derate_min_limit,Minimum limit for derate interpolation
+0x00809d30,derate_max_limit,Maximum limit for derate interpolation
+0x00809d16,calculated_derate_output,Final calculated derate output value
+0x00809d18,derate_status_flag,Derate application status flag
+0x00809d36,derate_min_limit_ptr,Pointer to minimum derate limit table
+0x00809d3a,derate_max_limit_ptr,Pointer to maximum derate limit table
+
+# From fuel_limit_arbitrator (FUN_0001892a):
+0x0080d000,arbitrator_special_mode_flag,Special mode flag for fuel arbitrator
+0x0080cc4c,arbitrator_fuel_value_buffer,Fuel value buffer for arbitration
+0x0080cc4a,arbitrator_active_limit_priority,Active limit priority code
+0x0080cc5c,arbitrator_status_flag,Arbitrator status flag
+0x0080cc4e,arbitrated_fuel_limit,Final arbitrated fuel limit value
+
+# From fuel_delivery_controller (FUN_0001863e):
+0x0080cc3c,fuel_delivery_target,Target fuel delivery value
+0x0080cc3e,fuel_delivery_scaled,Scaled fuel delivery value
+0x0080cc40,fuel_delivery_rate_delta,Rate limited fuel delivery change
+0x008003e0,final_fuel_delivery_command,Final fuel delivery command to VP44
+0x008003dc,fuel_delivery_status,Fuel delivery controller status
+0x008003e2,fuel_delivery_command_low,Low word of fuel delivery command
+
+# Calibration constants and thresholds:
+0x0080c992,fuel_arbitrator_threshold_1,Fuel arbitrator comparison threshold 1
+0x008096ae,fuel_arbitrator_threshold_2,Fuel arbitrator comparison threshold 2
+0x008091c8,fuel_arbitrator_threshold_3,Fuel arbitrator comparison threshold 3
+0x008096ac,fuel_arbitrator_threshold_4,Fuel arbitrator comparison threshold 4
+0x0080ccf6,fuel_arbitrator_threshold_5,Fuel arbitrator comparison threshold 5
+0x0080cc52,fuel_arbitrator_threshold_6,Fuel arbitrator comparison threshold 6
+0x0080d006,fuel_arbitrator_conditional_limit,Conditional fuel limit for special cases
+0x0080cffc,fuel_arbitrator_condition_flag,Condition flag for special limit application
+0x00808468,fuel_delivery_max_limit,Maximum fuel delivery limit
+0x0080846a,fuel_delivery_min_limit,Minimum fuel delivery limit
+0x0080846c,fuel_delivery_upper_bound,Upper bound for fuel delivery
+0x0080846e,fuel_delivery_lower_bound,Lower bound for fuel delivery
+0x0080cc44,fuel_delivery_gain_factor,Gain factor for fuel delivery scaling
+0x0080cc46,fuel_delivery_offset_factor,Offset factor for fuel delivery calculation
+0x0080cc48,fuel_delivery_rate_limit_gain,Gain for fuel delivery rate limiting
+0x008018aa,oil_pressure_calculation_buffer,Buffer for oil pressure calculations
+0x00801894,oil_pressure_previous_threshold,Previous oil pressure threshold value
+0x00801896,oil_pressure_calculated_limit,Calculated oil pressure limit
+0x008036aa,oil_pressure_cal_factor_1,Oil pressure calibration factor 1
+0x008036a8,oil_pressure_cal_factor_2,Oil pressure calibration factor 2
+0x008036a6,oil_pressure_cal_factor_3,Oil pressure calibration factor 3
+
+# Diagnostic and state management variables:
+0x008018a4,oil_pressure_protection_state,Oil pressure protection system state
+0x0080d168,oil_pressure_calculated_value,Calculated oil pressure protection value
+0x00808918,oil_pressure_max_threshold,Maximum oil pressure threshold
+0x0080891a,oil_pressure_min_threshold,Minimum oil pressure threshold
+0x00808922,oil_pressure_protection_multiplier,Oil pressure protection calculation multiplier
+0x00808914,oil_pressure_timing_factor,Timing factor for oil pressure calculations
+0x008035da,diagnostic_system_flags_1,Diagnostic system flags register 1
+0x008035d8,diagnostic_system_flags_2,Diagnostic system flags register 2
+0x0080380a,oil_pressure_error_status,Oil pressure error status register
+0x008037b4,oil_pressure_precrank_status,Oil pressure pre-crank status
+0x0080875c,diagnostic_mode_parameter,Parameter for diagnostic mode operations
+0x00803206,diagnostic_mode_buffer,Buffer for diagnostic mode transitions
+0x00809652,diagnostic_rpm_threshold_status,RPM threshold status for diagnostics
+0x0080d166,oil_pressure_rpm_limit_reference,Reference value for oil pressure RPM limiting
+0x00808474,rpm_comparison_threshold,RPM comparison threshold for protection systems
+0x0080c9c4,fuel_delivery_offset_correction,Offset correction for final fuel delivery

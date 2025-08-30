@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sat Aug 30 00:01:28 MDT 2025
+; Sat Aug 30 08:15:48 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -900,7 +900,7 @@
 0000af98: bcs.b    0x0000af7a          
 0000af9a: movem.l  SP,{  A2 A3 A4 A5}  
 0000af9e: rts      <UNSUPPORTED>       
-0000afa0: movem.l  {  A5 A4 A3 A2 D2},SP
+0000afa0: movem.l  {  A5 A4 A3 A2 D2},SP ; Diagnostic fuel calculation with VP44 status monitoring
 0000afa4: movea.l  #0x8068c8,A2        
 0000afaa: movea.l  #0x8068c8,A3        
 0000afb0: movea.l  #0x809658,A4        
@@ -4252,7 +4252,7 @@
 0000e1fa: sub.l    D0,(A2)             
 0000e1fc: movea.l  (SP)+,A2            
 0000e1fe: rts      <UNSUPPORTED>       
-0000e200: movem.l  {  A5 A4 A3 A2 D3 D2},SP
+0000e200: movem.l  {  A5 A4 A3 A2 D3 D2},SP ; RPM derate calculation and engine fault condition processing
 0000e204: movea.l  #0x809d5c,A2        
 0000e20a: movea.l  #0x800150,A3        
 0000e210: movea.l  #0x809d4c,A4        
@@ -6476,7 +6476,7 @@
 000104fc: bcs.b    0x00010484          
 000104fe: movem.l  SP,{  A2 A3 A4}     
 00010502: rts      <UNSUPPORTED>       
-00010504: link.w   A6,0x0              
+00010504: link.w   A6,0x0               ; VP44 fuel pump communication state machine and buffer management
 00010508: movem.l  {  A5 A4 A3 A2 D2},SP
 0001050c: movea.l  #0x8001b8,A4        
 00010512: movea.l  #0x8001b4,A5        
@@ -8129,7 +8129,7 @@
 00011c1c: jsr      0x00017d1a          
 00011c22: lea      (0xa,SP),SP         
 00011c26: rts      <UNSUPPORTED>       
-00011c28: link.w   A6,-0x10            
+00011c28: link.w   A6,-0x10             ; VP44 status data collection and buffer management
 00011c2c: movem.l  {  A5 A4 A3 A2 D5 D4 D3 D2},SP
 00011c30: movea.l  #0x80bdc6,A3        
 00011c36: movea.l  #0x800242,A4        
@@ -9692,7 +9692,7 @@
 000132c0: move     (SP)+,SR            
 000132c2: movem.l  SP,{  A2 A3 A4}     
 000132c6: rts      <UNSUPPORTED>       
-000132c8: movem.l  {  A5 A4 A3 A2 D2},SP
+000132c8: movem.l  {  A5 A4 A3 A2 D2},SP ; Central engine fault monitoring
 000132cc: movea.l  #0x80c408,A2        
 000132d2: movea.l  #0x80c406,A3        
 000132d8: movea.l  #0x80c404,A4        
@@ -13875,7 +13875,7 @@
 00017426: jsr      0x0002e3ee          
 0001742c: jsr      0x0002d7b4          
 00017432: rts      <UNSUPPORTED>       
-00017434: jsr      0x0002cb6a          
+00017434: jsr      0x0002cb6a           ; Useless wrapper that just calls boost_pressure_control_and_diagnostics
 0001743a: rts      <UNSUPPORTED>       
 0001743c: rts      <UNSUPPORTED>       
 0001743e: rts      <UNSUPPORTED>       
@@ -14943,7 +14943,7 @@
 00018484: rts      <UNSUPPORTED>       
 00018486: andi.b   #-0x21,(0x5,A1)     
 0001848c: rts      <UNSUPPORTED>       
-0001848e: movem.l  {  A5 A4 A3 A2 D4 D3 D2},SP
+0001848e: movem.l  {  A5 A4 A3 A2 D4 D3 D2},SP ; Fuel timing calculation with engine fault condition checking
 00018492: movea.l  #0x80c9d8,A2        
 00018498: movea.l  #0x8068c8,A3        
 0001849e: movea.l  #0x8068c8,A4        
@@ -31441,7 +31441,7 @@
 0002bc1e: move.w   (A0),(A1)           
 0002bc20: move.w   #0x1,(0x0080c9b0).l 
 0002bc28: rts      <UNSUPPORTED>       
-0002bc2a: movea.l  #0x80707e,A1        
+0002bc2a: movea.l  #0x80707e,A1         ; VP44 status monitoring and RPM derate control
 0002bc30: movea.l  #0x809d5a,A0        
 0002bc36: move.w   (0x008035ec).l,D0w  
 0002bc3c: andi.l   #0x80,D0            
@@ -32469,7 +32469,7 @@
 0002cb64: movea.l  (SP)+,A2            
 0002cb66: unlk     A6                  
 0002cb68: rts      <UNSUPPORTED>       
-0002cb6a: link.w   A6,-0xc             
+0002cb6a: link.w   A6,-0xc              ; Boost pressure control with EPF and water-in-fuel diagnostics
 0002cb6e: movem.l  {  A5 A4 A3 A2 D4 D3 D2},SP
 0002cb72: lea      (-0x8,A6),A2        
 0002cb76: movea.l  #0x803268,A3        
