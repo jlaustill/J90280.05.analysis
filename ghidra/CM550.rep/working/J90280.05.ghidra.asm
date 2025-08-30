@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Fri Aug 29 23:41:27 MDT 2025
+; Sat Aug 30 00:01:28 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -32211,7 +32211,7 @@
 0002c7d6: movem.l  -0x1c,A6,{  D2 D3 A2 A3 A4 A5}
 0002c7dc: unlk     A6                  
 0002c7de: rts      <UNSUPPORTED>       
-0002c7e0: move.l   A2,-(SP)            
+0002c7e0: move.l   A2,-(SP)             ; Update active engine protection threshold values
 0002c7e2: movea.l  #0x8096e0,A2        
 0002c7e8: movea.l  #0x8096ba,A1        
 0002c7ee: movea.l  #0x8096ce,A0        
@@ -32356,7 +32356,7 @@
 0002c992: move.w   D2w,D0w             
 0002c994: movem.l  SP,{  D2 D3}        
 0002c998: rts      <UNSUPPORTED>       
-0002c99a: link.w   A6,-0x14            
+0002c99a: link.w   A6,-0x14             ; Initialize engine protection thresholds and monitoring systems
 0002c99e: movem.l  {  A5 A4 A3 A2 D3 D2},SP
 0002c9a2: lea      (-0x14,A6),A2       
 0002c9a6: movea.l  #0x8096d8,A3        

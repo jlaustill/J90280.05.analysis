@@ -4244,3 +4244,27 @@ address,label_name,comment
 0x00808156,ramp_rate_from_initial_derate_to_full_engine_speed_derate_on_i_0_100,"RAMP RATE FROM INITIAL DERATE TO FULL ENGINE SPEED DERATE ON I"
 0x01000648,maximum_allowable_engine_speed_when_vehicle_speed_is_below_1400_4500,"MAXIMUM ALLOWABLE ENGINE SPEED WHEN VEHICLE SPEED IS BELOW"
 0x01000646,percent_fuel_above_which_the_engine_will_be_derated_by_the_z_0_127_5,"PERCENT FUEL ABOVE WHICH THE ENGINE WILL BE DERATED BY THE Z"
+0x0002c99a,engine_protection_init,Initialize engine protection thresholds and monitoring systems
+0x008096c0,oil_pressure_protection_active,Oil pressure protection system active flag
+0x008096c4,boost_pressure_protection_active,Boost pressure protection system active flag  
+0x008096b8,water_in_fuel_protection_active,Water-in-fuel protection system active flag
+0x008096d2,oil_pressure_monitor_value,Current oil pressure monitoring value
+0x008096de,boost_pressure_monitor_value,Current boost pressure monitoring value
+0x008096be,intake_temp_protection_calc1,Intake temperature protection calculation buffer 1
+0x008096d8,intake_temp_protection_calc2,Intake temperature protection calculation buffer 2
+0x008096dc,oil_pressure_threshold_active,Active oil pressure protection threshold
+0x008096d0,oil_pressure_threshold_backup,Backup oil pressure protection threshold
+0x008096d6,intake_temp_threshold_active,Active intake temperature protection threshold
+0x008096bc,intake_temp_threshold_backup,Backup intake temperature protection threshold
+0x008096ce,oil_pressure_timer,Oil pressure protection timer
+0x008096ba,boost_pressure_timer,Boost pressure protection timer
+0x008096d4,intake_temp_calc_result,Intake temperature protection calculation result
+0x008096da,boost_pressure_calc_result,Boost pressure protection calculation result
+0x00803212,protection_table_size,Engine protection parameter table size
+0x0080321e,protection_status_flag1,Engine protection status flag 1
+0x00803220,protection_status_flag2,Engine protection status flag 2
+0x0002c7e0,update_engine_protection_thresholds,Update active engine protection threshold values
+0x008096e0,selected_oil_pressure_threshold,Currently selected oil pressure protection threshold
+0x0080c7c6,oil_pressure_mode_selector,Oil pressure protection mode selector (0=min, 1=custom, 2=shutdown)
+0x0080709e,custom_oil_pressure_threshold,Custom oil pressure protection threshold value
+0x0080969a,protection_system_enable_flag,Master engine protection system enable flag

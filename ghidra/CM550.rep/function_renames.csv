@@ -104,3 +104,5 @@ address,newName
 0x1c3d2,messageErrorHandler
 0x2b452,incrementCounters
 0x1c8b6,unknownMessageHandler
+0x0002c99a,engine_protection_init
+0x0002c7e0,update_engine_protection_thresholds
