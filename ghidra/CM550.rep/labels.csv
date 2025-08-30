@@ -1,4 +1,5 @@
 address,label_name,comment
+0x0080035c,scheduler_phase_pointer,Pointer to current scheduler phase entry in the phase table
 0x0100003A,cummins_module_id,Cummins module identifier field (EN=0x454E)
 0x3662E,module_lookup_table_en,Module ID lookup table entry for EN family
 0x0000ec6c,mc68336_watchdog_init_2,MC68336 watchdog initialization sequence 2
@@ -4493,3 +4494,23 @@ address,label_name,comment
 0x0080d166,oil_pressure_rpm_limit_reference,Reference value for oil pressure RPM limiting
 0x00808474,rpm_comparison_threshold,RPM comparison threshold for protection systems
 0x0080c9c4,fuel_delivery_offset_correction,Offset correction for final fuel delivery
+0x008091ca,rpm_delta_value,Delta between current and previous RPM readings
+0x0080000c,previous_engine_rpm,Previous engine RPM value for delta calculation
+0x008091cc,rpm_rate_limited_value,RPM value after rate limiting applied
+0x008091ce,rpm_rate_secondary_calc,Secondary RPM rate calculation result
+0x008062fa,rpm_rate_min_threshold,Minimum RPM rate limit threshold
+0x008062fb,rpm_rate_max_threshold,Maximum RPM rate limit threshold (from dma_desc_dest_addr1)
+0x008091ca,rpm_delta_value,Delta between current and previous RPM readings
+0x0080000c,previous_engine_rpm,Previous engine RPM value for delta calculation
+0x008091cc,rpm_rate_limited_value,RPM value after rate limiting applied
+0x008091ce,rpm_rate_secondary_calc,Secondary RPM rate calculation result
+0x008091da,rpm_threshold_exceeded_flag,Flag indicating RPM threshold was exceeded
+0x00800002,rpm_control_timer_1,Timer 1 for RPM-based control logic
+0x00800006,rpm_control_timer_2,Timer 2 for RPM-based control logic
+0x008091d0,rpm_system_mode_flag,RPM-based system mode control flag
+0x008091de,rpm_control_override_flag,Override flag for RPM control logic
+0x008062d8,rpm_threshold_lower,Lower RPM threshold for system control
+0x008062dc,rpm_threshold_upper,Upper RPM threshold for system control
+0x008062da,rpm_secondary_threshold,Secondary RPM threshold for control logic
+0x008062fe,rpm_timer_reload_value_1,Timer reload value 1 for RPM control
+0x008062d4,rpm_timer_reload_value_2,Timer reload value 2 for RPM control

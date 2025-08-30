@@ -130,3 +130,22 @@ address,newName
 0x0001892a,fuel_limit_arbitrator
 0x0001863e,fuel_delivery_controller
 0x00017334,engine_control_cycle
+0x000356f8,coreTableInterpolation
+0x000173f4,empty_debug_hook
+0x0000a16a,rpm_rate_limiter
+0x008091ca,rpm_delta_value,Delta between current and previous RPM readings
+0x0080000c,previous_engine_rpm,Previous engine RPM value for delta calculation
+0x008091cc,rpm_rate_limited_value,RPM value after rate limiting applied
+0x008091ce,rpm_rate_secondary_calc,Secondary RPM rate calculation result
+0x0000a204,rpm_system_state_controller
+0x008091da,rpm_threshold_exceeded_flag,Flag indicating RPM threshold was exceeded
+0x00800002,rpm_control_timer_1,Timer 1 for RPM-based control logic
+0x00800006,rpm_control_timer_2,Timer 2 for RPM-based control logic
+0x008091d0,rpm_system_mode_flag,RPM-based system mode control flag
+0x008091de,rpm_control_override_flag,Override flag for RPM control logic
+0x008062d8,rpm_threshold_lower,Lower RPM threshold for system control
+0x008062dc,rpm_threshold_upper,Upper RPM threshold for system control
+0x008062da,rpm_secondary_threshold,Secondary RPM threshold for control logic
+0x008062fe,rpm_timer_reload_value_1,Timer reload value 1 for RPM control
+0x008062d4,rpm_timer_reload_value_2,Timer reload value 2 for RPM control
+0x00017440,rpm_control_system
