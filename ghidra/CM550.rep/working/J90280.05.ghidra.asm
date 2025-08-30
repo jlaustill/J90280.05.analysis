@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sat Aug 30 09:22:57 MDT 2025
+; Sat Aug 30 10:11:43 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -13225,7 +13225,7 @@
 00016872: movea.l  #0x80c7c8,A5        
 00016878: move.w   (0x008035ec).l,D0w  
 0001687e: andi.w   #0x10,D0w           
-00016882: beq.w    0x00016aec          
+00016882: beq.w    0x00016aec           ; VP44 status flags check - branch if bit 0x10 not set
 00016886: tst.w    (0x0080379c).l      
 0001688c: beq.b    0x000168be          
 0001688e: move.w   (0x0080379a).l,(A3) 
@@ -13233,13 +13233,13 @@
 0001689a: bne.b    0x000168a2          
 0001689c: clr.w    (A2)                
 0001689e: bra.w    0x00016ae0          
-000168a2: cmpi.w   #0x2,(0x0080379a).l 
+000168a2: cmpi.w   #0x2,(0x0080379a).l  ; Oil pressure override mode == 2 check
 000168aa: bne.b    0x000168b4          
 000168ac: move.w   #0x4000,(A2)        
 000168b0: bra.w    0x00016ae0          
-000168b4: move.w   (0x00807f18).l,(A2) 
+000168b4: move.w   (0x00807f18).l,(A2)  ; Default ramp rate assignment for mode 1
 000168ba: bra.w    0x00016ae0          
-000168be: cmpi.w   #0x2,(A3)           
+000168be: cmpi.w   #0x2,(A3)            ; Normal mode RPM threshold setup section
 000168c2: bne.b    0x000168d0          
 000168c4: move.w   (0x00807f22).l,(0x00800342).l
 000168ce: bra.b    0x000168da          
@@ -13252,7 +13252,7 @@
 000168f0: bcc.b    0x000168f8          
 000168f2: addq.w   0x1,(A5)            
 000168f4: bra.b    0x000168f8          
-000168f6: clr.w    (A5)                
+000168f6: clr.w    (A5)                 ; Reset engine position sync counter to zero
 000168f8: move.w   (0x00809d4c).l,D0w  
 000168fe: cmp.w    (0x00807f16).l,D0w  
 00016904: bcc.b    0x00016910          
@@ -13266,7 +13266,7 @@
 00016922: bcc.b    0x00016932          
 00016924: addq.w   0x1,(0x0080c7ca).l  
 0001692a: bra.b    0x00016932          
-0001692c: clr.w    (0x0080c7ca).l      
+0001692c: clr.w    (0x0080c7ca).l       ; Reset fuel ramp timing counter to zero
 00016932: move.w   (0x00800344).l,D0w  
 00016938: sub.w    (0x0080c408).l,D0w  
 0001693e: move.w   D0w,(0x00800346).l  
@@ -13299,7 +13299,7 @@
 000169aa: cmp.w    D1w,D0w             
 000169ac: beq.w    0x00016a9e          
 000169b0: bra.w    0x00016adc          
-000169b4: moveq    0x0,D0              
+000169b4: moveq    0x0,D0               ; Oil pressure mode 0 (normal) processing
 000169b6: move.w   (0x0080c9d8).l,D0w  
 000169bc: moveq    0x0,D1              
 000169be: move.w   (0x00807f24).l,D1w  
@@ -13344,7 +13344,7 @@
 00016a6c: move.w   (0x00807f18).l,(A2) 
 00016a72: move.w   #0x1,(A3)           
 00016a76: bra.b    0x00016ae0          
-00016a78: tst.w    (0x0080c7ce).l      
+00016a78: tst.w    (0x0080c7ce).l       ; Oil pressure mode 2 (high-pressure startup) processing
 00016a7e: bne.b    0x00016a98          
 00016a80: move.w   (0x8c,A4),D0w       
 00016a84: cmp.w    (0x00807f1e).l,D0w  
@@ -13355,7 +13355,7 @@
 00016a98: clr.w    (A2)                
 00016a9a: clr.w    (A3)                
 00016a9c: bra.b    0x00016ae0          
-00016a9e: tst.w    (0x0080c7cc).l      
+00016a9e: tst.w    (0x0080c7cc).l       ; Oil pressure mode 1 (crank exit ramp) processing
 00016aa4: bne.b    0x00016ad6          
 00016aa6: move.w   (0x0080965a).l,D0w  
 00016aac: cmp.w    (0x00807f0e).l,D0w  
@@ -13374,10 +13374,10 @@
 00016ada: bra.b    0x00016ae0          
 00016adc: clr.w    (A2)                
 00016ade: clr.w    (A3)                
-00016ae0: move.w   #0x4000,D0w         
+00016ae0: move.w   #0x4000,D0w          ; Final fuel timing mode value calculation (0x4000 - control_value)
 00016ae4: sub.w    (A2),D0w            
 00016ae6: move.w   D0w,(0x0080c9aa).l  
-00016aec: movem.l  SP,{  A2 A3 A4 A5}  
+00016aec: movem.l  SP,{  A2 A3 A4 A5}   ; Function exit point - restore registers and return
 00016af0: rts      <UNSUPPORTED>       
 00016af2: clr.w    (0x0080c7c6).l      
 00016af8: move.l   #-0x80000000,(0x0080033e).l
@@ -13390,7 +13390,7 @@
 00016b24: movea.l  #0x807f2e,A0        
 00016b2a: move.w   (0x008035ec).l,D0w  
 00016b30: andi.w   #0x10,D0w           
-00016b34: beq.b    0x00016ba2          
+00016b34: beq.b    0x00016ba2           ; VP44 status check - branch if bit 0x10 not set
 00016b36: move.w   (0x0080c7c6).l,D0w  
 00016b3c: ext.l    D0                  
 00016b3e: tst.w    D0w                 
@@ -13402,25 +13402,25 @@
 00016b4a: cmp.w    D1w,D0w             
 00016b4c: beq.b    0x00016b7c          
 00016b4e: bra.b    0x00016b94          
-00016b50: move.l   #0x807f2a,(A1)      
+00016b50: move.l   #0x807f2a,(A1)       ; Mode 0 parameter pointer setup (normal operation)
 00016b56: move.l   #0x807f2c,(A3)      
 00016b5c: move.l   A0,(A2)             
 00016b5e: movem.l  SP,{  A2 A3}        
 00016b62: rts      <UNSUPPORTED>       
-00016b64: move.l   #0x807f30,(A1)      
+00016b64: move.l   #0x807f30,(A1)       ; Mode 2 parameter pointer setup (high-pressure startup)
 00016b6a: move.l   #0x807f32,(A3)      
 00016b70: move.l   #0x807f34,(A2)      
 00016b76: movem.l  SP,{  A2 A3}        
 00016b7a: rts      <UNSUPPORTED>       
-00016b7c: move.l   #0x807f36,(A1)      
+00016b7c: move.l   #0x807f36,(A1)       ; Mode 1 parameter pointer setup (crank exit ramp)
 00016b82: move.l   #0x807f38,(A3)      
 00016b88: move.l   #0x807f3a,(A2)      
 00016b8e: movem.l  SP,{  A2 A3}        
 00016b92: rts      <UNSUPPORTED>       
-00016b94: move.l   #0x807f2a,(A1)      
+00016b94: move.l   #0x807f2a,(A1)       ; Default parameter pointer setup (fallback)
 00016b9a: move.l   #0x807f2c,(A3)      
 00016ba0: move.l   A0,(A2)             
-00016ba2: movem.l  SP,{  A2 A3}        
+00016ba2: movem.l  SP,{  A2 A3}         ; Parameter pointer config function exit
 00016ba6: rts      <UNSUPPORTED>       
 00016ba8: movem.l  {  A4 A3 A2},SP     
 00016bac: movea.l  #0x80c5c0,A3        
@@ -40034,11 +40034,11 @@
 000341f4: movea.l  #0x8034bb,A3        
 000341fa: movea.l  #0x80c404,A4        
 00034200: movea.l  #0x80348f,A5        
-00034206: tst.b    (0x008034a1).l      
+00034206: tst.b    (0x008034a1).l       ; VP44 FSO fault detection enable check
 0003420c: beq.w    0x000342f0          
-00034210: btst.b   #0x0,(0x00809a5f).l 
+00034210: btst.b   #0x0,(0x00809a5f).l  ; VP44 status bit 0 check for FSO monitoring
 00034218: beq.w    0x000342be          
-0003421c: move.w   (A4),D0w            
+0003421c: move.w   (A4),D0w             ; Fuel demand range check for FSO fault detection
 0003421e: cmp.w    (0x0080741e).l,D0w  
 00034224: bls.w    0x0003426c          
 00034228: move.w   (A4),D0w            
@@ -40057,7 +40057,7 @@
 00034262: move.b   #0x1,(A5)           
 00034266: clr.b    (A3)                
 00034268: bra.w    0x000342b2          
-0003426c: move.w   (A4),D0w            
+0003426c: move.w   (A4),D0w             ; High fuel demand range FSO fault check
 0003426e: cmp.w    (0x0080743c).l,D0w  
 00034274: bls.w    0x000342ae          
 00034278: addq.b   0x1,(A2)            
@@ -40073,12 +40073,12 @@
 000342a6: move.b   #0x1,(A5)           
 000342aa: clr.b    (A2)                
 000342ac: bra.b    0x000342b2          
-000342ae: clr.b    (A3)                
+000342ae: clr.b    (A3)                 ; Reset both FSO fault counters
 000342b0: clr.b    (A2)                
-000342b2: clr.b    (0x008034bd).l      
+000342b2: clr.b    (0x008034bd).l       ; Reset FSO recovery counter and exit
 000342b8: movem.l  SP,{  A2 A3 A4 A5}  
 000342bc: rts      <UNSUPPORTED>       
-000342be: addq.b   0x1,(0x008034bd).l  
+000342be: addq.b   0x1,(0x008034bd).l   ; FSO fault recovery mode processing
 000342c4: move.b   (0x008034bd).l,D0b  
 000342ca: cmp.b    (0x00807425).l,D0b  
 000342d0: bcs.w    0x000342ec          
@@ -40090,18 +40090,18 @@
 000342e6: clr.b    (0x008034bd).l      
 000342ec: clr.b    (A3)                
 000342ee: clr.b    (A2)                
-000342f0: movem.l  SP,{  A2 A3 A4 A5}  
+000342f0: movem.l  SP,{  A2 A3 A4 A5}   ; VP44 FSO fault detection function exit
 000342f4: rts      <UNSUPPORTED>       
 000342f6: movem.l  {  A5 A4 A3 A2},SP  
 000342fa: movea.l  #0x8034bf,A2        
 00034300: movea.l  #0x8034be,A3        
 00034306: movea.l  #0x80c404,A4        
 0003430c: movea.l  #0x809af8,A5        
-00034312: tst.b    (0x008034a1).l      
+00034312: tst.b    (0x008034a1).l       ; VP44 FSO bit1 fault detection enable check
 00034318: beq.w    0x000343f2          
-0003431c: btst.b   #0x1,(0x00809a5f).l 
+0003431c: btst.b   #0x1,(0x00809a5f).l  ; VP44 status bit 1 check for FSO monitoring
 00034324: beq.w    0x000343be          
-00034328: move.w   (A4),D0w            
+00034328: move.w   (A4),D0w             ; Fuel demand range check for FSO bit1 fault detection
 0003432a: cmp.w    (0x0080741e).l,D0w  
 00034330: bls.w    0x00034372          
 00034334: move.w   (A4),D0w            
@@ -40119,7 +40119,7 @@
 00034366: move.w   (0x00807428).l,(A5) 
 0003436c: clr.b    (A3)                
 0003436e: bra.w    0x000343b2          
-00034372: move.w   (A4),D0w            
+00034372: move.w   (A4),D0w             ; High fuel demand range FSO bit1 fault check
 00034374: cmp.w    (0x0080743c).l,D0w  
 0003437a: bls.w    0x000343ae          
 0003437e: addq.b   0x1,(A2)            
@@ -40134,12 +40134,12 @@
 000343a4: move.w   (0x00807428).l,(A5) 
 000343aa: clr.b    (A2)                
 000343ac: bra.b    0x000343b2          
-000343ae: clr.b    (A3)                
+000343ae: clr.b    (A3)                 ; Reset both FSO bit1 fault counters
 000343b0: clr.b    (A2)                
-000343b2: clr.b    (0x008034c0).l      
+000343b2: clr.b    (0x008034c0).l       ; Reset FSO bit1 recovery counter and exit
 000343b8: movem.l  SP,{  A2 A3 A4 A5}  
 000343bc: rts      <UNSUPPORTED>       
-000343be: addq.b   0x1,(0x008034c0).l  
+000343be: addq.b   0x1,(0x008034c0).l   ; FSO bit1 fault recovery mode processing
 000343c4: move.b   (0x008034c0).l,D0b  
 000343ca: cmp.b    (0x00807425).l,D0b  
 000343d0: bcs.w    0x000343ee          
@@ -40151,7 +40151,7 @@
 000343e8: clr.b    (0x008034c0).l      
 000343ee: clr.b    (A3)                
 000343f0: clr.b    (A2)                
-000343f2: movem.l  SP,{  A2 A3 A4 A5}  
+000343f2: movem.l  SP,{  A2 A3 A4 A5}   ; VP44 FSO bit1 fault detection function exit
 000343f6: rts      <UNSUPPORTED>       
 000343f8: movem.l  {  A5 A4 A3 A2},SP  
 000343fc: movea.l  #0x8034c2,A2        

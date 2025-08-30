@@ -149,3 +149,8 @@ address,newName
 0x008062fe,rpm_timer_reload_value_1,Timer reload value 1 for RPM control
 0x008062d4,rpm_timer_reload_value_2,Timer reload value 2 for RPM control
 0x00017440,rpm_control_system
+0x0001685c,fuelTimingOilPressureModeController
+0x00016b0e,oilPressureModeParameterPointerConfig
+0x000341ea,vp44FsoCircuitFaultDetection
+0x000342f6,vp44FsoCircuitFaultDetectionBit1
+0x000174ae,vp44ControlSystemCoordinator

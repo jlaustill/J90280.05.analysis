@@ -13,6 +13,39 @@ address,label_name,comment
 0x1C85A,switch_case_16,VP44 handler case - reads byte 0
 0x1C88E,call_vp44_fuel_handler,Branch to VP44 fuel handler (bsrw 0x1c538)
 0x1C538,vp44_handler_entry,VP44 fuel temperature processing entry point
+0x00016882,fuel_timing_vp44_status_check,VP44 status flags check - branch if bit 0x10 not set
+0x000168be,fuel_timing_normal_mode_setup,Normal mode RPM threshold setup section
+0x000168a2,oil_pressure_mode_check_2,Oil pressure override mode == 2 check
+0x000168b4,oil_pressure_default_ramp_rate,Default ramp rate assignment for mode 1
+0x000168f6,reset_sync_counter,Reset engine position sync counter to zero
+0x0001692c,reset_fuel_ramp_counter,Reset fuel ramp timing counter to zero
+0x000169b4,oil_pressure_mode_0_handler,Oil pressure mode 0 (normal) processing
+0x00016a78,oil_pressure_mode_2_handler,Oil pressure mode 2 (high-pressure startup) processing
+0x00016a9e,oil_pressure_mode_1_handler,Oil pressure mode 1 (crank exit ramp) processing
+0x00016ae0,fuel_timing_final_calculation,Final fuel timing mode value calculation (0x4000 - control_value)
+0x00016aec,fuel_timing_function_exit,Function exit point - restore registers and return
+0x00016b34,param_pointer_vp44_status_check,VP44 status check - branch if bit 0x10 not set
+0x00016b50,param_pointer_mode_0_setup,Mode 0 parameter pointer setup (normal operation)
+0x00016b64,param_pointer_mode_2_setup,Mode 2 parameter pointer setup (high-pressure startup)
+0x00016b7c,param_pointer_mode_1_setup,Mode 1 parameter pointer setup (crank exit ramp)
+0x00016b94,param_pointer_default_setup,Default parameter pointer setup (fallback)
+0x00016ba2,param_pointer_function_exit,Parameter pointer config function exit
+0x00034206,vp44_fso_detection_enable_check,VP44 FSO fault detection enable check
+0x00034210,vp44_fso_status_bit_check,VP44 status bit 0 check for FSO monitoring
+0x0003421c,vp44_fso_fuel_demand_range_check,Fuel demand range check for FSO fault detection
+0x0003426c,vp44_fso_high_range_check,High fuel demand range FSO fault check
+0x000342ae,vp44_fso_counters_reset,Reset both FSO fault counters
+0x000342b2,vp44_fso_recovery_counter_reset,Reset FSO recovery counter and exit
+0x000342be,vp44_fso_recovery_mode,FSO fault recovery mode processing
+0x000342f0,vp44_fso_function_exit,VP44 FSO fault detection function exit
+0x00034312,vp44_fso_bit1_detection_enable_check,VP44 FSO bit1 fault detection enable check
+0x0003431c,vp44_fso_bit1_status_bit_check,VP44 status bit 1 check for FSO monitoring
+0x00034328,vp44_fso_bit1_fuel_demand_range_check,Fuel demand range check for FSO bit1 fault detection
+0x00034372,vp44_fso_bit1_high_range_check,High fuel demand range FSO bit1 fault check
+0x000343ae,vp44_fso_bit1_counters_reset,Reset both FSO bit1 fault counters
+0x000343b2,vp44_fso_bit1_recovery_counter_reset,Reset FSO bit1 recovery counter and exit
+0x000343be,vp44_fso_bit1_recovery_mode,FSO bit1 fault recovery mode processing
+0x000343f2,vp44_fso_bit1_function_exit,VP44 FSO bit1 fault detection function exit
 0x2A428,vp44_data_packing_start,Begin VP44 message data field construction
 0x24984,vp44_fuel_high_calc,Calculate VP44 fuel amount high byte (param_table_aux + 125)
 0x24986,vp44_fuel_low_calc,Calculate VP44 fuel amount low byte (param_table_main + 125)

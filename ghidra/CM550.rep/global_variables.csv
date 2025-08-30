@@ -18,6 +18,22 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x80d49c,diagnostic_status_register,word,Diagnostic operation status and mode flags,2,0,,flag
 0x8037b6,can_priority_table_start,byte,CAN message priority lookup table start (J1939 priority values),1,0,,lookup
 0x8037cc,can_priority_dm983,byte,CAN priority for Cummins DM-983 diagnostic message,1,0,,data
+0x0080379a,oil_pressure_override_mode,word,Oil pressure mode override selector (0=normal 1=ramp 2=high-pressure),2,0,,flag
+0x0080379c,oil_pressure_mode_active_flag,word,Flag indicating oil pressure control mode is active,2,0,,flag
+0x0080c7c4,fuel_timing_control_value,word,Primary fuel timing control value for oil pressure modes,2,0,,value
+0x0080cc5e,param_pointer_set_1,dword,Parameter pointer set 1 - points to different param tables based on oil pressure mode,4,0,,pointer
+0x0080cc62,param_pointer_set_2,dword,Parameter pointer set 2 - points to different param tables based on oil pressure mode,4,0,,pointer
+0x0080cc66,param_pointer_set_3,dword,Parameter pointer set 3 - points to different param tables based on oil pressure mode,4,0,,pointer
+0x008034a1,vp44_fso_fault_detection_enable,byte,VP44 FSO circuit fault detection enable flag,1,0,,flag
+0x008034bb,vp44_fso_range1_fault_counter,byte,VP44 FSO range 1 fault detection counter,1,0,,counter
+0x008034bc,vp44_fso_range2_fault_counter,byte,VP44 FSO range 2 fault detection counter,1,0,,counter
+0x008034bd,vp44_fso_recovery_counter,byte,VP44 FSO fault recovery counter,1,0,,counter
+0x008034a0,vp44_fso_fault_active_flag,byte,VP44 FSO fault active status flag,1,0,,flag
+0x0080348f,vp44_fso_circuit_fault_flag,byte,VP44 FSO circuit fault detected flag,1,0,,flag
+0x008034be,vp44_fso_bit1_range1_fault_counter,byte,VP44 FSO bit1 range 1 fault detection counter,1,0,,counter
+0x008034bf,vp44_fso_bit1_range2_fault_counter,byte,VP44 FSO bit1 range 2 fault detection counter,1,0,,counter
+0x008034c0,vp44_fso_bit1_recovery_counter,byte,VP44 FSO bit1 fault recovery counter,1,0,,counter
+0x00809a5f,vp44_status_register,byte,VP44 status register from CAN message byte 7 - see VP44_STATUS_BITS enum for bit definitions,1,0,,flag
 0x80cfc3,j1939_source_address_primary,byte,J1939 source address for primary ECU (0xC3 = 195 decimal),1,0,,address
 0x80cfcd,j1939_source_address_secondary,byte,J1939 source address for secondary functions (0xCD = 205 decimal),1,0,,address
 0x80304e,diagnostic_status_data,byte,Diagnostic status data buffer (0xF0/F4/F8 based on conditions),1,0,,data
