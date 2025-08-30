@@ -91,7 +91,7 @@ For addresses in memory gaps:
 Use objdump for complete firmware analysis:
 
 ```bash
-# Use the proven working method
+# Use the proven working2 method
 ./scripts/objdump_dump.sh
 ```
 

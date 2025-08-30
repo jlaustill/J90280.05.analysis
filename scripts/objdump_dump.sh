@@ -1,6 +1,6 @@
 #!/bin/bash
 # Complete Firmware Disassembly using objdump
-# Generates working/J90280.05.objdump.asm
+# Generates working2/J90280.05.objdump.asm
 
 set -e
 
@@ -15,7 +15,7 @@ echo "Output: $OUTPUT_FILE"
 echo "Started: $(date)"
 echo ""
 
-# Create working directory
+# Create working2 directory
 mkdir -p "$PROJECT_DIR/working"
 
 # Check if firmware exists

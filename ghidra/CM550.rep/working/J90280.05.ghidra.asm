@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Wed Aug 27 18:30:10 MDT 2025
+; Fri Aug 29 23:41:27 MDT 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -268,6 +268,12 @@
 0000a596: rts      <UNSUPPORTED>       
 0000a598: movea.l  #0x80001a,A0        
 0000a59e: move.w   #0x2,(0x0080001a).l 
+; Constant: DMA_SOURCE_ADDR_2 = 0x80632C
+0000a5a6: move.l   #0x80632c,(0x2,A0)   ; DMA_SOURCE_ADDR_2 = 0x80632C (DMA transfer source address 2)
+; Constant: DMA_DEST_ADDR_2 = 0x806340
+0000a5ae: move.l   #0x806340,(0x8,A0)   ; DMA_DEST_ADDR_2 = 0x806340 (DMA transfer destination address 2)
+0000a5b6: move.w   #0x400,(0x008091c6).l
+0000a5be: rts      <UNSUPPORTED>       
 0000a5c0: move.w   #0x1,(0x008091e0).l 
 0000a5c8: move.w   (0x008037b4).l,(0x008091c8).l
 0000a5d2: rts      <UNSUPPORTED>       
@@ -949,6 +955,10 @@
 0000b080: move.w   #0x2,(0x8,A1)       
 0000b086: move.l   #0x806e5a,(0x10,A1) 
 0000b08e: move.w   (0x0080926e).l,(0x6,A0)
+0000b096: move.l   #0x808862,(0x2,A0)  
+0000b09e: move.l   #0x808876,(0x8,A0)  
+0000b0a6: move.w   #0x2,(0x00800064).l 
+0000b0ae: rts      <UNSUPPORTED>       
 0000b0b0: movea.l  #0x80d494,A1        
 0000b0b6: movea.l  #0x809658,A0        
 0000b0bc: move.w   (A0),D0w            
@@ -1277,6 +1287,9 @@
 0000b572: rts      <UNSUPPORTED>       
 0000b574: movea.l  #0x800096,A0        
 0000b57a: move.w   #0x2,(0x00800096).l 
+0000b582: move.l   #0x807886,(0x2,A0)  
+0000b58a: move.l   #0x807892,(0x8,A0)  
+0000b592: rts      <UNSUPPORTED>       
 0000b594: movem.l  {  A5 A4 A3 A2 D2},SP
 0000b598: movea.l  #0x8000a8,A2        
 0000b59e: movea.l  #0x809cfe,A3        
@@ -4936,7 +4949,6 @@
 0000ec0c: move.w   D0w,D2w             
 0000ec0e: cmp.w    (0x00803500).l,D2w  
 0000ec14: beq.b    0x0000ec28          
-0000ec16: cmpi.w   #-0x5e5f,(0x00005e42).l
 0000ec1e: beq.b    0x0000ec28          
 0000ec20: moveq    0x1,D0              
 0000ec22: movem.l  SP,{  D2 A2 A3 A4}  
@@ -16160,16 +16172,6 @@
 0001973c: addq.w   0x1,(0x00800418).l  
 00019742: movem.l  SP,{ D0 D1 A0 A1}   
 00019746: rte      <UNSUPPORTED>       
-0001974a: movea.l  #0x80041a,A0        
-00019750: movea.l  #0x19738,A2         
-00019756: movea.l  A0,A1               
-00019758: bra.b    0x0001975c          
-0001975a: move.w   (A2)+,(A1)+         
-0001975c: cmpa.l   #0x19748,A2         
-00019762: bcs.b    0x0001975a          
-00019764: move.l   A0,(0x00808e3e).l   
-0001976a: movea.l  (SP)+,A2            
-0001976c: rts      <UNSUPPORTED>       
 0001976e: movem.l  {  A1 A0 D1 D0},SP  
 00019772: addq.w   0x1,(0x0080061a).l  
 00019778: movem.l  SP,{ D0 D1 A0 A1}   
@@ -22591,6 +22593,14 @@
 0001f23e: movea.l  #0x801742,A1        
 0001f244: movea.l  #0x801736,A0        
 0001f24a: move.w   (0x0080c408).l,(0x6,A0)
+0001f252: move.l   #0x80883a,(0x2,A0)  
+0001f25a: move.l   #0x80884e,(0x8,A0)  
+0001f262: move.w   #0x2,(0x00801736).l 
+0001f26a: move.w   (0x0080926e).l,(0x6,A1)
+0001f272: move.l   #0x808862,(0x2,A1)  
+0001f27a: move.l   #0x808876,(0x8,A1)  
+0001f282: move.w   #0x2,(0x00801742).l 
+0001f28a: rts      <UNSUPPORTED>       
 0001f28c: clr.w    (0x0080d0b4).l      
 0001f292: clr.w    (0x0080d050).l      
 0001f298: clr.w    (0x0080d0b2).l      
@@ -23855,37 +23865,6 @@
 000203f2: movem.l  -0x1c,A6,{  D2 D3 D4 D5 A2 A3}
 000203f8: unlk     A6                  
 000203fa: rts      <UNSUPPORTED>       
-00020404: movea.l  #0x8088be,A1        
-0002040a: movea.l  #0x80c404,A0        
-00020410: move.w   (A0),D0w            
-00020412: mulu.w   (0x008088bc).l,D0   
-00020418: lsr.l    #0x4,D0             
-0002041a: moveq    0x0,D1              
-0002041c: move.w   (0x008088ba).l,D1w  
-00020422: add.l    D1,D0               
-00020424: moveq    0x0,D1              
-00020426: move.w   (A1),D1w            
-00020428: add.l    D1,D0               
-0002042a: bge.b    0x00020430          
-0002042c: moveq    0xf,D1              
-0002042e: add.l    D1,D0               
-00020430: asr.l    #0x4,D0             
-00020432: move.w   D0w,(0x0080d0cc).l  
-00020438: move.w   (A0),D0w            
-0002043a: mulu.w   (0x008088b8).l,D0   
-00020440: lsr.l    #0x4,D0             
-00020442: moveq    0x0,D1              
-00020444: move.w   (0x008088b6).l,D1w  
-0002044a: add.l    D1,D0               
-0002044c: moveq    0x0,D1              
-0002044e: move.w   (A1),D1w            
-00020450: add.l    D1,D0               
-00020452: bge.b    0x00020458          
-00020454: moveq    0xf,D1              
-00020456: add.l    D1,D0               
-00020458: asr.l    #0x4,D0             
-0002045a: move.w   D0w,(0x0080d0ca).l  
-00020460: rts      <UNSUPPORTED>       
 00020462: movea.l  #0x810000,A0        
 00020468: movea.l  A0,SP               
 0002046a: clr.b    (0x00fffc04).l      
@@ -25395,31 +25374,6 @@
 0002558c: movem.l  -0x20,A6,{  D2 D3 D4 D5 A2 A3 A4}
 00025592: unlk     A6                  
 00025594: rts      <UNSUPPORTED>       
-00025596: move.w   #0x604f,(0x00fffa00).l
-0002559e: move.w   #0x7f08,(0x00fffa04).l
-000255a6: move.b   #-0x57,(0x00fffa11).l
-000255ae: move.b   #-0x2,(0x00fffa15).l
-000255b6: move.b   #0x1,(0x00fffa17).l 
-000255be: move.b   #-0x1,(0x00fffa19).l
-000255c6: move.b   #-0x37,(0x00fffa1d).l
-000255ce: move.b   #0x30,(0x00fffa1f).l
-000255d6: move.b   #-0x62,(0x00fffa21).l
-000255de: move.w   #0x2bbf,(0x00fffa44).l
-000255e6: clr.w    (0x00fffa46).l      
-000255ec: move.w   #0x5,(0x00fffa48).l 
-000255f4: move.w   #0x6830,(0x00fffa4a).l
-000255fc: move.w   #-0x7ffd,(0x00fffa4c).l
-00025604: move.w   #0x5830,(0x00fffa4e).l
-0002560c: move.w   #-0x7ffd,(0x00fffa50).l
-00025614: move.w   #0x3830,(0x00fffa52).l
-0002561c: move.w   #-0x30,(0x00fffa54).l
-00025624: move.w   #0x5830,(0x00fffa56).l
-0002562c: move.w   #0x5,(0x00fffa58).l 
-00025634: move.w   #0x7030,(0x00fffa5a).l
-0002563c: move.w   #-0x28,(0x00fffa5c).l
-00025644: move.w   #0x5bf0,(0x00fffa5e).l
-0002564c: move.w   #-0x38,(0x00fffa60).l
-00025654: move.w   #0x5bf0,(0x00fffa62).l
 0002565c: clr.w    (0x00fffa64).l      
 00025662: clr.w    (0x00fffa66).l      
 00025668: move.w   #-0x5,(0x00fffa68).l
@@ -36621,6 +36575,11 @@
 00030c44: move.w   #0x2,(0x8,A0)       
 00030c4a: move.l   #0x80735c,(0xa,A0)  
 00030c52: move.w   #0x2,(0x008033c2).l 
+00030c5a: move.l   #0x807352,(0x2,A0)  
+00030c62: move.l   #0x807366,(0x10,A0) 
+00030c6a: clr.w    (0x00809a34).l      
+00030c70: clr.w    (0x00809a32).l      
+00030c76: rts      <UNSUPPORTED>       
 00030c78: move.l   A2,-(SP)            
 00030c7a: movea.l  #0x8033c2,A2        
 00030c80: move.w   (0x00803614).l,D0w  
@@ -41689,4 +41648,4 @@
 00035938: unlk     A6                  
 0003593a: rts      <UNSUPPORTED>       
 
-; Export complete - 41674 instructions exported
+; Export complete - 41631 instructions exported

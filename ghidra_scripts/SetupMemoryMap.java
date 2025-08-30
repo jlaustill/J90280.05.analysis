@@ -63,18 +63,27 @@ public class SetupMemoryMap extends GhidraScript {
             createMemoryBlock(memory, "Internal_RAM", 0xFFFF00, 0x100, 
                             true, true, false, "Internal SRAM for stack/variables");
             
-            // 5. External Memory (Parameter System)
-            // Based on your parameter addresses (0x80xxxx range)
-            createMemoryBlock(memory, "External_Memory", 0x800000, 0x100000, 
-                            true, true, false, "External memory for sensor data, CAN buffers, lookup tables");
+            // 5. CalTerm Table Storage (split to avoid conflicts)
+            createMemoryBlock(memory, "CalTerm_Table_Storage", 0x006000, 0x2000, 
+                            true, true, false, "CalTerm table storage area for lookup tables and configuration data");
             
-            // 6. CalTerm Parameter Storage Area (0x00060000 range)
-            createMemoryBlock(memory, "CalTerm_Parameter_Storage", 0x00060000, 0x10000, 
-                            true, true, false, "CalTerm parameter storage area for lookup tables and configuration data");
+            // 6. CalTerm Parameter Memory (split around existing firmware blocks)
+            // Block A: Covers 0x040000-0x0FFFFF (wraps around existing firmware)
+            createMemoryBlock(memory, "CalTerm_Parameters_A", 0x040000, 0xC0000, 
+                            true, true, false, "CalTerm parameter memory - covers 0x008xxxxx range (part A)");
             
-            // 7. EEPROM Memory (Data Plate region)
-            createMemoryBlock(memory, "EEPROM_DataPlate", 0x01000000, 0x2000, 
-                            true, true, false, "8KB EEPROM containing Cummins data plate and configuration");
+            // Block B: Covers 0x100000-0xFFFFFF (0x0080xxxx runtime parameters)
+            createMemoryBlock(memory, "CalTerm_Parameters_B", 0x100000, 0xF00000, 
+                            true, true, false, "CalTerm parameter memory - covers 0x0080xxxx range (part B)");
+            
+            // 7. EEPROM Memory (split around existing block at 0x1000080-0x1000389)
+            // Block A: Before existing firmware block
+            createMemoryBlock(memory, "EEPROM_Data_A", 0x01000000, 0x80, 
+                            true, true, false, "EEPROM data plate area (before existing block)");
+            
+            // Block B: After existing firmware block  
+            createMemoryBlock(memory, "EEPROM_Data_B", 0x0100038A, 0x1C76, 
+                            true, true, false, "EEPROM data plate area (after existing block)");
             
             println("✓ Memory map configured");
             
@@ -87,14 +96,28 @@ public class SetupMemoryMap extends GhidraScript {
                                  boolean read, boolean write, boolean execute, String comment) {
         try {
             Address start = toAddr(startAddr);
+            Address end = toAddr(startAddr + size - 1);
             
-            // Check if block already exists
-            MemoryBlock existing = memory.getBlock(start);
-            if (existing != null) {
-                /* println("✓ " + name + " (0x" + Long.toHexString(startAddr).toUpperCase() + 
-                       " - 0x" + Long.toHexString(startAddr + size - 1).toUpperCase() + 
-                       "): Already exists"); */ // Commented out for clean output
-                return;
+            // Remove any overlapping blocks in this range, but preserve code blocks
+            MemoryBlock[] blocks = memory.getBlocks();
+            for (MemoryBlock block : blocks) {
+                if (block.getStart().compareTo(end) <= 0 && block.getEnd().compareTo(start) >= 0) {
+                    // Don't remove blocks that contain code (executable blocks with initialized data)
+                    if (block.isExecute() && block.isInitialized()) {
+                        println("⚠️ Skipping code block: " + block.getName() + " (contains firmware code)");
+                        continue;
+                    }
+                    // Don't remove the main program image
+                    if (block.getName().toLowerCase().contains("ram") && 
+                        block.getStart().getOffset() < 0x008000) {
+                        println("⚠️ Skipping program block: " + block.getName() + " (contains program code)");
+                        continue;
+                    }
+                    println("🗑️ Removing overlapping block: " + block.getName() + " (0x" + 
+                           Long.toHexString(block.getStart().getOffset()).toUpperCase() + " - 0x" + 
+                           Long.toHexString(block.getEnd().getOffset()).toUpperCase() + ")");
+                    memory.removeBlock(block, monitor);
+                }
             }
             
             // Create uninitialized memory block

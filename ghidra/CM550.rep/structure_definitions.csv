@@ -18,6 +18,21 @@ parameter_response_t,,error_code,byte,1,Error code (0=success non-zero=error),,g
 parameter_response_t,,param_value,word,2,Retrieved parameter value,,guess
 parameter_response_t,,scaling_applied,byte,1,Flag indicating if scaling was applied,,guess
 parameter_response_t,,timestamp,dword,4,Response generation timestamp,,guess
+# J1939/VP44 Dual Protocol Message Structure @ 0x803036-0x803046
+j1939_vp44_msg_t,0x803036,j1939_status_byte,byte,1,J1939 transmission message status/header byte,,verified
+j1939_vp44_msg_t,0x803037,fuel_amount_high,byte,1,Fuel amount high byte (param_table_aux>>8 + 125),,verified
+j1939_vp44_msg_t,0x803038,fuel_amount_low,byte,1,Fuel amount low byte (param_table_main>>8 + 125),,verified
+j1939_vp44_msg_t,0x803039,rpm_low,byte,1,Engine RPM low byte (current_engine_rpm & 0xFF),,verified
+j1939_vp44_msg_t,0x80303A,rpm_high,byte,1,Engine RPM high byte (current_engine_rpm >> 8),,verified
+j1939_vp44_msg_t,0x80303E,vp44_header,dword,4,VP44 0x100 command message header (0xF00400 base),,verified
+j1939_vp44_msg_t,0x80303F,vp44_fuel_high,byte,1,VP44 fuel amount high byte (same as fuel_amount_high),,verified
+j1939_vp44_msg_t,0x803040,vp44_fuel_low,byte,1,VP44 fuel amount low byte (same as fuel_amount_low),,verified
+j1939_vp44_msg_t,0x803041,timing_byte3,byte,1,VP44 timing advance data byte 3,,verified
+j1939_vp44_msg_t,0x803042,timing_byte4,byte,1,VP44 timing advance data byte 4,,verified
+j1939_vp44_msg_t,0x803043,timing_byte5,byte,1,VP44 timing advance data byte 5,,verified
+j1939_vp44_msg_t,0x803044,timing_byte6,byte,1,VP44 timing advance data byte 6,,verified
+j1939_vp44_msg_t,0x803045,vp44_rpm_low,byte,1,VP44 RPM×4 low byte (current_engine_rpm & 0xFF),,verified
+j1939_vp44_msg_t,0x803046,vp44_rpm_high,byte,1,VP44 RPM×4 high byte (current_engine_rpm >> 8),,verified
 calterm_protocol_t,,checksum,byte,1,Message integrity checksum,,guess
 calterm_protocol_t,,command_id,byte,1,CalTerm command identifier,,guess
 calterm_protocol_t,,data_payload,byte,8,Parameter data payload (up to 8 bytes),,guess
@@ -190,3 +205,20 @@ fuel_governor_state_t,0x80D06C,rpm_window,short,2,RPM window/threshold term used
 
 
 
+# A/D sensor configuration block - ambient air pressure sensor
+ad_sensor_config_t,0x00806C00,channel_addr,word,2,A/D channel address for sensor input,CalTerm ADAAPRCA,CalTerm
+ad_sensor_config_t,0x00806C02,filter_const,word,2,Digital filter constant (0-1),CalTerm ADAAPRCS,CalTerm
+ad_sensor_config_t,0x00806C06,fault_clear_count,word,2,Fault clear counter threshold,CalTerm ADAAPRCC,CalTerm
+ad_sensor_config_t,0x00806C08,fault_decrement,word,2,Fault counter decrement value,CalTerm ADAAPRDT,CalTerm
+ad_sensor_config_t,0x00806C0A,fault_increment,word,2,Fault counter increment value,CalTerm ADAAPRIC,CalTerm
+ad_sensor_config_t,0x00806C0C,fault_set_threshold,word,2,Fault set threshold,CalTerm ADAAPRSE,CalTerm
+ad_sensor_config_t,0x00806C0E,high_error_limit,word,2,A/D high error limit (0-1023),CalTerm ADAAPRHL,CalTerm
+ad_sensor_config_t,0x00806C10,low_error_limit,word,2,A/D low error limit (0-1023),CalTerm ADAAPRLL,CalTerm
+# Timing advance lookup table structure (4DTA family)
+timing_table_4dta_t,0x00060D1E,rpm_axis,word,19,Engine speed axis for timing table (0-3000 RPM),CalTerm 4DTA00XA,CalTerm
+timing_table_4dta_t,0x00060D1E,fuel_axis,word,16,Fueling axis for timing table (0-100 MM3S),CalTerm 4DTA00YA,CalTerm
+timing_table_4dta_t,0x00060D1E,timing_values,word,304,Timing advance lookup values (19x16 table),CalTerm 4DTA00ZA,CalTerm
+# 4D fueling lookup table structure (5DFL family)
+fueling_table_5dfl_t,0x00060982,rpm_axis,word,21,Engine speed axis for 4D fueling (0-3000 RPM),CalTerm 5DFL00XA,CalTerm
+fueling_table_5dfl_t,0x00060982,throttle_axis,word,4,Throttle position axis (0-100%),CalTerm 5DFL00YA,CalTerm
+fueling_table_5dfl_t,0x00060982,fuel_values,word,84,Fueling lookup values (21x4 table),CalTerm 5DFL00ZA,CalTerm
