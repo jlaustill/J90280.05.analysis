@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Sat Aug 30 10:11:45 MDT 2025
+// Sat Aug 30 10:32:03 MDT 2025
 
 
 //
@@ -10728,8 +10728,8 @@ void empty_debug_hook(void)
 void FUN_000173f6(void)
 
 {
-  FUN_0002e336();
-  FUN_0002d6a2();
+  engineParameterControllerWithTimer();
+  boostPressureFeedbackController();
   return;
 }
 
@@ -10969,10 +10969,10 @@ void vp44ControlSystemCoordinator(void)
 
 
 //
-// Function: FUN_000174c8 @ 0x000174c8
+// Function: vp44ExtendedFaultDetectionCoordinator @ 0x000174c8
 //
 
-void FUN_000174c8(void)
+void vp44ExtendedFaultDetectionCoordinator(void)
 
 {
   FUN_0000c8c2();
@@ -10984,10 +10984,10 @@ void FUN_000174c8(void)
 
 
 //
-// Function: FUN_000174dc @ 0x000174dc
+// Function: advancedEngineProtectionCoordinator @ 0x000174dc
 //
 
-void FUN_000174dc(void)
+void advancedEngineProtectionCoordinator(void)
 
 {
   FUN_0001f4f8();
@@ -11263,7 +11263,7 @@ undefined8 main_loop(void)
     engine_control_cycle();
     FUN_000173f6();
     FUN_0001744e();
-    FUN_000174c8();
+    vp44ExtendedFaultDetectionCoordinator();
     FUN_0000c368();
     _main_loop_phase_index = 2;
     break;
@@ -11273,7 +11273,7 @@ undefined8 main_loop(void)
     FUN_00017366();
     FUN_00017404();
     FUN_0001745c();
-    FUN_000174dc();
+    advancedEngineProtectionCoordinator();
     FUN_000283dc();
     _main_loop_phase_index = 3;
     break;
@@ -11460,7 +11460,7 @@ undefined8 main_loop(void)
     engine_control_cycle();
     boost_pressure_control_wrapper();
     FUN_0001744e();
-    FUN_000174c8();
+    vp44ExtendedFaultDetectionCoordinator();
     _main_loop_phase_index = 0x16;
     break;
   case 0x16:
@@ -11469,7 +11469,7 @@ undefined8 main_loop(void)
     FUN_00017366();
     FUN_0001743c();
     FUN_0001745c();
-    FUN_000174dc();
+    advancedEngineProtectionCoordinator();
     _main_loop_phase_index = 0x17;
     break;
   case 0x17:
@@ -28008,12 +28008,12 @@ void FUN_0002d688(void)
 
 
 //
-// Function: FUN_0002d6a2 @ 0x0002d6a2
+// Function: boostPressureFeedbackController @ 0x0002d6a2
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002d6a2(void)
+void boostPressureFeedbackController(void)
 
 {
   uint uVar1;
@@ -28717,12 +28717,12 @@ void FUN_0002e282(void)
 
 
 //
-// Function: FUN_0002e336 @ 0x0002e336
+// Function: engineParameterControllerWithTimer @ 0x0002e336
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002e336(void)
+void engineParameterControllerWithTimer(void)
 
 {
   if (_DAT_00809760 != 0) {
