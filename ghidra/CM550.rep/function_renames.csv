@@ -146,3 +146,7 @@ address,newName
 0x0000c368,periodicIoAndCanFaultMonitor
 0x000173f6,engineParameterAndBoostControlWrapper
 0x0001744e,rpmBasedFuelLimiterCoordinator
+0x00017366,engineDiagnosticSystemCoordinator
+0x00017404,auxiliarySystemControlWrapper
+0x0001745c,secondaryMonitoringWrapper
+0x000283dc,engineRpmHardwareTimerSetup
