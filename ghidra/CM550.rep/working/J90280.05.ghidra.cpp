@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 08:39:37 MST 2025
+// Tue Nov 25 11:23:44 MST 2025
 
 
 //
@@ -5820,6 +5820,60 @@ void FUN_00010fee(undefined4 param_1)
 
 
 //
+// Function: phase2_sensor_data_processor @ 0x00011060
+//
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void phase2_sensor_data_processor(void)
+
+{
+  int iVar1;
+  short sVar2;
+  short in_D0w;
+  byte unaff_D2b;
+  int unaff_A3;
+  short *unaff_A4;
+  int *unaff_A5;
+  undefined2 in_stack_00000000;
+  
+  if (((*(int *)(&ivs_switch_status_when_throttle_validation_process_error_true_false +
+                (short)((ushort)unaff_D2b * 5)) == 0) &&
+      (*(uint *)(in_D0w + 0x806354) <=
+       (uint)(*unaff_A5 - *(int *)((short)((ushort)unaff_D2b * 5) * 2 + 0x804fc4)))) ||
+     ((*(int *)(&ivs_switch_status_when_throttle_validation_process_error_true_false +
+               (short)((ushort)unaff_D2b * 5)) != 0 &&
+      (*(uint *)(in_D0w + 0x806358) <=
+       (uint)(*unaff_A5 -
+             *(int *)(&ivs_switch_status_when_throttle_validation_process_error_true_false +
+                     (short)((ushort)unaff_D2b * 5))))))) {
+    sVar2 = (ushort)unaff_D2b * 10;
+    *(int *)((int)&ivs_switch_status_when_throttle_validation_process_error_true_false + (int)sVar2)
+         = *unaff_A5;
+    if ((&DAT_00804fcd)[sVar2] != '\0') {
+      (&DAT_00804fcd)[sVar2] = (&DAT_00804fcd)[sVar2] + -1;
+    }
+    if ((&DAT_00804fcd)[sVar2] == '\0') {
+      FUN_00027ef0((uint)CONCAT12(unaff_D2b,in_stack_00000000));
+      if ((*(char *)(unaff_A3 + 4 + (uint)unaff_D2b * 6) != '\0') &&
+         ((*(ushort *)(unaff_A3 + 2 + (uint)unaff_D2b * 6) & 0x40) == 0)) {
+        _DAT_00804f42 = _DAT_00804f42 + -1;
+      }
+      DAT_00804e9c = DAT_00804e9c + -1;
+      _DAT_00804efc = _DAT_00804efc + -1;
+      (&DAT_00804e9c)[*unaff_A4] = (&DAT_00804e9c)[_DAT_00804f3e];
+      iVar1 = (int)_DAT_00804f3e;
+      _DAT_00804f3e = _DAT_00804f3e + -1;
+      *(undefined2 *)(&DAT_00804efc + *unaff_A4 * 2) = *(undefined2 *)(&DAT_00804efc + iVar1 * 2);
+      *unaff_A4 = *unaff_A4 + -1;
+    }
+  }
+  return;
+}
+
+
+
+//
 // Function: FUN_000111a2 @ 0x000111a2
 //
 
@@ -10550,6 +10604,87 @@ void FUN_00017164(void)
 
 
 //
+// Function: phase2_slot_0_handler @ 0x000171a6
+//
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void phase2_slot_0_handler(void)
+
+{
+  int *in_A1;
+  int unaff_A3;
+  byte *unaff_A4;
+  
+  _DAT_0080c41e = unaff_A3 + (uint)*unaff_A4 * 4;
+  _engine_rpm_divisor_2 = *in_A1 * (uint)DAT_00807ccf;
+  _engine_divisor_param_2 = *in_A1 * (uint)*unaff_A4;
+  can1_canidmr2 = can1_canidmr2 & 0xfffd;
+  can1_cantxerr = can1_cantxerr & 0xff0f | 0xd0;
+  _DAT_00ffff12 = 0x100;
+  _DAT_00ffff16 = 0;
+  _DAT_00ffff18 = 0;
+  _DAT_00ffff10 = 0xb;
+  can1_canidar1 = can1_canidar1 & 0xfff3 | 0xc;
+  can1_canidar3 = can1_canidar3 & 0xfff3 | 0xc;
+  can1_canidmr1 = can1_canidmr1 & 0xfff3 | 8;
+  _DAT_00808ec6 = FUN_00017278;
+  can1_cantbsel = can1_cantbsel & 0xfffd | 2;
+  DAT_0080c7de = 0;
+  _DAT_0080c7e4 = 0;
+  return;
+}
+
+
+
+//
+// Function: phase2_slot_1_handler @ 0x000171d2
+//
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void phase2_slot_1_handler(void)
+
+{
+  int *in_A1;
+  byte *unaff_A4;
+  
+  _engine_divisor_param_2 = *in_A1 * (uint)*unaff_A4;
+  can1_canidmr2 = can1_canidmr2 & 0xfffd;
+  can1_cantxerr = can1_cantxerr & 0xff0f | 0xd0;
+  _DAT_00ffff12 = 0x100;
+  _DAT_00ffff16 = 0;
+  _DAT_00ffff18 = 0;
+  _DAT_00ffff10 = 0xb;
+  can1_canidar1 = can1_canidar1 & 0xfff3 | 0xc;
+  can1_canidar3 = can1_canidar3 & 0xfff3 | 0xc;
+  can1_canidmr1 = can1_canidmr1 & 0xfff3 | 8;
+  _DAT_00808ec6 = FUN_00017278;
+  can1_cantbsel = can1_cantbsel & 0xfffd | 2;
+  DAT_0080c7de = 0;
+  _DAT_0080c7e4 = 0;
+  return;
+}
+
+
+
+//
+// Function: phase2_slot_5_handler @ 0x00017266
+//
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void phase2_slot_5_handler(void)
+
+{
+  DAT_0080c7de = 0;
+  _DAT_0080c7e4 = 0;
+  return;
+}
+
+
+
+//
 // Function: FUN_00017278 @ 0x00017278
 //
 
@@ -10569,6 +10704,45 @@ undefined8 FUN_00017278(void)
   FUN_0000c262();
   can1_canidmr2 = can1_canidmr2 & 0xfffd;
   return CONCAT44(in_D0,in_D1);
+}
+
+
+
+//
+// Function: phase2_slot_7_handler @ 0x00017296
+//
+
+undefined8 phase2_slot_7_handler(void)
+
+{
+  short *unaff_A2;
+  int *unaff_A3;
+  int *unaff_A4;
+  undefined8 in_stack_00000000;
+  
+  *unaff_A4 = *unaff_A3 + *unaff_A4;
+  if (*unaff_A2 != -1) {
+    *unaff_A2 = *unaff_A2 + 1;
+  }
+  FUN_0002b6c2();
+  FUN_0000c262();
+  can1_canidmr2 = can1_canidmr2 & 0xfffd;
+  return in_stack_00000000;
+}
+
+
+
+//
+// Function: phase2_slot_8_handler @ 0x000172ae
+//
+
+undefined8 phase2_slot_8_handler(void)
+
+{
+  undefined8 in_stack_00000000;
+  
+  can1_canidmr2 = can1_canidmr2 & 0xfffd;
+  return in_stack_00000000;
 }
 
 
@@ -10662,10 +10836,10 @@ void engine_control_cycle(void)
 
 
 //
-// Function: FUN_00017366 @ 0x00017366
+// Function: engineDiagnosticSystemCoordinator @ 0x00017366
 //
 
-void FUN_00017366(void)
+void engineDiagnosticSystemCoordinator(void)
 
 {
   engine_fault_monitoring_and_rpm_calculation();
@@ -10735,10 +10909,10 @@ void engineParameterAndBoostControlWrapper(void)
 
 
 //
-// Function: FUN_00017404 @ 0x00017404
+// Function: auxiliarySystemControlWrapper @ 0x00017404
 //
 
-void FUN_00017404(void)
+void auxiliarySystemControlWrapper(void)
 
 {
   FUN_0002dc1e();
@@ -10843,10 +11017,10 @@ void rpmBasedFuelLimiterCoordinator(void)
 
 
 //
-// Function: FUN_0001745c @ 0x0001745c
+// Function: secondaryMonitoringWrapper @ 0x0001745c
 //
 
-void FUN_0001745c(void)
+void secondaryMonitoringWrapper(void)
 
 {
   FUN_0001ae20();
@@ -11269,11 +11443,11 @@ undefined8 main_loop(void)
   case 2:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
-    FUN_00017404();
-    FUN_0001745c();
+    engineDiagnosticSystemCoordinator();
+    auxiliarySystemControlWrapper();
+    secondaryMonitoringWrapper();
     advancedEngineProtectionCoordinator();
-    FUN_000283dc();
+    engineRpmHardwareTimerSetup();
     _main_loop_phase_index = 3;
     break;
   case 3:
@@ -11307,7 +11481,7 @@ undefined8 main_loop(void)
   case 6:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
+    engineDiagnosticSystemCoordinator();
     FUN_0001743c();
     FUN_0001748e();
     FUN_0001752c();
@@ -11347,8 +11521,8 @@ undefined8 main_loop(void)
   case 10:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
-    FUN_00017404();
+    engineDiagnosticSystemCoordinator();
+    auxiliarySystemControlWrapper();
     rpm_control_system();
     FUN_0001754c();
     FUN_00026d98();
@@ -11369,7 +11543,7 @@ undefined8 main_loop(void)
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
     FUN_00017426();
-    FUN_0001745c();
+    secondaryMonitoringWrapper();
     FUN_00017568();
     FUN_00013fe2();
     _main_loop_phase_index = 0xd;
@@ -11387,7 +11561,7 @@ undefined8 main_loop(void)
   case 0xe:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
+    engineDiagnosticSystemCoordinator();
     FUN_0001743c();
     FUN_0001746c();
     FUN_0001757e();
@@ -11428,8 +11602,8 @@ undefined8 main_loop(void)
   case 0x12:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
-    FUN_00017404();
+    engineDiagnosticSystemCoordinator();
+    auxiliarySystemControlWrapper();
     FUN_0001749e();
     FUN_0001759e();
     FUN_00031c60();
@@ -11465,9 +11639,9 @@ undefined8 main_loop(void)
   case 0x16:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
+    engineDiagnosticSystemCoordinator();
     FUN_0001743c();
-    FUN_0001745c();
+    secondaryMonitoringWrapper();
     advancedEngineProtectionCoordinator();
     _main_loop_phase_index = 0x17;
     break;
@@ -11501,8 +11675,8 @@ undefined8 main_loop(void)
   case 0x1a:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
-    FUN_00017404();
+    engineDiagnosticSystemCoordinator();
+    auxiliarySystemControlWrapper();
     FUN_0001748e();
     FUN_0001752c();
     _main_loop_phase_index = 0x1b;
@@ -11537,7 +11711,7 @@ undefined8 main_loop(void)
   case 0x1e:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
+    engineDiagnosticSystemCoordinator();
     FUN_0001743c();
     rpm_control_system();
     FUN_0001754c();
@@ -11557,7 +11731,7 @@ undefined8 main_loop(void)
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
     empty_debug_hook();
-    FUN_0001745c();
+    secondaryMonitoringWrapper();
     FUN_00017568();
     _main_loop_phase_index = 0x21;
     break;
@@ -11573,8 +11747,8 @@ undefined8 main_loop(void)
   case 0x22:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
-    FUN_00017404();
+    engineDiagnosticSystemCoordinator();
+    auxiliarySystemControlWrapper();
     FUN_0001746c();
     FUN_0001757e();
     _main_loop_phase_index = 0x23;
@@ -11609,7 +11783,7 @@ undefined8 main_loop(void)
   case 0x26:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
-    FUN_00017366();
+    engineDiagnosticSystemCoordinator();
     FUN_0001743c();
     FUN_0001749e();
     FUN_0001759e();
@@ -23959,12 +24133,12 @@ void FUN_000283c0(void)
 
 
 //
-// Function: FUN_000283dc @ 0x000283dc
+// Function: engineRpmHardwareTimerSetup @ 0x000283dc
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_000283dc(void)
+void engineRpmHardwareTimerSetup(void)
 
 {
   uint uVar1;
@@ -35120,4 +35294,4 @@ undefined8 tableInterpolationLookup(short *param_1)
 
 
 
-// Export complete - 766 functions processed
+// Export complete - 772 functions processed

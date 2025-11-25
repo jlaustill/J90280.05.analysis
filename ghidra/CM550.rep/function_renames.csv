@@ -150,3 +150,13 @@ address,newName
 0x00017404,auxiliarySystemControlWrapper
 0x0001745c,secondaryMonitoringWrapper
 0x000283dc,engineRpmHardwareTimerSetup
+0x000171a6,phase2_slot_0_handler
+0x000171d2,phase2_slot_1_handler
+0x0001721e,phase2_slot_2_handler
+0x00017236,phase2_slot_3_handler
+0x0001724e,phase2_slot_4_handler
+0x00017266,phase2_slot_5_handler
+0x0001727e,phase2_slot_6_handler
+0x00017296,phase2_slot_7_handler
+0x000172ae,phase2_slot_8_handler
+0x00011060,phase2_sensor_data_processor
