@@ -75,11 +75,23 @@ This configures a **pre-commit hook** that automatically:
 
 ## **🔄 The Perfect Workflow**
 
-### **Iterative Analysis:**
+### **⚡ Quick Workflow (Recommended):**
 1. **🔍 Discover** new functions/addresses in Ghidra
 2. **📝 Update CSVs** with findings
-3. **🚀 Run ghidra_scripts/MasterAnalysisSetup.java** - applies changes instantly  
-4. **📤 Run ghidra_scripts/ExportAnalysisResults.java** - exports to `working/` for Claude Code
+3. **⚡ Press `Ctrl+Shift+E`** in Ghidra (or run `ApplyAndExport.java`)
+4. **🤖 Claude Code sees changes** immediately in exported files
+
+### **🎯 One-Command Automation:**
+The **`ApplyAndExport.java`** script combines both setup and export in one keystroke:
+- **Keyboard shortcut:** `Ctrl+Shift+E`
+- **Menu:** Tools → Apply and Export
+- **What it does:** Runs MasterAnalysisSetup + ExportAnalysisResults automatically
+
+### **Traditional Workflow (Manual):**
+1. **🔍 Discover** new functions/addresses in Ghidra
+2. **📝 Update CSVs** with findings
+3. **🚀 Run MasterAnalysisSetup.java** - applies changes instantly
+4. **📤 Run ExportAnalysisResults.java** - exports to `working/` for Claude Code
 5. **🤖 Claude Code sees changes** immediately in exported files
 
 ### **Fresh Import:**
@@ -95,9 +107,15 @@ This configures a **pre-commit hook** that automatically:
 
 ## **🔧 Available Scripts** (in `ghidra_scripts/`)
 
+### **⚡ Quick Workflow Script (Recommended):**
+- **`ApplyAndExport.java`** - **FASTEST WORKFLOW!** Combines MasterAnalysisSetup + ExportAnalysisResults
+  - Keyboard: `Ctrl+Shift+E`
+  - Menu: Tools → Apply and Export
+  - Perfect for: Iterative reverse engineering (update CSV → press hotkey → done!)
+
 ### **Master Scripts:**
-- **`ghidra_scripts/MasterAnalysisSetup.java`** - ONE-CLICK AUTOMATION 
-- **`ghidra_scripts/ExportAnalysisResults.java`** - Export for Claude Code integration
+- **`MasterAnalysisSetup.java`** - Complete analysis automation (functions, structures, enums, labels, etc.)
+- **`ExportAnalysisResults.java`** - Export analysis to working/ for Claude Code integration
 
 ### **Individual Scripts:**
 - **`ghidra_scripts/SetupMemoryMap.java`** - MC68336 memory layout with 8KB EEPROM
