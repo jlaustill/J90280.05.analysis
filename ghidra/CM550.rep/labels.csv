@@ -4547,3 +4547,27 @@ address,label_name,comment
 0x008062da,rpm_secondary_threshold,Secondary RPM threshold for control logic
 0x008062fe,rpm_timer_reload_value_1,Timer reload value 1 for RPM control
 0x008062d4,rpm_timer_reload_value_2,Timer reload value 2 for RPM control
+0x0000c368,periodic_fault_monitor_entry,Periodic I/O and CAN fault monitor - runs every 5th call
+0x0000c36e,phase_counter_check,Check if phase counter > 4 to reset
+0x0000c376,phase_1_check,Check if counter == 1 for fault monitoring
+0x0000c37c,can_pin_fault_check_1,CAN pin switching fault detection section 1
+0x0000c39e,can_pin_persistence_increment,Increment CAN pin fault persistence counter
+0x0000c3a6,can_pin_fault_set,Set CAN pin fault bits in registers
+0x0000c3b0,io_control_fault_check_1,I/O control signal fault detection section 1
+0x0000c3d2,io_fault_1_persistence_increment,Increment I/O fault 1 persistence counter
+0x0000c3da,io_fault_1_set,Set I/O fault 1 bits in registers
+0x0000c3e4,io_control_fault_check_2,I/O control signal fault detection section 2
+0x0000c406,io_fault_2_persistence_increment,Increment I/O fault 2 persistence counter
+0x0000c40e,io_fault_2_set,Set I/O fault 2 bits in registers
+0x0000c418,engine_fault_check_1,Engine fault register monitoring section 1
+0x0000c43a,engine_fault_1_persistence_increment,Increment engine fault 1 persistence counter
+0x0000c442,engine_fault_1_set,Set engine fault 1 bits in fault registers
+0x0000c44c,engine_fault_check_2,Engine fault register monitoring section 2
+0x0000c46e,engine_fault_2_persistence_increment,Increment engine fault 2 persistence counter
+0x0000c476,engine_fault_2_set,Set engine fault 2 bits in fault registers
+0x0000c480,io_control_fault_check_3,I/O control signal fault detection section 3
+0x0000c4a2,io_fault_3_persistence_increment,Increment I/O fault 3 persistence counter
+0x0000c4aa,io_fault_3_set,Set I/O fault 3 bits in registers
+0x0000c4b4,io_control_fault_check_4,I/O control signal fault detection section 4
+0x0000c4d6,io_fault_4_persistence_increment,Increment I/O fault 4 persistence counter
+0x0000c4de,io_fault_4_set,Set I/O fault 4 bits in registers

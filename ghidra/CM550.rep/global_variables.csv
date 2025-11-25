@@ -4153,3 +4153,12 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808156,ramp_rate_from_initial_derate_to_full_engine_speed_derate_on_i_0_100,word,"RAMP RATE FROM INITIAL DERATE TO FULL ENGINE SPEED DERATE ON I",2,0,R/S,parameter
 0x01000648,maximum_allowable_engine_speed_when_vehicle_speed_is_below_1400_4500,word,"MAXIMUM ALLOWABLE ENGINE SPEED WHEN VEHICLE SPEED IS BELOW",2,0,RPM,parameter
 0x01000646,percent_fuel_above_which_the_engine_will_be_derated_by_the_z_0_127_5,word,"PERCENT FUEL ABOVE WHICH THE ENGINE WILL BE DERATED BY THE Z",2,0,%,parameter
+0x008000c8,periodic_fault_monitor_phase_counter,byte,5-phase counter for periodic fault monitoring (active when == 1),1,0,CNT,counter
+0x00807946,fault_persistence_threshold,word,Fault persistence counter threshold for debouncing I/O and CAN signals,2,0,CNT,parameter
+0x008000c9,can_pin_fault_persistence_counter,byte,Persistence counter for CAN pin switching fault detection,1,0,CNT,counter
+0x008000ca,io_control_fault_persistence_counter_1,byte,Persistence counter for I/O control fault 1,1,0,CNT,counter
+0x008000cb,io_control_fault_persistence_counter_2,byte,Persistence counter for I/O control fault 2,1,0,CNT,counter
+0x008000cc,io_control_fault_persistence_counter_3,byte,Persistence counter for I/O control fault 3,1,0,CNT,counter
+0x008000cd,io_control_fault_persistence_counter_4,byte,Persistence counter for I/O control fault 4,1,0,CNT,counter
+0x008000ce,io_control_fault_persistence_counter_5,byte,Persistence counter for I/O control fault 5,1,0,CNT,counter
+0x008000cf,io_control_fault_persistence_counter_6,byte,Persistence counter for I/O control fault 6,1,0,CNT,counter
