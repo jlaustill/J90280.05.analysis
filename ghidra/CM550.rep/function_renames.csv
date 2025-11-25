@@ -293,3 +293,4 @@ address,newName
 0x0002880e,fuelStatisticsTracker
 0x0002e8f2,clutchOperatingStatisticsTracker
 0x00032b16,timeDeltaCalculator
+0x00017bf2,schedulerPerformanceMonitor
