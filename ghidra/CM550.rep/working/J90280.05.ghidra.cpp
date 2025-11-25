@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 12:09:55 MST 2025
+// Tue Nov 25 12:18:36 MST 2025
 
 
 //
@@ -839,12 +839,12 @@ void FUN_0000b0b0(void)
 
 
 //
-// Function: FUN_0000b0ce @ 0x0000b0ce
+// Function: diagnosticTimingIncrementController @ 0x0000b0ce
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0000b0ce(void)
+void diagnosticTimingIncrementController(void)
 
 {
   if (_DAT_0080c9a6 != 0x10) {
@@ -4118,7 +4118,7 @@ int FUN_0000ed52(void)
   FUN_00013144(0x80367a,(undefined1 *)&local_6,CONCAT22(2,uVar4));
   uVar5 = 0;
   while ((uVar5 < 5000 && (_DAT_0080367a != local_6))) {
-    FUN_00013240();
+    emptyPlaceholderFunction();
     FUN_0002baf0(CONCAT22(500,uVar4));
     uVar5 = uVar5 + 1;
   }
@@ -4142,14 +4142,14 @@ int FUN_0000ed52(void)
         FUN_00013144(0x803500,(undefined1 *)&local_6,CONCAT22(2,uVar5));
         uVar4 = 0;
         while ((uVar4 < 5000 && (_DAT_00803500 != local_6))) {
-          FUN_00013240();
+          emptyPlaceholderFunction();
           FUN_0002baf0(CONCAT22(500,uVar5));
           uVar4 = uVar4 + 1;
         }
         FUN_00013144(0x80367c,&DAT_0080367a,CONCAT22(2,uVar5));
         uVar4 = 0;
         while ((uVar4 < 5000 && (_DAT_0080367c != _DAT_0080367a))) {
-          FUN_00013240();
+          emptyPlaceholderFunction();
           FUN_0002baf0(CONCAT22(500,uVar5));
           uVar4 = uVar4 + 1;
         }
@@ -4208,7 +4208,7 @@ int FUN_0000ef80(void)
   FUN_00013144(0x803682,(undefined1 *)&local_6,CONCAT22(2,uVar4));
   uVar5 = 0;
   while ((uVar5 < 5000 && (_DAT_00803682 != local_6))) {
-    FUN_00013240();
+    emptyPlaceholderFunction();
     FUN_0002baf0(CONCAT22(500,uVar4));
     uVar5 = uVar5 + 1;
   }
@@ -4232,14 +4232,14 @@ int FUN_0000ef80(void)
         FUN_00013144(0x803502,(undefined1 *)&local_6,CONCAT22(2,uVar5));
         uVar4 = 0;
         while ((uVar4 < 5000 && (_DAT_00803502 != local_6))) {
-          FUN_00013240();
+          emptyPlaceholderFunction();
           FUN_0002baf0(CONCAT22(500,uVar5));
           uVar4 = uVar4 + 1;
         }
         FUN_00013144(0x803684,&DAT_00803682,CONCAT22(2,uVar5));
         uVar4 = 0;
         while ((uVar4 < 5000 && (_DAT_00803684 != _DAT_00803682))) {
-          FUN_00013240();
+          emptyPlaceholderFunction();
           FUN_0002baf0(CONCAT22(500,uVar5));
           uVar4 = uVar4 + 1;
         }
@@ -4338,7 +4338,7 @@ void FUN_0000f1ae(void)
     FUN_00013144(0x80368a,&DAT_0080016e,CONCAT22(2,uVar8));
     uVar2 = 0;
     while ((uVar2 < 5000 && (_DAT_0080368a != _DAT_0080016e))) {
-      FUN_00013240();
+      emptyPlaceholderFunction();
       FUN_0002baf0(CONCAT22(500,uVar8));
       uVar2 = uVar2 + 1;
     }
@@ -4346,7 +4346,7 @@ void FUN_0000f1ae(void)
     FUN_00013144(0x80368e,&DAT_0080016e,CONCAT22(2,uVar8));
     uVar2 = 0;
     while ((uVar2 < 5000 && (_DAT_0080368e != _DAT_0080016e))) {
-      FUN_00013240();
+      emptyPlaceholderFunction();
       FUN_0002baf0(CONCAT22(500,uVar8));
       uVar2 = uVar2 + 1;
     }
@@ -4364,7 +4364,7 @@ void FUN_0000f1ae(void)
     FUN_00013144(0x80368a,&DAT_0080016e,CONCAT22(2,uVar8));
     uVar2 = 0;
     while ((uVar2 < 5000 && (_DAT_0080368a != _DAT_0080016e))) {
-      FUN_00013240();
+      emptyPlaceholderFunction();
       FUN_0002baf0(CONCAT22(500,uVar8));
       uVar2 = uVar2 + 1;
     }
@@ -4372,7 +4372,7 @@ void FUN_0000f1ae(void)
     FUN_00013144(0x80368c,&DAT_0080016e,CONCAT22(2,uVar8));
     uVar2 = 0;
     while ((uVar2 < 5000 && (_DAT_0080368c != _DAT_0080016e))) {
-      FUN_00013240();
+      emptyPlaceholderFunction();
       FUN_0002baf0(CONCAT22(500,uVar8));
       uVar2 = uVar2 + 1;
     }
@@ -4396,7 +4396,7 @@ void FUN_0000f1ae(void)
   FUN_00013144(0x803686,&DAT_0080016e,CONCAT22(2,uVar8));
   uVar2 = 0;
   while ((uVar2 < 5000 && (_DAT_00803686 != _DAT_0080016e))) {
-    FUN_00013240();
+    emptyPlaceholderFunction();
     FUN_0002baf0(CONCAT22(500,uVar8));
     uVar2 = uVar2 + 1;
   }
@@ -4644,7 +4644,7 @@ undefined4 FUN_0000f906(byte *param_1,undefined4 param_2)
   uVar3 = (ushort)((uint)unaff_A2 >> 0x10);
   if (engine_operating_mode == IDLE) {
     while (uVar1 = FUN_00013134(), (char)uVar1 == '\0') {
-      FUN_00013240();
+      emptyPlaceholderFunction();
       FUN_0002bb2e(CONCAT22(500,uVar3));
     }
     local_8 = loopCounter;
@@ -4654,7 +4654,7 @@ undefined4 FUN_0000f906(byte *param_1,undefined4 param_2)
     }
     else {
       while (_DAT_0080352c != local_8) {
-        FUN_00013240();
+        emptyPlaceholderFunction();
         FUN_0002bb2e(CONCAT22(500,uVar3));
       }
     }
@@ -7412,10 +7412,10 @@ uint FUN_00013144(int param_1,undefined1 *param_2,undefined4 param_3)
 //
 
 //
-// Function: FUN_00013240 @ 0x00013240
+// Function: emptyPlaceholderFunction @ 0x00013240
 //
 
-void FUN_00013240(void)
+void emptyPlaceholderFunction(void)
 
 {
   return;
@@ -7815,12 +7815,12 @@ void FUN_00013a1e(void)
 
 
 //
-// Function: FUN_00013bd8 @ 0x00013bd8
+// Function: rpmBasedFuelTimingInterpolation @ 0x00013bd8
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00013bd8(void)
+void rpmBasedFuelTimingInterpolation(void)
 
 {
   if (((engine_operating_mode == LOW_RPM_RUNNING) || (engine_operating_mode == TRANSITIONAL_MODE_6))
@@ -8121,12 +8121,12 @@ void FUN_0001403e(void)
 
 
 //
-// Function: FUN_00014090 @ 0x00014090
+// Function: frictionalLoadTorqueTransitionHandler @ 0x00014090
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00014090(void)
+void frictionalLoadTorqueTransitionHandler(void)
 
 {
   if (((_DAT_008002d4 == 3) && (engine_operating_mode == TRANSITIONAL_MODE_7)) &&
@@ -10866,17 +10866,17 @@ void engineDiagnosticSystemCoordinator(void)
 void slowCycle4Coordinator(void)
 
 {
-  FUN_00013bd8();
-  FUN_00014090();
-  FUN_0002bbc0();
-  FUN_00013240();
-  FUN_0000b0ce();
-  FUN_0002f7ac();
-  FUN_00033c84();
-  FUN_0001842c();
-  FUN_00033dca();
-  FUN_00030ac0();
-  FUN_00030d40();
+  rpmBasedFuelTimingInterpolation();
+  frictionalLoadTorqueTransitionHandler();
+  fuelDemandBasedParameterCalculator();
+  emptyPlaceholderFunction();
+  diagnosticTimingIncrementController();
+  diagnosticModeFuelArbitrationHandler();
+  liftPumpFuelDeliveryController();
+  canPinVp44StatusController();
+  derateThresholdIoController();
+  engineModeBasedIoController();
+  rpmDerateCalculationController();
   return;
 }
 
@@ -10929,9 +10929,9 @@ void auxiliarySystemControlWrapper(void)
 void slowCycle8Coordinator(void)
 
 {
-  FUN_00031fb8();
-  FUN_0002f96e();
-  FUN_0002c4f0();
+  vp44SensorStatusMonitor();
+  vp44ExtendedProcessingRouter();
+  diagnosticFlagResetHandler();
   return;
 }
 
@@ -11036,7 +11036,7 @@ void secondaryMonitoringWrapper(void)
 void slowCycle10Coordinator(void)
 
 {
-  FUN_000202a4();
+  hourMeterEventLogger();
   return;
 }
 
@@ -11180,7 +11180,7 @@ void advancedEngineProtectionCoordinator(void)
 void slowCycle20Coordinator(void)
 
 {
-  FUN_00031768();
+  vp44InjectionSystemStateController();
   return;
 }
 
@@ -12420,10 +12420,10 @@ void FUN_0001842a(void)
 
 
 //
-// Function: FUN_0001842c @ 0x0001842c
+// Function: canPinVp44StatusController @ 0x0001842c
 //
 
-ushort FUN_0001842c(void)
+ushort canPinVp44StatusController(void)
 
 {
   ushort uVar1;
@@ -20232,12 +20232,12 @@ void FUN_0002011c(void)
 
 
 //
-// Function: FUN_000202a4 @ 0x000202a4
+// Function: hourMeterEventLogger @ 0x000202a4
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_000202a4(void)
+void hourMeterEventLogger(void)
 
 {
   byte bVar1;
@@ -20973,7 +20973,7 @@ void FUN_00020de4(void)
   FUN_00013144(0x80368e,(undefined1 *)&local_6,CONCAT22(2,uVar7));
   uVar2 = 0;
   while ((uVar2 < 1000 && (_DAT_0080368e != local_6))) {
-    FUN_00013240();
+    emptyPlaceholderFunction();
     FUN_0002baf0(CONCAT22(500,uVar7));
     uVar2 = uVar2 + 1;
   }
@@ -20981,7 +20981,7 @@ void FUN_00020de4(void)
   FUN_00013144(0x803686,(undefined1 *)&local_6,CONCAT22(2,uVar7));
   uVar2 = 0;
   while ((uVar2 < 1000 && (_DAT_00803686 != local_6))) {
-    FUN_00013240();
+    emptyPlaceholderFunction();
     sVar1 = 0;
     do {
       uVar7 = 0;
@@ -21040,7 +21040,7 @@ void FUN_00020f14(void)
   uVar14 = (ushort)(byte)(in_XF << 4);
   uVar5 = 0;
   while ((uVar5 < 1000 && (uVar1 = FUN_00013134(), (char)uVar1 == '\0'))) {
-    FUN_00013240();
+    emptyPlaceholderFunction();
     FUN_0002baf0(CONCAT22(500,uVar14));
     uVar5 = uVar5 + 1;
   }
@@ -21094,7 +21094,7 @@ void FUN_00020f14(void)
         REG_SIM_SWSR = 0xaa;
         DAT_00ffd00f = 0xaa;
         if ((999 < uVar5) || (_DAT_00803686 == _DAT_00803688)) break;
-        FUN_00013240();
+        emptyPlaceholderFunction();
         sVar3 = 0;
         do {
           uVar14 = 0;
@@ -21130,7 +21130,7 @@ void FUN_00020f14(void)
     REG_SIM_SWSR = 0xaa;
     DAT_00ffd00f = 0xaa;
     if ((999 < uVar5) || (_DAT_0080352c == local_a)) break;
-    FUN_00013240();
+    emptyPlaceholderFunction();
     sVar2 = 0;
     do {
       uVar4 = 0;
@@ -21148,7 +21148,7 @@ void FUN_00020f14(void)
                                         (uVar14 & 1) != 0)));
   uVar5 = 0;
   while ((uVar5 < 1000 && (_DAT_0080367e != local_6))) {
-    FUN_00013240();
+    emptyPlaceholderFunction();
     sVar2 = 0;
     do {
       uVar14 = 0;
@@ -21213,7 +21213,7 @@ void FUN_00020f14(void)
                                         bVar13)));
   uVar5 = 0;
   while ((uVar5 < 1000 && (_DAT_0080367e != local_6))) {
-    FUN_00013240();
+    emptyPlaceholderFunction();
     sVar2 = 0;
     do {
       uVar14 = 0;
@@ -26839,12 +26839,12 @@ void FUN_0002bbac(void)
 
 
 //
-// Function: FUN_0002bbc0 @ 0x0002bbc0
+// Function: fuelDemandBasedParameterCalculator @ 0x0002bbc0
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002bbc0(void)
+void fuelDemandBasedParameterCalculator(void)
 
 {
   if (upper_limit_at_which_loading_trigger_is_satisfied_in_trendin_0_127_5 <
@@ -27284,12 +27284,12 @@ void FUN_0002c4de(void)
 
 
 //
-// Function: FUN_0002c4f0 @ 0x0002c4f0
+// Function: diagnosticFlagResetHandler @ 0x0002c4f0
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-ushort FUN_0002c4f0(void)
+ushort diagnosticFlagResetHandler(void)
 
 {
   if ((_DAT_008035e0 & 0x8000) == 0) {
@@ -29894,12 +29894,12 @@ void FUN_0002f778(void)
 
 
 //
-// Function: FUN_0002f7ac @ 0x0002f7ac
+// Function: diagnosticModeFuelArbitrationHandler @ 0x0002f7ac
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002f7ac(void)
+void diagnosticModeFuelArbitrationHandler(void)
 
 {
   _DAT_0080d486 = _DAT_0080c9ae;
@@ -30057,12 +30057,12 @@ void FUN_0002f920(void)
 
 
 //
-// Function: FUN_0002f96e @ 0x0002f96e
+// Function: vp44ExtendedProcessingRouter @ 0x0002f96e
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002f96e(void)
+void vp44ExtendedProcessingRouter(void)
 
 {
   if (_vp44_extended_processing_enable != 0) {
@@ -31201,12 +31201,12 @@ void FUN_00030a8e(void)
 
 
 //
-// Function: FUN_00030ac0 @ 0x00030ac0
+// Function: engineModeBasedIoController @ 0x00030ac0
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00030ac0(void)
+void engineModeBasedIoController(void)
 
 {
   if (DAT_008077c6 != '\0') {
@@ -31393,12 +31393,12 @@ uint FUN_00030cec(void)
 
 
 //
-// Function: FUN_00030d40 @ 0x00030d40
+// Function: rpmDerateCalculationController @ 0x00030d40
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_00030d40(void)
+uint rpmDerateCalculationController(void)
 
 {
   uint uVar1;
@@ -31961,12 +31961,12 @@ void FUN_000315f6(void)
 
 
 //
-// Function: FUN_00031768 @ 0x00031768
+// Function: vp44InjectionSystemStateController @ 0x00031768
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00031768(void)
+void vp44InjectionSystemStateController(void)
 
 {
   undefined4 unaff_A2;
@@ -32411,12 +32411,12 @@ uint FUN_00031c60(void)
 
 
 //
-// Function: FUN_00031fb8 @ 0x00031fb8
+// Function: vp44SensorStatusMonitor @ 0x00031fb8
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00031fb8(void)
+void vp44SensorStatusMonitor(void)
 
 {
   if (_vp44_extended_processing_enable == 0) {
@@ -33794,12 +33794,12 @@ void FUN_00033c48(void)
 
 
 //
-// Function: FUN_00033c84 @ 0x00033c84
+// Function: liftPumpFuelDeliveryController @ 0x00033c84
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00033c84(void)
+void liftPumpFuelDeliveryController(void)
 
 {
   short sVar1;
@@ -33845,12 +33845,12 @@ void FUN_00033c84(void)
 
 
 //
-// Function: FUN_00033dca @ 0x00033dca
+// Function: derateThresholdIoController @ 0x00033dca
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00033dca(void)
+void derateThresholdIoController(void)
 
 {
   if (_derate_threshold_exceeded == 0) {
