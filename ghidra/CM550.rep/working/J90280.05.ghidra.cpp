@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 11:23:44 MST 2025
+// Tue Nov 25 11:37:57 MST 2025
 
 
 //
@@ -10784,9 +10784,9 @@ void evenPhaseSchedulerTaskSet(void)
 void oddPhaseSchedulerTaskSet(void)
 
 {
-  FUN_0001b314();
-  FUN_0001afe4();
-  FUN_0001d29c();
+  phase3_retarder_condition_monitor();
+  phase3_periodic_task_scheduler();
+  phase3_countdown_timer_manager();
   return;
 }
 
@@ -14990,12 +14990,12 @@ void FUN_0001aef4(void)
 //
 
 //
-// Function: FUN_0001afe4 @ 0x0001afe4
+// Function: phase3_periodic_task_scheduler @ 0x0001afe4
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-ushort FUN_0001afe4(void)
+ushort phase3_periodic_task_scheduler(void)
 
 {
   ushort uVar1;
@@ -15247,12 +15247,12 @@ LAB_0001b262:
 
 
 //
-// Function: FUN_0001b314 @ 0x0001b314
+// Function: phase3_retarder_condition_monitor @ 0x0001b314
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-ushort FUN_0001b314(void)
+ushort phase3_retarder_condition_monitor(void)
 
 {
   ushort uVar1;
@@ -17331,10 +17331,10 @@ void FUN_0001d268(undefined4 param_1)
 
 
 //
-// Function: FUN_0001d29c @ 0x0001d29c
+// Function: phase3_countdown_timer_manager @ 0x0001d29c
 //
 
-void FUN_0001d29c(void)
+void phase3_countdown_timer_manager(void)
 
 {
   short sVar1;

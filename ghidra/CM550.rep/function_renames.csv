@@ -160,3 +160,6 @@ address,newName
 0x00017296,phase2_slot_7_handler
 0x000172ae,phase2_slot_8_handler
 0x00011060,phase2_sensor_data_processor
+0x0001afe4,phase3_periodic_task_scheduler
+0x0001b314,phase3_retarder_condition_monitor
+0x0001d29c,phase3_countdown_timer_manager
