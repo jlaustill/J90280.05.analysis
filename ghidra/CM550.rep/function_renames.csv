@@ -289,3 +289,7 @@ address,newName
 0x00031b78,ioControlSourceRegisterManager
 0x00031c60,fuelTemperatureProtectionSlowCycle40Coordinator
 0x0003211a,vp44SensorDiagnosticControl
+0x000175a6,diagnosticStatisticsSlowCycle20Coordinator
+0x0002880e,fuelStatisticsTracker
+0x0002e8f2,clutchOperatingStatisticsTracker
+0x00032b16,timeDeltaCalculator
