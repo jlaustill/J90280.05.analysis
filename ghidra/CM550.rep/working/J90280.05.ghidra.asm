@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Sat Aug 30 10:32:02 MDT 2025
+; Tue Nov 25 08:39:36 MST 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -2104,10 +2104,10 @@
 0000c356: clr.w    (0x008096aa).l      
 0000c35c: move.w   (0x008037b4).l,(0x008096ac).l
 0000c366: rts      <UNSUPPORTED>       
-0000c368: movem.l  {  A5 A4 A3 A2},SP  
-0000c36c: movea.l  #0x807946,A2        
-0000c372: movea.l  #0x80bdee,A3        
-0000c378: movea.l  #0x80bdc6,A4        
+0000c368: movem.l  {  A5 A4 A3 A2},SP   ; Periodic I/O and CAN fault monitor - runs every 5th call
+0000c36c: movea.l  #0x807946,A2         ; Check if phase counter > 4 to reset
+0000c372: movea.l  #0x80bdee,A3         ; Check if counter == 1 for fault monitoring
+0000c378: movea.l  #0x80bdc6,A4         ; CAN pin switching fault detection section 1
 0000c37e: movea.l  #0x8000c8,A5        
 0000c384: addq.b   0x1,(A5)            
 0000c386: cmpi.b   #0x5,(A5)           
@@ -2116,11 +2116,11 @@
 0000c38e: cmpi.b   #0x1,(A5)           
 0000c392: bne.w    0x0000c8bc          
 0000c396: move.b   (0x4,A4),D0b        
-0000c39a: andi.l   #0x80,D0            
+0000c39a: andi.l   #0x80,D0             ; Increment CAN pin fault persistence counter
 0000c3a0: sne      D0b                 
-0000c3a2: andi.l   #0x1,D0             
+0000c3a2: andi.l   #0x1,D0              ; Set CAN pin fault bits in registers
 0000c3a8: move.b   (0x5,A3),D1b        
-0000c3ac: andi.l   #0x20,D1            
+0000c3ac: andi.l   #0x20,D1             ; I/O control signal fault detection section 1
 0000c3b2: sne      D1b                 
 0000c3b4: andi.l   #0x1,D1             
 0000c3ba: cmp.l    D1,D0               
@@ -2131,34 +2131,34 @@
 0000c3ca: move.w   (A2),D1w            
 0000c3cc: cmp.l    D1,D0               
 0000c3ce: bge.b    0x0000c3da          
-0000c3d0: addq.b   0x1,(0x008000c9).l  
+0000c3d0: addq.b   0x1,(0x008000c9).l   ; Increment I/O fault 1 persistence counter
 0000c3d6: bra.w    0x0000c428          
-0000c3da: move     SR,-(SP)            
+0000c3da: move     SR,-(SP)             ; Set I/O fault 1 bits in registers
 0000c3dc: ori      #0x700,SR           
-0000c3e0: ori.w    #0x80,(0x00805dfc).l
+0000c3e0: ori.w    #0x80,(0x00805dfc).l ; I/O control signal fault detection section 2
 0000c3e8: ori.w    #0x80,(0x00805e3c).l
 0000c3f0: move     (SP)+,SR            
 0000c3f2: bra.w    0x0000c428          
 0000c3f6: move.w   (0x00805dfc).l,D0w  
 0000c3fc: andi.w   #0x80,D0w           
 0000c400: beq.w    0x0000c428          
-0000c404: move.w   (0x00805e3c).l,D0w  
+0000c404: move.w   (0x00805e3c).l,D0w   ; Increment I/O fault 2 persistence counter
 0000c40a: andi.w   #0x80,D0w           
-0000c40e: bne.w    0x0000c428          
+0000c40e: bne.w    0x0000c428           ; Set I/O fault 2 bits in registers
 0000c412: move     SR,-(SP)            
 0000c414: ori      #0x700,SR           
-0000c418: andi.w   #-0x81,(0x00805dfc).l
+0000c418: andi.w   #-0x81,(0x00805dfc).l ; Engine fault register monitoring section 1
 0000c420: move     (SP)+,SR            
 0000c422: clr.b    (0x008000c9).l      
 0000c428: move.b   (0x5,A4),D0b        
 0000c42c: andi.l   #0x80,D0            
 0000c432: sne      D0b                 
 0000c434: andi.l   #0x1,D0             
-0000c43a: move.b   (0x1,A3),D1b        
-0000c43e: andi.l   #0x80,D1            
+0000c43a: move.b   (0x1,A3),D1b         ; Increment engine fault 1 persistence counter
+0000c43e: andi.l   #0x80,D1             ; Set engine fault 1 bits in fault registers
 0000c444: sne      D1b                 
 0000c446: andi.l   #0x1,D1             
-0000c44c: cmp.l    D1,D0               
+0000c44c: cmp.l    D1,D0                ; Engine fault register monitoring section 2
 0000c44e: beq.w    0x0000c488          
 0000c452: moveq    0x0,D0              
 0000c454: move.b   (0x008000ca).l,D0b  
@@ -2169,9 +2169,9 @@
 0000c462: addq.b   0x1,(0x008000ca).l  
 0000c468: bra.w    0x0000c4ba          
 0000c46c: move     SR,-(SP)            
-0000c46e: ori      #0x700,SR           
-0000c472: ori.w    #0x40,(0x00805dfc).l
-0000c47a: ori.w    #0x40,(0x00805e3c).l
+0000c46e: ori      #0x700,SR            ; Increment engine fault 2 persistence counter
+0000c472: ori.w    #0x40,(0x00805dfc).l ; Set engine fault 2 bits in fault registers
+0000c47a: ori.w    #0x40,(0x00805e3c).l ; I/O control signal fault detection section 3
 0000c482: move     (SP)+,SR            
 0000c484: bra.w    0x0000c4ba          
 0000c488: move.w   (0x00805dfc).l,D0w  
@@ -2179,21 +2179,21 @@
 0000c492: beq.w    0x0000c4ba          
 0000c496: move.w   (0x00805e3c).l,D0w  
 0000c49c: andi.w   #0x40,D0w           
-0000c4a0: bne.w    0x0000c4ba          
+0000c4a0: bne.w    0x0000c4ba           ; Increment I/O fault 3 persistence counter
 0000c4a4: move     SR,-(SP)            
 0000c4a6: ori      #0x700,SR           
-0000c4aa: andi.w   #-0x41,(0x00805dfc).l
+0000c4aa: andi.w   #-0x41,(0x00805dfc).l ; Set I/O fault 3 bits in registers
 0000c4b2: move     (SP)+,SR            
-0000c4b4: clr.b    (0x008000ca).l      
+0000c4b4: clr.b    (0x008000ca).l       ; I/O control signal fault detection section 4
 0000c4ba: move.b   (0x5,A4),D0b        
 0000c4be: andi.l   #0x1,D0             
 0000c4c4: sne      D0b                 
 0000c4c6: andi.l   #0x1,D0             
 0000c4cc: move.b   (0x1,A3),D1b        
 0000c4d0: andi.l   #0x1,D1             
-0000c4d6: sne      D1b                 
+0000c4d6: sne      D1b                  ; Increment I/O fault 4 persistence counter
 0000c4d8: andi.l   #0x1,D1             
-0000c4de: cmp.l    D1,D0               
+0000c4de: cmp.l    D1,D0                ; Set I/O fault 4 bits in registers
 0000c4e0: beq.w    0x0000c51a          
 0000c4e4: moveq    0x0,D0              
 0000c4e6: move.b   (0x008000cb).l,D0b  
