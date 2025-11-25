@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 12:32:44 MST 2025
+// Tue Nov 25 12:45:40 MST 2025
 
 
 //
@@ -5365,12 +5365,12 @@ void FUN_0001078e(void)
 
 
 //
-// Function: FUN_000107a4 @ 0x000107a4
+// Function: engineRunTimeHistogramAccumulator @ 0x000107a4
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_000107a4(void)
+uint engineRunTimeHistogramAccumulator(void)
 
 {
   int *piVar1;
@@ -11059,13 +11059,13 @@ void diagnosticMonitoringCoordinator(void)
 
 
 //
-// Function: FUN_00017486 @ 0x00017486
+// Function: epsSignalMonitoringCoordinator @ 0x00017486
 //
 
-void FUN_00017486(void)
+void epsSignalMonitoringCoordinator(void)
 
 {
-  FUN_0001e140();
+  epsSignalQualityValidator();
   return;
 }
 
@@ -11201,16 +11201,16 @@ void fuelTimingCoordinator(void)
 
 
 //
-// Function: FUN_00017512 @ 0x00017512
+// Function: slowCycle20ExtendedCoordinator @ 0x00017512
 //
 
-void FUN_00017512(void)
+void slowCycle20ExtendedCoordinator(void)
 
 {
-  FUN_000107a4();
-  FUN_0002f662();
-  FUN_00034d16();
-  FUN_00034d9e();
+  engineRunTimeHistogramAccumulator();
+  oilPressureFuelArbitrationMonitor();
+  vp44FsoStuckHighFaultDetector();
+  vp44FsoStuckLowFaultDetector();
   return;
 }
 
@@ -11474,8 +11474,8 @@ undefined8 main_loop(void)
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     boost_pressure_control_wrapper();
-    FUN_00017486();
-    FUN_00017512();
+    epsSignalMonitoringCoordinator();
+    slowCycle20ExtendedCoordinator();
     _main_loop_phase_index = 6;
     break;
   case 6:
@@ -11573,7 +11573,7 @@ undefined8 main_loop(void)
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
     FUN_0001743e();
-    FUN_00017486();
+    epsSignalMonitoringCoordinator();
     FUN_00017586();
     FUN_0001e36a();
     FUN_0002fd74();
@@ -11668,8 +11668,8 @@ undefined8 main_loop(void)
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     engineParameterAndBoostControlWrapper();
-    FUN_00017486();
-    FUN_00017512();
+    epsSignalMonitoringCoordinator();
+    slowCycle20ExtendedCoordinator();
     _main_loop_phase_index = 0x1a;
     break;
   case 0x1a:
@@ -11758,7 +11758,7 @@ undefined8 main_loop(void)
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
     slowCycle8Coordinator();
-    FUN_00017486();
+    epsSignalMonitoringCoordinator();
     FUN_00017586();
     _main_loop_phase_index = 0x24;
     break;
@@ -18347,12 +18347,12 @@ void FUN_0001e0d6(void)
 
 
 //
-// Function: FUN_0001e140 @ 0x0001e140
+// Function: epsSignalQualityValidator @ 0x0001e140
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0001e140(void)
+void epsSignalQualityValidator(void)
 
 {
   uint uVar1;
@@ -29781,12 +29781,12 @@ void FUN_0002f5f2(void)
 
 
 //
-// Function: FUN_0002f662 @ 0x0002f662
+// Function: oilPressureFuelArbitrationMonitor @ 0x0002f662
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-ushort FUN_0002f662(void)
+ushort oilPressureFuelArbitrationMonitor(void)
 
 {
   ushort uVar1;
@@ -34615,12 +34615,12 @@ void FUN_00034b46(void)
 
 
 //
-// Function: FUN_00034d16 @ 0x00034d16
+// Function: vp44FsoStuckHighFaultDetector @ 0x00034d16
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00034d16(void)
+void vp44FsoStuckHighFaultDetector(void)
 
 {
   if (vp44_fso_fault_detection_enable != 0) {
@@ -34647,12 +34647,12 @@ void FUN_00034d16(void)
 
 
 //
-// Function: FUN_00034d9e @ 0x00034d9e
+// Function: vp44FsoStuckLowFaultDetector @ 0x00034d9e
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00034d9e(void)
+void vp44FsoStuckLowFaultDetector(void)
 
 {
   bool bVar1;
