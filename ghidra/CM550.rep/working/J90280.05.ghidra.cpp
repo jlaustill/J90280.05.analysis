@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 12:18:36 MST 2025
+// Tue Nov 25 12:32:44 MST 2025
 
 
 //
@@ -4154,7 +4154,7 @@ int FUN_0000ed52(void)
           uVar4 = uVar4 + 1;
         }
         points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32._2_2_ = 1;
-        FUN_00026f10();
+        canMemoryPointerTableInit();
         iVar1 = (uint)extraout_D0u << 0x10;
       }
       else {
@@ -4244,7 +4244,7 @@ int FUN_0000ef80(void)
           uVar4 = uVar4 + 1;
         }
         points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32._2_2_ = 2;
-        FUN_00026f10();
+        canMemoryPointerTableInit();
         iVar1 = (uint)extraout_D0u << 0x10;
       }
       else {
@@ -10938,14 +10938,14 @@ void slowCycle8Coordinator(void)
 
 
 //
-// Function: FUN_00017426 @ 0x00017426
+// Function: boostPressureControlCoordinator @ 0x00017426
 //
 
-void FUN_00017426(void)
+void boostPressureControlCoordinator(void)
 
 {
-  FUN_0002e3ee();
-  FUN_0002d7b4();
+  boostPressureTargetCalculator();
+  boostPressureProtectionStateMachine();
   return;
 }
 
@@ -11043,16 +11043,16 @@ void slowCycle10Coordinator(void)
 
 
 //
-// Function: FUN_0001746c @ 0x0001746c
+// Function: diagnosticMonitoringCoordinator @ 0x0001746c
 //
 
-void FUN_0001746c(void)
+void diagnosticMonitoringCoordinator(void)
 
 {
-  FUN_000265be();
-  FUN_000353ec();
-  FUN_0003544a();
-  FUN_00035228();
+  oilPressureRpmFaultMonitor();
+  liftPumpCommStatusMonitor();
+  vp44FsoFaultEnableController();
+  multiParameterMinimumSelector();
   return;
 }
 
@@ -11187,14 +11187,14 @@ void slowCycle20Coordinator(void)
 
 
 //
-// Function: FUN_00017504 @ 0x00017504
+// Function: fuelTimingCoordinator @ 0x00017504
 //
 
-void FUN_00017504(void)
+void fuelTimingCoordinator(void)
 
 {
-  FUN_0001ef18();
-  FUN_0001ee5c();
+  timingOffsetCalculatorWrapper();
+  engineModeTimingAdjuster();
   return;
 }
 
@@ -11463,10 +11463,10 @@ undefined8 main_loop(void)
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
-    FUN_00017426();
-    FUN_0001746c();
-    FUN_00017504();
-    FUN_00026ff4();
+    boostPressureControlCoordinator();
+    diagnosticMonitoringCoordinator();
+    fuelTimingCoordinator();
+    canMessageMemorySyncController();
     _main_loop_phase_index = 5;
     break;
   case 5:
@@ -11542,7 +11542,7 @@ undefined8 main_loop(void)
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
-    FUN_00017426();
+    boostPressureControlCoordinator();
     secondaryMonitoringWrapper();
     FUN_00017568();
     FUN_00013fe2();
@@ -11563,7 +11563,7 @@ undefined8 main_loop(void)
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
     FUN_0001743c();
-    FUN_0001746c();
+    diagnosticMonitoringCoordinator();
     FUN_0001757e();
     FUN_000183a6();
     _main_loop_phase_index = 0xf;
@@ -11622,7 +11622,7 @@ undefined8 main_loop(void)
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
-    FUN_00017426();
+    boostPressureControlCoordinator();
     rpm_control_system();
     vp44ControlSystemCoordinator();
     _main_loop_phase_index = 0x15;
@@ -11659,8 +11659,8 @@ undefined8 main_loop(void)
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
     empty_debug_hook();
-    FUN_0001746c();
-    FUN_00017504();
+    diagnosticMonitoringCoordinator();
+    fuelTimingCoordinator();
     _main_loop_phase_index = 0x19;
     break;
   case 0x19:
@@ -11694,7 +11694,7 @@ undefined8 main_loop(void)
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
-    FUN_00017426();
+    boostPressureControlCoordinator();
     FUN_0001749e();
     FUN_0001753c();
     _main_loop_phase_index = 0x1d;
@@ -11749,7 +11749,7 @@ undefined8 main_loop(void)
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
     auxiliarySystemControlWrapper();
-    FUN_0001746c();
+    diagnosticMonitoringCoordinator();
     FUN_0001757e();
     _main_loop_phase_index = 0x23;
     break;
@@ -11766,7 +11766,7 @@ undefined8 main_loop(void)
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
-    FUN_00017426();
+    boostPressureControlCoordinator();
     FUN_0001748e();
     FUN_00017588();
     _main_loop_phase_index = 0x25;
@@ -19039,12 +19039,12 @@ void FUN_0001ecee(void)
 
 
 //
-// Function: FUN_0001ecf6 @ 0x0001ecf6
+// Function: fuelTimingOffsetCalculator @ 0x0001ecf6
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0001ecf6(void)
+void fuelTimingOffsetCalculator(void)
 
 {
   if (((_diagnostic_system_flags_1 & 8) == 0) ||
@@ -19124,12 +19124,12 @@ int FUN_0001ee2c(void)
 
 
 //
-// Function: FUN_0001ee5c @ 0x0001ee5c
+// Function: engineModeTimingAdjuster @ 0x0001ee5c
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0001ee5c(void)
+void engineModeTimingAdjuster(void)
 
 {
   bool bVar1;
@@ -19177,13 +19177,13 @@ void FUN_0001ee5c(void)
 
 
 //
-// Function: FUN_0001ef18 @ 0x0001ef18
+// Function: timingOffsetCalculatorWrapper @ 0x0001ef18
 //
 
-void FUN_0001ef18(void)
+void timingOffsetCalculatorWrapper(void)
 
 {
-  FUN_0001ecf6();
+  fuelTimingOffsetCalculator();
   return;
 }
 
@@ -22570,12 +22570,12 @@ void FUN_000265a4(void)
 
 
 //
-// Function: FUN_000265be @ 0x000265be
+// Function: oilPressureRpmFaultMonitor @ 0x000265be
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_000265be(void)
+uint oilPressureRpmFaultMonitor(void)
 
 {
   uint in_D0;
@@ -22584,7 +22584,7 @@ uint FUN_000265be(void)
   if (amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535 < 6) {
     amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535 =
          amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535 + 1;
-    in_D0 = FUN_00026aca();
+    in_D0 = waterInFuelDiagnosticHandler();
   }
   if (_DAT_00808934 != 0) {
     if ((_DAT_00fff450 & 0x8000) == 0) {
@@ -22789,12 +22789,12 @@ uint FUN_000265be(void)
 
 
 //
-// Function: FUN_00026aca @ 0x00026aca
+// Function: waterInFuelDiagnosticHandler @ 0x00026aca
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_00026aca(void)
+uint waterInFuelDiagnosticHandler(void)
 
 {
   uint uVar1;
@@ -22983,13 +22983,13 @@ void clearWorkingMemory(void)
 
 
 //
-// Function: FUN_00026f10 @ 0x00026f10
+// Function: canMemoryPointerTableInit @ 0x00026f10
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* WARNING: Restarted to delay deadcode elimination for space: ram */
 
-void FUN_00026f10(void)
+void canMemoryPointerTableInit(void)
 
 {
   int iVar1;
@@ -23037,12 +23037,12 @@ void FUN_00026f10(void)
 
 
 //
-// Function: FUN_00026ff4 @ 0x00026ff4
+// Function: canMessageMemorySyncController @ 0x00026ff4
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00026ff4(void)
+void canMessageMemorySyncController(void)
 
 {
   undefined4 *puVar1;
@@ -23050,7 +23050,7 @@ void FUN_00026ff4(void)
   
   if ((_DAT_008018d6 == 0) &&
      (amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535 != 0)) {
-    FUN_00026f10();
+    canMemoryPointerTableInit();
   }
   if (points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32._2_2_ == 0) {
     amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535 = 0;
@@ -28277,12 +28277,12 @@ void FUN_0002d782(undefined4 param_1)
 
 
 //
-// Function: FUN_0002d7b4 @ 0x0002d7b4
+// Function: boostPressureProtectionStateMachine @ 0x0002d7b4
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002d7b4(void)
+void boostPressureProtectionStateMachine(void)
 
 {
   undefined4 unaff_A2;
@@ -28935,12 +28935,12 @@ void FUN_0002e3a8(void)
 
 
 //
-// Function: FUN_0002e3ee @ 0x0002e3ee
+// Function: boostPressureTargetCalculator @ 0x0002e3ee
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_0002e3ee(void)
+uint boostPressureTargetCalculator(void)
 
 {
   int iVar1;
@@ -34886,12 +34886,12 @@ void FUN_000350ae(void)
 
 
 //
-// Function: FUN_00035228 @ 0x00035228
+// Function: multiParameterMinimumSelector @ 0x00035228
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00035228(void)
+void multiParameterMinimumSelector(void)
 
 {
   _DAT_0080d498 = 0x1700;
@@ -34984,12 +34984,12 @@ void systemStatusMonitor(void)
 
 
 //
-// Function: FUN_000353ec @ 0x000353ec
+// Function: liftPumpCommStatusMonitor @ 0x000353ec
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-byte FUN_000353ec(void)
+byte liftPumpCommStatusMonitor(void)
 
 {
   byte bVar1;
@@ -35010,10 +35010,10 @@ byte FUN_000353ec(void)
 
 
 //
-// Function: FUN_0003544a @ 0x0003544a
+// Function: vp44FsoFaultEnableController @ 0x0003544a
 //
 
-void FUN_0003544a(void)
+void vp44FsoFaultEnableController(void)
 
 {
   engine_control_system_ready = (ushort)vp44_fso_fault_active_flag;
