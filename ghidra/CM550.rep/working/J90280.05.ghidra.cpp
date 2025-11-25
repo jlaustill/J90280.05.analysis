@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 11:37:57 MST 2025
+// Tue Nov 25 12:09:55 MST 2025
 
 
 //
@@ -10860,10 +10860,10 @@ void engineDiagnosticSystemCoordinator(void)
 
 
 //
-// Function: FUN_000173b0 @ 0x000173b0
+// Function: slowCycle4Coordinator @ 0x000173b0
 //
 
-void FUN_000173b0(void)
+void slowCycle4Coordinator(void)
 
 {
   FUN_00013bd8();
@@ -10923,10 +10923,10 @@ void auxiliarySystemControlWrapper(void)
 
 
 //
-// Function: FUN_00017412 @ 0x00017412
+// Function: slowCycle8Coordinator @ 0x00017412
 //
 
-void FUN_00017412(void)
+void slowCycle8Coordinator(void)
 
 {
   FUN_00031fb8();
@@ -11030,10 +11030,10 @@ void secondaryMonitoringWrapper(void)
 
 
 //
-// Function: FUN_00017464 @ 0x00017464
+// Function: slowCycle10Coordinator @ 0x00017464
 //
 
-void FUN_00017464(void)
+void slowCycle10Coordinator(void)
 
 {
   FUN_000202a4();
@@ -11174,10 +11174,10 @@ void advancedEngineProtectionCoordinator(void)
 
 
 //
-// Function: FUN_000174fc @ 0x000174fc
+// Function: slowCycle20Coordinator @ 0x000174fc
 //
 
-void FUN_000174fc(void)
+void slowCycle20Coordinator(void)
 
 {
   FUN_00031768();
@@ -11453,10 +11453,10 @@ undefined8 main_loop(void)
   case 3:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
-    FUN_00017412();
-    FUN_00017464();
-    FUN_000174fc();
+    slowCycle4Coordinator();
+    slowCycle8Coordinator();
+    slowCycle10Coordinator();
+    slowCycle20Coordinator();
     _main_loop_phase_index = 4;
     break;
   case 4:
@@ -11491,7 +11491,7 @@ undefined8 main_loop(void)
   case 7:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
+    slowCycle4Coordinator();
     FUN_0001743e();
     FUN_00017496();
     FUN_00017534();
@@ -11531,8 +11531,8 @@ undefined8 main_loop(void)
   case 0xb:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
-    FUN_00017412();
+    slowCycle4Coordinator();
+    slowCycle8Coordinator();
     rpmBasedFuelLimiterCoordinator();
     FUN_00017554();
     FUN_00013f46();
@@ -11553,7 +11553,7 @@ undefined8 main_loop(void)
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     boost_pressure_control_wrapper();
-    FUN_00017464();
+    slowCycle10Coordinator();
     FUN_00017570();
     FUN_0001403e();
     _main_loop_phase_index = 0xe;
@@ -11571,7 +11571,7 @@ undefined8 main_loop(void)
   case 0xf:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
+    slowCycle4Coordinator();
     FUN_0001743e();
     FUN_00017486();
     FUN_00017586();
@@ -11612,8 +11612,8 @@ undefined8 main_loop(void)
   case 0x13:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
-    FUN_00017412();
+    slowCycle4Coordinator();
+    slowCycle8Coordinator();
     FUN_000174a6();
     FUN_000175a6();
     _main_loop_phase_index = 0x14;
@@ -11648,10 +11648,10 @@ undefined8 main_loop(void)
   case 0x17:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
+    slowCycle4Coordinator();
     FUN_0001743e();
-    FUN_00017464();
-    FUN_000174fc();
+    slowCycle10Coordinator();
+    slowCycle20Coordinator();
     _main_loop_phase_index = 0x18;
     break;
   case 0x18:
@@ -11684,8 +11684,8 @@ undefined8 main_loop(void)
   case 0x1b:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
-    FUN_00017412();
+    slowCycle4Coordinator();
+    slowCycle8Coordinator();
     FUN_00017496();
     FUN_00017534();
     _main_loop_phase_index = 0x1c;
@@ -11720,7 +11720,7 @@ undefined8 main_loop(void)
   case 0x1f:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
+    slowCycle4Coordinator();
     FUN_0001743e();
     rpmBasedFuelLimiterCoordinator();
     FUN_00017554();
@@ -11740,7 +11740,7 @@ undefined8 main_loop(void)
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     engineParameterAndBoostControlWrapper();
-    FUN_00017464();
+    slowCycle10Coordinator();
     FUN_00017570();
     _main_loop_phase_index = 0x22;
     break;
@@ -11756,8 +11756,8 @@ undefined8 main_loop(void)
   case 0x23:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
-    FUN_00017412();
+    slowCycle4Coordinator();
+    slowCycle8Coordinator();
     FUN_00017486();
     FUN_00017586();
     _main_loop_phase_index = 0x24;
@@ -11792,7 +11792,7 @@ undefined8 main_loop(void)
   case 0x27:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
-    FUN_000173b0();
+    slowCycle4Coordinator();
     FUN_0001743e();
     FUN_000174a6();
     FUN_000175a6();

@@ -163,3 +163,7 @@ address,newName
 0x0001afe4,phase3_periodic_task_scheduler
 0x0001b314,phase3_retarder_condition_monitor
 0x0001d29c,phase3_countdown_timer_manager
+0x000173b0,slowCycle4Coordinator
+0x00017412,slowCycle8Coordinator
+0x00017464,slowCycle10Coordinator
+0x000174fc,slowCycle20Coordinator
