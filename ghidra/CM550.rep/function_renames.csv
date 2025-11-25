@@ -234,3 +234,6 @@ address,newName
 0x0001a192,diagnosticMessage45Builder
 0x0001aca8,diagnosticMessage53Builder
 0x0001e210,camSyncDiagnosticProcessor
+0x0000e478,derateThresholdMonitorAndFaultController
+0x0001754c,derateProtectionSlowCycle20Coordinator
+0x00026d98,ioOutputFlagMappingSlowCycle40Coordinator
