@@ -2,6 +2,7 @@
 
 # Pre-commit hook to automatically sort CSV files according to J90280.05 analysis standards
 # This prevents merge conflicts by ensuring consistent ordering
+# Also enforces that exported files are in sync with CSVs for code review
 
 set -e
 
@@ -53,7 +54,7 @@ sort_by_enum_value() {
 FILES_MODIFIED=0
 
 # Process each CSV file type according to our standards
-CSV_BASE_DIR="ghidra/J90280.05.rep"
+CSV_BASE_DIR="ghidra/CM550.rep"
 
 if [ -d "$CSV_BASE_DIR" ]; then
     # Address-sorted files
@@ -115,4 +116,65 @@ else
 fi
 
 echo -e "${GREEN}🎉 Pre-commit CSV sorting complete!${NC}"
+
+# ============================================================================
+# STALE EXPORT CHECK
+# Ensure exported .cpp/.asm files are in sync with CSV source files
+# ============================================================================
+
+echo ""
+echo -e "${YELLOW}🔍 Checking if exported files are in sync with CSVs...${NC}"
+
+EXPORT_CPP="$CSV_BASE_DIR/working/J90280.05.ghidra.cpp"
+EXPORT_ASM="$CSV_BASE_DIR/working/J90280.05.ghidra.asm"
+
+# Check if export files exist
+if [ ! -f "$EXPORT_CPP" ] || [ ! -f "$EXPORT_ASM" ]; then
+    echo -e "${RED}❌ ERROR: Exported files not found!${NC}"
+    echo ""
+    echo "Expected files:"
+    echo "  - $EXPORT_CPP"
+    echo "  - $EXPORT_ASM"
+    echo ""
+    echo "Please run ApplyAndExport (Ctrl+Shift+E) in Ghidra to generate exports."
+    exit 1
+fi
+
+# Get the oldest export file timestamp
+EXPORT_TIME=$(stat -c %Y "$EXPORT_CPP" 2>/dev/null || stat -f %m "$EXPORT_CPP" 2>/dev/null)
+
+# Check if any CSV is newer than the exports
+STALE_FILES=""
+for csv_file in "$CSV_BASE_DIR"/*.csv; do
+    if [ -f "$csv_file" ]; then
+        CSV_TIME=$(stat -c %Y "$csv_file" 2>/dev/null || stat -f %m "$csv_file" 2>/dev/null)
+        if [ "$CSV_TIME" -gt "$EXPORT_TIME" ]; then
+            STALE_FILES="$STALE_FILES\n  - $(basename "$csv_file")"
+        fi
+    fi
+done
+
+# Also check local_variables.csv in parent directory if it exists
+if [ -f "ghidra/local_variables.csv" ]; then
+    CSV_TIME=$(stat -c %Y "ghidra/local_variables.csv" 2>/dev/null || stat -f %m "ghidra/local_variables.csv" 2>/dev/null)
+    if [ "$CSV_TIME" -gt "$EXPORT_TIME" ]; then
+        STALE_FILES="$STALE_FILES\n  - ghidra/local_variables.csv"
+    fi
+fi
+
+if [ -n "$STALE_FILES" ]; then
+    echo -e "${RED}❌ ERROR: Exported files are stale!${NC}"
+    echo ""
+    echo "The following CSV files are newer than the exports:"
+    echo -e "$STALE_FILES"
+    echo ""
+    echo "Please run ApplyAndExport (Ctrl+Shift+E) in Ghidra before committing."
+    echo "This ensures the .cpp/.asm files match your CSV changes for code review."
+    echo ""
+    echo -e "${YELLOW}Tip: The exported files are used for code review in CLion and GitHub.${NC}"
+    exit 1
+fi
+
+echo -e "${GREEN}✅ Exported files are in sync with CSVs${NC}"
+echo -e "${GREEN}🎉 All checks passed! Proceeding with commit...${NC}"
 exit 0

@@ -191,13 +191,87 @@ function_address,function_name,first_use_address,new_variable_name,type,comment
 - **`ghidra_scripts/`** - Project scripts (version controlled)
 - **`~/ghidra_scripts/`** - User Ghidra directory (runtime execution)
 
+## **🔌 Ghidra MCP Integration (Instant Iteration)**
+
+**NEW**: Claude Code can now interact directly with Ghidra via the MCP (Model Context Protocol) server. This enables instant iteration without manual CSV→Ghidra→Export cycles.
+
+### **Hybrid Workflow (Fastest)**
+```
+1. Claude decompiles function via MCP → analyzes behavior
+2. Claude determines function name
+3. Claude updates CSV (source of truth) AND applies via MCP (instant in Ghidra)
+4. Claude decompiles again to verify → continues analysis
+```
+
+**No manual Ghidra interaction required during analysis sessions!**
+
+### **MCP Tools Available**
+
+| Tool | Purpose | Example Use |
+|------|---------|-------------|
+| `decompile_function` | Get C code by function name | Analyze `vp44FuelTempHandler` |
+| `decompile_function_by_address` | Get C code by hex address | Analyze `FUN_0000a30c` |
+| `rename_function_by_address` | Rename function | Name a `FUN_xxxxx` function |
+| `rename_variable` | Rename local variable | Change `local_10` to `fuel_temp` |
+| `rename_data` | Rename global data label | Name a `DAT_xxxxx` variable |
+| `set_function_prototype` | Set function signature | Add parameter types |
+| `set_local_variable_type` | Set variable type | Improve type accuracy |
+| `set_decompiler_comment` | Add pseudocode comment | Document findings |
+| `search_functions_by_name` | Find functions by pattern | Locate `FUN_*` functions |
+| `get_function_xrefs` | Get cross-references | Understand call hierarchy |
+| `list_strings` | List strings in binary | Find string references |
+| `get_xrefs_to` / `get_xrefs_from` | Trace references | Follow data flow |
+
+### **Workflow Patterns**
+
+**Pattern: Rename a Function**
+```
+1. mcp__ghidra__decompile_function_by_address("0x0000a30c")
+2. Analyze decompiled code, determine name
+3. Edit function_renames.csv (add: 0x0000a30c,myFunctionName)
+4. mcp__ghidra__rename_function_by_address("0x0000a30c", "myFunctionName")
+5. Decompile again to verify
+```
+
+**Pattern: Rename Local Variable**
+```
+1. mcp__ghidra__decompile_function("myFunction")
+2. Identify variable (e.g., local_10)
+3. Edit local_variables.csv with entry
+4. mcp__ghidra__rename_variable("myFunction", "local_10", "fuel_temp")
+5. Decompile again to verify
+```
+
+**Pattern: Add Global Variable**
+```
+1. Identify address from decompilation (e.g., DAT_0080c9a4)
+2. Edit global_variables.csv with full entry
+3. mcp__ghidra__rename_data("0x0080c9a4", "fuel_demand_command")
+4. Verify in next decompilation
+```
+
+### **Pre-Commit Sync**
+CSVs are the source of truth. Before committing:
+1. Run `Ctrl+Shift+E` in Ghidra (ApplyAndExport)
+2. This regenerates `working/*.cpp` and `working/*.asm`
+3. Pre-commit hook verifies exports are in sync with CSVs
+4. Commit includes synchronized CSVs + exports
+
+**Why Hybrid?**
+- **MCP for speed**: Instant changes during analysis sessions
+- **CSVs for durability**: Can rebuild Ghidra project from scratch anytime
+- **Exports for review**: Human-readable code for CLion/GitHub review
+
+---
+
 ## **💡 Pro Tips for Claude Code Sessions**
 
 1. **CSV files contain complete knowledge** - reference them for discoveries
-2. **Exported files have latest analysis** - `working/*.asm` and `working/*.cpp` 
-3. **Update workflow**: CSV → MasterAnalysisSetup → ExportAnalysisResults → Claude Code
-4. **Address references help**: `function_name @ 0x12345` for precise location
-5. **This workflow makes Claude Code an extension of Ghidra analysis**
+2. **Exported files have latest analysis** - `working/*.asm` and `working/*.cpp`
+3. **MCP for instant iteration** - rename directly without manual Ghidra steps
+4. **Update workflow**: CSV + MCP rename → periodic ApplyAndExport for sync
+5. **Address references help**: `function_name @ 0x12345` for precise location
+6. **This workflow makes Claude Code an extension of Ghidra analysis**
 
 **This represents a 10x+ productivity improvement in firmware reverse engineering.**
 
