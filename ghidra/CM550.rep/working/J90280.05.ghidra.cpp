@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 19:04:45 MST 2025
+// Tue Nov 25 19:22:46 MST 2025
 
 
 //
@@ -6255,12 +6255,12 @@ void FUN_000115b2(void)
 
 
 //
-// Function: FUN_00011a0a @ 0x00011a0a
+// Function: faultFlagScannerAndProcessor @ 0x00011a0a
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00011a0a(void)
+void faultFlagScannerAndProcessor(void)
 
 {
   ushort uVar1;
@@ -7740,12 +7740,12 @@ void canRpmModeConfigInit(void)
 
 
 //
-// Function: FUN_00013930 @ 0x00013930
+// Function: rpmBasedFuelLimitCalculator @ 0x00013930
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00013930(void)
+void rpmBasedFuelLimitCalculator(void)
 
 {
   if (((engine_operating_mode == LOW_RPM_RUNNING) || (engine_operating_mode == TRANSITIONAL_MODE_6))
@@ -8033,12 +8033,12 @@ void FUN_00013ecc(void)
 
 
 //
-// Function: FUN_00013f06 @ 0x00013f06
+// Function: engineModeTransitionHandler @ 0x00013f06
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00013f06(void)
+void engineModeTransitionHandler(void)
 
 {
   if (((_DAT_008002cc == 1) && (engine_operating_mode == LOW_RPM_RUNNING)) ||
@@ -8194,12 +8194,12 @@ void initLoadTrendingSystem(void)
 
 
 //
-// Function: FUN_00014174 @ 0x00014174
+// Function: engineOperatingModeStateMachine @ 0x00014174
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00014174(void)
+void engineOperatingModeStateMachine(void)
 
 {
   switch(engine_operating_mode) {
@@ -10865,15 +10865,15 @@ void engineDiagnosticSystemCoordinator(void)
   engine_fault_monitoring_and_rpm_calculation();
   FUN_0001e462();
   FUN_0000a6fa();
-  FUN_00011a0a();
-  FUN_00013f06();
-  FUN_00030c78();
-  FUN_00014174();
-  FUN_00013930();
+  faultFlagScannerAndProcessor();
+  engineModeTransitionHandler();
+  rpmLoadParameterLookup();
+  engineOperatingModeStateMachine();
+  rpmBasedFuelLimitCalculator();
   FUN_0002fce4();
   FUN_00017d40();
   FUN_000181ea();
-  FUN_00033c48();
+  baseTimingTableLookup();
   return;
 }
 
@@ -15926,10 +15926,10 @@ void systemFunction1xCaller(void)
 
 
 //
-// Function: FUN_0001bd76 @ 0x0001bd76
+// Function: diagMemoryReadResponseBuilder @ 0x0001bd76
 //
 
-undefined4 FUN_0001bd76(byte *param_1,undefined1 *param_2,uint param_3)
+undefined4 diagMemoryReadResponseBuilder(byte *param_1,undefined1 *param_2,uint param_3)
 
 {
   int iVar1;
@@ -16007,15 +16007,15 @@ undefined4 FUN_0001bd76(byte *param_1,undefined1 *param_2,uint param_3)
 
 
 //
-// Function: FUN_0001bedc @ 0x0001bedc
+// Function: diagMemoryReadWithOffsetBuilder @ 0x0001bedc
 // ERROR: Failed to decompile
 //
 
 //
-// Function: FUN_0001bf18 @ 0x0001bf18
+// Function: diagMemoryReadService43Handler @ 0x0001bf18
 //
 
-void FUN_0001bf18(int param_1)
+void diagMemoryReadService43Handler(int param_1)
 
 {
   undefined4 unaff_A2;
@@ -16027,17 +16027,17 @@ void FUN_0001bf18(int param_1)
   memcpy(puVar1,(undefined1 *)(*(int *)(param_1 + 6) + 1),
          CONCAT22(2,(short)((uint)unaff_A2 >> 0x10)));
   memcpy(local_a,(undefined1 *)(*(int *)(param_1 + 6) + 3),CONCAT22(4,(short)puVar1));
-  FUN_0001bedc(param_1);
+  diagMemoryReadWithOffsetBuilder(param_1);
   return;
 }
 
 
 
 //
-// Function: FUN_0001bf64 @ 0x0001bf64
+// Function: diagMemoryReadService46Handler @ 0x0001bf64
 //
 
-void FUN_0001bf64(int param_1)
+void diagMemoryReadService46Handler(int param_1)
 
 {
   undefined4 unaff_A2;
@@ -16045,17 +16045,17 @@ void FUN_0001bf64(int param_1)
   
   memcpy(local_6,(undefined1 *)(*(int *)(param_1 + 6) + 1),
          CONCAT22(2,(short)((uint)unaff_A2 >> 0x10)));
-  FUN_0001bedc(param_1);
+  diagMemoryReadWithOffsetBuilder(param_1);
   return;
 }
 
 
 
 //
-// Function: FUN_0001bfc8 @ 0x0001bfc8
+// Function: diagMemoryReadService48Handler @ 0x0001bfc8
 //
 
-void FUN_0001bfc8(int param_1)
+void diagMemoryReadService48Handler(int param_1)
 
 {
   undefined4 unaff_A2;
@@ -16071,17 +16071,17 @@ void FUN_0001bfc8(int param_1)
   puVar1 = local_a;
   memcpy(puVar1,(undefined1 *)(*(int *)(param_1 + 6) + 3),CONCAT22(4,(short)puVar2));
   memcpy(local_e,(undefined1 *)(*(int *)(param_1 + 6) + 7),CONCAT22(4,(short)puVar1));
-  FUN_0001bedc(param_1);
+  diagMemoryReadWithOffsetBuilder(param_1);
   return;
 }
 
 
 
 //
-// Function: FUN_0001c02e @ 0x0001c02e
+// Function: diagMemoryReadService4aHandler @ 0x0001c02e
 //
 
-void FUN_0001c02e(byte *param_1)
+void diagMemoryReadService4aHandler(byte *param_1)
 
 {
   undefined4 unaff_A2;
@@ -16091,17 +16091,17 @@ void FUN_0001c02e(byte *param_1)
   memcpy((undefined1 *)&local_8,(undefined1 *)(*(int *)(param_1 + 6) + 1),
          CONCAT22(4,(short)((uint)unaff_A2 >> 0x10)));
   local_c = (uint)*(byte *)(*(int *)(param_1 + 6) + 5);
-  FUN_0001bd76(param_1,local_8,local_c);
+  diagMemoryReadResponseBuilder(param_1,local_8,local_c);
   return;
 }
 
 
 
 //
-// Function: FUN_0001c076 @ 0x0001c076
+// Function: diagMemoryReadService4cHandler @ 0x0001c076
 //
 
-void FUN_0001c076(byte *param_1)
+void diagMemoryReadService4cHandler(byte *param_1)
 
 {
   undefined4 unaff_A2;
@@ -16114,17 +16114,17 @@ void FUN_0001c076(byte *param_1)
          CONCAT22(4,(short)((uint)unaff_A2 >> 0x10)));
   memcpy((undefined1 *)&local_c,(undefined1 *)(*(int *)(param_1 + 6) + 5),CONCAT22(4,(short)ppuVar1)
         );
-  FUN_0001bd76(param_1,local_8,local_c);
+  diagMemoryReadResponseBuilder(param_1,local_8,local_c);
   return;
 }
 
 
 
 //
-// Function: systemFunction5xCaller @ 0x0001c0c2
+// Function: registerDiagnosticMemoryServices @ 0x0001c0c2
 //
 
-void systemFunction5xCaller(void)
+void registerDiagnosticMemoryServices(void)
 
 {
   coreSystemFunction();
@@ -20829,7 +20829,7 @@ void canTransmissionScheduler(void)
   systemControlFunction3();
   diagnosticDataDump();
   systemControlFunction2();
-  systemFunction5xCaller();
+  registerDiagnosticMemoryServices();
   systemFunction1xCaller();
   systemFunction6xParameterized();
   systemFunction8xMaximum();
@@ -20957,7 +20957,7 @@ void mainCanTransmissionLoop(void)
   systemControlFunction3();
   diagnosticDataDump();
   systemControlFunction2();
-  systemFunction5xCaller();
+  registerDiagnosticMemoryServices();
   systemFunction1xCaller();
   systemFunction6xParameterized();
   systemFunction8xMaximum();
@@ -31360,12 +31360,12 @@ void FUN_00030c3e(void)
 
 
 //
-// Function: FUN_00030c78 @ 0x00030c78
+// Function: rpmLoadParameterLookup @ 0x00030c78
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_00030c78(void)
+uint rpmLoadParameterLookup(void)
 
 {
   undefined4 in_D0;
@@ -33801,12 +33801,12 @@ void FUN_00033bf2(int param_1)
 
 
 //
-// Function: FUN_00033c48 @ 0x00033c48
+// Function: baseTimingTableLookup @ 0x00033c48
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00033c48(void)
+void baseTimingTableLookup(void)
 
 {
   undefined8 uVar1;

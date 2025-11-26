@@ -1,4 +1,10 @@
 address,newName
+0x00011a0a,faultFlagScannerAndProcessor
+0x00013930,rpmBasedFuelLimitCalculator
+0x00013f06,engineModeTransitionHandler
+0x00014174,engineOperatingModeStateMachine
+0x00030c78,rpmLoadParameterLookup
+0x00033c48,baseTimingTableLookup
 0x1C10E,sendJ1939MultiFrame
 0x1C538,vp44FuelTempHandler
 0x1C846,vp44CanMessageDispatcher
