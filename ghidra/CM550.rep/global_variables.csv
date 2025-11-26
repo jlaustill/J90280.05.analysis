@@ -4339,3 +4339,12 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080C9A6,vp44_engine_state,word,VP44 engine operating state - determines status byte in 0x100 command (case 3-24 in buildPgn61444),2,0,,state
 0x00805E16,vp44_fso_fault_flags_active,word,VP44 FSO fault active flags - bit 0x20=FSO circuit fault bit 0x10=FSO bit1 fault,2,0,,flag
 0x00805E56,vp44_fso_fault_flags_history,word,VP44 FSO fault history flags - mirrors active flags for logging,2,0,,flag
+0x00805DF2,fault_flags_active_base,word,Active fault flags array base - indexed by (fault_id >> 4) * 2 with bit (1 << fault_id & 0xF),2,0,,flag
+0x008068C4,fault_flags_enabled_base,word,Fault enable/confirm flags array base - mirrors fault_flags_active structure,2,0,,flag
+0x00805E32,fault_flags_history_base,word,Fault history flags array base - set when fault occurs never auto-cleared,2,0,,flag
+0x00809D4C,proprietary_load_percent,word,Proprietary load percentage 0-400 (0-100%) for diagnostic messages,2,0,,data
+0x00809D50,proprietary_load_active_flag,word,Flag indicating proprietary load calculation is active (non-zero when load > threshold),2,0,,flag
+0x00809D5C,proprietary_load_calculated,word,Calculated proprietary load value before fault checks,2,0,,data
+0x008086F0,proprietary_load_threshold,word,Threshold for proprietary load status - determines 0xF0 vs 0xF4 status byte,2,0,,threshold
+0x0080304F,diagnostic_load_data_byte,byte,Diagnostic message load data byte - scaled from proprietary_load_percent * 0.625,1,0,,data
+0x00803050,diagnostic_param_ctrl_byte,byte,Diagnostic message parameter control byte - param_table_ctrl >> 8,1,0,,data

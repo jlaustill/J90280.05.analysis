@@ -233,3 +233,13 @@ VP44_FSO_FAULT,0x20,FSO_CIRCUIT_FAULT,FSO circuit fault detected (vp44_status_re
 VP44_PROTOCOL,0xF00400,MSG_HEADER,VP44 command message header constant
 VP44_PROTOCOL,0x18EC,TRANSPORT_HEADER,J1939 transport protocol header
 VP44_PROTOCOL,0xEF00,EXPECTED_RESPONSE,Expected VP44 response ID (0xEF byte)
+# Proprietary Diagnostic Status Byte Values - buildProprietaryLoadStatusMessage
+PROP_DIAG_STATUS,0xF0,STATUS_NORMAL,Normal operation - load below threshold
+PROP_DIAG_STATUS,0xF1,STATUS_F1,Status F1 - specific condition
+PROP_DIAG_STATUS,0xF4,STATUS_LOAD_HIGH,Load above threshold
+PROP_DIAG_STATUS,0xF8,STATUS_FAULT_ACTIVE,Critical fault active (fault 67 or 69)
+PROP_DIAG_STATUS,0x01,STATUS_BIT0_LOAD_INACTIVE,Bit 0 set when load calculation inactive
+# Fault Flag Array Indices (fault word 4 at offset 0x08 from base)
+FAULT_WORD_4_BITS,0x08,FAULT_67_BIT,Fault ID 67 - critical fault affecting load status
+FAULT_WORD_4_BITS,0x10,FAULT_68_BIT,Fault ID 68 - affects FSO detection
+FAULT_WORD_4_BITS,0x20,FAULT_69_BIT,Fault ID 69 - critical fault affecting load status

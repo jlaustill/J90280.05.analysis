@@ -392,3 +392,4 @@ address,newName
 0x00011ba0,insitePidDtcHandler
 0x0001b7e8,diagnosticServiceSecurityValidator
 0x0002729a,diagnosticServiceDispatcher
+0x0002a45c,buildProprietaryLoadStatusMessage
