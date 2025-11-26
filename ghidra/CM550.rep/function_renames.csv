@@ -1,4 +1,11 @@
 address,newName
+0x0000a626,diagnosticMessageQueueWrite
+0x00013144,parameterCircularBufferWrite
+0x00013242,tpuTransmissionTrigger
+0x0001f4f8,crankFuelCalculationAndProtection
+0x0002baf0,delayWithWatchdogService
+0x0002dc1e,fuelTempProtectionLimitCalculator
+0x0002de2e,shutdownLimitSelector
 0x0000a6fa,sensorFaultDebounceMonitor
 0x00017d40,fuelDemandModeSelector
 0x000181ea,fuelDemandTableBlendCalculator
