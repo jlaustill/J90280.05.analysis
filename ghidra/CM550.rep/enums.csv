@@ -246,3 +246,15 @@ PROP_DIAG_STATUS,0x01,STATUS_BIT0_LOAD_INACTIVE,Bit 0 set when load calculation 
 FAULT_WORD_4_BITS,0x08,FAULT_67_BIT,Fault ID 67 - critical fault affecting load status
 FAULT_WORD_4_BITS,0x10,FAULT_68_BIT,Fault ID 68 - affects FSO detection
 FAULT_WORD_4_BITS,0x20,FAULT_69_BIT,Fault ID 69 - critical fault affecting load status
+# Fuel Source Identifier - stored in _DAT_0080c9a6 by fuelDemandModeSelector
+FUEL_SOURCE_ID,0x09,FUEL_SRC_GOVERNOR_LOW,Governor control - low fuel demand,1
+FUEL_SOURCE_ID,0x0A,FUEL_SRC_GOVERNOR_HIGH,Governor control - high fuel demand,1
+FUEL_SOURCE_ID,0x0B,FUEL_SRC_DIAGNOSTIC,Diagnostic mode override (mode 0xB),1
+FUEL_SOURCE_ID,0x12,FUEL_SRC_RAMP_LIMIT,Ramp rate limited fuel demand,1
+FUEL_SOURCE_ID,0x14,FUEL_SRC_CALCULATED,Calculated fuel demand from tables,1
+FUEL_SOURCE_ID,0x16,FUEL_SRC_LOW_RPM,Low RPM running / transitional mode fuel,1
+FUEL_SOURCE_ID,0x17,FUEL_SRC_OVERRIDE,Manual override fuel command,1
+FUEL_SOURCE_ID,0x18,FUEL_SRC_VP44_ACTIVE,VP44 injection system active fuel,1
+FUEL_SOURCE_ID,0x19,FUEL_SRC_HIGH_PERF,High performance mode fuel,1
+FUEL_SOURCE_ID,0x1A,FUEL_SRC_IDLE,Idle mode - zero fuel command,1
+FUEL_SOURCE_ID,0x1B,FUEL_SRC_FAULT,Fault/emergency mode fuel,1
