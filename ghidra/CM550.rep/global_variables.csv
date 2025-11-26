@@ -4336,3 +4336,6 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x01000666,JC22RPCU,word,CalTerm JC22RPCU: J1922 SPEED CONTROL MODE COUNT 0 = J1922 HASN'T CONTROLLED,2,0,CNTS,counter
 0x0100066C,JC22TQCU,word,CalTerm JC22TQCU: J1922 TORQUE CONTROL MODE COUNT 0 = J1922 HASN'T CONTROLLED,2,0,CNTS,counter
 0x0100075A,J39PDBLK,word,CalTerm J39PDBLK: FLAG TO ACKNOWLEDGE PRESUNUSED BLANK SPOT.,2,0,T/F,flag
+0x0080C9A6,vp44_engine_state,word,VP44 engine operating state - determines status byte in 0x100 command (case 3-24 in buildPgn61444),2,0,,state
+0x00805E16,vp44_fso_fault_flags_active,word,VP44 FSO fault active flags - bit 0x20=FSO circuit fault bit 0x10=FSO bit1 fault,2,0,,flag
+0x00805E56,vp44_fso_fault_flags_history,word,VP44 FSO fault history flags - mirrors active flags for logging,2,0,,flag

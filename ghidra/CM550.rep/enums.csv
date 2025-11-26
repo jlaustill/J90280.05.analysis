@@ -190,3 +190,46 @@ SECURITY_RESULT,0xFF,PROCEED_TO_HANDLER,Proceed to handler (auth passed or not r
 # Security-Protected Service IDs
 SECURED_SERVICE_ID,3,SERVICE_SECURED_WRITE,Secured write operations (length=3)
 SECURED_SERVICE_ID,4,SERVICE_SYSTEM_CONTROL,System control operations (length=3)
+# VP44 Command Message (0x100) Status Byte Values - buildPgn61444_ProprietarySpeed
+VP44_CMD_STATUS,0xF0,STATUS_F0,Engine state 11 (0x0B case)
+VP44_CMD_STATUS,0xF1,STATUS_F1,Engine state 3/7/8
+VP44_CMD_STATUS,0xF2,STATUS_F2,Engine state 9
+VP44_CMD_STATUS,0xF3,STATUS_F3,Engine state 4
+VP44_CMD_STATUS,0xF4,STATUS_F4,Engine state 10 (0x0A case)
+VP44_CMD_STATUS,0xF5,STATUS_F5,Fuel mode 3 - limited fueling
+VP44_CMD_STATUS,0xF6,STATUS_F6,Fuel mode 1 - normal operation
+VP44_CMD_STATUS,0xF7,STATUS_F7,Fuel mode 2 - transition mode
+VP44_CMD_STATUS,0xF8,STATUS_F8,Engine state 13-21 (0x0D-0x15 cases)
+VP44_CMD_STATUS,0xF9,STATUS_F9,Engine state 12 (0x0C case)
+VP44_CMD_STATUS,0xFA,STATUS_FA,Engine state 24 (0x18 case)
+VP44_CMD_STATUS,0xFE,STATUS_FE,Default/error state
+# VP44 Command Message Structure (0x100 to pump)
+VP44_CMD_BYTE,0,STATUS_BYTE,Engine status/mode byte (0xF0-0xFE values)
+VP44_CMD_BYTE,1,FUEL_HIGH,Fuel amount high byte (param_table_aux>>8 + 125)
+VP44_CMD_BYTE,2,FUEL_LOW,Fuel amount low byte (param_table_main>>8 + 125)
+VP44_CMD_BYTE,3,TIMING_3,Timing advance data byte 3
+VP44_CMD_BYTE,4,TIMING_4,Timing advance data byte 4
+VP44_CMD_BYTE,5,TIMING_5,Timing advance data byte 5
+VP44_CMD_BYTE,6,RPM_LOW,Engine RPM low byte (current_engine_rpm & 0xFF)
+VP44_CMD_BYTE,7,RPM_HIGH,Engine RPM high byte (current_engine_rpm >> 8)
+# VP44 Response Message (0x112 from pump) - vp44FuelTempHandler
+VP44_RESP_BYTE,1,FUEL_TEMP_LOW,Fuel temperature low byte
+VP44_RESP_BYTE,2,FUEL_TEMP_HIGH,Fuel temperature high byte
+VP44_RESP_BYTE,3,SEQUENCE_NUM,Message sequence number
+VP44_RESP_BYTE,6,MSG_ID_HIGH,Message ID high byte (must be 0xEF)
+# VP44 CAN Message Dispatcher Types - vp44CanMessageDispatcher
+VP44_CAN_DISPATCH,0x10,FUEL_TEMP_MSG,VP44 fuel temperature response (calls vp44FuelTempHandler)
+VP44_CAN_DISPATCH,0x11,PARAM_REQUEST_MSG,Diagnostic parameter request (calls diagnosticParamRequestHandler)
+VP44_CAN_DISPATCH,0x13,STATUS_REQUEST_MSG,Diagnostic status request (calls diagnosticStatusRequestHandler)
+VP44_CAN_DISPATCH,0xFF,ERROR_MSG,Error message (calls diagnosticErrorHandler)
+# Sync State Values - CMSYSS/CMSYBKSS/CRSYBKSS/CSSYSSCM
+SYNC_STATE,0,NO_SYNC,No synchronization established
+SYNC_STATE,1,HAVE_SYNC,Synchronization established and maintained
+SYNC_STATE,2,LOST_SYNC,Synchronization was established but lost
+# VP44 FSO Fault Detection
+VP44_FSO_FAULT,0x10,FSO_BIT1_FAULT,FSO bit 1 fault detected (vp44_status_register & 0x02)
+VP44_FSO_FAULT,0x20,FSO_CIRCUIT_FAULT,FSO circuit fault detected (vp44_status_register & 0x01)
+# VP44 Communication Protocol Constants
+VP44_PROTOCOL,0xF00400,MSG_HEADER,VP44 command message header constant
+VP44_PROTOCOL,0x18EC,TRANSPORT_HEADER,J1939 transport protocol header
+VP44_PROTOCOL,0xEF00,EXPECTED_RESPONSE,Expected VP44 response ID (0xEF byte)
