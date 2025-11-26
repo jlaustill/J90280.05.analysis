@@ -114,3 +114,64 @@ THROTTLE_PARAMS,2,ASTHRFES,ASG reference speed based on throttle position (param
 THROTTLE_PARAMS,3,JCTHKCTD,JCOMM throttle kickdown threshold (param_lookup_3)
 VP44_SENSOR_OFFSETS,6,BYTE_OFFSET,Data byte position in VP44 message
 VP44_SENSOR_OFFSETS,112,FUEL_TEMP_OFFSET,Fuel temperature sensor offset
+# Diagnostic Protocol Service IDs (CalTerm/Insite)
+DIAG_SERVICE_ID,3,SECURED_WRITE,Secured write operations (requires security check)
+DIAG_SERVICE_ID,4,SYSTEM_CONTROL,System control operations
+DIAG_SERVICE_ID,5,MEMORY_ACCESS,Memory read/write operations
+DIAG_SERVICE_ID,6,SPECIAL_CONTROL,Special timing/control functions
+# Service 3 Sub-functions (Secured Operations)
+DIAG_SECURED_SUBFUNC,0x40,SECURED_OP_40,Secured operation 0x40
+DIAG_SECURED_SUBFUNC,0x41,SECURED_OP_41,Secured operation 0x41
+DIAG_SECURED_SUBFUNC,0x42,SECURED_OP_42,Secured operation 0x42
+DIAG_SECURED_SUBFUNC,0x43,SECURED_OP_43,Secured operation 0x43
+DIAG_SECURED_SUBFUNC,0x50,SECURED_ACK,Success acknowledgment (returns 0)
+DIAG_SECURED_SUBFUNC,0x51,MEMORY_PATCH,RAM patching system
+DIAG_SECURED_SUBFUNC,0x52,SECURED_OP_52,Secured operation 0x52
+DIAG_SECURED_SUBFUNC,0x53,SECURED_ERROR,Returns error code 4
+DIAG_SECURED_SUBFUNC,0x54,CAN_LOGGER,CAN message buffer logger
+# Service 4 Sub-functions (System Control)
+DIAG_CONTROL_SUBFUNC,0x64,CONTROL_100,System control function 100
+DIAG_CONTROL_SUBFUNC,0x65,CONTROL_101,System control function 101 (returns 0)
+DIAG_CONTROL_SUBFUNC,0x66,CLEAR_FLAGS,Clear diagnostic control flags
+DIAG_CONTROL_SUBFUNC,0x69,CONTROL_105,System control function 105
+DIAG_CONTROL_SUBFUNC,0x71,SET_FLAG_BIT0,Set bit 0 of control flags
+DIAG_CONTROL_SUBFUNC,0x73,SET_FLAG_BIT1,Set bit 1 of control flags
+DIAG_CONTROL_SUBFUNC,0x74,CONTROL_116,System control function 116
+DIAG_CONTROL_SUBFUNC,0x75,CONTROL_117,System control function 117
+# Service 5 Memory Operation Types (Upper Nibble)
+DIAG_MEMORY_OP,0x60,READ_3BYTE_ADDR,Memory read with 3-byte addressing
+DIAG_MEMORY_OP,0x80,WRITE_4BYTE_ADDR,Memory write with 4-byte addressing
+DIAG_MEMORY_OP,0xA0,WRITE_2BYTE_ADDR,Memory write with 2-byte addressing
+DIAG_MEMORY_OP,0xB0,MULTI_PKT_RECEIVE,Multi-packet data receive
+DIAG_MEMORY_OP,0xC0,READ_2BYTE_ADDR,Memory read with 2-byte addressing
+DIAG_MEMORY_OP,0xE0,READ_1BYTE_ADDR,Memory read with 1-byte addressing
+DIAG_MEMORY_OP,0xF0,MULTI_PKT_TRANSMIT,Multi-packet data transmit
+# Extended Diagnostic Services (0x45-0x56)
+DIAG_EXTENDED_SVC,0x4A,FUEL_ARBITRATOR,Fuel arbitrator control service
+DIAG_EXTENDED_SVC,0x4C,EXTENDED_4C,Extended diagnostic service 0x4C
+DIAG_EXTENDED_SVC,0x4F,EXTENDED_4F,Extended diagnostic service 0x4F
+DIAG_EXTENDED_SVC,0x51,EXTENDED_51,Extended diagnostic service 0x51
+# Fuel Arbitrator Modes (Service 0x4A)
+FUEL_ARB_MODE,0,RESET_MODE,Reset/clear arbitrator state
+FUEL_ARB_MODE,1,RPM_TARGET_MODE,Set RPM target mode
+FUEL_ARB_MODE,2,THROTTLE_PCT_MODE,Throttle percentage control mode
+FUEL_ARB_MODE,3,FUEL_LIMIT_MODE,Fuel limit control mode
+# Insite Live Data Commands
+INSITE_COMMAND,0x00,SINGLE_PARAM,Single parameter request
+INSITE_COMMAND,0x80,EXTENDED_PARAM,Extended parameter request
+INSITE_COMMAND,0xC3,PID_DTC_REQUEST,PID/DTC diagnostic request
+INSITE_COMMAND,0xC4,PID_DTC_ACK,PID/DTC acknowledgment
+# Diagnostic Response Codes
+DIAG_RESPONSE_CODE,0,SUCCESS,Operation successful
+DIAG_RESPONSE_CODE,2,INVALID_LENGTH,Invalid message length
+DIAG_RESPONSE_CODE,3,SECURITY_FAILED,Security check failed
+DIAG_RESPONSE_CODE,4,BUFFER_OVERFLOW,Buffer overflow or unsupported
+DIAG_RESPONSE_CODE,8,ADDR_VALIDATION_FAIL,Address validation failed
+DIAG_RESPONSE_CODE,9,INVALID_ADDR_RANGE,Invalid address range
+DIAG_RESPONSE_CODE,10,INVALID_ADDR_ALT,Invalid address range (alternate)
+DIAG_RESPONSE_CODE,0x14,CHECKSUM_MISMATCH,Checksum mismatch
+DIAG_RESPONSE_CODE,0x18,UNKNOWN_SUBFUNC,Unknown sub-function
+# Protocol Enable Flags (0x8035ea)
+DIAG_ENABLE_FLAGS,0x01,CORE_SERVICE_ENABLE,Core diagnostic service enable
+DIAG_ENABLE_FLAGS,0x02,INSITE_ENABLE,Insite live data enable
+DIAG_ENABLE_FLAGS,0x04,EXTENDED_ENABLE,Extended diagnostics enable (0x45-0x56)

@@ -17,59 +17,65 @@ public class MasterAnalysisSetup extends GhidraScript {
         println("Running all bulk analysis scripts in optimal order...");
         println("");
         
-        int totalScripts = 9;
+        int totalScripts = 10;
         int currentScript = 0;
-        
+
         try {
             // Step 1: Setup Memory Map (MUST be first)
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Setting up memory map...");
             runScript("SetupMemoryMap.java");
             println("✓ Memory map configured\n");
-            
+
             // Step 2: Create Functions
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating functions...");
             runScript("BulkFunctionCreator.java");
             println("✓ Functions created\n");
-            
+
             // Step 3: Rename Functions
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Renaming functions...");
             runScript("BulkFunctionRenamer.java");
             println("✓ Functions renamed\n");
-            
+
             // Step 4: Create Structures
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating structures...");
             runScript("BulkStructureCreator.java");
             println("✓ Structures created\n");
-            
+
             // Step 5: Rename Function Parameters
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Renaming function parameters...");
             runScript("BulkFunctionParameterRenamer.java");
             println("✓ Function parameters renamed\n");
-            
+
             // Step 6: Create Enums (must be before global variables for enum types)
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating enums...");
             runScript("BulkEnumCreator.java");
             println("✓ Enums created\n");
-            
+
             // Step 7: Create Global Variables (now after enums so enum types are available)
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating global variables...");
             runScript("BulkVariableCreator.java");
             println("✓ Global variables created\n");
-            
-            // Step 8: Create Labels
+
+            // Step 8: Rename Local Variables (after functions are decompilable)
+            currentScript++;
+            println("[" + currentScript + "/" + totalScripts + "] Renaming local variables...");
+            runScript("BulkLocalVariableRenamer.java");
+            println("✓ Local variables renamed\n");
+
+            // Step 9: Create Labels
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Creating labels...");
             runScript("BulkLabelCreator.java");
             println("✓ Labels created\n");
-            
-            // Step 9: Document Constants
+
+            // Step 10: Document Constants
             currentScript++;
             println("[" + currentScript + "/" + totalScripts + "] Documenting constants...");
             runScript("BulkConstantCreator.java");

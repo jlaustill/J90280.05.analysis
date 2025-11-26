@@ -222,3 +222,41 @@ timing_table_4dta_t,0x00060D1E,timing_values,word,304,Timing advance lookup valu
 fueling_table_5dfl_t,0x00060982,rpm_axis,word,21,Engine speed axis for 4D fueling (0-3000 RPM),CalTerm 5DFL00XA,CalTerm
 fueling_table_5dfl_t,0x00060982,throttle_axis,word,4,Throttle position axis (0-100%),CalTerm 5DFL00YA,CalTerm
 fueling_table_5dfl_t,0x00060982,fuel_values,word,84,Fueling lookup values (21x4 table),CalTerm 5DFL00ZA,CalTerm
+# Diagnostic Protocol Structures (CalTerm/Insite Communication)
+diag_service_request_t,0x80d2c0,message_length,byte,1,Total message length including header,,Verified
+diag_service_request_t,0x80d2c0,service_id,byte,1,Service identifier (3=secured 4=control 5=memory),,Verified
+diag_service_request_t,0x80d2c0,sub_function,byte,1,Sub-function code for service routing,,Verified
+diag_service_request_t,0x80d2c0,data_payload,byte,16,Variable-length request data payload,,Verified
+# Multi-packet transfer state structure
+diag_transfer_state_t,0x80d3f8,target_address,word,2,Target memory address for transfer,,Verified
+diag_transfer_state_t,0x80d3fa,data_pointer,dword,4,Pointer to source/dest data buffer,,Verified
+diag_transfer_state_t,0x80d400,remaining_length,word,2,Remaining bytes to transfer,,Verified
+diag_transfer_state_t,0x80d402,byte_count,word,2,Total byte count for operation,,Verified
+diag_transfer_state_t,0x80d404,tx_active_flag,byte,1,Transmit operation active (0/1),,Verified
+diag_transfer_state_t,0x80d405,rx_active_flag,byte,1,Receive operation active (0/1),,Verified
+# Insite live data session state
+insite_session_t,0x80d407,command_byte,byte,1,Current Insite command code,,Verified
+insite_session_t,0x80d409,session_active,byte,1,Session active flag (1=active),,Verified
+insite_session_t,0x80d40c,response_ptr,dword,4,Response buffer pointer,,Verified
+insite_session_t,0x80d410,tx_buffer_ptr,dword,4,Transmit buffer pointer,,Verified
+insite_session_t,0x80d414,rx_buffer_ptr,dword,4,Receive buffer pointer,,Verified
+insite_session_t,0x80d417,buffer_offset,byte,1,Current buffer offset,,Verified
+insite_session_t,0x80d418,param_count,byte,1,Number of parameters in response,,Verified
+insite_session_t,0x80d419,buffer_space,byte,1,Available buffer space,,Verified
+insite_session_t,0x80d41a,param_result,byte,1,Last parameter lookup result,,Verified
+# Fuel arbitrator control state (Service 0x4A)
+fuel_arbitrator_diag_t,0x80cff8,control_flags,word,2,Control mode flags from request,,Verified
+fuel_arbitrator_diag_t,0x80cffa,fuel_mode,word,2,Current fuel control mode (0-3),,Verified
+fuel_arbitrator_diag_t,0x80d00a,rpm_target,word,2,Target RPM for mode 1,,Verified
+fuel_arbitrator_diag_t,0x80d00c,throttle_mode,word,2,Throttle control mode flag,,Verified
+fuel_arbitrator_diag_t,0x80d00e,speed_limit,word,2,Speed limit for mode 3,,Verified
+fuel_arbitrator_diag_t,0x80d010,fuel_limit,word,2,Fuel limit for mode 2,,Verified
+fuel_arbitrator_diag_t,0x80d012,session_counter,word,2,Diagnostic session counter,,Verified
+fuel_arbitrator_diag_t,0x80d014,command_counter,word,2,Command received counter,,Verified
+fuel_arbitrator_diag_t,0x80d018,last_command,byte,1,Last command ID (0x4A etc),,Verified
+fuel_arbitrator_diag_t,0x80d01a,state_pointer,dword,4,Current state table pointer,,Verified
+fuel_arbitrator_diag_t,0x80d01e,prev_state_pointer,dword,4,Previous state table pointer,,Verified
+fuel_arbitrator_diag_t,0x80d028,countdown_timer,word,2,Mode operation countdown,,Verified
+fuel_arbitrator_diag_t,0x80d02e,secondary_timer,word,2,Secondary countdown timer,,Verified
+fuel_arbitrator_diag_t,0x80d032,target_value,word,2,Calculated target value,,Verified
+fuel_arbitrator_diag_t,0x80d036,limited_value,word,2,Limited/clamped target value,,Verified

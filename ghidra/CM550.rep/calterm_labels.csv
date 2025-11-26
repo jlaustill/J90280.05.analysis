@@ -1,4 +1,37 @@
 address,label_name,comment
+# Diagnostic Protocol Memory Locations
+0x8035ea,diag_protocol_enable_flags,Protocol enable flags (bit0=service bit1=Insite bit2=extended)
+0x80d2b4,diag_tx_buffer_ptr,Diagnostic transmit buffer write pointer
+0x80d2bc,diag_tx_buffer_boundary,Diagnostic transmit buffer boundary address
+0x80d2cd,diag_message_offset,Current diagnostic message byte offset
+0x80d2ce,diag_processing_flag,Diagnostic message processing active flag
+0x80d3f8,diag_transfer_address,Multi-packet transfer target address (word)
+0x80d3fa,diag_transfer_data_ptr,Multi-packet transfer data pointer
+0x80d400,diag_transfer_length,Multi-packet transfer remaining length
+0x80d402,diag_transfer_count,Multi-packet transfer byte count
+0x80d404,diag_transfer_active,Multi-packet transfer active flag
+0x80d405,diag_receive_active,Multi-packet receive mode active flag
+0x80d406,diag_security_flag,Security check result flag
+0x80d407,insite_command_byte,Insite live data command byte
+0x80d409,insite_session_active,Insite session active flag
+0x80d40c,insite_response_ptr,Insite response buffer pointer
+0x80d410,insite_tx_buffer_ptr,Insite transmit buffer pointer
+0x80d414,insite_rx_buffer_ptr,Insite receive buffer pointer
+0x80d417,insite_buffer_offset,Insite buffer offset byte
+0x80d418,insite_param_count,Insite parameter response count
+0x80d419,insite_buffer_space,Insite available buffer space
+0x80d41a,insite_param_result,Insite parameter lookup result
+0x80d420,insite_poll_counter,Insite polling cycle counter
+0x80d447,insite_pid_byte1,Insite PID/DTC request byte 1
+0x80d448,insite_pid_byte2,Insite PID/DTC request byte 2
+0x80d458,diag_special_mode_flag,Diagnostic special mode flag (address 0x15)
+0x80d48c,insite_pid_mode,Insite PID response mode
+0x80d48e,insite_pid_value,Insite PID response value
+0x80d492,insite_dtc_value,Insite DTC response value
+0x809d3e,diag_control_flags,Diagnostic control flags (bit0/bit1 set by service 4)
+0x8089e0,insite_param_table,Insite parameter lookup table base (10 slots)
+0x8055fe,insite_param_enable_mask,Insite parameter enable bit mask table
+# Original entries
 0x0100003A,data_plt_module_id,Cummins module identifier (EN=0x454E for CM550/VP44 family)
 0x80C408,current_engine_rpm,Current engine RPM value
 0x80CFD6,param_table_main,Primary parameter storage (param_lookup_1 target)

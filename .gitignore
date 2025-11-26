@@ -1,1 +1,22 @@
 node_modules/
+
+# IDE files
+.idea/
+
+# Ghidra lock file (changes when Ghidra is open)
+ghidra/*.lock
+
+# Ghidra internal database files (binary, auto-generated)
+ghidra/CM550.rep/idata/~*
+ghidra/CM550.rep/user/~*
+ghidra/CM550.rep/idata/00/~*.db/
+ghidra/CM550.rep/idata/00/*.prp
+ghidra/CM550.rep/user/00/
+
+# Code navigation tool files
+ghidra/CM550.rep/working/cscope.*
+ghidra/CM550.rep/working/tags
+ghidra/CM550.rep/working/*.db
+
+# Misplaced/duplicate files
+ghidra/local_variables.csv

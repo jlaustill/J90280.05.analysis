@@ -1,5 +1,5 @@
 ════════════════════════════════════════════════════════════
-ApplyAndExport Log - 2025-11-25 18:19:02
+ApplyAndExport Log - 2025-11-25 18:21:40
 ════════════════════════════════════════════════════════════
 
 Project: J90280.05
@@ -26,7 +26,7 @@ Processing function: FUN_0001b7e8 @ 0x1b7e8
 Processing function: memoryOperationDispatcher @ 0x1b37a
   ✓ securityCheckResult → securityCheckResult (char) [first-use: 0x1b4c4]
   ✓ securityCheckResult2 → securityCheckResult2 (char) [first-use: 0x1b4f0]
-  ✓ cVar6 → securityCheckResult3 (char) [first-use: 0x1b45a]
+  ✓ securityCheckResult3 → securityCheckResult3 (char) [first-use: 0x1b45a]
 
 === Summary ===
 Successful: 6
