@@ -28,14 +28,16 @@ This automatically executes all analysis in ~30 seconds:
 
 ## **📊 The Knowledge Database (CSV Files)**
 
-Your discoveries are stored in **7 CSV files** in `ghidra/J90280.05.rep/` - these ARE the playbook:
+Your discoveries are stored in **9 CSV files** in `ghidra/CM550.rep/` - these ARE the playbook:
 
 - **`function_renames.csv`** - Function names (vp44FuelTempHandler, canMessageDispatcher, etc.)
-- **`global_variables.csv`** - Typed variables (param_table_main, sensor_data_buffer, etc.)  
+- **`function_parameters.csv`** - Function parameter names and types
+- **`global_variables.csv`** - Typed variables (param_table_main, sensor_data_buffer, etc.)
+- **`local_variables.csv`** - Decompiler local variable renames (matched by first-use address)
 - **`structure_definitions.csv`** - C-style structures (parameter_table_t, can_param_msg_t, etc.)
 - **`labels.csv`** - Control flow labels (switch_case_16, call_vp44_handler, etc.)
 - **`constants.csv`** - Magic numbers (VP44_FUEL_TEMP_OFFSET=112, RPM_MULTIPLIER=4, etc.)
-- **`enums.csv`** - Logical groupings (CAN_MSG_TYPE, PARAM_VALIDATION, etc.) 
+- **`enums.csv`** - Logical groupings (CAN_MSG_TYPE, PARAM_VALIDATION, etc.)
 - **`arrays.csv`** - Arrays/buffers (parameter_buffer[16], sensor_data_buffer[256], etc.)
 
 ### **🔄 CSV Sorting Standards (Team Collaboration)**
@@ -86,6 +88,7 @@ The **`ApplyAndExport.java`** script combines both setup and export in one keyst
 - **Keyboard shortcut:** `Ctrl+Shift+E`
 - **Menu:** Tools → Apply and Export
 - **What it does:** Runs MasterAnalysisSetup + ExportAnalysisResults automatically
+- **Log file:** Creates `ghidra/CM550.rep/apply_and_export.log` (cleared each run)
 
 ### **Traditional Workflow (Manual):**
 1. **🔍 Discover** new functions/addresses in Ghidra
@@ -120,13 +123,44 @@ The **`ApplyAndExport.java`** script combines both setup and export in one keyst
 ### **Individual Scripts:**
 - **`ghidra_scripts/SetupMemoryMap.java`** - MC68336 memory layout with 8KB EEPROM
 - **`ghidra_scripts/BulkFunctionRenamer.java`** - CSV-driven function renaming
-- **`ghidra_scripts/BulkVariableCreator.java`** - Typed global variables  
+- **`ghidra_scripts/BulkVariableCreator.java`** - Typed global variables
 - **`ghidra_scripts/BulkStructureCreator.java`** - Structure definitions
 - **`ghidra_scripts/BulkLabelCreator.java`** - Control flow labels
 - **`ghidra_scripts/BulkConstantCreator.java`** - Magic number documentation
 - **`ghidra_scripts/BulkEnumCreator.java`** - Enumeration creation
 - **`ghidra_scripts/BulkArrayCreator.java`** - Array/buffer definitions
 - **`ghidra_scripts/BulkFunctionParameterRenamer.java`** - Function parameter naming
+- **`ghidra_scripts/BulkLocalVariableRenamer.java`** - Decompiler local variable renaming
+
+## **📝 Local Variable Renaming**
+
+The `local_variables.csv` uses **first-use address matching** for stability. Unlike global variable names, decompiler local variable names (like `cVar6`, `bVar8`) can shift when other variables in the same function are renamed. Matching by code address ensures renames are stable.
+
+### **CSV Format:**
+```csv
+function_address,function_name,first_use_address,new_variable_name,type,comment
+0x00012484,diagnosticCommandDispatcher,0x12580,securityCheckResult,char,Result from systemSecurityCheck()
+```
+
+### **Discovery Workflow:**
+1. Add an entry with `first_use_address=0x0` (placeholder that won't match)
+2. Run ApplyAndExport (Ctrl+Shift+E) - the script will output available variables with their first-use addresses
+3. Check `ghidra/CM550.rep/apply_and_export.log` for the output:
+   ```
+   Processing function: diagnosticCommandDispatcher @ 0x12484
+     ✗ No variable found with first-use at 0x0
+         Searching for: myVariableName
+         Available variables:
+           - cVar6 (char) first-use: 0x12580
+           - bVar7 (byte) first-use: 0x1256c
+   ```
+4. Update the CSV with the correct address from the log
+5. Re-run ApplyAndExport - the variable will be renamed
+
+### **Why First-Use Address?**
+- **Stable**: Code addresses never change, even when other variables are renamed
+- **Unique**: Each assignment location is unique in the binary
+- **Semantic**: Ties directly to where the variable gets its value
 
 ## **🔄 Script Updates & Deployment**
 

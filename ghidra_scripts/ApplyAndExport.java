@@ -1,6 +1,7 @@
 // Apply and Export Script
 // Combines MasterAnalysisSetup.java + ExportAnalysisResults.java for quick workflow
 // Perfect for iterative reverse engineering: Update CSV → Run this → Done!
+// Creates a log file at ghidra/CM550.rep/apply_and_export.log for easy review
 // @author J90280.05_analysis
 // @category Analysis
 // @keybinding ctrl shift E
@@ -8,55 +9,146 @@
 // @toolbar
 
 import ghidra.app.script.GhidraScript;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ApplyAndExport extends GhidraScript {
 
+    private PrintWriter logWriter;
+    private String logFilePath;
+
     @Override
     public void run() throws Exception {
-        println("⚡ QUICK UPDATE: APPLY & EXPORT");
-        println("================================");
-        println("Running MasterAnalysisSetup + ExportAnalysisResults...");
-        println("");
+        // Setup log file in the project directory
+        String projectDir = getProjectRootFolder().getProjectLocator().getProjectDir().getAbsolutePath();
+        logFilePath = projectDir + "/apply_and_export.log";
 
+        // Clear and create new log file
         try {
-            // Step 1: Apply all CSV changes to Ghidra project
-            println("📥 [1/2] Applying CSV changes to Ghidra...");
-            println("─────────────────────────────────────────");
-            runScript("MasterAnalysisSetup.java");
-            println("");
-            println("✓ CSV changes applied");
-            println("");
+            logWriter = new PrintWriter(new FileOutputStream(logFilePath, false)); // false = overwrite
 
-            // Step 2: Export updated analysis for Claude Code
-            println("📤 [2/2] Exporting analysis for Claude Code...");
-            println("───────────────────────────────────────────────");
-            runScript("ExportAnalysisResults.java");
-            println("");
-            println("✓ Export complete");
-            println("");
-
-            // Success summary
-            println("═══════════════════════════════════════════════");
-            println("🎉 QUICK UPDATE COMPLETE!");
-            println("═══════════════════════════════════════════════");
-            println("");
-            println("✅ All CSV changes applied to Ghidra");
-            println("✅ Latest analysis exported to working/");
-            println("");
-            println("🔄 Perfect Workflow:");
-            println("  1. Update CSV files with discoveries");
-            println("  2. Run ApplyAndExport.java (Ctrl+Shift+E)");
-            println("  3. Claude Code sees your changes instantly!");
-            println("");
-            println("📁 Exported files:");
-            println("  • working/J90280.05.ghidra.asm");
-            println("  • working/J90280.05.ghidra.cpp");
+            String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            log("════════════════════════════════════════════════════════════");
+            log("ApplyAndExport Log - " + timestamp);
+            log("════════════════════════════════════════════════════════════");
+            log("");
+            log("Project: " + currentProgram.getName());
+            log("Log file: " + logFilePath);
+            log("");
 
         } catch (Exception e) {
-            printerr("❌ Error during quick update:");
-            printerr(e.getMessage());
+            println("⚠ Warning: Could not create log file at " + logFilePath);
+            println("  Error: " + e.getMessage());
+            println("  Continuing without file logging...");
+            logWriter = null;
+        }
+
+        try {
+            logAndPrint("⚡ QUICK UPDATE: APPLY & EXPORT");
+            logAndPrint("================================");
+            logAndPrint("Running MasterAnalysisSetup + ExportAnalysisResults...");
+            logAndPrint("");
+
+            // Step 1: Apply all CSV changes to Ghidra project
+            logAndPrint("📥 [1/2] Applying CSV changes to Ghidra...");
+            logAndPrint("─────────────────────────────────────────");
+            log(">>> Running MasterAnalysisSetup.java...");
+            log("    (Detailed output appears in Ghidra console)");
+            log("");
+
+            runScript("MasterAnalysisSetup.java");
+
+            logAndPrint("");
+            logAndPrint("✓ CSV changes applied");
+            logAndPrint("");
+
+            // Step 2: Export updated analysis for Claude Code
+            logAndPrint("📤 [2/2] Exporting analysis for Claude Code...");
+            logAndPrint("───────────────────────────────────────────────");
+            log(">>> Running ExportAnalysisResults.java...");
+            log("    (Detailed output appears in Ghidra console)");
+            log("");
+
+            runScript("ExportAnalysisResults.java");
+
+            logAndPrint("");
+            logAndPrint("✓ Export complete");
+            logAndPrint("");
+
+            // Success summary
+            logAndPrint("═══════════════════════════════════════════════");
+            logAndPrint("🎉 QUICK UPDATE COMPLETE!");
+            logAndPrint("═══════════════════════════════════════════════");
+            logAndPrint("");
+            logAndPrint("✅ All CSV changes applied to Ghidra");
+            logAndPrint("✅ Latest analysis exported to working/");
+            logAndPrint("");
+            logAndPrint("🔄 Perfect Workflow:");
+            logAndPrint("  1. Update CSV files with discoveries");
+            logAndPrint("  2. Run ApplyAndExport.java (Ctrl+Shift+E)");
+            logAndPrint("  3. Claude Code sees your changes instantly!");
+            logAndPrint("");
+            logAndPrint("📁 Exported files:");
+            logAndPrint("  • working/J90280.05.ghidra.asm");
+            logAndPrint("  • working/J90280.05.ghidra.cpp");
+            logAndPrint("");
+            logAndPrint("📋 Log file: " + logFilePath);
+            logAndPrint("   (Note: Sub-script details are in Ghidra console)");
+
+            log("");
+            log("════════════════════════════════════════════════════════════");
+            log("END OF LOG");
+            log("════════════════════════════════════════════════════════════");
+
+        } catch (Exception e) {
+            logAndPrintErr("❌ Error during quick update:");
+            logAndPrintErr(e.getMessage());
+            log("");
+            log("Stack trace:");
+            if (logWriter != null) {
+                e.printStackTrace(logWriter);
+            }
             e.printStackTrace();
             throw e;
+        } finally {
+            // Always close the log file
+            if (logWriter != null) {
+                logWriter.flush();
+                logWriter.close();
+            }
+        }
+    }
+
+    /**
+     * Write to log file only
+     */
+    private void log(String message) {
+        if (logWriter != null) {
+            logWriter.println(message);
+            logWriter.flush();
+        }
+    }
+
+    /**
+     * Print to both console and log file
+     */
+    private void logAndPrint(String message) {
+        println(message);
+        log(message);
+    }
+
+    /**
+     * Print error to both console and log file
+     */
+    private void logAndPrintErr(String message) {
+        printerr(message);
+        if (logWriter != null) {
+            logWriter.println("ERROR: " + message);
+            logWriter.flush();
         }
     }
 }

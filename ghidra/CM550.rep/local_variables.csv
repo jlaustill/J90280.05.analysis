@@ -1,3 +1,22 @@
-function_address,function_name,variable_position,new_variable_name,type,comment
-0x0002a2f2,buildPgn61444_ProprietarySpeed,0,rpmLowByte,uint8_t,Low byte of RPM value for PGN 61444
-0x0002a2f2,buildPgn61444_ProprietarySpeed,1,rpmHighByte,uint8_t,High byte of RPM value for PGN 61444
+function_address,function_name,first_use_address,new_variable_name,type,comment
+# Format: The third column is now the ADDRESS where the variable is first assigned/used
+# Run the script once with placeholder addresses (like 0x0) to see actual first-use addresses
+# Then update this file with the correct addresses from the debug output
+#
+# Example workflow:
+# 1. Add entry with first_use_address=0x0 (will fail but show available variables)
+# 2. Check output for "Available variables:" with their first-use addresses
+# 3. Update the CSV with the correct first-use address
+# 4. Re-run the script
+#
+# diagnosticCommandDispatcher local variables
+0x00012484,diagnosticCommandDispatcher,0x12580,securityCheckResult,char,Result from systemSecurityCheck() - 0=authorized nonzero=denied
+0x00012484,diagnosticCommandDispatcher,0x1256c,subFunctionCode,byte,Sub-function code extracted from message
+#
+# memoryOperationDispatcher local variables (has 2 systemSecurityCheck calls in cases 3 and 5)
+0x0001b37a,memoryOperationDispatcher,0x1b4c4,securityCheckResult,char,Result from systemSecurityCheck() in case 5 - 0=authorized nonzero=denied
+0x0001b37a,memoryOperationDispatcher,0x1b4f0,securityCheckResult2,char,Result from systemSecurityCheck() in case 3 - 0=authorized nonzero=denied
+0x0001b37a,memoryOperationDispatcher,0x1b45a,securityCheckResult3,char,Result from systemSecurityCheck() - third call in case 3
+#
+# FUN_0001b7e8 local variables (unnamed function with systemSecurityCheck call)
+0x0001b7e8,FUN_0001b7e8,0x1b85e,securityCheckResult,char,Result from systemSecurityCheck() - 0=authorized nonzero=denied
