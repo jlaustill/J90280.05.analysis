@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 18:57:13 MST 2025
+// Tue Nov 25 19:04:45 MST 2025
 
 
 //
@@ -25596,12 +25596,12 @@ void vp44Command0x100Builder(void)
 
 
 //
-// Function: FUN_0002a45c @ 0x0002a45c
+// Function: buildProprietaryLoadStatusMessage @ 0x0002a45c
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002a45c(void)
+void buildProprietaryLoadStatusMessage(void)
 
 {
   bool bVar1;

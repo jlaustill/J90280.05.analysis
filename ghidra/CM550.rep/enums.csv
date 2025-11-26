@@ -146,12 +146,15 @@ DIAG_MEMORY_OP,0xB0,MULTI_PKT_RECEIVE,Multi-packet data receive
 DIAG_MEMORY_OP,0xC0,READ_2BYTE_ADDR,Memory read with 2-byte addressing
 DIAG_MEMORY_OP,0xE0,READ_1BYTE_ADDR,Memory read with 1-byte addressing
 DIAG_MEMORY_OP,0xF0,MULTI_PKT_TRANSMIT,Multi-packet data transmit
-# Extended Diagnostic Services (0x45-0x56)
-DIAG_EXTENDED_SVC,0x4A,FUEL_ARBITRATOR,Fuel arbitrator control service
-DIAG_EXTENDED_SVC,0x4C,EXTENDED_4C,Extended diagnostic service 0x4C
+# Extended Diagnostic Services (0x43-0x56) - Memory Read Services
+DIAG_EXTENDED_SVC,0x43,MEM_READ_2BYTE_4BYTE,Memory read: 2-byte param + 4-byte offset (diagMemoryReadService43Handler)
+DIAG_EXTENDED_SVC,0x46,MEM_READ_2BYTE_ONLY,Memory read: 2-byte param only (diagMemoryReadService46Handler)
+DIAG_EXTENDED_SVC,0x48,MEM_READ_2BYTE_4BYTE_4BYTE,Memory read: 2-byte + 4-byte + 4-byte params (diagMemoryReadService48Handler)
+DIAG_EXTENDED_SVC,0x4A,MEM_READ_4BYTE_1BYTE,Memory read: 4-byte address + 1-byte length (diagMemoryReadService4aHandler)
+DIAG_EXTENDED_SVC,0x4C,MEM_READ_4BYTE_4BYTE,Memory read: 4-byte address + 4-byte length (diagMemoryReadService4cHandler)
 DIAG_EXTENDED_SVC,0x4F,EXTENDED_4F,Extended diagnostic service 0x4F
 DIAG_EXTENDED_SVC,0x51,EXTENDED_51,Extended diagnostic service 0x51
-# Fuel Arbitrator Modes (Service 0x4A)
+# Fuel Arbitrator Modes (diagnosticSessionValidator param 0x4A - different from memory read service)
 FUEL_ARB_MODE,0,RESET_MODE,Reset/clear arbitrator state
 FUEL_ARB_MODE,1,RPM_TARGET_MODE,Set RPM target mode
 FUEL_ARB_MODE,2,THROTTLE_PCT_MODE,Throttle percentage control mode
