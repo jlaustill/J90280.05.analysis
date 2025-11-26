@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 19:22:46 MST 2025
+// Tue Nov 25 19:25:57 MST 2025
 
 
 //
@@ -416,12 +416,12 @@ void FUN_0000a626(undefined4 param_1)
 
 
 //
-// Function: FUN_0000a6fa @ 0x0000a6fa
+// Function: sensorFaultDebounceMonitor @ 0x0000a6fa
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0000a6fa(void)
+void sensorFaultDebounceMonitor(void)
 
 {
   bool bVar1;
@@ -705,7 +705,7 @@ void initADCChannelConfiguration(void)
   iVar3 = 0x8068ea;
   do {
     if ((byte *)0x809407 < pbVar2) {
-      FUN_0000a6fa();
+      sensorFaultDebounceMonitor();
       for (pbVar2 = &request_to_strobe_set_0_then_set_1_cold_start_aid_1_driver_0_1;
           pbVar2 < (byte *)0x809408; pbVar2 = pbVar2 + 0x16) {
         *(uint *)(pbVar2 + 4) = (uint)*(ushort *)(pbVar2 + 10) << 0x10;
@@ -10863,16 +10863,16 @@ void engineDiagnosticSystemCoordinator(void)
 
 {
   engine_fault_monitoring_and_rpm_calculation();
-  FUN_0001e462();
-  FUN_0000a6fa();
+  governorFuelPidController();
+  sensorFaultDebounceMonitor();
   faultFlagScannerAndProcessor();
   engineModeTransitionHandler();
   rpmLoadParameterLookup();
   engineOperatingModeStateMachine();
   rpmBasedFuelLimitCalculator();
-  FUN_0002fce4();
-  FUN_00017d40();
-  FUN_000181ea();
+  diagnosticFuelOverrideHandler();
+  fuelDemandModeSelector();
+  fuelDemandTableBlendCalculator();
   baseTimingTableLookup();
   return;
 }
@@ -12004,12 +12004,12 @@ void FUN_00017d1a(undefined4 *param_1,undefined4 param_2,uint param_3)
 
 
 //
-// Function: FUN_00017d40 @ 0x00017d40
+// Function: fuelDemandModeSelector @ 0x00017d40
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-ushort FUN_00017d40(void)
+ushort fuelDemandModeSelector(void)
 
 {
   ushort uVar1;
@@ -12297,12 +12297,12 @@ void diagnostic_parameter_handler(void)
 
 
 //
-// Function: FUN_000181ea @ 0x000181ea
+// Function: fuelDemandTableBlendCalculator @ 0x000181ea
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_000181ea(void)
+void fuelDemandTableBlendCalculator(void)
 
 {
   short sVar1;
@@ -18602,12 +18602,12 @@ void FUN_0001e3dc(void)
 
 
 //
-// Function: FUN_0001e462 @ 0x0001e462
+// Function: governorFuelPidController @ 0x0001e462
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0001e462(void)
+void governorFuelPidController(void)
 
 {
   bool bVar1;
@@ -30428,12 +30428,12 @@ uint FUN_0002fcc8(void)
 
 
 //
-// Function: FUN_0002fce4 @ 0x0002fce4
+// Function: diagnosticFuelOverrideHandler @ 0x0002fce4
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002fce4(void)
+void diagnosticFuelOverrideHandler(void)
 
 {
   if (((_DAT_00803342 == 9) && (diagnostic_state_buffer_t_00809654.diagnostic_mode == 8)) &&

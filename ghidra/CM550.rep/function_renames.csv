@@ -1,4 +1,9 @@
 address,newName
+0x0000a6fa,sensorFaultDebounceMonitor
+0x00017d40,fuelDemandModeSelector
+0x000181ea,fuelDemandTableBlendCalculator
+0x0001e462,governorFuelPidController
+0x0002fce4,diagnosticFuelOverrideHandler
 0x00011a0a,faultFlagScannerAndProcessor
 0x00013930,rpmBasedFuelLimitCalculator
 0x00013f06,engineModeTransitionHandler
