@@ -18,5 +18,8 @@ function_address,function_name,first_use_address,new_variable_name,type,comment
 0x0001b37a,memoryOperationDispatcher,0x1b4f0,securityCheckResult2,char,Result from systemSecurityCheck() in case 3 - 0=authorized nonzero=denied
 0x0001b37a,memoryOperationDispatcher,0x1b45a,securityCheckResult3,char,Result from systemSecurityCheck() - third call in case 3
 #
-# FUN_0001b7e8 local variables (unnamed function with systemSecurityCheck call)
-0x0001b7e8,FUN_0001b7e8,0x1b85e,securityCheckResult,char,Result from systemSecurityCheck() - 0=authorized nonzero=denied
+# diagnosticServiceSecurityValidator local variables
+0x0001b7e8,diagnosticServiceSecurityValidator,0x1b85e,securityCheckResult,char,Result from systemSecurityCheck() - 0=authorized nonzero=denied
+0x0001b7e8,diagnosticServiceSecurityValidator,0x1b7f4,serviceId,byte,Diagnostic service ID from message (0-23 valid range)
+0x0001b7e8,diagnosticServiceSecurityValidator,0x1b7f8,messageLengthByte,char,Message length/type byte from param_1+5
+0x0001b7e8,diagnosticServiceSecurityValidator,0x1b80a,requiredLength,char,Required message length (3 for services 3/4 else 1)

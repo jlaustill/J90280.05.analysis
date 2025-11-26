@@ -390,3 +390,5 @@ address,newName
 0x00027168,insiteParameterParser
 0x0000cb1e,insiteParameterResponseBuilder
 0x00011ba0,insitePidDtcHandler
+0x0001b7e8,diagnosticServiceSecurityValidator
+0x0002729a,diagnosticServiceDispatcher

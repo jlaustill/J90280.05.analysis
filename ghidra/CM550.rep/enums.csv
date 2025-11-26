@@ -175,3 +175,18 @@ DIAG_RESPONSE_CODE,0x18,UNKNOWN_SUBFUNC,Unknown sub-function
 DIAG_ENABLE_FLAGS,0x01,CORE_SERVICE_ENABLE,Core diagnostic service enable
 DIAG_ENABLE_FLAGS,0x02,INSITE_ENABLE,Insite live data enable
 DIAG_ENABLE_FLAGS,0x04,EXTENDED_ENABLE,Extended diagnostics enable (0x45-0x56)
+# Security System Constants
+SECURITY_BYPASS_FLAG,0xFF,BYPASS_ENABLED,Security checks completely bypassed
+SECURITY_BYPASS_FLAG,0xB522,BYPASS_MAGIC,Alternative bypass magic value (-0x4ADE signed)
+SECURITY_BYPASS_FLAG,0x00,SECURITY_ACTIVE,Normal security - checks enforced
+# Security Check Return Values
+SECURITY_RESULT,0x00,AUTH_SUCCESS,Security check passed - operation authorized
+SECURITY_RESULT,0x02,INVALID_LENGTH,Invalid message length for service
+SECURITY_RESULT,0x03,AUTH_FAILED,Security check failed - access denied
+SECURITY_RESULT,0x07,CONDITION_NOT_MET,Pre-condition not satisfied
+SECURITY_RESULT,0x0A,INVALID_ADDR,Invalid memory address range
+SECURITY_RESULT,0x0B,BUFFER_WRITE_FAIL,Circular buffer write failed
+SECURITY_RESULT,0xFF,PROCEED_TO_HANDLER,Proceed to handler (auth passed or not required)
+# Security-Protected Service IDs
+SECURED_SERVICE_ID,3,SERVICE_SECURED_WRITE,Secured write operations (length=3)
+SECURED_SERVICE_ID,4,SERVICE_SYSTEM_CONTROL,System control operations (length=3)

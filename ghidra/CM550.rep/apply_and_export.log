@@ -1,5 +1,5 @@
 ════════════════════════════════════════════════════════════
-ApplyAndExport Log - 2025-11-25 18:21:40
+ApplyAndExport Log - 2025-11-25 18:47:01
 ════════════════════════════════════════════════════════════
 
 Project: J90280.05
@@ -12,29 +12,6 @@ Running MasterAnalysisSetup + ExportAnalysisResults...
 📥 [1/2] Applying CSV changes to Ghidra...
 ─────────────────────────────────────────
 
-=== Bulk Local Variable Renamer (First-Use Address Matching) ===
-Reading from: /home/jlaustill/code/J90280.05_analysis/ghidra/CM550.rep/local_variables.csv
-
-
-Processing function: diagnosticCommandDispatcher @ 0x12484
-  ✓ securityCheckResult → securityCheckResult (char) [first-use: 0x12580]
-  ✓ subFunctionCode → subFunctionCode (byte) [first-use: 0x1256c]
-
-Processing function: FUN_0001b7e8 @ 0x1b7e8
-  ✓ securityCheckResult → securityCheckResult (char) [first-use: 0x1b85e]
-
-Processing function: memoryOperationDispatcher @ 0x1b37a
-  ✓ securityCheckResult → securityCheckResult (char) [first-use: 0x1b4c4]
-  ✓ securityCheckResult2 → securityCheckResult2 (char) [first-use: 0x1b4f0]
-  ✓ securityCheckResult3 → securityCheckResult3 (char) [first-use: 0x1b45a]
-
-=== Summary ===
-Successful: 6
-Failed: 0
-Skipped: 0
-
-Variable renames will be visible in the Decompiler view.
-You may need to re-decompile functions to see changes.
 
 ✓ CSV changes applied
 
