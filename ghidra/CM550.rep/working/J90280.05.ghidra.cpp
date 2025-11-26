@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Tue Nov 25 19:29:38 MST 2025
+// Wed Nov 26 07:36:22 MST 2025
 
 
 //
@@ -357,12 +357,12 @@ undefined1 FUN_0000a5e2(undefined4 param_1)
 
 
 //
-// Function: FUN_0000a626 @ 0x0000a626
+// Function: diagnosticMessageQueueWrite @ 0x0000a626
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0000a626(undefined4 param_1)
+void diagnosticMessageQueueWrite(undefined4 param_1)
 
 {
   char cVar1;
@@ -408,7 +408,7 @@ void FUN_0000a626(undefined4 param_1)
     *_DAT_0080d2b4 = 2;
     _DAT_0080d2b4 = local_8;
     *local_8 = 0;
-    FUN_00013242();
+    tpuTransmissionTrigger();
   }
   return;
 }
@@ -4141,11 +4141,11 @@ int FUN_0000ed52(void)
   else {
     local_6 = _DAT_0080367a + 2;
   }
-  FUN_00013144(0x80367a,(undefined1 *)&local_6,CONCAT22(2,uVar4));
+  parameterCircularBufferWrite(0x80367a,(undefined1 *)&local_6,CONCAT22(2,uVar4));
   uVar5 = 0;
   while ((uVar5 < 5000 && (_DAT_0080367a != local_6))) {
     emptyPlaceholderFunction();
-    FUN_0002baf0(CONCAT22(500,uVar4));
+    delayWithWatchdogService(CONCAT22(500,uVar4));
     uVar5 = uVar5 + 1;
   }
   iVar1 = FUN_0001802e(0x4000);
@@ -4165,18 +4165,18 @@ int FUN_0000ed52(void)
         REG_SIM_SWSR = 0xaa;
         DAT_00ffd00f = 0xaa;
         uVar5 = (ushort)(byte)(cVar3 << 4 | 8);
-        FUN_00013144(0x803500,(undefined1 *)&local_6,CONCAT22(2,uVar5));
+        parameterCircularBufferWrite(0x803500,(undefined1 *)&local_6,CONCAT22(2,uVar5));
         uVar4 = 0;
         while ((uVar4 < 5000 && (_DAT_00803500 != local_6))) {
           emptyPlaceholderFunction();
-          FUN_0002baf0(CONCAT22(500,uVar5));
+          delayWithWatchdogService(CONCAT22(500,uVar5));
           uVar4 = uVar4 + 1;
         }
-        FUN_00013144(0x80367c,&DAT_0080367a,CONCAT22(2,uVar5));
+        parameterCircularBufferWrite(0x80367c,&DAT_0080367a,CONCAT22(2,uVar5));
         uVar4 = 0;
         while ((uVar4 < 5000 && (_DAT_0080367c != _DAT_0080367a))) {
           emptyPlaceholderFunction();
-          FUN_0002baf0(CONCAT22(500,uVar5));
+          delayWithWatchdogService(CONCAT22(500,uVar5));
           uVar4 = uVar4 + 1;
         }
         points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32._2_2_ = 1;
@@ -4231,11 +4231,11 @@ int FUN_0000ef80(void)
   else {
     local_6 = _DAT_0080367a + 1;
   }
-  FUN_00013144(0x803682,(undefined1 *)&local_6,CONCAT22(2,uVar4));
+  parameterCircularBufferWrite(0x803682,(undefined1 *)&local_6,CONCAT22(2,uVar4));
   uVar5 = 0;
   while ((uVar5 < 5000 && (_DAT_00803682 != local_6))) {
     emptyPlaceholderFunction();
-    FUN_0002baf0(CONCAT22(500,uVar4));
+    delayWithWatchdogService(CONCAT22(500,uVar4));
     uVar5 = uVar5 + 1;
   }
   iVar1 = FUN_0001802e(0x6000);
@@ -4255,18 +4255,18 @@ int FUN_0000ef80(void)
         REG_SIM_SWSR = 0xaa;
         DAT_00ffd00f = 0xaa;
         uVar5 = (ushort)(byte)(cVar3 << 4 | 8);
-        FUN_00013144(0x803502,(undefined1 *)&local_6,CONCAT22(2,uVar5));
+        parameterCircularBufferWrite(0x803502,(undefined1 *)&local_6,CONCAT22(2,uVar5));
         uVar4 = 0;
         while ((uVar4 < 5000 && (_DAT_00803502 != local_6))) {
           emptyPlaceholderFunction();
-          FUN_0002baf0(CONCAT22(500,uVar5));
+          delayWithWatchdogService(CONCAT22(500,uVar5));
           uVar4 = uVar4 + 1;
         }
-        FUN_00013144(0x803684,&DAT_00803682,CONCAT22(2,uVar5));
+        parameterCircularBufferWrite(0x803684,&DAT_00803682,CONCAT22(2,uVar5));
         uVar4 = 0;
         while ((uVar4 < 5000 && (_DAT_00803684 != _DAT_00803682))) {
           emptyPlaceholderFunction();
-          FUN_0002baf0(CONCAT22(500,uVar5));
+          delayWithWatchdogService(CONCAT22(500,uVar5));
           uVar4 = uVar4 + 1;
         }
         points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32._2_2_ = 2;
@@ -4361,19 +4361,19 @@ void validateRedundantSensors(void)
     uVar8 = (ushort)(byte)(bVar6 << 4 | bVar3 << 3 | 4U | SBORROW2(_DAT_00803686,_DAT_00803688) << 1
                           | bVar6);
     _DAT_0080016e = 0;
-    FUN_00013144(0x80368a,&DAT_0080016e,CONCAT22(2,uVar8));
+    parameterCircularBufferWrite(0x80368a,&DAT_0080016e,CONCAT22(2,uVar8));
     uVar2 = 0;
     while ((uVar2 < 5000 && (_DAT_0080368a != _DAT_0080016e))) {
       emptyPlaceholderFunction();
-      FUN_0002baf0(CONCAT22(500,uVar8));
+      delayWithWatchdogService(CONCAT22(500,uVar8));
       uVar2 = uVar2 + 1;
     }
     _DAT_0080016e = _DAT_0080368e + 1;
-    FUN_00013144(0x80368e,&DAT_0080016e,CONCAT22(2,uVar8));
+    parameterCircularBufferWrite(0x80368e,&DAT_0080016e,CONCAT22(2,uVar8));
     uVar2 = 0;
     while ((uVar2 < 5000 && (_DAT_0080368e != _DAT_0080016e))) {
       emptyPlaceholderFunction();
-      FUN_0002baf0(CONCAT22(500,uVar8));
+      delayWithWatchdogService(CONCAT22(500,uVar8));
       uVar2 = uVar2 + 1;
     }
     bVar3 = (uVar8 & 0x10) != 0;
@@ -4387,19 +4387,19 @@ void validateRedundantSensors(void)
     uVar8 = (ushort)(byte)(bVar6 << 4 | bVar3 << 3 | SBORROW2(_DAT_00803686,_DAT_00803688) << 1 |
                           bVar6);
     _DAT_0080016e = _DAT_0080368a + 1;
-    FUN_00013144(0x80368a,&DAT_0080016e,CONCAT22(2,uVar8));
+    parameterCircularBufferWrite(0x80368a,&DAT_0080016e,CONCAT22(2,uVar8));
     uVar2 = 0;
     while ((uVar2 < 5000 && (_DAT_0080368a != _DAT_0080016e))) {
       emptyPlaceholderFunction();
-      FUN_0002baf0(CONCAT22(500,uVar8));
+      delayWithWatchdogService(CONCAT22(500,uVar8));
       uVar2 = uVar2 + 1;
     }
     _DAT_0080016e = _DAT_0080368c + 1;
-    FUN_00013144(0x80368c,&DAT_0080016e,CONCAT22(2,uVar8));
+    parameterCircularBufferWrite(0x80368c,&DAT_0080016e,CONCAT22(2,uVar8));
     uVar2 = 0;
     while ((uVar2 < 5000 && (_DAT_0080368c != _DAT_0080016e))) {
       emptyPlaceholderFunction();
-      FUN_0002baf0(CONCAT22(500,uVar8));
+      delayWithWatchdogService(CONCAT22(500,uVar8));
       uVar2 = uVar2 + 1;
     }
     bVar5 = SBORROW2(_DAT_0080368a,_DAT_008088c0);
@@ -4419,11 +4419,11 @@ void validateRedundantSensors(void)
   }
   uVar8 = (ushort)(byte)(bVar3 << 4 | bVar6 << 3 | bVar4 << 2 | bVar5 << 1 | bVar7);
   _DAT_0080016e = _DAT_0080368c + _DAT_0080368e;
-  FUN_00013144(0x803686,&DAT_0080016e,CONCAT22(2,uVar8));
+  parameterCircularBufferWrite(0x803686,&DAT_0080016e,CONCAT22(2,uVar8));
   uVar2 = 0;
   while ((uVar2 < 5000 && (_DAT_00803686 != _DAT_0080016e))) {
     emptyPlaceholderFunction();
-    FUN_0002baf0(CONCAT22(500,uVar8));
+    delayWithWatchdogService(CONCAT22(500,uVar8));
     uVar2 = uVar2 + 1;
   }
   return;
@@ -4674,7 +4674,7 @@ undefined4 FUN_0000f906(byte *param_1,undefined4 param_2)
       FUN_0002bb2e(CONCAT22(500,uVar3));
     }
     local_8 = loopCounter;
-    FUN_00013144(0x80352c,(undefined1 *)&local_8,CONCAT22(4,uVar3));
+    parameterCircularBufferWrite(0x80352c,(undefined1 *)&local_8,CONCAT22(4,uVar3));
     if (amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535 == 0) {
       FUN_0002bb2e(CONCAT22(0xfa,uVar3));
     }
@@ -4688,7 +4688,7 @@ undefined4 FUN_0000f906(byte *param_1,undefined4 param_2)
       FUN_000298d8(param_1,(uint)uVar3);
     }
     else {
-      FUN_0000a626((uint)uVar3);
+      diagnosticMessageQueueWrite((uint)uVar3);
     }
     FUN_0002bb2e(CONCAT22(50000,uVar3));
     sim_data_direction_control = sim_data_direction_control & 0xef;
@@ -6493,7 +6493,8 @@ ushort vp44_status_data_collector(void)
                  DAT_00803792 & _DAT_0080023e[9];
   if ((_DAT_00800234 != 0) && ((vp44_communication_status & 1) == 0)) {
     local_12 = _DAT_00803678 + 1;
-    FUN_00013144(0x803678,(undefined1 *)&local_12,CONCAT22(2,(short)((uint)unaff_D2 >> 0x10)));
+    parameterCircularBufferWrite
+              (0x803678,(undefined1 *)&local_12,CONCAT22(2,(short)((uint)unaff_D2 >> 0x10)));
   }
   _DAT_00800234 = (byte)-((vp44_communication_status & 1) != 0) & 1;
   if (_DAT_0080374e != 0) {
@@ -6737,7 +6738,7 @@ void diagnosticCommandDispatcher(void)
   responsePrefix = (ushort)((uint)unaff_D2 >> 0x10);
   if ((DAT_0080d406 != '\0') && (uVar4 = FUN_00013134(), (char)uVar4 != '\0')) {
     DAT_0080d406 = '\0';
-    FUN_0000a626((uint)responsePrefix);
+    diagnosticMessageQueueWrite((uint)responsePrefix);
   }
   do {
     if ((499 < (int)((uint)hardware_timer_register._0_2_ - (uint)uVar3)) ||
@@ -6799,11 +6800,11 @@ void diagnosticCommandDispatcher(void)
               cVar6 = (char)uVar5;
             }
             if (cVar6 != -1) {
-              FUN_0000a626((uint)CONCAT12(cVar6,responsePrefix));
+              diagnosticMessageQueueWrite((uint)CONCAT12(cVar6,responsePrefix));
             }
           }
           else {
-            FUN_0000a626(CONCAT22(3,responsePrefix));
+            diagnosticMessageQueueWrite(CONCAT22(3,responsePrefix));
           }
           break;
         case 4:
@@ -6815,32 +6816,32 @@ void diagnosticCommandDispatcher(void)
           case 0x65:
             uVar10 = 0;
             systemControl65();
-            FUN_0000a626((uint)uVar10);
+            diagnosticMessageQueueWrite((uint)uVar10);
             break;
           case 0x66:
             _DAT_00809d3e = 0;
-            FUN_0000a626((uint)responsePrefix);
+            diagnosticMessageQueueWrite((uint)responsePrefix);
             break;
           default:
-            FUN_0000a626(CONCAT22(0x18,responsePrefix));
+            diagnosticMessageQueueWrite(CONCAT22(0x18,responsePrefix));
             break;
           case 0x69:
             uVar9 = 0;
             uVar4 = systemControl69();
-            FUN_0000a626((uint)CONCAT12((char)uVar4,uVar9));
+            diagnosticMessageQueueWrite((uint)CONCAT12((char)uVar4,uVar9));
             break;
           case 0x70:
           case 0x72:
           case 0x76:
-            FUN_0000a626(CONCAT22(4,responsePrefix));
+            diagnosticMessageQueueWrite(CONCAT22(4,responsePrefix));
             break;
           case 0x71:
             _DAT_00809d3e = _DAT_00809d3e | 1;
-            FUN_0000a626((uint)responsePrefix);
+            diagnosticMessageQueueWrite((uint)responsePrefix);
             break;
           case 0x73:
             _DAT_00809d3e = _DAT_00809d3e | 2;
-            FUN_0000a626((uint)responsePrefix);
+            diagnosticMessageQueueWrite((uint)responsePrefix);
             break;
           case 0x74:
             systemControl74();
@@ -6863,7 +6864,7 @@ void diagnosticCommandDispatcher(void)
                                                   0x10),(short)local_c),
                                  (uint)CONCAT12(messageLength + -4,responsePrefix));
             if ((short)uVar5 != local_18) {
-              FUN_0000a626(CONCAT22(0x14,responsePrefix));
+              diagnosticMessageQueueWrite(CONCAT22(0x14,responsePrefix));
               break;
             }
           }
@@ -6890,13 +6891,13 @@ void diagnosticCommandDispatcher(void)
             multiPacketReceiveHandler();
           }
           else {
-            FUN_0000a626(CONCAT22(4,responsePrefix));
+            diagnosticMessageQueueWrite(CONCAT22(4,responsePrefix));
           }
           break;
         case 6:
           messageDataPtr = (byte *)CONCAT31(messageDataPtr._0_3_,cVar6 + '\x02');
           if ((*messageDataPtr == 0x74) && (DAT_0080d2db != '\0')) {
-            FUN_0000a626(CONCAT22(1,responsePrefix));
+            diagnosticMessageQueueWrite(CONCAT22(1,responsePrefix));
             DAT_0080d2db = DAT_0080d2db + -1;
             DAT_0080d404 = 0;
             if (DAT_0080d405 != '\0') {
@@ -7148,7 +7149,7 @@ void multiPacketTransmitHandler(void)
                            CONCAT22(diag_transfer_state_t_0080d3f8.byte_count,uVar11));
         cVar7 = (char)uVar6;
         if ((cVar7 == '\t') || (cVar7 == '\n')) {
-          FUN_0000a626((uint)CONCAT12(cVar7,uVar11));
+          diagnosticMessageQueueWrite((uint)CONCAT12(cVar7,uVar11));
           DAT_0080d404 = 0;
         }
         else {
@@ -7172,23 +7173,23 @@ void multiPacketTransmitHandler(void)
           *pbVar3 = bVar10;
           *local_c = 0;
           _DAT_0080d2b4 = local_c;
-          FUN_00013242();
+          tpuTransmissionTrigger();
           DAT_0080d404 = 1;
         }
       }
       else {
         DAT_0080d404 = 0;
-        FUN_0000a626(CONCAT22(4,uVar11));
+        diagnosticMessageQueueWrite(CONCAT22(4,uVar11));
         _DAT_00805e00 = _DAT_00805e00 | 4;
         _DAT_00805e40 = _DAT_00805e40 | 4;
       }
     }
     else {
-      FUN_0000a626(CONCAT22(8,uVar11));
+      diagnosticMessageQueueWrite(CONCAT22(8,uVar11));
     }
   }
   else {
-    FUN_0000a626(CONCAT22(4,uVar11));
+    diagnosticMessageQueueWrite(CONCAT22(4,uVar11));
   }
   return;
 }
@@ -7284,18 +7285,18 @@ void multiPacketReceiveHandler(void)
             }
           }
         }
-        FUN_0000a626((uint)uVar9);
+        diagnosticMessageQueueWrite((uint)uVar9);
       }
       else {
         _memory_patch_count = _memory_patch_count - 1;
         _DAT_0080d3e2 =
              _DAT_0080d3e2 + -(uint)*(ushort *)((short)(_memory_patch_count * 3) * 2 + 0x80d3aa);
         DAT_0080d405 = '\0';
-        FUN_0000a626(CONCAT22(4,uVar9));
+        diagnosticMessageQueueWrite(CONCAT22(4,uVar9));
       }
     }
     else {
-      FUN_0000a626(CONCAT22(4,uVar9));
+      diagnosticMessageQueueWrite(CONCAT22(4,uVar9));
     }
   }
   else if ((uint)*_enables_input_of_eps_period_data_to_pptb_0_1 - (uint)bVar2 == 6) {
@@ -7336,7 +7337,7 @@ void multiPacketReceiveHandler(void)
           if ((10 < _memory_patch_count + 1) ||
              (0x80d3a5 - (int)_DAT_0080d3e2 <=
               (int)(uint)(ushort)diag_transfer_state_t_0080d3f8._10_2_)) {
-            FUN_0000a626(CONCAT22(0xe,uVar9));
+            diagnosticMessageQueueWrite(CONCAT22(0xe,uVar9));
             return;
           }
           *(dword *)(&timer_used_to_disable_rsg_when_gear_ratio_changes_0_100 +
@@ -7359,10 +7360,10 @@ void multiPacketReceiveHandler(void)
         else {
           if (cVar7 != '\0') {
             if (cVar7 != '\n') {
-              FUN_0000a626(CONCAT22(9,uVar9));
+              diagnosticMessageQueueWrite(CONCAT22(9,uVar9));
               return;
             }
-            FUN_0000a626(CONCAT22(10,uVar9));
+            diagnosticMessageQueueWrite(CONCAT22(10,uVar9));
             return;
           }
           for (bVar8 = 0; bVar8 < bVar2; bVar8 = bVar8 + 1) {
@@ -7376,14 +7377,14 @@ void multiPacketReceiveHandler(void)
           }
         }
       }
-      FUN_0000a626((uint)uVar9);
+      diagnosticMessageQueueWrite((uint)uVar9);
     }
     else {
-      FUN_0000a626(CONCAT22(8,uVar9));
+      diagnosticMessageQueueWrite(CONCAT22(8,uVar9));
     }
   }
   else {
-    FUN_0000a626(CONCAT22(4,uVar9));
+    diagnosticMessageQueueWrite(CONCAT22(4,uVar9));
   }
   return;
 }
@@ -7408,12 +7409,12 @@ uint FUN_00013134(void)
 
 
 //
-// Function: FUN_00013144 @ 0x00013144
+// Function: parameterCircularBufferWrite @ 0x00013144
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_00013144(int param_1,undefined1 *param_2,undefined4 param_3)
+uint parameterCircularBufferWrite(int param_1,undefined1 *param_2,undefined4 param_3)
 
 {
   word wVar1;
@@ -7458,12 +7459,12 @@ void emptyPlaceholderFunction(void)
 
 
 //
-// Function: FUN_00013242 @ 0x00013242
+// Function: tpuTransmissionTrigger @ 0x00013242
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00013242(void)
+void tpuTransmissionTrigger(void)
 
 {
   if (((DAT_0080d2d0 == '\x01') && ((tpu_cfsr0 & 0x20) == 0)) && (DAT_0080d2da == '\0')) {
@@ -10935,8 +10936,8 @@ void engineParameterAndBoostControlWrapper(void)
 void auxiliarySystemControlWrapper(void)
 
 {
-  FUN_0002dc1e();
-  FUN_0002de2e();
+  fuelTempProtectionLimitCalculator();
+  shutdownLimitSelector();
   return;
 }
 
@@ -11183,11 +11184,11 @@ void vp44ExtendedFaultDetectionCoordinator(void)
 void advancedEngineProtectionCoordinator(void)
 
 {
-  FUN_0001f4f8();
-  FUN_0002dfd0();
-  FUN_00034976();
-  FUN_00034a32();
-  FUN_00034b46();
+  crankFuelCalculationAndProtection();
+  crankAndProtectionStateMonitor();
+  vp44FsoFaultBit0Monitor();
+  vp44FsoFaultBit15Monitor();
+  vp44FsoMultiBitFaultMonitor();
   return;
 }
 
@@ -13753,7 +13754,7 @@ void FUN_00019952(void)
   *(undefined1 *)insite_session_t_0080d407._5_4_ = 0;
   _DAT_0080d2b4 = insite_session_t_0080d407._5_4_;
   insite_session_t_0080d407._9_4_ = insite_session_t_0080d407._5_4_;
-  FUN_00013242();
+  tpuTransmissionTrigger();
   DAT_0080d444 = DAT_0080d444 + 1;
   if (DAT_0080d444 < DAT_0080d445) {
     DAT_0080d446 = DAT_0080062a;
@@ -13950,7 +13951,7 @@ void responseBufferFinalize(void)
     *(byte *)insite_session_t_0080d407._9_4_ = insite_session_t_0080d407.param_result;
     *(undefined1 *)insite_session_t_0080d407._5_4_ = 0;
     _DAT_0080d2b4 = insite_session_t_0080d407._5_4_;
-    FUN_00013242();
+    tpuTransmissionTrigger();
   }
   return;
 }
@@ -14007,11 +14008,11 @@ void diagnosticMemoryWriteHandler(undefined4 param_1)
       if (bVar5 == local_9) {
         uVar2 = diagnosticResponseBuilder((uint)CONCAT12(cVar8,uVar12));
         if ((char)uVar2 != -1) {
-          FUN_0000a626((uint)CONCAT12((char)uVar2,uVar12));
+          diagnosticMessageQueueWrite((uint)CONCAT12((char)uVar2,uVar12));
         }
       }
       else {
-        FUN_0000a626(CONCAT22(2,uVar12));
+        diagnosticMessageQueueWrite(CONCAT22(2,uVar12));
       }
       return;
     }
@@ -14035,7 +14036,7 @@ void diagnosticMemoryWriteHandler(undefined4 param_1)
       }
       cVar3 = FUN_0000eaf0((short)((uint)&local_e >> 0x10));
       if (cVar3 != '\0') {
-        FUN_0000a626(CONCAT22(8,uVar12));
+        diagnosticMessageQueueWrite(CONCAT22(8,uVar12));
         return;
       }
     }
@@ -14045,11 +14046,11 @@ void diagnosticMemoryWriteHandler(undefined4 param_1)
     uVar1 = addressRangeValidator(local_e,(uint)CONCAT12(bVar6,uVar12));
     bVar4 = (byte)uVar1;
     if ((bVar4 == 10) || (bVar4 == 4)) {
-      FUN_0000a626(CONCAT22(10,uVar12));
+      diagnosticMessageQueueWrite(CONCAT22(10,uVar12));
       return;
     }
     if (bVar4 == 9) {
-      FUN_0000a626(CONCAT22(9,uVar12));
+      diagnosticMessageQueueWrite(CONCAT22(9,uVar12));
       return;
     }
     *(uint *)pbVar9 = local_e;
@@ -14131,7 +14132,7 @@ void diagnosticMemoryReadHandler(undefined4 param_1)
   bVar1 = *local_8 & 0xf;
   if (bVar1 == 0) {
     if ((int)(bVar9 - 4) % (int)(bVar8 + 1) != 0) {
-      FUN_0000a626(CONCAT22(2,uVar12));
+      diagnosticMessageQueueWrite(CONCAT22(2,uVar12));
       return;
     }
     uVar6 = (int)(bVar9 - 4) / (int)(bVar8 + 1) & 0xff;
@@ -14144,7 +14145,7 @@ void diagnosticMemoryReadHandler(undefined4 param_1)
   }
   else {
     if ((int)(bVar9 - 2) % (int)(uint)bVar8 != 0) {
-      FUN_0000a626(CONCAT22(2,uVar12));
+      diagnosticMessageQueueWrite(CONCAT22(2,uVar12));
       return;
     }
     bVar9 = (bVar1 + bVar8) * (char)((int)(bVar9 - 2) / (int)(uint)bVar8) + 2;
@@ -14188,10 +14189,10 @@ void diagnosticMemoryReadHandler(undefined4 param_1)
     *local_c = 0;
     _DAT_0080d2b4 = local_c;
     *(undefined4 *)(puVar11 + -4) = 0x1a160;
-    FUN_00013242();
+    tpuTransmissionTrigger();
   }
   else {
-    FUN_0000a626(CONCAT22(4,uVar12));
+    diagnosticMessageQueueWrite(CONCAT22(4,uVar12));
     _DAT_00805e00 = _DAT_00805e00 | 4;
     _DAT_00805e40 = _DAT_00805e40 | 4;
   }
@@ -14297,7 +14298,7 @@ LAB_0001a2b8:
   *_DAT_0080d2b4 = 6;
   *local_8 = 0;
   _DAT_0080d2b4 = local_8;
-  FUN_00013242();
+  tpuTransmissionTrigger();
   return;
 }
 
@@ -14407,7 +14408,7 @@ void FUN_0001a398(void)
     *puVar2 = 0x16;
     *local_8 = 0;
     _DAT_0080d2b4 = local_8;
-    FUN_00013242();
+    tpuTransmissionTrigger();
   }
   return;
 }
@@ -14844,7 +14845,7 @@ void diagnosticMessage53Builder(void)
     *_DAT_0080d2b4 = 2;
     *local_8 = 0;
     _DAT_0080d2b4 = local_8;
-    FUN_00013242();
+    tpuTransmissionTrigger();
   }
   return;
 }
@@ -14893,7 +14894,7 @@ void FUN_0001ad50(void)
     *_DAT_0080d2b4 = 3;
     *local_8 = 0;
     _DAT_0080d2b4 = local_8;
-    FUN_00013242();
+    tpuTransmissionTrigger();
   }
   return;
 }
@@ -19450,12 +19451,12 @@ void initRpmLookupTables(void)
 
 
 //
-// Function: FUN_0001f28c @ 0x0001f28c
+// Function: crankStateVariablesReset @ 0x0001f28c
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0001f28c(void)
+void crankStateVariablesReset(void)
 
 {
   crank_initial_advace_break_speed_0_1000 = 0;
@@ -19474,12 +19475,12 @@ void FUN_0001f28c(void)
 
 
 //
-// Function: FUN_0001f2ce @ 0x0001f2ce
+// Function: crankFuelAndTimingBufferStore @ 0x0001f2ce
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0001f2ce(void)
+void crankFuelAndTimingBufferStore(void)
 
 {
   byte *pbVar1;
@@ -19541,12 +19542,12 @@ void FUN_0001f2ce(void)
 
 
 //
-// Function: FUN_0001f4f8 @ 0x0001f4f8
+// Function: crankFuelCalculationAndProtection @ 0x0001f4f8
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_0001f4f8(void)
+uint crankFuelCalculationAndProtection(void)
 
 {
   undefined4 in_D0;
@@ -19642,9 +19643,9 @@ uint FUN_0001f4f8(void)
     if ((_DAT_00801756 == 1) ||
        (eps_period_backup_time_between_the_two_most_recent_eps_200_16777216._2_2_ == 1)) {
       *(undefined4 *)(puVar5 + -4) = 0x1f7b4;
-      FUN_0001f2ce();
+      crankFuelAndTimingBufferStore();
       *(undefined4 *)(puVar5 + -4) = 0x1f7b8;
-      uVar3 = FUN_0001f28c();
+      uVar3 = crankStateVariablesReset();
     }
     _DAT_00801756 = crank_initial_advace_break_speed_0_1000;
   }
@@ -21061,15 +21062,15 @@ void FUN_00020de4(void)
   initVP44StatusMonitoring();
   uVar7 = (ushort)(byte)(in_XF << 4 | cVar3 << 3 | cVar4 << 2 | cVar5 << 1 | bVar6);
   local_6 = _DAT_0080368e + 1;
-  FUN_00013144(0x80368e,(undefined1 *)&local_6,CONCAT22(2,uVar7));
+  parameterCircularBufferWrite(0x80368e,(undefined1 *)&local_6,CONCAT22(2,uVar7));
   uVar2 = 0;
   while ((uVar2 < 1000 && (_DAT_0080368e != local_6))) {
     emptyPlaceholderFunction();
-    FUN_0002baf0(CONCAT22(500,uVar7));
+    delayWithWatchdogService(CONCAT22(500,uVar7));
     uVar2 = uVar2 + 1;
   }
   local_6 = _DAT_0080368c + _DAT_0080368e;
-  FUN_00013144(0x803686,(undefined1 *)&local_6,CONCAT22(2,uVar7));
+  parameterCircularBufferWrite(0x803686,(undefined1 *)&local_6,CONCAT22(2,uVar7));
   uVar2 = 0;
   while ((uVar2 < 1000 && (_DAT_00803686 != local_6))) {
     emptyPlaceholderFunction();
@@ -21132,7 +21133,7 @@ void vp44CommunicationTestAndInit(void)
   uVar5 = 0;
   while ((uVar5 < 1000 && (uVar1 = FUN_00013134(), (char)uVar1 == '\0'))) {
     emptyPlaceholderFunction();
-    FUN_0002baf0(CONCAT22(500,uVar14));
+    delayWithWatchdogService(CONCAT22(500,uVar14));
     uVar5 = uVar5 + 1;
   }
   sim_data_direction_control = sim_data_direction_control | 4;
@@ -21175,11 +21176,12 @@ void vp44CommunicationTestAndInit(void)
       FUN_00020de4();
     }
     if (_DAT_00803686 != _DAT_00803688) {
-      FUN_00013144(0x803688,&DAT_00803686,
-                   CONCAT22(2,(ushort)(byte)((_DAT_00803686 < _DAT_00803688) << 4 |
-                                             ((short)(_DAT_00803686 - _DAT_00803688) < 0) << 3 |
-                                             SBORROW2(_DAT_00803686,_DAT_00803688) << 1 |
-                                            _DAT_00803686 < _DAT_00803688)));
+      parameterCircularBufferWrite
+                (0x803688,&DAT_00803686,
+                 CONCAT22(2,(ushort)(byte)((_DAT_00803686 < _DAT_00803688) << 4 |
+                                           ((short)(_DAT_00803686 - _DAT_00803688) < 0) << 3 |
+                                           SBORROW2(_DAT_00803686,_DAT_00803688) << 1 |
+                                          _DAT_00803686 < _DAT_00803688)));
       uVar5 = 0;
       while( true ) {
         REG_SIM_SWSR = 0xaa;
@@ -21202,7 +21204,7 @@ void vp44CommunicationTestAndInit(void)
       REG_SIM_SWSR = 0xaa;
       DAT_00ffd00f = 0xaa;
       vp44_status_data_collector();
-      FUN_0002baf0(CONCAT22(10000,uVar15));
+      delayWithWatchdogService(CONCAT22(10000,uVar15));
       bVar6 = bVar6 + 1;
     }
     if ((vp44_communication_status & 1) != 0) {
@@ -21215,7 +21217,7 @@ void vp44CommunicationTestAndInit(void)
   uVar14 = (ushort)(byte)((bVar6 < 2) << 4 | (cVar12 < '\0') << 3 | (bVar6 == 2) << 2 |
                           SBORROW1(bVar6,'\x02') << 1 | bVar6 < 2);
   local_a = loopCounter;
-  FUN_00013144(0x80352c,(undefined1 *)&local_a,CONCAT22(4,uVar14));
+  parameterCircularBufferWrite(0x80352c,(undefined1 *)&local_a,CONCAT22(4,uVar14));
   uVar5 = 0;
   while( true ) {
     REG_SIM_SWSR = 0xaa;
@@ -21233,10 +21235,11 @@ void vp44CommunicationTestAndInit(void)
     uVar5 = uVar5 + 1;
   }
   local_6 = 0;
-  FUN_00013144(0x80367e,(undefined1 *)&local_6,
-               CONCAT22(2,(ushort)(byte)(((uVar14 & 0x10) != 0) << 4 | ((uVar14 & 8) != 0) << 3 |
-                                         ((uVar14 & 4) != 0) << 2 | ((uVar14 & 2) != 0) << 1 |
-                                        (uVar14 & 1) != 0)));
+  parameterCircularBufferWrite
+            (0x80367e,(undefined1 *)&local_6,
+             CONCAT22(2,(ushort)(byte)(((uVar14 & 0x10) != 0) << 4 | ((uVar14 & 8) != 0) << 3 |
+                                       ((uVar14 & 4) != 0) << 2 | ((uVar14 & 2) != 0) << 1 |
+                                      (uVar14 & 1) != 0)));
   uVar5 = 0;
   while ((uVar5 < 1000 && (_DAT_0080367e != local_6))) {
     emptyPlaceholderFunction();
@@ -21290,7 +21293,7 @@ void vp44CommunicationTestAndInit(void)
     REG_SIM_SWSR = 0xaa;
     DAT_00ffd00f = 0xaa;
     vp44_status_data_collector();
-    FUN_0002baf0(CONCAT22(10000,uVar15));
+    delayWithWatchdogService(CONCAT22(10000,uVar15));
     bVar13 = bVar13 + 1;
   }
   cVar10 = (vp44_communication_status & 1) == 0;
@@ -21299,9 +21302,10 @@ void vp44CommunicationTestAndInit(void)
     FUN_00020de4();
   }
   local_6 = 1;
-  FUN_00013144(0x80367e,(undefined1 *)&local_6,
-               CONCAT22(2,(ushort)(byte)(cVar12 << 4 | cVar9 << 3 | cVar10 << 2 | cVar11 << 1 |
-                                        bVar13)));
+  parameterCircularBufferWrite
+            (0x80367e,(undefined1 *)&local_6,
+             CONCAT22(2,(ushort)(byte)(cVar12 << 4 | cVar9 << 3 | cVar10 << 2 | cVar11 << 1 | bVar13
+                                      )));
   uVar5 = 0;
   while ((uVar5 < 1000 && (_DAT_0080367e != local_6))) {
     emptyPlaceholderFunction();
@@ -21989,11 +21993,11 @@ void systemControl64(void)
       *_DAT_0080d2b4 = bVar6;
       *local_8 = 0;
       _DAT_0080d2b4 = local_8;
-      FUN_00013242();
+      tpuTransmissionTrigger();
     }
     else {
       DAT_0080d404 = '\0';
-      FUN_0000a626(CONCAT22(4,(short)((uint)unaff_D2 >> 0x10)));
+      diagnosticMessageQueueWrite(CONCAT22(4,(short)((uint)unaff_D2 >> 0x10)));
       _DAT_00805e00 = _DAT_00805e00 | 4;
       _DAT_00805e40 = _DAT_00805e40 | 4;
     }
@@ -26846,10 +26850,10 @@ undefined8 FUN_0002ba56(void)
 
 
 //
-// Function: FUN_0002baf0 @ 0x0002baf0
+// Function: delayWithWatchdogService @ 0x0002baf0
 //
 
-void FUN_0002baf0(undefined4 param_1)
+void delayWithWatchdogService(undefined4 param_1)
 
 {
   while (param_1._0_2_ != 0) {
@@ -28600,12 +28604,12 @@ uint FUN_0002db10(void)
 
 
 //
-// Function: FUN_0002dc1e @ 0x0002dc1e
+// Function: fuelTempProtectionLimitCalculator @ 0x0002dc1e
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002dc1e(void)
+void fuelTempProtectionLimitCalculator(void)
 
 {
   ushort uVar1;
@@ -28707,12 +28711,12 @@ void FUN_0002ddea(void)
 
 
 //
-// Function: FUN_0002de2e @ 0x0002de2e
+// Function: shutdownLimitSelector @ 0x0002de2e
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-ushort FUN_0002de2e(void)
+ushort shutdownLimitSelector(void)
 
 {
   ushort in_D0w;
@@ -28747,12 +28751,12 @@ void FUN_0002de68(void)
 
 
 //
-// Function: FUN_0002de92 @ 0x0002de92
+// Function: crankDataBufferStore @ 0x0002de92
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002de92(void)
+void crankDataBufferStore(void)
 
 {
   short sVar1;
@@ -28788,12 +28792,12 @@ void FUN_0002de92(void)
 
 
 //
-// Function: FUN_0002dfd0 @ 0x0002dfd0
+// Function: crankAndProtectionStateMonitor @ 0x0002dfd0
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_0002dfd0(void)
+uint crankAndProtectionStateMonitor(void)
 
 {
   undefined4 in_D0;
@@ -28887,7 +28891,7 @@ uint FUN_0002dfd0(void)
     }
     if ((crank_initial_advace_break_speed_0_1000 == 1) ||
        ((crank_initial_fuel_break_speed_0_1000 == 1 && (_DAT_008032ba == 1)))) {
-      uVar1 = FUN_0002de92();
+      uVar1 = crankDataBufferStore();
     }
   }
   return uVar1;
@@ -34432,12 +34436,12 @@ void vp44FsoFaultDetectionAndProtectionController(void)
 
 
 //
-// Function: FUN_00034976 @ 0x00034976
+// Function: vp44FsoFaultBit0Monitor @ 0x00034976
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00034976(void)
+void vp44FsoFaultBit0Monitor(void)
 
 {
   if (vp44_fso_fault_detection_enable != 0) {
@@ -34472,12 +34476,12 @@ void FUN_00034976(void)
 
 
 //
-// Function: FUN_00034a32 @ 0x00034a32
+// Function: vp44FsoFaultBit15Monitor @ 0x00034a32
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00034a32(void)
+void vp44FsoFaultBit15Monitor(void)
 
 {
   bool bVar1;
@@ -34542,12 +34546,12 @@ LAB_00034af2:
 
 
 //
-// Function: FUN_00034b46 @ 0x00034b46
+// Function: vp44FsoMultiBitFaultMonitor @ 0x00034b46
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00034b46(void)
+void vp44FsoMultiBitFaultMonitor(void)
 
 {
   bool bVar1;

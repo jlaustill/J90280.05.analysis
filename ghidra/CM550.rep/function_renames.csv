@@ -419,3 +419,10 @@ address,newName
 0x0001bd76,diagMemoryReadResponseBuilder
 0x0001bedc,diagMemoryReadWithOffsetBuilder
 0x0001c0c2,registerDiagnosticMemoryServices
+0x0001f2ce,crankFuelAndTimingBufferStore
+0x0001f28c,crankStateVariablesReset
+0x0002de92,crankDataBufferStore
+0x0002dfd0,crankAndProtectionStateMonitor
+0x00034976,vp44FsoFaultBit0Monitor
+0x00034a32,vp44FsoFaultBit15Monitor
+0x00034b46,vp44FsoMultiBitFaultMonitor
