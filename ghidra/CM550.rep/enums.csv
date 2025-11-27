@@ -266,3 +266,17 @@ DIAGNOSTIC_SOURCE_CODE,5,ENGINE_FLAGS,Engine control flags triggered,2
 DIAGNOSTIC_SOURCE_CODE,6,EPS_FAULT,Electronic Position Sensor fault,2
 DIAGNOSTIC_SOURCE_CODE,7,DIAG_STATUS_7,Diagnostic status 7 condition,2
 DIAGNOSTIC_SOURCE_CODE,30,DIAG_STATUS_30,Diagnostic status 30 condition,2
+# VP44 Engine State - assigned to vp44_engine_state, maps engine operating modes to VP44 command status
+VP44_ENGINE_STATE,0x16,LOW_RPM_OR_TRANSITIONAL,Low RPM running or transitional fuel mode,1
+VP44_ENGINE_STATE,0x17,MANUAL_OVERRIDE,Manual override fuel command mode,1
+VP44_ENGINE_STATE,0x18,VP44_ACTIVE_MODE,VP44 injection system active,1
+VP44_ENGINE_STATE,0x19,HIGH_PERFORMANCE_MODE,High performance mode,1
+VP44_ENGINE_STATE,0x1A,IDLE_STATE,Idle/no-fuel state,1
+VP44_ENGINE_STATE,0x1B,FAULT_EMERGENCY_STATE,Fault/emergency shutdown state,1
+# Diagnostic Fuel Control Mode - values for diagnostic_fuel_control_mode (55+ refs)
+DIAGNOSTIC_FUEL_CONTROL_MODE,0x0A,FUEL_MODE_INSITE_DISPLAY,INSITE live data display mode,1
+DIAGNOSTIC_FUEL_CONTROL_MODE,0x0B,FUEL_MODE_RPM_THRESHOLD,RPM threshold protection mode,1
+DIAGNOSTIC_FUEL_CONTROL_MODE,0x0C,FUEL_MODE_FUEL_DELIVERY,Fuel delivery control mode,1
+# Output Control Timing State - PWM output timing mode toggle
+OUTPUT_CONTROL_TIMING_STATE,0x01,TIMING_MODE_A,PWM output timing mode A,1
+OUTPUT_CONTROL_TIMING_STATE,0x02,TIMING_MODE_B,PWM output timing mode B,1

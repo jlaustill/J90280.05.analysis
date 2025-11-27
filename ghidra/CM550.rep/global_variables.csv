@@ -4780,3 +4780,16 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080d4c2,fuel_demand_limit_snapshot,word,Fuel demand limit snapshot before minimum update (2 refs),2,0,,snapshot
 0x0080d458,memory_patch_pending_flag,word,Memory patching system pending flag (3 refs),2,0,,flag
 0x0080d456,memory_patch_crc_expected,word,Memory patch expected CRC value for validation (2 refs),2,0,,checksum
+0x0080d3e6,diagnostic_tx_buffer_start_ptr,dword,Diagnostic TX buffer start pointer (points to 0x808b00),4,0,,pointer
+0x0080d3ea,diagnostic_rx_buffer_start_ptr,dword,Diagnostic RX buffer start pointer (points to 0x808c00),4,0,,pointer
+0x0080d3ee,diagnostic_buffer_end_address,dword,Diagnostic buffer end boundary address (0x808cff),4,0,,address
+0x0080d44a,memory_patch_buffer_base_ptr,dword,Memory patch data buffer base pointer,4,0,,pointer
+0x0080d44f,memory_patch_iteration_counter,byte,Loop counter for memory patch operations,1,0,,counter
+0x0080d452,diagnostic_data_buffer_ptr,dword,Diagnostic data buffer pointer,4,0,,pointer
+0x0080d45a,diagnostic_iteration_limit_count,word,Diagnostic iteration limit (initialized to 200),2,0,,limit
+0x0080d45e,retarder_override_rpm_value,word,Alternative RPM value when retarder override active,2,0,,value
+0x0080d460,retarder_rpm_override_active,word,Retarder RPM override enable flag (0=off 1=active),2,0,,flag
+0x0080d462,retarder_proportion_calc_workspace,dword,Retarder proportional calculation workspace,4,0,,workspace
+0x0080d4a4,pwm_temperature_shifted_workspace,dword,PWM temperature calculation workspace (temp << 16),4,0,,workspace
+0x0080d4a8,pwm_timing_advance_lookup_table,dword[6],6-entry PWM timing advance lookup table (24 bytes),24,0,,table
+0x0080d4cc,fuel_arbitrator_oil_pressure_snapshot,word,Oil pressure snapshot for fuel arbitration,2,0,,snapshot

@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 16:08:10 MST 2025
+// Thu Nov 27 16:19:07 MST 2025
 
 
 //
@@ -13131,12 +13131,12 @@ void diagnosticBufferPointerInit(void)
   _track_the_time_when_throttle_is_less_than_a_threshold_0_30 = 0x808b01;
   DAT_00808b00 = 0;
   ci_tooth_count_error_incremented_when_ci_pulse_width_is_wrong_0_255 = 0;
-  _DAT_0080d3e6 = &DAT_00808b00;
+  diagnostic_tx_buffer_start_ptr = (dword)&DAT_00808b00;
   _dummy_variable_0_65535 = 0x808c01;
   DAT_00808c00 = 0;
   tpu_transmission_active_flag = 0;
-  _DAT_0080d3ea = &DAT_00808c00;
-  _DAT_0080d3ee = 0x808cff;
+  diagnostic_rx_buffer_start_ptr = (dword)&DAT_00808c00;
+  diagnostic_buffer_end_address = 0x808cff;
   _can_tx_message_type = &DAT_00808c00;
   _enables_input_of_eps_period_data_to_pptb_0_1 = &DAT_00808c00;
   return;
@@ -13154,7 +13154,7 @@ void initFuelArbitratorThreshold5(void)
 
 {
   _fuel_arbitrator_threshold_5 = oil_pressure_precrank_status;
-  _DAT_0080d4cc = oil_pressure_precrank_status;
+  fuel_arbitrator_oil_pressure_snapshot = oil_pressure_precrank_status;
   return;
 }
 
@@ -22073,9 +22073,9 @@ word initDiagnosticProtocol(void)
 {
   byte bVar1;
   
-  _DAT_0080d452 = &tracks_progress_of_fan_on_due_to_ac_0_3600;
-  _DAT_0080d45a = 200;
-  _DAT_0080d44a = &timer_used_to_disable_rsg_when_gear_ratio_changes_0_100;
+  diagnostic_data_buffer_ptr = (dword)&tracks_progress_of_fan_on_due_to_ac_0_3600;
+  diagnostic_iteration_limit_count = 200;
+  memory_patch_buffer_base_ptr = (dword)&timer_used_to_disable_rsg_when_gear_ratio_changes_0_100;
   _memory_patch_count = 0;
   can_rx_buffer_ptr = (dword)&tracks_progress_of_fan_on_due_to_ac_0_3600;
   diagnosticBufferPointerInit();
@@ -22239,35 +22239,34 @@ uint memoryPatchingSystem(void)
   byte bVar2;
   byte *pbVar3;
   byte bVar4;
-  char cVar5;
   uint in_D0;
-  undefined4 uVar6;
-  char cVar8;
-  uint uVar7;
+  undefined4 uVar5;
+  char cVar7;
+  uint uVar6;
+  byte bVar8;
   byte bVar9;
-  byte bVar10;
-  word *pwVar11;
+  word *pwVar10;
+  uint *puVar11;
+  word *pwVar13;
   uint *puVar12;
-  word *pwVar14;
-  uint *puVar13;
   
   if (_memory_patch_count == 0) {
     return in_D0 & 0xffffff00;
   }
   if ((system_logging_state == 1) &&
      (amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535 != 0)) {
-    puVar13 = (uint *)((int)&timer_used_to_disable_rsg_when_gear_ratio_changes_0_100 +
+    puVar12 = (uint *)((int)&timer_used_to_disable_rsg_when_gear_ratio_changes_0_100 +
                       (int)(short)((_memory_patch_count & 0xff) * 6));
-    cVar8 = DAT_0080d44f;
+    bVar9 = memory_patch_iteration_counter;
     while( true ) {
-      puVar12 = (uint *)((int)puVar13 + -6);
-      cVar5 = cVar8 + -1;
-      if (cVar8 == '\0') break;
-      pbVar1 = (byte *)*puVar12;
-      pbVar3 = (byte *)((int)puVar13 + -1);
+      puVar11 = (uint *)((int)puVar12 + -6);
+      bVar4 = bVar9 - 1;
+      if (bVar9 == 0) break;
+      pbVar1 = (byte *)*puVar11;
+      pbVar3 = (byte *)((int)puVar12 + -1);
       if ((((byte *)0xffffff < pbVar1) ||
           ((&system_protected_range_start < pbVar1 && (pbVar1 < &system_protected_range_end)))) ||
-         ((puVar13 = puVar12, cVar8 = cVar5, &system_protected_range_start < pbVar1 + *pbVar3 &&
+         ((puVar12 = puVar11, bVar9 = bVar4, &system_protected_range_start < pbVar1 + *pbVar3 &&
           (pbVar1 + *pbVar3 < &system_protected_range_end)))) {
         memoryPatchBufferInit();
         return 7;
@@ -22276,7 +22275,7 @@ uint memoryPatchingSystem(void)
   }
   if ((water_in_fuel_detection_flag == 0) &&
      ((memory_patch_pending_flag == 0 ||
-      (uVar6 = memoryPatchCrcCalculate(), (word)uVar6 != memory_patch_crc_expected)))) {
+      (uVar5 = memoryPatchCrcCalculate(), (word)uVar5 != memory_patch_crc_expected)))) {
     memoryPatchBufferInit();
     return 0x14;
   }
@@ -22285,43 +22284,43 @@ uint memoryPatchingSystem(void)
     return 4;
   }
   can_rx_buffer_ptr = (dword)&tracks_progress_of_fan_on_due_to_ac_0_3600;
-  bVar10 = 0;
-  pwVar14 = &timer_used_to_disable_rsg_when_gear_ratio_changes_0_100;
+  bVar9 = 0;
+  pwVar13 = &timer_used_to_disable_rsg_when_gear_ratio_changes_0_100;
   do {
-    if (_memory_patch_count <= bVar10) {
-      uVar7 = memoryPatchBufferInit();
-      return uVar7 & 0xffffff00;
+    if (_memory_patch_count <= bVar9) {
+      uVar6 = memoryPatchBufferInit();
+      return uVar6 & 0xffffff00;
     }
-    pwVar11 = *(word **)pwVar14;
-    bVar4 = *(byte *)((int)pwVar14 + 5);
-    if (pwVar11 < &indicator_as_to_the_calibration_status_of_the_ecm_see_ces15005) {
-      for (bVar9 = 0; bVar9 < bVar4; bVar9 = bVar9 + 1) {
-        if (((&system_protected_range_start < pwVar11) && (pwVar11 < &system_protected_range_end))
+    pwVar10 = *(word **)pwVar13;
+    bVar4 = *(byte *)((int)pwVar13 + 5);
+    if (pwVar10 < &indicator_as_to_the_calibration_status_of_the_ecm_see_ces15005) {
+      for (bVar8 = 0; bVar8 < bVar4; bVar8 = bVar8 + 1) {
+        if (((&system_protected_range_start < pwVar10) && (pwVar10 < &system_protected_range_end))
            && (water_in_fuel_detection_flag == 0)) {
           points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32 = 0;
         }
         bVar2 = *(byte *)can_rx_buffer_ptr;
         can_rx_buffer_ptr = can_rx_buffer_ptr + 1;
-        *(byte *)pwVar11 = bVar2;
-        pwVar11 = (word *)((int)pwVar11 + 1);
+        *(byte *)pwVar10 = bVar2;
+        pwVar10 = (word *)((int)pwVar10 + 1);
       }
     }
     else {
       if ((amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535 == 1) &&
-         (cVar8 = circularBufferWrite((short)(can_rx_buffer_ptr >> 0x10),bVar4), cVar8 == '\x01')) {
+         (cVar7 = circularBufferWrite((short)(can_rx_buffer_ptr >> 0x10),bVar4), cVar7 == '\x01')) {
         memoryPatchBufferInit();
         return 4;
       }
-      pwVar11 = pwVar11 + -0x3fe584;
-      for (bVar9 = 0; bVar9 < bVar4; bVar9 = bVar9 + 1) {
+      pwVar10 = pwVar10 + -0x3fe584;
+      for (bVar8 = 0; bVar8 < bVar4; bVar8 = bVar8 + 1) {
         bVar2 = *(byte *)can_rx_buffer_ptr;
         can_rx_buffer_ptr = can_rx_buffer_ptr + 1;
-        *(byte *)pwVar11 = bVar2;
-        pwVar11 = (word *)((int)pwVar11 + 1);
+        *(byte *)pwVar10 = bVar2;
+        pwVar10 = (word *)((int)pwVar10 + 1);
       }
     }
-    pwVar14 = (word *)((int)pwVar14 + 6);
-    bVar10 = bVar10 + 1;
+    pwVar13 = (word *)((int)pwVar13 + 6);
+    bVar9 = bVar9 + 1;
   } while( true );
 }
 
@@ -24417,23 +24416,23 @@ void engineRpmHardwareTimerSetup(void)
   undefined4 local_8;
   
   uVar3 = current_engine_rpm;
-  if (_DAT_0080d460 == 1) {
-    uVar3 = _DAT_0080d45e;
+  if (retarder_rpm_override_active == 1) {
+    uVar3 = retarder_override_rpm_value;
   }
   if ((uVar3 != 0) && (uVar3 < retarder_mode_timeout_value)) {
     uVar3 = retarder_mode_timeout_value;
   }
   if ((uVar3 == 0) ||
      (0x10c5 < mask_used_by_a_tool_to_id_the_trip_faults_found_in_the_trip_in_0_03f)) {
-    _DAT_0080d462 = 0x4230bdc0;
+    retarder_proportion_calc_workspace = 0x4230bdc0;
     local_8 = proportionalCalculation(16000000,0x4230bdc0,32000000);
     local_8 = local_8 & 0xffff;
   }
   else {
-    _DAT_0080d462 =
+    retarder_proportion_calc_workspace =
          ((uint)mask_used_by_a_tool_to_id_the_trip_faults_found_in_the_trip_in_0_03f * 1000000) /
          (uint)uVar3;
-    uVar2 = proportionalCalculation(16000000,_DAT_0080d462,32000000);
+    uVar2 = proportionalCalculation(16000000,retarder_proportion_calc_workspace,32000000);
     local_8 = uVar2 & 0xffff;
     uVar1 = local_8;
     local_8 = CONCAT22((short)((int)uVar1 >> 1),(short)uVar2);
@@ -26809,7 +26808,7 @@ void pwmTimerMode0Init(void)
   int iVar1;
   int iVar2;
   uint uVar3;
-  int *piVar4;
+  word *pwVar4;
   
   if ((char)time_fault_conditions_must_exist_before_logging_a_throttle_faul_0_2000 == '\0') {
     _DAT_00808ec2 = &LAB_00015946;
@@ -26831,14 +26830,14 @@ void pwmTimerMode0Init(void)
   iVar1 = 0;
   iVar2 = 0;
   uVar3 = (uint)intake_manifold_temperature_at_maximum_fueling_condition_50_293._0_1_;
-  piVar4 = (int *)&DAT_0080d4a8;
+  pwVar4 = &pwm_timing_advance_lookup_table;
   do {
-    *piVar4 = iVar2 / 6;
+    *(int *)pwVar4 = iVar2 / 6;
     iVar2 = uVar3 * 0x10000 + iVar2;
     iVar1 = iVar1 + 1;
-    piVar4 = piVar4 + 1;
+    pwVar4 = pwVar4 + 2;
   } while (iVar1 < 6);
-  _DAT_0080d4a4 =
+  pwm_temperature_shifted_workspace =
        (uint)intake_manifold_temperature_at_maximum_fueling_condition_50_293._0_1_ << 0x10;
   pwmTimerMode1Update();
   return;
@@ -26884,10 +26883,11 @@ void pwmTimerMode1ChannelSetup(void)
   uint uVar4;
   
   pwm_timer_cycle_advance_state = DAT_00808a78 - 1U;
-  iVar1 = _DAT_0080d4a4 +
+  iVar1 = pwm_temperature_shifted_workspace +
           _user_specified_number_of_engine_data_samples_taken_by_trending_f_0_100 +
           _enable_flag_that_indicates_presence_of_an_ambient_air_press_true_false +
-          *(int *)(&DAT_0080d4a8 + (short)(ushort)(byte)(DAT_00808a78 - 1U) * 4) + 0x100;
+          *(int *)(&pwm_timing_advance_lookup_table + (short)(ushort)(byte)(DAT_00808a78 - 1U) * 2)
+          + 0x100;
   uVar4 = (iVar1 >> 0x10 & 0xffffU) % (maximum_allowed_timing_advance_for_this_algorithm_0_20 + 2);
   uVar3 = (ushort)uVar4;
   uVar2 = (ushort)(iVar1 >> 1) & 0x7f00;
@@ -26934,10 +26934,11 @@ void pwmTimerMode1Update(void)
   ushort uVar3;
   uint uVar4;
   
-  iVar1 = _DAT_0080d4a4 +
+  iVar1 = pwm_temperature_shifted_workspace +
           _user_specified_number_of_engine_data_samples_taken_by_trending_f_0_100 +
           _enable_flag_that_indicates_presence_of_an_ambient_air_press_true_false +
-          *(int *)(&DAT_0080d4a8 + (short)(ushort)pwm_timer_cycle_advance_state * 4) + 0x100;
+          *(int *)(&pwm_timing_advance_lookup_table +
+                  (short)(ushort)pwm_timer_cycle_advance_state * 2) + 0x100;
   uVar4 = (iVar1 >> 0x10 & 0xffffU) % (maximum_allowed_timing_advance_for_this_algorithm_0_20 + 2);
   uVar3 = (ushort)uVar4;
   uVar2 = (ushort)(iVar1 >> 1) & 0x7f00;
