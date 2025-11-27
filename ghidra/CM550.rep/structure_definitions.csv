@@ -347,7 +347,7 @@ timing_mode_control_t,0x0080965A,fuel_source_mode_11_state,word,2,Fuel source mo
 timing_mode_control_t,0x0080965A,fuel_source_mode_11_timer,word,2,Fuel source mode 11 timer,,needs_review
 timing_mode_control_t,0x0080965A,fuel_mode_transition_state,word,2,Fuel mode transition state,,needs_review
 timing_mode_control_t,0x0080965A,fuel_mode_transition_timer,word,2,Fuel mode transition timer,,needs_review
-# RPM Fuel Protection State (24 bytes) - 0x008091C4 to 0x008091DA
+# RPM Fuel Protection State (30 bytes) - 0x008091C4 to 0x008091E0
 rpm_fuel_protection_t,0x008091C4,fuel_limit_shutdown,word,2,Fuel limit during shutdown,,needs_review
 rpm_fuel_protection_t,0x008091C4,high_rpm_fuel_limit,word,2,High RPM fuel control limit,,needs_review
 rpm_fuel_protection_t,0x008091C4,low_rpm_fuel_protection_limit,word,2,Low RPM fuel protection limit,,needs_review
@@ -358,8 +358,11 @@ rpm_fuel_protection_t,0x008091C4,rpm_state_accumulator,word,2,RPM state accumula
 rpm_fuel_protection_t,0x008091C4,high_rpm_fuel_accumulator,word,2,High RPM fuel accumulator,,needs_review
 rpm_fuel_protection_t,0x008091C4,low_rpm_fuel_accumulator,word,2,Low RPM fuel accumulator,,needs_review
 rpm_fuel_protection_t,0x008091C4,fuel_demand_before_limiting,word,2,Fuel demand saved before limiting,,needs_review
-rpm_fuel_protection_t,0x008091C4,reserved_14,word,2,Gap/reserved,,needs_review
+rpm_fuel_protection_t,0x008091C4,low_rpm_threshold_exceeded_flag,word,2,Low RPM threshold exceeded flag (reserved_14),,needs_review
 rpm_fuel_protection_t,0x008091C4,rpm_threshold_exceeded_flag,word,2,RPM threshold exceeded flag,,needs_review
+rpm_fuel_protection_t,0x008091C4,high_rpm_threshold_exceeded_flag,word,2,High RPM threshold exceeded flag,,needs_review
+rpm_fuel_protection_t,0x008091C4,fuel_protection_timer_enable,word,2,Timer enable for protection state machines,,needs_review
+rpm_fuel_protection_t,0x008091C4,fuel_system_protection_enabled,word,2,Master fuel protection system enable (1=active),,needs_review
 # Engine Control Flags (12 bytes) - 0x008035D6 to 0x008035E0
 engine_control_flags_t,0x008035D6,fuel_demand_control,word,2,Fuel demand mode control flags,,needs_review
 engine_control_flags_t,0x008035D6,protection_system,word,2,Protection system status flags,,needs_review
@@ -378,17 +381,28 @@ oil_pressure_protection_t,0x00803430,validation_timer,word,2,Timer for oil press
 oil_pressure_protection_t,0x00803430,sensor_validation_counter,word,2,Sensor status validation counter,,needs_review
 # RPM Control Timers (12 bytes) - 0x00800002 to 0x0080000c
 rpm_control_timers_t,0x00800002,timer_1,word,2,Timer 1 for RPM-based control logic,,needs_review
-rpm_control_timers_t,0x00800002,reserved_02,word,2,Gap/reserved,,needs_review
+rpm_control_timers_t,0x00800002,high_rpm_timer,word,2,High RPM protection timer,,needs_review
 rpm_control_timers_t,0x00800002,timer_2,word,2,Timer 2 for RPM-based control logic,,needs_review
-rpm_control_timers_t,0x00800002,reserved_06,word,2,Gap/reserved,,needs_review
-rpm_control_timers_t,0x00800002,reserved_08,word,2,Gap/reserved,,needs_review
+rpm_control_timers_t,0x00800002,high_rpm_accumulator_timer,word,2,High RPM accumulator holdoff timer,,needs_review
+rpm_control_timers_t,0x00800002,low_rpm_accumulator_timer,word,2,Low RPM accumulator holdoff timer,,needs_review
 rpm_control_timers_t,0x00800002,previous_engine_rpm,word,2,Previous engine RPM for delta calc,,needs_review
+# Shutdown Fuel Lookup Args (12 bytes) - 0x0080000E to 0x00800018
+shutdown_fuel_lookup_args_t,0x0080000E,table_index,word,2,Current interpolation index,,needs_review
+shutdown_fuel_lookup_args_t,0x0080000E,x_axis_ptr,dword,4,Pointer to RPM axis table,,needs_review
+shutdown_fuel_lookup_args_t,0x0080000E,input_rpm,word,2,Input RPM for lookup (copied from current_engine_rpm),,needs_review
+shutdown_fuel_lookup_args_t,0x0080000E,y_axis_ptr,dword,4,Pointer to fuel limit table,,needs_review
+# High RPM Fuel Lookup Args (12 bytes) - 0x0080001A to 0x00800024
+high_rpm_fuel_lookup_args_t,0x0080001A,table_index,word,2,Current interpolation index,,needs_review
+high_rpm_fuel_lookup_args_t,0x0080001A,x_axis_ptr,dword,4,Pointer to RPM axis table,,needs_review
+high_rpm_fuel_lookup_args_t,0x0080001A,input_rpm,word,2,Input RPM for lookup (copied from current_engine_rpm),,needs_review
+high_rpm_fuel_lookup_args_t,0x0080001A,y_axis_ptr,dword,4,Pointer to fuel limit table,,needs_review
 # RPM Calibration Parameters (12 bytes) - 0x008062D4 to 0x008062DE  
 rpm_calibration_params_t,0x008062D4,timer_reload_value_2,word,2,Timer reload value 2 for RPM control,,needs_review
 rpm_calibration_params_t,0x008062D4,reserved_02,word,2,Gap/reserved,,needs_review
 rpm_calibration_params_t,0x008062D4,threshold_lower,word,2,Lower RPM threshold,,needs_review
 rpm_calibration_params_t,0x008062D4,secondary_threshold,word,2,Secondary RPM threshold,,needs_review
 rpm_calibration_params_t,0x008062D4,threshold_upper,word,2,Upper RPM threshold,,needs_review
-# RPM Rate Limits (4 bytes) - 0x008062F8 to 0x008062FA
+# RPM Rate Limits (6 bytes) - 0x008062F8 to 0x008062FE
 rpm_rate_limits_t,0x008062F8,maximum,word,2,Maximum RPM rate of change limit,,needs_review
 rpm_rate_limits_t,0x008062F8,minimum,word,2,Minimum RPM rate of change limit,,needs_review
+rpm_rate_limits_t,0x008062F8,threshold_timer_reload,word,2,Timer reload when RPM threshold exceeded,,needs_review
