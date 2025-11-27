@@ -5,24 +5,15 @@ function_address,function_name,first_use_address,new_variable_name,type,comment
 #
 # Example workflow:
 # 1. Add entry with first_use_address=0x0 (will fail but show available variables)
-# 2. Check output for "Available variables:" with their first-use addresses
+"# 2. Check output for ""Available variables:"" with their first-use addresses"
 # 3. Update the CSV with the correct first-use address
 # 4. Re-run the script
 #
 # diagnosticCommandDispatcher local variables
-0x00012484,diagnosticCommandDispatcher,0x12580,securityCheckResult,char,Result from systemSecurityCheck() - 0=authorized nonzero=denied
-0x00012484,diagnosticCommandDispatcher,0x1256c,subFunctionCode,byte,Sub-function code extracted from message
 #
 # memoryOperationDispatcher local variables (has 2 systemSecurityCheck calls in cases 3 and 5)
-0x0001b37a,memoryOperationDispatcher,0x1b4c4,securityCheckResult,char,Result from systemSecurityCheck() in case 5 - 0=authorized nonzero=denied
-0x0001b37a,memoryOperationDispatcher,0x1b4f0,securityCheckResult2,char,Result from systemSecurityCheck() in case 3 - 0=authorized nonzero=denied
-0x0001b37a,memoryOperationDispatcher,0x1b45a,securityCheckResult3,char,Result from systemSecurityCheck() - third call in case 3
 #
 # diagnosticServiceSecurityValidator local variables
-0x0001b7e8,diagnosticServiceSecurityValidator,0x1b85e,securityCheckResult,char,Result from systemSecurityCheck() - 0=authorized nonzero=denied
-0x0001b7e8,diagnosticServiceSecurityValidator,0x1b7f4,serviceId,byte,Diagnostic service ID from message (0-23 valid range)
-0x0001b7e8,diagnosticServiceSecurityValidator,0x1b7f8,messageLengthByte,char,Message length/type byte from param_1+5
-0x0001b7e8,diagnosticServiceSecurityValidator,0x1b80a,requiredLength,char,Required message length (3 for services 3/4 else 1)
 #
 # engine_speed_governor local variables - PID speed controller
 # Index-based discovery: use 0-99 as first_use_address to select variable by index
@@ -40,4 +31,12 @@ function_address,function_name,first_use_address,new_variable_name,type,comment
 0x0000b656,engine_speed_governor,0xb7ba,rpm_error_previous,word,Previous governor_rpm_error value for delta calculation
 0x0000b656,engine_speed_governor,0xb97e,pid_output_previous,word,Previous PID combined output for feedback loop
 0x0000b656,engine_speed_governor,0xb9ea,derivative_term_previous,word,Previous derivative term for filtering
-0x0000b656,engine_speed_governor,0xb9ea,fuel_command_scaled,int,Final fuel command calculation (shifted result)
+0x00012484,diagnosticCommandDispatcher,0x1256c,subFunctionCode,byte,Sub-function code extracted from message
+0x00012484,diagnosticCommandDispatcher,0x12580,securityCheckResult,char,Result from systemSecurityCheck() - 0=authorized nonzero=denied
+0x0001b37a,memoryOperationDispatcher,0x1b45a,securityCheckResult3,char,Result from systemSecurityCheck() - third call in case 3
+0x0001b37a,memoryOperationDispatcher,0x1b4c4,securityCheckResult,char,Result from systemSecurityCheck() in case 5 - 0=authorized nonzero=denied
+0x0001b37a,memoryOperationDispatcher,0x1b4f0,securityCheckResult2,char,Result from systemSecurityCheck() in case 3 - 0=authorized nonzero=denied
+0x0001b7e8,diagnosticServiceSecurityValidator,0x1b7f4,serviceId,byte,Diagnostic service ID from message (0-23 valid range)
+0x0001b7e8,diagnosticServiceSecurityValidator,0x1b7f8,messageLengthByte,char,Message length/type byte from param_1+5
+0x0001b7e8,diagnosticServiceSecurityValidator,0x1b80a,requiredLength,char,Required message length (3 for services 3/4 else 1)
+0x0001b7e8,diagnosticServiceSecurityValidator,0x1b85e,securityCheckResult,char,Result from systemSecurityCheck() - 0=authorized nonzero=denied

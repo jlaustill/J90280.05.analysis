@@ -1,6 +1,6 @@
 ; Ghidra Assembly Export - J90280.05 Firmware
 ; Generated with renamed functions, variables, and labels
-; Thu Nov 27 14:31:20 MST 2025
+; Thu Nov 27 14:50:18 MST 2025
 ;
 
 0000a16a: movem.l  {  A5 A4 A3 A2},SP  
@@ -19293,7 +19293,7 @@
 0001c334: movem.l  -0x18,A6,{  D2 A2 A3 A4 A5}
 0001c33a: unlk     A6                  
 0001c33c: rts      <UNSUPPORTED>       
-0001c33e: link.w   A6,-0x4              ; CalTerm/Insite parameter request handler entry point
+0001c33e: link.w   A6,-0x4              ; CalTerm/Insite parameter request handler entry point [Alt: handler_case_17_entry]
 0001c342: movem.l  {  A2 D3 D2},SP     
 0001c346: movea.l  (0x8,A6),A2         
 0001c34a: movea.l  #0x800f34,A1        
@@ -19600,7 +19600,7 @@
 0001c76a: move.w   #0x19,(0x6,A4)      
 0001c770: movem.l  SP,{  D2 D3 D4 D5 A2 A3 A4 A5}
 0001c774: rts      <UNSUPPORTED>       
-0001c776: link.w   A6,-0x4              ; CalTerm/Insite status request handler entry point
+0001c776: link.w   A6,-0x4              ; CalTerm/Insite status request handler entry point [Alt: handler_case_19_entry]
 0001c77a: movem.l  {  A3 A2},SP        
 0001c77e: movea.l  (0x8,A6),A2         
 0001c782: movea.l  #0x800f34,A3        
@@ -19622,7 +19622,7 @@
 0001c7c0: movem.l  -0xc,A6,{  A2 A3}   
 0001c7c6: unlk     A6                  
 0001c7c8: rts      <UNSUPPORTED>       
-0001c7ca: link.w   A6,-0x4              ; CalTerm/Insite diagnostic error handler entry point
+0001c7ca: link.w   A6,-0x4              ; CalTerm/Insite diagnostic error handler entry point [Alt: handler_case_255_entry]
 0001c7ce: movem.l  {  A4 A3 A2},SP     
 0001c7d2: movea.l  (0x8,A6),A2         
 0001c7d6: movea.l  #0x800f34,A3        
