@@ -4806,3 +4806,18 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00803350,output_timing_state_previous,word,Previous output_control_timer_value for continuity,2,0,,state
 0x0080335a,output_control_timing_reset_counter,word,Countdown counter loaded from 0x00807266,2,0,,counter
 0x00803366,output_control_lookup_failure_flag,byte,0=success 1=failure for io_control_flags,1,0,,flag
+0x0080332e,vp44_state_processing_timeout_counter,word,VP44 state machine timeout countdown (loaded from 0x80734e) (9 refs),2,0,,counter
+0x00803336,vp44_state_current_debounced,word,VP44 debounced state from vp44StateDebounceFilter (8 refs),2,0,,state
+0x00803334,vp44_state_debounce_countdown,word,VP44 state debounce countdown timer (8 refs),2,0,,countdown
+0x0080333c,vp44_state_output_timing_base,word,VP44 state machine output timing base value (7 refs),2,0,,value
+0x0080333a,vp44_state_operating_condition_cached,word,VP44 cached operating condition for state comparison (7 refs),2,0,,state
+0x00803330,vp44_state_input_current,word,VP44 current state input value (7 refs),2,0,,state
+0x00803338,vp44_state_previous,word,VP44 previous state for transition detection (7 refs),2,0,,state
+0x00803358,output_control_state_sequencer,word,Output control state sequencer counter (7 refs),2,0,,counter
+0x008033b6,output_control_idle_timeout_threshold,word,Output control idle timeout threshold (initialized to 10) (5 refs),2,0,,threshold
+0x008033b8,output_control_active_flag,word,Output control active state flag (0=idle 1=active) (4 refs),2,0,,flag
+0x008033ac,output_control_interpolation_result,word,Output control table interpolation result (4 refs),2,0,,value
+0x00803362,output_control_idle_counter,word,Output control idle state incrementing counter (7 refs),2,0,,counter
+0x0080337a,output_control_sensor_input_cached,word,Output control cached sensor input value (4 refs),2,0,,value
+0x00803346,output_control_intake_temp_value,word,Output control intake temperature sensor value (4 refs),2,0,,temperature
+0x0080cfae,retarder_mode_control_byte_cached,word,Cached copy of retarder_mode_control_byte_mirror (4 refs),2,0,,cache
