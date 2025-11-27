@@ -1,5 +1,5 @@
 ════════════════════════════════════════════════════════════
-ApplyAndExport Log - 2025-11-27 09:01:51
+ApplyAndExport Log - 2025-11-27 09:23:44
 ════════════════════════════════════════════════════════════
 
 Project: J90280.05
@@ -11,12 +11,16 @@ Running MasterAnalysisSetup + ExportAnalysisResults...
 
 📥 [1/2] Applying CSV changes to Ghidra...
 ─────────────────────────────────────────
+>>> Running MasterAnalysisSetup.java...
+    (Detailed output appears in Ghidra console)
 
 
 ✓ CSV changes applied
 
 📤 [2/2] Exporting analysis for Claude Code...
 ───────────────────────────────────────────────
+>>> Running ExportAnalysisResults.java...
+    (Detailed output appears in Ghidra console)
 
 
 ✓ Export complete

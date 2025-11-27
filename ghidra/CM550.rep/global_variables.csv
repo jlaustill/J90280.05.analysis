@@ -4477,3 +4477,51 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008096a2,fuel_demand_limit_source,word,Fuel demand limit source selector,2,0,,value
 0x008096c4,diagnostic_mode_fuel_adjustment,word,Diagnostic mode fuel adjustment value,2,0,,value
 0x008096b4,vp44_operating_condition_value,word,VP44 operating condition check value,2,0,,value
+0x0080c430,rpm_filter_buffer_start,dword,Circular buffer base address for RPM filtering (27 refs),4,0,,buffer
+0x0080c5c0,duty_cycle_monitor_buffer_start,dword,Duty cycle monitor circular buffer base address (15 refs),4,0,,buffer
+0x0080d404,diag_multipacket_transmit_pending,byte,Multi-packet diagnostic transmit continuation flag (12 refs),1,0,,flag
+0x0080d026,fuel_arbitrator_response_timer,word,Fuel arbitrator response countdown timer (12 refs),2,0,,timer
+0x0080c7d3,rpm_sensor_fault_counter,byte,RPM sensor fault debounce counter (12 refs),1,0,,counter
+0x0080c7d1,duty_cycle_error_counter,byte,Duty cycle monitor error debounce counter (12 refs),1,0,,counter
+0x0080c764,rpm_timing_capture_previous,word,Previous RPM timing capture for delta comparison (12 refs),2,0,,value
+0x0080c75a,timer_capture_sample_count,word,Timer capture averaging sample count (12 refs),2,0,,counter
+0x0080c412,rpm_timing_accumulator,dword,RPM timing delta accumulator (12 refs),4,0,,accumulator
+0x0080bdc9,vp44_sensor_diagnostic_state,byte,VP44 sensor diagnostic control state (12 refs),1,0,,state
+0x0080d46a,engine_runtime_statistics_accumulator,dword,Engine runtime histogram and statistics accumulator (11 refs),4,0,,accumulator
+0x0080d448,insite_live_data_parameter_index,word,INSITE live data parameter table index (11 refs),2,0,,index
+0x0080d440,insite_parameter_table_iterator,word,INSITE parameter table iteration counter (11 refs),2,0,,counter
+0x0080d2d0,tpu_channel_state_value,word,TPU channel state machine current value (11 refs),2,0,,state
+0x0080d032,fuel_arbitrator_session_timer,word,Fuel arbitrator session countdown timer (11 refs),2,0,,timer
+0x0080d02c,retarder_control_mode_timer,word,Retarder control mode state timer (11 refs),2,0,,timer
+0x0080cfea,fuel_mode_selection_offset,word,Fuel mode selection calculated offset value (11 refs),2,0,,value
+0x0080cfe8,fuel_offset_blend_value,word,Fuel offset blend calculation value (11 refs),2,0,,value
+0x0080cfb6,serial_node_address_state,word,Serial communication node address state (11 refs),2,0,,state
+0x0080cf84,timer_task_scheduler_state,word,Timer-based task scheduler state machine (11 refs),2,0,,state
+0x0080c806,fuel_timing_mode_blend_factor,word,Fuel timing mode blend calculation factor (11 refs),2,0,,value
+0x0080c766,rpm_timing_capture_current,word,Current RPM timing capture for delta comparison (11 refs),2,0,,value
+0x0080c754,timer_capture_accumulator,dword,Timer capture averaging accumulator (11 refs),4,0,,accumulator
+0x0080bdcf,vp44_fuel_temperature_state,byte,VP44 fuel temperature sensor diagnostic state (11 refs),1,0,,state
+0x00809d54,derate_threshold_monitor_state,word,Derate threshold monitor and fault controller state (11 refs),2,0,,state
+0x00809d52,derate_fault_controller_value,word,Derate fault controller calculated value (11 refs),2,0,,value
+0x00809b1a,engine_runtime_histogram_index,word,Engine runtime histogram bin index (11 refs),2,0,,index
+0x00809b0a,dzg_timing_pressure_state_1,word,DZG timing and pressure control state variable 1 (11 refs),2,0,,state
+0x00809b08,dzg_timing_pressure_state_2,word,DZG timing and pressure control state variable 2 (11 refs),2,0,,state
+0x00809a0c,engine_mode_output_control_state,word,Engine mode output control state machine value (11 refs),2,0,,state
+0x008096fc,vp44_diagnostic_mode_state,word,VP44 diagnostic mode state machine value (11 refs),2,0,,state
+0x00803746,fuel_timing_transition_limit,word,Fuel timing transition state machine limit value (11 refs),2,0,,value
+0x00803734,crank_fuel_timing_buffer_value,word,Crank fuel and timing buffer stored value (11 refs),2,0,,value
+0x0080367a,eeprom_calibration_write_state,byte,EEPROM calibration write state and validation (12 refs),1,0,,state
+0x008037d4,retarder_mode_threshold_value,word,Retarder mode threshold calculation value (12 refs),2,0,,value
+0x008033d6,vp44_diagnostic_sensor_threshold,word,VP44 diagnostic sensor threshold monitor value (12 refs),2,0,,value
+0x0080171c,fuel_timing_offset_state,word,Fuel timing offset calculation state (12 refs),2,0,,state
+0x00807cd0,can1_timer_buffer_config,word,CAN1 timer buffer configuration value (12 refs),2,0,,config
+0x00805f2c,crank_fuel_calculation_state,word,Crank fuel calculation and protection state (12 refs),2,0,,state
+0x00804f40,insite_fault_detail_state,word,INSITE fault detail builder state (12 refs),2,0,,state
+0x00804e76,diagnostic_protection_state,word,Diagnostic protection evaluator state (12 refs),2,0,,state
+0x00809b10,hour_meter_conversion_data,dword,Hour meter conversion data accumulator (12 refs),4,0,,accumulator
+0x0080938c,vp44_state_debounce_value,word,VP44 state debounce filter value (12 refs),2,0,,value
+0x008033f6,vp44_sensor_status_monitor_state,word,VP44 sensor status monitor state (11 refs),2,0,,state
+0x008033bf,engine_mode_io_control_flags,byte,Engine mode based I/O controller flags (11 refs),1,0,,flags
+0x008033ba,output_control_flags_state,byte,Output control flags initialization state (11 refs),1,0,,state
+0x00ffd800,serial_port_1_base_register,dword,MC68336 Serial Port 1 (QSM) base register address (12 refs),4,0,,hwreg
+0x00ffc800,serial_port_2_base_register,dword,MC68336 Serial Port 2 (QSM) base register address (11 refs),4,0,,hwreg
