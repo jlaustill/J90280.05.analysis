@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Wed Nov 26 19:59:18 MST 2025
+// Wed Nov 26 20:13:42 MST 2025
 
 
 //
@@ -1950,7 +1950,7 @@ void engineProtectionSystemInit(void)
   engine_protection_init();
   FUN_0002d3fa();
   FUN_0002d688();
-  FUN_0002c506();
+  fuelTempControlFlagChecker();
   FUN_0002d92c();
   FUN_0002e282();
   FUN_0002ddea();
@@ -1960,7 +1960,7 @@ void engineProtectionSystemInit(void)
   FUN_0002ed96();
   FUN_0002f5f2();
   FUN_0002f748();
-  FUN_0002c4de();
+  initProtectionTablePointer();
   rpmParameterPointerSetup();
   FUN_0002f920();
   FUN_0002f986();
@@ -4850,26 +4850,26 @@ undefined4 systemResetWithDiagnostic(byte *param_1,undefined4 param_2)
   if (engine_operating_mode_t_0080c810.state == 1) {
     while (uVar1 = circularBufferEmptyCheck(), (char)uVar1 == '\0') {
       emptyPlaceholderFunction();
-      FUN_0002bb2e(CONCAT22(500,uVar3));
+      watchdogServiceLoop(CONCAT22(500,uVar3));
     }
     local_8 = _DAT_0080d4c4;
     parameterCircularBufferWrite(0x80352c,(undefined1 *)&local_8,CONCAT22(4,uVar3));
     if (_DAT_0080d19c == 0) {
-      FUN_0002bb2e(CONCAT22(0xfa,uVar3));
+      watchdogServiceLoop(CONCAT22(0xfa,uVar3));
     }
     else {
       while (_DAT_0080352c != local_8) {
         emptyPlaceholderFunction();
-        FUN_0002bb2e(CONCAT22(500,uVar3));
+        watchdogServiceLoop(CONCAT22(500,uVar3));
       }
     }
     if (param_2._1_1_ == '\0') {
-      FUN_000298d8(param_1,(uint)uVar3);
+      diagnosticMultiPacketResponseBuilder(param_1,(uint)uVar3);
     }
     else {
       diagnosticMessageQueueWrite((uint)uVar3);
     }
-    FUN_0002bb2e(CONCAT22(50000,uVar3));
+    watchdogServiceLoop(CONCAT22(50000,uVar3));
     DAT_0080bdf0 = DAT_0080bdf0 & 0xef;
     ioControlAndCanPinSwitching();
     _DAT_0080fffc = 0xf9d2;
@@ -23684,7 +23684,8 @@ void diagnosticServiceDispatcher(byte *param_1)
     if (DAT_00801998 <= bVar1) {
 LAB_000272e6:
       if (cVar2 != -1) {
-        FUN_000298d8(param_1,CONCAT22((short)CONCAT31((int3)((uint)in_D0 >> 8),cVar2),uVar4));
+        diagnosticMultiPacketResponseBuilder
+                  (param_1,CONCAT22((short)CONCAT31((int3)((uint)in_D0 >> 8),cVar2),uVar4));
       }
       return;
     }
@@ -23730,7 +23731,7 @@ void diagnosticResponseHandler2(int param_1)
   ushort in_stack_00000000;
   
   _DAT_0080d48c = 2;
-  FUN_00029476(param_1,(uint)in_stack_00000000);
+  diagnosticCanResponseSender(param_1,(uint)in_stack_00000000);
   return;
 }
 
@@ -23764,16 +23765,16 @@ void diagnosticServiceByteHandler(int param_1)
   
   uVar1 = (undefined2)((uint)unaff_A2 >> 0x10);
   DAT_0080199a = **(char **)(param_1 + 6);
-  FUN_0002a1f6(CONCAT22(CONCAT11((char)((ushort)in_D0w >> 8),DAT_0080199a),0x32));
+  diagnosticByteResponseSender(CONCAT22(CONCAT11((char)((ushort)in_D0w >> 8),DAT_0080199a),0x32));
   if ((DAT_0080199a == '\0') && ((_DAT_008084ca & 0x100) != 0)) {
-    FUN_0002a1f6(CONCAT22(_DAT_008084ca & 0x100,0x32));
+    diagnosticByteResponseSender(CONCAT22(_DAT_008084ca & 0x100,0x32));
     return;
   }
   if ((DAT_0080199a == '\x01') && ((_DAT_008084ca & 0x200) != 0)) {
-    FUN_0002a1f6(CONCAT22(CONCAT11((char)((_DAT_008084ca & 0x200) >> 8),1),0x32));
+    diagnosticByteResponseSender(CONCAT22(CONCAT11((char)((_DAT_008084ca & 0x200) >> 8),1),0x32));
     return;
   }
-  FUN_00029476(param_1,CONCAT22(1,uVar1));
+  diagnosticCanResponseSender(param_1,CONCAT22(1,uVar1));
   return;
 }
 
@@ -24047,7 +24048,7 @@ void diagnosticServiceDispatcherByPgn(int param_1)
       pcVar2 = pcVar2 + 6;
     }
     if ((bVar1 == DAT_00801a36) && (*(char *)(param_1 + 2) != -1)) {
-      FUN_00029476(param_1,CONCAT22(1,uVar3));
+      diagnosticCanResponseSender(param_1,CONCAT22(1,uVar3));
     }
   }
   return;
@@ -25163,12 +25164,12 @@ uint diagnosticSessionValidator(undefined4 param_1)
 
 
 //
-// Function: FUN_00029476 @ 0x00029476
+// Function: diagnosticCanResponseSender @ 0x00029476
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00029476(int param_1,undefined4 param_2)
+void diagnosticCanResponseSender(int param_1,undefined4 param_2)
 
 {
   _DAT_00801a86 =
@@ -25206,12 +25207,12 @@ void canBufferSetup1(void)
 
 
 //
-// Function: FUN_00029522 @ 0x00029522
+// Function: ambientConditionsDataBuilder @ 0x00029522
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00029522(void)
+void ambientConditionsDataBuilder(void)
 
 {
   DAT_00801aac = (undefined1)((((uint)_DAT_008092f2 * 2 >> 7) * 0x1afa) / 1000);
@@ -25343,10 +25344,10 @@ void j1939MessageSetup_PGN_65265(void)
 
 
 //
-// Function: FUN_000297fc @ 0x000297fc
+// Function: engineSerialNumberDataBuilder @ 0x000297fc
 //
 
-void FUN_000297fc(void)
+void engineSerialNumberDataBuilder(void)
 
 {
   byte bVar1;
@@ -25409,10 +25410,10 @@ void engineSerialNumberPGN_65259_Builder(void)
 
 
 //
-// Function: FUN_000298d8 @ 0x000298d8
+// Function: diagnosticMultiPacketResponseBuilder @ 0x000298d8
 //
 
-byte * FUN_000298d8(byte *param_1,undefined4 param_2)
+byte * diagnosticMultiPacketResponseBuilder(byte *param_1,undefined4 param_2)
 
 {
   undefined4 in_D0;
@@ -25467,12 +25468,12 @@ byte * FUN_000298d8(byte *param_1,undefined4 param_2)
 
 
 //
-// Function: FUN_00029976 @ 0x00029976
+// Function: activeDtcListBuilder @ 0x00029976
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-byte FUN_00029976(void)
+byte activeDtcListBuilder(void)
 
 {
   byte bVar1;
@@ -25542,12 +25543,12 @@ void engineCoolantPGN_65226_Builder(void)
 
 
 //
-// Function: FUN_00029ae4 @ 0x00029ae4
+// Function: previousDtcListBuilder @ 0x00029ae4
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-byte FUN_00029ae4(void)
+byte previousDtcListBuilder(void)
 
 {
   byte bVar1;
@@ -25778,12 +25779,12 @@ void diagnosticDM4PGN_65229_Builder(void)
 
 
 //
-// Function: FUN_0002a100 @ 0x0002a100
+// Function: diagnosticDM5DataBuilder @ 0x0002a100
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002a100(void)
+void diagnosticDM5DataBuilder(void)
 
 {
   ushort local_6;
@@ -25831,12 +25832,12 @@ void diagnosticDM5PGN_65230_Builder(void)
 
 
 //
-// Function: FUN_0002a1f6 @ 0x0002a1f6
+// Function: diagnosticByteResponseSender @ 0x0002a1f6
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002a1f6(undefined4 param_1)
+void diagnosticByteResponseSender(undefined4 param_1)
 
 {
   DAT_00803014 = param_1._1_1_;
@@ -26220,12 +26221,12 @@ void extendedDiagPGN_65251_Builder(void)
 
 
 //
-// Function: FUN_0002a856 @ 0x0002a856
+// Function: engineFluidLevelDataBuilder @ 0x0002a856
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002a856(void)
+void engineFluidLevelDataBuilder(void)
 
 {
   DAT_008030be = (undefined1)((int)((uint)(((int)(uint)_DAT_008092b0 >> 7) * 0x1afa) / 1000) >> 1);
@@ -26411,12 +26412,12 @@ void cumminsProprietaryTSC_PGN_15728640_Builder(void)
 
 
 //
-// Function: FUN_0002abf2 @ 0x0002abf2
+// Function: intakeExhaustConditionsDataBuilder @ 0x0002abf2
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002abf2(void)
+void intakeExhaustConditionsDataBuilder(void)
 
 {
   uint local_8;
@@ -26513,12 +26514,12 @@ void fuelEconomyPGN_65266_Builder(void)
 
 
 //
-// Function: FUN_0002adec @ 0x0002adec
+// Function: ioControlDataBuilder @ 0x0002adec
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002adec(void)
+void ioControlDataBuilder(void)
 
 {
   uint local_8;
@@ -26581,12 +26582,12 @@ void engineHoursPGN_65252_Builder(void)
 
 
 //
-// Function: FUN_0002af52 @ 0x0002af52
+// Function: intakeManifoldDataBuilder @ 0x0002af52
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002af52(void)
+void intakeManifoldDataBuilder(void)
 
 {
   DAT_00803167 = (undefined1)((short)(((_DAT_00809258 >> 7) * 0x1afa) / 1000) >> 1);
@@ -26732,12 +26733,12 @@ void retarderConfigPGN_65249_Builder(void)
 
 
 //
-// Function: FUN_0002b23a @ 0x0002b23a
+// Function: vehicleDistanceDataBuilder @ 0x0002b23a
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002b23a(void)
+void vehicleDistanceDataBuilder(void)
 
 {
   undefined4 local_8;
@@ -26773,12 +26774,12 @@ void vehicleDistancePGN_65248_Builder(void)
 
 
 //
-// Function: FUN_0002b2f4 @ 0x0002b2f4
+// Function: retarderDataBuilder @ 0x0002b2f4
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002b2f4(void)
+void retarderDataBuilder(void)
 
 {
   undefined2 local_6;
@@ -26815,12 +26816,12 @@ void electronicBrakePGN_65527_Builder(void)
 
 
 //
-// Function: FUN_0002b398 @ 0x0002b398
+// Function: vehicleHoursDataBuilder @ 0x0002b398
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002b398(void)
+void vehicleHoursDataBuilder(void)
 
 {
   undefined4 local_8;
@@ -27262,12 +27263,12 @@ void delayWithWatchdogService(undefined4 param_1)
 
 
 //
-// Function: FUN_0002bb2e @ 0x0002bb2e
+// Function: watchdogServiceLoop @ 0x0002bb2e
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002bb2e(undefined4 param_1)
+void watchdogServiceLoop(undefined4 param_1)
 
 {
   while (param_1._0_2_ != 0) {
@@ -27342,12 +27343,12 @@ void fuelDemandBasedParameterCalculator(void)
 
 
 //
-// Function: FUN_0002bc06 @ 0x0002bc06
+// Function: fuelDemandLimitMinimumUpdater @ 0x0002bc06
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002bc06(void)
+void fuelDemandLimitMinimumUpdater(void)
 
 {
   _DAT_0080d4c2 = fuel_demand_state_t_0080c9a4.limit_minimum;
@@ -27688,12 +27689,12 @@ uint FUN_0002c252(void)
 
 
 //
-// Function: FUN_0002c4de @ 0x0002c4de
+// Function: initProtectionTablePointer @ 0x0002c4de
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002c4de(void)
+void initProtectionTablePointer(void)
 
 {
   _DAT_0080320c = 0;
@@ -27721,12 +27722,12 @@ ushort diagnosticFlagResetHandler(void)
 
 
 //
-// Function: FUN_0002c506 @ 0x0002c506
+// Function: fuelTempControlFlagChecker @ 0x0002c506
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-ushort FUN_0002c506(void)
+ushort fuelTempControlFlagChecker(void)
 
 {
   if ((engine_control_flags_t_008035d6.fuel_temp_control & 0x8000) != 0) {
@@ -29055,12 +29056,12 @@ ushort shutdownLimitSelector(void)
 
 
 //
-// Function: FUN_0002de68 @ 0x0002de68
+// Function: shutdownMinimumSelector21 @ 0x0002de68
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002de68(void)
+void shutdownMinimumSelector21(void)
 
 {
   if (_DAT_0080972c < shutdown_minimum_selector_t_0080d494.fuel_value) {
@@ -30274,7 +30275,7 @@ void FUN_0002f778(void)
   timingAccumulatorUpdate();
   fuelAdjustmentWithFlagUpdate();
   timingAccumulatorClampedUpdate();
-  FUN_0002bc06();
+  fuelDemandLimitMinimumUpdater();
   fuelLimitMinimumSelector();
   FUN_0002f754();
   engineModeTransitionStateUpdater();
@@ -30326,10 +30327,10 @@ void diagnosticModeFuelArbitrationHandler(void)
 
 
 //
-// Function: FUN_0002f83e @ 0x0002f83e
+// Function: shutdownMinimumSelector28 @ 0x0002f83e
 //
 
-void FUN_0002f83e(void)
+void shutdownMinimumSelector28(void)
 
 {
   if (shutdown_minimum_selector_t_0080d494.previous_value <
@@ -30344,10 +30345,10 @@ void FUN_0002f83e(void)
 
 
 //
-// Function: FUN_0002f85c @ 0x0002f85c
+// Function: shutdownMinimumSelector20 @ 0x0002f85c
 //
 
-void FUN_0002f85c(void)
+void shutdownMinimumSelector20(void)
 
 {
   if ((fuel_arbitrator_diag_t_0080cff8.rpm_target == 3) &&
@@ -30377,9 +30378,9 @@ void shutdownMinimumSelectorOrchestrator(void)
   shutdownMinimumSelector15();
   shutdownMinimumSelector19();
   shutdownMinimumSelector29();
-  FUN_0002f85c();
-  FUN_0002f83e();
-  FUN_0002de68();
+  shutdownMinimumSelector20();
+  shutdownMinimumSelector28();
+  shutdownMinimumSelector21();
   return;
 }
 
