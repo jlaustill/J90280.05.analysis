@@ -4835,3 +4835,60 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080972a,crank_protection_divisor,word,Crank protection calculation divisor (3 refs),2,0,,value
 0x00805fae,crank_protection_threshold_time,dword,Crank protection threshold time value (4 refs),4,0,,value
 0x00805590,crank_fuel_buffer_index,word,Crank fuel and timing buffer index (9 refs),2,0,,index
+# Fuel demand statistics accumulator variables
+0x00806282,fuel_limit_exceedance_counter_1,dword,Fuel limit exceedance statistics counter 1 (2 refs),4,0,,counter
+0x0080628a,fuel_source_10_statistics_counter,dword,Fuel source 10 (idle) statistics counter (2 refs),4,0,,counter
+0x0080628e,fuel_temp_exceedance_counter,dword,Fuel temperature exceedance statistics counter (2 refs),4,0,,counter
+0x00806292,boost_pressure_stats_arg,dword,Boost pressure statistics accumulator arg (2 refs),4,0,,arg
+0x00806296,derate_time_accumulator,dword,Derate event time accumulator (2 refs),4,0,,accumulator
+0x0080629a,derate_time_accumulator_arg,dword,Derate event time accumulator arg (2 refs),4,0,,arg
+0x0080629e,fuel_demand_exceeded_accumulator,dword,Fuel demand exceeded statistics accumulator (2 refs),4,0,,accumulator
+0x008062a2,fuel_source_10_time_accumulator,dword,Fuel source 10 time accumulator (2 refs),4,0,,accumulator
+0x008062a6,fuel_demand_exceeded_counter,dword,Fuel demand exceeded event counter (2 refs),4,0,,counter
+0x008062aa,fuel_demand_exceeded_arg,dword,Fuel demand exceeded accumulator arg (2 refs),4,0,,arg
+0x008062ae,fuel_source_10_time_arg,dword,Fuel source 10 time accumulator arg (2 refs),4,0,,arg
+0x008062b2,fuel_limit_near_exceedance_accum,dword,Fuel limit near exceedance accumulator (2 refs),4,0,,accumulator
+0x008062b6,fuel_temp_exceedance_accumulator,dword,Fuel temp exceedance time accumulator (2 refs),4,0,,accumulator
+0x008062ba,fuel_limit_near_exceedance_arg,dword,Fuel limit near exceedance accumulator arg (2 refs),4,0,,arg
+0x008062be,fuel_temp_exceedance_arg,dword,Fuel temp exceedance accumulator arg (2 refs),4,0,,arg
+0x008062c2,rpm_protection_stats_counter,dword,RPM protection histogram statistics counter (2 refs),4,0,,counter
+0x008062c6,rpm_protection_stats_accumulator,dword,RPM protection histogram statistics accumulator (2 refs),4,0,,accumulator
+0x008062ca,rpm_protection_stats_index,dword,RPM protection histogram statistics index (3 refs),4,0,,index
+# Clutch statistics state variables
+0x00805fa2,fuel_temp_protection_counter_1,dword,Fuel temperature protection slow cycle counter 1 (2 refs),4,0,,counter
+0x00805fa6,fuel_temp_protection_counter_2,dword,Fuel temperature protection slow cycle counter 2 (2 refs),4,0,,counter
+0x008032da,derate_event_state_machine,word,Derate event state machine state (6 refs),2,0,,state
+0x008032ca,derate_event_timer,word,Derate event timer counter (3 refs),2,0,,timer
+0x008032cc,clutch_rpm_delta,dword,Clutch RPM delta calculation (6 refs),4,0,,value
+0x008032d8,clutch_slip_detection_state,word,Clutch slip detection state flag (4 refs),2,0,,state
+0x008032c8,clutch_rpm_previous,word,Clutch RPM previous value for delta (3 refs),2,0,,value
+0x00803870,vehicle_distance_base_value,dword,Vehicle distance data base value (1 ref),4,0,,value
+0x008071c6,derate_event_threshold_time,word,Derate event threshold time (1 ref),2,0,,threshold
+0x008071ca,clutch_slip_threshold,word,Clutch slip detection threshold (2 refs),2,0,,threshold
+# Fuel limit exceedance tracking
+0x008032d4,fuel_temp_exceedance_timer,word,Fuel temperature exceedance timer (3 refs),2,0,,timer
+0x008032d6,fuel_limit_near_exceedance_timer,word,Fuel limit near exceedance timer (3 refs),2,0,,timer
+0x008071ce,fuel_temp_exceedance_threshold,word,Fuel temp exceedance threshold time (1 ref),2,0,,threshold
+0x008071d0,fuel_limit_near_threshold,word,Fuel limit near exceedance threshold (1 ref),2,0,,threshold
+0x008071d4,boost_pressure_stats_threshold,word,Boost pressure statistics threshold (1 ref),2,0,,threshold
+# RPM protection histogram statistics
+0x00806254,rpm_protection_overflow_counter,dword,RPM protection histogram overflow counter (1 ref),4,0,,counter
+0x008032c6,high_rpm_state_4_latch_flag,byte,High RPM protection state 4 latch flag (5 refs),1,0,,flag
+0x008032c7,high_rpm_state_3_latch_flag,byte,High RPM protection state 3 latch flag (5 refs),1,0,,flag
+# Diagnostic mode initialization parameters
+0x008036ea,diagnostic_mode_7_enable_flag,word,Diagnostic status 7 enable flag (1 ref),2,0,,flag
+0x008078a2,diag_mode_7_output_lower_limit,word,Diagnostic mode 7 output lower limit (1 ref),2,0,,limit
+0x008078a0,diag_mode_7_output_upper_limit,word,Diagnostic mode 7 output upper limit (1 ref),2,0,,limit
+0x008078f8,diag_mode_2_output_upper_limit,word,Diagnostic mode 2 output upper limit (1 ref),2,0,,limit
+0x008078fa,diag_mode_2_output_lower_limit,word,Diagnostic mode 2 output lower limit (1 ref),2,0,,limit
+# INSITE command dispatcher variables
+0x00804bd0,insite_command_base_value,dword,INSITE command dispatcher base value (1 ref),4,0,,value
+0x0080d407,insite_command_byte,byte,INSITE command byte selector (many refs),1,0,,selector
+0x0080d40c,insite_response_buffer_ptr,dword,INSITE response buffer write pointer (many refs),4,0,,pointer
+0x0080d40f,insite_response_write_offset,byte,INSITE response buffer write offset (many refs),1,0,,offset
+0x00809242,insite_parameter_display_value,word,INSITE parameter display value (1 ref),2,0,,value
+0x008092f2,insite_diagnostic_reading,word,INSITE diagnostic reading value (1 ref),2,0,,value
+0x00804bcc,insite_runtime_hours_accumulator,dword,INSITE runtime hours accumulator (1 ref),4,0,,accumulator
+0x00804bd4,insite_idle_hours_accumulator,dword,INSITE idle hours accumulator (1 ref),4,0,,accumulator
+0x00804bb8,insite_fuel_statistics_output,dword,INSITE fuel statistics output (1 ref),4,0,,value
+0x00807944,insite_fuel_timing_display,word,INSITE fuel timing display value (1 ref),2,0,,value
