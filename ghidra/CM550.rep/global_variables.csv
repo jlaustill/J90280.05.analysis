@@ -4793,3 +4793,16 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080d4a4,pwm_temperature_shifted_workspace,dword,PWM temperature calculation workspace (temp << 16),4,0,,workspace
 0x0080d4a8,pwm_timing_advance_lookup_table,dword[6],6-entry PWM timing advance lookup table (24 bytes),24,0,,table
 0x0080d4cc,fuel_arbitrator_oil_pressure_snapshot,word,Oil pressure snapshot for fuel arbitration,2,0,,snapshot
+0x0080cfaa,retarder_mode_can_source_priority,word,CAN source priority for retarder mode selection (values 0 1 3),2,0,,priority
+0x0080cfb0,retarder_mode_threshold_result,byte,Retarder mode threshold calculation result,1,0,,result
+0x0080cfb4,retarder_percentage_scaled_output,word,Result from retarderPercentageScaler (0x6400 or scaled %),2,0,,value
+0x0080d038,retarder_mode_override_flag,byte,Cleared during state transitions in mode 2/3,1,0,,flag
+0x00801a38,retarder_mode_priority_level,byte,Previous mode priority for arbitration,1,0,,priority
+0x00801a3a,retarder_mode_control_byte_mirror,byte,Mirror of control byte (bit0-1: mode bit4-5: priority),1,0,,mirror
+0x00807260,output_timing_interpolation_base_ptr,word,Base pointer for timing table lookups,2,0,,pointer
+0x00807266,output_control_timing_reset_countdown,word,Countdown timer for output control reset,2,0,,countdown
+0x00807268,retarder_input_threshold_for_state,word,Threshold for output control state transition,2,0,,threshold
+0x00807272,throttle_position_threshold_for_output,word,Throttle threshold for engine_mode_output_control_state=2,2,0,,threshold
+0x00803350,output_timing_state_previous,word,Previous output_control_timer_value for continuity,2,0,,state
+0x0080335a,output_control_timing_reset_counter,word,Countdown counter loaded from 0x00807266,2,0,,counter
+0x00803366,output_control_lookup_failure_flag,byte,0=success 1=failure for io_control_flags,1,0,,flag

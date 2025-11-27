@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 16:19:07 MST 2025
+// Thu Nov 27 16:26:56 MST 2025
 
 
 //
@@ -15420,15 +15420,15 @@ ushort phase3_retarder_condition_monitor(void)
   
   uVar1 = diagnostic_system_flags_2 & 0x1000;
   if (((((diagnostic_system_flags_2 & 0x1000) != 0) && (fuel_arbitrator_state == 2)) &&
-      (_DAT_0080cfaa == 1)) &&
+      (retarder_mode_can_source_priority == 1)) &&
      (((fuel_arbitrator_diag_t_0080cff8.rpm_target == 1 &&
        (fuel_arbitrator_diag_t_0080cff8.fuel_mode == 1)) &&
       (uVar1 = cached_parameter_value, _DAT_0080894c <= cached_parameter_value)))) {
-    _DAT_0080cfb0 = 0;
+    _retarder_mode_threshold_result = 0;
     _retarder_mode_table_count = 3;
     fuel_arbitrator_diag_t_0080cff8.throttle_mode = 0;
     fuel_arbitrator_throttle_override = 0;
-    _DAT_0080d038 = 0;
+    _retarder_mode_override_flag = 0;
   }
   return uVar1;
 }
@@ -15819,10 +15819,10 @@ void diagnosticGroupSnapshotCapture(undefined4 param_1)
     return;
   }
   _DAT_0080556e = 1;
-  _DAT_00805572 = _DAT_0080cfaa;
+  _DAT_00805572 = retarder_mode_can_source_priority;
   DAT_00805554 = 1;
   DAT_00805555 = DAT_0080cfad;
-  _DAT_00805556 = _DAT_0080cfaa;
+  _DAT_00805556 = retarder_mode_can_source_priority;
   vp44_sensor_diag_state_2 = 1;
   _DAT_0080555a = fuel_arbitrator_state;
   _DAT_0080555c = 0;
@@ -17096,14 +17096,14 @@ void fuelArbitratorVariablesReset(void)
 
 {
   fuel_arbitrator_state = 0;
-  _DAT_0080cfaa = 0;
-  _DAT_0080cfb0 = 0;
+  retarder_mode_can_source_priority = 0;
+  _retarder_mode_threshold_result = 0;
   _retarder_mode_table_count = 3;
   fuel_arbitrator_diag_t_0080cff8.throttle_mode = 0;
   retarder_control_mode_timer = 0;
   fuel_arbitrator_status_counter = 0;
   fuel_arbitrator_throttle_override = 0;
-  _DAT_0080d038 = 0;
+  _retarder_mode_override_flag = 0;
   return;
 }
 
@@ -23946,27 +23946,28 @@ void retarderControlModeHandler(int param_1)
   byte bVar2;
   byte bVar3;
   uint uVar4;
-  ushort uVar6;
+  word wVar6;
+  ushort uVar7;
   undefined4 uVar5;
-  undefined2 uVar7;
-  short sVar8;
+  undefined2 uVar8;
+  short sVar9;
   undefined4 unaff_D2;
-  bool bVar9;
-  undefined2 uVar10;
+  bool bVar10;
+  undefined2 uVar11;
   
-  uVar7 = (undefined2)((uint)unaff_D2 >> 0x10);
+  uVar8 = (undefined2)((uint)unaff_D2 >> 0x10);
   if ((retarder_mode_threshold_value != 0) && (*(short *)(param_1 + 4) == 8)) {
-    DAT_00801a3a = **(byte **)(param_1 + 6);
-    bVar3 = DAT_00801a3a & 3;
+    retarder_mode_control_byte_mirror = **(byte **)(param_1 + 6);
+    bVar3 = retarder_mode_control_byte_mirror & 3;
     if (bVar3 != 1) {
-      bVar2 = DAT_00801a3a & 0x30;
+      bVar2 = retarder_mode_control_byte_mirror & 0x30;
       retarder_control_priority_byte = *(byte *)(*(int *)(param_1 + 6) + 3);
       bVar1 = *(byte *)(param_1 + 3);
       if (bVar3 == 0) {
-        uVar4 = ioControlEntryRemove((uint)CONCAT12(bVar1,uVar7));
+        uVar4 = ioControlEntryRemove((uint)CONCAT12(bVar1,uVar8));
       }
       else {
-        uVar4 = ioControlTimeoutTableLookup((uint)CONCAT12(bVar1,uVar7));
+        uVar4 = ioControlTimeoutTableLookup((uint)CONCAT12(bVar1,uVar8));
         if ((short)uVar4 != 0) {
           return;
         }
@@ -23986,10 +23987,10 @@ void retarderControlModeHandler(int param_1)
         if ((short)uVar4 != 0) {
           return;
         }
-        if (DAT_00801a38 < bVar2) {
+        if (retarder_mode_priority_level < bVar2) {
           return;
         }
-        if (bVar2 == DAT_00801a38) {
+        if (bVar2 == retarder_mode_priority_level) {
           if (fuel_arbitrator_state == 2) {
             return;
           }
@@ -23999,35 +24000,35 @@ void retarderControlModeHandler(int param_1)
         }
         _retarder_control_mode_state = _fuel_arbitrator_control_mode;
       }
-      DAT_00801a38 = bVar2;
+      retarder_mode_priority_level = bVar2;
       DAT_00801a39 = retarder_control_priority_byte;
       _retarder_control_can_source = (ushort)bVar1;
-      _DAT_0080cfae = (ushort)DAT_00801a3a;
+      _DAT_0080cfae = (ushort)retarder_mode_control_byte_mirror;
       if (bVar3 == 0) {
         retarder_control_mode_timer = 0;
         fuel_arbitrator_state = 0;
-        _DAT_0080cfaa = 0;
-        _DAT_0080cfb0 = 0;
+        retarder_mode_can_source_priority = 0;
+        _retarder_mode_threshold_result = 0;
         _retarder_mode_table_count = 3;
         fuel_arbitrator_diag_t_0080cff8.throttle_mode = 0;
         return;
       }
       if (bVar3 == 2) {
-        sVar8 = retarderPercentageScaler((uint)CONCAT12(retarder_control_priority_byte,uVar7));
-        _DAT_0080cfb4 = sVar8;
+        wVar6 = retarderPercentageScaler((uint)CONCAT12(retarder_control_priority_byte,uVar8));
+        retarder_percentage_scaled_output = wVar6;
         if (((((diagnostic_system_flags_2 & 0x1000) == 0) ||
              (bVar1 != the_can_bus_configuration_register_0_255)) ||
             (fuel_arbitrator_diag_t_0080cff8.rpm_target != 1)) ||
            (((fuel_arbitrator_diag_t_0080cff8.fuel_mode != 1 ||
-             (cached_parameter_value < _DAT_0080894c)) || (sVar8 == 0)))) {
+             (cached_parameter_value < _DAT_0080894c)) || (wVar6 == 0)))) {
           retarder_control_mode_timer = *(short *)(_retarder_control_mode_state + 0xe) + 1;
           fuel_arbitrator_state = 2;
-          uVar10 = CONCAT11((char)(retarder_control_mode_timer >> 8),*(undefined1 *)(param_1 + 3));
-          uVar5 = canBusConfigTypeSelector(CONCAT22(uVar10,uVar7));
-          _DAT_0080cfaa = (undefined2)uVar5;
+          uVar11 = CONCAT11((char)(retarder_control_mode_timer >> 8),*(undefined1 *)(param_1 + 3));
+          uVar5 = canBusConfigTypeSelector(CONCAT22(uVar11,uVar8));
+          retarder_mode_can_source_priority = (word)uVar5;
           _retarder_mode_table_count = 3;
-          uVar4 = retarderModeThresholdCalculator(CONCAT22(sVar8,uVar10));
-          _DAT_0080cfb0 = (ushort)uVar4 & 0xff;
+          uVar4 = retarderModeThresholdCalculator(CONCAT22(wVar6,uVar11));
+          _retarder_mode_threshold_result = (ushort)uVar4 & 0xff;
           if ((uVar4 & 0xff) == 0) {
             fuel_arbitrator_diag_t_0080cff8.throttle_mode = 1;
             fuel_arbitrator_throttle_override = *(short *)(_retarder_control_mode_state + 0xe) + 1;
@@ -24040,37 +24041,37 @@ void retarderControlModeHandler(int param_1)
         else {
           retarder_control_mode_timer = 0;
           fuel_arbitrator_state = 0;
-          _DAT_0080cfaa = 0;
-          _DAT_0080cfb0 = 0;
+          retarder_mode_can_source_priority = 0;
+          _retarder_mode_threshold_result = 0;
           _retarder_mode_table_count = 3;
           fuel_arbitrator_diag_t_0080cff8.throttle_mode = 0;
           fuel_arbitrator_throttle_override = 0;
         }
-        _DAT_0080d038 = 0;
+        _retarder_mode_override_flag = 0;
         return;
       }
       if (bVar3 != 3) {
         return;
       }
       fuel_arbitrator_state = 3;
-      uVar6 = (ushort)*(byte *)(param_1 + 3);
-      uVar5 = canBusConfigTypeSelector((uint)CONCAT12(*(byte *)(param_1 + 3),uVar7));
-      _DAT_0080cfaa = (undefined2)uVar5;
-      _DAT_0080cfb0 = 0;
-      uVar7 = (undefined2)CONCAT31((int3)((uint)uVar5 >> 8),retarder_control_priority_byte);
-      sVar8 = retarderPercentageScaler(CONCAT22(uVar7,uVar6));
+      uVar7 = (ushort)*(byte *)(param_1 + 3);
+      uVar5 = canBusConfigTypeSelector((uint)CONCAT12(*(byte *)(param_1 + 3),uVar8));
+      retarder_mode_can_source_priority = (word)uVar5;
+      _retarder_mode_threshold_result = 0;
+      uVar8 = (undefined2)CONCAT31((int3)((uint)uVar5 >> 8),retarder_control_priority_byte);
+      sVar9 = retarderPercentageScaler(CONCAT22(uVar8,uVar7));
       retarder_control_mode_timer = *(short *)(_retarder_control_mode_state + 0x12) + 1;
-      uVar4 = retarderModeThresholdCalculator(CONCAT22(sVar8,uVar7));
+      uVar4 = retarderModeThresholdCalculator(CONCAT22(sVar9,uVar8));
       _retarder_mode_table_count = (ushort)uVar4 & 0xff;
-      bVar9 = (uVar4 & 0xff) != 0;
-      if (bVar9) {
+      bVar10 = (uVar4 & 0xff) != 0;
+      if (bVar10) {
         fuel_arbitrator_throttle_override = 0;
       }
       else {
         fuel_arbitrator_throttle_override = *(short *)(_retarder_control_mode_state + 0x12) + 1;
       }
-      fuel_arbitrator_diag_t_0080cff8.throttle_mode = (word)!bVar9;
-      _DAT_0080d038 = 0;
+      fuel_arbitrator_diag_t_0080cff8.throttle_mode = (word)!bVar10;
+      _retarder_mode_override_flag = 0;
     }
   }
   return;
@@ -30839,7 +30840,7 @@ ushort engineModeOutputControlInit(void)
     vp44_communication_status = 0;
     engine_mode_output_control_state = 0;
     output_timing_config_word_1 = 0;
-    _DAT_00803350 = 0;
+    output_timing_state_previous = 0;
     _DAT_008033b6 = 10;
     _DAT_008033b8 = 0;
     _DAT_00803370 = 0x807292;
@@ -30879,7 +30880,8 @@ uint engineModeOutputControlStateMachine(void)
   if ((vp44_flag_register_1 & 0x40) == 0) {
     return CONCAT22((short)((uint)in_D0 >> 0x10),vp44_flag_register_1) & 0xffff0040;
   }
-  if ((_DAT_00807272 < throttle_position_value) && (output_control_timer_value == 4)) {
+  if ((throttle_position_threshold_for_output < throttle_position_value) &&
+     (output_control_timer_value == 4)) {
     engine_mode_output_control_state = 2;
     output_control_timer_value = 5;
     goto LAB_000300ac;
@@ -30905,8 +30907,8 @@ LAB_0002ffea:
       bVar1 = true;
     }
     if (bVar1) goto LAB_0002ffea;
-    if (((_DAT_00807268 < retarder_input_value) && (output_control_timer_value != 0)) &&
-       (output_control_timer_value != 3)) {
+    if (((retarder_input_threshold_for_state < retarder_input_value) &&
+        (output_control_timer_value != 0)) && (output_control_timer_value != 3)) {
       output_control_timer_value = 5;
     }
   }
@@ -30983,16 +30985,16 @@ LAB_000300ac:
      (vp44_communication_status == 3)) {
     if (((output_timing_config_word_1 != 1) && (output_timing_config_word_1 != 2)) &&
        (output_timing_config_word_1 != 3)) {
-      _DAT_0080335a = _DAT_00807266;
+      output_control_timing_reset_counter = output_control_timing_reset_countdown;
     }
-    if (_DAT_0080335a == 0) {
+    if (output_control_timing_reset_counter == 0) {
       io_control_flags = io_control_flags & 0xf9;
     }
     else {
-      _DAT_0080335a = _DAT_0080335a + -1;
+      output_control_timing_reset_counter = output_control_timing_reset_counter - 1;
     }
   }
-  _DAT_00803350 = output_control_timer_value;
+  output_timing_state_previous = output_control_timer_value;
   output_timing_config_word_1 = vp44_communication_status;
   return uVar3;
 }
@@ -31016,12 +31018,12 @@ void outputControlState1Handler(void)
     output_control_status_byte = output_control_status_byte | 4;
     output_control_state_flags = output_control_state_flags & 0xfe;
     output_control_state_flags = output_control_state_flags | 2;
-    DAT_00803366 = 0;
+    output_control_lookup_failure_flag = 0;
     return;
   }
   engine_mode_output_control_state = 6;
   io_control_flags = io_control_flags & 0xf9;
-  DAT_00803366 = 1;
+  output_control_lookup_failure_flag = 1;
   return;
 }
 
@@ -31046,7 +31048,7 @@ void outputControlState2Handler(void)
   }
   if (output_timing_config_word_2 == 0) {
     io_control_flags = io_control_flags & 0xf9;
-    if (DAT_00803366 == '\0') {
+    if (output_control_lookup_failure_flag == 0) {
       output_control_status_byte = output_control_status_byte & 0xfb;
     }
     if (_DAT_008033ac != 0) {
@@ -31059,7 +31061,7 @@ void outputControlState2Handler(void)
     output_control_status_byte = output_control_status_byte | 4;
     output_timing_config_word_2 = output_timing_config_word_2 - 1;
   }
-  output_timing_config_word_3 = _DAT_00807260;
+  output_timing_config_word_3 = output_timing_interpolation_base_ptr;
   output_timing_state_selector = 100;
   return;
 }
@@ -31103,7 +31105,7 @@ void outputControlState4Handler(void)
   undefined2 *puVar3;
   undefined8 uVar4;
   
-  if ((_DAT_00803350 != 4) &&
+  if ((output_timing_state_previous != 4) &&
      (output_control_status_byte = output_control_status_byte & 0xfb, _DAT_00804a0a != 0)) {
     engine_mode_output_control_state = 8;
     _DAT_00804a0a = _DAT_00804a0a + -1;
@@ -32127,12 +32129,12 @@ void fuelDemandLimitSource4Selector(void)
 void fuelDemandOverrideStateSelector(void)
 
 {
-  if (_DAT_0080cfb0 == 0) {
+  if (_retarder_mode_threshold_result == 0) {
     fuel_temp_limit_state_2 = 0;
     fuel_demand_override_state = 5;
     return;
   }
-  fuel_temp_limit_state_2 = _DAT_0080cfb0;
+  fuel_temp_limit_state_2 = _retarder_mode_threshold_result;
   fuel_demand_override_state = 1;
   return;
 }

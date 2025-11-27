@@ -280,3 +280,15 @@ DIAGNOSTIC_FUEL_CONTROL_MODE,0x0C,FUEL_MODE_FUEL_DELIVERY,Fuel delivery control 
 # Output Control Timing State - PWM output timing mode toggle
 OUTPUT_CONTROL_TIMING_STATE,0x01,TIMING_MODE_A,PWM output timing mode A,1
 OUTPUT_CONTROL_TIMING_STATE,0x02,TIMING_MODE_B,PWM output timing mode B,1
+# Retarder Mode State - values for retarder_mode_priority_level
+RETARDER_MODE_STATE,0,RETARDER_DISABLED,Retarder control disabled,1
+RETARDER_MODE_STATE,1,RETARDER_SPEED_SYNC,Speed synchronization mode,1
+RETARDER_MODE_STATE,2,RETARDER_LOAD_BASED,Load-based retard mode,1
+RETARDER_MODE_STATE,3,RETARDER_PROPORTIONAL,Proportional control mode,1
+# Output Control Timer State - values for output timing state machine
+OUTPUT_CONTROL_TIMER_STATE,0,OUTPUT_TIMER_IDLE,Output timer idle state,1
+OUTPUT_CONTROL_TIMER_STATE,1,OUTPUT_TIMER_STATE_1,Output timer state 1,1
+OUTPUT_CONTROL_TIMER_STATE,2,OUTPUT_TIMER_STATE_2,Output timer state 2,1
+OUTPUT_CONTROL_TIMER_STATE,3,OUTPUT_TIMER_STATE_3,Output timer state 3,1
+OUTPUT_CONTROL_TIMER_STATE,4,OUTPUT_TIMER_STATE_4,Output timer state 4,1
+OUTPUT_CONTROL_TIMER_STATE,5,OUTPUT_TIMER_STATE_5,Output timer state 5,1
