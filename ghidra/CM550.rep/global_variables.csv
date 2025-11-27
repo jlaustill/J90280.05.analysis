@@ -4892,3 +4892,35 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00804bd4,insite_idle_hours_accumulator,dword,INSITE idle hours accumulator (1 ref),4,0,,accumulator
 0x00804bb8,insite_fuel_statistics_output,dword,INSITE fuel statistics output (1 ref),4,0,,value
 0x00807944,insite_fuel_timing_display,word,INSITE fuel timing display value (1 ref),2,0,,value
+# Diagnostic value calculator variables
+0x008000be,diag_mode_1_target_rpm_arg,word,Diagnostic mode 1 target RPM lookup arg (1 ref),2,0,,arg
+0x00809d24,diag_interpolation_result,word,Diagnostic table interpolation result (3 refs),2,0,,value
+0x008000b2,diag_mode_0_target_rpm_arg,word,Diagnostic mode 0 target RPM lookup arg (1 ref),2,0,,arg
+0x008078aa,diag_blend_factor_offset,word,Diagnostic blend factor offset value (1 ref),2,0,,value
+0x008078a8,diag_blend_factor_base,word,Diagnostic blend factor base value (1 ref),2,0,,value
+0x00809d20,diag_governor_blend_result_1,word,Diagnostic governor blend calculation result 1 (4 refs),2,0,,value
+0x00809d22,diag_governor_blend_result_2,word,Diagnostic governor blend calculation result 2 (2 refs),2,0,,value
+# Calibration data validator init variables
+0x008032aa,crank_calibration_table_ptr_1,dword,Crank calibration lookup table pointer 1 (1 ref),4,0,,pointer
+0x008032b0,crank_calibration_table_ptr_2,dword,Crank calibration lookup table pointer 2 (1 ref),4,0,,pointer
+0x00803738,param_scaling_lookup_value,word,Parameter scaling system lookup value (3 refs),2,0,,value
+0x0080384a,crank_fuel_mode_3_divisor,word,Crank fuel timing mode 3 divisor value (3 refs),2,0,,value
+# Fuel temperature protection variables
+0x008033ea,fuel_temp_limit_primary_prev,word,Fuel temp limit primary previous value (5 refs),2,0,,value
+0x008033ec,fuel_temp_limit_secondary_prev,word,Fuel temp limit secondary previous value (3 refs),2,0,,value
+0x008033e8,fuel_temp_vp44_state_previous,word,Fuel temp VP44 state previous value (2 refs),2,0,,state
+0x008033e6,fuel_temp_vp44_state_flag,word,Fuel temp VP44 state flag (4 refs),2,0,,flag
+0x008033e4,fuel_temp_protection_active_flag,word,Fuel temp protection active flag (4 refs),2,0,,flag
+0x00805f9a,fuel_temp_protection_time_accum,dword,Fuel temp protection time accumulator (2 refs),4,0,,accumulator
+0x0080383c,fuel_temp_protection_threshold,word,Fuel temp protection timer threshold (5 refs),2,0,,threshold
+0x00803842,fuel_temp_throttle_high_threshold,word,Fuel temp throttle high threshold (1 ref),2,0,,threshold
+0x00803840,fuel_temp_throttle_low_threshold,word,Fuel temp throttle low threshold (2 refs),2,0,,threshold
+0x00803838,fuel_temp_vp44_diagnostic_enable,word,Fuel temp VP44 diagnostic enable flag (5 refs),2,0,,flag
+0x00809714,fuel_temp_primary_countdown_timer,word,Fuel temp primary countdown timer (3 refs),2,0,,timer
+0x008033f0,fuel_temp_secondary_counter_flag,word,Fuel temp secondary counter enable flag (3 refs),2,0,,flag
+0x008033ee,fuel_temp_primary_counter_flag,word,Fuel temp primary counter enable flag (7 refs),2,0,,flag
+0x00809716,fuel_temp_secondary_countdown,word,Fuel temp secondary countdown timer (3 refs),2,0,,timer
+0x0080970c,fuel_temp_output_control_status,word,Fuel temp output control status copy (1 ref),2,0,,status
+0x00805f9e,fuel_temp_high_throttle_accum,dword,Fuel temp high throttle time accumulator (2 refs),4,0,,accumulator
+0x00805f92,fuel_temp_low_throttle_accum,dword,Fuel temp low throttle time accumulator (2 refs),4,0,,accumulator
+0x00805f96,fuel_temp_secondary_time_accum,dword,Fuel temp secondary limit time accumulator (2 refs),4,0,,accumulator
