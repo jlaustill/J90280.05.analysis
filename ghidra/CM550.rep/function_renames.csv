@@ -667,3 +667,4 @@ address,newName
 0x00028548,engineStatisticsAccumulator
 0x00028588,runTimeCountersUpdate
 0x000285c8,runTimeCountersUpdateAlt
+0x00033524,vp44TimingRangeValidation

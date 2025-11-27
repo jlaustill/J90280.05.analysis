@@ -129,6 +129,9 @@ public class BulkVariableCreator extends GhidraScript {
                         // Create new symbol
                         Symbol newSymbol = symbolTable.createLabel(addr, varName, SourceType.USER_DEFINED);
                         if (newSymbol != null) {
+                            // Set as primary symbol so decompiler uses this name instead of DAT_xxxx
+                            newSymbol.setPrimary();
+
                             // Enhanced comment with CalTerm metadata
                             String enhancedComment = comment;
                             if (!unit.isEmpty() || caltermType != 0 || !dataPattern.isEmpty()) {
