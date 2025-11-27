@@ -4320,3 +4320,35 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00809d4e,derate_threshold_state,word,Derate threshold state machine,2,0,,state
 0x0080973c,boost_pressure_target_data,word,Boost pressure target calculated value,2,0,,value
 0x008068c6,accelerator_pedal_position,word,Accelerator pedal position value,2,0,,value
+0x0080bdee,io_control_register_flags,byte,IO control register bit-mapped flags,1,0,,flag
+0x00804efc,diagnostic_code_status_array,dword,Diagnostic code status array base,4,0,,array
+0x008035d4,vp44_timing_protection_flags,word,VP44 timing protection status flags,2,0,,flag
+0x00804fcd,diagnostic_pid_dtc_index,byte,Diagnostic PID/DTC index for Insite,1,0,,index
+0x00fffe18,mios_mpwmsm_channel2_scr,word,MIOS MPWMSM channel 2 status control register,2,0,,register
+0x00fffe1c,mios_mpwmsm_channel3_scr,word,MIOS MPWMSM channel 3 status control register,2,0,,register
+0x0080d445,insite_multi_frame_state,byte,Insite multi-frame response state,1,0,,state
+0x008065d0,diagnostic_sensor_data_ptr,dword,Diagnostic sensor data pointer,4,0,,pointer
+0x0080d2d3,tpu_transmission_state,byte,TPU transmission state machine,1,0,,state
+0x00801688,fault_code_display_digit,word,Fault code display digit value,2,0,,value
+0x00800242,vp44_status_collector_index,word,VP44 status data collector index,2,0,,index
+0x00fffc0a,tpu_channel_interrupt_status,word,TPU channel interrupt status register,2,0,,register
+0x0080c7b2,rpm_timer_capture_value,word,RPM timer capture value,2,0,,value
+0x008030da,torque_control_data_buffer,word,Torque control data buffer,2,0,,buffer
+0x0080d0c5,io_output_flag_byte_1,byte,IO output flag byte 1,1,0,,flag
+0x0080d0c4,io_output_flag_byte_0,byte,IO output flag byte 0,1,0,,flag
+0x00809d32,governor_speed_setpoint,word,Governor speed setpoint value,2,0,,value
+0x00809d3e,diagnostic_command_state,word,Diagnostic command state machine,2,0,,state
+0x0080016e,redundant_sensor_validation_index,word,Redundant sensor validation loop index,2,0,,index
+0x008001b8,vp44_comm_buffer_status,word,VP44 communication buffer status,2,0,,status
+0x00809b14,hour_meter_conversion_data,dword,Hour meter conversion data structure,4,0,,value
+0x0080d405,multi_packet_receive_state,byte,Multi-packet receive state machine,1,0,,state
+0x0080d01a,fuel_arbitrator_control_mode,word,Fuel arbitrator control mode,2,0,,value
+0x00801674,fault_code_display_value,word,Fault code display current value,2,0,,value
+0x00fff206,qadc_port_a_data,word,QADC port A data register,2,0,,register
+0x00803268,boost_pressure_control_output,word,Boost pressure control output value,2,0,,value
+0x00803686,vp44_comm_test_flag,word,VP44 communication test flag,2,0,,flag
+0x00805676,dtc_timestamp_array,dword,DTC timestamp array base,4,0,,array
+0x00801696,fault_lamp_blink_counter,word,Fault lamp blink pattern counter,2,0,,counter
+0x00fff208,qadc_port_b_data,word,QADC port B data register,2,0,,register
+0x00807840,dzg_timing_control_params,word,DZG timing and pressure control parameters,2,0,,value
+0x00809258,intake_manifold_temp_processed,word,Intake manifold temperature processed,2,0,,value
