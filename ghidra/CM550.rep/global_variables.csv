@@ -4821,3 +4821,18 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080337a,output_control_sensor_input_cached,word,Output control cached sensor input value (4 refs),2,0,,value
 0x00803346,output_control_intake_temp_value,word,Output control intake temperature sensor value (4 refs),2,0,,temperature
 0x0080cfae,retarder_mode_control_byte_cached,word,Cached copy of retarder_mode_control_byte_mirror (4 refs),2,0,,cache
+0x008033bc,output_control_mode_state_variable,word,Output control mode state (values 1 2 3) for engine mode-based I/O (7 refs),2,0,,state
+0x00803288,fuel_limit_timer_divisor,word,Timer divisor for fuel limit interpolation from boost/oil pressure (8 refs),2,0,,divisor
+0x0080d04a,io_control_handshake_state,byte,I/O control 3-state handshake protocol (0 1 2) (8 refs),1,0,,state
+0x00807c28,cold_start_fuel_control_enable_flag,word,Enables cold start fuel control sequence (8 refs),2,0,,flag
+0x00801722,qadc_collection_state_machine,word,QADC data collection state (0 1 2) with TPU sync (8 refs),2,0,,state
+0x00801720,qadc_circular_buffer_offset,word,QADC circular buffer write position (increments by 2 max 0xfff) (8 refs),2,0,,offset
+0x00800362,flash_control_register_ptr,dword,Flash erase command register pointer (0x2020 0xd0d0 0xb0b0 sequences) (8 refs),4,0,,pointer
+0x008033a2,output_state_timing_delay_base,word,Base delay value for output control state sequencing (5 refs),2,0,,delay
+0x008033a4,output_state_1_timing_offset,word,State 1 timing offset from interpolation table (4 refs),2,0,,offset
+0x008033a6,output_state_2_timing_offset,word,State 2 timing offset from interpolation table (4 refs),2,0,,offset
+0x008033a8,output_state_3_timing_offset,word,State 3 timing offset from interpolation table (4 refs),2,0,,offset
+0x008033b4,output_control_rpm_workspace,word,RPM workspace for output control threshold comparisons (4 refs),2,0,,workspace
+0x00803354,output_timing_cycle_counter,word,Counts cycles when fuel demand exceeds threshold (4 refs),2,0,,counter
+0x0080335c,output_timing_duration_countdown,word,Countdown timer loaded from interpolation result (4 refs),2,0,,countdown
+0x00809d48,serial_node_address_offset,word,Serial/CAN node address iterator (increments by 8) (8 refs),2,0,,offset
