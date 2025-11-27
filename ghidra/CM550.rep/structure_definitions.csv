@@ -342,3 +342,32 @@ timing_mode_control_t,0x0080965A,fuel_source_mode_11_state,word,2,Fuel source mo
 timing_mode_control_t,0x0080965A,fuel_source_mode_11_timer,word,2,Fuel source mode 11 timer,,needs_review
 timing_mode_control_t,0x0080965A,fuel_mode_transition_state,word,2,Fuel mode transition state,,needs_review
 timing_mode_control_t,0x0080965A,fuel_mode_transition_timer,word,2,Fuel mode transition timer,,needs_review
+# RPM Fuel Protection State (24 bytes) - 0x008091C4 to 0x008091DA
+rpm_fuel_protection_t,0x008091C4,fuel_limit_shutdown,word,2,Fuel limit during shutdown,,needs_review
+rpm_fuel_protection_t,0x008091C4,high_rpm_fuel_limit,word,2,High RPM fuel control limit,,needs_review
+rpm_fuel_protection_t,0x008091C4,low_rpm_fuel_protection_limit,word,2,Low RPM fuel protection limit,,needs_review
+rpm_fuel_protection_t,0x008091C4,rpm_rate_limiter_output,word,2,RPM rate limiter output,,needs_review
+rpm_fuel_protection_t,0x008091C4,rpm_rate_limited_value,word,2,RPM rate limited value,,needs_review
+rpm_fuel_protection_t,0x008091C4,rpm_rate_secondary_calc,word,2,Secondary RPM rate calculation,,needs_review
+rpm_fuel_protection_t,0x008091C4,rpm_state_accumulator,word,2,RPM state accumulator,,needs_review
+rpm_fuel_protection_t,0x008091C4,high_rpm_fuel_accumulator,word,2,High RPM fuel accumulator,,needs_review
+rpm_fuel_protection_t,0x008091C4,low_rpm_fuel_accumulator,word,2,Low RPM fuel accumulator,,needs_review
+rpm_fuel_protection_t,0x008091C4,fuel_demand_before_limiting,word,2,Fuel demand saved before limiting,,needs_review
+rpm_fuel_protection_t,0x008091C4,reserved_14,word,2,Gap/reserved,,needs_review
+rpm_fuel_protection_t,0x008091C4,rpm_threshold_exceeded_flag,word,2,RPM threshold exceeded flag,,needs_review
+# Engine Control Flags (12 bytes) - 0x008035D6 to 0x008035E0
+engine_control_flags_t,0x008035D6,fuel_demand_control,word,2,Fuel demand mode control flags,,needs_review
+engine_control_flags_t,0x008035D6,protection_system,word,2,Protection system status flags,,needs_review
+engine_control_flags_t,0x008035D6,engine_operating_state,word,2,Engine operating state flags,,needs_review
+engine_control_flags_t,0x008035D6,reserved_06,word,2,Gap/reserved,,needs_review
+engine_control_flags_t,0x008035D6,reserved_08,word,2,Gap/reserved,,needs_review
+engine_control_flags_t,0x008035D6,fuel_temp_control,word,2,Fuel temp control bit flags,,needs_review
+# Oil Pressure Protection State (18 bytes) - 0x00803430 to 0x00803440
+oil_pressure_protection_t,0x00803430,sensor_status_history_bits,dword,4,Sensor status history bits - shifting record,,needs_review
+oil_pressure_protection_t,0x00803430,rpm_ramp_complete,word,2,Flag indicating RPM ramp complete,,needs_review
+oil_pressure_protection_t,0x00803430,rpm_limit_current,word,2,Current RPM limit from oil pressure,,needs_review
+oil_pressure_protection_t,0x00803430,rpm_limit_target,word,2,Target RPM limit for oil pressure,,needs_review
+oil_pressure_protection_t,0x00803430,rpm_limit_previous,word,2,Previous RPM limit for tracking,,needs_review
+oil_pressure_protection_t,0x00803430,state_index,word,2,State index for oil pressure protection,,needs_review
+oil_pressure_protection_t,0x00803430,validation_timer,word,2,Timer for oil pressure validation,,needs_review
+oil_pressure_protection_t,0x00803430,sensor_validation_counter,word,2,Sensor status validation counter,,needs_review
