@@ -312,3 +312,28 @@ CSVs are the source of truth. Before committing:
 - **Message formats**: 8-byte J1939 frames with engine sensor data
 
 **The CSV files contain the complete reverse engineered knowledge base for this firmware.**
+
+---
+
+## **⚠️ Important Notes on Reference Data**
+
+### **docs/common_parameters.json - Address Verification Status**
+
+The `common_parameters.json` file contains CalTerm parameter definitions extracted from e2m calibration files. While the **parameter names and descriptions are reliable**, the **memory addresses may be incorrect**.
+
+**Why addresses may be wrong:**
+- Addresses were extracted from e2m files, not verified against actual firmware
+- Different firmware versions may use different memory layouts
+- The extraction process may have introduced errors
+
+**Verification Goal:**
+One key objective of this reverse engineering effort is to:
+1. Verify which addresses in common_parameters.json are correct
+2. Identify and document incorrect addresses
+3. Build a verified address mapping through firmware analysis
+
+**When verifying addresses:**
+- Cross-reference decompiled code behavior with parameter descriptions
+- Note verified mappings in global_variables.csv comment field
+- Mark confirmed matches with "VERIFIED: matches common_parameters.json"
+- Mark mismatches with "NOTE: common_parameters.json shows different address"
