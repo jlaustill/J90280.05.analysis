@@ -300,3 +300,45 @@ high_rpm_protection_t,0x0080CC6A,warning_flag,word,2,Warning active flag,,needs_
 boost_pressure_control_t,0x00809746,state_machine,word,2,Boost pressure state machine,,needs_review
 boost_pressure_control_t,0x00809746,active_flag,word,2,Calculation active flag,,needs_review
 boost_pressure_control_t,0x00809746,interpolation_result,word,2,Interpolation result,,needs_review
+# Fuel Limit Arbitration State (18 bytes) - 0x0080CC4A to 0x0080CC5A
+fuel_limit_arbitration_t,0x0080CC4A,source_id,word,2,ID of current fuel limit source (arbitrator output),,needs_review
+fuel_limit_arbitration_t,0x0080CC4A,demand_limited,word,2,Rate-limited fuel demand,,needs_review
+fuel_limit_arbitration_t,0x0080CC4A,arbitration_threshold,word,2,Fuel limit arbitration threshold,,needs_review
+fuel_limit_arbitration_t,0x0080CC4A,demand_delta,word,2,Fuel demand delta for rate limiting,,needs_review
+fuel_limit_arbitration_t,0x0080CC4A,maximum_limit,word,2,Maximum fuel demand limit,,needs_review
+fuel_limit_arbitration_t,0x0080CC4A,offset_value,word,2,Fuel limit offset value,,needs_review
+fuel_limit_arbitration_t,0x0080CC4A,comparison_low,word,2,Fuel limit comparison low value,,needs_review
+fuel_limit_arbitration_t,0x0080CC4A,comparison_high,word,2,Fuel limit comparison high value,,needs_review
+fuel_limit_arbitration_t,0x0080CC4A,rate_limit,word,2,Fuel demand rate limiting value,,needs_review
+# Fuel Demand State (16 bytes) - 0x0080C9A4 to 0x0080C9B2
+fuel_demand_state_t,0x0080C9A4,command,word,2,Current fuel demand value,,needs_review
+fuel_demand_state_t,0x0080C9A4,source_identifier,byte,1,Source of fuel command (FUEL_SOURCE_ID enum),,needs_review
+fuel_demand_state_t,0x0080C9A4,reserved_03,byte,1,Padding byte,,needs_review
+fuel_demand_state_t,0x0080C9A4,diagnostic_buffer,word,2,Diagnostic parameter buffer,,needs_review
+fuel_demand_state_t,0x0080C9A4,timing_blend_factor,word,2,Fuel timing blend factor 0-16384,,needs_review
+fuel_demand_state_t,0x0080C9A4,table_output,word,2,Fuel demand table output,,needs_review
+fuel_demand_state_t,0x0080C9A4,limit_minimum,word,2,Fuel limit minimum value,,needs_review
+fuel_demand_state_t,0x0080C9A4,demand_source_id,word,2,Fuel demand source identifier,,needs_review
+fuel_demand_state_t,0x0080C9A4,adjustment_active,word,2,Fuel adjustment active flag,,needs_review
+# VP44 Fault State (4 bytes) - 0x00805E14 to 0x00805E16
+vp44_fault_state_t,0x00805E14,fault_status,word,2,VP44 fault status register,,needs_review
+vp44_fault_state_t,0x00805E14,fso_fault_status,word,2,VP44 FSO fault status register 2,,needs_review
+# Timing Mode Control State (36 bytes) - 0x0080965A to 0x0080967C
+timing_mode_control_t,0x0080965A,blend_factor,word,2,Fuel timing mode blend factor Q14,,needs_review
+timing_mode_control_t,0x0080965A,protection_blend_ramp,word,2,Timing protection blend ramp 0-16384,,needs_review
+timing_mode_control_t,0x0080965A,source_selector,word,2,Timing mode source selector 0-4,,needs_review
+timing_mode_control_t,0x0080965A,transition_result,word,2,Timing mode transition result,,needs_review
+timing_mode_control_t,0x0080965A,fuel_blend_result,word,2,Timing fuel blend result,,needs_review
+timing_mode_control_t,0x0080965A,oil_pressure_result,word,2,Timing oil pressure condition result,,needs_review
+timing_mode_control_t,0x0080965A,mode_11_result,word,2,Timing mode 11 countdown result,,needs_review
+timing_mode_control_t,0x0080965A,protection_counter_1,word,2,Timing protection counter 1,,needs_review
+timing_mode_control_t,0x0080965A,protection_counter_2,word,2,Timing protection counter 2,,needs_review
+timing_mode_control_t,0x0080965A,blend_state,word,2,Timing blend state,,needs_review
+timing_mode_control_t,0x0080965A,reserved_14,word,2,Gap/reserved,,needs_review
+timing_mode_control_t,0x0080965A,reserved_16,word,2,Gap/reserved,,needs_review
+timing_mode_control_t,0x0080965A,blend_accumulator,word,2,Timing blend accumulator,,needs_review
+timing_mode_control_t,0x0080965A,reserved_1A,word,2,Gap/reserved,,needs_review
+timing_mode_control_t,0x0080965A,fuel_source_mode_11_state,word,2,Fuel source mode 11 state,,needs_review
+timing_mode_control_t,0x0080965A,fuel_source_mode_11_timer,word,2,Fuel source mode 11 timer,,needs_review
+timing_mode_control_t,0x0080965A,fuel_mode_transition_state,word,2,Fuel mode transition state,,needs_review
+timing_mode_control_t,0x0080965A,fuel_mode_transition_timer,word,2,Fuel mode transition timer,,needs_review
