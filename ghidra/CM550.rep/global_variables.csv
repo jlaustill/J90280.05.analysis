@@ -4747,3 +4747,16 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00809ab6,vp44_can_msg_100_tx_byte_2,byte,VP44 CAN msg 100 transmit byte 2,1,0,,byte
 0x00809ab7,vp44_can_msg_100_tx_byte_1,byte,VP44 CAN msg 100 transmit byte 1,1,0,,byte
 0x00809ab8,vp44_can_msg_100_tx_byte_0,byte,VP44 CAN msg 100 transmit byte 0,1,0,,byte
+0x008035ea,diagnostic_service_enable_flags,byte,Diagnostic service enable flags: bit0=secured bit1=INSITE bit2=extended (7 refs),1,0,,flags
+0x0080c99a,diagnostic_queue_message_type,word,Diagnostic message queue type/ID written by diagnosticMessageQueueWrite (3 refs),2,0,,type
+0x00806fb2,timing_blend_threshold,word,Timing blend state threshold for fuelTableBlendResultHandler (4 refs),2,0,,threshold
+0x008000de,param_lookup_rpm_input,word,Engine RPM input for param_lookup_2 table interpolation (1 ref),2,0,RPM,value
+0x00809d7e,vp44_next_read_address,dword,VP44 next read address in circular buffer (1 ref),4,0,,address
+0x00803698,governor_rpm_error_init_value,word,Initial value for governor_rpm_error_value in engineProtectionSystemInit (1 ref),2,0,RPM,value
+0x00807882,derate_base_calibration_value,word,Derate base calibration value used by derate_application_controller (2 refs),2,0,,value
+0x0000fab0,crc16_lookup_table,word,CRC-16 lookup table for crc16Calculate (2 refs),512,0,,table
+0x00806fae,fuel_source_mode_11_timeout_value,word,Timeout countdown init for fuel source mode 11 (1 ref),2,0,,timeout
+0x00806fa6,fuel_mode_transition_timeout_value,word,Timeout countdown init for fuel mode transition (1 ref),2,0,,timeout
+0x00800230,diagnostic_queue_index,byte,Diagnostic queue current index for debounce handler (2 refs),1,0,,index
+0x0080d410,insite_response_continuation_ptr,dword,INSITE response buffer continuation pointer for multi-packet (1 ref),4,0,,pointer
+0x0080016c,timing_accumulator_flag_mask,word,Flag mask OR'd with fuel_adjustment_active_flag in timingAccumulatorUpdate (1 ref),2,0,,mask
