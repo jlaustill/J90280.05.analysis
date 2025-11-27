@@ -260,3 +260,43 @@ fuel_arbitrator_diag_t,0x80d028,countdown_timer,word,2,Mode operation countdown,
 fuel_arbitrator_diag_t,0x80d02e,secondary_timer,word,2,Secondary countdown timer,,Verified
 fuel_arbitrator_diag_t,0x80d032,target_value,word,2,Calculated target value,,Verified
 fuel_arbitrator_diag_t,0x80d036,limited_value,word,2,Limited/clamped target value,,Verified
+# Fault Persistence Counters - 8 consecutive byte counters for fault debouncing
+fault_persistence_counters_t,0x008000C8,periodic_monitor_phase,byte,1,5-phase counter for periodic fault monitoring,,needs_review
+fault_persistence_counters_t,0x008000C8,can_pin_fault,byte,1,CAN pin switching fault persistence counter,,needs_review
+fault_persistence_counters_t,0x008000C8,io_fault_1,byte,1,I/O control fault 1 persistence counter,,needs_review
+fault_persistence_counters_t,0x008000C8,io_fault_2,byte,1,I/O control fault 2 persistence counter,,needs_review
+fault_persistence_counters_t,0x008000C8,io_fault_3,byte,1,I/O control fault 3 persistence counter,,needs_review
+fault_persistence_counters_t,0x008000C8,io_fault_4,byte,1,I/O control fault 4 persistence counter,,needs_review
+fault_persistence_counters_t,0x008000C8,io_fault_5,byte,1,I/O control fault 5 persistence counter,,needs_review
+fault_persistence_counters_t,0x008000C8,io_fault_6,byte,1,I/O control fault 6 persistence counter,,needs_review
+# Fault Status Registers - Active fault flags (16 bytes)
+fault_status_registers_t,0x00805DF2,sensor_fault_status,word,2,Sensor fault status register,,needs_review
+fault_status_registers_t,0x00805DF2,fault_status_2,word,2,Fault status flags register 2,,needs_review
+fault_status_registers_t,0x00805DF2,engine_fault_status,word,2,Engine fault status register,,needs_review
+fault_status_registers_t,0x00805DF2,reserved_06,word,2,Reserved/gap,,needs_review
+fault_status_registers_t,0x00805DF2,io_fault_status_1,word,2,IO fault status register 1,,needs_review
+fault_status_registers_t,0x00805DF2,io_fault_status_2,word,2,IO fault status register 2,,needs_review
+fault_status_registers_t,0x00805DF2,io_fault_status_3,word,2,IO fault status register 3,,needs_review
+fault_status_registers_t,0x00805DF2,io_fault_status_4,word,2,IO fault status register 4,,needs_review
+# Fault Latch Registers - Historical/latched faults (16 bytes)
+fault_latch_registers_t,0x00805E32,sensor_fault_latch,word,2,Sensor fault latch register,,needs_review
+fault_latch_registers_t,0x00805E32,fault_status_8_previous,word,2,Previous state for edge detection,,needs_review
+fault_latch_registers_t,0x00805E32,engine_fault_latch,word,2,Engine fault latch register,,needs_review
+fault_latch_registers_t,0x00805E32,reserved_06,word,2,Reserved/gap,,needs_review
+fault_latch_registers_t,0x00805E32,io_fault_latch_1,word,2,IO fault latch register 1,,needs_review
+fault_latch_registers_t,0x00805E32,io_fault_latch_2,word,2,IO fault latch register 2,,needs_review
+fault_latch_registers_t,0x00805E32,io_fault_latch_3,word,2,IO fault latch register 3,,needs_review
+fault_latch_registers_t,0x00805E32,io_fault_latch_4,word,2,IO fault latch register 4,,needs_review
+# Engine Operating Mode State (4 bytes)
+engine_operating_mode_t,0x0080C810,state,word,2,Engine operating mode state 1-8,,needs_review
+engine_operating_mode_t,0x0080C810,shutdown_complete_flag,word,2,Engine shutdown complete flag,,needs_review
+# High RPM Protection State (10 bytes)
+high_rpm_protection_t,0x0080CC6A,fault_flag,word,2,High RPM protection fault active flag,,needs_review
+high_rpm_protection_t,0x0080CC6A,state,word,2,State machine state,,needs_review
+high_rpm_protection_t,0x0080CC6A,timer,word,2,Countdown timer,,needs_review
+high_rpm_protection_t,0x0080CC6A,reserved_06,word,2,Reserved/gap,,needs_review
+high_rpm_protection_t,0x0080CC6A,warning_flag,word,2,Warning active flag,,needs_review
+# Boost Pressure Control State (6 bytes)
+boost_pressure_control_t,0x00809746,state_machine,word,2,Boost pressure state machine,,needs_review
+boost_pressure_control_t,0x00809746,active_flag,word,2,Calculation active flag,,needs_review
+boost_pressure_control_t,0x00809746,interpolation_result,word,2,Interpolation result,,needs_review

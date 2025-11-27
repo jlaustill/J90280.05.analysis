@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Wed Nov 26 16:52:21 MST 2025
+// Wed Nov 26 17:20:22 MST 2025
 
 
 //
@@ -378,8 +378,10 @@ void diagnosticMessageQueueWrite(undefined4 param_1)
     iVar2 = (_DAT_0080d2bc - (int)_DAT_0080d2b4) + 0xfe;
   }
   if (iVar2 < 3) {
-    _DAT_00805e00 = _DAT_00805e00 | 4;
-    _DAT_00805e40 = _DAT_00805e40 | 4;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
   }
   else {
     local_8._3_1_ = (char)_DAT_0080d2b4;
@@ -459,8 +461,8 @@ void sensorFaultDebounceMonitor(void)
         *(undefined2 *)(puVar8 + 0x10) =
              *(undefined2 *)((uint)*(ushort *)(iVar7 + 0x10) * 2 + 0xfff2b0);
         if (*(ushort *)(iVar7 + 0xc) < *(ushort *)(puVar8 + 0x10)) {
-          if ((((uint)*(ushort *)
-                       (&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2) &
+          if ((((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                      [(short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4)] &
                1 << (*(byte *)(iVar7 + 0x15) & 0xf)) == 0) ||
              (((uint)*(ushort *)
                       (&DAT_008068c4 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2) &
@@ -475,19 +477,23 @@ void sensorFaultDebounceMonitor(void)
           if (*(short *)(iVar7 + 10) <= *(short *)(puVar8 + 0xc)) {
             *(undefined2 *)(puVar8 + 0xc) = *(undefined2 *)(iVar7 + 10);
             puVar8[0xe] = 1;
-            *(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2) =
+            (&fault_status_registers_t_00805df2.sensor_fault_status)
+            [(short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4)] =
                  1 << (*(byte *)(iVar7 + 0x14) & 0xf) |
-                 *(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2);
-            *(ushort *)(&DAT_00805e32 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2) =
+                 (&fault_status_registers_t_00805df2.sensor_fault_status)
+                 [(short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4)];
+            (&fault_latch_registers_t_00805e32.sensor_fault_latch)
+            [(short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4)] =
                  1 << (*(byte *)(iVar7 + 0x14) & 0xf) |
-                 *(ushort *)(&DAT_00805e32 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2);
+                 (&fault_latch_registers_t_00805e32.sensor_fault_latch)
+                 [(short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4)];
           }
         }
         else {
 LAB_0000a864:
           if (*(ushort *)(puVar8 + 0x10) < *(ushort *)(iVar7 + 0xe)) {
-            if ((((uint)*(ushort *)
-                         (&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2) &
+            if ((((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                        [(short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4)] &
                  1 << (*(byte *)(iVar7 + 0x14) & 0xf)) == 0) ||
                (((uint)*(ushort *)
                         (&DAT_008068c4 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2) &
@@ -502,14 +508,16 @@ LAB_0000a864:
               if (*(short *)(iVar7 + 10) <= *(short *)(puVar8 + 0xc)) {
                 *(undefined2 *)(puVar8 + 0xc) = *(undefined2 *)(iVar7 + 10);
                 puVar8[0xe] = 1;
-                *(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2) =
+                (&fault_status_registers_t_00805df2.sensor_fault_status)
+                [(short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4)] =
                      1 << (*(byte *)(iVar7 + 0x15) & 0xf) |
-                     *(ushort *)
-                      (&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2);
-                *(ushort *)(&DAT_00805e32 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2) =
+                     (&fault_status_registers_t_00805df2.sensor_fault_status)
+                     [(short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4)];
+                (&fault_latch_registers_t_00805e32.sensor_fault_latch)
+                [(short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4)] =
                      1 << (*(byte *)(iVar7 + 0x15) & 0xf) |
-                     *(ushort *)
-                      (&DAT_00805e32 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2);
+                     (&fault_latch_registers_t_00805e32.sensor_fault_latch)
+                     [(short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4)];
               }
               goto LAB_0000a964;
             }
@@ -522,28 +530,30 @@ LAB_0000a864:
 LAB_0000a964:
         if (*(short *)(puVar8 + 0xc) <= *(short *)(iVar7 + 4)) {
           puVar8[0xe] = 0;
-          if (((uint)*(ushort *)
-                      (&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2) &
+          if (((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                     [(short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4)] &
               1 << (*(byte *)(iVar7 + 0x14) & 0xf)) != 0) {
-            if (((uint)*(ushort *)
-                        (&DAT_00805e32 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2) &
+            if (((uint)(&fault_latch_registers_t_00805e32.sensor_fault_latch)
+                       [(short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4)] &
                 1 << (*(byte *)(iVar7 + 0x14) & 0xf)) == 0) {
-              *(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2) =
+              (&fault_status_registers_t_00805df2.sensor_fault_status)
+              [(short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4)] =
                    ~(1 << (*(byte *)(iVar7 + 0x14) & 0xf)) &
-                   *(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4) * 2)
-              ;
+                   (&fault_status_registers_t_00805df2.sensor_fault_status)
+                   [(short)((int)(uint)*(byte *)(iVar7 + 0x14) >> 4)];
             }
           }
-          if (((uint)*(ushort *)
-                      (&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2) &
+          if (((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                     [(short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4)] &
               1 << (*(byte *)(iVar7 + 0x15) & 0xf)) != 0) {
-            if (((uint)*(ushort *)
-                        (&DAT_00805e32 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2) &
+            if (((uint)(&fault_latch_registers_t_00805e32.sensor_fault_latch)
+                       [(short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4)] &
                 1 << (*(byte *)(iVar7 + 0x15) & 0xf)) == 0) {
-              *(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2) =
+              (&fault_status_registers_t_00805df2.sensor_fault_status)
+              [(short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4)] =
                    ~(1 << (*(byte *)(iVar7 + 0x15) & 0xf)) &
-                   *(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4) * 2)
-              ;
+                   (&fault_status_registers_t_00805df2.sensor_fault_status)
+                   [(short)((int)(uint)*(byte *)(iVar7 + 0x15) >> 4)];
             }
           }
         }
@@ -554,30 +564,33 @@ LAB_0000a964:
           if (*(char *)(iVar7 + 0x13) != '\0') {
             if (*(short *)(puVar8 + 10) == 4) {
               if (*pcVar9 == '\x04') {
-                *(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4) * 2) =
+                (&fault_status_registers_t_00805df2.sensor_fault_status)
+                [(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)] =
                      1 << (*(byte *)(iVar7 + 0x16) & 0xf) |
-                     *(ushort *)
-                      (&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4) * 2);
-                *(ushort *)(&DAT_00805e32 + (short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4) * 2) =
+                     (&fault_status_registers_t_00805df2.sensor_fault_status)
+                     [(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)];
+                (&fault_latch_registers_t_00805e32.sensor_fault_latch)
+                [(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)] =
                      1 << (*(byte *)(iVar7 + 0x16) & 0xf) |
-                     *(ushort *)
-                      (&DAT_00805e32 + (short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4) * 2);
+                     (&fault_latch_registers_t_00805e32.sensor_fault_latch)
+                     [(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)];
               }
               else {
                 *pcVar9 = *pcVar9 + '\x01';
               }
             }
             else if (*pcVar9 == '\0') {
-              if (((uint)*(ushort *)
-                          (&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4) * 2) &
+              if (((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                         [(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)] &
                   1 << (*(byte *)(iVar7 + 0x16) & 0xf)) != 0) {
-                if (((uint)*(ushort *)
-                            (&DAT_00805e32 + (short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4) * 2) &
+                if (((uint)(&fault_latch_registers_t_00805e32.sensor_fault_latch)
+                           [(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)] &
                     1 << (*(byte *)(iVar7 + 0x16) & 0xf)) == 0) {
-                  *(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4) * 2)
-                       = ~(1 << (*(byte *)(iVar7 + 0x16) & 0xf)) &
-                         *(ushort *)
-                          (&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4) * 2);
+                  (&fault_status_registers_t_00805df2.sensor_fault_status)
+                  [(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)] =
+                       ~(1 << (*(byte *)(iVar7 + 0x16) & 0xf)) &
+                       (&fault_status_registers_t_00805df2.sensor_fault_status)
+                       [(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)];
                 }
               }
             }
@@ -717,7 +730,8 @@ void initADCChannelConfiguration(void)
     piVar2[1] = 0;
     *piVar2 = iVar4;
     *(undefined1 *)((int)piVar2 + 0xf) = *(undefined1 *)(iVar4 + 0x17);
-    if ((((uint)*(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar4 + 0x15) >> 4) * 2) &
+    if ((((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                [(short)((int)(uint)*(byte *)(iVar4 + 0x15) >> 4)] &
          1 << (*(byte *)(iVar4 + 0x15) & 0xf)) == 0) ||
        (((uint)*(ushort *)(&DAT_008068c4 + (short)((int)(uint)*(byte *)(iVar4 + 0x15) >> 4) * 2) &
         1 << (*(byte *)(iVar4 + 0x15) & 0xf)) == 0)) {
@@ -732,8 +746,9 @@ LAB_0000af4c:
       *(undefined1 *)((int)piVar2 + 0xe) = 1;
     }
     else {
-      if ((((uint)*(ushort *)(&DAT_00805df2 + (short)((int)(uint)*(byte *)(iVar4 + 0x14) >> 4) * 2)
-           & 1 << (*(byte *)(iVar4 + 0x14) & 0xf)) == 0) ||
+      if ((((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                  [(short)((int)(uint)*(byte *)(iVar4 + 0x14) >> 4)] &
+           1 << (*(byte *)(iVar4 + 0x14) & 0xf)) == 0) ||
          (((uint)*(ushort *)(&DAT_008068c4 + (short)((int)(uint)*(byte *)(iVar4 + 0x14) >> 4) * 2) &
           1 << (*(byte *)(iVar4 + 0x14) & 0xf)) == 0)) {
         bVar1 = false;
@@ -774,9 +789,12 @@ ushort diagnostic_fuel_calculation_with_vp44_monitoring(void)
   }
   uVar2 = _DAT_00803614 & 0x4000;
   if (((((_DAT_00803614 & 0x4000) == 0) ||
-       (((_DAT_00805df6 & 2) != 0 && (uVar2 = _DAT_008068c8 & 2, uVar2 != 0)))) ||
-      (((_DAT_00805df6 & 1) != 0 && (uVar2 = _DAT_008068c8 & 1, uVar2 != 0)))) ||
-     (((_DAT_00805df6 & 0x10) != 0 && (uVar2 = _DAT_008068c8 & 0x10, uVar2 != 0)))) {
+       (((fault_status_registers_t_00805df2.engine_fault_status & 2) != 0 &&
+        (uVar2 = _DAT_008068c8 & 2, uVar2 != 0)))) ||
+      (((fault_status_registers_t_00805df2.engine_fault_status & 1) != 0 &&
+       (uVar2 = _DAT_008068c8 & 1, uVar2 != 0)))) ||
+     (((fault_status_registers_t_00805df2.engine_fault_status & 0x10) != 0 &&
+      (uVar2 = _DAT_008068c8 & 0x10, uVar2 != 0)))) {
     uVar1 = 0;
   }
   else {
@@ -915,7 +933,9 @@ ushort fuelTimingModeArbitrationSlowCycle40Coordinator(void)
 {
   undefined4 uVar1;
   
-  if (((_DAT_0080c810 == 1) || (_DAT_0080c810 == 2)) || (_DAT_0080c810 == 6)) {
+  if (((engine_operating_mode_t_0080c810.state == 1) ||
+      (engine_operating_mode_t_0080c810.state == 2)) ||
+     (engine_operating_mode_t_0080c810.state == 6)) {
     _DAT_00809676 = 1;
     _DAT_00809678 = _DAT_00806fae;
     _DAT_0080967a = 1;
@@ -1142,12 +1162,13 @@ ulonglong shutdownProtectionCalculator(void)
   ulonglong uVar3;
   
   uVar1 = (undefined2)((uint)in_D0 >> 0x10);
-  if (((_DAT_008035d6 & 0x20) == 0) || (_DAT_0080c810 != 3)) {
+  if (((_DAT_008035d6 & 0x20) == 0) || (engine_operating_mode_t_0080c810.state != 3)) {
     _DAT_00809682 = _DAT_00807f3c;
     return CONCAT44(CONCAT22(uVar1,_DAT_008035d6),in_D1) & 0xffff0020ffffffff;
   }
-  if ((((_DAT_00805df4 & 4) == 0) || ((_DAT_008068c6 & 4) == 0)) &&
-     (((_DAT_00805df4 & 8) == 0 || ((_DAT_008068c6 & 8) == 0)))) {
+  if ((((fault_status_registers_t_00805df2.fault_status_2 & 4) == 0) || ((_DAT_008068c6 & 4) == 0))
+     && (((fault_status_registers_t_00805df2.fault_status_2 & 8) == 0 || ((_DAT_008068c6 & 8) == 0))
+        )) {
     _DAT_0080007a = circular_buffer_t_0080c3fc.data_buffer._8_2_;
     _DAT_00800082 = _DAT_008092f2;
     uVar3 = tableInterpolationLookup((short *)&DAT_00800074);
@@ -1939,107 +1960,144 @@ void initBoostProtectionSystem(void)
 void periodicIoAndCanFaultMonitor(void)
 
 {
-  DAT_008000c8 = DAT_008000c8 + 1;
-  if (4 < DAT_008000c8) {
-    DAT_008000c8 = 0;
+  fault_persistence_counters_t_008000c8.periodic_monitor_phase =
+       fault_persistence_counters_t_008000c8.periodic_monitor_phase + 1;
+  if (4 < fault_persistence_counters_t_008000c8.periodic_monitor_phase) {
+    fault_persistence_counters_t_008000c8.periodic_monitor_phase = 0;
   }
-  if (DAT_008000c8 == 1) {
+  if (fault_persistence_counters_t_008000c8.periodic_monitor_phase == 1) {
     if (((DAT_0080bdca & 0x80) != 0) == ((DAT_0080bdf3 & 0x20) != 0)) {
-      if (((_DAT_00805dfc & 0x80) != 0) && ((_DAT_00805e3c & 0x80) == 0)) {
-        _DAT_00805dfc = _DAT_00805dfc & 0xff7f;
-        DAT_008000c9 = 0;
+      if (((fault_status_registers_t_00805df2.io_fault_status_2 & 0x80) != 0) &&
+         ((fault_latch_registers_t_00805e32.io_fault_latch_2 & 0x80) == 0)) {
+        fault_status_registers_t_00805df2.io_fault_status_2 =
+             fault_status_registers_t_00805df2.io_fault_status_2 & 0xff7f;
+        fault_persistence_counters_t_008000c8.can_pin_fault = 0;
       }
     }
-    else if (DAT_008000c9 < _DAT_00807946) {
-      DAT_008000c9 = DAT_008000c9 + 1;
+    else if (fault_persistence_counters_t_008000c8.can_pin_fault < _DAT_00807946) {
+      fault_persistence_counters_t_008000c8.can_pin_fault =
+           fault_persistence_counters_t_008000c8.can_pin_fault + 1;
     }
     else {
-      _DAT_00805dfc = _DAT_00805dfc | 0x80;
-      _DAT_00805e3c = _DAT_00805e3c | 0x80;
+      fault_status_registers_t_00805df2.io_fault_status_2 =
+           fault_status_registers_t_00805df2.io_fault_status_2 | 0x80;
+      fault_latch_registers_t_00805e32.io_fault_latch_2 =
+           fault_latch_registers_t_00805e32.io_fault_latch_2 | 0x80;
     }
     if (((DAT_0080bdcb & 0x80) != 0) == ((DAT_0080bdef & 0x80) != 0)) {
-      if (((_DAT_00805dfc & 0x40) != 0) && ((_DAT_00805e3c & 0x40) == 0)) {
-        _DAT_00805dfc = _DAT_00805dfc & 0xffbf;
-        DAT_008000ca = 0;
+      if (((fault_status_registers_t_00805df2.io_fault_status_2 & 0x40) != 0) &&
+         ((fault_latch_registers_t_00805e32.io_fault_latch_2 & 0x40) == 0)) {
+        fault_status_registers_t_00805df2.io_fault_status_2 =
+             fault_status_registers_t_00805df2.io_fault_status_2 & 0xffbf;
+        fault_persistence_counters_t_008000c8.io_fault_1 = 0;
       }
     }
-    else if (DAT_008000ca < _DAT_00807946) {
-      DAT_008000ca = DAT_008000ca + 1;
+    else if (fault_persistence_counters_t_008000c8.io_fault_1 < _DAT_00807946) {
+      fault_persistence_counters_t_008000c8.io_fault_1 =
+           fault_persistence_counters_t_008000c8.io_fault_1 + 1;
     }
     else {
-      _DAT_00805dfc = _DAT_00805dfc | 0x40;
-      _DAT_00805e3c = _DAT_00805e3c | 0x40;
+      fault_status_registers_t_00805df2.io_fault_status_2 =
+           fault_status_registers_t_00805df2.io_fault_status_2 | 0x40;
+      fault_latch_registers_t_00805e32.io_fault_latch_2 =
+           fault_latch_registers_t_00805e32.io_fault_latch_2 | 0x40;
     }
     if (((DAT_0080bdcb & 1) != 0) == ((DAT_0080bdef & 1) != 0)) {
-      if (((_DAT_00805dfc & 0x20) != 0) && ((_DAT_00805e3c & 0x20) == 0)) {
-        _DAT_00805dfc = _DAT_00805dfc & 0xffdf;
-        DAT_008000cb = 0;
+      if (((fault_status_registers_t_00805df2.io_fault_status_2 & 0x20) != 0) &&
+         ((fault_latch_registers_t_00805e32.io_fault_latch_2 & 0x20) == 0)) {
+        fault_status_registers_t_00805df2.io_fault_status_2 =
+             fault_status_registers_t_00805df2.io_fault_status_2 & 0xffdf;
+        fault_persistence_counters_t_008000c8.io_fault_2 = 0;
       }
     }
-    else if (DAT_008000cb < _DAT_00807946) {
-      DAT_008000cb = DAT_008000cb + 1;
+    else if (fault_persistence_counters_t_008000c8.io_fault_2 < _DAT_00807946) {
+      fault_persistence_counters_t_008000c8.io_fault_2 =
+           fault_persistence_counters_t_008000c8.io_fault_2 + 1;
     }
     else {
-      _DAT_00805dfc = _DAT_00805dfc | 0x20;
-      _DAT_00805e3c = _DAT_00805e3c | 0x20;
+      fault_status_registers_t_00805df2.io_fault_status_2 =
+           fault_status_registers_t_00805df2.io_fault_status_2 | 0x20;
+      fault_latch_registers_t_00805e32.io_fault_latch_2 =
+           fault_latch_registers_t_00805e32.io_fault_latch_2 | 0x20;
     }
     if (((DAT_0080bdcb & 2) != 0) == ((DAT_0080bdef & 2) != 0)) {
-      if (((_DAT_00805dfa & 0x4000) != 0) && ((_DAT_00805e3a & 0x4000) == 0)) {
-        _DAT_00805dfa = _DAT_00805dfa & 0xbfff;
-        DAT_008000cc = 0;
+      if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x4000) != 0) &&
+         ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x4000) == 0)) {
+        fault_status_registers_t_00805df2.io_fault_status_1 =
+             fault_status_registers_t_00805df2.io_fault_status_1 & 0xbfff;
+        fault_persistence_counters_t_008000c8.io_fault_3 = 0;
       }
     }
-    else if (DAT_008000cc < _DAT_00807946) {
-      DAT_008000cc = DAT_008000cc + 1;
+    else if (fault_persistence_counters_t_008000c8.io_fault_3 < _DAT_00807946) {
+      fault_persistence_counters_t_008000c8.io_fault_3 =
+           fault_persistence_counters_t_008000c8.io_fault_3 + 1;
     }
     else {
-      _DAT_00805dfa = _DAT_00805dfa | 0x4000;
-      _DAT_00805e3a = _DAT_00805e3a | 0x4000;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 | 0x4000;
+      fault_latch_registers_t_00805e32.io_fault_latch_1 =
+           fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x4000;
     }
     if (((DAT_0080bdcb & 4) != 0) == ((DAT_0080bdef & 4) != 0)) {
-      if ((_DAT_00805dfa & 0x8000) != 0) {
-        if ((_DAT_00805e3a & 0x8000) == 0) {
-          _DAT_00805dfa = _DAT_00805dfa & 0x7fff;
-          DAT_008000cd = 0;
+      if ((fault_status_registers_t_00805df2.io_fault_status_1 & 0x8000) != 0) {
+        if ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x8000) == 0) {
+          fault_status_registers_t_00805df2.io_fault_status_1 =
+               fault_status_registers_t_00805df2.io_fault_status_1 & 0x7fff;
+          fault_persistence_counters_t_008000c8.io_fault_4 = 0;
         }
       }
     }
-    else if (DAT_008000cd < _DAT_00807946) {
-      DAT_008000cd = DAT_008000cd + 1;
+    else if (fault_persistence_counters_t_008000c8.io_fault_4 < _DAT_00807946) {
+      fault_persistence_counters_t_008000c8.io_fault_4 =
+           fault_persistence_counters_t_008000c8.io_fault_4 + 1;
     }
     else {
-      _DAT_00805dfa = _DAT_00805dfa | 0x8000;
-      _DAT_00805e3a = _DAT_00805e3a | 0x8000;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 | 0x8000;
+      fault_latch_registers_t_00805e32.io_fault_latch_1 =
+           fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x8000;
     }
     if (((DAT_0080bdcb & 0x20) != 0) == ((DAT_0080bdef & 0x20) != 0)) {
-      if (((_DAT_00805e00 & 0x2000) != 0) && ((_DAT_00805e40 & 0x2000) == 0)) {
-        _DAT_00805e00 = _DAT_00805e00 & 0xdfff;
-        DAT_008000ce = 0;
+      if (((fault_status_registers_t_00805df2.io_fault_status_4 & 0x2000) != 0) &&
+         ((fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x2000) == 0)) {
+        fault_status_registers_t_00805df2.io_fault_status_4 =
+             fault_status_registers_t_00805df2.io_fault_status_4 & 0xdfff;
+        fault_persistence_counters_t_008000c8.io_fault_5 = 0;
       }
     }
-    else if (DAT_008000ce < _DAT_00807946) {
-      DAT_008000ce = DAT_008000ce + 1;
+    else if (fault_persistence_counters_t_008000c8.io_fault_5 < _DAT_00807946) {
+      fault_persistence_counters_t_008000c8.io_fault_5 =
+           fault_persistence_counters_t_008000c8.io_fault_5 + 1;
     }
     else {
-      _DAT_00805e00 = _DAT_00805e00 | 0x2000;
-      _DAT_00805e40 = _DAT_00805e40 | 0x2000;
+      fault_status_registers_t_00805df2.io_fault_status_4 =
+           fault_status_registers_t_00805df2.io_fault_status_4 | 0x2000;
+      fault_latch_registers_t_00805e32.io_fault_latch_4 =
+           fault_latch_registers_t_00805e32.io_fault_latch_4 | 0x2000;
     }
     if (((DAT_0080bdcb & 0x10) != 0) == ((DAT_0080bdef & 0x10) != 0)) {
-      if (((_DAT_00805dfc & 0x100) != 0) && ((_DAT_00805e3c & 0x100) == 0)) {
-        _DAT_00805dfc = _DAT_00805dfc & 0xfeff;
-        DAT_008000cf = 0;
+      if (((fault_status_registers_t_00805df2.io_fault_status_2 & 0x100) != 0) &&
+         ((fault_latch_registers_t_00805e32.io_fault_latch_2 & 0x100) == 0)) {
+        fault_status_registers_t_00805df2.io_fault_status_2 =
+             fault_status_registers_t_00805df2.io_fault_status_2 & 0xfeff;
+        fault_persistence_counters_t_008000c8.io_fault_6 = 0;
       }
     }
-    else if (DAT_008000cf < _DAT_00807946) {
-      DAT_008000cf = DAT_008000cf + 1;
+    else if (fault_persistence_counters_t_008000c8.io_fault_6 < _DAT_00807946) {
+      fault_persistence_counters_t_008000c8.io_fault_6 =
+           fault_persistence_counters_t_008000c8.io_fault_6 + 1;
     }
     else {
-      _DAT_00805dfc = _DAT_00805dfc | 0x100;
-      _DAT_00805e3c = _DAT_00805e3c | 0x100;
+      fault_status_registers_t_00805df2.io_fault_status_2 =
+           fault_status_registers_t_00805df2.io_fault_status_2 | 0x100;
+      fault_latch_registers_t_00805e32.io_fault_latch_2 =
+           fault_latch_registers_t_00805e32.io_fault_latch_2 | 0x100;
     }
     if (((DAT_0080bdcb & 0x40) != 0) == ((DAT_0080bdef & 0x40) != 0)) {
-      if (((_DAT_00805dfe & 0x4000) != 0) && ((_DAT_00805e3e & 0x4000) == 0)) {
-        _DAT_00805dfe = _DAT_00805dfe & 0xbfff;
+      if (((fault_status_registers_t_00805df2.io_fault_status_3 & 0x4000) != 0) &&
+         ((fault_latch_registers_t_00805e32.io_fault_latch_3 & 0x4000) == 0)) {
+        fault_status_registers_t_00805df2.io_fault_status_3 =
+             fault_status_registers_t_00805df2.io_fault_status_3 & 0xbfff;
         DAT_008000d0 = 0;
       }
     }
@@ -2047,20 +2105,26 @@ void periodicIoAndCanFaultMonitor(void)
       DAT_008000d0 = DAT_008000d0 + 1;
     }
     else {
-      _DAT_00805dfe = _DAT_00805dfe | 0x4000;
-      _DAT_00805e3e = _DAT_00805e3e | 0x4000;
+      fault_status_registers_t_00805df2.io_fault_status_3 =
+           fault_status_registers_t_00805df2.io_fault_status_3 | 0x4000;
+      fault_latch_registers_t_00805e32.io_fault_latch_3 =
+           fault_latch_registers_t_00805e32.io_fault_latch_3 | 0x4000;
     }
     if (((DAT_0080bdcb & 8) != 0) != ((DAT_0080bdef & 8) != 0)) {
       if (DAT_008000d1 < _DAT_00807946) {
         DAT_008000d1 = DAT_008000d1 + 1;
         return;
       }
-      _DAT_00805dfe = _DAT_00805dfe | 0x800;
-      _DAT_00805e3e = _DAT_00805e3e | 0x800;
+      fault_status_registers_t_00805df2.io_fault_status_3 =
+           fault_status_registers_t_00805df2.io_fault_status_3 | 0x800;
+      fault_latch_registers_t_00805e32.io_fault_latch_3 =
+           fault_latch_registers_t_00805e32.io_fault_latch_3 | 0x800;
       return;
     }
-    if (((_DAT_00805dfe & 0x800) != 0) && ((_DAT_00805e3e & 0x800) == 0)) {
-      _DAT_00805dfe = _DAT_00805dfe & 0xf7ff;
+    if (((fault_status_registers_t_00805df2.io_fault_status_3 & 0x800) != 0) &&
+       ((fault_latch_registers_t_00805e32.io_fault_latch_3 & 0x800) == 0)) {
+      fault_status_registers_t_00805df2.io_fault_status_3 =
+           fault_status_registers_t_00805df2.io_fault_status_3 & 0xf7ff;
       DAT_008000d1 = 0;
     }
   }
@@ -2082,15 +2146,17 @@ uint acceleratorThrottleFaultDetector(void)
   uint in_D0;
   uint uVar2;
   
-  if (_DAT_0080c810 == 3) {
-    if (((_DAT_00805df4 & 0x400) == 0) || ((_DAT_008068c6 & 0x400) == 0)) {
+  if (engine_operating_mode_t_0080c810.state == 3) {
+    if (((fault_status_registers_t_00805df2.fault_status_2 & 0x400) == 0) ||
+       ((_DAT_008068c6 & 0x400) == 0)) {
       in_D0 = 0;
     }
     else {
       in_D0 = 1;
     }
     if (in_D0 == 0) {
-      if (((_DAT_00805df4 & 0x200) == 0) || ((_DAT_008068c6 & 0x200) == 0)) {
+      if (((fault_status_registers_t_00805df2.fault_status_2 & 0x200) == 0) ||
+         ((_DAT_008068c6 & 0x200) == 0)) {
         in_D0 = 0;
       }
       else {
@@ -2116,20 +2182,24 @@ uint acceleratorThrottleFaultDetector(void)
             }
           }
           if (_DAT_008000d4 == _DAT_0080794a) {
-            _DAT_00805df4 = _DAT_00805df4 | 0x2000;
-            _DAT_00805e34 = _DAT_00805e34 | 0x2000;
+            fault_status_registers_t_00805df2.fault_status_2 =
+                 fault_status_registers_t_00805df2.fault_status_2 | 0x2000;
+            fault_latch_registers_t_00805e32.fault_status_8_previous =
+                 fault_latch_registers_t_00805e32.fault_status_8_previous | 0x2000;
           }
           if (_DAT_008000d4 != 0) {
             return CONCAT22(uVar1,_DAT_008000d4);
           }
-          if ((_DAT_00805df4 & 0x2000) == 0) {
-            return CONCAT22(uVar1,_DAT_00805df4) & 0xffff2000;
+          if ((fault_status_registers_t_00805df2.fault_status_2 & 0x2000) == 0) {
+            return CONCAT22(uVar1,fault_status_registers_t_00805df2.fault_status_2) & 0xffff2000;
           }
-          uVar2 = CONCAT22(uVar1,_DAT_00805e34) & 0xffff2000;
-          if ((_DAT_00805e34 & 0x2000) != 0) {
+          uVar2 = CONCAT22(uVar1,fault_latch_registers_t_00805e32.fault_status_8_previous) &
+                  0xffff2000;
+          if ((fault_latch_registers_t_00805e32.fault_status_8_previous & 0x2000) != 0) {
             return uVar2;
           }
-          _DAT_00805df4 = _DAT_00805df4 & 0xdfff;
+          fault_status_registers_t_00805df2.fault_status_2 =
+               fault_status_registers_t_00805df2.fault_status_2 & 0xdfff;
           return uVar2;
         }
       }
@@ -2229,8 +2299,6 @@ uint diagnosticMessageTransmissionManager(void)
 // Function: insiteParameterResponseBuilder @ 0x0000cb1e
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void insiteParameterResponseBuilder(void)
 
 {
@@ -2245,8 +2313,10 @@ void insiteParameterResponseBuilder(void)
     insite_session_t_0080d407.param_result = 1;
     responseBufferSpaceCheck();
     if (DAT_0080d419 == 0) {
-      _DAT_00805e00 = _DAT_00805e00 | 4;
-      _DAT_00805e40 = _DAT_00805e40 | 4;
+      fault_status_registers_t_00805df2.io_fault_status_4 =
+           fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+      fault_latch_registers_t_00805e32.io_fault_latch_4 =
+           fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
       return;
     }
   }
@@ -2266,8 +2336,10 @@ void insiteParameterResponseBuilder(void)
     if (DAT_0080d419 < 4) {
       DAT_0080d419 = 0;
       insite_session_t_0080d407.param_result = 0;
-      _DAT_00805e00 = _DAT_00805e00 | 4;
-      _DAT_00805e40 = _DAT_00805e40 | 4;
+      fault_status_registers_t_00805df2.io_fault_status_4 =
+           fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+      fault_latch_registers_t_00805e32.io_fault_latch_4 =
+           fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
       return;
     }
     insite_session_t_0080d407.tx_buffer_ptr._2_1_ =
@@ -2278,8 +2350,10 @@ void insiteParameterResponseBuilder(void)
     insite_session_t_0080d407.param_result = 1;
   }
   if ((DAT_0080d41a < 0x14) && (DAT_0080d419 < DAT_0080d41a)) {
-    _DAT_00805e00 = _DAT_00805e00 | 4;
-    _DAT_00805e40 = _DAT_00805e40 | 4;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
     return;
   }
   insiteCommandByteDispatcher();
@@ -2401,19 +2475,20 @@ void insiteCommandByteDispatcher(void)
         }
         else if (insite_session_t_0080d407.command_byte == 0x47) {
           bVar5 = 0;
-          if ((_DAT_0080cc6e != 0) && (_DAT_0080cc6e < _DAT_008036fc)) {
+          if ((high_rpm_protection_t_0080cc6a.timer != 0) &&
+             (high_rpm_protection_t_0080cc6a.timer < _DAT_008036fc)) {
             bVar5 = 0x80;
           }
           if ((_DAT_008035da & 2) != 0) {
             bVar5 = bVar5 | 8;
           }
-          if ((_DAT_0080cc6a != 0) && ((_DAT_008035da & 4) != 0)) {
+          if ((high_rpm_protection_t_0080cc6a.fault_flag != 0) && ((_DAT_008035da & 4) != 0)) {
             bVar5 = bVar5 | 4;
           }
-          if ((_DAT_0080c996 != 0) && (_DAT_0080cc6e == 0)) {
+          if ((_DAT_0080c996 != 0) && (high_rpm_protection_t_0080cc6a.timer == 0)) {
             bVar5 = bVar5 | 2;
           }
-          if (_DAT_0080cc72 != 0) {
+          if (high_rpm_protection_t_0080cc6a.warning_flag != 0) {
             bVar5 = bVar5 | 1;
           }
         }
@@ -3163,8 +3238,10 @@ void fuelModeSelectionCalculator(void)
   }
   if (((_DAT_0080d496 == 0x12) || (_DAT_0080d496 == 0xf)) ||
      ((_DAT_0080d496 == 0x10 &&
-      ((((_DAT_00805df4 & 0x200) != 0 && ((_DAT_008068c6 & 0x200) != 0)) ||
-       (((_DAT_00805df4 & 0x400) != 0 && ((_DAT_008068c6 & 0x400) != 0)))))))) {
+      ((((fault_status_registers_t_00805df2.fault_status_2 & 0x200) != 0 &&
+        ((_DAT_008068c6 & 0x200) != 0)) ||
+       (((fault_status_registers_t_00805df2.fault_status_2 & 0x400) != 0 &&
+        ((_DAT_008068c6 & 0x400) != 0)))))))) {
     cVar1 = cVar1 + '\x04';
     _DAT_0080cfec = _DAT_008086cc;
     _DAT_0080cff0 = _DAT_008086ce;
@@ -3655,17 +3732,17 @@ uint rpm_derate_calculation_and_fault_processing(void)
     }
     if (_DAT_00809d5a == 0) {
       if ((DAT_00800152 == '\0') && (_DAT_00809d60 == 0)) {
-        if (((((((uint)*(ushort *)(&DAT_00805df2 + (short)((int)uVar3 >> 4) * 2) &
-                1 << (uVar3 & 0xf)) == 0) ||
+        if (((((((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                       [(short)((int)uVar3 >> 4)] & 1 << (uVar3 & 0xf)) == 0) ||
               (uVar1 = (uint)*(ushort *)(&DAT_008068c4 + ((int)uVar3 >> 4) * 2),
               (uVar1 & 1 << (uVar3 & 0xf)) == 0)) &&
-             ((((uint)*(ushort *)(&DAT_00805df2 + (short)((int)uVar2 >> 4) * 2) & 1 << (uVar2 & 0xf)
-               ) == 0 ||
+             ((((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                      [(short)((int)uVar2 >> 4)] & 1 << (uVar2 & 0xf)) == 0 ||
               (uVar1 = (uint)*(ushort *)(&DAT_008068c4 + ((int)uVar2 >> 4) * 2),
               (uVar1 & 1 << (uVar2 & 0xf)) == 0)))) &&
-            (((_DAT_00805dfa & 0x20) == 0 ||
+            (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x20) == 0 ||
              (uVar1 = _DAT_008068cc & 0xffff0020, (_DAT_008068cc & 0x20) == 0)))) &&
-           ((((_DAT_00805dfa & 8) == 0 ||
+           ((((fault_status_registers_t_00805df2.io_fault_status_1 & 8) == 0 ||
              (uVar1 = _DAT_008068cc & 0xffff0008, (_DAT_008068cc & 8) == 0)) &&
             (uVar1 = (uint)_DAT_00800150, _DAT_00804bb6 < _DAT_00800150)))) {
           _DAT_00809d4c = _DAT_00809d5c;
@@ -3676,14 +3753,20 @@ uint rpm_derate_calculation_and_fault_processing(void)
         _DAT_00809d5e = 0;
       }
       else {
-        if (((_DAT_00805dfa & 0x20) != 0) && ((_DAT_00805e3a & 0x20) == 0)) {
-          _DAT_00805dfa = _DAT_00805dfa & 0xffdf;
+        if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x20) != 0) &&
+           ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x20) == 0)) {
+          fault_status_registers_t_00805df2.io_fault_status_1 =
+               fault_status_registers_t_00805df2.io_fault_status_1 & 0xffdf;
         }
-        if (((_DAT_00805dfa & 8) != 0) && ((_DAT_00805e3a & 8) == 0)) {
-          _DAT_00805dfa = _DAT_00805dfa & 0xfff7;
+        if (((fault_status_registers_t_00805df2.io_fault_status_1 & 8) != 0) &&
+           ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 8) == 0)) {
+          fault_status_registers_t_00805df2.io_fault_status_1 =
+               fault_status_registers_t_00805df2.io_fault_status_1 & 0xfff7;
         }
-        if (((_DAT_00805dfa & 0x10) != 0) && ((_DAT_00805e3a & 0x10) == 0)) {
-          _DAT_00805dfa = _DAT_00805dfa & 0xffef;
+        if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x10) != 0) &&
+           ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x10) == 0)) {
+          fault_status_registers_t_00805df2.io_fault_status_1 =
+               fault_status_registers_t_00805df2.io_fault_status_1 & 0xffef;
         }
         uVar1 = CONCAT22((short)(uVar1 >> 0x10),_DAT_00800150);
         if (_DAT_008079e2 < _DAT_00800150) {
@@ -3755,10 +3838,10 @@ LAB_0000eac6:
   }
   sVar4 = (short)((int)uVar7 >> 4);
   sVar5 = (short)((int)uVar9 >> 4);
-  if (((((uint)*(ushort *)(&DAT_00805df2 + sVar4 * 2) & 1 << (uVar7 & 0xf)) == 0) ||
-      (((uint)*(ushort *)(&DAT_008068c4 + sVar4 * 2) & 1 << (uVar7 & 0xf)) == 0)) &&
-     ((((uint)*(ushort *)(&DAT_00805df2 + sVar5 * 2) & 1 << (uVar9 & 0xf)) == 0 ||
-      (((uint)*(ushort *)(&DAT_008068c4 + sVar5 * 2) & 1 << (uVar9 & 0xf)) == 0)))) {
+  if (((((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)[sVar4] & 1 << (uVar7 & 0xf))
+        == 0) || (((uint)*(ushort *)(&DAT_008068c4 + sVar4 * 2) & 1 << (uVar7 & 0xf)) == 0)) &&
+     ((((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)[sVar5] & 1 << (uVar9 & 0xf))
+       == 0 || (((uint)*(ushort *)(&DAT_008068c4 + sVar5 * 2) & 1 << (uVar9 & 0xf)) == 0)))) {
     if ((_DAT_008079e0 == 0) && (_DAT_00800150 < _DAT_00809d56)) {
       _DAT_00809d56 = _DAT_00800150;
     }
@@ -3840,12 +3923,14 @@ LAB_0000eac6:
   else {
     _DAT_00809d50 = 0;
   }
-  if (((uint)*(ushort *)(&DAT_00805df2 + sVar4 * 2) & 1 << (uVar7 & 0xf)) != 0) {
+  if (((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)[sVar4] & 1 << (uVar7 & 0xf))
+      != 0) {
     uVar3 = (uint)*(ushort *)(&DAT_008068c4 + sVar4 * 2);
     uVar7 = uVar3 & 1 << (uVar7 & 0xf);
     if (uVar7 != 0) goto LAB_0000e7d2;
   }
-  if (((uint)*(ushort *)(&DAT_00805df2 + sVar5 * 2) & 1 << (uVar9 & 0xf)) != 0) {
+  if (((uint)(&fault_status_registers_t_00805df2.sensor_fault_status)[sVar5] & 1 << (uVar9 & 0xf))
+      != 0) {
     uVar3 = (uint)*(ushort *)(&DAT_008068c4 + sVar5 * 2);
     uVar7 = uVar3 & 1 << (uVar9 & 0xf);
     if (uVar7 != 0) {
@@ -3874,14 +3959,20 @@ LAB_0000e7d2:
     if (_DAT_00809d54 == 0) {
       _DAT_00804bb6 = _DAT_008079e4 + _DAT_00809d56;
     }
-    if (((_DAT_00805dfa & 0x20) != 0) && ((_DAT_00805e3a & 0x20) == 0)) {
-      _DAT_00805dfa = _DAT_00805dfa & 0xffdf;
+    if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x20) != 0) &&
+       ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x20) == 0)) {
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 & 0xffdf;
     }
-    if (((_DAT_00805dfa & 8) != 0) && ((_DAT_00805e3a & 8) == 0)) {
-      _DAT_00805dfa = _DAT_00805dfa & 0xfff7;
+    if (((fault_status_registers_t_00805df2.io_fault_status_1 & 8) != 0) &&
+       ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 8) == 0)) {
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 & 0xfff7;
     }
-    if (((_DAT_00805dfa & 0x10) != 0) && ((_DAT_00805e3a & 0x10) == 0)) {
-      _DAT_00805dfa = _DAT_00805dfa & 0xffef;
+    if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x10) != 0) &&
+       ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x10) == 0)) {
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 & 0xffef;
     }
   }
   if ((_DAT_00804bb6 < _DAT_008079e4) ||
@@ -3908,8 +3999,10 @@ LAB_0000e7d2:
       _DAT_00800144 = _DAT_00800144 + 1;
     }
     else {
-      _DAT_00805dfa = _DAT_00805dfa | 8;
-      _DAT_00805e3a = _DAT_00805e3a | 8;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 | 8;
+      fault_latch_registers_t_00805e32.io_fault_latch_1 =
+           fault_latch_registers_t_00805e32.io_fault_latch_1 | 8;
       _DAT_00809d52 = 0;
     }
   }
@@ -3921,8 +4014,10 @@ LAB_0000e7d2:
       _DAT_00800146 = _DAT_00800146 + 1;
     }
     else {
-      _DAT_00805dfa = _DAT_00805dfa | 0x10;
-      _DAT_00805e3a = _DAT_00805e3a | 0x10;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 | 0x10;
+      fault_latch_registers_t_00805e32.io_fault_latch_1 =
+           fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x10;
       _DAT_00809d52 = 0;
     }
   }
@@ -3930,18 +4025,21 @@ LAB_0000e7d2:
     _DAT_00800146 = 0;
   }
   if (((_DAT_00809d4e == 2) || (_DAT_00809d4e == 3)) &&
-     ((uVar7 = (uint)uVar1 << 0x10, (_DAT_00805dfa & 0x10) == 0 ||
+     ((uVar7 = (uint)uVar1 << 0x10,
+      (fault_status_registers_t_00805df2.io_fault_status_1 & 0x10) == 0 ||
       (uVar7 = CONCAT22(uVar1,_DAT_008068cc) & 0xffff0010, (_DAT_008068cc & 0x10) == 0)))) {
     uVar2 = (undefined2)(uVar7 >> 0x10);
-    uVar7 = CONCAT22(uVar2,_DAT_00805dfa) & 0xffff0008;
-    if (((_DAT_00805dfa & 8) == 0) ||
+    uVar7 = CONCAT22(uVar2,fault_status_registers_t_00805df2.io_fault_status_1) & 0xffff0008;
+    if (((fault_status_registers_t_00805df2.io_fault_status_1 & 8) == 0) ||
        (uVar7 = CONCAT22(uVar2,_DAT_008068cc) & 0xffff0008, (_DAT_008068cc & 8) == 0)) {
       if (_DAT_00800148 < uVar8) {
         _DAT_00800148 = _DAT_00800148 + 1;
         return CONCAT44(uVar7,uVar9);
       }
-      _DAT_00805dfa = _DAT_00805dfa | 0x20;
-      _DAT_00805e3a = _DAT_00805e3a | 0x20;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 | 0x20;
+      fault_latch_registers_t_00805e32.io_fault_latch_1 =
+           fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x20;
       _DAT_00809d52 = 0;
       bVar6 = -((DAT_0080bdc6 & 0x80) != 0);
       _DAT_00804bdc = bVar6 & 1;
@@ -4307,7 +4405,8 @@ void validateRedundantSensors(void)
   ushort uVar8;
   
   _DAT_0080d1a0 = 0;
-  _DAT_00805df2 = _DAT_00805df2 & 0xefff;
+  fault_status_registers_t_00805df2.sensor_fault_status =
+       fault_status_registers_t_00805df2.sensor_fault_status & 0xefff;
   if (DAT_00005e42 == -0x5e5f) {
     calibrationDataCopyWithChecksum();
     _DAT_008062d0 = 0;
@@ -4315,22 +4414,28 @@ void validateRedundantSensors(void)
   else if ((_DAT_0080367a != _DAT_0080367c) || (_DAT_00803682 != _DAT_00803684)) {
     if (_DAT_0080367a != _DAT_0080367c) {
       if (_DAT_00803682 != _DAT_00803684) {
-        _DAT_00805df2 = _DAT_00805df2 | 0x1000;
-        _DAT_00805e32 = _DAT_00805e32 | 0x1000;
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status | 0x1000;
+        fault_latch_registers_t_00805e32.sensor_fault_latch =
+             fault_latch_registers_t_00805e32.sensor_fault_latch | 0x1000;
       }
       else {
         uVar1 = calibrationDataCopySecondary();
         if ((short)uVar1 != 0) {
-          _DAT_00805df2 = _DAT_00805df2 | 0x1000;
-          _DAT_00805e32 = _DAT_00805e32 | 0x1000;
+          fault_status_registers_t_00805df2.sensor_fault_status =
+               fault_status_registers_t_00805df2.sensor_fault_status | 0x1000;
+          fault_latch_registers_t_00805e32.sensor_fault_latch =
+               fault_latch_registers_t_00805e32.sensor_fault_latch | 0x1000;
         }
       }
     }
     else {
       uVar1 = calibrationDataCopyWithChecksum();
       if ((short)uVar1 != 0) {
-        _DAT_00805df2 = _DAT_00805df2 | 0x1000;
-        _DAT_00805e32 = _DAT_00805e32 | 0x1000;
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status | 0x1000;
+        fault_latch_registers_t_00805e32.sensor_fault_latch =
+             fault_latch_registers_t_00805e32.sensor_fault_latch | 0x1000;
       }
     }
   }
@@ -4339,8 +4444,10 @@ void validateRedundantSensors(void)
     if ((short)uVar1 != 0) {
       uVar1 = calibrationDataCopyWithChecksum();
       if ((short)uVar1 != 0) {
-        _DAT_00805df2 = _DAT_00805df2 | 0x1000;
-        _DAT_00805e32 = _DAT_00805e32 | 0x1000;
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status | 0x1000;
+        fault_latch_registers_t_00805e32.sensor_fault_latch =
+             fault_latch_registers_t_00805e32.sensor_fault_latch | 0x1000;
       }
     }
   }
@@ -4349,8 +4456,10 @@ void validateRedundantSensors(void)
     if ((short)uVar1 != 0) {
       uVar1 = calibrationDataCopySecondary();
       if ((short)uVar1 != 0) {
-        _DAT_00805df2 = _DAT_00805df2 | 0x1000;
-        _DAT_00805e32 = _DAT_00805e32 | 0x1000;
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status | 0x1000;
+        fault_latch_registers_t_00805e32.sensor_fault_latch =
+             fault_latch_registers_t_00805e32.sensor_fault_latch | 0x1000;
       }
     }
   }
@@ -4380,7 +4489,8 @@ void validateRedundantSensors(void)
     bVar4 = (uVar8 & 4) != 0;
     bVar5 = (uVar8 & 2) != 0;
     bVar7 = (uVar8 & 1) != 0;
-    _DAT_00805df2 = _DAT_00805df2 & 0xf7ff;
+    fault_status_registers_t_00805df2.sensor_fault_status =
+         fault_status_registers_t_00805df2.sensor_fault_status & 0xf7ff;
   }
   else {
     uVar8 = (ushort)(byte)(bVar6 << 4 | bVar3 << 3 | SBORROW2(_DAT_00803686,_DAT_00803688) << 1 |
@@ -4405,13 +4515,16 @@ void validateRedundantSensors(void)
     bVar6 = (short)(_DAT_0080368a - _DAT_008088c0) < 0;
     bVar4 = _DAT_0080368a == _DAT_008088c0;
     if (_DAT_0080368a < _DAT_008088c0) {
-      _DAT_00805df2 = _DAT_00805df2 & 0xf7ff;
+      fault_status_registers_t_00805df2.sensor_fault_status =
+           fault_status_registers_t_00805df2.sensor_fault_status & 0xf7ff;
       bVar3 = true;
       bVar7 = true;
     }
     else {
-      _DAT_00805df2 = _DAT_00805df2 | 0x800;
-      _DAT_00805e32 = _DAT_00805e32 | 0x800;
+      fault_status_registers_t_00805df2.sensor_fault_status =
+           fault_status_registers_t_00805df2.sensor_fault_status | 0x800;
+      fault_latch_registers_t_00805e32.sensor_fault_latch =
+           fault_latch_registers_t_00805e32.sensor_fault_latch | 0x800;
       bVar3 = false;
       bVar7 = false;
     }
@@ -4664,7 +4777,7 @@ undefined4 systemResetWithDiagnostic(byte *param_1,undefined4 param_2)
   int local_8;
   
   uVar3 = (ushort)((uint)unaff_A2 >> 0x10);
-  if (_DAT_0080c810 == 1) {
+  if (engine_operating_mode_t_0080c810.state == 1) {
     while (uVar1 = circularBufferEmptyCheck(), (char)uVar1 == '\0') {
       emptyPlaceholderFunction();
       FUN_0002bb2e(CONCAT22(500,uVar3));
@@ -4858,21 +4971,24 @@ ushort coldStartFuelControlSlowCycle40Coordinator(void)
   _DAT_00800176 = circular_buffer_t_0080c3fc.data_buffer._8_2_;
   _DAT_0080017e = _DAT_0080c9a4;
   if (_DAT_00807c28 != 0 || _DAT_00807c0e != 0) {
-    if (((_DAT_00805df4 & 0x200) == 0) || ((_DAT_008068c6 & 0x200) == 0)) {
+    if (((fault_status_registers_t_00805df2.fault_status_2 & 0x200) == 0) ||
+       ((_DAT_008068c6 & 0x200) == 0)) {
       bVar2 = false;
     }
     else {
       bVar2 = true;
     }
     if (!bVar2) {
-      if (((_DAT_00805df4 & 0x400) == 0) || ((_DAT_008068c6 & 0x400) == 0)) {
+      if (((fault_status_registers_t_00805df2.fault_status_2 & 0x400) == 0) ||
+         ((_DAT_008068c6 & 0x400) == 0)) {
         bVar2 = false;
       }
       else {
         bVar2 = true;
       }
       if (!bVar2) {
-        if (((_DAT_00805df4 & 4) == 0) || ((_DAT_008068c6 & 4) == 0)) {
+        if (((fault_status_registers_t_00805df2.fault_status_2 & 4) == 0) ||
+           ((_DAT_008068c6 & 4) == 0)) {
           bVar2 = false;
         }
         else {
@@ -4883,7 +4999,8 @@ LAB_0000fe82:
           if (_DAT_00807c28 == 0) goto LAB_0000fff4;
         }
         else {
-          if (((_DAT_00805df4 & 8) == 0) || ((_DAT_008068c6 & 8) == 0)) {
+          if (((fault_status_registers_t_00805df2.fault_status_2 & 8) == 0) ||
+             ((_DAT_008068c6 & 8) == 0)) {
             bVar2 = false;
           }
           else {
@@ -4957,28 +5074,32 @@ LAB_0000fe82:
   }
 LAB_0000fff4:
   if (_DAT_00807c28 != 0 || _DAT_00807c0e != 0) {
-    if (((_DAT_00805df4 & 0x200) == 0) || ((_DAT_008068c6 & 0x200) == 0)) {
+    if (((fault_status_registers_t_00805df2.fault_status_2 & 0x200) == 0) ||
+       ((_DAT_008068c6 & 0x200) == 0)) {
       bVar2 = false;
     }
     else {
       bVar2 = true;
     }
     if (!bVar2) {
-      if (((_DAT_00805df4 & 0x400) == 0) || ((_DAT_008068c6 & 0x400) == 0)) {
+      if (((fault_status_registers_t_00805df2.fault_status_2 & 0x400) == 0) ||
+         ((_DAT_008068c6 & 0x400) == 0)) {
         bVar2 = false;
       }
       else {
         bVar2 = true;
       }
       if (!bVar2) {
-        if (((_DAT_00805df4 & 4) == 0) || ((_DAT_008068c6 & 4) == 0)) {
+        if (((fault_status_registers_t_00805df2.fault_status_2 & 4) == 0) ||
+           ((_DAT_008068c6 & 4) == 0)) {
           bVar2 = false;
         }
         else {
           bVar2 = true;
         }
         if ((!bVar2) || (_DAT_00807c28 != 0)) {
-          if (((_DAT_00805df4 & 8) == 0) || ((_DAT_008068c6 & 8) == 0)) {
+          if (((fault_status_registers_t_00805df2.fault_status_2 & 8) == 0) ||
+             ((_DAT_008068c6 & 8) == 0)) {
             bVar2 = false;
           }
           else {
@@ -4989,14 +5110,16 @@ LAB_0000fff4:
       }
     }
   }
-  if (((_DAT_00805df2 & 0x2000) == 0) || ((_DAT_008068c4 & 0x2000) == 0)) {
+  if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x2000) == 0) ||
+     ((_DAT_008068c4 & 0x2000) == 0)) {
     bVar2 = false;
   }
   else {
     bVar2 = true;
   }
   if (!bVar2) {
-    if (((_DAT_00805df2 & 0x4000) == 0) || ((_DAT_008068c4 & 0x4000) == 0)) {
+    if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x4000) == 0) ||
+       ((_DAT_008068c4 & 0x4000) == 0)) {
       bVar2 = false;
     }
     else {
@@ -5065,28 +5188,32 @@ LAB_000101fa:
     _DAT_00809d6a = 0;
   }
   if (_DAT_00807c0e != 0) {
-    if (((_DAT_00805df4 & 0x200) == 0) || ((_DAT_008068c6 & 0x200) == 0)) {
+    if (((fault_status_registers_t_00805df2.fault_status_2 & 0x200) == 0) ||
+       ((_DAT_008068c6 & 0x200) == 0)) {
       bVar2 = false;
     }
     else {
       bVar2 = true;
     }
     if (!bVar2) {
-      if (((_DAT_00805df4 & 0x400) == 0) || ((_DAT_008068c6 & 0x400) == 0)) {
+      if (((fault_status_registers_t_00805df2.fault_status_2 & 0x400) == 0) ||
+         ((_DAT_008068c6 & 0x400) == 0)) {
         bVar2 = false;
       }
       else {
         bVar2 = true;
       }
       if (!bVar2) {
-        if (((_DAT_00805df4 & 4) == 0) || ((_DAT_008068c6 & 4) == 0)) {
+        if (((fault_status_registers_t_00805df2.fault_status_2 & 4) == 0) ||
+           ((_DAT_008068c6 & 4) == 0)) {
           bVar2 = false;
         }
         else {
           bVar2 = true;
         }
         if ((!bVar2) || (_DAT_00807c28 != 0)) {
-          if (((_DAT_00805df4 & 8) == 0) || ((_DAT_008068c6 & 8) == 0)) {
+          if (((fault_status_registers_t_00805df2.fault_status_2 & 8) == 0) ||
+             ((_DAT_008068c6 & 8) == 0)) {
             uVar5 = 0;
           }
           else {
@@ -5104,14 +5231,16 @@ LAB_000101fa:
       }
     }
   }
-  if (((_DAT_00805df2 & 0x2000) == 0) || ((_DAT_008068c4 & 0x2000) == 0)) {
+  if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x2000) == 0) ||
+     ((_DAT_008068c4 & 0x2000) == 0)) {
     uVar5 = 0;
   }
   else {
     uVar5 = 1;
   }
   if (uVar5 == 0) {
-    if (((_DAT_00805df2 & 0x4000) == 0) || ((_DAT_008068c4 & 0x4000) == 0)) {
+    if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x4000) == 0) ||
+       ((_DAT_008068c4 & 0x4000) == 0)) {
       uVar5 = 0;
     }
     else {
@@ -5395,7 +5524,7 @@ uint engineRunTimeHistogramAccumulator(void)
   undefined8 uVar8;
   
   uVar3 = CONCAT22((short)((uint)in_D0 >> 0x10),_DAT_00803618) & 0xffff0001;
-  if (((_DAT_00803618 & 1) != 0) && (_DAT_0080c810 != 1)) {
+  if (((_DAT_00803618 & 1) != 0) && (engine_operating_mode_t_0080c810.state != 1)) {
     if (_DAT_00804a1c == 0) {
       _DAT_00804a14 = _DAT_00809688;
     }
@@ -6100,50 +6229,49 @@ void diagnosticStateMachineProcessor(void)
   int iVar1;
   ushort uVar2;
   ushort uVar3;
-  ushort uVar4;
-  bool bVar5;
+  bool bVar4;
   undefined4 unaff_D2;
-  byte bVar6;
+  byte bVar5;
+  ushort uVar6;
   ushort uVar7;
-  ushort uVar8;
-  undefined2 uVar9;
+  undefined2 uVar8;
   
-  uVar9 = (undefined2)((uint)unaff_D2 >> 0x10);
-  uVar2 = *(ushort *)(&DAT_00805df2 + _DAT_00800232 * 2);
-  uVar3 = *(ushort *)(&DAT_00805e32 + _DAT_00800232 * 2);
-  *(undefined2 *)(&DAT_00805e32 + _DAT_00800232 * 2) = 0;
-  uVar7 = 1;
-  uVar8 = 0;
+  uVar8 = (undefined2)((uint)unaff_D2 >> 0x10);
+  uVar3 = (&fault_latch_registers_t_00805e32.sensor_fault_latch)[_DAT_00800232] |
+          (&fault_status_registers_t_00805df2.sensor_fault_status)[_DAT_00800232];
+  (&fault_latch_registers_t_00805e32.sensor_fault_latch)[_DAT_00800232] = 0;
+  uVar6 = 1;
+  uVar7 = 0;
   do {
-    if ((uVar7 & (uVar3 | uVar2)) == 0) {
-      if (((((uVar7 & *(ushort *)(&DAT_00805e72 + _DAT_00800232 * 2)) != 0) &&
-           (uVar4 = *(ushort *)((short)(uVar8 + _DAT_00800232 * 0x10) * 2 + 0x806374), uVar4 < 0x7d)
-           ) && ((uVar7 & *(ushort *)(&DAT_008068c4 + _DAT_00800232 * 2)) != 0)) &&
-         ((*(char *)((short)uVar4 + 0x804f46) != '\0' &&
-          (*(char *)((short)uVar4 + 0x804f46) = *(char *)((short)uVar4 + 0x804f46) + -1,
-          *(char *)((short)uVar4 + 0x804f46) == '\0')))) {
-        *(undefined1 *)((short)(uVar4 * 5) * 2 + 0x804fcc) = 2;
-        *(undefined4 *)((short)(uVar4 * 5) * 2 + 0x804fc4) = _DAT_0080d4c4;
-        bVar5 = false;
-        bVar6 = 0;
-        while (!bVar5) {
-          bVar6 = bVar6 + 1;
-          if ((uint)DAT_00804e7c == bVar6 - 1) {
-            bVar5 = true;
+    if ((uVar6 & uVar3) == 0) {
+      if (((((uVar6 & *(ushort *)(&DAT_00805e72 + _DAT_00800232 * 2)) != 0) &&
+           (uVar2 = *(ushort *)((short)(uVar7 + _DAT_00800232 * 0x10) * 2 + 0x806374), uVar2 < 0x7d)
+           ) && ((uVar6 & *(ushort *)(&DAT_008068c4 + _DAT_00800232 * 2)) != 0)) &&
+         ((*(char *)((short)uVar2 + 0x804f46) != '\0' &&
+          (*(char *)((short)uVar2 + 0x804f46) = *(char *)((short)uVar2 + 0x804f46) + -1,
+          *(char *)((short)uVar2 + 0x804f46) == '\0')))) {
+        *(undefined1 *)((short)(uVar2 * 5) * 2 + 0x804fcc) = 2;
+        *(undefined4 *)((short)(uVar2 * 5) * 2 + 0x804fc4) = _DAT_0080d4c4;
+        bVar4 = false;
+        bVar5 = 0;
+        while (!bVar4) {
+          bVar5 = bVar5 + 1;
+          if ((uint)DAT_00804e7c == bVar5 - 1) {
+            bVar4 = true;
           }
-          else if ((&DAT_00804e7c)[(short)(ushort)bVar6] == uVar4) {
-            bVar5 = true;
-            if (((&DAT_008065d0)[(uint)uVar4 * 6] != '\0') &&
-               ((*(ushort *)(&DAT_008065ce + (uint)uVar4 * 6) & 0x40) == 0)) {
+          else if ((&DAT_00804e7c)[(short)(ushort)bVar5] == uVar2) {
+            bVar4 = true;
+            if (((&DAT_008065d0)[(uint)uVar2 * 6] != '\0') &&
+               ((*(ushort *)(&DAT_008065ce + (uint)uVar2 * 6) & 0x40) == 0)) {
               _DAT_00804f40 = _DAT_00804f40 + -1;
-              circularBufferPush(&CMECTR,CONCAT22(uVar4,uVar9) & 0xffffff);
+              circularBufferPush(&CMECTR,CONCAT22(uVar2,uVar8) & 0xffffff);
             }
             DAT_00804e7c = DAT_00804e7c - 1;
             _DAT_00804ebc = _DAT_00804ebc + -1;
-            (&DAT_00804e7c)[(short)(ushort)bVar6] = (&DAT_00804e7c)[_DAT_00804f3c];
+            (&DAT_00804e7c)[(short)(ushort)bVar5] = (&DAT_00804e7c)[_DAT_00804f3c];
             iVar1 = (int)_DAT_00804f3c;
             _DAT_00804f3c = _DAT_00804f3c + -1;
-            *(undefined2 *)(&DAT_00804ebc + (short)(ushort)bVar6 * 2) =
+            *(undefined2 *)(&DAT_00804ebc + (short)(ushort)bVar5 * 2) =
                  *(undefined2 *)(&DAT_00804ebc + iVar1 * 2);
           }
         }
@@ -6151,11 +6279,11 @@ void diagnosticStateMachineProcessor(void)
           DAT_00804e9c = DAT_00804e9c + 1;
           _DAT_00804efc = _DAT_00804efc + 1;
           _DAT_00804f3e = _DAT_00804f3e + 1;
-          (&DAT_00804e9c)[_DAT_00804f3e] = (char)uVar4;
+          (&DAT_00804e9c)[_DAT_00804f3e] = (char)uVar2;
           *(undefined2 *)(&DAT_00804efc + _DAT_00804f3e * 2) =
-               *(undefined2 *)(&DAT_008065cc + (uint)uVar4 * 6);
-          if (((&DAT_008065d0)[(uint)uVar4 * 6] != '\0') &&
-             ((*(ushort *)(&DAT_008065ce + (uint)uVar4 * 6) & 0x40) == 0)) {
+               *(undefined2 *)(&DAT_008065cc + (uint)uVar2 * 6);
+          if (((&DAT_008065d0)[(uint)uVar2 * 6] != '\0') &&
+             ((*(ushort *)(&DAT_008065ce + (uint)uVar2 * 6) & 0x40) == 0)) {
             _DAT_00804f42 = _DAT_00804f42 + 1;
           }
         }
@@ -6163,63 +6291,63 @@ void diagnosticStateMachineProcessor(void)
       }
     }
     else {
-      uVar4 = *(ushort *)((short)(uVar8 + _DAT_00800232 * 0x10) * 2 + 0x806374);
-      if ((((uVar4 < 0x7d) && ((uVar7 & *(ushort *)(&DAT_00805e72 + _DAT_00800232 * 2)) == 0)) &&
-          (DAT_00804e7c != 0x1f)) && ((uVar7 & *(ushort *)(&DAT_008068c4 + _DAT_00800232 * 2)) != 0)
+      uVar2 = *(ushort *)((short)(uVar7 + _DAT_00800232 * 0x10) * 2 + 0x806374);
+      if ((((uVar2 < 0x7d) && ((uVar6 & *(ushort *)(&DAT_00805e72 + _DAT_00800232 * 2)) == 0)) &&
+          (DAT_00804e7c != 0x1f)) && ((uVar6 & *(ushort *)(&DAT_008068c4 + _DAT_00800232 * 2)) != 0)
          ) {
-        if ((&DAT_00804fcd)[(short)(uVar4 * 5) * 2] != -1) {
-          (&DAT_00804fcd)[(short)(uVar4 * 5) * 2] = (&DAT_00804fcd)[(short)(uVar4 * 5) * 2] + '\x01'
+        if ((&DAT_00804fcd)[(short)(uVar2 * 5) * 2] != -1) {
+          (&DAT_00804fcd)[(short)(uVar2 * 5) * 2] = (&DAT_00804fcd)[(short)(uVar2 * 5) * 2] + '\x01'
           ;
         }
-        if (*(char *)((short)uVar4 + 0x804f46) == '\0') {
-          diagnosticCodeRegistrar(CONCAT22(uVar4,uVar9));
-          *(undefined1 *)((short)(uVar4 * 5) * 2 + 0x804fcc) = 3;
-          *(undefined4 *)((short)(uVar4 * 5) * 2 + 0x804fc4) = _DAT_0080d4c4;
-          *(undefined4 *)((short)(uVar4 * 5) * 2 + 0x804fc8) = 0;
-          bVar5 = false;
-          bVar6 = 0;
-          while (!bVar5) {
-            bVar6 = bVar6 + 1;
-            if ((uint)DAT_00804e9c == bVar6 - 1) {
-              bVar5 = true;
+        if (*(char *)((short)uVar2 + 0x804f46) == '\0') {
+          diagnosticCodeRegistrar(CONCAT22(uVar2,uVar8));
+          *(undefined1 *)((short)(uVar2 * 5) * 2 + 0x804fcc) = 3;
+          *(undefined4 *)((short)(uVar2 * 5) * 2 + 0x804fc4) = _DAT_0080d4c4;
+          *(undefined4 *)((short)(uVar2 * 5) * 2 + 0x804fc8) = 0;
+          bVar4 = false;
+          bVar5 = 0;
+          while (!bVar4) {
+            bVar5 = bVar5 + 1;
+            if ((uint)DAT_00804e9c == bVar5 - 1) {
+              bVar4 = true;
             }
-            else if ((&DAT_00804e9c)[(short)(ushort)bVar6] == uVar4) {
-              bVar5 = true;
-              if (((&DAT_008065d0)[(uint)uVar4 * 6] != '\0') &&
-                 ((*(ushort *)(&DAT_008065ce + (uint)uVar4 * 6) & 0x40) == 0)) {
+            else if ((&DAT_00804e9c)[(short)(ushort)bVar5] == uVar2) {
+              bVar4 = true;
+              if (((&DAT_008065d0)[(uint)uVar2 * 6] != '\0') &&
+                 ((*(ushort *)(&DAT_008065ce + (uint)uVar2 * 6) & 0x40) == 0)) {
                 _DAT_00804f42 = _DAT_00804f42 + -1;
               }
               DAT_00804e9c = DAT_00804e9c - 1;
               _DAT_00804efc = _DAT_00804efc + -1;
-              (&DAT_00804e9c)[(short)(ushort)bVar6] = (&DAT_00804e9c)[_DAT_00804f3e];
+              (&DAT_00804e9c)[(short)(ushort)bVar5] = (&DAT_00804e9c)[_DAT_00804f3e];
               iVar1 = (int)_DAT_00804f3e;
               _DAT_00804f3e = _DAT_00804f3e + -1;
-              *(undefined2 *)(&DAT_00804efc + (short)(ushort)bVar6 * 2) =
+              *(undefined2 *)(&DAT_00804efc + (short)(ushort)bVar5 * 2) =
                    *(undefined2 *)(&DAT_00804efc + iVar1 * 2);
             }
           }
           DAT_00804e7c = DAT_00804e7c + 1;
           _DAT_00804ebc = _DAT_00804ebc + 1;
           _DAT_00804f3c = _DAT_00804f3c + 1;
-          (&DAT_00804e7c)[_DAT_00804f3c] = (char)uVar4;
+          (&DAT_00804e7c)[_DAT_00804f3c] = (char)uVar2;
           *(undefined2 *)(&DAT_00804ebc + _DAT_00804f3c * 2) =
-               *(undefined2 *)(&DAT_008065cc + (uint)uVar4 * 6);
-          if (((&DAT_008065d0)[(uint)uVar4 * 6] != '\0') &&
-             ((*(ushort *)(&DAT_008065ce + (uint)uVar4 * 6) & 0x40) == 0)) {
+               *(undefined2 *)(&DAT_008065cc + (uint)uVar2 * 6);
+          if (((&DAT_008065d0)[(uint)uVar2 * 6] != '\0') &&
+             ((*(ushort *)(&DAT_008065ce + (uint)uVar2 * 6) & 0x40) == 0)) {
             _DAT_00804f40 = _DAT_00804f40 + 1;
-            circularBufferPush(&CMECTR,(uint)(uint3)(CONCAT12((char)uVar4,uVar9) | 0x800000));
+            circularBufferPush(&CMECTR,(uint)(uint3)(CONCAT12((char)uVar2,uVar8) | 0x800000));
           }
           _DAT_00804f44 = _DAT_00804f44 + 1;
         }
-        if (*(char *)((short)uVar4 + 0x804f46) != -1) {
-          *(char *)((short)uVar4 + 0x804f46) = *(char *)((short)uVar4 + 0x804f46) + '\x01';
+        if (*(char *)((short)uVar2 + 0x804f46) != -1) {
+          *(char *)((short)uVar2 + 0x804f46) = *(char *)((short)uVar2 + 0x804f46) + '\x01';
         }
       }
     }
-    uVar7 = uVar7 * 2;
-    uVar8 = uVar8 + 1;
-  } while (uVar8 < 0x10);
-  *(ushort *)(&DAT_00805e72 + _DAT_00800232 * 2) = uVar3 | uVar2;
+    uVar6 = uVar6 * 2;
+    uVar7 = uVar7 + 1;
+  } while (uVar7 < 0x10);
+  *(ushort *)(&DAT_00805e72 + _DAT_00800232 * 2) = uVar3;
   return;
 }
 
@@ -6240,8 +6368,8 @@ void faultFlagScannerAndProcessor(void)
   ushort *puVar4;
   
   for (iVar2 = 0;
-      (((*(short *)(&DAT_00805df2 + (short)_DAT_00800232 * 2) == 0 &&
-        (*(short *)(&DAT_00805e32 + (short)_DAT_00800232 * 2) == 0)) &&
+      ((((&fault_status_registers_t_00805df2.sensor_fault_status)[(short)_DAT_00800232] == 0 &&
+        ((&fault_latch_registers_t_00805e32.sensor_fault_latch)[(short)_DAT_00800232] == 0)) &&
        (*(short *)(&DAT_00805e72 + (short)_DAT_00800232 * 2) == 0)) && (iVar2 < 0x20));
       iVar2 = iVar2 + 1) {
     _DAT_00800232 = _DAT_00800232 + 1;
@@ -6535,27 +6663,35 @@ ushort vp44_status_data_collector(void)
   if (((DAT_0080bdc9 & 1) != 0) == ((DAT_0080bdc8 & 0x20) != 0)) {
     _DAT_0080023a = _DAT_0080023a + 1;
     if (0x31 < _DAT_0080023a) {
-      _DAT_00805dfa = _DAT_00805dfa | 0x800;
-      _DAT_00805e3a = _DAT_00805e3a | 0x800;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 | 0x800;
+      fault_latch_registers_t_00805e32.io_fault_latch_1 =
+           fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x800;
     }
   }
   else {
     _DAT_0080023a = 0;
-    if (((_DAT_00805dfa & 0x800) != 0) && ((_DAT_00805e3a & 0x800) == 0)) {
-      _DAT_00805dfa = _DAT_00805dfa & 0xf7ff;
+    if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x800) != 0) &&
+       ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x800) == 0)) {
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 & 0xf7ff;
     }
   }
   if (((DAT_0080bdc7 & 0x20) == 0) || ((DAT_0080bdc7 & 0x40) == 0)) {
     _DAT_0080023c = 0;
-    if (((_DAT_00805e00 & 2) != 0) && ((_DAT_00805e40 & 2) == 0)) {
-      _DAT_00805e00 = _DAT_00805e00 & 0xfffd;
+    if (((fault_status_registers_t_00805df2.io_fault_status_4 & 2) != 0) &&
+       ((fault_latch_registers_t_00805e32.io_fault_latch_4 & 2) == 0)) {
+      fault_status_registers_t_00805df2.io_fault_status_4 =
+           fault_status_registers_t_00805df2.io_fault_status_4 & 0xfffd;
     }
   }
   else {
     _DAT_0080023c = _DAT_0080023c + 1;
     if (0x31 < _DAT_0080023c) {
-      _DAT_00805e00 = _DAT_00805e00 | 2;
-      _DAT_00805e40 = _DAT_00805e40 | 2;
+      fault_status_registers_t_00805df2.io_fault_status_4 =
+           fault_status_registers_t_00805df2.io_fault_status_4 | 2;
+      fault_latch_registers_t_00805e32.io_fault_latch_4 =
+           fault_latch_registers_t_00805e32.io_fault_latch_4 | 2;
     }
   }
   emptyStubFunction4();
@@ -7147,8 +7283,10 @@ void multiPacketTransmitHandler(void)
       else {
         DAT_0080d404 = 0;
         diagnosticMessageQueueWrite(CONCAT22(4,uVar11));
-        _DAT_00805e00 = _DAT_00805e00 | 4;
-        _DAT_00805e40 = _DAT_00805e40 | 4;
+        fault_status_registers_t_00805df2.io_fault_status_4 =
+             fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+        fault_latch_registers_t_00805e32.io_fault_latch_4 =
+             fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
       }
     }
     else {
@@ -7503,27 +7641,35 @@ uint engine_fault_monitoring_and_rpm_calculation(void)
       _DAT_0080c76c = _DAT_0080c76c + 1;
     }
     else {
-      _DAT_00805df6 = _DAT_00805df6 | 0x1000;
-      _DAT_00805e36 = _DAT_00805e36 | 0x1000;
+      fault_status_registers_t_00805df2.engine_fault_status =
+           fault_status_registers_t_00805df2.engine_fault_status | 0x1000;
+      fault_latch_registers_t_00805e32.engine_fault_latch =
+           fault_latch_registers_t_00805e32.engine_fault_latch | 0x1000;
     }
   }
   else if ((circular_buffer_t_0080c3fc.data_buffer._34_2_ != 0) &&
-          ((_DAT_0080c76c = 0, (_DAT_00805df6 & 0x1000) != 0 && ((_DAT_00805e36 & 0x1000) == 0)))) {
-    _DAT_00805df6 = _DAT_00805df6 & 0xefff;
+          ((_DAT_0080c76c = 0, (fault_status_registers_t_00805df2.engine_fault_status & 0x1000) != 0
+           && ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x1000) == 0)))) {
+    fault_status_registers_t_00805df2.engine_fault_status =
+         fault_status_registers_t_00805df2.engine_fault_status & 0xefff;
   }
   if ((((_DAT_00807ce2 & 0xc) == 0) || (circular_buffer_t_0080c3fc.data_buffer._36_2_ != 0)) ||
      (circular_buffer_t_0080c3fc.data_buffer._8_2_ == 0)) {
     if (((circular_buffer_t_0080c3fc.data_buffer._36_2_ != 0) &&
-        (_DAT_0080c76e = 0, (_DAT_00805df6 & 0x400) != 0)) && ((_DAT_00805e36 & 0x400) == 0)) {
-      _DAT_00805df6 = _DAT_00805df6 & 0xfbff;
+        (_DAT_0080c76e = 0, (fault_status_registers_t_00805df2.engine_fault_status & 0x400) != 0))
+       && ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x400) == 0)) {
+      fault_status_registers_t_00805df2.engine_fault_status =
+           fault_status_registers_t_00805df2.engine_fault_status & 0xfbff;
     }
   }
   else if (_DAT_0080c76e < _DAT_00807cf0) {
     _DAT_0080c76e = _DAT_0080c76e + 1;
   }
   else {
-    _DAT_00805df6 = _DAT_00805df6 | 0x400;
-    _DAT_00805e36 = _DAT_00805e36 | 0x400;
+    fault_status_registers_t_00805df2.engine_fault_status =
+         fault_status_registers_t_00805df2.engine_fault_status | 0x400;
+    fault_latch_registers_t_00805e32.engine_fault_latch =
+         fault_latch_registers_t_00805e32.engine_fault_latch | 0x400;
   }
   if ((circular_buffer_t_0080c3fc.data_buffer._38_2_ == 0) &&
      (circular_buffer_t_0080c3fc.data_buffer._8_2_ != 0)) {
@@ -7539,26 +7685,34 @@ uint engine_fault_monitoring_and_rpm_calculation(void)
           ((_DAT_0080c770 = 0, (_DAT_00805e16 & 4) != 0 && ((_DAT_00805e56 & 4) == 0)))) {
     _DAT_00805e16 = _DAT_00805e16 & 0xfffb;
   }
-  if (((DAT_0080c7b3 == '\x01') && (_DAT_0080c76a = 0, (_DAT_00805df6 & 0x4000) != 0)) &&
-     ((_DAT_00805e36 & 0x4000) == 0)) {
-    _DAT_00805df6 = _DAT_00805df6 & 0xbfff;
+  if (((DAT_0080c7b3 == '\x01') &&
+      (_DAT_0080c76a = 0, (fault_status_registers_t_00805df2.engine_fault_status & 0x4000) != 0)) &&
+     ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x4000) == 0)) {
+    fault_status_registers_t_00805df2.engine_fault_status =
+         fault_status_registers_t_00805df2.engine_fault_status & 0xbfff;
   }
   if ((DAT_0080c7b3 == '\0') && (circular_buffer_t_0080c3fc.data_buffer._8_2_ != 0)) {
     if (_DAT_0080c76a < _DAT_00807cec) {
       _DAT_0080c76a = _DAT_0080c76a + 1;
     }
     else {
-      _DAT_00805df6 = _DAT_00805df6 | 0x4000;
-      _DAT_00805e36 = _DAT_00805e36 | 0x4000;
+      fault_status_registers_t_00805df2.engine_fault_status =
+           fault_status_registers_t_00805df2.engine_fault_status | 0x4000;
+      fault_latch_registers_t_00805e32.engine_fault_latch =
+           fault_latch_registers_t_00805e32.engine_fault_latch | 0x4000;
     }
   }
   else if ((DAT_0080c7b3 == '\0') &&
-          ((_DAT_0080c76a = 0, (_DAT_00805df6 & 0x4000) != 0 && ((_DAT_00805e36 & 0x4000) == 0)))) {
-    _DAT_00805df6 = _DAT_00805df6 & 0xbfff;
+          ((_DAT_0080c76a = 0, (fault_status_registers_t_00805df2.engine_fault_status & 0x4000) != 0
+           && ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x4000) == 0)))) {
+    fault_status_registers_t_00805df2.engine_fault_status =
+         fault_status_registers_t_00805df2.engine_fault_status & 0xbfff;
   }
   if ((((DAT_0080c7b2 == '\x01') || (DAT_0080c7b2 == '\0')) &&
-      (_DAT_0080c768 = 0, (_DAT_00805df6 & 0x800) != 0)) && ((_DAT_00805e36 & 0x800) == 0)) {
-    _DAT_00805df6 = _DAT_00805df6 & 0xf7ff;
+      (_DAT_0080c768 = 0, (fault_status_registers_t_00805df2.engine_fault_status & 0x800) != 0)) &&
+     ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x800) == 0)) {
+    fault_status_registers_t_00805df2.engine_fault_status =
+         fault_status_registers_t_00805df2.engine_fault_status & 0xf7ff;
   }
   (*_DAT_0080c78e)();
   uVar1 = (uint)(ushort)circular_buffer_t_0080c3fc.data_buffer._42_2_;
@@ -7621,7 +7775,7 @@ uint engine_fault_monitoring_and_rpm_calculation(void)
     circular_buffer_t_0080c3fc.data_buffer[8] = DAT_00809cb8;
     circular_buffer_t_0080c3fc.data_buffer[9] = DAT_00809cb8_1;
   }
-  if (_DAT_0080c810 == 1) {
+  if (engine_operating_mode_t_0080c810.state == 1) {
     uVar1 = DAT_0080bdc6 & 1;
     if ((DAT_0080bdc6 & 1) == 0) {
       _DAT_0080d1a4 = 0;
@@ -7741,7 +7895,9 @@ void canRpmModeConfigInit(void)
 void rpmBasedFuelLimitCalculator(void)
 
 {
-  if (((_DAT_0080c810 == 2) || (_DAT_0080c810 == 6)) || (_DAT_0080c810 == 7)) {
+  if (((engine_operating_mode_t_0080c810.state == 2) ||
+      (engine_operating_mode_t_0080c810.state == 6)) ||
+     (engine_operating_mode_t_0080c810.state == 7)) {
     _DAT_0080c800 = _DAT_0080c80e + _DAT_0080c802;
     if (_DAT_00807d3e < _DAT_0080c800) {
       _DAT_0080c800 = _DAT_00807d3e;
@@ -7840,7 +7996,9 @@ void fuelTimingModeBlendCalculator(void)
 void rpmBasedFuelTimingInterpolation(void)
 
 {
-  if (((_DAT_0080c810 == 2) || (_DAT_0080c810 == 6)) || (_DAT_0080c810 == 7)) {
+  if (((engine_operating_mode_t_0080c810.state == 2) ||
+      (engine_operating_mode_t_0080c810.state == 6)) ||
+     (engine_operating_mode_t_0080c810.state == 7)) {
     fuelTimingModeBlendCalculator();
     if ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ < _DAT_0080c804) {
       _DAT_0080c7ea = _DAT_0080c7f8;
@@ -7875,12 +8033,12 @@ uint frictionalLoadInterpolationCalculator(void)
   uint uVar3;
   
   uVar3 = in_D0 & 0xffff0000;
-  if (((_DAT_00805df6 & 1) == 0) ||
+  if (((fault_status_registers_t_00805df2.engine_fault_status & 1) == 0) ||
      (uVar3 = CONCAT22((short)(in_D0 >> 0x10),_DAT_008068c8) & 0xffff0001, (_DAT_008068c8 & 1) == 0)
      ) {
     uVar2 = (undefined2)(uVar3 >> 0x10);
-    uVar3 = CONCAT22(uVar2,_DAT_00805df6) & 0xffff0002;
-    if ((((_DAT_00805df6 & 2) == 0) ||
+    uVar3 = CONCAT22(uVar2,fault_status_registers_t_00805df2.engine_fault_status) & 0xffff0002;
+    if ((((fault_status_registers_t_00805df2.engine_fault_status & 2) == 0) ||
         (uVar3 = CONCAT22(uVar2,_DAT_008068c8) & 0xffff0002, (_DAT_008068c8 & 2) == 0)) &&
        (_DAT_00807d30 <= _DAT_0080926e)) {
       if (_DAT_00807d2e < _DAT_0080926e) {
@@ -7943,12 +8101,12 @@ uint frictionalLoadTorqueInterpolator(void)
   uint uVar3;
   
   uVar3 = in_D0 & 0xffff0000;
-  if (((_DAT_00805df2 & 0x2000) == 0) ||
+  if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x2000) == 0) ||
      (uVar3 = CONCAT22((short)(in_D0 >> 0x10),_DAT_008068c4) & 0xffff2000,
      (_DAT_008068c4 & 0x2000) == 0)) {
     uVar2 = (undefined2)(uVar3 >> 0x10);
-    uVar3 = CONCAT22(uVar2,_DAT_00805df2) & 0xffff4000;
-    if ((((_DAT_00805df2 & 0x4000) == 0) ||
+    uVar3 = CONCAT22(uVar2,fault_status_registers_t_00805df2.sensor_fault_status) & 0xffff4000;
+    if ((((fault_status_registers_t_00805df2.sensor_fault_status & 0x4000) == 0) ||
         (uVar3 = CONCAT22(uVar2,_DAT_008068c4) & 0xffff4000, (_DAT_008068c4 & 0x4000) == 0)) &&
        (_DAT_00807d34 <= _DAT_008091ea)) {
       if (_DAT_00807d32 < _DAT_008091ea) {
@@ -7993,7 +8151,7 @@ void peakTorqueFuelCorrection(void)
   if (circular_buffer_t_0080c3fc.data_buffer._8_2_ == 0) {
     _DAT_0080c7fa = _DAT_00807d48;
   }
-  _DAT_008002ca = _DAT_0080c810;
+  _DAT_008002ca = engine_operating_mode_t_0080c810.state;
   return;
 }
 
@@ -8008,7 +8166,9 @@ void peakTorqueFuelCorrection(void)
 void engineModeTransitionStateUpdater(void)
 
 {
-  if (((_DAT_0080c810 == 2) || (_DAT_0080c810 == 6)) || (_DAT_0080c810 == 7)) {
+  if (((engine_operating_mode_t_0080c810.state == 2) ||
+      (engine_operating_mode_t_0080c810.state == 6)) ||
+     (engine_operating_mode_t_0080c810.state == 7)) {
     _DAT_0080c80a = _DAT_0080c9ae;
     _DAT_0080c9ae = _DAT_0080c7ea;
     _DAT_0080c9b0 = 5;
@@ -8028,14 +8188,14 @@ void engineModeTransitionStateUpdater(void)
 void engineModeTransitionHandler(void)
 
 {
-  if (((_DAT_008002cc == 1) && (_DAT_0080c810 == 2)) ||
-     ((_DAT_008002cc == 3 && (_DAT_0080c810 == 7)))) {
+  if (((_DAT_008002cc == 1) && (engine_operating_mode_t_0080c810.state == 2)) ||
+     ((_DAT_008002cc == 3 && (engine_operating_mode_t_0080c810.state == 7)))) {
     frictionalLoadInterpolationCalculator();
     frictionalLoadTorqueInterpolator();
     rpmSourceSelectorForFrictionalLoad();
   }
   peakTorqueFuelCorrection();
-  _DAT_008002cc = _DAT_0080c810;
+  _DAT_008002cc = engine_operating_mode_t_0080c810.state;
   return;
 }
 
@@ -8050,8 +8210,8 @@ void engineModeTransitionHandler(void)
 void shutdownProtectionSlowCycle40Coordinator(void)
 
 {
-  if ((_DAT_0080c810 == 6) && ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ < _DAT_0080c800)
-     ) {
+  if ((engine_operating_mode_t_0080c810.state == 6) &&
+     ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ < _DAT_0080c800)) {
     if ((int)(uint)_DAT_00807d4e < (int)((uint)_DAT_00807f3c - (uint)_DAT_0080c80c)) {
       _DAT_0080c80c = _DAT_00807d4e + _DAT_0080c80c;
     }
@@ -8065,11 +8225,11 @@ void shutdownProtectionSlowCycle40Coordinator(void)
       _DAT_0080c80e = _DAT_008037b4;
     }
   }
-  if ((_DAT_008002ce == 7) && (_DAT_0080c810 == 1)) {
+  if ((_DAT_008002ce == 7) && (engine_operating_mode_t_0080c810.state == 1)) {
     _DAT_0080c80c = 0;
     _DAT_0080c80e = 0;
   }
-  _DAT_008002ce = _DAT_0080c810;
+  _DAT_008002ce = engine_operating_mode_t_0080c810.state;
   return;
 }
 
@@ -8084,15 +8244,16 @@ void shutdownProtectionSlowCycle40Coordinator(void)
 void frictionalLoadTorqueManagementSlowCycle40Coordinator(void)
 
 {
-  if ((((_DAT_0080c810 == 2) || (_DAT_0080c810 == 6)) &&
+  if ((((engine_operating_mode_t_0080c810.state == 2) ||
+       (engine_operating_mode_t_0080c810.state == 6)) &&
       (_DAT_00807d58 < (ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_)) &&
      (_DAT_0080c806 = _DAT_00807d5a + _DAT_0080c806, _DAT_00807d5c < _DAT_0080c806)) {
     _DAT_0080c806 = _DAT_00807d5c;
   }
-  if ((_DAT_008002d0 != 3) && (_DAT_0080c810 == 3)) {
+  if ((_DAT_008002d0 != 3) && (engine_operating_mode_t_0080c810.state == 3)) {
     _DAT_0080c806 = 0;
   }
-  _DAT_008002d0 = _DAT_0080c810;
+  _DAT_008002d0 = engine_operating_mode_t_0080c810.state;
   return;
 }
 
@@ -8107,20 +8268,20 @@ void frictionalLoadTorqueManagementSlowCycle40Coordinator(void)
 void engineOperatingModeStateTrackingSlowCycle40Coordinator(void)
 
 {
-  if (_DAT_0080c810 == 3) {
+  if (engine_operating_mode_t_0080c810.state == 3) {
     _DAT_0080c7ee = _DAT_0080c7ee + 1;
   }
-  if (_DAT_0080c810 == 1) {
+  if (engine_operating_mode_t_0080c810.state == 1) {
     _DAT_0080c7ee = 0;
     _DAT_00800288 = 0;
   }
-  if (_DAT_0080c810 == 2) {
+  if (engine_operating_mode_t_0080c810.state == 2) {
     _DAT_0080c7f0 = _DAT_0080c7f0 + 1;
   }
-  else if ((_DAT_008002d2 == 7) && (_DAT_0080c810 == 1)) {
+  else if ((_DAT_008002d2 == 7) && (engine_operating_mode_t_0080c810.state == 1)) {
     _DAT_0080c7f0 = 0;
   }
-  _DAT_008002d2 = _DAT_0080c810;
+  _DAT_008002d2 = engine_operating_mode_t_0080c810.state;
   return;
 }
 
@@ -8135,11 +8296,12 @@ void engineOperatingModeStateTrackingSlowCycle40Coordinator(void)
 void frictionalLoadTorqueTransitionHandler(void)
 
 {
-  if (((_DAT_008002d4 == 3) && (_DAT_0080c810 == 7)) && (_DAT_00807d52 < _DAT_0080c7ee)) {
+  if (((_DAT_008002d4 == 3) && (engine_operating_mode_t_0080c810.state == 7)) &&
+     (_DAT_00807d52 < _DAT_0080c7ee)) {
     _DAT_0080c80c = _DAT_00807d54;
     _DAT_0080c80e = _DAT_00807d56;
   }
-  _DAT_008002d4 = _DAT_0080c810;
+  _DAT_008002d4 = engine_operating_mode_t_0080c810.state;
   return;
 }
 
@@ -8184,41 +8346,41 @@ void initLoadTrendingSystem(void)
 void engineOperatingModeStateMachine(void)
 
 {
-  switch(_DAT_0080c810) {
+  switch(engine_operating_mode_t_0080c810.state) {
   case 1:
     if ((_DAT_00807d64 < (ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_) &&
        (_DAT_00804d84 == 0)) {
-      _DAT_0080c810 = 2;
+      engine_operating_mode_t_0080c810.state = 2;
     }
     else if ((((DAT_0080bdc6 & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1)) {
-      _DAT_0080c810 = 8;
+      engine_operating_mode_t_0080c810.state = 8;
     }
     break;
   case 2:
     if (_DAT_00807d64 < (ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_) {
       if ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ < _DAT_0080c7fc) {
         if (_DAT_00807d4c < _DAT_0080c7f0) {
-          _DAT_0080c810 = 6;
+          engine_operating_mode_t_0080c810.state = 6;
         }
         else if ((((DAT_0080bdc6 & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1)) {
-          _DAT_0080c810 = 8;
+          engine_operating_mode_t_0080c810.state = 8;
         }
       }
       else {
-        _DAT_0080c810 = 3;
+        engine_operating_mode_t_0080c810.state = 3;
       }
     }
     else {
-      _DAT_0080c810 = 1;
+      engine_operating_mode_t_0080c810.state = 1;
     }
     break;
   case 3:
     if (_DAT_0080969e == 1) {
-      _DAT_0080c810 = 4;
+      engine_operating_mode_t_0080c810.state = 4;
     }
     else if (_DAT_0080c7fa < (ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_) {
       if ((((DAT_0080bdc6 & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1)) {
-        _DAT_0080c810 = 8;
+        engine_operating_mode_t_0080c810.state = 8;
       }
       else if ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ < _DAT_00807d5e) {
         _DAT_008002d6 = 0;
@@ -8226,32 +8388,34 @@ void engineOperatingModeStateMachine(void)
       else {
         _DAT_008002d6 = _DAT_008002d6 + 1;
         if (_DAT_00807d62 < _DAT_008002d6) {
-          _DAT_0080c810 = 5;
+          engine_operating_mode_t_0080c810.state = 5;
           _DAT_008002d6 = 0;
         }
       }
     }
     else {
-      _DAT_0080c810 = 7;
+      engine_operating_mode_t_0080c810.state = 7;
     }
     break;
   case 4:
     if (_DAT_0080969e == 0) {
-      _DAT_0080c810 = 3;
+      engine_operating_mode_t_0080c810.state = 3;
     }
     else if ((((DAT_0080bdc6 & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1)) {
-      _DAT_0080c810 = 8;
+      engine_operating_mode_t_0080c810.state = 8;
     }
     break;
   case 5:
     if ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ < _DAT_00807d60) {
-      _DAT_0080c810 = 3;
+      engine_operating_mode_t_0080c810.state = 3;
     }
     else if ((((DAT_0080bdc6 & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1)) {
-      _DAT_0080c810 = 8;
+      engine_operating_mode_t_0080c810.state = 8;
     }
-    _DAT_00805df6 = _DAT_00805df6 | 0x8000;
-    _DAT_00805e36 = _DAT_00805e36 | 0x8000;
+    fault_status_registers_t_00805df2.engine_fault_status =
+         fault_status_registers_t_00805df2.engine_fault_status | 0x8000;
+    fault_latch_registers_t_00805e32.engine_fault_latch =
+         fault_latch_registers_t_00805e32.engine_fault_latch | 0x8000;
     if (_DAT_00804d80 == 0) {
       _DAT_00804d80 = 1;
       *(undefined4 *)((short)_DAT_00804d82 * 8 + 0x804c68) = _DAT_0080d4c4;
@@ -8269,50 +8433,52 @@ void engineOperatingModeStateMachine(void)
     if (_DAT_00807d64 < (ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_) {
       if ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ < _DAT_0080c7fc) {
         if ((((DAT_0080bdc6 & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1)) {
-          _DAT_0080c810 = 8;
+          engine_operating_mode_t_0080c810.state = 8;
         }
       }
       else {
-        _DAT_0080c810 = 3;
+        engine_operating_mode_t_0080c810.state = 3;
       }
     }
     else {
-      _DAT_0080c810 = 1;
+      engine_operating_mode_t_0080c810.state = 1;
     }
     break;
   case 7:
     if (_DAT_00807d64 < (ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_) {
       if ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ < _DAT_0080c7fc) {
         if ((((DAT_0080bdc6 & 1) == 0) && (_DAT_0080d450 == 0)) || (_DAT_0080c996 == 1)) {
-          _DAT_0080c810 = 8;
+          engine_operating_mode_t_0080c810.state = 8;
         }
       }
       else {
-        _DAT_0080c810 = 3;
+        engine_operating_mode_t_0080c810.state = 3;
       }
     }
     else {
-      _DAT_0080c810 = 1;
+      engine_operating_mode_t_0080c810.state = 1;
     }
     break;
   case 8:
     if ((((_DAT_0080c996 == 1) && (circular_buffer_t_0080c3fc.data_buffer._8_2_ == 0)) ||
         ((_DAT_0080c996 == 0 && ((DAT_0080bdc6 & 1) != 0)))) &&
-       ((_DAT_0080c810 = 1, circular_buffer_t_0080c3fc.data_buffer._8_2_ == 0 &&
-        (_DAT_0080c996 == 1)))) {
+       ((engine_operating_mode_t_0080c810.state = 1,
+        circular_buffer_t_0080c3fc.data_buffer._8_2_ == 0 && (_DAT_0080c996 == 1)))) {
       _DAT_0080c996 = 0;
     }
     if (((circular_buffer_t_0080c3fc.data_buffer._8_2_ == 0) && ((DAT_0080bdc6 & 1) == 0)) &&
        (_DAT_0080d450 == 0)) {
-      _DAT_0080c812 = 1;
+      engine_operating_mode_t_0080c810.shutdown_complete_flag = 1;
     }
     break;
   default:
-    _DAT_0080c810 = 1;
+    engine_operating_mode_t_0080c810.state = 1;
   }
-  if (((_DAT_0080c810 != 5) && ((_DAT_00805df6 & 0x8000) != 0)) && ((_DAT_00805e36 & 0x8000) == 0))
-  {
-    _DAT_00805df6 = _DAT_00805df6 & 0x7fff;
+  if (((engine_operating_mode_t_0080c810.state != 5) &&
+      ((fault_status_registers_t_00805df2.engine_fault_status & 0x8000) != 0)) &&
+     ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x8000) == 0)) {
+    fault_status_registers_t_00805df2.engine_fault_status =
+         fault_status_registers_t_00805df2.engine_fault_status & 0x7fff;
     *(short *)((short)_DAT_00804d82 * 8 + 0x804c6e) =
          _DAT_0080d4c6 - *(short *)((short)_DAT_00804d82 * 8 + 0x804c6a);
     _DAT_00804d80 = 0;
@@ -8331,12 +8497,10 @@ void engineOperatingModeStateMachine(void)
 // Function: engineOperatingModeInit @ 0x00014536
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void engineOperatingModeInit(void)
 
 {
-  _DAT_0080c810 = 1;
+  engine_operating_mode_t_0080c810.state = 1;
   DAT_008002d8 = 0;
   return;
 }
@@ -8870,7 +9034,8 @@ ushort protectionState4EmergencyHandler(void)
   ushort *puVar8;
   
   uVar3 = (ushort)((uint)unaff_D2 >> 0x10);
-  if ((((_DAT_008035d8 & 1) == 0) || (_DAT_0080c810 == 8)) || (_DAT_0080c810 == 1)) {
+  if ((((_DAT_008035d8 & 1) == 0) || (engine_operating_mode_t_0080c810.state == 8)) ||
+     (engine_operating_mode_t_0080c810.state == 1)) {
     _DAT_0080c998 = 0;
     uVar3 = 0;
     puVar7 = &DAT_0080c814;
@@ -9070,10 +9235,12 @@ uint protectionStateProcessor(undefined4 param_1)
     }
   }
   uVar5 = 1 << (uVar3 & 0xf);
-  *(ushort *)(&DAT_00805df2 + (short)((int)(uint)uVar3 >> 4) * 2) =
-       uVar5 | *(ushort *)(&DAT_00805df2 + (short)((int)(uint)uVar3 >> 4) * 2);
-  *(ushort *)(&DAT_00805e32 + (short)((int)(uint)uVar3 >> 4) * 2) =
-       uVar5 | *(ushort *)(&DAT_00805e32 + (short)((int)(uint)uVar3 >> 4) * 2);
+  (&fault_status_registers_t_00805df2.sensor_fault_status)[(short)((int)(uint)uVar3 >> 4)] =
+       uVar5 | (&fault_status_registers_t_00805df2.sensor_fault_status)
+               [(short)((int)(uint)uVar3 >> 4)];
+  (&fault_latch_registers_t_00805e32.sensor_fault_latch)[(short)((int)(uint)uVar3 >> 4)] =
+       uVar5 | (&fault_latch_registers_t_00805e32.sensor_fault_latch)
+               [(short)((int)(uint)uVar3 >> 4)];
   uVar2 = *_DAT_008002ee & 0xffff000c;
   if ((*_DAT_008002ee & 0xc) != 0) {
     uVar2 = protectionCalculationHelper
@@ -9119,17 +9286,19 @@ undefined8 protectionStateValidator(undefined4 param_1)
     iVar6 = *(int *)(_DAT_008002f2 + 0x2a);
     psVar7 = (short *)(_DAT_008002f6 + 0x1a);
   }
-  uVar2 = (uint)*(ushort *)(&DAT_00805df2 + (short)((int)(uint)uVar4 >> 4) * 2);
+  uVar2 = (uint)(&fault_status_registers_t_00805df2.sensor_fault_status)
+                [(short)((int)(uint)uVar4 >> 4)];
   uVar3 = uVar2 & 1 << (uVar4 & 0xf);
   if (uVar3 != 0) {
-    uVar2 = (uint)*(ushort *)(&DAT_00805e32 + (short)((int)(uint)uVar4 >> 4) * 2);
+    uVar2 = (uint)(&fault_latch_registers_t_00805e32.sensor_fault_latch)
+                  [(short)((int)(uint)uVar4 >> 4)];
     uVar3 = uVar2 & 1 << (uVar4 & 0xf);
     if (uVar3 == 0) {
       uVar1 = ~(1 << (uVar4 & 0xf));
       uVar3 = (uint)uVar1;
       uVar2 = (int)(uint)uVar4 >> 4;
-      *(ushort *)(&DAT_00805df2 + (short)uVar2 * 2) =
-           uVar1 & *(ushort *)(&DAT_00805df2 + (short)uVar2 * 2);
+      (&fault_status_registers_t_00805df2.sensor_fault_status)[(short)uVar2] =
+           uVar1 & (&fault_status_registers_t_00805df2.sensor_fault_status)[(short)uVar2];
       if (*psVar7 != 0) {
         *psVar7 = 0;
         *(short *)(iVar6 + 6 + (uint)*puVar5 * 8) =
@@ -9524,18 +9693,24 @@ undefined8 rpmTimerInterruptHandler(void)
         DAT_0080c7d3 = DAT_0080c7d3 + 1;
       }
       else {
-        _DAT_00805df2 = _DAT_00805df2 | 1;
-        _DAT_00805e32 = _DAT_00805e32 | 1;
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status | 1;
+        fault_latch_registers_t_00805e32.sensor_fault_latch =
+             fault_latch_registers_t_00805e32.sensor_fault_latch | 1;
       }
       DAT_0080c7b2 = 2;
-      _DAT_00805df6 = _DAT_00805df6 | 0x800;
-      _DAT_00805e36 = _DAT_00805e36 | 0x800;
+      fault_status_registers_t_00805df2.engine_fault_status =
+           fault_status_registers_t_00805df2.engine_fault_status | 0x800;
+      fault_latch_registers_t_00805e32.engine_fault_latch =
+           fault_latch_registers_t_00805e32.engine_fault_latch | 0x800;
     }
     else {
       DAT_0080c7d4 = DAT_0080c7d4 + -1;
       if (DAT_0080c7d3 == 0) {
-        if (((_DAT_00805df2 & 1) != 0) && ((_DAT_00805e32 & 1) == 0)) {
-          _DAT_00805df2 = _DAT_00805df2 & 0xfffe;
+        if (((fault_status_registers_t_00805df2.sensor_fault_status & 1) != 0) &&
+           ((fault_latch_registers_t_00805e32.sensor_fault_latch & 1) == 0)) {
+          fault_status_registers_t_00805df2.sensor_fault_status =
+               fault_status_registers_t_00805df2.sensor_fault_status & 0xfffe;
         }
       }
       else {
@@ -9936,18 +10111,24 @@ undefined8 rpmTimerInterruptHandler2(void)
         DAT_0080c7d3 = DAT_0080c7d3 + 1;
       }
       else {
-        _DAT_00805df2 = _DAT_00805df2 | 1;
-        _DAT_00805e32 = _DAT_00805e32 | 1;
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status | 1;
+        fault_latch_registers_t_00805e32.sensor_fault_latch =
+             fault_latch_registers_t_00805e32.sensor_fault_latch | 1;
       }
       DAT_0080c7b2 = 2;
-      _DAT_00805df6 = _DAT_00805df6 | 0x800;
-      _DAT_00805e36 = _DAT_00805e36 | 0x800;
+      fault_status_registers_t_00805df2.engine_fault_status =
+           fault_status_registers_t_00805df2.engine_fault_status | 0x800;
+      fault_latch_registers_t_00805e32.engine_fault_latch =
+           fault_latch_registers_t_00805e32.engine_fault_latch | 0x800;
     }
     else {
       DAT_0080c7d4 = DAT_0080c7d4 + -1;
       if (DAT_0080c7d3 == 0) {
-        if (((_DAT_00805df2 & 1) != 0) && ((_DAT_00805e32 & 1) == 0)) {
-          _DAT_00805df2 = _DAT_00805df2 & 0xfffe;
+        if (((fault_status_registers_t_00805df2.sensor_fault_status & 1) != 0) &&
+           ((fault_latch_registers_t_00805e32.sensor_fault_latch & 1) == 0)) {
+          fault_status_registers_t_00805df2.sensor_fault_status =
+               fault_status_registers_t_00805df2.sensor_fault_status & 0xfffe;
         }
       }
       else {
@@ -10131,8 +10312,10 @@ int throttleTimeAccumulatorProcessor(int param_1,undefined4 param_2)
       }
       else if (((DAT_0080c7b2 == '\x02') && (_DAT_0080c7a2 <= _DAT_0080c7a4)) ||
               ((DAT_0080c7b6 == '\x02' && (_DAT_0080c7a2 <= _DAT_0080c7a6)))) {
-        _DAT_00805df6 = _DAT_00805df6 | 0x800;
-        _DAT_00805e36 = _DAT_00805e36 | 0x800;
+        fault_status_registers_t_00805df2.engine_fault_status =
+             fault_status_registers_t_00805df2.engine_fault_status | 0x800;
+        fault_latch_registers_t_00805e32.engine_fault_latch =
+             fault_latch_registers_t_00805e32.engine_fault_latch | 0x800;
       }
     }
     uVar1 = _DAT_0080c772;
@@ -10186,19 +10369,20 @@ int throttleTimeAccumulatorProcessor(int param_1,undefined4 param_2)
     circular_buffer_t_0080c3fc.data_buffer[0x23] = DAT_0080c772_1;
     return _DAT_00800322;
   }
-  if ((_DAT_00805df6 & 0x800) == 0) {
+  if ((fault_status_registers_t_00805df2.engine_fault_status & 0x800) == 0) {
     circular_buffer_t_0080c3fc.data_buffer[0x22] = DAT_0080c772;
     circular_buffer_t_0080c3fc.data_buffer[0x23] = DAT_0080c772_1;
     _DAT_0080c7b8 = 0;
     return _DAT_00800322;
   }
-  if ((_DAT_00805e36 & 0x800) != 0) {
+  if ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x800) != 0) {
     circular_buffer_t_0080c3fc.data_buffer[0x22] = DAT_0080c772;
     circular_buffer_t_0080c3fc.data_buffer[0x23] = DAT_0080c772_1;
     _DAT_0080c7b8 = 0;
     return _DAT_00800322;
   }
-  _DAT_00805df6 = _DAT_00805df6 & 0xf7ff;
+  fault_status_registers_t_00805df2.engine_fault_status =
+       fault_status_registers_t_00805df2.engine_fault_status & 0xf7ff;
   circular_buffer_t_0080c3fc.data_buffer[0x22] = DAT_0080c772;
   circular_buffer_t_0080c3fc.data_buffer[0x23] = DAT_0080c772_1;
   _DAT_0080c7b8 = 0;
@@ -10432,8 +10616,10 @@ undefined8 dutyCycleMonitorIsrHandler(void)
   DAT_0080c7d4 = DAT_00807d1d;
   if (DAT_00ffff1b == _DAT_00807d18) {
     if (DAT_0080c7d2 == 0) {
-      if (((_DAT_00805df2 & 1) != 0) && ((_DAT_00805e32 & 1) == 0)) {
-        _DAT_00805df2 = _DAT_00805df2 & 0xfffe;
+      if (((fault_status_registers_t_00805df2.sensor_fault_status & 1) != 0) &&
+         ((fault_latch_registers_t_00805e32.sensor_fault_latch & 1) == 0)) {
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status & 0xfffe;
       }
     }
     else {
@@ -10442,12 +10628,16 @@ undefined8 dutyCycleMonitorIsrHandler(void)
     if (_DAT_0080c7ae == CPMXFLMF) {
       DAT_0080c7b2 = 1;
       DAT_0080c7b3 = 1;
-      if (((_DAT_00805df6 & 0x800) != 0) && ((_DAT_00805e36 & 0x800) == 0)) {
-        _DAT_00805df6 = _DAT_00805df6 & 0xf7ff;
+      if (((fault_status_registers_t_00805df2.engine_fault_status & 0x800) != 0) &&
+         ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x800) == 0)) {
+        fault_status_registers_t_00805df2.engine_fault_status =
+             fault_status_registers_t_00805df2.engine_fault_status & 0xf7ff;
       }
       if (DAT_0080c7d1 == 0) {
-        if (((_DAT_00805df2 & 1) != 0) && ((_DAT_00805e32 & 1) == 0)) {
-          _DAT_00805df2 = _DAT_00805df2 & 0xfffe;
+        if (((fault_status_registers_t_00805df2.sensor_fault_status & 1) != 0) &&
+           ((fault_latch_registers_t_00805e32.sensor_fault_latch & 1) == 0)) {
+          fault_status_registers_t_00805df2.sensor_fault_status =
+               fault_status_registers_t_00805df2.sensor_fault_status & 0xfffe;
         }
       }
       else {
@@ -10462,17 +10652,23 @@ undefined8 dutyCycleMonitorIsrHandler(void)
         DAT_0080c7d1 = DAT_0080c7d1 + 1;
       }
       else {
-        _DAT_00805df2 = _DAT_00805df2 | 1;
-        _DAT_00805e32 = _DAT_00805e32 | 1;
-        _DAT_00805df6 = _DAT_00805df6 | 0x800;
-        _DAT_00805e36 = _DAT_00805e36 | 0x800;
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status | 1;
+        fault_latch_registers_t_00805e32.sensor_fault_latch =
+             fault_latch_registers_t_00805e32.sensor_fault_latch | 1;
+        fault_status_registers_t_00805df2.engine_fault_status =
+             fault_status_registers_t_00805df2.engine_fault_status | 0x800;
+        fault_latch_registers_t_00805e32.engine_fault_latch =
+             fault_latch_registers_t_00805e32.engine_fault_latch | 0x800;
       }
     }
   }
   else if (DAT_00ffff1b == _DAT_00807d1a) {
     if (DAT_0080c7d2 == 0) {
-      if (((_DAT_00805df2 & 1) != 0) && ((_DAT_00805e32 & 1) == 0)) {
-        _DAT_00805df2 = _DAT_00805df2 & 0xfffe;
+      if (((fault_status_registers_t_00805df2.sensor_fault_status & 1) != 0) &&
+         ((fault_latch_registers_t_00805e32.sensor_fault_latch & 1) == 0)) {
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status & 0xfffe;
       }
     }
     else {
@@ -10481,12 +10677,16 @@ undefined8 dutyCycleMonitorIsrHandler(void)
     if (_DAT_0080c7ae == CPBS01) {
       DAT_0080c7b2 = 1;
       DAT_0080c7b3 = 1;
-      if (((_DAT_00805df6 & 0x800) != 0) && ((_DAT_00805e36 & 0x800) == 0)) {
-        _DAT_00805df6 = _DAT_00805df6 & 0xf7ff;
+      if (((fault_status_registers_t_00805df2.engine_fault_status & 0x800) != 0) &&
+         ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x800) == 0)) {
+        fault_status_registers_t_00805df2.engine_fault_status =
+             fault_status_registers_t_00805df2.engine_fault_status & 0xf7ff;
       }
       if (DAT_0080c7d1 == 0) {
-        if (((_DAT_00805df2 & 1) != 0) && ((_DAT_00805e32 & 1) == 0)) {
-          _DAT_00805df2 = _DAT_00805df2 & 0xfffe;
+        if (((fault_status_registers_t_00805df2.sensor_fault_status & 1) != 0) &&
+           ((fault_latch_registers_t_00805e32.sensor_fault_latch & 1) == 0)) {
+          fault_status_registers_t_00805df2.sensor_fault_status =
+               fault_status_registers_t_00805df2.sensor_fault_status & 0xfffe;
         }
       }
       else {
@@ -10501,10 +10701,14 @@ undefined8 dutyCycleMonitorIsrHandler(void)
         DAT_0080c7d1 = DAT_0080c7d1 + 1;
       }
       else {
-        _DAT_00805df2 = _DAT_00805df2 | 1;
-        _DAT_00805e32 = _DAT_00805e32 | 1;
-        _DAT_00805df6 = _DAT_00805df6 | 0x800;
-        _DAT_00805e36 = _DAT_00805e36 | 0x800;
+        fault_status_registers_t_00805df2.sensor_fault_status =
+             fault_status_registers_t_00805df2.sensor_fault_status | 1;
+        fault_latch_registers_t_00805e32.sensor_fault_latch =
+             fault_latch_registers_t_00805e32.sensor_fault_latch | 1;
+        fault_status_registers_t_00805df2.engine_fault_status =
+             fault_status_registers_t_00805df2.engine_fault_status | 0x800;
+        fault_latch_registers_t_00805e32.engine_fault_latch =
+             fault_latch_registers_t_00805e32.engine_fault_latch | 0x800;
       }
     }
   }
@@ -10512,8 +10716,10 @@ undefined8 dutyCycleMonitorIsrHandler(void)
     DAT_0080c7d2 = DAT_0080c7d2 + 1;
   }
   else {
-    _DAT_00805df2 = _DAT_00805df2 | 1;
-    _DAT_00805e32 = _DAT_00805e32 | 1;
+    fault_status_registers_t_00805df2.sensor_fault_status =
+         fault_status_registers_t_00805df2.sensor_fault_status | 1;
+    fault_latch_registers_t_00805e32.sensor_fault_latch =
+         fault_latch_registers_t_00805e32.sensor_fault_latch | 1;
   }
   if ((_DAT_0080c760 < -_DAT_0080c754 - 1U) &&
      (_DAT_0080c754 = _DAT_0080c760 + _DAT_0080c754, _DAT_0080c75a != -1)) {
@@ -10592,8 +10798,10 @@ undefined8 dutyCycleMonitorAltIsrHandler(void)
     circular_buffer_t_0080c3fc.data_buffer._36_2_ = _DAT_0080c774;
     _DAT_0080c760 = _DAT_00ffff18;
     DAT_0080c7b4 = 1;
-    if (((_DAT_00805df6 & 0x800) != 0) && ((_DAT_00805e36 & 0x800) == 0)) {
-      _DAT_00805df6 = _DAT_00805df6 & 0xf7ff;
+    if (((fault_status_registers_t_00805df2.engine_fault_status & 0x800) != 0) &&
+       ((fault_latch_registers_t_00805e32.engine_fault_latch & 0x800) == 0)) {
+      fault_status_registers_t_00805df2.engine_fault_status =
+           fault_status_registers_t_00805df2.engine_fault_status & 0xf7ff;
     }
     circular_buffer_t_0080c3fc.data_buffer._448_4_ = _DAT_00ffff18;
     circular_buffer_t_0080c3fc.data_buffer._14_4_ = _DAT_00ffff18;
@@ -11965,7 +12173,7 @@ void schedulerPerformanceMonitor(void)
 void schedulerWaitLoop(void)
 
 {
-  while (_DAT_0080c812 == 0) {
+  while (engine_operating_mode_t_0080c810.shutdown_complete_flag == 0) {
     if (_DAT_0080976e != 0) {
       for (_DAT_00809778 = 0; _DAT_00809778 < _DAT_00809776; _DAT_00809778 = _DAT_00809778 + 1) {
       }
@@ -12061,31 +12269,32 @@ ushort fuelDemandModeSelector(void)
     _DAT_0080d494 = _DAT_0080379e;
     _DAT_0080d496 = 0xd;
   }
-  if (_DAT_0080c810 == 1) {
+  if (engine_operating_mode_t_0080c810.state == 1) {
     _DAT_0080c9a4 = 0;
     _DAT_0080c9a6 = 0x1a;
   }
   else {
-    if (_DAT_0080c810 == 8) {
+    if (engine_operating_mode_t_0080c810.state == 8) {
       _DAT_0080c9a6 = 0x1b;
       _DAT_0080c9a4 = _DAT_0080849e;
     }
-    else if (_DAT_0080c810 == 5) {
+    else if (engine_operating_mode_t_0080c810.state == 5) {
       _DAT_0080c9a6 = 0x19;
       _DAT_0080c9a4 = _DAT_00807f40;
     }
     else {
       uVar1 = _DAT_008035d6 & 2;
       if (uVar1 == 0) {
-        if (_DAT_0080c810 == 4) {
+        if (engine_operating_mode_t_0080c810.state == 4) {
           _DAT_0080c9a6 = 0x18;
           _DAT_0080c9a4 = _DAT_00807f3e;
         }
-        else if ((_DAT_0080c810 == 2) || (_DAT_0080c810 == 6)) {
+        else if ((engine_operating_mode_t_0080c810.state == 2) ||
+                (engine_operating_mode_t_0080c810.state == 6)) {
           _DAT_0080c9a6 = 0x16;
           _DAT_0080c9a4 = _DAT_0080c7e8;
         }
-        else if (_DAT_0080c810 == 3) {
+        else if (engine_operating_mode_t_0080c810.state == 3) {
           if ((_DAT_00800360 == 2) || (_DAT_00800360 == 6)) {
             uVar1 = governorPidFuelCalculator();
             _DAT_00809652 = _DAT_0080c7e8;
@@ -12102,7 +12311,7 @@ ushort fuelDemandModeSelector(void)
         }
         else {
           _DAT_0080c9a4 = unaff_D2w;
-          if (_DAT_0080c810 == 7) {
+          if (engine_operating_mode_t_0080c810.state == 7) {
             if (((diagnostic_state_buffer_t_00809654.diagnostic_mode == 0xb) &&
                 (_DAT_0080d496 == 0x14)) || (uVar1 = _DAT_00809652, _DAT_00809652 < _DAT_0080d494))
             {
@@ -12132,7 +12341,7 @@ ushort fuelDemandModeSelector(void)
       _DAT_0080c9a4 = _DAT_0080849e;
     }
   }
-  _DAT_00800360 = _DAT_0080c810;
+  _DAT_00800360 = engine_operating_mode_t_0080c810.state;
   return uVar1;
 }
 
@@ -12495,8 +12704,9 @@ ushort canPinVp44StatusController(void)
   uVar1 = DAT_0080bdc6 & 1;
   if (((((DAT_0080bdc6 & 1) != 0) && (_DAT_0080c9c6 == 0)) &&
       ((_DAT_0080969e == 0 || (uVar1 = _DAT_008035d4 & 0x40, (_DAT_008035d4 & 0x40) == 0)))) &&
-     (((_DAT_0080c810 == 5 && (uVar1 = _DAT_008035ec & 2, (_DAT_008035ec & 2) == 0)) ||
-      (_DAT_0080c810 != 5)))) {
+     (((engine_operating_mode_t_0080c810.state == 5 &&
+       (uVar1 = _DAT_008035ec & 2, (_DAT_008035ec & 2) == 0)) ||
+      (engine_operating_mode_t_0080c810.state != 5)))) {
     DAT_0080bdf3 = DAT_0080bdf3 | 0x20;
     return uVar1;
   }
@@ -12538,9 +12748,12 @@ void fuel_timing_calculation_with_fault_checking(void)
     _DAT_0080c9d8 = unaff_D3w + (short)((uint)uVar1 * ((uint)unaff_D4w - (uint)unaff_D3w) >> 0xe);
   }
   if (((((_DAT_00803614 & 0x8000) == 0) ||
-       (((_DAT_00805df6 & 2) != 0 && ((_DAT_008068c8 & 2) != 0)))) ||
-      (((_DAT_00805df6 & 1) != 0 && ((_DAT_008068c8 & 1) != 0)))) ||
-     (((_DAT_00805df6 & 0x10) != 0 && ((_DAT_008068c8 & 0x10) != 0)))) {
+       (((fault_status_registers_t_00805df2.engine_fault_status & 2) != 0 &&
+        ((_DAT_008068c8 & 2) != 0)))) ||
+      (((fault_status_registers_t_00805df2.engine_fault_status & 1) != 0 &&
+       ((_DAT_008068c8 & 1) != 0)))) ||
+     (((fault_status_registers_t_00805df2.engine_fault_status & 0x10) != 0 &&
+      ((_DAT_008068c8 & 0x10) != 0)))) {
     sVar2 = 0;
   }
   else {
@@ -12908,10 +13121,10 @@ ushort highRpmEngineProtectionStateMachine(void)
   uVar1 = _DAT_008035da & 2;
   if ((_DAT_008035da & 2) != 0) {
     uVar1 = derateChangeDetector();
-    if (_DAT_0080cc6c == 0) {
-      _DAT_0080cc6e = _DAT_008036fc;
-      _DAT_0080cc72 = 0;
-      _DAT_0080cc6a = 0;
+    if (high_rpm_protection_t_0080cc6a.state == 0) {
+      high_rpm_protection_t_0080cc6a.timer = _DAT_008036fc;
+      high_rpm_protection_t_0080cc6a.warning_flag = 0;
+      high_rpm_protection_t_0080cc6a.fault_flag = 0;
       _DAT_008003ec = _DAT_00809d4c;
       if (_DAT_00808494 == 0) {
         DAT_0080bdf1 = DAT_0080bdf1 | 1;
@@ -12921,8 +13134,10 @@ ushort highRpmEngineProtectionStateMachine(void)
       }
       if (((_DAT_0080d17a == 0) || (uVar1 = _DAT_008035d8 & 8, (_DAT_008035d8 & 8) != 0)) &&
          ((_DAT_008096a6 == 0 &&
-          ((_DAT_0080c810 == 3 && (uVar1 = _DAT_0080926e, _DAT_00808490 < _DAT_0080926e)))))) {
-        if (((_DAT_00805dfa & 0x100) == 0) || ((_DAT_008068cc & 0x100) == 0)) {
+          ((engine_operating_mode_t_0080c810.state == 3 &&
+           (uVar1 = _DAT_0080926e, _DAT_00808490 < _DAT_0080926e)))))) {
+        if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) == 0) ||
+           ((_DAT_008068cc & 0x100) == 0)) {
           uVar1 = 0;
         }
         else {
@@ -12930,47 +13145,48 @@ ushort highRpmEngineProtectionStateMachine(void)
         }
         if ((((uVar1 == 0) && (_DAT_008003e6 == 0)) && (_DAT_008003ea == 0)) && (_DAT_008003ee == 0)
            ) {
-          _DAT_0080cc6c = 1;
+          high_rpm_protection_t_0080cc6a.state = 1;
           return 0;
         }
       }
     }
-    else if (_DAT_0080cc6c == 1) {
-      _DAT_0080cc6e = _DAT_0080cc6e - 1;
-      if ((((_DAT_0080d17a != 0) && ((_DAT_008035d8 & 8) == 0)) || (_DAT_0080c810 != 3)) ||
+    else if (high_rpm_protection_t_0080cc6a.state == 1) {
+      high_rpm_protection_t_0080cc6a.timer = high_rpm_protection_t_0080cc6a.timer - 1;
+      if ((((_DAT_0080d17a != 0) && ((_DAT_008035d8 & 8) == 0)) ||
+          (engine_operating_mode_t_0080c810.state != 3)) ||
          (((_DAT_0080926e <= _DAT_00808490 || (_DAT_008003e6 != 0)) ||
           ((_DAT_008003ea != 0 || (_DAT_008003ee != 0)))))) {
-        _DAT_0080cc6c = 0;
+        high_rpm_protection_t_0080cc6a.state = 0;
       }
-      uVar1 = _DAT_0080cc6e;
-      if (_DAT_0080cc6e <= _DAT_00808496) {
-        _DAT_0080cc6c = 2;
-        _DAT_0080cc72 = 1;
-        return _DAT_0080cc6e;
+      uVar1 = high_rpm_protection_t_0080cc6a.timer;
+      if (high_rpm_protection_t_0080cc6a.timer <= _DAT_00808496) {
+        high_rpm_protection_t_0080cc6a.state = 2;
+        high_rpm_protection_t_0080cc6a.warning_flag = 1;
+        return high_rpm_protection_t_0080cc6a.timer;
       }
     }
-    else if (_DAT_0080cc6c == 2) {
-      _DAT_0080cc6e = _DAT_0080cc6e - 1;
+    else if (high_rpm_protection_t_0080cc6a.state == 2) {
+      high_rpm_protection_t_0080cc6a.timer = high_rpm_protection_t_0080cc6a.timer - 1;
       uVar1 = _DAT_008035da & 4;
       if ((_DAT_008035da & 4) == 0) {
         if ((((_DAT_0080d17a != 0) && (uVar1 = _DAT_008035d8 & 8, (_DAT_008035d8 & 8) == 0)) ||
             (_DAT_008096a6 != 0)) ||
-           (((_DAT_0080c810 != 3 || (_DAT_008003e6 != 0)) ||
+           (((engine_operating_mode_t_0080c810.state != 3 || (_DAT_008003e6 != 0)) ||
             ((_DAT_008003ea != 0 || (_DAT_008003ee != 0)))))) {
-          _DAT_0080cc6c = 0;
+          high_rpm_protection_t_0080cc6a.state = 0;
         }
       }
       else {
         uVar1 = _DAT_008003ea | _DAT_008003e6;
         if ((uVar1 != 0) || (_DAT_008003ee != 0)) {
-          _DAT_0080cc6c = 3;
-          _DAT_0080cc72 = 0;
-          _DAT_0080cc6a = 1;
+          high_rpm_protection_t_0080cc6a.state = 3;
+          high_rpm_protection_t_0080cc6a.warning_flag = 0;
+          high_rpm_protection_t_0080cc6a.fault_flag = 1;
         }
       }
-      if (_DAT_0080cc6e == 0) {
-        _DAT_0080cc6c = 4;
-        _DAT_0080cc72 = 0;
+      if (high_rpm_protection_t_0080cc6a.timer == 0) {
+        high_rpm_protection_t_0080cc6a.state = 4;
+        high_rpm_protection_t_0080cc6a.warning_flag = 0;
         _DAT_0080c996 = 1;
         if (_DAT_00808494 != 0) {
           DAT_0080bdf1 = DAT_0080bdf1 | 1;
@@ -12980,14 +13196,15 @@ ushort highRpmEngineProtectionStateMachine(void)
         return uVar1;
       }
     }
-    else if (_DAT_0080cc6c == 3) {
-      if ((_DAT_008096a6 != 0) || (_DAT_0080c810 == 1)) {
-        _DAT_0080cc6c = 0;
+    else if (high_rpm_protection_t_0080cc6a.state == 3) {
+      if ((_DAT_008096a6 != 0) || (engine_operating_mode_t_0080c810.state == 1)) {
+        high_rpm_protection_t_0080cc6a.state = 0;
         return uVar1;
       }
     }
-    else if ((_DAT_0080cc6c == 4) && (_DAT_0080c810 == 1)) {
-      _DAT_0080cc6c = 0;
+    else if ((high_rpm_protection_t_0080cc6a.state == 4) &&
+            (engine_operating_mode_t_0080c810.state == 1)) {
+      high_rpm_protection_t_0080cc6a.state = 0;
     }
   }
   return uVar1;
@@ -13004,8 +13221,8 @@ ushort highRpmEngineProtectionStateMachine(void)
 void initFuelArbitratorThreshold3(void)
 
 {
-  _DAT_0080cc6e = _DAT_008036fc;
-  _DAT_0080cc6c = 0;
+  high_rpm_protection_t_0080cc6a.timer = _DAT_008036fc;
+  high_rpm_protection_t_0080cc6a.state = 0;
   _DAT_0080c996 = 0;
   return;
 }
@@ -13477,9 +13694,12 @@ undefined8 epsPositionSensorIsrHandler(void)
         _DAT_0080d2b8 = (byte *)CONCAT31(_DAT_0080d2b8,DAT_0080d2bb + '\x01');
         DAT_0080d2d3 = 0;
         CMSNCUER = 0;
-        if (((((_DAT_00805e00 & 4) != 0) && ((_DAT_008068d2 & 4) != 0)) &&
-            ((_DAT_00805e00 & 4) != 0)) && ((_DAT_00805e40 & 4) == 0)) {
-          _DAT_00805e00 = _DAT_00805e00 & 0xfffb;
+        if (((((fault_status_registers_t_00805df2.io_fault_status_4 & 4) != 0) &&
+             ((_DAT_008068d2 & 4) != 0)) &&
+            ((fault_status_registers_t_00805df2.io_fault_status_4 & 4) != 0)) &&
+           ((fault_latch_registers_t_00805e32.io_fault_latch_4 & 4) == 0)) {
+          fault_status_registers_t_00805df2.io_fault_status_4 =
+               fault_status_registers_t_00805df2.io_fault_status_4 & 0xfffb;
         }
         DAT_0080d2d0 = '\x01';
         if (DAT_0080d2ce == '\0') {
@@ -13544,13 +13764,15 @@ uint serialTransmitHandler(void)
     }
   }
   uVar1 = (undefined2)(uVar2 >> 0x10);
-  uVar2 = CONCAT22(uVar1,_DAT_00805dfc) & 0xffff0200;
-  if ((((_DAT_00805dfc & 0x200) != 0) &&
+  uVar2 = CONCAT22(uVar1,fault_status_registers_t_00805df2.io_fault_status_2) & 0xffff0200;
+  if ((((fault_status_registers_t_00805df2.io_fault_status_2 & 0x200) != 0) &&
       (uVar2 = CONCAT22(uVar1,_DAT_008068ce) & 0xffff0200, (_DAT_008068ce & 0x200) != 0)) &&
-     (uVar2 = CONCAT22(uVar1,_DAT_00805dfc) & 0xffff0200, (_DAT_00805dfc & 0x200) != 0)) {
-    uVar2 = CONCAT22(uVar1,_DAT_00805e3c) & 0xffff0200;
-    if ((_DAT_00805e3c & 0x200) == 0) {
-      _DAT_00805dfc = _DAT_00805dfc & 0xfdff;
+     (uVar2 = CONCAT22(uVar1,fault_status_registers_t_00805df2.io_fault_status_2) & 0xffff0200,
+     (fault_status_registers_t_00805df2.io_fault_status_2 & 0x200) != 0)) {
+    uVar2 = CONCAT22(uVar1,fault_latch_registers_t_00805e32.io_fault_latch_2) & 0xffff0200;
+    if ((fault_latch_registers_t_00805e32.io_fault_latch_2 & 0x200) == 0) {
+      fault_status_registers_t_00805df2.io_fault_status_2 =
+           fault_status_registers_t_00805df2.io_fault_status_2 & 0xfdff;
     }
   }
   return uVar2;
@@ -13756,8 +13978,10 @@ uint insiteMultiFrameResponseBuilder(undefined4 param_1)
          insite_session_t_0080d407.tx_buffer_ptr._2_1_ + '\x01';
     return uVar2 & 0xffffff00;
   }
-  _DAT_00805e00 = _DAT_00805e00 | 4;
-  _DAT_00805e40 = _DAT_00805e40 | 4;
+  fault_status_registers_t_00805df2.io_fault_status_4 =
+       fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+  fault_latch_registers_t_00805e32.io_fault_latch_4 =
+       fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
   return 1;
 }
 
@@ -13940,8 +14164,10 @@ void responseBufferSpaceCheck(void)
   bVar1 = (CKTTCUER - DAT_0080d2b7) - 2;
   if (bVar1 < 5) {
     DAT_0080d419 = 0;
-    _DAT_00805e00 = _DAT_00805e00 | 4;
-    _DAT_00805e40 = _DAT_00805e40 | 4;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
     return;
   }
   if (0x15 < bVar1) {
@@ -14209,8 +14435,10 @@ void diagnosticMemoryReadHandler(undefined4 param_1)
   }
   else {
     diagnosticMessageQueueWrite(CONCAT22(4,uVar12));
-    _DAT_00805e00 = _DAT_00805e00 | 4;
-    _DAT_00805e40 = _DAT_00805e40 | 4;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
   }
   return;
 }
@@ -14245,8 +14473,10 @@ void diagnosticMessage45Builder(void)
     iVar3 = (_DAT_0080d2bc - (int)_DAT_0080d2b4) + 0xfe;
   }
   if (iVar3 < 7) {
-    _DAT_00805e00 = _DAT_00805e00 | 4;
-    _DAT_00805e40 = _DAT_00805e40 | 4;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
     return;
   }
   local_8._3_1_ = (char)_DAT_0080d2b4;
@@ -14257,21 +14487,24 @@ void diagnosticMessage45Builder(void)
   local_8 = (byte *)CONCAT31(local_8._0_3_,cVar2 + '\x02');
   *local_8 = (char)((ushort)_DAT_0080bd8e >> 8);
   local_8 = (byte *)CONCAT31(local_8._0_3_,cVar2 + '\x03');
-  if (((_DAT_00805dfa & 0x20) == 0) || ((_DAT_008068cc & 0x20) == 0)) {
+  if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x20) == 0) ||
+     ((_DAT_008068cc & 0x20) == 0)) {
     bVar1 = false;
   }
   else {
     bVar1 = true;
   }
   if (!bVar1) {
-    if (((_DAT_00805dfa & 8) == 0) || ((_DAT_008068cc & 8) == 0)) {
+    if (((fault_status_registers_t_00805df2.io_fault_status_1 & 8) == 0) ||
+       ((_DAT_008068cc & 8) == 0)) {
       bVar1 = false;
     }
     else {
       bVar1 = true;
     }
     if (!bVar1) {
-      if (((_DAT_00805dfa & 0x10) == 0) || ((_DAT_008068cc & 0x10) == 0)) {
+      if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x10) == 0) ||
+         ((_DAT_008068cc & 0x10) == 0)) {
         bVar1 = false;
       }
       else {
@@ -14345,8 +14578,10 @@ void diagnosticMessage46Builder(void)
     iVar4 = (_DAT_0080d2bc - (int)_DAT_0080d2b4) + 0xfe;
   }
   if (iVar4 < 0x17) {
-    _DAT_00805e00 = _DAT_00805e00 | 4;
-    _DAT_00805e40 = _DAT_00805e40 | 4;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
   }
   else {
     local_8._3_1_ = (char)_DAT_0080d2b4;
@@ -14836,8 +15071,10 @@ void diagnosticMessage53Builder(void)
     iVar2 = (_DAT_0080d2bc - (int)_DAT_0080d2b4) + 0xfe;
   }
   if (iVar2 < 3) {
-    _DAT_00805e00 = _DAT_00805e00 | 4;
-    _DAT_00805e40 = _DAT_00805e40 | 4;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
   }
   else {
     local_8._3_1_ = (char)_DAT_0080d2b4;
@@ -14882,8 +15119,10 @@ void diagnosticMessage54Builder(void)
     iVar2 = (_DAT_0080d2bc - (int)_DAT_0080d2b4) + 0xfe;
   }
   if (iVar2 < 4) {
-    _DAT_00805e00 = _DAT_00805e00 | 4;
-    _DAT_00805e40 = _DAT_00805e40 | 4;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
   }
   else {
     local_8._3_1_ = (char)_DAT_0080d2b4;
@@ -16988,35 +17227,36 @@ void fuelArbitratorVariablesReset(void)
 uint systemStatusProcessor(void)
 
 {
-  bool bVar1;
+  word wVar1;
   bool bVar2;
   bool bVar3;
-  ushort uVar4;
-  undefined2 uVar5;
-  undefined3 uVar6;
-  uint uVar7;
+  bool bVar4;
+  ushort uVar5;
+  undefined2 uVar6;
+  undefined3 uVar7;
   uint uVar8;
+  uint uVar9;
   undefined4 unaff_D2;
-  bool bVar9;
   bool bVar10;
   bool bVar11;
   bool bVar12;
+  bool bVar13;
   
-  uVar5 = (undefined2)((uint)unaff_D2 >> 0x10);
+  uVar6 = (undefined2)((uint)unaff_D2 >> 0x10);
+  bVar4 = false;
   bVar3 = false;
   bVar2 = false;
-  bVar1 = false;
   if ((_DAT_00801622 != fuel_arbitrator_diag_t_0080cff8.speed_limit) &&
      (fuel_arbitrator_diag_t_0080cff8.speed_limit == 1)) {
     _DAT_0080d030 = _DAT_008086e6 + 1;
-    bVar1 = true;
+    bVar2 = true;
   }
   if (_DAT_0080d02e != 0) {
     _DAT_0080d02e = _DAT_0080d02e + -1;
-    bVar1 = true;
+    bVar2 = true;
   }
-  bVar9 = _DAT_0080d02e == 1;
-  if (bVar9) {
+  bVar10 = _DAT_0080d02e == 1;
+  if (bVar10) {
     fuel_arbitrator_diag_t_0080cff8.speed_limit = 0;
     _DAT_0080d03c = 0;
     _DAT_0080d02e = 0;
@@ -17034,10 +17274,10 @@ uint systemStatusProcessor(void)
       (_DAT_0080d034 = _DAT_0080d034 + -1,
       _DAT_00801628 != fuel_arbitrator_diag_t_0080cff8.session_counter)) &&
      (fuel_arbitrator_diag_t_0080cff8.session_counter == 1)) {
-    bVar1 = true;
+    bVar2 = true;
   }
-  bVar10 = _DAT_0080d034 == 1;
-  if (bVar10) {
+  bVar11 = _DAT_0080d034 == 1;
+  if (bVar11) {
     fuel_arbitrator_diag_t_0080cff8.session_counter = 0;
     _DAT_0080d034 = 0;
   }
@@ -17045,10 +17285,10 @@ uint systemStatusProcessor(void)
       (_DAT_0080d032 = _DAT_0080d032 + -1,
       _DAT_0080162a != fuel_arbitrator_diag_t_0080cff8.fuel_limit)) &&
      (fuel_arbitrator_diag_t_0080cff8.fuel_limit == 1)) {
-    bVar1 = true;
+    bVar2 = true;
   }
-  bVar11 = _DAT_0080d032 == 1;
-  if (bVar11) {
+  bVar12 = _DAT_0080d032 == 1;
+  if (bVar12) {
     fuel_arbitrator_diag_t_0080cff8.fuel_limit = 0;
     _DAT_0080d032 = 0;
   }
@@ -17056,15 +17296,15 @@ uint systemStatusProcessor(void)
       (_DAT_0080d036 = _DAT_0080d036 + -1,
       _DAT_0080162c != fuel_arbitrator_diag_t_0080cff8.throttle_mode)) &&
      (fuel_arbitrator_diag_t_0080cff8.throttle_mode == 1)) {
-    bVar1 = true;
+    bVar2 = true;
   }
-  bVar12 = _DAT_0080d036 == 1;
-  if (bVar12) {
+  bVar13 = _DAT_0080d036 == 1;
+  if (bVar13) {
     fuel_arbitrator_diag_t_0080cff8.throttle_mode = 0;
     _DAT_0080d036 = 0;
   }
-  bVar12 = bVar12 || (bVar11 || (bVar10 || bVar9));
-  uVar4 = (short)fuel_arbitrator_diag_t_0080cff8.rpm_target >> 0xf;
+  bVar13 = bVar13 || (bVar12 || (bVar11 || bVar10));
+  uVar5 = (short)fuel_arbitrator_diag_t_0080cff8.rpm_target >> 0xf;
   if (((fuel_arbitrator_diag_t_0080cff8.rpm_target == _DAT_0080161c) &&
       (fuel_arbitrator_diag_t_0080cff8._28_2_ == _DAT_0080161e)) &&
      ((char)fuel_arbitrator_diag_t_0080cff8.limited_value == DAT_00801620)) {
@@ -17074,81 +17314,81 @@ uint systemStatusProcessor(void)
     if (_DAT_0080d026 != 0) {
       _DAT_0080d026 = _DAT_0080d026 + -1;
     }
-    uVar7 = (uint)(short)fuel_arbitrator_diag_t_0080cff8.rpm_target;
-    uVar8 = uVar7;
-    if (uVar7 < 4) {
-      uVar8 = CONCAT22(uVar4,(&switchD_0001ce60::switchdataD_0001ce64)[uVar7]);
-      uVar6 = (undefined3)(uVar8 >> 8);
-      switch(uVar7) {
+    uVar8 = (uint)(short)fuel_arbitrator_diag_t_0080cff8.rpm_target;
+    uVar9 = uVar8;
+    if (uVar8 < 4) {
+      uVar9 = CONCAT22(uVar5,(&switchD_0001ce60::switchdataD_0001ce64)[uVar8]);
+      uVar7 = (undefined3)(uVar9 >> 8);
+      switch(uVar8) {
       case 1:
         if (_DAT_0080d028 == 1) {
-          uVar8 = fuelArbitratorResetHandler();
-          bVar12 = true;
+          uVar9 = fuelArbitratorResetHandler();
+          bVar13 = true;
         }
         else if (_DAT_0080d026 == 1) {
           ioControlEntryAdd(CONCAT22(fuel_arbitrator_diag_t_0080cff8._28_2_,
-                                     (short)CONCAT31(uVar6,(char)fuel_arbitrator_diag_t_0080cff8.
-                                                                 limited_value)),CONCAT22(1,uVar5));
-          uVar8 = fuelArbitratorResetHandler();
+                                     (short)CONCAT31(uVar7,(char)fuel_arbitrator_diag_t_0080cff8.
+                                                                 limited_value)),CONCAT22(1,uVar6));
+          uVar9 = fuelArbitratorResetHandler();
         }
         break;
       case 2:
         if (_DAT_0080d028 == 1) {
-          uVar8 = fuelArbitratorResetHandler();
-          bVar12 = true;
+          uVar9 = fuelArbitratorResetHandler();
+          bVar13 = true;
         }
         else if ((_DAT_0080d026 == 1) && (fuel_arbitrator_diag_t_0080cff8.fuel_limit == 0)) {
           ioControlEntryAdd(CONCAT22(fuel_arbitrator_diag_t_0080cff8._28_2_,
-                                     (short)CONCAT31(uVar6,(char)fuel_arbitrator_diag_t_0080cff8.
-                                                                 limited_value)),CONCAT22(2,uVar5));
-          uVar8 = fuelArbitratorResetHandler();
+                                     (short)CONCAT31(uVar7,(char)fuel_arbitrator_diag_t_0080cff8.
+                                                                 limited_value)),CONCAT22(2,uVar6));
+          uVar9 = fuelArbitratorResetHandler();
         }
         break;
       case 3:
         if (_DAT_0080d028 == 1) {
-          uVar8 = fuelArbitratorResetHandler();
-          bVar12 = true;
+          uVar9 = fuelArbitratorResetHandler();
+          bVar13 = true;
         }
       }
     }
   }
   else {
-    uVar7 = (uint)(short)fuel_arbitrator_diag_t_0080cff8.rpm_target;
-    uVar8 = uVar7;
-    if (uVar7 < 4) {
-      uVar8 = (uint)uVar4 << 0x10;
-      switch(uVar7) {
+    uVar8 = (uint)(short)fuel_arbitrator_diag_t_0080cff8.rpm_target;
+    uVar9 = uVar8;
+    if (uVar8 < 4) {
+      uVar9 = (uint)uVar5 << 0x10;
+      switch(uVar8) {
       case 0:
         _DAT_0080d026 = 0;
         break;
       case 1:
         _DAT_0080d026 = *(short *)(_DAT_0080d01e + 6) + 1;
-        uVar8 = CONCAT22(uVar4,_DAT_0080d026);
-        bVar1 = true;
+        uVar9 = CONCAT22(uVar5,_DAT_0080d026);
+        bVar2 = true;
         break;
       case 2:
         _DAT_0080d026 = *(short *)(_DAT_0080d01e + 10) + 1;
-        uVar8 = CONCAT22(uVar4,_DAT_0080d026);
-        bVar1 = true;
+        uVar9 = CONCAT22(uVar5,_DAT_0080d026);
+        bVar2 = true;
         break;
       case 3:
         _DAT_0080d026 = 0;
-        bVar1 = true;
+        bVar2 = true;
       }
     }
     if (_DAT_0080161e == 0) {
-      uVar8 = j1939MessageTypeCounter(CONCAT22(_DAT_0080161c,uVar5));
+      uVar9 = j1939MessageTypeCounter(CONCAT22(_DAT_0080161c,uVar6));
     }
   }
-  if (bVar12) {
+  if (bVar13) {
     if (fuel_arbitrator_diag_t_0080cff8._28_2_ == 1) {
-      bVar3 = true;
+      bVar4 = true;
     }
     else {
-      bVar2 = true;
+      bVar3 = true;
     }
   }
-  else if (bVar1) {
+  else if (bVar2) {
     if (fuel_arbitrator_diag_t_0080cff8._28_2_ == 1) {
       DAT_0080162f = '\x01';
     }
@@ -17163,10 +17403,10 @@ uint systemStatusProcessor(void)
   _DAT_00801628 = fuel_arbitrator_diag_t_0080cff8.session_counter;
   _DAT_0080162a = fuel_arbitrator_diag_t_0080cff8.fuel_limit;
   _DAT_0080162c = fuel_arbitrator_diag_t_0080cff8.throttle_mode;
-  uVar8 = CONCAT22((short)(uVar8 >> 0x10),_DAT_0080cfa8);
+  uVar9 = CONCAT22((short)(uVar9 >> 0x10),_DAT_0080cfa8);
   if (_DAT_0080cfa8 == _DAT_00801624) {
-    uVar8 = (uint)_DAT_0080cfac;
-    if (uVar8 == DAT_00801626) {
+    uVar9 = (uint)_DAT_0080cfac;
+    if (uVar9 == DAT_00801626) {
       if (_DAT_0080d02c != 0) {
         _DAT_0080d02c = _DAT_0080d02c + -1;
       }
@@ -17175,24 +17415,24 @@ uint systemStatusProcessor(void)
       }
       if (_DAT_0080cfa8 == 2) {
         if (_DAT_0080d02c == 1) {
-          uVar8 = fuelArbitratorVariablesReset();
-          bVar3 = true;
+          uVar9 = fuelArbitratorVariablesReset();
+          bVar4 = true;
         }
         else if (_DAT_0080d02a == 1) {
-          ioControlTimeoutEntryAdd(CONCAT22(_DAT_0080cfac,uVar5));
-          uVar8 = fuelArbitratorVariablesReset();
+          ioControlTimeoutEntryAdd(CONCAT22(_DAT_0080cfac,uVar6));
+          uVar9 = fuelArbitratorVariablesReset();
         }
       }
       else if ((_DAT_0080cfa8 == 3) && (_DAT_0080d02c == 1)) {
-        uVar8 = fuelArbitratorVariablesReset();
-        bVar3 = true;
+        uVar9 = fuelArbitratorVariablesReset();
+        bVar4 = true;
       }
       goto LAB_0001d026;
     }
   }
   if (_DAT_0080cfa8 == 2) {
     _DAT_0080d02a = *(short *)(_DAT_0080d022 + 0x10) + 1;
-    uVar8 = CONCAT22((short)(uVar8 >> 0x10),_DAT_0080d02a);
+    uVar9 = CONCAT22((short)(uVar9 >> 0x10),_DAT_0080d02a);
     DAT_0080162f = '\x01';
   }
   else {
@@ -17204,70 +17444,78 @@ uint systemStatusProcessor(void)
 LAB_0001d026:
   _DAT_00801624 = _DAT_0080cfa8;
   DAT_00801626 = DAT_0080cfad;
-  if (bVar2) {
-    uVar8 = (uint)_DAT_00805578;
-    if ((int)uVar8 < (int)(_DAT_0080875e - 1)) {
+  if (bVar3) {
+    uVar9 = (uint)_DAT_00805578;
+    if ((int)uVar9 < (int)(_DAT_0080875e - 1)) {
       _DAT_00805578 = _DAT_00805578 + 1;
     }
     else {
-      _DAT_00805e00 = _DAT_00805e00 | 8;
-      _DAT_00805e40 = _DAT_00805e40 | 8;
+      fault_status_registers_t_00805df2.io_fault_status_4 =
+           fault_status_registers_t_00805df2.io_fault_status_4 | 8;
+      fault_latch_registers_t_00805e32.io_fault_latch_4 =
+           fault_latch_registers_t_00805e32.io_fault_latch_4 | 8;
       _DAT_00805578 = 0;
     }
     DAT_00801630 = '\0';
   }
   else if (DAT_00801630 == '\x01') {
-    uVar5 = (undefined2)(uVar8 >> 0x10);
-    uVar4 = _DAT_00805e00;
-    if (((_DAT_00805e00 & 8) == 0) || (uVar4 = _DAT_008068d2, (_DAT_008068d2 & 8) == 0)) {
-      uVar8 = CONCAT22(uVar5,uVar4) & 0xffff0008;
+    uVar6 = (undefined2)(uVar9 >> 0x10);
+    wVar1 = fault_status_registers_t_00805df2.io_fault_status_4;
+    if (((fault_status_registers_t_00805df2.io_fault_status_4 & 8) == 0) ||
+       (wVar1 = _DAT_008068d2, (_DAT_008068d2 & 8) == 0)) {
+      uVar9 = CONCAT22(uVar6,wVar1) & 0xffff0008;
       DAT_00801630 = '\0';
     }
     else {
-      uVar8 = CONCAT22(uVar5,_DAT_00805e00) & 0xffff0008;
-      if ((_DAT_00805e00 & 8) != 0) {
-        uVar8 = CONCAT22(uVar5,_DAT_00805e40) & 0xffff0008;
-        if ((_DAT_00805e40 & 8) == 0) {
-          _DAT_00805e00 = _DAT_00805e00 & 0xfff7;
+      uVar9 = CONCAT22(uVar6,fault_status_registers_t_00805df2.io_fault_status_4) & 0xffff0008;
+      if ((fault_status_registers_t_00805df2.io_fault_status_4 & 8) != 0) {
+        uVar9 = CONCAT22(uVar6,fault_latch_registers_t_00805e32.io_fault_latch_4) & 0xffff0008;
+        if ((fault_latch_registers_t_00805e32.io_fault_latch_4 & 8) == 0) {
+          fault_status_registers_t_00805df2.io_fault_status_4 =
+               fault_status_registers_t_00805df2.io_fault_status_4 & 0xfff7;
           DAT_00801630 = '\0';
           _DAT_00805578 = 0;
         }
       }
     }
   }
-  if (bVar3) {
-    uVar8 = (uint)_DAT_0080557a;
-    if ((int)uVar8 < (int)(_DAT_0080875e - 1)) {
+  if (bVar4) {
+    uVar9 = (uint)_DAT_0080557a;
+    if ((int)uVar9 < (int)(_DAT_0080875e - 1)) {
       _DAT_0080557a = _DAT_0080557a + 1;
     }
     else {
-      _DAT_00805dfc = _DAT_00805dfc | 0x400;
-      _DAT_00805e3c = _DAT_00805e3c | 0x400;
+      fault_status_registers_t_00805df2.io_fault_status_2 =
+           fault_status_registers_t_00805df2.io_fault_status_2 | 0x400;
+      fault_latch_registers_t_00805e32.io_fault_latch_2 =
+           fault_latch_registers_t_00805e32.io_fault_latch_2 | 0x400;
     }
     DAT_0080162f = 0;
-    return uVar8;
+    return uVar9;
   }
   if (DAT_0080162f == '\x01') {
-    uVar5 = (undefined2)(uVar8 >> 0x10);
-    uVar4 = _DAT_00805dfc;
-    if (((_DAT_00805dfc & 0x400) == 0) || (uVar4 = _DAT_008068ce, (_DAT_008068ce & 0x400) == 0)) {
-      uVar8 = CONCAT22(uVar5,uVar4) & 0xffff0400;
+    uVar6 = (undefined2)(uVar9 >> 0x10);
+    wVar1 = fault_status_registers_t_00805df2.io_fault_status_2;
+    if (((fault_status_registers_t_00805df2.io_fault_status_2 & 0x400) == 0) ||
+       (wVar1 = _DAT_008068ce, (_DAT_008068ce & 0x400) == 0)) {
+      uVar9 = CONCAT22(uVar6,wVar1) & 0xffff0400;
       DAT_0080162f = '\0';
     }
     else {
-      uVar8 = CONCAT22(uVar5,_DAT_00805dfc) & 0xffff0400;
-      if ((_DAT_00805dfc & 0x400) != 0) {
-        uVar8 = CONCAT22(uVar5,_DAT_00805e3c) & 0xffff0400;
-        if ((_DAT_00805e3c & 0x400) == 0) {
-          _DAT_00805dfc = _DAT_00805dfc & 0xfbff;
+      uVar9 = CONCAT22(uVar6,fault_status_registers_t_00805df2.io_fault_status_2) & 0xffff0400;
+      if ((fault_status_registers_t_00805df2.io_fault_status_2 & 0x400) != 0) {
+        uVar9 = CONCAT22(uVar6,fault_latch_registers_t_00805e32.io_fault_latch_2) & 0xffff0400;
+        if ((fault_latch_registers_t_00805e32.io_fault_latch_2 & 0x400) == 0) {
+          fault_status_registers_t_00805df2.io_fault_status_2 =
+               fault_status_registers_t_00805df2.io_fault_status_2 & 0xfbff;
           DAT_0080162f = 0;
           _DAT_0080557a = 0;
-          return uVar8;
+          return uVar9;
         }
       }
     }
   }
-  return uVar8;
+  return uVar9;
 }
 
 
@@ -17873,7 +18121,7 @@ undefined1 ioControlLampStateMachine(void)
   undefined1 uVar1;
   
   uVar1 = 1;
-  if (_DAT_0080cc72 == 0) {
+  if (high_rpm_protection_t_0080cc6a.warning_flag == 0) {
     if (DAT_0080167e != '\0') {
       DAT_0080167e = '\0';
       _DAT_0080167a = 0;
@@ -18073,7 +18321,7 @@ uint faultCodeDisplayController(void)
   undefined2 uVar3;
   
   uVar3 = (undefined2)((uint)unaff_D2 >> 0x10);
-  if (((DAT_0080bdc7 & 0x80) != 0) && (_DAT_0080c810 == 1)) {
+  if (((DAT_0080bdc7 & 0x80) != 0) && (engine_operating_mode_t_0080c810.state == 1)) {
     DAT_00801684 = 1;
     if (((DAT_0080bdc7 & 0x80) == 0) || (DAT_00801687 != '\0')) {
       if (((DAT_0080bdc7 & 0x20) == 0) || (DAT_00801685 != '\0')) {
@@ -18427,7 +18675,8 @@ void epsSignalQualityValidator(void)
   if ((_DAT_0080d050 != 0) || (DAT_0080169a != '\0')) {
     waitToStartLampBlinkPattern();
   }
-  if (((_DAT_0080373c != 0) && (_DAT_0080d04e != 0)) && (_DAT_0080c810 == 3)) {
+  if (((_DAT_0080373c != 0) && (_DAT_0080d04e != 0)) &&
+     (engine_operating_mode_t_0080c810.state == 3)) {
     periodicLampFlashController();
   }
   DAT_00801685 = -((DAT_0080bdc7 & 0x20) != 0) & 1;
@@ -18490,9 +18739,10 @@ void epsDiagnosticModeChecker(undefined4 param_1)
 
 {
   if ((((_DAT_00808794 != 0) && (_DAT_0080d49c == 0)) &&
-      ((((_DAT_00805dfa & 2) != 0 && ((_DAT_008068cc & 2) != 0)) ||
-       (((_DAT_00805dfa & 4) != 0 && ((_DAT_008068cc & 4) != 0)))))) &&
-     (_DAT_0080d49c = 6, param_1._0_2_ != 6)) {
+      ((((fault_status_registers_t_00805df2.io_fault_status_1 & 2) != 0 &&
+        ((_DAT_008068cc & 2) != 0)) ||
+       (((fault_status_registers_t_00805df2.io_fault_status_1 & 4) != 0 &&
+        ((_DAT_008068cc & 4) != 0)))))) && (_DAT_0080d49c = 6, param_1._0_2_ != 6)) {
     epsDiagnosticSnapshotCapture();
   }
   return;
@@ -19093,7 +19343,9 @@ void epsCounterReset(void)
 void fuelTimingOffsetCalculator(void)
 
 {
-  if (((_DAT_008035da & 8) == 0) || (((_DAT_00805e00 & 2) != 0 && ((_DAT_008068d2 & 2) != 0)))) {
+  if (((_DAT_008035da & 8) == 0) ||
+     (((fault_status_registers_t_00805df2.io_fault_status_4 & 2) != 0 && ((_DAT_008068d2 & 2) != 0))
+     )) {
     _DAT_0080171c = 0;
   }
   else if ((DAT_0080171a == '\0') && ((DAT_0080bdc7 & 0x20) != 0)) {
@@ -19191,7 +19443,7 @@ void engineModeTimingAdjuster(void)
   else {
     bVar1 = true;
   }
-  if (_DAT_0080c810 == 1) {
+  if (engine_operating_mode_t_0080c810.state == 1) {
     _DAT_0080171e = 0;
     if (bVar2) {
       _DAT_0080d094 = _DAT_00808830;
@@ -19200,11 +19452,12 @@ void engineModeTimingAdjuster(void)
       _DAT_0080d094 = 0;
     }
   }
-  else if (_DAT_0080c810 != 2) {
+  else if (engine_operating_mode_t_0080c810.state != 2) {
     if ((bVar2) && (_DAT_0080171e < _DAT_00808832)) {
       _DAT_0080171e = _DAT_0080171e + 1;
     }
-    if ((_DAT_0080c810 == 3) && ((_DAT_00808832 <= _DAT_0080171e || (!bVar2)))) {
+    if ((engine_operating_mode_t_0080c810.state == 3) &&
+       ((_DAT_00808832 <= _DAT_0080171e || (!bVar2)))) {
       if (_DAT_00808834 < _DAT_0080d094) {
         _DAT_0080d094 = _DAT_0080d094 - _DAT_00808834;
       }
@@ -19570,7 +19823,8 @@ uint crankFuelCalculationAndProtection(void)
         _DAT_00801758 = _DAT_00801758 + 1;
       }
     }
-    if (((circular_buffer_t_0080c3fc.data_buffer._8_2_ != 0) && ((_DAT_00805df2 & 0x800) != 0)) &&
+    if (((circular_buffer_t_0080c3fc.data_buffer._8_2_ != 0) &&
+        ((fault_status_registers_t_00805df2.sensor_fault_status & 0x800) != 0)) &&
        ((_DAT_008068c4 & 0x800) != 0)) {
       if (_DAT_0080888a < _DAT_0080175a) {
         _DAT_0080558e = _DAT_0080558e | 4;
@@ -20461,11 +20715,14 @@ void mainSystemInitialization(void)
   _DAT_0080fffc = 0x5e0;
   validateRedundantSensors();
   if (_DAT_0080367e == 0) {
-    _DAT_00805df2 = _DAT_00805df2 & 0xfbff;
+    fault_status_registers_t_00805df2.sensor_fault_status =
+         fault_status_registers_t_00805df2.sensor_fault_status & 0xfbff;
   }
   else {
-    _DAT_00805df2 = _DAT_00805df2 | 0x400;
-    _DAT_00805e32 = _DAT_00805e32 | 0x400;
+    fault_status_registers_t_00805df2.sensor_fault_status =
+         fault_status_registers_t_00805df2.sensor_fault_status | 0x400;
+    fault_latch_registers_t_00805e32.sensor_fault_latch =
+         fault_latch_registers_t_00805e32.sensor_fault_latch | 0x400;
   }
   _DAT_0080fffa = 2;
   _DAT_0080fffc = 0x61c;
@@ -20653,7 +20910,7 @@ void mainSystemInitialization(void)
   _DAT_0080fffc = 2;
   _DAT_0080fffe = 0x78c;
   engineModeOutputControlInit();
-  _DAT_0080c812 = 0;
+  engine_operating_mode_t_0080c810.shutdown_complete_flag = 0;
   _DAT_0080fffc = 2;
   _DAT_0080fffe = 0x7a4;
   schedulerWaitLoop();
@@ -20680,7 +20937,7 @@ void phase4InitSequence(void)
 {
   initMIOS14Timers();
   engineModeOutputControlInit();
-  _DAT_0080c812 = 0;
+  engine_operating_mode_t_0080c810.shutdown_complete_flag = 0;
   _DAT_0080fffc = 0x207a4;
   schedulerWaitLoop();
   _DAT_0080fffc = 0x207ae;
@@ -21987,8 +22244,10 @@ void systemControl64(void)
     else {
       DAT_0080d404 = '\0';
       diagnosticMessageQueueWrite(CONCAT22(4,(short)((uint)unaff_D2 >> 0x10)));
-      _DAT_00805e00 = _DAT_00805e00 | 4;
-      _DAT_00805e40 = _DAT_00805e40 | 4;
+      fault_status_registers_t_00805df2.io_fault_status_4 =
+           fault_status_registers_t_00805df2.io_fault_status_4 | 4;
+      fault_latch_registers_t_00805e32.io_fault_latch_4 =
+           fault_latch_registers_t_00805e32.io_fault_latch_4 | 4;
     }
   }
   return;
@@ -22631,11 +22890,13 @@ uint oilPressureRpmFaultMonitor(void)
     if ((_DAT_00fff450 & 0x8000) == 0) {
       if ((_DAT_0080d186 == 0) || ((_DAT_00805670 & 1) == 0)) {
         if ((_DAT_00fff450 & 0x80) == 0) {
-          in_D0 = _DAT_00805e00 & 0xffff0010;
-          if (((_DAT_00805e00 & 0x10) != 0) &&
-             (in_D0 = _DAT_00805e40 & 0xffff0010, (_DAT_00805e40 & 0x10) == 0)) {
+          in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0010;
+          if (((fault_status_registers_t_00805df2.io_fault_status_4 & 0x10) != 0) &&
+             (in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0010,
+             (fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x10) == 0)) {
             _DAT_0080d190 = 0;
-            _DAT_00805e00 = _DAT_00805e00 & 0xffef;
+            fault_status_registers_t_00805df2.io_fault_status_4 =
+                 fault_status_registers_t_00805df2.io_fault_status_4 & 0xffef;
           }
         }
         else {
@@ -22644,19 +22905,24 @@ uint oilPressureRpmFaultMonitor(void)
             _DAT_0080d190 = _DAT_0080d190 + 1;
           }
           else {
-            _DAT_00805e00 = _DAT_00805e00 | 0x10;
-            _DAT_00805e40 = _DAT_00805e40 | 0x10;
+            fault_status_registers_t_00805df2.io_fault_status_4 =
+                 fault_status_registers_t_00805df2.io_fault_status_4 | 0x10;
+            fault_latch_registers_t_00805e32.io_fault_latch_4 =
+                 fault_latch_registers_t_00805e32.io_fault_latch_4 | 0x10;
           }
         }
       }
       else if (_DAT_0080d186 < 0x6400) {
         in_D0 = _DAT_00fff428 & 0xffff8000;
         if ((((_DAT_00fff428 & 0x8000) != 0) &&
-            (in_D0 = _DAT_00805e00 & 0xffff0010, (_DAT_00805e00 & 0x10) != 0)) &&
-           (in_D0 = _DAT_00805e40 & 0xffff0010, (_DAT_00805e40 & 0x10) == 0)) {
+            (in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0010,
+            (fault_status_registers_t_00805df2.io_fault_status_4 & 0x10) != 0)) &&
+           (in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0010,
+           (fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x10) == 0)) {
           _DAT_00fff428 = _DAT_00fff428 & 0x7fff;
           _DAT_0080d190 = 0;
-          _DAT_00805e00 = _DAT_00805e00 & 0xffef;
+          fault_status_registers_t_00805df2.io_fault_status_4 =
+               fault_status_registers_t_00805df2.io_fault_status_4 & 0xffef;
         }
       }
       else if ((_DAT_00fff450 & 0x80) == 0) {
@@ -22665,25 +22931,31 @@ uint oilPressureRpmFaultMonitor(void)
           _DAT_0080d190 = _DAT_0080d190 + 1;
         }
         else {
-          _DAT_00805e00 = _DAT_00805e00 | 0x10;
-          _DAT_00805e40 = _DAT_00805e40 | 0x10;
+          fault_status_registers_t_00805df2.io_fault_status_4 =
+               fault_status_registers_t_00805df2.io_fault_status_4 | 0x10;
+          fault_latch_registers_t_00805e32.io_fault_latch_4 =
+               fault_latch_registers_t_00805e32.io_fault_latch_4 | 0x10;
         }
       }
       else {
-        in_D0 = _DAT_00805e00 & 0xffff0010;
-        if (((_DAT_00805e00 & 0x10) != 0) &&
-           (in_D0 = _DAT_00805e40 & 0xffff0010, (_DAT_00805e40 & 0x10) == 0)) {
+        in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0010;
+        if (((fault_status_registers_t_00805df2.io_fault_status_4 & 0x10) != 0) &&
+           (in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0010,
+           (fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x10) == 0)) {
           _DAT_0080d190 = 0;
-          _DAT_00805e00 = _DAT_00805e00 & 0xffef;
+          fault_status_registers_t_00805df2.io_fault_status_4 =
+               fault_status_registers_t_00805df2.io_fault_status_4 & 0xffef;
         }
       }
     }
     else {
-      in_D0 = _DAT_00805e00 & 0xffff0010;
-      if (((_DAT_00805e00 & 0x10) != 0) &&
-         (in_D0 = _DAT_00805e40 & 0xffff0010, (_DAT_00805e40 & 0x10) == 0)) {
+      in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0010;
+      if (((fault_status_registers_t_00805df2.io_fault_status_4 & 0x10) != 0) &&
+         (in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0010,
+         (fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x10) == 0)) {
         _DAT_00fff450 = _DAT_00fff450 & 0x7fff;
-        _DAT_00805e00 = _DAT_00805e00 & 0xffef;
+        fault_status_registers_t_00805df2.io_fault_status_4 =
+             fault_status_registers_t_00805df2.io_fault_status_4 & 0xffef;
         _DAT_0080d190 = 0;
       }
     }
@@ -22692,11 +22964,12 @@ uint oilPressureRpmFaultMonitor(void)
     if ((_DAT_00fff448 & 0x8000) == 0) {
       if ((_DAT_0080d188 == 0) || ((_DAT_00805670 & 2) == 0)) {
         if ((_DAT_00fff448 & 0x80) == 0) {
-          in_D0 = _DAT_00805e00 & 0xffff0020;
-          if ((_DAT_00805e00 & 0x20) != 0) {
-            in_D0 = _DAT_00805e40 & 0xffff0020;
-            if ((_DAT_00805e40 & 0x20) == 0) {
-              _DAT_00805e00 = _DAT_00805e00 & 0xffdf;
+          in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0020;
+          if ((fault_status_registers_t_00805df2.io_fault_status_4 & 0x20) != 0) {
+            in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0020;
+            if ((fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x20) == 0) {
+              fault_status_registers_t_00805df2.io_fault_status_4 =
+                   fault_status_registers_t_00805df2.io_fault_status_4 & 0xffdf;
               _DAT_0080d192 = 0;
             }
           }
@@ -22707,48 +22980,58 @@ uint oilPressureRpmFaultMonitor(void)
             _DAT_0080d192 = _DAT_0080d192 + 1;
           }
           else {
-            _DAT_00805e00 = _DAT_00805e00 | 0x20;
-            _DAT_00805e40 = _DAT_00805e40 | 0x20;
+            fault_status_registers_t_00805df2.io_fault_status_4 =
+                 fault_status_registers_t_00805df2.io_fault_status_4 | 0x20;
+            fault_latch_registers_t_00805e32.io_fault_latch_4 =
+                 fault_latch_registers_t_00805e32.io_fault_latch_4 | 0x20;
           }
         }
       }
       else if (_DAT_0080d188 < 0x6400) {
         in_D0 = _DAT_00fff430 & 0xffff8000;
         if ((((_DAT_00fff430 & 0x8000) != 0) &&
-            (in_D0 = _DAT_00805e00 & 0xffff0020, (_DAT_00805e00 & 0x20) != 0)) &&
-           (in_D0 = _DAT_00805e40 & 0xffff0020, (_DAT_00805e40 & 0x20) == 0)) {
+            (in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0020,
+            (fault_status_registers_t_00805df2.io_fault_status_4 & 0x20) != 0)) &&
+           (in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0020,
+           (fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x20) == 0)) {
           _DAT_00fff430 = _DAT_00fff430 & 0x7fff;
-          _DAT_00805e00 = _DAT_00805e00 & 0xffdf;
+          fault_status_registers_t_00805df2.io_fault_status_4 =
+               fault_status_registers_t_00805df2.io_fault_status_4 & 0xffdf;
           _DAT_0080d192 = 0;
         }
       }
       else if ((_DAT_00fff448 & 0x80) == 0) {
         in_D0 = (uint)_DAT_0080d192;
         if (_DAT_00808942 < _DAT_0080d192) {
-          _DAT_00805e00 = _DAT_00805e00 | 0x20;
-          _DAT_00805e40 = _DAT_00805e40 | 0x20;
+          fault_status_registers_t_00805df2.io_fault_status_4 =
+               fault_status_registers_t_00805df2.io_fault_status_4 | 0x20;
+          fault_latch_registers_t_00805e32.io_fault_latch_4 =
+               fault_latch_registers_t_00805e32.io_fault_latch_4 | 0x20;
         }
         else {
           _DAT_0080d192 = _DAT_0080d192 + 1;
         }
       }
       else {
-        in_D0 = _DAT_00805e00 & 0xffff0020;
-        if ((_DAT_00805e00 & 0x20) != 0) {
-          in_D0 = _DAT_00805e40 & 0xffff0020;
-          if ((_DAT_00805e40 & 0x20) == 0) {
-            _DAT_00805e00 = _DAT_00805e00 & 0xffdf;
+        in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0020;
+        if ((fault_status_registers_t_00805df2.io_fault_status_4 & 0x20) != 0) {
+          in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0020;
+          if ((fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x20) == 0) {
+            fault_status_registers_t_00805df2.io_fault_status_4 =
+                 fault_status_registers_t_00805df2.io_fault_status_4 & 0xffdf;
             _DAT_0080d192 = 0;
           }
         }
       }
     }
     else {
-      in_D0 = _DAT_00805e00 & 0xffff0020;
-      if (((_DAT_00805e00 & 0x20) != 0) &&
-         (in_D0 = _DAT_00805e40 & 0xffff0020, (_DAT_00805e40 & 0x20) == 0)) {
+      in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0020;
+      if (((fault_status_registers_t_00805df2.io_fault_status_4 & 0x20) != 0) &&
+         (in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0020,
+         (fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x20) == 0)) {
         _DAT_00fff448 = _DAT_00fff448 & 0x7fff;
-        _DAT_00805e00 = _DAT_00805e00 & 0xffdf;
+        fault_status_registers_t_00805df2.io_fault_status_4 =
+             fault_status_registers_t_00805df2.io_fault_status_4 & 0xffdf;
         _DAT_0080d192 = 0;
       }
     }
@@ -22759,28 +23042,35 @@ uint oilPressureRpmFaultMonitor(void)
         if ((_DAT_00fff420 & 0x80) != 0) {
           uVar1 = (uint)_DAT_0080d198;
           if (_DAT_00808948 <= _DAT_0080d198) {
-            _DAT_00805e00 = _DAT_00805e00 | 0x100;
-            _DAT_00805e40 = _DAT_00805e40 | 0x100;
+            fault_status_registers_t_00805df2.io_fault_status_4 =
+                 fault_status_registers_t_00805df2.io_fault_status_4 | 0x100;
+            fault_latch_registers_t_00805e32.io_fault_latch_4 =
+                 fault_latch_registers_t_00805e32.io_fault_latch_4 | 0x100;
             return uVar1;
           }
           _DAT_0080d198 = _DAT_0080d198 + 1;
           return uVar1;
         }
-        in_D0 = _DAT_00805e00 & 0xffff0100;
-        if (((_DAT_00805e00 & 0x100) != 0) &&
-           (in_D0 = _DAT_00805e40 & 0xffff0100, (_DAT_00805e40 & 0x100) == 0)) {
+        in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0100;
+        if (((fault_status_registers_t_00805df2.io_fault_status_4 & 0x100) != 0) &&
+           (in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0100,
+           (fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x100) == 0)) {
           _DAT_0080d198 = 0;
-          _DAT_00805e00 = _DAT_00805e00 & 0xfeff;
+          fault_status_registers_t_00805df2.io_fault_status_4 =
+               fault_status_registers_t_00805df2.io_fault_status_4 & 0xfeff;
           return in_D0;
         }
       }
       else if (_DAT_0080d18e < 0x6400) {
         in_D0 = _DAT_00fff418 & 0xffff8000;
         if ((((_DAT_00fff418 & 0x8000) != 0) &&
-            (in_D0 = _DAT_00805e00 & 0xffff0100, (_DAT_00805e00 & 0x100) != 0)) &&
-           (in_D0 = _DAT_00805e40 & 0xffff0100, (_DAT_00805e40 & 0x100) == 0)) {
+            (in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0100,
+            (fault_status_registers_t_00805df2.io_fault_status_4 & 0x100) != 0)) &&
+           (in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0100,
+           (fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x100) == 0)) {
           _DAT_00fff418 = _DAT_00fff418 & 0x7fff;
-          _DAT_00805e00 = _DAT_00805e00 & 0xfeff;
+          fault_status_registers_t_00805df2.io_fault_status_4 =
+               fault_status_registers_t_00805df2.io_fault_status_4 & 0xfeff;
           _DAT_0080d198 = 0;
           return in_D0;
         }
@@ -22789,18 +23079,21 @@ uint oilPressureRpmFaultMonitor(void)
         if ((_DAT_00fff420 & 0x80) == 0) {
           uVar1 = (uint)_DAT_0080d198;
           if (_DAT_00808948 <= _DAT_0080d198) {
-            _DAT_00805e00 = _DAT_00805e00 | 0x100;
-            _DAT_00805e40 = _DAT_00805e40 | 0x100;
+            fault_status_registers_t_00805df2.io_fault_status_4 =
+                 fault_status_registers_t_00805df2.io_fault_status_4 | 0x100;
+            fault_latch_registers_t_00805e32.io_fault_latch_4 =
+                 fault_latch_registers_t_00805e32.io_fault_latch_4 | 0x100;
             return uVar1;
           }
           _DAT_0080d198 = _DAT_0080d198 + 1;
           return uVar1;
         }
-        in_D0 = _DAT_00805e00 & 0xffff0100;
-        if ((_DAT_00805e00 & 0x100) != 0) {
-          in_D0 = _DAT_00805e40 & 0xffff0100;
-          if ((_DAT_00805e40 & 0x100) == 0) {
-            _DAT_00805e00 = _DAT_00805e00 & 0xfeff;
+        in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0100;
+        if ((fault_status_registers_t_00805df2.io_fault_status_4 & 0x100) != 0) {
+          in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0100;
+          if ((fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x100) == 0) {
+            fault_status_registers_t_00805df2.io_fault_status_4 =
+                 fault_status_registers_t_00805df2.io_fault_status_4 & 0xfeff;
             _DAT_0080d198 = 0;
             return in_D0;
           }
@@ -22808,11 +23101,13 @@ uint oilPressureRpmFaultMonitor(void)
       }
     }
     else {
-      in_D0 = _DAT_00805e00 & 0xffff0100;
-      if (((_DAT_00805e00 & 0x100) != 0) &&
-         (in_D0 = _DAT_00805e40 & 0xffff0100, (_DAT_00805e40 & 0x100) == 0)) {
+      in_D0 = fault_status_registers_t_00805df2.io_fault_status_4 & 0xffff0100;
+      if (((fault_status_registers_t_00805df2.io_fault_status_4 & 0x100) != 0) &&
+         (in_D0 = fault_latch_registers_t_00805e32.io_fault_latch_4 & 0xffff0100,
+         (fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x100) == 0)) {
         _DAT_00fff420 = _DAT_00fff420 & 0x7fff;
-        _DAT_00805e00 = _DAT_00805e00 & 0xfeff;
+        fault_status_registers_t_00805df2.io_fault_status_4 =
+             fault_status_registers_t_00805df2.io_fault_status_4 & 0xfeff;
         _DAT_0080d198 = 0;
       }
     }
@@ -22858,23 +23153,31 @@ uint waterInFuelDiagnosticHandler(void)
   }
   if ((((_DAT_00fff438 & 0x80) == 0) || ((DAT_00fffa19 & 2) == 0)) &&
      (((_DAT_00fff438 & 0x80) != 0 || ((DAT_00fffa19 & 2) != 0)))) {
-    _DAT_00805e00 = _DAT_00805e00 | 0x40;
-    _DAT_00805e40 = _DAT_00805e40 | 0x40;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 0x40;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 0x40;
   }
-  else if (((_DAT_00805e00 & 0x40) != 0) && ((_DAT_00805e40 & 0x40) == 0)) {
-    _DAT_00805e00 = _DAT_00805e00 & 0xffbf;
+  else if (((fault_status_registers_t_00805df2.io_fault_status_4 & 0x40) != 0) &&
+          ((fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x40) == 0)) {
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 & 0xffbf;
   }
   if (((_DAT_00fff440 & 0x80) == 0) || ((DAT_00fffa19 & 4) == 0)) {
     if ((_DAT_00fff440 & 0x80) == 0) {
       if ((DAT_00fffa19 & 4) == 0) goto LAB_00026cc4;
     }
-    _DAT_00805e00 = _DAT_00805e00 | 0x80;
-    _DAT_00805e40 = _DAT_00805e40 | 0x80;
+    fault_status_registers_t_00805df2.io_fault_status_4 =
+         fault_status_registers_t_00805df2.io_fault_status_4 | 0x80;
+    fault_latch_registers_t_00805e32.io_fault_latch_4 =
+         fault_latch_registers_t_00805e32.io_fault_latch_4 | 0x80;
   }
   else {
 LAB_00026cc4:
-    if (((_DAT_00805e00 & 0x100) != 0) && ((_DAT_00805e40 & 0x100) == 0)) {
-      _DAT_00805e00 = _DAT_00805e00 & 0xff7f;
+    if (((fault_status_registers_t_00805df2.io_fault_status_4 & 0x100) != 0) &&
+       ((fault_latch_registers_t_00805e32.io_fault_latch_4 & 0x100) == 0)) {
+      fault_status_registers_t_00805df2.io_fault_status_4 =
+           fault_status_registers_t_00805df2.io_fault_status_4 & 0xff7f;
     }
   }
   dVar2 = 0;
@@ -23096,13 +23399,17 @@ void canMessageMemorySyncController(void)
       if ((undefined4 *)0x8018c5 < _DAT_008018c6) {
         _DAT_008018c6 = (undefined4 *)&DAT_008018ae;
         if (_DAT_008018d2 == 0) {
-          if (((_DAT_00805df2 & 2) != 0) && ((_DAT_00805e32 & 2) == 0)) {
-            _DAT_00805df2 = _DAT_00805df2 & 0xfffd;
+          if (((fault_status_registers_t_00805df2.sensor_fault_status & 2) != 0) &&
+             ((fault_latch_registers_t_00805e32.sensor_fault_latch & 2) == 0)) {
+            fault_status_registers_t_00805df2.sensor_fault_status =
+                 fault_status_registers_t_00805df2.sensor_fault_status & 0xfffd;
           }
         }
         else {
-          _DAT_00805df2 = _DAT_00805df2 | 2;
-          _DAT_00805e32 = _DAT_00805e32 | 2;
+          fault_status_registers_t_00805df2.sensor_fault_status =
+               fault_status_registers_t_00805df2.sensor_fault_status | 2;
+          fault_latch_registers_t_00805e32.sensor_fault_latch =
+               fault_latch_registers_t_00805e32.sensor_fault_latch | 2;
         }
         _DAT_008018d2 = 0;
       }
@@ -24419,14 +24726,14 @@ void FUN_00028638(void)
       }
     }
   }
-  if (((_DAT_0080c810 == 8) && (_DAT_00801a7e != 8)) &&
+  if (((engine_operating_mode_t_0080c810.state == 8) && (_DAT_00801a7e != 8)) &&
      ((_DAT_00801a7a != 0 || _DAT_00801a78 != 0 || (_DAT_00801a7c != 0)))) {
     _DAT_00805f88 = _DAT_00805f88 + 1;
     _DAT_00801a78 = 0;
     _DAT_00801a7a = 0;
     _DAT_00801a7c = 0;
   }
-  _DAT_00801a7e = _DAT_0080c810;
+  _DAT_00801a7e = engine_operating_mode_t_0080c810.state;
   if (_DAT_0080c9a6 == 0x12) {
     _DAT_00805f84 = _DAT_00805f84 + 1;
   }
@@ -25556,14 +25863,16 @@ void buildProprietaryLoadStatusMessage(void)
 {
   bool bVar1;
   
-  if (((_DAT_00805dfa & 0x20) == 0) || ((_DAT_008068cc & 0x20) == 0)) {
+  if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x20) == 0) ||
+     ((_DAT_008068cc & 0x20) == 0)) {
     bVar1 = false;
   }
   else {
     bVar1 = true;
   }
   if (!bVar1) {
-    if (((_DAT_00805dfa & 8) == 0) || ((_DAT_008068cc & 8) == 0)) {
+    if (((fault_status_registers_t_00805df2.io_fault_status_1 & 8) == 0) ||
+       ((_DAT_008068cc & 8) == 0)) {
       bVar1 = false;
     }
     else {
@@ -26414,7 +26723,7 @@ void incrementCounters(void)
 
 {
   _DAT_0080d4c4 = _DAT_0080d4c4 + 1;
-  if (_DAT_0080c810 != 1) {
+  if (engine_operating_mode_t_0080c810.state != 1) {
     _DAT_00809688 = _DAT_00809688 + 1;
   }
   return;
@@ -28485,7 +28794,7 @@ void fuelTempProtectionLimitCalculator(void)
 {
   ushort uVar1;
   
-  if ((_DAT_008071ae <= _DAT_008096a6) && (_DAT_0080c810 != 1)) {
+  if ((_DAT_008071ae <= _DAT_008096a6) && (engine_operating_mode_t_0080c810.state != 1)) {
     if (_DAT_0080975c == 0) {
       _DAT_00803292 = 0xffff;
     }
@@ -28709,7 +29018,8 @@ uint crankAndProtectionStateMonitor(void)
         _DAT_0080d050 = 1;
       }
     }
-    if (((circular_buffer_t_0080c3fc.data_buffer._8_2_ != 0) && ((_DAT_00805dfa & 0x100) != 0)) &&
+    if (((circular_buffer_t_0080c3fc.data_buffer._8_2_ != 0) &&
+        ((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) != 0)) &&
        ((_DAT_008068cc & 0x100) != 0)) {
       if (_DAT_008032b4 == _DAT_0080888a) {
         _DAT_0080558e = _DAT_0080558e | 1;
@@ -28718,7 +29028,8 @@ uint crankAndProtectionStateMonitor(void)
         _DAT_008032b4 = _DAT_008032b4 + 1;
       }
     }
-    if (((circular_buffer_t_0080c3fc.data_buffer._8_2_ != 0) && ((_DAT_00805dfa & 0x200) != 0)) &&
+    if (((circular_buffer_t_0080c3fc.data_buffer._8_2_ != 0) &&
+        ((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) != 0)) &&
        ((_DAT_008068cc & 0x200) != 0)) {
       if (_DAT_008032b6 == _DAT_0080888a) {
         _DAT_0080558e = _DAT_0080558e | 0x20;
@@ -28894,7 +29205,7 @@ uint boostPressureTargetCalculator(void)
       uVar7 = _DAT_00803866 - _DAT_0080386a;
       uVar6 = _DAT_00803864 - _DAT_00803868;
     }
-    uVar2 = (int)_DAT_00809746 - 1;
+    uVar2 = (int)(short)boost_pressure_control_t_00809746.state_machine - 1;
     uVar3 = uVar2;
     if (uVar2 < 6) {
       uVar3 = CONCAT22((short)(uVar2 >> 0x10),(&switchD_0002e4d8::switchdataD_0002e4dc)[uVar2]);
@@ -28903,31 +29214,31 @@ uint boostPressureTargetCalculator(void)
       case 0:
         uVar3 = (uint)_DAT_008096a8;
         if (_DAT_0080973e < (int)uVar3) {
-          _DAT_00809746 = 2;
+          boost_pressure_control_t_00809746.state_machine = 2;
           _DAT_0080973c = uVar6;
         }
         else {
-          _DAT_00809746 = 6;
+          boost_pressure_control_t_00809746.state_machine = 6;
           _DAT_0080973c = uVar6;
         }
         break;
       case 1:
         _DAT_008032c2 = 0x64000000;
-        _DAT_0080974a = 0x6400;
-        _DAT_00809746 = 3;
+        boost_pressure_control_t_00809746.interpolation_result = 0x6400;
+        boost_pressure_control_t_00809746.state_machine = 3;
         _DAT_0080973c = uVar6;
         break;
       case 2:
-        _DAT_0080974a = coreTableInterpolation();
+        boost_pressure_control_t_00809746.interpolation_result = coreTableInterpolation();
         uVar3 = (uint)_DAT_008096a8;
         if ((_DAT_0080973e < (int)uVar3) && (uVar5 <= _DAT_008071bc)) {
-          uVar3 = (uint)_DAT_0080974a;
-          if (_DAT_0080974a <= _DAT_008071b2) {
-            _DAT_00809746 = 4;
+          uVar3 = (uint)boost_pressure_control_t_00809746.interpolation_result;
+          if (boost_pressure_control_t_00809746.interpolation_result <= _DAT_008071b2) {
+            boost_pressure_control_t_00809746.state_machine = 4;
           }
         }
         else {
-          _DAT_00809746 = 1;
+          boost_pressure_control_t_00809746.state_machine = 1;
         }
         break;
       case 3:
@@ -28936,7 +29247,7 @@ uint boostPressureTargetCalculator(void)
           uVar7 = uVar6;
         }
         _DAT_0080973c = uVar7;
-        _DAT_00809746 = 5;
+        boost_pressure_control_t_00809746.state_machine = 5;
         break;
       case 4:
         if (uVar7 < _DAT_0080973c) {
@@ -28946,27 +29257,27 @@ uint boostPressureTargetCalculator(void)
         if ((_DAT_0080973e < (int)uVar3) && (uVar5 <= _DAT_008071bc)) {
           uVar3 = (uint)_DAT_0080d0c8;
           if (_DAT_008071b8 < _DAT_0080d0c8) {
-            _DAT_00809746 = 2;
+            boost_pressure_control_t_00809746.state_machine = 2;
           }
         }
         else {
-          _DAT_00809746 = 1;
+          boost_pressure_control_t_00809746.state_machine = 1;
         }
         break;
       case 5:
-        _DAT_00809748 = 0;
+        boost_pressure_control_t_00809746.active_flag = 0;
         uVar3 = (uint)_DAT_008096a8;
         if ((_DAT_0080973e < (int)uVar3) || (_DAT_0080973c = uVar6, _DAT_008071ba < uVar5)) {
-          _DAT_00809746 = 1;
+          boost_pressure_control_t_00809746.state_machine = 1;
           _DAT_0080973c = uVar6;
         }
       }
     }
     if ((DAT_0080bdc7 & 8) != 0) {
-      _DAT_00809746 = 5;
+      boost_pressure_control_t_00809746.state_machine = 5;
     }
-    if (_DAT_00809746 != 6) {
-      _DAT_00809748 = 1;
+    if (boost_pressure_control_t_00809746.state_machine != 6) {
+      boost_pressure_control_t_00809746.active_flag = 1;
       return uVar3;
     }
   }
@@ -28986,10 +29297,10 @@ void FUN_0002e5fe(void)
 {
   uint uVar1;
   
-  _DAT_00809746 = 1;
-  _DAT_00809748 = 1;
+  boost_pressure_control_t_00809746.state_machine = 1;
+  boost_pressure_control_t_00809746.active_flag = 1;
   _DAT_0080973c = _DAT_00803748;
-  _DAT_0080974a = _DAT_0080d0c8;
+  boost_pressure_control_t_00809746.interpolation_result = _DAT_0080d0c8;
   _DAT_008032c2 = 0x64000000;
   _DAT_008032be = 0x8071b6;
   _DAT_0080973e = ((uint)_DAT_00803828 * (int)(&DAT_00006400 + _DAT_008071b0)) / 0x6400;
@@ -29140,17 +29451,17 @@ void FUN_0002e84a(void)
       _DAT_00806254 = _DAT_00806254 + 1;
     }
   }
-  if ((_DAT_0080cc6c == 4) && (DAT_008032c6 == '\0')) {
+  if ((high_rpm_protection_t_0080cc6a.state == 4) && (DAT_008032c6 == '\0')) {
     _DAT_008062c2 = _DAT_008062c2 + 1;
     DAT_008032c6 = '\x01';
     DAT_008032c7 = '\0';
   }
-  if ((_DAT_0080cc6c == 3) && (DAT_008032c7 == '\0')) {
+  if ((high_rpm_protection_t_0080cc6a.state == 3) && (DAT_008032c7 == '\0')) {
     _DAT_008062c6 = _DAT_008062c6 + 1;
     DAT_008032c7 = '\x01';
     DAT_008032c6 = '\0';
   }
-  if ((_DAT_0080cc6c != 4) && (_DAT_0080cc6c != 3)) {
+  if ((high_rpm_protection_t_0080cc6a.state != 4) && (high_rpm_protection_t_0080cc6a.state != 3)) {
     DAT_008032c7 = '\0';
     DAT_008032c6 = '\0';
   }
@@ -29253,8 +29564,10 @@ ushort clutchOperatingStatisticsTracker(void)
     if ((short)uVar1 == 1) {
       _DAT_00806278 = _DAT_00806278 | 0x20;
     }
-    if ((((_DAT_00805dfa & 0x100) == 0) || ((_DAT_008068cc & 0x100) == 0)) &&
-       (((_DAT_00805dfa & 0x200) == 0 || ((_DAT_008068cc & 0x200) == 0)))) {
+    if ((((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) == 0) ||
+        ((_DAT_008068cc & 0x100) == 0)) &&
+       (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) == 0 ||
+        ((_DAT_008068cc & 0x200) == 0)))) {
       _DAT_008032d2 = 0;
     }
     else if (_DAT_00808a54 < _DAT_008032d2) {
@@ -29451,9 +29764,10 @@ void vp44FaultProtectionController(void)
   undefined *puVar5;
   
   if (DAT_008032dc == '\0') {
-    if (((((_DAT_00805dfa & 0x100) != 0) && ((_DAT_008068cc & 0x100) != 0)) ||
-        (((_DAT_00805dfa & 0x200) != 0 && ((_DAT_008068cc & 0x200) != 0)))) &&
-       (_DAT_0080387e < _DAT_008096ae)) {
+    if (((((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) != 0) &&
+         ((_DAT_008068cc & 0x100) != 0)) ||
+        (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) != 0 &&
+         ((_DAT_008068cc & 0x200) != 0)))) && (_DAT_0080387e < _DAT_008096ae)) {
       _DAT_008096ae = _DAT_0080387e;
     }
     uVar2 = proportionalCalculation
@@ -29484,8 +29798,10 @@ void vp44FaultProtectionController(void)
      ((_DAT_008071ea < _DAT_008096a6 && ((DAT_0080bdc7 & 8) == 0)))) {
     _DAT_00805fe4 = 2;
     _DAT_008096ae = _DAT_0080387e;
-    _DAT_00805dfa = _DAT_00805dfa | 0x100;
-    _DAT_00805e3a = _DAT_00805e3a | 0x100;
+    fault_status_registers_t_00805df2.io_fault_status_1 =
+         fault_status_registers_t_00805df2.io_fault_status_1 | 0x100;
+    fault_latch_registers_t_00805e32.io_fault_latch_1 =
+         fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x100;
   }
   if ((((_DAT_008035ec & 0x200) != 0) && (_DAT_0080d17a == 0)) &&
      ((_DAT_0080385e != 0 && (_DAT_008096a6 == 0)))) {
@@ -29504,14 +29820,18 @@ void vp44FaultProtectionController(void)
        ((_DAT_008071d6 <= _DAT_00805ff6 || (_DAT_008071d8 <= _DAT_00805ff8)))) {
       _DAT_00805fe4 = 1;
       _DAT_008096ae = _DAT_0080387e;
-      _DAT_00805dfa = _DAT_00805dfa | 0x100;
-      _DAT_00805e3a = _DAT_00805e3a | 0x100;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 | 0x100;
+      fault_latch_registers_t_00805e32.io_fault_latch_1 =
+           fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x100;
     }
   }
   if (((_DAT_0080972e != 0) || (_DAT_0080d17a == 1)) ||
      (((_DAT_008035ec & 0x100) == 0 && ((_DAT_008035ec & 0x200) == 0)))) {
-    if (((_DAT_00805dfa & 0x100) != 0) && ((_DAT_00805e3a & 0x100) == 0)) {
-      _DAT_00805dfa = _DAT_00805dfa & 0xfeff;
+    if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) != 0) &&
+       ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x100) == 0)) {
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 & 0xfeff;
       _DAT_008096ae = _DAT_008037b4;
     }
     _DAT_00805ff4 = 0;
@@ -29519,14 +29839,16 @@ void vp44FaultProtectionController(void)
     _DAT_00805ff6 = 0;
   }
   if (((_DAT_0080385e != 0) && (_DAT_0080d17a == 0)) && ((_DAT_008035d4 & 0x80) != 0)) {
-    if (((_DAT_00805dfa & 0x100) == 0) || ((_DAT_008068cc & 0x100) == 0)) {
+    if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) == 0) ||
+       ((_DAT_008068cc & 0x100) == 0)) {
       bVar1 = false;
     }
     else {
       bVar1 = true;
     }
     if (!bVar1) {
-      if (((_DAT_00805dfa & 0x200) == 0) || ((_DAT_008068cc & 0x200) == 0)) {
+      if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) == 0) ||
+         ((_DAT_008068cc & 0x200) == 0)) {
         if (_DAT_008071ae < _DAT_008096a6) {
           if ((_DAT_00809762 & 1) != 0) {
             if (_DAT_008032e2 < _DAT_0080971c) {
@@ -29549,8 +29871,10 @@ void vp44FaultProtectionController(void)
                 if (_DAT_00805ff0 < _DAT_008071e0) {
                   _DAT_00805ff2 = _DAT_00805ff2 + 1;
                   if (_DAT_008071de < _DAT_00805ff2) {
-                    _DAT_00805dfa = _DAT_00805dfa | 0x200;
-                    _DAT_00805e3a = _DAT_00805e3a | 0x200;
+                    fault_status_registers_t_00805df2.io_fault_status_1 =
+                         fault_status_registers_t_00805df2.io_fault_status_1 | 0x200;
+                    fault_latch_registers_t_00805e32.io_fault_latch_1 =
+                         fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x200;
                     _DAT_00805fe4 = 3;
                     _DAT_008096ae = _DAT_0080387e;
                   }
@@ -29591,8 +29915,10 @@ void vp44FaultProtectionController(void)
             _DAT_008032e6 = coreTableInterpolation();
             _DAT_008032e8 = coreTableInterpolation(0x80,uVar4,puVar5);
             if (_DAT_008071ee < _DAT_00805fe6) {
-              _DAT_00805dfa = _DAT_00805dfa | 0x200;
-              _DAT_00805e3a = _DAT_00805e3a | 0x200;
+              fault_status_registers_t_00805df2.io_fault_status_1 =
+                   fault_status_registers_t_00805df2.io_fault_status_1 | 0x200;
+              fault_latch_registers_t_00805e32.io_fault_latch_1 =
+                   fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x200;
               _DAT_00805fe4 = 4;
               _DAT_008096ae = _DAT_0080387e;
             }
@@ -29610,8 +29936,10 @@ void vp44FaultProtectionController(void)
             _DAT_008032ea = coreTableInterpolation();
             _DAT_008032ec = coreTableInterpolation(0x80,uVar4,puVar5);
             if (_DAT_008071f8 < _DAT_00805fe8) {
-              _DAT_00805dfa = _DAT_00805dfa | 0x200;
-              _DAT_00805e3a = _DAT_00805e3a | 0x200;
+              fault_status_registers_t_00805df2.io_fault_status_1 =
+                   fault_status_registers_t_00805df2.io_fault_status_1 | 0x200;
+              fault_latch_registers_t_00805e32.io_fault_latch_1 =
+                   fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x200;
               _DAT_00805fe4 = 5;
               _DAT_008096ae = _DAT_0080387e;
             }
@@ -29633,8 +29961,10 @@ void vp44FaultProtectionController(void)
       else if ((_DAT_008071f2 < _DAT_00805fee) ||
               ((((_DAT_00809762 & 1) == 0 && ((_DAT_00809762 & 2) == 0)) &&
                ((_DAT_00809762 & 4) == 0)))) {
-        if (((_DAT_00805dfa & 0x200) != 0) && ((_DAT_00805e3a & 0x200) == 0)) {
-          _DAT_00805dfa = _DAT_00805dfa & 0xfdff;
+        if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) != 0) &&
+           ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x200) == 0)) {
+          fault_status_registers_t_00805df2.io_fault_status_1 =
+               fault_status_registers_t_00805df2.io_fault_status_1 & 0xfdff;
           _DAT_008096ae = _DAT_008037b4;
           FUN_0002ee28();
         }
@@ -29648,9 +29978,11 @@ void vp44FaultProtectionController(void)
       goto LAB_0002f5b6;
     }
   }
-  if ((((_DAT_008035d4 & 0x80) == 0) && ((_DAT_00805dfa & 0x200) != 0)) &&
-     ((_DAT_00805e3a & 0x200) == 0)) {
-    _DAT_00805dfa = _DAT_00805dfa & 0xfdff;
+  if ((((_DAT_008035d4 & 0x80) == 0) &&
+      ((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) != 0)) &&
+     ((fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x200) == 0)) {
+    fault_status_registers_t_00805df2.io_fault_status_1 =
+         fault_status_registers_t_00805df2.io_fault_status_1 & 0xfdff;
     _DAT_008096ae = _DAT_008037b4;
   }
   FUN_0002ee28();
@@ -30351,14 +30683,16 @@ void vp44InjectionTimingSlowCycle40Coordinator(void)
   }
   if (_DAT_0080976c < _DAT_0080725e) {
     _DAT_0080976c = _DAT_0080976c + 1;
-    if (((_DAT_00805df2 & 0x8000) == 0) || ((_DAT_008068c4 & 0x8000) == 0)) {
+    if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x8000) == 0) ||
+       ((_DAT_008068c4 & 0x8000) == 0)) {
       bVar1 = false;
     }
     else {
       bVar1 = true;
     }
     if (!bVar1) {
-      if (((_DAT_00805dfe & 0x1000) == 0) || ((_DAT_008068d0 & 0x1000) == 0)) {
+      if (((fault_status_registers_t_00805df2.io_fault_status_3 & 0x1000) == 0) ||
+         ((_DAT_008068d0 & 0x1000) == 0)) {
         bVar1 = false;
       }
       else {
@@ -30459,7 +30793,8 @@ uint engineModeOutputControlStateMachine(void)
     _DAT_00809a04 = 5;
     goto LAB_000300ac;
   }
-  if (((_DAT_00805dfc & 0x1000) == 0) || ((_DAT_008068ce & 0x1000) == 0)) {
+  if (((fault_status_registers_t_00805df2.io_fault_status_2 & 0x1000) == 0) ||
+     ((_DAT_008068ce & 0x1000) == 0)) {
     bVar1 = false;
   }
   else {
@@ -30471,7 +30806,8 @@ LAB_0002ffea:
     _DAT_00809a04 = 5;
   }
   else {
-    if (((_DAT_00805dfc & 0x800) == 0) || ((_DAT_008068ce & 0x800) == 0)) {
+    if (((fault_status_registers_t_00805df2.io_fault_status_2 & 0x800) == 0) ||
+       ((_DAT_008068ce & 0x800) == 0)) {
       bVar1 = false;
     }
     else {
@@ -30487,7 +30823,8 @@ LAB_0002ffea:
     _DAT_00809a04 = 5;
   }
   else {
-    if (((_DAT_0080c810 == 8) || (_DAT_0080c810 == 1)) &&
+    if (((engine_operating_mode_t_0080c810.state == 8) ||
+        (engine_operating_mode_t_0080c810.state == 1)) &&
        ((_DAT_00809a04 == 4 || (_DAT_00809a04 == 3)))) {
       _DAT_00803362 = _DAT_00803362 + 1;
     }
@@ -30504,11 +30841,14 @@ LAB_0002ffea:
   else if (_DAT_00809a04 == 1) {
     _DAT_00809a04 = 2;
   }
-  else if (((_DAT_0080c810 == 2) || (_DAT_0080c810 == 6)) && (_DAT_00809a04 == 2)) {
+  else if (((engine_operating_mode_t_0080c810.state == 2) ||
+           (engine_operating_mode_t_0080c810.state == 6)) && (_DAT_00809a04 == 2)) {
     _DAT_00809a04 = 3;
   }
-  else if ((((_DAT_0080c810 == 3) || (_DAT_0080c810 == 4)) ||
-           ((_DAT_0080c810 == 7 || (_DAT_0080c810 == 5)))) &&
+  else if ((((engine_operating_mode_t_0080c810.state == 3) ||
+            (engine_operating_mode_t_0080c810.state == 4)) ||
+           ((engine_operating_mode_t_0080c810.state == 7 ||
+            (engine_operating_mode_t_0080c810.state == 5)))) &&
           ((_DAT_00809a04 == 2 || (_DAT_00809a04 == 3)))) {
     _DAT_00809a04 = 4;
   }
@@ -30980,14 +31320,16 @@ ushort FUN_00030914(void)
   
   uVar1 = _DAT_00803614 & 0x40;
   if (uVar1 != 0) {
-    if (((_DAT_00805df2 & 0x4000) == 0) || ((_DAT_008068c4 & 0x4000) == 0)) {
+    if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x4000) == 0) ||
+       ((_DAT_008068c4 & 0x4000) == 0)) {
       bVar2 = false;
     }
     else {
       bVar2 = true;
     }
     if (!bVar2) {
-      if (((_DAT_00805df2 & 0x2000) == 0) || ((_DAT_008068c4 & 0x2000) == 0)) {
+      if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x2000) == 0) ||
+         ((_DAT_008068c4 & 0x2000) == 0)) {
         bVar2 = false;
       }
       else {
@@ -30998,14 +31340,16 @@ ushort FUN_00030914(void)
         return 0;
       }
     }
-    if (((_DAT_00805df6 & 2) == 0) || ((_DAT_008068c8 & 2) == 0)) {
+    if (((fault_status_registers_t_00805df2.engine_fault_status & 2) == 0) ||
+       ((_DAT_008068c8 & 2) == 0)) {
       uVar1 = 0;
     }
     else {
       uVar1 = 1;
     }
     if (uVar1 == 0) {
-      if (((_DAT_00805df6 & 1) == 0) || ((_DAT_008068c8 & 1) == 0)) {
+      if (((fault_status_registers_t_00805df2.engine_fault_status & 1) == 0) ||
+         ((_DAT_008068c8 & 1) == 0)) {
         uVar1 = 0;
       }
       else {
@@ -31116,7 +31460,7 @@ void engineModeBasedIoController(void)
     DAT_0080bdef = DAT_0080bdef | 0x10;
     return;
   }
-  switch(_DAT_0080c810) {
+  switch(engine_operating_mode_t_0080c810.state) {
   case 1:
   case 8:
     _DAT_008033ba = 1;
@@ -31468,21 +31812,24 @@ ushort vp44DiagnosticSensorThresholdMonitor(void)
   if ((_DAT_00803614 & 0x100) == 0) {
     return 0;
   }
-  if (((_DAT_00805df4 & 0x200) == 0) || ((_DAT_008068c6 & 0x200) == 0)) {
+  if (((fault_status_registers_t_00805df2.fault_status_2 & 0x200) == 0) ||
+     ((_DAT_008068c6 & 0x200) == 0)) {
     uVar1 = 0;
   }
   else {
     uVar1 = 1;
   }
   if (uVar1 == 0) {
-    if (((_DAT_00805df4 & 0x400) == 0) || ((_DAT_008068c6 & 0x400) == 0)) {
+    if (((fault_status_registers_t_00805df2.fault_status_2 & 0x400) == 0) ||
+       ((_DAT_008068c6 & 0x400) == 0)) {
       uVar1 = 0;
     }
     else {
       uVar1 = 1;
     }
     if (uVar1 == 0) {
-      if (((_DAT_00805df4 & 0x2000) == 0) || ((_DAT_008068c6 & 0x2000) == 0)) {
+      if (((fault_status_registers_t_00805df2.fault_status_2 & 0x2000) == 0) ||
+         ((_DAT_008068c6 & 0x2000) == 0)) {
         uVar1 = 0;
       }
       else {
@@ -31500,7 +31847,8 @@ ushort vp44DiagnosticSensorThresholdMonitor(void)
           if (_DAT_008033d6 != 0) {
             return uVar1;
           }
-          _DAT_00805df4 = _DAT_00805df4 & 0xf7ff;
+          fault_status_registers_t_00805df2.fault_status_2 =
+               fault_status_registers_t_00805df2.fault_status_2 & 0xf7ff;
           return uVar1;
         }
         if (_DAT_0080782c <= _DAT_008033d6) {
@@ -31510,14 +31858,17 @@ ushort vp44DiagnosticSensorThresholdMonitor(void)
         if (_DAT_008033d6 != _DAT_0080782c) {
           return _DAT_008033d6;
         }
-        _DAT_00805df4 = _DAT_00805df4 | 0x800;
-        _DAT_00805e34 = _DAT_00805e34 | 0x800;
+        fault_status_registers_t_00805df2.fault_status_2 =
+             fault_status_registers_t_00805df2.fault_status_2 | 0x800;
+        fault_latch_registers_t_00805e32.fault_status_8_previous =
+             fault_latch_registers_t_00805e32.fault_status_8_previous | 0x800;
         return _DAT_008033d6;
       }
     }
   }
   _DAT_008033d6 = 0;
-  _DAT_00805df4 = _DAT_00805df4 & 0xf7ff;
+  fault_status_registers_t_00805df2.fault_status_2 =
+       fault_status_registers_t_00805df2.fault_status_2 & 0xf7ff;
   return uVar1;
 }
 
@@ -31537,22 +31888,26 @@ ushort vp44FaultRegisterBit2Monitor(void)
   
   uVar1 = _DAT_0080d04c;
   if ((_DAT_00803614 & 2) == 0) {
-    _DAT_00805dfa = _DAT_00805dfa & 0xdfff;
+    fault_status_registers_t_00805df2.io_fault_status_1 =
+         fault_status_registers_t_00805df2.io_fault_status_1 & 0xdfff;
     uVar2 = 0;
   }
   else {
     if (_DAT_008093a2 == 1) {
       _DAT_0080d04c = _DAT_0080d04c | 0x10;
-      _DAT_00805dfa = _DAT_00805dfa | 0x2000;
-      _DAT_00805e3a = _DAT_00805e3a | 0x2000;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 | 0x2000;
+      fault_latch_registers_t_00805e32.io_fault_latch_1 =
+           fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x2000;
       return _DAT_00803614 & 2;
     }
     _DAT_0080d04c = _DAT_0080d04c & 0xffef;
-    uVar2 = _DAT_00805dfa & 0x2000;
+    uVar2 = fault_status_registers_t_00805df2.io_fault_status_1 & 0x2000;
     if (uVar2 != 0) {
-      uVar2 = _DAT_00805e3a & 0x2000;
+      uVar2 = fault_latch_registers_t_00805e32.io_fault_latch_1 & 0x2000;
       if (uVar2 == 0) {
-        _DAT_00805dfa = _DAT_00805dfa & 0xdfff;
+        fault_status_registers_t_00805df2.io_fault_status_1 =
+             fault_status_registers_t_00805df2.io_fault_status_1 & 0xdfff;
         return uVar2;
       }
     }
@@ -31585,21 +31940,22 @@ void FUN_00031394(void)
 // Function: FUN_000313c4 @ 0x000313c4
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 ushort FUN_000313c4(uint param_1)
 
 {
   ushort uVar1;
   
-  if (((param_1 & 0x10000) == 0) || ((_DAT_00805dfc & 0x20) != 0)) {
+  if (((param_1 & 0x10000) == 0) ||
+     ((fault_status_registers_t_00805df2.io_fault_status_2 & 0x20) != 0)) {
     DAT_0080bdef = DAT_0080bdef | 1;
   }
   else {
     DAT_0080bdef = DAT_0080bdef & 0xfe;
   }
   uVar1 = param_1._0_2_ & 2;
-  if (((param_1 & 0x20000) != 0) && (uVar1 = _DAT_00805df2 & 1, (_DAT_00805df2 & 1) == 0)) {
+  if (((param_1 & 0x20000) != 0) &&
+     (uVar1 = fault_status_registers_t_00805df2.sensor_fault_status & 1,
+     (fault_status_registers_t_00805df2.sensor_fault_status & 1) == 0)) {
     DAT_0080bdf1 = DAT_0080bdf1 & 0xfe;
     return uVar1;
   }
@@ -31772,7 +32128,8 @@ void fuelPressureSyncStateMachine(void)
   switch(_DAT_008033de) {
   case 0:
     if (_DAT_008096fe != 0) {
-      if (((_DAT_00805df4 & 0x400) == 0) && ((_DAT_00805df4 & 0x200) == 0)) {
+      if (((fault_status_registers_t_00805df2.fault_status_2 & 0x400) == 0) &&
+         ((fault_status_registers_t_00805df2.fault_status_2 & 0x200) == 0)) {
         bVar1 = false;
       }
       else {
@@ -31816,7 +32173,8 @@ void fuelPressureSyncStateMachine(void)
       }
     }
     else {
-      if (((_DAT_00805df4 & 0x400) == 0) && ((_DAT_00805df4 & 0x200) == 0)) {
+      if (((fault_status_registers_t_00805df2.fault_status_2 & 0x400) == 0) &&
+         ((fault_status_registers_t_00805df2.fault_status_2 & 0x200) == 0)) {
         bVar1 = false;
       }
       else {
@@ -31957,14 +32315,16 @@ ushort fuelTemperatureLimitingPrimary(void)
     _DAT_00809706 = 1;
   }
   if (_DAT_0080926e < _DAT_00807134) {
-    if (((_DAT_00805df6 & 1) == 0) || ((_DAT_008068c8 & 1) == 0)) {
+    if (((fault_status_registers_t_00805df2.engine_fault_status & 1) == 0) ||
+       ((_DAT_008068c8 & 1) == 0)) {
       bVar1 = false;
     }
     else {
       bVar1 = true;
     }
     if (bVar1) goto LAB_000318d6;
-    if (((_DAT_00805df6 & 2) == 0) || ((_DAT_008068c8 & 2) == 0)) {
+    if (((fault_status_registers_t_00805df2.engine_fault_status & 2) == 0) ||
+       ((_DAT_008068c8 & 2) == 0)) {
       bVar1 = false;
     }
     else {
@@ -31979,14 +32339,16 @@ LAB_000318d6:
   }
   if ((_DAT_008035e0 & 0x1000) == 0) {
     if (_DAT_008091ea < _DAT_00807138) {
-      if (((_DAT_00805df2 & 0x2000) == 0) || ((_DAT_008068c4 & 0x2000) == 0)) {
+      if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x2000) == 0) ||
+         ((_DAT_008068c4 & 0x2000) == 0)) {
         bVar1 = false;
       }
       else {
         bVar1 = true;
       }
       if (!bVar1) {
-        if (((_DAT_00805df2 & 0x4000) == 0) || ((_DAT_008068c4 & 0x4000) == 0)) {
+        if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x4000) == 0) ||
+           ((_DAT_008068c4 & 0x4000) == 0)) {
           bVar1 = false;
         }
         else {
@@ -32063,14 +32425,16 @@ ushort fuelTemperatureLimitingSecondary(void)
     _DAT_00809708 = 1;
   }
   if (_DAT_008091ea < _DAT_00807138) {
-    if (((_DAT_00805df2 & 0x2000) == 0) || ((_DAT_008068c4 & 0x2000) == 0)) {
+    if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x2000) == 0) ||
+       ((_DAT_008068c4 & 0x2000) == 0)) {
       bVar1 = false;
     }
     else {
       bVar1 = true;
     }
     if (!bVar1) {
-      if (((_DAT_00805df2 & 0x4000) == 0) || ((_DAT_008068c4 & 0x4000) == 0)) {
+      if (((fault_status_registers_t_00805df2.sensor_fault_status & 0x4000) == 0) ||
+         ((_DAT_008068c4 & 0x4000) == 0)) {
         bVar1 = false;
       }
       else {
@@ -32168,7 +32532,7 @@ uint fuelTemperatureProtectionSlowCycle40Coordinator(void)
   
   _DAT_008033ea = _DAT_00809706;
   _DAT_008033ec = _DAT_00809708;
-  if (_DAT_0080c810 == 1) {
+  if (engine_operating_mode_t_0080c810.state == 1) {
     _DAT_00809706 = 0;
     _DAT_00809708 = 0;
     ioControlSourceRegisterManager(0xf);
@@ -32465,11 +32829,14 @@ ushort vp44SensorDiagnosticControl(void)
       _DAT_00809b06 = 0;
     }
     if (_DAT_00803414 == 0) {
-      _DAT_00805dfa = _DAT_00805dfa & 0xfbff;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 & 0xfbff;
     }
     else {
-      _DAT_00805dfa = _DAT_00805dfa | 0x400;
-      _DAT_00805e3a = _DAT_00805e3a | 0x400;
+      fault_status_registers_t_00805df2.io_fault_status_1 =
+           fault_status_registers_t_00805df2.io_fault_status_1 | 0x400;
+      fault_latch_registers_t_00805e32.io_fault_latch_1 =
+           fault_latch_registers_t_00805e32.io_fault_latch_1 | 0x400;
     }
     uVar1 = (byte)-((DAT_0080bdc9 & 0x20) != 0) & 1;
     DAT_00803412 = (char)uVar1;
@@ -32910,8 +33277,10 @@ void sensorStatusHistoryTracker(void)
     {
       if ((((_DAT_00808932 < _DAT_00803440) && (_DAT_0080343a == 0)) ||
           ((_DAT_008037f8 < _DAT_008096a6 ||
-           (((_DAT_00805dfa & 0x200) != 0 && ((_DAT_008068cc & 0x200) != 0)))))) ||
-         (((_DAT_00805dfa & 0x100) != 0 && ((_DAT_008068cc & 0x100) != 0)))) {
+           (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) != 0 &&
+            ((_DAT_008068cc & 0x200) != 0)))))) ||
+         (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) != 0 &&
+          ((_DAT_008068cc & 0x100) != 0)))) {
         _DAT_0080d17c = 2;
       }
       else if ((_DAT_0080343a == 0) || (_DAT_00803440 <= _DAT_00808932)) {
@@ -32943,7 +33312,8 @@ void sensorStatusHistoryTracker(void)
       _DAT_0080343c = 0;
     }
     else if ((_DAT_008037f8 < _DAT_008096a6) ||
-            (((_DAT_00805dfa & 0x100) != 0 && ((_DAT_008068cc & 0x100) != 0)))) {
+            (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) != 0 &&
+             ((_DAT_008068cc & 0x100) != 0)))) {
       _DAT_0080d17c = 2;
     }
     else {
@@ -32956,14 +33326,16 @@ void sensorStatusHistoryTracker(void)
     if (((_DAT_008096a6 < _DAT_008037f8) &&
         (_DAT_0080892c <= (ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_)) &&
        ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ <= _DAT_0080892a)) {
-      if (((_DAT_00805dfa & 0x200) == 0) || ((_DAT_008068cc & 0x200) == 0)) {
+      if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) == 0) ||
+         ((_DAT_008068cc & 0x200) == 0)) {
         bVar1 = false;
       }
       else {
         bVar1 = true;
       }
       if (!bVar1) {
-        if (((_DAT_00805dfa & 0x100) == 0) || ((_DAT_008068cc & 0x100) == 0)) {
+        if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) == 0) ||
+           ((_DAT_008068cc & 0x100) == 0)) {
           bVar1 = false;
         }
         else {
@@ -32980,14 +33352,16 @@ void sensorStatusHistoryTracker(void)
         (_DAT_008096a6 <= _DAT_008037f8)) &&
        ((_DAT_0080892c <= (ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ &&
         ((ushort)circular_buffer_t_0080c3fc.data_buffer._8_2_ <= _DAT_0080892a)))) {
-      if (((_DAT_00805dfa & 0x200) == 0) || ((_DAT_008068cc & 0x200) == 0)) {
+      if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) == 0) ||
+         ((_DAT_008068cc & 0x200) == 0)) {
         bVar1 = false;
       }
       else {
         bVar1 = true;
       }
       if (!bVar1) {
-        if (((_DAT_00805dfa & 0x100) == 0) || ((_DAT_008068cc & 0x100) == 0)) {
+        if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) == 0) ||
+           ((_DAT_008068cc & 0x100) == 0)) {
           bVar1 = false;
         }
         else {
@@ -33022,14 +33396,16 @@ void sensorStatusHistoryTracker(void)
     break;
   case 3:
     if (_DAT_008096a6 <= _DAT_008037f8) {
-      if (((_DAT_00805dfa & 0x200) == 0) || ((_DAT_008068cc & 0x200) == 0)) {
+      if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x200) == 0) ||
+         ((_DAT_008068cc & 0x200) == 0)) {
         bVar1 = false;
       }
       else {
         bVar1 = true;
       }
       if (!bVar1) {
-        if (((_DAT_00805dfa & 0x100) == 0) || ((_DAT_008068cc & 0x100) == 0)) {
+        if (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) == 0) ||
+           ((_DAT_008068cc & 0x100) == 0)) {
           bVar1 = false;
         }
         else {
@@ -33044,7 +33420,8 @@ void sensorStatusHistoryTracker(void)
       }
     }
     if ((((((_DAT_00803430 & 0x10) == 0) || (_DAT_008037f8 < _DAT_008096a6)) ||
-         (((_DAT_00805dfa & 0x100) != 0 && ((_DAT_008068cc & 0x100) != 0)))) ||
+         (((fault_status_registers_t_00805df2.io_fault_status_1 & 0x100) != 0 &&
+          ((_DAT_008068cc & 0x100) != 0)))) ||
         (((_DAT_008035ec & 0x1000) != 0 && ((_DAT_00803430 & 0x4000) != 0)))) ||
        (((_DAT_008035ec & 0x800) != 0 && ((_DAT_00803430 & 0x10000) != 0)))) {
       _DAT_0080d17c = 2;
@@ -34050,7 +34427,7 @@ void FUN_000344e8(void)
             bVar2 = true;
           }
           if (!bVar2) {
-            switch(_DAT_0080c810) {
+            switch(engine_operating_mode_t_0080c810.state) {
             case 2:
             case 6:
             case 7:
@@ -34256,22 +34633,24 @@ void vp44FsoFaultBit15Monitor(void)
     _DAT_008034d6 = 0;
     return;
   }
-  if (_DAT_0080c810 == 1) {
+  if (engine_operating_mode_t_0080c810.state == 1) {
     DAT_008034d8 = 0;
     return;
   }
-  if (_DAT_0080c810 == 8) {
+  if (engine_operating_mode_t_0080c810.state == 8) {
     DAT_008034d8 = 0;
     return;
   }
-  if (((_DAT_00805df6 & 0x1000) == 0) || ((_DAT_008068c8 & 0x1000) == 0)) {
+  if (((fault_status_registers_t_00805df2.engine_fault_status & 0x1000) == 0) ||
+     ((_DAT_008068c8 & 0x1000) == 0)) {
     bVar1 = false;
   }
   else {
     bVar1 = true;
   }
   if (!bVar1) {
-    if (((_DAT_00805df6 & 0x4000) == 0) || ((_DAT_008068c8 & 0x4000) == 0)) {
+    if (((fault_status_registers_t_00805df2.engine_fault_status & 0x4000) == 0) ||
+       ((_DAT_008068c8 & 0x4000) == 0)) {
       bVar1 = false;
     }
     else {
@@ -34799,7 +35178,8 @@ void vp44FsoFaultEnableController(void)
 
 {
   _DAT_0080c9c6 = (ushort)DAT_008034a0;
-  if (((_DAT_0080c810 != 5) && (_DAT_0080c810 != 8)) && (DAT_008034a0 != 1)) {
+  if (((engine_operating_mode_t_0080c810.state != 5) &&
+      (engine_operating_mode_t_0080c810.state != 8)) && (DAT_008034a0 != 1)) {
     DAT_008034a1 = 1;
     return;
   }

@@ -115,23 +115,33 @@ public class BulkVariableCreator extends GhidraScript {
                             continue;
                         }
                         
-                        // Create symbol (variable name) at this address
-                        SymbolTable symbolTable = currentProgram.getSymbolTable();
-                        
-                        // Remove any existing symbols at this address (except function symbols)
-                        Symbol[] existingSymbols = symbolTable.getSymbols(addr);
-                        for (Symbol symbol : existingSymbols) {
-                            if (symbol.getSymbolType() != ghidra.program.model.symbol.SymbolType.FUNCTION) {
-                                symbolTable.removeSymbolSpecial(symbol);
+                        // Rename the symbol at this address
+                        // Use getSymbolAt + setName approach which properly renames dynamic DAT_ symbols
+                        Symbol existingSymbol = getSymbolAt(addr);
+                        boolean symbolSuccess = false;
+
+                        if (existingSymbol != null) {
+                            // Rename existing symbol (works for dynamic DAT_ symbols)
+                            try {
+                                existingSymbol.setName(varName, SourceType.USER_DEFINED);
+                                symbolSuccess = true;
+                            } catch (Exception e) {
+                                // If rename fails, try creating a new label
+                                println("  Note: Could not rename existing symbol, creating new label");
                             }
                         }
-                        
-                        // Create new symbol
-                        Symbol newSymbol = symbolTable.createLabel(addr, varName, SourceType.USER_DEFINED);
-                        if (newSymbol != null) {
-                            // Set as primary symbol so decompiler uses this name instead of DAT_xxxx
-                            newSymbol.setPrimary();
 
+                        if (!symbolSuccess) {
+                            // Fall back to creating a new label if no symbol exists or rename failed
+                            SymbolTable symbolTable = currentProgram.getSymbolTable();
+                            Symbol newSymbol = symbolTable.createLabel(addr, varName, SourceType.USER_DEFINED);
+                            if (newSymbol != null) {
+                                newSymbol.setPrimary();
+                                symbolSuccess = true;
+                            }
+                        }
+
+                        if (symbolSuccess) {
                             // Enhanced comment with CalTerm metadata
                             String enhancedComment = comment;
                             if (!unit.isEmpty() || caltermType != 0 || !dataPattern.isEmpty()) {
@@ -141,10 +151,10 @@ public class BulkVariableCreator extends GhidraScript {
                                     !dataPattern.isEmpty() ? " " + dataPattern : "");
                             }
                             setEOLComment(addr, enhancedComment);
-                            
+
                             successCount++;
                         } else {
-                            println("✗ " + addressStr + ": Failed to create symbol '" + varName + "'");
+                            println("✗ " + addressStr + ": Failed to set symbol name '" + varName + "'");
                             failCount++;
                         }
                         
