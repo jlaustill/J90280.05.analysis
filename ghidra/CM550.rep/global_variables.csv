@@ -4760,3 +4760,23 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00800230,diagnostic_queue_index,byte,Diagnostic queue current index for debounce handler (2 refs),1,0,,index
 0x0080d410,insite_response_continuation_ptr,dword,INSITE response buffer continuation pointer for multi-packet (1 ref),4,0,,pointer
 0x0080016c,timing_accumulator_flag_mask,word,Flag mask OR'd with fuel_adjustment_active_flag in timingAccumulatorUpdate (1 ref),2,0,,mask
+0x00809654,diagnostic_fuel_control_mode,word,Fuel/diagnostic mode selector: 10=INSITE display 11=RPM threshold 12=fuel delivery (55 refs),2,0,,state
+0x0080334a,output_control_state_4_value,word,Output control state 4 handler value used by outputControlTimingGenerator (9 refs),2,0,,state
+0x008033c0,engine_mode_io_control_counter,word,Engine mode IO control counter in engineModeBasedIoController (9 refs),2,0,,counter
+0x008034de,vp44_fso_multibit_fault_accumulator,word,VP44 FSO multi-bit fault accumulator in vp44FsoMultiBitFaultMonitor (9 refs),2,0,,accumulator
+0x0080c41e,duty_cycle_buffer_current_ptr,dword,Duty cycle monitor buffer current pointer in throttlePositionValidator (9 refs),4,0,,pointer
+0x0080c782,duty_cycle_buffer_end_ptr,dword,Duty cycle monitor buffer end pointer in throttlePositionValidator (8 refs),4,0,,pointer
+0x0080bda0,boost_pressure_protection_state,word,Boost pressure protection state machine value (9 refs),2,0,,state
+0x00809a0a,vp44_communication_status,word,VP44 pump communication/operating status (9 refs),2,0,,status
+0x0080d1a0,calibration_checksum_workspace,dword,Calibration data checksum workspace in calibrationDataCopyWithChecksum (9 refs),4,0,,workspace
+0x00809d6a,oil_pressure_protection_snapshot,word,Oil pressure protection threshold snapshot value (8 refs),2,0,,snapshot
+0x00809a08,output_control_timing_state,word,Output control timing generator state (1=mode A 2=mode B) (9 refs),2,0,,state
+0x00809a10,sensor_fault_rpm_source_value,word,Sensor fault-based RPM source selector output value (7 refs),2,0,,value
+0x00809a12,sensor_fault_rpm_threshold,word,Sensor fault RPM threshold calculated value (4 refs),2,0,,threshold
+0x00809a34,fuel_demand_limit_previous,word,Fuel demand limit previous value before selector 11 (2 refs),2,0,,value
+0x00809a38,rpm_derate_scaling_factor,word,RPM derate percent scaling factor (1 ref),2,0,,factor
+0x0080d3f4,water_in_fuel_detection_flag,word,Water-in-fuel detection state flag (used by waterInFuelFaultClear/Validation) (6 refs),2,0,,flag
+0x0080d4c0,fuel_demand_rpm_based_limit,word,Fuel demand limit calculated from RPM in fuelDemandBasedParameterCalculator (6 refs),2,0,,limit
+0x0080d4c2,fuel_demand_limit_snapshot,word,Fuel demand limit snapshot before minimum update (2 refs),2,0,,snapshot
+0x0080d458,memory_patch_pending_flag,word,Memory patching system pending flag (3 refs),2,0,,flag
+0x0080d456,memory_patch_crc_expected,word,Memory patch expected CRC value for validation (2 refs),2,0,,checksum
