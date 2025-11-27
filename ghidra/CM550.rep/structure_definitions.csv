@@ -128,7 +128,12 @@ cummins_data_plate_t,0x010002C0,do_file_b_part_2,byte,10,DO file B part number 2
 cummins_data_plate_t,0x010002C0,pad,byte,1,Unused padding byte,,guess
 circular_buffer_t,0x80c3fc,write_index,word,2,Current write position (0-511),,needs_review
 circular_buffer_t,0x80c3fc,entry_count,word,2,Number of entries in buffer,,needs_review
-circular_buffer_t,0x80c3fc,data_buffer,byte,512,Circular data storage array,,needs_review
+circular_buffer_t,0x80c3fc,data_buffer_0,word,2,Sensor data offset 0,,needs_review
+circular_buffer_t,0x80c3fc,data_buffer_2,word,2,Sensor data offset 2,,needs_review
+circular_buffer_t,0x80c3fc,data_buffer_4,word,2,Sensor data offset 4,,needs_review
+circular_buffer_t,0x80c3fc,current_engine_rpm,word,2,Current engine RPM sample (offset 6),,verified
+circular_buffer_t,0x80c3fc,data_buffer_8,word,2,Sensor data offset 8 (throttle or RPM comparison),,needs_review
+circular_buffer_t,0x80c3fc,data_buffer_rest,byte,500,Remaining circular buffer data,,needs_review
 circular_buffer_t,0x80c3fc,metadata_buffer,word,512,Metadata/timestamp array,,needs_review
 can_message_log_buffer_t,0x8034f8,j1939_msg_buffers,byte,906,Complete CAN message buffer array for diagnostic logging,,needs_review
 memory_patch_entry_t,,target_address,dword,4,Memory address to patch (supports high memory mapping),,guess

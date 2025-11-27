@@ -342,6 +342,7 @@ address,newName
 0x000341ea,vp44FsoCircuitFaultDetection
 0x000342f6,vp44FsoCircuitFaultDetectionBit1
 0x000353ec,liftPumpCommStatusMonitor
+0x00035608,exponentialMovingAverage
 0x000356f8,coreTableInterpolation
 0x000357d2,proportionalCalculation
 0x357e4,rpmFuelCalculation
