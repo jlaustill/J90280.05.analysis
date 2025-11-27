@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Wed Nov 26 19:41:16 MST 2025
+// Wed Nov 26 19:44:24 MST 2025
 
 
 //
@@ -12,8 +12,8 @@ void rpm_rate_limiter(void)
 {
   rpm_fuel_protection_t_008091c4.rpm_rate_limiter_output =
        circular_buffer_t_0080c3fc.current_engine_rpm -
-       rpm_control_timers_t_00800002.previous_engine_rpm;
-  rpm_control_timers_t_00800002.previous_engine_rpm = circular_buffer_t_0080c3fc.current_engine_rpm;
+       rpm_control_timers_t_00800000.previous_engine_rpm;
+  rpm_control_timers_t_00800000.previous_engine_rpm = circular_buffer_t_0080c3fc.current_engine_rpm;
   rpm_fuel_protection_t_008091c4.rpm_rate_limited_value = exponentialMovingAverage();
   if ((short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value <
       (short)rpm_rate_limits_t_008062f8.minimum) {
@@ -49,13 +49,13 @@ ushort rpm_system_state_controller(void)
     if ((short)rpm_calibration_params_t_008062d4.shutdown_rate_threshold <
         (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
       rpm_fuel_protection_t_008091c4.rpm_threshold_exceeded_flag = 1;
-      rpm_control_timers_t_00800002.timer_1 = _DAT_008062fe;
+      rpm_control_timers_t_00800000.timer_1 = _DAT_008062fe;
     }
-    else if (rpm_control_timers_t_00800002.timer_1 == 0) {
+    else if (rpm_control_timers_t_00800000.timer_1 == 0) {
       rpm_fuel_protection_t_008091c4.rpm_threshold_exceeded_flag = 0;
     }
     else {
-      rpm_control_timers_t_00800002.timer_1 = rpm_control_timers_t_00800002.timer_1 - 1;
+      rpm_control_timers_t_00800000.timer_1 = rpm_control_timers_t_00800000.timer_1 - 1;
     }
     if ((((rpm_fuel_protection_t_008091c4.fuel_system_protection_enabled == 0) ||
          (rpm_fuel_protection_t_008091c4.rpm_threshold_exceeded_flag != 0)) ||
@@ -66,22 +66,22 @@ ushort rpm_system_state_controller(void)
         ((short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc <
          (short)rpm_calibration_params_t_008062d4.shutdown_secondary_threshold)))) {
       if (rpm_fuel_protection_t_008091c4.fuel_protection_timer_enable == 0) {
-        if (rpm_control_timers_t_00800002.timer_2 == 0) {
+        if (rpm_control_timers_t_00800000.timer_2 == 0) {
           rpm_fuel_protection_t_008091c4.rpm_state_accumulator = 0;
         }
         else {
-          rpm_control_timers_t_00800002.timer_2 = rpm_control_timers_t_00800002.timer_2 - 1;
+          rpm_control_timers_t_00800000.timer_2 = rpm_control_timers_t_00800000.timer_2 - 1;
         }
       }
       else {
         rpm_fuel_protection_t_008091c4.rpm_state_accumulator = 1;
-        rpm_control_timers_t_00800002.timer_2 =
+        rpm_control_timers_t_00800000.timer_2 =
              rpm_calibration_params_t_008062d4.shutdown_timer_reload;
       }
     }
     else {
       rpm_fuel_protection_t_008091c4.rpm_state_accumulator = 1;
-      rpm_control_timers_t_00800002.timer_2 =
+      rpm_control_timers_t_00800000.timer_2 =
            rpm_calibration_params_t_008062d4.shutdown_timer_reload;
     }
     if (rpm_fuel_protection_t_008091c4.rpm_state_accumulator == 1) {
@@ -140,15 +140,15 @@ ushort highRpmFuelControlLimiter(void)
     if ((short)high_rpm_threshold_calibration_t_00806300.rate_threshold <
         (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
       rpm_fuel_protection_t_008091c4.high_rpm_threshold_exceeded_flag = 1;
-      rpm_control_timers_t_00800002.high_rpm_timer =
+      rpm_control_timers_t_00800000.high_rpm_timer =
            high_rpm_threshold_calibration_t_00806300.threshold_timer_reload;
     }
-    else if (rpm_control_timers_t_00800002.high_rpm_timer == 0) {
+    else if (rpm_control_timers_t_00800000.high_rpm_timer == 0) {
       rpm_fuel_protection_t_008091c4.high_rpm_threshold_exceeded_flag = 0;
     }
     else {
-      rpm_control_timers_t_00800002.high_rpm_timer =
-           rpm_control_timers_t_00800002.high_rpm_timer - 1;
+      rpm_control_timers_t_00800000.high_rpm_timer =
+           rpm_control_timers_t_00800000.high_rpm_timer - 1;
     }
     wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_limited_value;
     if ((((rpm_fuel_protection_t_008091c4.fuel_system_protection_enabled == 0) ||
@@ -162,23 +162,23 @@ ushort highRpmFuelControlLimiter(void)
         (short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc <
         (short)high_rpm_calibration_t_008062ea.high_rpm_secondary_threshold)))) {
       if (rpm_fuel_protection_t_008091c4.fuel_protection_timer_enable == 0) {
-        if (rpm_control_timers_t_00800002.high_rpm_accumulator_timer == 0) {
+        if (rpm_control_timers_t_00800000.high_rpm_accumulator_timer == 0) {
           rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator = 0;
         }
         else {
-          rpm_control_timers_t_00800002.high_rpm_accumulator_timer =
-               rpm_control_timers_t_00800002.high_rpm_accumulator_timer - 1;
+          rpm_control_timers_t_00800000.high_rpm_accumulator_timer =
+               rpm_control_timers_t_00800000.high_rpm_accumulator_timer - 1;
         }
       }
       else {
         rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator = 1;
-        rpm_control_timers_t_00800002.high_rpm_accumulator_timer =
+        rpm_control_timers_t_00800000.high_rpm_accumulator_timer =
              high_rpm_calibration_t_008062ea.high_rpm_timer_reload;
       }
     }
     else {
       rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator = 1;
-      rpm_control_timers_t_00800002.high_rpm_accumulator_timer =
+      rpm_control_timers_t_00800000.high_rpm_accumulator_timer =
            high_rpm_calibration_t_008062ea.high_rpm_timer_reload;
     }
     if (rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator == 1) {
@@ -239,13 +239,15 @@ ushort lowRpmFuelProtectionLimiter(void)
     if ((short)low_rpm_calibration_t_008062de.low_rpm_rate_threshold <
         (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
       rpm_fuel_protection_t_008091c4.low_rpm_threshold_exceeded_flag = 1;
-      _DAT_00800000 = rpm_rate_limits_t_008062f8.threshold_timer_reload;
+      rpm_control_timers_t_00800000.low_rpm_threshold_timer =
+           rpm_rate_limits_t_008062f8.threshold_timer_reload;
     }
-    else if (_DAT_00800000 == 0) {
+    else if (rpm_control_timers_t_00800000.low_rpm_threshold_timer == 0) {
       rpm_fuel_protection_t_008091c4.low_rpm_threshold_exceeded_flag = 0;
     }
     else {
-      _DAT_00800000 = _DAT_00800000 - 1;
+      rpm_control_timers_t_00800000.low_rpm_threshold_timer =
+           rpm_control_timers_t_00800000.low_rpm_threshold_timer - 1;
     }
     wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_limited_value;
     if ((((rpm_fuel_protection_t_008091c4.fuel_system_protection_enabled == 0) ||
@@ -260,23 +262,23 @@ ushort lowRpmFuelProtectionLimiter(void)
         (short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc <
         (short)low_rpm_calibration_t_008062de.low_rpm_secondary_threshold)))) {
       if (rpm_fuel_protection_t_008091c4.fuel_protection_timer_enable == 0) {
-        if (rpm_control_timers_t_00800002.low_rpm_accumulator_timer == 0) {
+        if (rpm_control_timers_t_00800000.low_rpm_accumulator_timer == 0) {
           rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator = 0;
         }
         else {
-          rpm_control_timers_t_00800002.low_rpm_accumulator_timer =
-               rpm_control_timers_t_00800002.low_rpm_accumulator_timer - 1;
+          rpm_control_timers_t_00800000.low_rpm_accumulator_timer =
+               rpm_control_timers_t_00800000.low_rpm_accumulator_timer - 1;
         }
       }
       else {
         rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator = 1;
-        rpm_control_timers_t_00800002.low_rpm_accumulator_timer =
+        rpm_control_timers_t_00800000.low_rpm_accumulator_timer =
              low_rpm_calibration_t_008062de.low_rpm_timer_reload;
       }
     }
     else {
       rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator = 1;
-      rpm_control_timers_t_00800002.low_rpm_accumulator_timer =
+      rpm_control_timers_t_00800000.low_rpm_accumulator_timer =
            low_rpm_calibration_t_008062de.low_rpm_timer_reload;
     }
     if (rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator != 0) {
@@ -313,7 +315,7 @@ void dmaControllerSetup1(void)
   dma_control_block_t_00800026.control_flags2 = 0x80000000;
                     /* Constant: DMA_DESC_ADDR_2 = 0x8062F6 */
   dma_control_block_t_00800026.descriptor_ptr2 = 0x8062f6;
-  rpm_control_timers_t_00800002.previous_engine_rpm = 0;
+  rpm_control_timers_t_00800000.previous_engine_rpm = 0;
   return;
 }
 
@@ -21769,11 +21771,11 @@ void huffmanDecompress(int param_1,undefined4 param_2)
   byte bVar2;
   ushort uVar3;
   byte *pbVar4;
-  undefined *local_8;
+  rpm_control_timers_t *local_8;
   
   bVar2 = 0;
   pbVar4 = &DAT_0002170d;
-  local_8 = &DAT_00800000;
+  local_8 = &rpm_control_timers_t_00800000;
   bVar1 = false;
   while( true ) {
     DAT_00fffa27 = 0xaa;
@@ -21796,8 +21798,8 @@ void huffmanDecompress(int param_1,undefined4 param_2)
       }
     } while ((0x100 < uVar3) && (!bVar1));
     if (bVar1) break;
-    *local_8 = (char)uVar3;
-    local_8 = local_8 + 1;
+    *(char *)&local_8->low_rpm_threshold_timer = (char)uVar3;
+    local_8 = (rpm_control_timers_t *)((int)&local_8->low_rpm_threshold_timer + 1);
   }
   return;
 }
@@ -22063,17 +22065,18 @@ LAB_00025350:
 void ramClearWithWatchdog(void)
 
 {
-  undefined4 *puVar1;
-  undefined4 *puVar2;
+  rpm_control_timers_t *prVar1;
+  rpm_control_timers_t *prVar2;
   
-  puVar2 = (undefined4 *)&DAT_00800000;
-  while (puVar2 < (undefined4 *)0x807eb0) {
-    puVar1 = puVar2 + 0x40;
-    if ((undefined4 *)0x807eb0 < puVar1) {
-      puVar1 = (undefined4 *)0x807eb0;
+  prVar2 = &rpm_control_timers_t_00800000;
+  while (prVar2 < (rpm_control_timers_t *)0x807eb0) {
+    prVar1 = (rpm_control_timers_t *)&prVar2[0x12].high_rpm_timer;
+    if ((word *)0x807eb0 < prVar1) {
+      prVar1 = (rpm_control_timers_t *)0x807eb0;
     }
-    for (; puVar2 < puVar1; puVar2 = puVar2 + 1) {
-      *puVar2 = 0;
+    for (; prVar2 < prVar1; prVar2 = (rpm_control_timers_t *)&prVar2->high_rpm_timer) {
+      prVar2->low_rpm_threshold_timer = 0;
+      prVar2->timer_1 = 0;
     }
     DAT_00fffa27 = 0xaa;
     DAT_00ffd00f = 0xaa;
@@ -23427,17 +23430,18 @@ void initQADC(void)
 void clearWorkingMemory(void)
 
 {
-  undefined4 *puVar1;
-  undefined4 *puVar2;
+  rpm_control_timers_t *prVar1;
+  rpm_control_timers_t *prVar2;
   
-  puVar2 = (undefined4 *)&DAT_00800000;
-  while (puVar2 < (undefined4 *)0x80d5ca) {
-    puVar1 = puVar2 + 0x40;
-    if ((undefined4 *)0x80d5ca < puVar1) {
-      puVar1 = (undefined4 *)0x80d5ca;
+  prVar2 = &rpm_control_timers_t_00800000;
+  while (prVar2 < (rpm_control_timers_t *)0x80d5ca) {
+    prVar1 = (rpm_control_timers_t *)&prVar2[0x12].high_rpm_timer;
+    if ((word *)0x80d5ca < prVar1) {
+      prVar1 = (rpm_control_timers_t *)0x80d5ca;
     }
-    for (; puVar2 <= puVar1; puVar2 = puVar2 + 1) {
-      *puVar2 = 0;
+    for (; prVar2 <= prVar1; prVar2 = (rpm_control_timers_t *)&prVar2->high_rpm_timer) {
+      prVar2->low_rpm_threshold_timer = 0;
+      prVar2->timer_1 = 0;
     }
     DAT_00fffa27 = 0xaa;
     DAT_00ffd00f = 0xaa;
