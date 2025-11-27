@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Wed Nov 26 20:29:31 MST 2025
+// Wed Nov 26 20:38:44 MST 2025
 
 
 //
@@ -1948,7 +1948,7 @@ void engineProtectionSystemInit(void)
 
 {
   engine_protection_init();
-  FUN_0002d3fa();
+  diagnosticParameterPointersInit();
   vp44ControlVariablesReset();
   fuelTempControlFlagChecker();
   fuelLimitRestoreFromCapture();
@@ -4138,7 +4138,7 @@ ushort initDerateSystem(void)
 
 
 //
-// Function: FUN_0000eaf0 @ 0x0000eaf0
+// Function: diagnosticMemoryAddressResolver @ 0x0000eaf0
 // ERROR: Failed to decompile
 //
 
@@ -7296,7 +7296,7 @@ void multiPacketTransmitHandler(void)
     local_8 = (byte *)CONCAT31(local_8._0_3_,cVar4 + '\x04');
     diag_transfer_state_t_0080d3f8.target_address = CONCAT11(*local_8,uVar1);
     local_8 = (byte *)CONCAT31(local_8._0_3_,cVar4 + '\x05');
-    cVar7 = FUN_0000eaf0(0x80);
+    cVar7 = diagnosticMemoryAddressResolver(0x80);
     if (cVar7 == '\0') {
       bVar9 = *local_8;
       local_8 = (byte *)CONCAT31(local_8._0_3_,cVar4 + '\x06');
@@ -7489,7 +7489,7 @@ void multiPacketReceiveHandler(void)
     local_8 = (byte *)CONCAT31(local_8._0_3_,cVar8 + '\x06');
     diag_transfer_state_t_0080d3f8.tx_active_flag = *local_8;
     local_8 = (byte *)CONCAT31(local_8._0_3_,cVar8 + '\a');
-    cVar8 = FUN_0000eaf0(0x80);
+    cVar8 = diagnosticMemoryAddressResolver(0x80);
     if (cVar8 == '\0') {
       switch(diag_transfer_state_t_0080d3f8.target_address) {
       case 0x15:
@@ -9695,7 +9695,7 @@ void can1TimerBufferInit(void)
 void delayWithWatchdogServiceWrapper(void)
 
 {
-  FUN_0002b5aa();
+  pwmTimerMode0Init();
   return;
 }
 
@@ -9881,7 +9881,7 @@ void can1MessageTransmitInit(void)
   _DAT_00fffe1a = _DAT_00fffe1a & 0xfffc | 1;
   _DAT_00fffe0a = _DAT_00fffe0a & 0xfffe | 1;
   _DAT_00fffe1e = _DAT_00fffe1e & 0xfffc | 1;
-  FUN_0002b5aa();
+  pwmTimerMode0Init();
   return;
 }
 
@@ -10115,7 +10115,7 @@ void can1MessageTransmitInit2(void)
   _DAT_00fffe1e = _DAT_00fffe1e & 0xfffc | 2;
   _DAT_00808ec2 = &LAB_00016370;
   _DAT_00fffe0a = _DAT_00fffe0a & 0xfffe | 1;
-  FUN_0002b5aa();
+  pwmTimerMode0Init();
   return;
 }
 
@@ -10299,7 +10299,7 @@ uint can1TimerBufferInitConditional(void)
 void delayWithWatchdogServiceWrapper2(void)
 
 {
-  FUN_0002b5aa();
+  pwmTimerMode0Init();
   return;
 }
 
@@ -10518,7 +10518,7 @@ ushort fuelTimingOilPressureModeController(void)
       else {
         _DAT_0080c7c0 = 0;
       }
-      FUN_0002c252();
+      fuelTimingTransitionStateMachine();
       if (_DAT_0080c7c6 == 0) {
         if ((((int)((uint)_DAT_0080c9d8 - (uint)_DAT_00807f24) <=
               (int)(uint)fuel_demand_state_t_0080c9a4.command) && (_DAT_0080c7ce != 0)) &&
@@ -10807,7 +10807,7 @@ undefined8 dutyCycleMonitorIsrHandler(void)
      (_DAT_0080c754 = _DAT_0080c760 + _DAT_0080c754, _DAT_0080c75a != -1)) {
     _DAT_0080c75a = _DAT_0080c75a + 1;
   }
-  FUN_0002b6c2();
+  pwmTimerMode0Reset();
   emptyStubFunction2();
   _DAT_00fffe20 = _DAT_00fffe20 & 0xfffd;
   return CONCAT44(in_D0,in_D1);
@@ -10893,7 +10893,7 @@ undefined8 dutyCycleMonitorAltIsrHandler(void)
      (_DAT_0080c754 = _DAT_0080c760 + _DAT_0080c754, _DAT_0080c75a != -1)) {
     _DAT_0080c75a = _DAT_0080c75a + 1;
   }
-  FUN_0002b6c2();
+  pwmTimerMode0Reset();
   emptyStubFunction2();
   _DAT_00fffe20 = _DAT_00fffe20 & 0xfffd;
   return CONCAT44(in_D0,in_D1);
@@ -11044,7 +11044,7 @@ undefined8 timerAccumulatorWithWatchdog(void)
      (_DAT_0080c754 = _DAT_0080c760 + _DAT_0080c754, _DAT_0080c75a != -1)) {
     _DAT_0080c75a = _DAT_0080c75a + 1;
   }
-  FUN_0002b6c2();
+  pwmTimerMode0Reset();
   emptyStubFunction2();
   _DAT_00fffe20 = _DAT_00fffe20 & 0xfffd;
   return CONCAT44(in_D0,in_D1);
@@ -11070,7 +11070,7 @@ undefined8 phase2_slot_7_handler(void)
   if (*unaff_A2 != -1) {
     *unaff_A2 = *unaff_A2 + 1;
   }
-  FUN_0002b6c2();
+  pwmTimerMode0Reset();
   emptyStubFunction2();
   _DAT_00fffe20 = _DAT_00fffe20 & 0xfffd;
   return in_stack_00000000;
@@ -11497,8 +11497,8 @@ void vp44ExtendedFaultDetectionCoordinator(void)
 
 {
   acceleratorThrottleFaultDetector();
-  FUN_000343f8();
-  FUN_000344e8();
+  vp44FsoFaultRangeMonitor();
+  vp44TimingFaultMonitor();
   return;
 }
 
@@ -13556,7 +13556,7 @@ void serialNodeAddressForwarder(undefined4 param_1)
 
 
 //
-// Function: FUN_0001913e @ 0x0001913e
+// Function: canFrameDataCopy @ 0x0001913e
 // ERROR: Failed to decompile
 //
 
@@ -13882,7 +13882,7 @@ uint serialTransmitHandler(void)
     *_DAT_0080cf8c = 0x7f;
   }
   else {
-    FUN_0001913e(&DAT_00ffd800);
+    canFrameDataCopy(&DAT_00ffd800);
     DAT_0080cf88 = '\0';
     uVar2 = _DAT_0080cf7c + 0xe;
     _DAT_0080cf7c = uVar2;
@@ -14403,7 +14403,7 @@ void diagnosticMemoryWriteHandler(undefined4 param_1)
       if (local_e._0_2_ == 0x15) {
         _DAT_0080d458 = 1;
       }
-      cVar3 = FUN_0000eaf0((short)((uint)&local_e >> 0x10));
+      cVar3 = diagnosticMemoryAddressResolver((short)((uint)&local_e >> 0x10));
       if (cVar3 != '\0') {
         diagnosticMessageQueueWrite(CONCAT22(8,uVar12));
         return;
@@ -15772,7 +15772,7 @@ uint memoryOperationDispatcher(int param_1,undefined1 *param_2,uint param_3)
 
 
 //
-// Function: FUN_0001b532 @ 0x0001b532
+// Function: j1939MemoryDataCopyResolver @ 0x0001b532
 // ERROR: Failed to decompile
 //
 
@@ -15788,7 +15788,7 @@ void j1939DataCopyWrapper(int param_1)
   
   memcpy(local_6,(undefined1 *)(*(int *)(param_1 + 6) + 1),
          CONCAT22(2,(short)((uint)unaff_A2 >> 0x10)));
-  FUN_0001b532(param_1);
+  j1939MemoryDataCopyResolver(param_1);
   return;
 }
 
@@ -15810,7 +15810,7 @@ void j1939DataCopyWrapper2Byte(int param_1)
   memcpy(puVar1,(undefined1 *)(*(int *)(param_1 + 6) + 1),
          CONCAT22(2,(short)((uint)unaff_A2 >> 0x10)));
   memcpy(local_a,(undefined1 *)(*(int *)(param_1 + 6) + 3),CONCAT22(4,(short)puVar1));
-  FUN_0001b532(param_1);
+  j1939MemoryDataCopyResolver(param_1);
   return;
 }
 
@@ -15828,7 +15828,7 @@ void j1939DataCopyWrapper2ByteAlt(int param_1)
   
   memcpy(local_6,(undefined1 *)(*(int *)(param_1 + 6) + 1),
          CONCAT22(2,(short)((uint)unaff_A2 >> 0x10)));
-  FUN_0001b532(param_1);
+  j1939MemoryDataCopyResolver(param_1);
   return;
 }
 
@@ -15854,7 +15854,7 @@ void j1939DataCopyWrapperExtended(int param_1)
   puVar1 = local_a;
   memcpy(puVar1,(undefined1 *)(*(int *)(param_1 + 6) + 3),CONCAT22(4,(short)puVar2));
   memcpy(local_e,(undefined1 *)(*(int *)(param_1 + 6) + 7),CONCAT22(4,(short)puVar1));
-  FUN_0001b532(param_1);
+  j1939MemoryDataCopyResolver(param_1);
   return;
 }
 
@@ -16270,7 +16270,7 @@ undefined4 canDiagnosticResponseSender(undefined1 *param_1)
   
   uVar1 = *(undefined1 *)(*(int *)(param_1 + 6) + 1);
   uVar2 = *(undefined1 *)(*(int *)(param_1 + 6) + 2);
-  cVar4 = FUN_0000eaf0();
+  cVar4 = diagnosticMemoryAddressResolver();
   if (cVar4 == '\0') {
     local_12 = CONCAT31(CONCAT21((short)(CONCAT13(*param_1,0xef0000) >> 0x10),param_1[3]),param_1[2]
                        ) & 0x1cffffff;
@@ -16499,10 +16499,10 @@ void diagMemoryReadService4cHandler(byte *param_1)
 
 
 //
-// Function: registerDiagnosticMemoryServices @ 0x0001c0c2
+// Function: systemFunction5xCaller @ 0x0001c0c2
 //
 
-void registerDiagnosticMemoryServices(void)
+void systemFunction5xCaller(void)
 
 {
   coreSystemFunction();
@@ -21214,7 +21214,7 @@ void canTransmissionScheduler(void)
   systemControlFunction3();
   diagnosticDataDump();
   systemControlFunction2();
-  registerDiagnosticMemoryServices();
+  systemFunction5xCaller();
   systemFunction1xCaller();
   systemFunction6xParameterized();
   systemFunction8xMaximum();
@@ -21342,7 +21342,7 @@ void mainCanTransmissionLoop(void)
   systemControlFunction3();
   diagnosticDataDump();
   systemControlFunction2();
-  registerDiagnosticMemoryServices();
+  systemFunction5xCaller();
   systemFunction1xCaller();
   systemFunction6xParameterized();
   systemFunction8xMaximum();
@@ -21509,7 +21509,7 @@ void vp44CommunicationTestAndInit(void)
   ushort local_6;
   
   uVar15 = (undefined2)((uint)unaff_D2 >> 0x10);
-  FUN_00028b78();
+  protectionFlagAccumulator();
   DAT_00fffa27 = 0xaa;
   DAT_00ffd00f = 0xaa;
   _DAT_0080d19c = 1;
@@ -24773,12 +24773,12 @@ void runTimeCountersUpdateAlt(void)
 
 
 //
-// Function: FUN_0002860c @ 0x0002860c
+// Function: fuelDemandFaultCounterIncrement @ 0x0002860c
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-byte FUN_0002860c(void)
+byte fuelDemandFaultCounterIncrement(void)
 
 {
   byte bVar1;
@@ -24795,12 +24795,12 @@ byte FUN_0002860c(void)
 
 
 //
-// Function: FUN_00028638 @ 0x00028638
+// Function: rpmHistogramAndAveragingStatistics @ 0x00028638
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00028638(void)
+void rpmHistogramAndAveragingStatistics(void)
 
 {
   ushort uVar1;
@@ -25029,13 +25029,13 @@ ushort fuelStatisticsTracker(void)
       else if (_DAT_0080d47a == 2) {
         runTimeCountersUpdateAlt();
       }
-      FUN_0002860c();
+      fuelDemandFaultCounterIncrement();
       if (_DAT_0080c7c4 != 0) {
         _DAT_00805f70 = _DAT_00805f70 + 1;
         _DAT_00805f74 = _DAT_00805f74 + 1;
       }
     }
-    uVar3 = FUN_00028638();
+    uVar3 = rpmHistogramAndAveragingStatistics();
   }
   return uVar3;
 }
@@ -25043,12 +25043,12 @@ ushort fuelStatisticsTracker(void)
 
 
 //
-// Function: FUN_00028b78 @ 0x00028b78
+// Function: protectionFlagAccumulator @ 0x00028b78
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-ushort FUN_00028b78(void)
+ushort protectionFlagAccumulator(void)
 
 {
   if ((engine_control_flags_t_008035d6.engine_operating_state & 0x200) != 0) {
@@ -27008,12 +27008,12 @@ undefined4 addressRangeValidator(uint param_1,uint param_2)
 
 
 //
-// Function: FUN_0002b5aa @ 0x0002b5aa
+// Function: pwmTimerMode0Init @ 0x0002b5aa
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002b5aa(void)
+void pwmTimerMode0Init(void)
 
 {
   int iVar1;
@@ -27049,19 +27049,19 @@ void FUN_0002b5aa(void)
     piVar4 = piVar4 + 1;
   } while (iVar1 < 6);
   _DAT_0080d4a4 = (uint)CPMXFLTP._0_1_ << 0x10;
-  FUN_0002b880();
+  pwmTimerMode1Update();
   return;
 }
 
 
 
 //
-// Function: FUN_0002b6c2 @ 0x0002b6c2
+// Function: pwmTimerMode0Reset @ 0x0002b6c2
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002b6c2(void)
+void pwmTimerMode0Reset(void)
 
 {
   if (DAT_00807cf7 == '\0') {
@@ -27081,12 +27081,12 @@ void FUN_0002b6c2(void)
 
 
 //
-// Function: FUN_0002b744 @ 0x0002b744
+// Function: pwmTimerMode1ChannelSetup @ 0x0002b744
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002b744(void)
+void pwmTimerMode1ChannelSetup(void)
 
 {
   int iVar1;
@@ -27129,12 +27129,12 @@ void FUN_0002b744(void)
 
 
 //
-// Function: FUN_0002b880 @ 0x0002b880
+// Function: pwmTimerMode1Update @ 0x0002b880
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002b880(void)
+void pwmTimerMode1Update(void)
 
 {
   int iVar1;
@@ -27168,7 +27168,7 @@ void FUN_0002b880(void)
   _DAT_00fffe16 = _DAT_00fffe16 & 0xff3f;
   _DAT_00fffe1a = _DAT_00fffe1a & 0xff3f | 0x80;
   _DAT_00fffe1e = _DAT_00fffe1e & 0xff3f | 0x40;
-  _DAT_00808ece = FUN_0002ba56;
+  _DAT_00808ece = pwmTimerCycleAdvance;
   _DAT_00fffe0a = _DAT_00fffe0a & 0xfff7 | 8;
   return;
 }
@@ -27176,12 +27176,12 @@ void FUN_0002b880(void)
 
 
 //
-// Function: FUN_0002b9b8 @ 0x0002b9b8
+// Function: pwmTimerModeDispatcher @ 0x0002b9b8
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002b9b8(void)
+void pwmTimerModeDispatcher(void)
 
 {
   if (DAT_00807cf7 == '\0') {
@@ -27197,7 +27197,7 @@ void FUN_0002b9b8(void)
     _DAT_00fffe1e = _DAT_00fffe1e & 0xff3f | 0x40;
   }
   if ((DAT_0080c79b != '\0') && (DAT_00807cf7 == '\x01')) {
-    FUN_0002b744();
+    pwmTimerMode1ChannelSetup();
   }
   return;
 }
@@ -27205,12 +27205,12 @@ void FUN_0002b9b8(void)
 
 
 //
-// Function: FUN_0002ba56 @ 0x0002ba56
+// Function: pwmTimerCycleAdvance @ 0x0002ba56
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined8 FUN_0002ba56(void)
+undefined8 pwmTimerCycleAdvance(void)
 
 {
   undefined4 in_D0;
@@ -27237,7 +27237,7 @@ undefined8 FUN_0002ba56(void)
   uVar1 = (DAT_0080d49e + 1) % 6;
   DAT_0080d49e = (byte)uVar1;
   DAT_00809af1 = (char)((DAT_00808a79 + uVar1) % 6) + '\x01';
-  FUN_0002b880();
+  pwmTimerMode1Update();
   _DAT_00fffe20 = _DAT_00fffe20 & 0xfff7;
   return CONCAT44(in_D0,in_D1);
 }
@@ -27304,12 +27304,12 @@ void engineDataTrendingSlowCycle40Coordinator(void)
 
 
 //
-// Function: FUN_0002bbac @ 0x0002bbac
+// Function: trendingDataTableLookup @ 0x0002bbac
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002bbac(void)
+void trendingDataTableLookup(void)
 
 {
   short *unaff_A2;
@@ -27421,7 +27421,7 @@ void diagnostic_protection_coordinator(void)
           (_DAT_0080973c <= _DAT_0080969c)))) || (_DAT_00809696 < _DAT_00809698)) &&
        ((_DAT_00809696 < _DAT_00809694 && (_DAT_00809696 < _DAT_00809652)))) {
       diagnostic_state_buffer_t_00809654.diagnostic_mode = 10;
-      FUN_0002d210();
+      diagnosticMode10FuelController();
       return;
     }
     if ((((_DAT_00809694 < _DAT_00809652) || (_DAT_00809694 <= _DAT_0080d182)) &&
@@ -27450,7 +27450,7 @@ void diagnostic_protection_coordinator(void)
           ((_DAT_00809698 == _DAT_00809696 && (_DAT_0080969c < _DAT_0080973c)))))) &&
         (_DAT_00809698 < _DAT_00809694)) && (_DAT_00809698 < _DAT_00809652)) {
       diagnostic_state_buffer_t_00809654.diagnostic_mode = 9;
-      FUN_0002d210();
+      diagnosticMode10FuelController();
       return;
     }
     break;
@@ -27471,7 +27471,7 @@ void diagnostic_protection_coordinator(void)
            ((fuel_arbitrator_diag_t_0080cff8.rpm_target != 3 ||
             (_DAT_00809652 < fuel_arbitrator_diag_t_0080cff8.prev_state_pointer._1_2_)))))))) {
         diagnostic_state_buffer_t_00809654.diagnostic_mode = 9;
-        FUN_0002d210();
+        diagnosticMode10FuelController();
       }
       _DAT_00803202 = 0;
       return;
@@ -27513,14 +27513,14 @@ void diagnostic_protection_coordinator(void)
       _DAT_00803204 = 0;
       if ((_DAT_00809696 < _DAT_00809652) && (_DAT_00809696 < _DAT_00809694)) {
         diagnostic_state_buffer_t_00809654.diagnostic_mode = 10;
-        FUN_0002d210();
+        diagnosticMode10FuelController();
         return;
       }
       if ((((_DAT_0080d182 <= fuel_demand_state_t_0080c9a4.command) && (_DAT_00803206 == 9)) &&
           (_DAT_00809698 < _DAT_00809652)) &&
          ((_DAT_00809698 < _DAT_00809694 && (_DAT_0080969a != 0)))) {
         diagnostic_state_buffer_t_00809654.diagnostic_mode = 9;
-        FUN_0002d210();
+        diagnosticMode10FuelController();
         return;
       }
     }
@@ -27546,14 +27546,14 @@ void diagnostic_protection_coordinator(void)
         (7999 < circular_buffer_t_0080c3fc.data_buffer_8)) &&
        (((_DAT_008096aa == 0 && (_DAT_0080d184 != 2)) && (_DAT_0080d184 != 1)))) {
       diagnostic_state_buffer_t_00809654.diagnostic_mode = 10;
-      FUN_0002d210();
+      diagnosticMode10FuelController();
       return;
     }
     if (((_DAT_0080969a != 0) && (_DAT_0080d182 <= _DAT_00809698)) &&
        ((_DAT_0080d182 <= fuel_demand_state_t_0080c9a4.command &&
         (((_DAT_0080d184 != 2 && (_DAT_0080d184 != 1)) && (_DAT_0080d184 != 5)))))) {
       diagnostic_state_buffer_t_00809654.diagnostic_mode = 9;
-      FUN_0002d210();
+      diagnosticMode10FuelController();
       return;
     }
     _DAT_00809652 = _DAT_0080d182;
@@ -27581,12 +27581,12 @@ void initDiagnosticModeSystem(void)
 
 
 //
-// Function: FUN_0002c252 @ 0x0002c252
+// Function: fuelTimingTransitionStateMachine @ 0x0002c252
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint FUN_0002c252(void)
+uint fuelTimingTransitionStateMachine(void)
 
 {
   short sVar1;
@@ -27739,12 +27739,12 @@ ushort fuelTempControlFlagChecker(void)
 
 
 //
-// Function: FUN_0002c51a @ 0x0002c51a
+// Function: diagnosticModeFuelAdjustmentCalculator @ 0x0002c51a
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002c51a(undefined4 param_1)
+void diagnosticModeFuelAdjustmentCalculator(undefined4 param_1)
 
 {
   ushort uVar1;
@@ -27885,12 +27885,12 @@ void update_engine_protection_thresholds(void)
 
 
 //
-// Function: FUN_0002c870 @ 0x0002c870
+// Function: engineProtectionTimeoutCalculator @ 0x0002c870
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined4 FUN_0002c870(undefined4 param_1)
+undefined4 engineProtectionTimeoutCalculator(undefined4 param_1)
 
 {
   uint uVar1;
@@ -27926,12 +27926,12 @@ undefined4 FUN_0002c870(undefined4 param_1)
 
 
 //
-// Function: FUN_0002c8fe @ 0x0002c8fe
+// Function: engineProtectionScaledValueCalculator @ 0x0002c8fe
 // ERROR: Failed to decompile
 //
 
 //
-// Function: FUN_0002c968 @ 0x0002c968
+// Function: protectionThresholdDivider @ 0x0002c968
 // ERROR: Failed to decompile
 //
 
@@ -27968,17 +27968,18 @@ void engine_protection_init(void)
   local_e = 0x808028;
   local_10 = 2;
   local_8 = 0x808032;
-  uVar2 = FUN_0002c870(CONCAT22(_DAT_00803746 - _DAT_00803822,(short)((uint)unaff_D2 >> 0x10)));
+  uVar2 = engineProtectionTimeoutCalculator
+                    (CONCAT22(_DAT_00803746 - _DAT_00803822,(short)((uint)unaff_D2 >> 0x10)));
   local_12 = (undefined2)uVar2;
   sVar3 = _DAT_00803822;
-  _DAT_008096d2 = FUN_0002c8fe();
-  uVar2 = FUN_0002c870(CONCAT22(_DAT_00803748 - _DAT_00803826,sVar3));
+  _DAT_008096d2 = engineProtectionScaledValueCalculator();
+  uVar2 = engineProtectionTimeoutCalculator(CONCAT22(_DAT_00803748 - _DAT_00803826,sVar3));
   local_12 = (undefined2)uVar2;
-  _DAT_008096de = FUN_0002c8fe((short)((uint)&local_18 >> 0x10));
+  _DAT_008096de = engineProtectionScaledValueCalculator((short)((uint)&local_18 >> 0x10));
   if (_DAT_008070f6 < _DAT_0080709c) {
     uVar1 = _DAT_0080709c - _DAT_008070f6;
-    _DAT_008096be = FUN_0002c968();
-    _DAT_008096d8 = FUN_0002c968((short)((uint)uVar1 * 0x1164 >> 0x10),uVar1);
+    _DAT_008096be = protectionThresholdDivider();
+    _DAT_008096d8 = protectionThresholdDivider((short)((uint)uVar1 * 0x1164 >> 0x10),uVar1);
   }
   else {
     _DAT_008096be = 0;
@@ -28000,12 +28001,12 @@ void engine_protection_init(void)
 
 
 //
-// Function: FUN_0002cb08 @ 0x0002cb08
+// Function: diagnosticFuelGainCalculator @ 0x0002cb08
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined4 FUN_0002cb08(void)
+undefined4 diagnosticFuelGainCalculator(void)
 
 {
   int iVar1;
@@ -28057,7 +28058,7 @@ void boost_pressure_control_and_diagnostics(void)
   _DAT_00803228 = coreTableInterpolation(0x80);
   _DAT_00803264 = coreTableInterpolation(0x80,wVar7,uVar8);
   sVar5 = _DAT_00803226;
-  _DAT_00803226 = FUN_0003574e();
+  _DAT_00803226 = unsignedLinearInterpolation();
   uVar2 = _DAT_00803224;
   sVar5 = _DAT_00803226 - sVar5;
   if (sVar5 < 0x67) {
@@ -28089,7 +28090,7 @@ void boost_pressure_control_and_diagnostics(void)
   if ((diagnostic_state_buffer_t_00809654.diagnostic_mode == 9) ||
      (diagnostic_state_buffer_t_00809654.diagnostic_mode == 10)) {
     if (_DAT_008096ee == 1) {
-      FUN_0002d210();
+      diagnosticMode10FuelController();
     }
     else {
       if (diagnostic_state_buffer_t_00809654.diagnostic_mode == 9) {
@@ -28106,7 +28107,7 @@ void boost_pressure_control_and_diagnostics(void)
         _DAT_008096f6 = _DAT_00803224;
         if (((_DAT_00803256 == 1) && ((DAT_0080bdcc & 2) == 0)) ||
            ((_DAT_00803258 == 1 && ((DAT_0080bdcc & 8) == 0)))) {
-          FUN_0002d210();
+          diagnosticMode10FuelController();
         }
       }
       else {
@@ -28119,7 +28120,7 @@ void boost_pressure_control_and_diagnostics(void)
       else if (_DAT_008096ea < _DAT_008070f4) {
         _DAT_008096ea = _DAT_008070f4;
       }
-      FUN_0002c51a(CONCAT22(_DAT_00803228,uVar9));
+      diagnosticModeFuelAdjustmentCalculator(CONCAT22(_DAT_00803228,uVar9));
       if ((int)_DAT_008096ea < _DAT_008096c4 + 0xa00) {
         if (_DAT_008096c4 + -0xa00 < (int)_DAT_008096ea) {
           _DAT_008096ec = _DAT_008096ea - _DAT_008096c4;
@@ -28131,8 +28132,8 @@ void boost_pressure_control_and_diagnostics(void)
       else {
         _DAT_008096ec = 0xa00;
       }
-      FUN_0002cb08();
-      sVar4 = FUN_0003566e(0x80);
+      diagnosticFuelGainCalculator();
+      sVar4 = signedLinearInterpolation(0x80);
       if (sVar4 < 12000) {
         if (sVar4 < -12000) {
           sVar4 = -12000;
@@ -28291,12 +28292,12 @@ void boost_pressure_control_and_diagnostics(void)
 
 
 //
-// Function: FUN_0002d210 @ 0x0002d210
+// Function: diagnosticMode10FuelController @ 0x0002d210
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002d210(void)
+void diagnosticMode10FuelController(void)
 
 {
   undefined4 uVar1;
@@ -28321,7 +28322,7 @@ void FUN_0002d210(void)
     _DAT_008096ea = 0;
   }
   _DAT_008096ec = _DAT_008096ea;
-  FUN_0002c51a(CONCAT22(_DAT_00803228,(short)((uint)unaff_D2 >> 0x10)));
+  diagnosticModeFuelAdjustmentCalculator(CONCAT22(_DAT_00803228,(short)((uint)unaff_D2 >> 0x10)));
   if ((int)_DAT_008096ea < _DAT_008096c4 + 0xa00) {
     if (_DAT_008096c4 + -0xa00 < (int)_DAT_008096ea) {
       _DAT_008096ec = _DAT_008096ea - _DAT_008096c4;
@@ -28333,7 +28334,7 @@ void FUN_0002d210(void)
   else {
     _DAT_008096ec = 0xa00;
   }
-  uVar1 = FUN_0002cb08();
+  uVar1 = diagnosticFuelGainCalculator();
   sVar2 = (short)uVar1;
   _DAT_0080323a = (int)sVar2 << 0x10;
   _DAT_0080323e = (int)sVar2 << 0x10;
@@ -28380,12 +28381,12 @@ void FUN_0002d210(void)
 
 
 //
-// Function: FUN_0002d3fa @ 0x0002d3fa
+// Function: diagnosticParameterPointersInit @ 0x0002d3fa
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0002d3fa(void)
+void diagnosticParameterPointersInit(void)
 
 {
   _DAT_008096ee = 0;
@@ -28401,12 +28402,12 @@ void FUN_0002d3fa(void)
 
 
 //
-// Function: FUN_0002d43e @ 0x0002d43e
+// Function: vp44DiagnosticModeStateMachine @ 0x0002d43e
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-ushort FUN_0002d43e(void)
+ushort vp44DiagnosticModeStateMachine(void)
 
 {
   bool bVar1;
@@ -30459,7 +30460,7 @@ void vp44ExtendedProcessingRouter(void)
 
 {
   if (_DAT_0080374e != 0) {
-    FUN_0002d43e();
+    vp44DiagnosticModeStateMachine();
     return;
   }
   vp44StateProcessor();
@@ -33966,7 +33967,7 @@ void vp44TimingRangeValidation(void)
     local_26 = 2;
     ppuVar5 = &local_2a;
     local_2a = &DAT_00ffc800;
-    FUN_0001913e();
+    canFrameDataCopy();
   }
   if ((_DAT_008073b2 <= circular_buffer_t_0080c3fc.data_buffer_4) &&
      (circular_buffer_t_0080c3fc.data_buffer_4 <= _DAT_008073b0)) {
@@ -34061,7 +34062,7 @@ void vp44CanMessage100ResponseBuilder(void)
   DAT_00809ab2 = local_6;
   uStack_5 = (undefined1)_DAT_008073e4;
   DAT_00809ab1 = uStack_5;
-  FUN_0001913e(&DAT_00ffc800);
+  canFrameDataCopy(&DAT_00ffc800);
   return;
 }
 
@@ -34142,7 +34143,7 @@ void vp44CanMessage200ResponseBuilder(void)
   DAT_00809ad6 = DAT_008073ee;
   DAT_00809ad7 = DAT_008073a0;
   DAT_00809ad8 = DAT_008073a1;
-  FUN_0001913e(&DAT_00ffc800);
+  canFrameDataCopy(&DAT_00ffc800);
   return;
 }
 
@@ -34557,12 +34558,12 @@ void vp44FsoCircuitFaultDetectionBit1(void)
 
 
 //
-// Function: FUN_000343f8 @ 0x000343f8
+// Function: vp44FsoFaultRangeMonitor @ 0x000343f8
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_000343f8(void)
+void vp44FsoFaultRangeMonitor(void)
 
 {
   if (DAT_008034a1 != '\0') {
@@ -34610,12 +34611,12 @@ void FUN_000343f8(void)
 
 
 //
-// Function: FUN_000344e8 @ 0x000344e8
+// Function: vp44TimingFaultMonitor @ 0x000344e8
 //
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_000344e8(void)
+void vp44TimingFaultMonitor(void)
 
 {
   short sVar1;
@@ -35412,7 +35413,7 @@ void systemStatusMonitor(void)
       }
       _DAT_0080348c = _DAT_0080348c + 1;
       if (_DAT_008073f8 < _DAT_0080348c) {
-        FUN_0001913e(&DAT_00ffc800);
+        canFrameDataCopy(&DAT_00ffc800);
       }
     }
   }
@@ -35579,7 +35580,7 @@ short lookupTableInterpolation(short *param_1)
 //
 
 //
-// Function: FUN_0003566e @ 0x0003566e
+// Function: signedLinearInterpolation @ 0x0003566e
 // ERROR: Failed to decompile
 //
 
@@ -35589,7 +35590,7 @@ short lookupTableInterpolation(short *param_1)
 //
 
 //
-// Function: FUN_0003574e @ 0x0003574e
+// Function: unsignedLinearInterpolation @ 0x0003574e
 // ERROR: Failed to decompile
 //
 
