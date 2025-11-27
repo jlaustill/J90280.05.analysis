@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Wed Nov 26 19:37:22 MST 2025
+// Wed Nov 26 19:41:16 MST 2025
 
 
 //
@@ -46,7 +46,7 @@ ushort rpm_system_state_controller(void)
   
   uVar1 = engine_control_flags_t_008035d6.engine_operating_state & 0x1000;
   if ((engine_control_flags_t_008035d6.engine_operating_state & 0x1000) != 0) {
-    if ((short)rpm_calibration_params_t_008062d4.threshold_lower <
+    if ((short)rpm_calibration_params_t_008062d4.shutdown_rate_threshold <
         (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
       rpm_fuel_protection_t_008091c4.rpm_threshold_exceeded_flag = 1;
       rpm_control_timers_t_00800002.timer_1 = _DAT_008062fe;
@@ -60,11 +60,11 @@ ushort rpm_system_state_controller(void)
     if ((((rpm_fuel_protection_t_008091c4.fuel_system_protection_enabled == 0) ||
          (rpm_fuel_protection_t_008091c4.rpm_threshold_exceeded_flag != 0)) ||
         (circular_buffer_t_0080c3fc.current_engine_rpm <
-         rpm_calibration_params_t_008062d4.threshold_upper)) ||
-       (((short)rpm_calibration_params_t_008062d4.threshold_lower <
+         rpm_calibration_params_t_008062d4.shutdown_rpm_upper_threshold)) ||
+       (((short)rpm_calibration_params_t_008062d4.shutdown_rate_threshold <
          (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value ||
         ((short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc <
-         (short)rpm_calibration_params_t_008062d4.secondary_threshold)))) {
+         (short)rpm_calibration_params_t_008062d4.shutdown_secondary_threshold)))) {
       if (rpm_fuel_protection_t_008091c4.fuel_protection_timer_enable == 0) {
         if (rpm_control_timers_t_00800002.timer_2 == 0) {
           rpm_fuel_protection_t_008091c4.rpm_state_accumulator = 0;
@@ -76,13 +76,13 @@ ushort rpm_system_state_controller(void)
       else {
         rpm_fuel_protection_t_008091c4.rpm_state_accumulator = 1;
         rpm_control_timers_t_00800002.timer_2 =
-             rpm_calibration_params_t_008062d4.timer_reload_value_2;
+             rpm_calibration_params_t_008062d4.shutdown_timer_reload;
       }
     }
     else {
       rpm_fuel_protection_t_008091c4.rpm_state_accumulator = 1;
-      rpm_control_timers_t_00800002.timer_2 = rpm_calibration_params_t_008062d4.timer_reload_value_2
-      ;
+      rpm_control_timers_t_00800002.timer_2 =
+           rpm_calibration_params_t_008062d4.shutdown_timer_reload;
     }
     if (rpm_fuel_protection_t_008091c4.rpm_state_accumulator == 1) {
       shutdown_fuel_lookup_args_t_0080000e.input_rpm = circular_buffer_t_0080c3fc.current_engine_rpm
@@ -93,7 +93,7 @@ ushort rpm_system_state_controller(void)
     }
     uVar1 = rpm_fuel_protection_t_008091c4.fuel_limit_shutdown;
     if (rpm_fuel_protection_t_008091c4.fuel_limit_shutdown < _DAT_00807f3c) {
-      uVar1 = rpm_calibration_params_t_008062d4.reserved_02 +
+      uVar1 = rpm_calibration_params_t_008062d4.shutdown_fuel_ramp_increment +
               rpm_fuel_protection_t_008091c4.fuel_limit_shutdown;
       rpm_fuel_protection_t_008091c4.fuel_limit_shutdown = uVar1;
       if (_DAT_00807f3c < uVar1) {
@@ -137,9 +137,11 @@ ushort highRpmFuelControlLimiter(void)
   
   wVar1 = engine_control_flags_t_008035d6.engine_operating_state & 0x2000;
   if ((engine_control_flags_t_008035d6.engine_operating_state & 0x2000) != 0) {
-    if (_DAT_00806302 < (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
+    if ((short)high_rpm_threshold_calibration_t_00806300.rate_threshold <
+        (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
       rpm_fuel_protection_t_008091c4.high_rpm_threshold_exceeded_flag = 1;
-      rpm_control_timers_t_00800002.high_rpm_timer = _DAT_00806300;
+      rpm_control_timers_t_00800002.high_rpm_timer =
+           high_rpm_threshold_calibration_t_00806300.threshold_timer_reload;
     }
     else if (rpm_control_timers_t_00800002.high_rpm_timer == 0) {
       rpm_fuel_protection_t_008091c4.high_rpm_threshold_exceeded_flag = 0;
@@ -151,11 +153,14 @@ ushort highRpmFuelControlLimiter(void)
     wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_limited_value;
     if ((((rpm_fuel_protection_t_008091c4.fuel_system_protection_enabled == 0) ||
          (rpm_fuel_protection_t_008091c4.high_rpm_threshold_exceeded_flag != 0)) ||
-        (wVar1 = _DAT_0080926e, _DAT_0080926e <= _DAT_008062ea)) ||
+        (wVar1 = _DAT_0080926e,
+        _DAT_0080926e <= high_rpm_calibration_t_008062ea.high_rpm_upper_threshold)) ||
        ((wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_limited_value,
-        _DAT_00806302 < (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value ||
+        (short)high_rpm_threshold_calibration_t_00806300.rate_threshold <
+        (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value ||
         (wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc,
-        (short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc < _DAT_008062f0)))) {
+        (short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc <
+        (short)high_rpm_calibration_t_008062ea.high_rpm_secondary_threshold)))) {
       if (rpm_fuel_protection_t_008091c4.fuel_protection_timer_enable == 0) {
         if (rpm_control_timers_t_00800002.high_rpm_accumulator_timer == 0) {
           rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator = 0;
@@ -167,12 +172,14 @@ ushort highRpmFuelControlLimiter(void)
       }
       else {
         rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator = 1;
-        rpm_control_timers_t_00800002.high_rpm_accumulator_timer = _DAT_008062ec;
+        rpm_control_timers_t_00800002.high_rpm_accumulator_timer =
+             high_rpm_calibration_t_008062ea.high_rpm_timer_reload;
       }
     }
     else {
       rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator = 1;
-      rpm_control_timers_t_00800002.high_rpm_accumulator_timer = _DAT_008062ec;
+      rpm_control_timers_t_00800002.high_rpm_accumulator_timer =
+           high_rpm_calibration_t_008062ea.high_rpm_timer_reload;
     }
     if (rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator == 1) {
       high_rpm_fuel_lookup_args_t_0080001a.input_rpm = circular_buffer_t_0080c3fc.current_engine_rpm
@@ -183,8 +190,9 @@ ushort highRpmFuelControlLimiter(void)
     }
     if (rpm_fuel_protection_t_008091c4.high_rpm_fuel_limit < 0x400) {
       rpm_fuel_protection_t_008091c4.high_rpm_fuel_limit =
-           _DAT_008062ee + rpm_fuel_protection_t_008091c4.high_rpm_fuel_limit;
-      wVar1 = _DAT_008062ee;
+           high_rpm_calibration_t_008062ea.high_rpm_fuel_ramp_increment +
+           rpm_fuel_protection_t_008091c4.high_rpm_fuel_limit;
+      wVar1 = high_rpm_calibration_t_008062ea.high_rpm_fuel_ramp_increment;
       if (0x400 < rpm_fuel_protection_t_008091c4.high_rpm_fuel_limit) {
         rpm_fuel_protection_t_008091c4.high_rpm_fuel_limit = 0x400;
       }
@@ -228,7 +236,8 @@ ushort lowRpmFuelProtectionLimiter(void)
   
   uVar2 = engine_control_flags_t_008035d6.engine_operating_state & 0x4000;
   if ((engine_control_flags_t_008035d6.engine_operating_state & 0x4000) != 0) {
-    if (_DAT_008062e8 < (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
+    if ((short)low_rpm_calibration_t_008062de.low_rpm_rate_threshold <
+        (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
       rpm_fuel_protection_t_008091c4.low_rpm_threshold_exceeded_flag = 1;
       _DAT_00800000 = rpm_rate_limits_t_008062f8.threshold_timer_reload;
     }
@@ -242,11 +251,14 @@ ushort lowRpmFuelProtectionLimiter(void)
     if ((((rpm_fuel_protection_t_008091c4.fuel_system_protection_enabled == 0) ||
          (rpm_fuel_protection_t_008091c4.low_rpm_threshold_exceeded_flag != 0)) ||
         (wVar1 = circular_buffer_t_0080c3fc.current_engine_rpm,
-        _DAT_008062e6 < circular_buffer_t_0080c3fc.current_engine_rpm)) ||
+        low_rpm_calibration_t_008062de.low_rpm_upper_threshold <
+        circular_buffer_t_0080c3fc.current_engine_rpm)) ||
        ((wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_limited_value,
-        _DAT_008062e8 < (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value ||
+        (short)low_rpm_calibration_t_008062de.low_rpm_rate_threshold <
+        (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value ||
         (wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc,
-        (short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc < _DAT_008062e4)))) {
+        (short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc <
+        (short)low_rpm_calibration_t_008062de.low_rpm_secondary_threshold)))) {
       if (rpm_fuel_protection_t_008091c4.fuel_protection_timer_enable == 0) {
         if (rpm_control_timers_t_00800002.low_rpm_accumulator_timer == 0) {
           rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator = 0;
@@ -258,20 +270,24 @@ ushort lowRpmFuelProtectionLimiter(void)
       }
       else {
         rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator = 1;
-        rpm_control_timers_t_00800002.low_rpm_accumulator_timer = _DAT_008062e0;
+        rpm_control_timers_t_00800002.low_rpm_accumulator_timer =
+             low_rpm_calibration_t_008062de.low_rpm_timer_reload;
       }
     }
     else {
       rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator = 1;
-      rpm_control_timers_t_00800002.low_rpm_accumulator_timer = _DAT_008062e0;
+      rpm_control_timers_t_00800002.low_rpm_accumulator_timer =
+           low_rpm_calibration_t_008062de.low_rpm_timer_reload;
     }
     if (rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator != 0) {
-      rpm_fuel_protection_t_008091c4.low_rpm_fuel_protection_limit = _DAT_008062de;
+      rpm_fuel_protection_t_008091c4.low_rpm_fuel_protection_limit =
+           low_rpm_calibration_t_008062de.low_rpm_fuel_limit;
       return wVar1;
     }
     uVar2 = rpm_fuel_protection_t_008091c4.low_rpm_fuel_protection_limit;
     if (rpm_fuel_protection_t_008091c4.low_rpm_fuel_protection_limit < _DAT_008037b4) {
-      uVar2 = _DAT_008062e2 + rpm_fuel_protection_t_008091c4.low_rpm_fuel_protection_limit;
+      uVar2 = low_rpm_calibration_t_008062de.low_rpm_fuel_ramp_increment +
+              rpm_fuel_protection_t_008091c4.low_rpm_fuel_protection_limit;
       rpm_fuel_protection_t_008091c4.low_rpm_fuel_protection_limit = uVar2;
       if (_DAT_008037b4 < uVar2) {
         rpm_fuel_protection_t_008091c4.low_rpm_fuel_protection_limit = _DAT_008037b4;

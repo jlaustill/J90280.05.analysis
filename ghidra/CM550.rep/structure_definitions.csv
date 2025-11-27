@@ -396,13 +396,30 @@ high_rpm_fuel_lookup_args_t,0x0080001A,table_index,word,2,Current interpolation 
 high_rpm_fuel_lookup_args_t,0x0080001A,x_axis_ptr,dword,4,Pointer to RPM axis table,,needs_review
 high_rpm_fuel_lookup_args_t,0x0080001A,input_rpm,word,2,Input RPM for lookup (copied from current_engine_rpm),,needs_review
 high_rpm_fuel_lookup_args_t,0x0080001A,y_axis_ptr,dword,4,Pointer to fuel limit table,,needs_review
-# RPM Calibration Parameters (12 bytes) - 0x008062D4 to 0x008062DE  
-rpm_calibration_params_t,0x008062D4,timer_reload_value_2,word,2,Timer reload value 2 for RPM control,,needs_review
-rpm_calibration_params_t,0x008062D4,reserved_02,word,2,Gap/reserved,,needs_review
-rpm_calibration_params_t,0x008062D4,threshold_lower,word,2,Lower RPM threshold,,needs_review
-rpm_calibration_params_t,0x008062D4,secondary_threshold,word,2,Secondary RPM threshold,,needs_review
-rpm_calibration_params_t,0x008062D4,threshold_upper,word,2,Upper RPM threshold,,needs_review
+# RPM Calibration Parameters - Shutdown Protection (12 bytes) - 0x008062D4 to 0x008062DE
+rpm_calibration_params_t,0x008062D4,shutdown_timer_reload,word,2,Timer reload for shutdown protection,,needs_review
+rpm_calibration_params_t,0x008062D4,shutdown_fuel_ramp_increment,word,2,Fuel ramp increment during shutdown recovery,,needs_review
+rpm_calibration_params_t,0x008062D4,shutdown_rate_threshold,word,2,RPM rate threshold for shutdown protection,,needs_review
+rpm_calibration_params_t,0x008062D4,shutdown_secondary_threshold,word,2,Secondary RPM rate threshold for shutdown,,needs_review
+rpm_calibration_params_t,0x008062D4,shutdown_rpm_upper_threshold,word,2,Upper RPM threshold for shutdown protection,,needs_review
+# Low RPM Fuel Protection Calibration (12 bytes) - 0x008062DE to 0x008062EA
+low_rpm_calibration_t,0x008062DE,low_rpm_fuel_limit,word,2,Low RPM fuel limit value,,needs_review
+low_rpm_calibration_t,0x008062DE,low_rpm_timer_reload,word,2,Timer reload for low RPM protection,,needs_review
+low_rpm_calibration_t,0x008062DE,low_rpm_fuel_ramp_increment,word,2,Fuel ramp increment for low RPM recovery,,needs_review
+low_rpm_calibration_t,0x008062DE,low_rpm_secondary_threshold,word,2,Secondary RPM rate threshold for low RPM,,needs_review
+low_rpm_calibration_t,0x008062DE,low_rpm_upper_threshold,word,2,Upper RPM threshold for low RPM protection,,needs_review
+low_rpm_calibration_t,0x008062DE,low_rpm_rate_threshold,word,2,RPM rate threshold for low RPM protection,,needs_review
+# High RPM Fuel Protection Calibration (12 bytes) - 0x008062EA to 0x008062F6
+high_rpm_calibration_t,0x008062EA,high_rpm_upper_threshold,word,2,Upper RPM threshold for high RPM protection,,needs_review
+high_rpm_calibration_t,0x008062EA,high_rpm_timer_reload,word,2,Timer reload for high RPM accumulator,,needs_review
+high_rpm_calibration_t,0x008062EA,high_rpm_fuel_ramp_increment,word,2,Fuel ramp increment for high RPM recovery,,needs_review
+high_rpm_calibration_t,0x008062EA,high_rpm_secondary_threshold,word,2,Secondary RPM rate threshold for high RPM,,needs_review
+high_rpm_calibration_t,0x008062EA,reserved_08,word,2,Reserved/gap,,needs_review
+high_rpm_calibration_t,0x008062EA,reserved_0a,word,2,Reserved/gap,,needs_review
 # RPM Rate Limits (6 bytes) - 0x008062F8 to 0x008062FE
 rpm_rate_limits_t,0x008062F8,maximum,word,2,Maximum RPM rate of change limit,,needs_review
 rpm_rate_limits_t,0x008062F8,minimum,word,2,Minimum RPM rate of change limit,,needs_review
 rpm_rate_limits_t,0x008062F8,threshold_timer_reload,word,2,Timer reload when RPM threshold exceeded,,needs_review
+# High RPM Threshold Calibration (4 bytes) - 0x00806300 to 0x00806304
+high_rpm_threshold_calibration_t,0x00806300,threshold_timer_reload,word,2,Timer reload when high RPM threshold exceeded,,needs_review
+high_rpm_threshold_calibration_t,0x00806300,rate_threshold,word,2,RPM rate threshold for high RPM detection,,needs_review
