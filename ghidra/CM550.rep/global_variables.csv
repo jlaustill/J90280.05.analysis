@@ -637,7 +637,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0X00807BF0,AS03CF,word,ASG THROTTLE MODE COMPENSATION FILTER COEF. 3 CALIBRATION,2,0,NONE,data
 0X00807C3E,CRACSWAC,word,RATE OF INCREMENT IN CRUISE CONTROL REFERENCE IF IN ACCEL,2,0,MPHS,data
 0X00807C6C,CRDVGNCN,word,THE DERIVATIVE GAIN OF THE CRUISE / RSG CALIBRATION.,2,0,FS/R,data
-0X00807C7A,CRGNVSHY,word,HYSTERESIS APPLIED TO CRGNVSTD IN CRUISE/RSG GAIN SET SWITCHING LOGIC,2,0,MPH,data0x0080D344,timing_advance_value_calculated_from_the_4d_timing_table_vali_0_120,word,"TIMING ADVANCE VALUE CALCULATED FROM THE 4D TIMING TABLE -VALI",2,0,DADV,parameter
+0X00807C7A,CRGNVSHY,word,"HYSTERESIS APPLIED TO CRGNVSTD IN CRUISE/RSG GAIN SET SWITCHING LOGIC,2,0,MPH,data0x0080D344,timing_advance_value_calculated_from_the_4d_timing_table_vali_0_120,word,""TIMING ADVANCE VALUE CALCULATED FROM THE 4D TIMING TABLE -VALI""",2,0,DADV,parameter
 0X00807C40,CRCNDTRF,word,ADJUSTMENT IN CRUISE REFERENCE THAT IS TO BE MADE IF FOR A BUMP DOWN,2,0,MPH,data
 0X00807C42,CRCNICRF,word,ADJUSTMENT IN CRUISE REFERENCE THAT IS TO BE MADE IF FOR A BUMP UP,2,0,MPH,data
 0X00807C44,CRCOSWAC,word,RATE IN DECREMENT IN CRUISE CONTROL REFERENCE IF CRUISE IS IN COAST,2,0,MPHS,data
@@ -931,7 +931,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080A6FC,priority_of_client_overriding_raw_intake_manifold_temperature_0_ff,word,"PRIORITY OF CLIENT OVERRIDING RAW INTAKE MANIFOLD TEMPERATURE",2,0,HEX,parameter
 0x0080A6FE,priority_of_client_overriding_raw_fuel_temperature_0_ff,word,"PRIORITY OF CLIENT OVERRIDING RAW FUEL TEMPERATURE",2,0,HEX,parameter
 0x0080A8F2,indicator_as_to_which_algorithm_is_in_control_of_fueling_after_it_1_12,word,"INDICATOR AS TO WHICH ALGORITHM IS IN CONTROL OF FUELING AFTER IT",2,0,ST,parameter
-0x0080A8FA,APAPBA,word,CalTerm APAPBA: RESULT OF AFC, LSG, ON GOVERNOR, AND FUEL RATE ALPHA COMPARISON,2,0,NONE,value
+0x0080A8FA,APAPBA,word,"CalTerm APAPBA: RESULT OF AFC, LSG, ON GOVERNOR, AND FUEL RATE ALPHA COMPARISON",2,0,NONE,value
 0x0080A9A0,asg_external_reset_flag_true_false,word,"ASG EXTERNAL RESET FLAG",2,0,NONE,parameter
 0x0080A9A4,asg_reference_speed_for_0_throttle_input_should_be_less_tha_0_4500,word,"ASG REFERENCE SPEED FOR 0% THROTTLE INPUT -SHOULD BE LESS THA",2,0,RPM,parameter
 0x0080A9A6,asg_reference_speed_for_100_throttle_input_should_be_greate_0_4500,word,"ASG REFERENCE SPEED FOR 100% THROTTLE INPUT -SHOULD BE GREATE",2,0,RPM,parameter
@@ -939,7 +939,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080A9D0,sampled_road_speed_after_it_has_been_filtered_0_255_9961,word,"SAMPLED ROAD SPEED AFTER IT HAS BEEN FILTERED",2,0,MPH,parameter
 0x0080A9D2,filtered_transmission_gear_ratio_0_1_15_999,word,"FILTERED TRANSMISSION GEAR RATIO",2,0,,parameter
 0x0080A9D8,vss_tamper_derate_rpm_0_3000,word,"VSS TAMPER DERATE RPM",2,0,RPM,parameter
-0x0080A9DA,EB39CNID,word,CalTerm EB39CNID: J1939 DEVICE CONTROLLING ENGINE BRAKES: 0=NONE,1=TRANS,2=ABS,3=ASR,2,0,NONE,value
+0x0080A9DA,EB39CNID,word,"CalTerm EB39CNID: J1939 DEVICE CONTROLLING ENGINE BRAKES: 0=NONE,1=TRANS,2=ABS,3=ASR",2,0,NONE,value
 0x0080A9E2,maximum_fueling_of_all_the_fueling_curves_in_the_ecm_0_100,word,"MAXIMUM FUELING OF ALL THE FUELING CURVES IN THE ECM",2,0,MM3S,parameter
 0x0080A9E4,speed_assoc_w_maximum_fueling_of_all_the_fueling_curves_in_th_0_8000,word,"SPEED ASSOC. W. MAXIMUM FUELING OF ALL THE FUELING CURVES IN TH",2,0,RPM,parameter
 0x0080A9E6,maximum_fueling_of_all_the_tau_1_fueling_curves_in_the_ecm_0_100,word,"MAXIMUM FUELING OF ALL THE TAU 1 FUELING CURVES IN THE ECM",2,0,MM3S,parameter
@@ -965,8 +965,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080A26A,pre_processed_imt_for_epf_due_to_exhaust_brake_on_50_to_293,word,"PRE-PROCESSED IMT FOR EPF DUE TO EXHAUST BRAKE ON",2,0,DEGF,parameter
 0x0080A26C,timer_used_to_disable_imt_epf_when_exhaust_brake_on_0_65535,word,"TIMER USED TO DISABLE IMT EPF WHEN EXHAUST BRAKE ON",2,0,SEC,parameter
 0x0080A26E,output_of_the_misfire_timing_limit_table_60_to_60,word,"OUTPUT OF THE MISFIRE TIMING LIMIT TABLE",2,0,DADV,parameter
-0x0080A27A,DRTXCSKD,word,CalTerm DRTXCSKD: IF > TRANS_SPEED_KICK_DOWN, THEN ACTIVATES KICK DOWN SIGNAL,2,0,RPM,value
-0x0080A27C,DRTXCSKU,word,CalTerm DRTXCSKU: IF < TRANS_SPEED_KICK_UP, THEN DE-ACTIVATES KICK DOWN SIGNAL,2,0,RPM,value
+0x0080A27A,DRTXCSKD,word,"CalTerm DRTXCSKD: IF > TRANS_SPEED_KICK_DOWN, THEN ACTIVATES KICK DOWN SIGNAL",2,0,RPM,value
+0x0080A27C,DRTXCSKU,word,"CalTerm DRTXCSKU: IF < TRANS_SPEED_KICK_UP, THEN DE-ACTIVATES KICK DOWN SIGNAL",2,0,RPM,value
 0x0080A27E,command_to_a_c_compressor_clutch_solenoid_on_off,word,"COMMAND TO A/C COMPRESSOR CLUTCH SOLENOID",2,0,1-ON,parameter
 0x0080A29A,status_indicating_conditions_proper_for_a_timing_li_active_or_inactive,word,"STATUS INDICATING CONDITIONS PROPER FOR A TIMING LI",2,0,NONE,parameter
 0x0080A29C,status_indicating_conditions_proper_for_a_speed_lim_active_or_inactive,word,"STATUS INDICATING CONDITIONS PROPER FOR A SPEED LIM",2,0,NONE,parameter
@@ -976,13 +976,13 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080A33E,raw_counts_for_coolant_temperature_0_1023,word,"RAW COUNTS FOR COOLANT TEMPERATURE",2,0,,parameter
 0x0080A36A,raw_value_from_a_d_converter_channel_7_0_255,word,"RAW VALUE FROM A/D CONVERTER CHANNEL 7",2,0,NONE,parameter
 0x0080A37A,unfiltered_and_linearized,word,"UNFILTERED AND LINEARIZED",2,0,NONE,parameter
-0x0080A38E,ADSATHFT,word,CalTerm ADSATHFT: THROTTLE AFTER BEING SAMPLED, LINEARIZED, AND FILTERED VIA A/D A,2,0,%,value
+0x0080A38E,ADSATHFT,word,"CalTerm ADSATHFT: THROTTLE AFTER BEING SAMPLED, LINEARIZED, AND FILTERED VIA A/D A",2,0,%,value
 0x0080A41A,raw_counts_0_1023,word,"RAW COUNTS",2,0,,parameter
 0x0080A42A,engine_sensor_supply_voltage_unfiltered_and_linearized_0_6,word,"ENGINE SENSOR SUPPLY VOLTAGE UNFILTERED AND LINEARIZED",2,0,NONE,parameter
 0x0080A43E,filtered_value_as_read_and_scaled_from_a_d_algorithm,word,"FILTERED VALUE AS READ AND SCALED FROM A/D ALGORITHM",2,0,,parameter
 0x0080A45C,raw_counts_for_cc_switch_mux_0_1023,word,"RAW COUNTS FOR CC SWITCH MUX",2,0,,parameter
 0x0080A46A,filtered_water_in_fuel_as_read_and_scaled_from_a_d_algorithm_2_0_3,word,"FILTERED WATER IN FUEL AS READ AND SCALED FROM A/D ALGORITHM (2=",2,0,NONE,parameter
-0x0080A46C,ADWFUF,word,CalTerm ADWFUF: WATER IN FUEL UNFILTERED AND LINEARIZED (2 = NO H2O, 1 = H2O),2,0,NONE,value
+0x0080A46C,ADWFUF,word,"CalTerm ADWFUF: WATER IN FUEL UNFILTERED AND LINEARIZED (2 = NO H2O, 1 = H2O)",2,0,NONE,value
 0x0080A49E,raw_counts_0_1023,word,"RAW COUNTS",2,0,,parameter
 0x0080A70A,priority_of_client_overriding_raw_ambient_air_temperature_0_ff,word,"PRIORITY OF CLIENT OVERRIDING RAW AMBIENT AIR TEMPERATURE",2,0,HEX,parameter
 0x0080A70C,priority_of_client_overriding_raw_power_steering_temperature_0_ff,word,"PRIORITY OF CLIENT OVERRIDING RAW POWER STEERING TEMPERATURE",2,0,HEX,parameter
@@ -1030,7 +1030,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080A262,temp_signal_used_in_postheat_0_imt_1_battery_temp_for_chrysler_0_1,word,"TEMP SIGNAL USED IN POSTHEAT (0=IMT/1=BATTERY TEMP (FOR CHRYSLER",2,0,NONE,parameter
 0x0080A274,the_percent_load_override_as_the_output_signal_for_the_transmis_0_255,word,"THE PERCENT LOAD OVERRIDE AS THE OUTPUT SIGNAL FOR THE TRANSMIS",2,0,%,parameter
 0x0080A280,rapid_vehicle_accel_flag_on_off,word,"RAPID VEHICLE ACCEL FLAG",2,0,1-ON,parameter
-0x0080A282,ACSWERCU,word,CalTerm ACSWERCU: COUNTER FOR CYCLE, HIGH PRESS MISMATCH,2,0,SEC,counter
+0x0080A282,ACSWERCU,word,"CalTerm ACSWERCU: COUNTER FOR CYCLE, HIGH PRESS MISMATCH",2,0,SEC,counter
 0x0080A284,duty_cycle_requested_for_pwm_cool_temp_gauge_driver_0_100,word,"DUTY CYCLE REQUESTED FOR PWM COOL TEMP GAUGE DRIVER.",2,0,%,parameter
 0x0080A286,duty_cycle_requested_for_pwm_oil_pressure_gauge_driver_0_100,word,"DUTY CYCLE REQUESTED FOR PWM OIL PRESSURE GAUGE DRIVER.",2,0,%,parameter
 0x0080A288,filtered_vehicle_acceleration_1200_1200,word,"FILTERED VEHICLE ACCELERATION",2,0,MPHS,parameter
@@ -1105,7 +1105,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080A968,asg_application_specific_compensation_filter_coef_2_0_10,word,"ASG APPLICATION SPECIFIC COMPENSATION FILTER COEF. 2",2,0,NONE,parameter
 0x0080A970,asg_feedback_difference_term_1000_1000,word,"ASG FEEDBACK DIFFERENCE TERM",2,0,RPM,parameter
 0x0080A972,asg_filtered_reference_speed_0_4500,word,"ASG FILTERED REFERENCE SPEED",2,0,RPM,parameter
-0x0080A976,ASMXFL,word,CalTerm ASMXFL: FUELING FROM 4D TABLES USING ASG_SELECTED_SPEED, 100% THROTTLE,2,0,MM3S,lookup
+0x0080A976,ASMXFL,word,"CalTerm ASMXFL: FUELING FROM 4D TABLES USING ASG_SELECTED_SPEED, 100% THROTTLE",2,0,MM3S,lookup
 0x0080A978,asg_state_x1_2000_2000,word,"ASG STATE X1",2,0,RPM,parameter
 0x0080A980,asg_state_x6_100_100,word,"ASG STATE X6",2,0,%FU,parameter
 0x0080A982,stcg_enable_stcg_switch_xor_user_selected_throttle_control_0_1,word,"= (STCG_ENABLE & STCG_SWITCH) XOR USER_SELECTED_THROTTLE_CONTROL",2,0,HEX,parameter
@@ -1145,7 +1145,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080BAD0,short_term_map_2_processing_total_0_500_0,dword,"SHORT TERM MAP 2 PROCESSING TOTAL",4,0,HRS,parameter
 0x0080BAD4,duty_cycle_monitor_calculated_load_factor_0_0_130_0,word,"DUTY CYCLE MONITOR CALCULATED LOAD FACTOR",2,0,%,parameter
 0x0080BAD6,duty_cycle_monitor_current_operating_map_region_1_50,byte,"DUTY CYCLE MONITOR CURRENT OPERATING MAP REGION",1,0,REGN,parameter
-0x0080BAD7,DCMNSHNU,byte,CalTerm DCMNSHNU: SHORT TERM MAP PROCESSING; 0=NONE, 1=MAP1, 2=MAP2,1,0,0-2,value
+0x0080BAD7,DCMNSHNU,byte,"CalTerm DCMNSHNU: SHORT TERM MAP PROCESSING; 0=NONE, 1=MAP1, 2=MAP2",1,0,0-2,value
 0x0080BAD8,DCSHPR01,dword,CalTerm DCSHPR01: SHORT TERM PROCESSING MAP 1,4,2,HRS,value
 0x0080BBA6,DCSHPR02,dword,CalTerm DCSHPR02: SHORT TERM PROCESSING MAP 2,4,2,HRS,value
 0x0080BC7A,jcomm_percent_peak_torque_at_breakpoint_4_percent_peak_torq_128_127,word,"JCOMM PERCENT PEAK TORQUE AT BREAKPOINT 4 PERCENT PEAK TORQ",2,0,%,parameter
@@ -1168,10 +1168,10 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080BCD0,debounced_value_for_rear_axle_ratio_switch_on_off,byte,"DEBOUNCED VALUE FOR REAR_AXLE_RATIO_SWITCH",1,0,NONE,parameter
 0x0080BCD1,state_of_the_throttle_interlock_switch_on_off,byte,"STATE OF THE THROTTLE INTERLOCK SWITCH",1,0,NONE,parameter
 0x0080BCD4,switch_status_cruise_coast_switch_bit_3_on_off,byte,"SWITCH STATUS",1,0,HEX,parameter
-0x0080BCD5,DSPTSESW,byte,CalTerm DSPTSESW: PTO SET SWITCH (BIT 2 OF 0 TO 7, BYTE 7),1,1,NONE,value
+0x0080BCD5,DSPTSESW,byte,"CalTerm DSPTSESW: PTO SET SWITCH (BIT 2 OF 0 TO 7, BYTE 7)",1,1,NONE,value
 0x0080BCD6,switch_status_for_torque_derate_feature_on_off,byte,"SWITCH STATUS FOR TORQUE DERATE FEATURE",1,0,NONE,parameter
 0x0080BCD8,user_supplied_value_for_ptp_switched_input_input_on_off,byte,"USER SUPPLIED VALUE FOR PTP SWITCHED INPUT INPUT",1,0,NONE,parameter
-0x0080BCD9,DSUSEBSW,byte,CalTerm DSUSEBSW: BYTE 1,BIT 4 OF 0-7,USER OVERRIDE ENABLE FLAG FOR ENGINE_BRAKE_,1,1,NONE,flag
+0x0080BCD9,DSUSEBSW,byte,"CalTerm DSUSEBSW: BYTE 1,BIT 4 OF 0-7,USER OVERRIDE ENABLE FLAG FOR ENGINE_BRAKE_",1,1,NONE,flag
 0x0080BCDA,user_supplied_value_for_coolant_level_low_switch_input_on_off,byte,"USER SUPPLIED VALUE FOR COOLANT LEVEL LOW SWITCH INPUT",1,0,NONE,parameter
 0x0080BCDB,user_selected_value_for_stcg_asg_droop_input_on_off,byte,"USER SELECTED VALUE FOR STCG ASG DROOP INPUT",1,0,NONE,parameter
 0x0080BCDC,clien_specified_value_for_water_in_fuel_lamp_feedback_on_off,byte,"CLIEN SPECIFIED VALUE FOR WATER IN FUEL LAMP FEEDBACK",1,0,HEX,parameter
@@ -1186,7 +1186,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080BD1A,priority_of_client_currently_overriding_wait_to_start_lamp_00_ff,byte,"PRIORITY OF CLIENT CURRENTLY OVERRIDING WAIT TO START LAMP",1,0,HEX,parameter
 0x0080BD1B,priority_of_client_currently_overriding_stop_engine_lamp_00_ff,byte,"PRIORITY OF CLIENT CURRENTLY OVERRIDING STOP ENGINE LAMP",1,0,HEX,parameter
 0x0080BD02,status_of_the_water_in_fuel_lamp_output_on_off,byte,"STATUS OF THE WATER IN FUEL LAMP OUTPUT",1,0,NONE,parameter
-0x0080BD03,DSFMCHFB,byte,CalTerm DSFMCHFB: BIT 7 OF BYTE 5 DEBOUNCE, FEEDBACK FOR FAN_CLUTCH_FEEDBACK DR,1,1,NONE,value
+0x0080BD03,DSFMCHFB,byte,"CalTerm DSFMCHFB: BIT 7 OF BYTE 5 DEBOUNCE, FEEDBACK FOR FAN_CLUTCH_FEEDBACK DR",1,1,NONE,value
 0x0080BD4B,priority_of_client_which_is_currently_overriding_cruise_resume_sw_0_ff,byte,"PRIORITY OF CLIENT WHICH IS CURRENTLY OVERRIDING CRUISE_RESUME_SW",1,0,HEX,parameter
 0x0080BD4C,priority_of_client_which_is_currently_overriding_cruise_set_switc_0_ff,byte,"PRIORITY OF CLIENT WHICH IS CURRENTLY OVERRIDING CRUISE_SET_SWITC",1,0,HEX,parameter
 0x0080BD4D,priority_of_client_which_is_currently_overriding_cruise_on_switch_0_ff,byte,"PRIORITY OF CLIENT WHICH IS CURRENTLY OVERRIDING CRUISE_ON_SWITCH",1,0,HEX,parameter
@@ -1237,7 +1237,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080BD82,priority_of_client_which_is_currently_overriding_pto_resume_switc_0_ff,byte,"PRIORITY OF CLIENT WHICH IS CURRENTLY OVERRIDING PTO RESUME SWITC",1,0,HEX,parameter
 0x0080BD84,priority_of_client_which_is_currently_overriding_pto_set_switch_0_ff,byte,"PRIORITY OF CLIENT WHICH IS CURRENTLY OVERRIDING PTO SET SWITCH",1,0,HEX,parameter
 0x0080BD86,priority_of_client_which_is_currently_overriding_pto_enable_switc_0_ff,byte,"PRIORITY OF CLIENT WHICH IS CURRENTLY OVERRIDING PTO ENABLE SWITC",1,0,HEX,parameter
-0x0080BDA2,DPFLPSWD,word,CalTerm DPFLPSWD: FUELING PULSE WIDTH, FUELING COMMAND FOR DOUBLE PULSING SOLEN,2,0,MM3S,value
+0x0080BDA2,DPFLPSWD,word,"CalTerm DPFLPSWD: FUELING PULSE WIDTH, FUELING COMMAND FOR DOUBLE PULSING SOLEN",2,0,MM3S,value
 0x0080BDA4,hour_meter_ecm_run_time_none,dword,"HOUR METER (ECM RUN TIME)",4,0,MIN,parameter
 0x80BDC6,vp44_communication_status,byte,VP44 communication health flags - bit 1 indicates active/healthy VP44 communication,1,0,,flag
 0x80BDEE,io_control_source_register,byte,I/O control source data register - copied directly to hardware I/O port 1 (0xFFD004) 40x per major cycle,1,0,,data
@@ -1249,9 +1249,9 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x80C408,current_engine_rpm,word,Current engine RPM value,2,0,,value
 0x80C810,engine_operating_mode,ENGINE_OPERATING_MODE,Engine operating mode state machine (1=IDLE,2,0,,data
 0x0080CCC4,timer_counting_against_oil_pressure_threshold_time_0_60,word,"TIMER COUNTING AGAINST OIL_PRESSURE_THRESHOLD_TIME",2,0,SEC,parameter
-0x0080CCCE,EBODCOAG,word,CalTerm EBODCOAG: EB OVRD. SRC. 1=JC_OVRD,2=CRUISE,3=SWITCH,4=JC_LIM,5=NOT_SET,6=N,2,0,,value
+0x0080CCCE,EBODCOAG,word,"CalTerm EBODCOAG: EB OVRD. SRC. 1=JC_OVRD,2=CRUISE,3=SWITCH,4=JC_LIM,5=NOT_SET,6=N",2,0,,value
 0x0080CCD2,timing_command_prior_to_engine_brake_override_of_the_value_0_120,word,"TIMING COMMAND PRIOR TO ENGINE BRAKE OVERRIDE OF THE VALUE.",2,0,DADV,parameter
-0x0080CCE6,EBNOODCS,word,CalTerm EBNOODCS: SOURCE OF EB REQ.: 1=JC_OVRD,2=CRUISE,3=SWITCH,4=JC_LIM,5=NOT_SET,,2,0,,value
+0x0080CCE6,EBNOODCS,word,"CalTerm EBNOODCS: SOURCE OF EB REQ.: 1=JC_OVRD,2=CRUISE,3=SWITCH,4=JC_LIM,5=NOT_SET,",2,0,,value
 0x0080CCE8,level_of_eng_braking_req_by_non_override_algorithms_0_100,word,"LEVEL OF ENG. BRAKING REQ. BY NON-OVERRIDE ALGORITHMS",2,0,BR%,parameter
 0x0080CCEA,eps_pulse_number_eps_tooth_counter_0_24,word,"EPS_PULSE_NUMBER:EPS TOOTH COUNTER",2,0,CNT,parameter
 0x0080CCEC,eps_pulse_number_backup_eps_backup_tooth_counter_0_24,word,"EPS_PULSE_NUMBER_BACKUP: EPS BACKUP TOOTH COUNTER",2,0,CNT,parameter
@@ -1288,10 +1288,10 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D0BA,timing_command_before_cranking_is_envoked_0_120,word,"TIMING COMMAND BEFORE CRANKING IS ENVOKED",2,0,DADV,parameter
 0x0080D0BC,fueling_val_to_be_added_to_crank_initial_fuel_val_0_100,word,"FUELING VAL. TO BE ADDED TO CRANK INITIAL FUEL VAL.",2,0,%FU,parameter
 0x0080D0BE,eng_spd_val_to_be_added_to_crk_init_fuel_brk_spd_0_1000,word,"ENG. SPD. VAL. TO BE ADDED TO CRK INIT FUEL BRK SPD.",2,0,RPM,parameter
-0x0080D0CC,CMSYSS,byte,CalTerm CMSYSS: CAM_SYNC_STATE: 0=NO SYNC,1=HAVE SYNC,2=LOST SYNC ON CAM.,1,0,NHL,value
+0x0080D0CC,CMSYSS,byte,"CalTerm CMSYSS: CAM_SYNC_STATE: 0=NO SYNC,1=HAVE SYNC,2=LOST SYNC ON CAM.",1,0,NHL,value
 0x0080D0CF,flag_indicating_crank_rev_1_or_2_of_cam_rev_0_1,byte,"FLAG INDICATING CRANK REV 1 OR 2 OF CAM REV",1,0,,parameter
-0x0080D0D0,CMSYBKSS,byte,CalTerm CMSYBKSS: CAM_SYNC_STATE_BACKUP: 0 = NO SYNC, 1 = HAVE SYNC, 2 = LOST SYNC,1,0,NHL,value
-0x0080D0D1,CRSYBKSS,byte,CalTerm CRSYBKSS: CRANK_SYNC_STATE_BACKUP: 0 = NO SYNC, 1 = HAVE SYNC, 2 = LOST SY,1,0,NHL,value
+0x0080D0D0,CMSYBKSS,byte,"CalTerm CMSYBKSS: CAM_SYNC_STATE_BACKUP: 0 = NO SYNC, 1 = HAVE SYNC, 2 = LOST SYNC",1,0,NHL,value
+0x0080D0D1,CRSYBKSS,byte,"CalTerm CRSYBKSS: CRANK_SYNC_STATE_BACKUP: 0 = NO SYNC, 1 = HAVE SYNC, 2 = LOST SY",1,0,NHL,value
 0x0080D0D4,incremented_6_cam_when_crank_not_synched_0_65535,word,"INCREMENTED 6/CAM WHEN CRANK NOT SYNCHED",2,0,CNT,parameter
 0x0080D0D6,number_of_losses_of_cam_sync_for_backup_0_200,word,"NUMBER OF LOSSES OF CAM SYNC FOR BACKUP",2,0,,parameter
 0x0080D0D8,number_of_losses_of_crank_sync_for_backup_0_65535,word,"NUMBER OF LOSSES OF CRANK SYNC FOR BACKUP",2,0,CNT,parameter
@@ -1302,7 +1302,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D0E6,pointer_to_coolant_level_fuel_min_threshold_0_2_32,dword,"POINTER TO COOLANT LEVEL FUEL MIN THRESHOLD",4,0,ADDR,parameter
 0x0080D0EA,pointer_to_coolant_level_fuel_max_threshold_0_2_32,dword,"POINTER TO COOLANT LEVEL FUEL MAX THRESHOLD",4,0,ADDR,parameter
 0x0080D0EE,pointer_to_coolant_level_rpm_limit_threshold_0_2_32,dword,"POINTER TO COOLANT LEVEL RPM LIMIT THRESHOLD",4,0,ADDR,parameter
-0x0080D0F2,EPCVEREN,word,CalTerm EPCVEREN: TRUE = COOLANT LEVEL ERROR ALLOWED, FALSE = NO ERROR ALLOW,2,0,,value
+0x0080D0F2,EPCVEREN,word,"CalTerm EPCVEREN: TRUE = COOLANT LEVEL ERROR ALLOWED, FALSE = NO ERROR ALLOW",2,0,,value
 0x0080D0F4,coolant_level_system_error_detected_before_cranking_i_1_true_0_false,word,"COOLANT LEVEL SYSTEM ERROR DETECTED BEFORE CRANKING I",2,0,,parameter
 0x0080D0F6,amount_of_time_over_coolant_level_fuel_shutdown_threshold_0_65535,word,"AMOUNT OF TIME OVER COOLANT LEVEL FUEL SHUTDOWN THRESHOLD",2,0,SEC,parameter
 0x0080D0F8,amount_of_time_over_coolant_level_rpm_shutdown_threshold_0_65535,word,"AMOUNT OF TIME OVER COOLANT LEVEL RPM SHUTDOWN THRESHOLD",2,0,SEC,parameter
@@ -1311,7 +1311,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D0FE,time_since_rpm_crossed_coolant_lev_start_mon_rpm_0_65535,word,"TIME SINCE RPM CROSSED COOLANT LEV. START MON RPM",2,0,SEC,parameter
 0x0080D1A2,points_to_water_in_fuel_fuel_maximum_threshold_0_2_32,dword,"POINTS TO WATER IN FUEL FUEL MAXIMUM THRESHOLD",4,0,HEX,parameter
 0x0080D1A6,pointer_to_water_in_fuel_rpm_limit_threshold_0_2_32,dword,"POINTER TO WATER IN FUEL RPM LIMIT THRESHOLD",4,0,HEX,parameter
-0x0080D1AA,EPWFEREN,word,CalTerm EPWFEREN: TRUE=WATER IN FUEL ERROR ALLOWED, FALSE=NO ERROR ALLOWE,2,0,,value
+0x0080D1AA,EPWFEREN,word,"CalTerm EPWFEREN: TRUE=WATER IN FUEL ERROR ALLOWED, FALSE=NO ERROR ALLOWE",2,0,,value
 0x0080D1AC,true_water_in_fuel_precrank_error_0_1,word,"TRUE=WATER IN FUEL PRECRANK ERROR",2,0,SEC,parameter
 0x0080D1AE,amount_of_time_over_water_in_fuel_fuel_shutdown_threshold_0_65535,word,"AMOUNT OF TIME OVER WATER IN FUEL FUEL SHUTDOWN THRESHOLD",2,0,SEC,parameter
 0x0080D1B0,amount_of_time_over_water_in_fuel_rpm_shutdown_threshold_0_65535,word,"AMOUNT OF TIME OVER WATER IN FUEL RPM SHUTDOWN THRESHOLD",2,0,SEC,parameter
@@ -1327,7 +1327,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D1CC,points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32,dword,"POINTS TO ENGINE SYNC FUEL PRESSURE FUEL MINIMUN THRESHOLD",4,0,HEX,parameter
 0x0080D1D0,points_to_boost_pressure_fuel_maximum_threshold_0_2_32,dword,"POINTS TO BOOST PRESSURE FUEL MAXIMUM THRESHOLD",4,0,HEX,parameter
 0x0080D1D4,pointer_to_boost_pressure_rpm_limit_threshold_0_2_32,dword,"POINTER TO BOOST PRESSURE RPM LIMIT THRESHOLD",4,0,HEX,parameter
-0x0080D1D8,EPBSEREN,word,CalTerm EPBSEREN: TRUE=BOOST PRESSURE ERROR ALLOWED, FALSE=NO ERROR ALLOW,2,0,,value
+0x0080D1D8,EPBSEREN,word,"CalTerm EPBSEREN: TRUE=BOOST PRESSURE ERROR ALLOWED, FALSE=NO ERROR ALLOW",2,0,,value
 0x0080D1DA,true_boost_pressure_precrank_error_0_1,word,"TRUE=BOOST PRESSURE PRECRANK ERROR",2,0,SEC,parameter
 0x0080D1DC,amount_of_time_over_boost_pressure_fuel_shutdown_threshold_0_65535,word,"AMOUNT OF TIME OVER BOOST PRESSURE FUEL SHUTDOWN THRESHOLD",2,0,SEC,parameter
 0x0080D1DE,amount_of_time_over_boost_pressure_rpm_shutdown_threshold_0_65535,word,"AMOUNT OF TIME OVER BOOST PRESSURE RPM SHUTDOWN THRESHOLD",2,0,SEC,parameter
@@ -1432,14 +1432,14 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D13C,mask_for_input_of_the_intake_man_temp_0_65535,word,"MASK FOR INPUT OF THE INTAKE MAN TEMP",2,0,MASK,parameter
 0x0080D13E,time_duration_since_im_temperature_failure_was_detected_0_65535,word,"TIME DURATION SINCE IM TEMPERATURE FAILURE WAS DETECTED.",2,0,SEC.,parameter
 0x0080D14A,pointer_to_intake_man_temp_rpm_limit_threshold_0_2_32,dword,"POINTER TO INTAKE MAN. TEMP RPM LIMIT THRESHOLD",4,0,ADDR,parameter
-0x0080D14E,EPIMEREN,word,CalTerm EPIMEREN: TRUE = INTAKE TEMP. ERROR ALLOWED, FALSE = NO ERROR A,2,0,,value
+0x0080D14E,EPIMEREN,word,"CalTerm EPIMEREN: TRUE = INTAKE TEMP. ERROR ALLOWED, FALSE = NO ERROR A",2,0,,value
 0x0080D15A,time_since_rpm_crossed_intake_temp_start_mon_rpm_0_65535,word,"TIME SINCE RPM CROSSED INTAKE TEMP. START MON RPM",2,0,SEC,parameter
 0x0080D15C,errors_allowed_timer_running_flag_for_intake_temp_0_1,word,"ERRORS ALLOWED TIMER RUNNING FLAG FOR INTAKE TEMP.",2,0,,parameter
 0x0080D15E,pointer_to_intake_man_temp_fuel_fault_log_data_0_2_32,dword,"POINTER TO INTAKE MAN. TEMP FUEL FAULT LOG DATA",4,0,ADDR,parameter
 0x0080D16A,mask_for_input_of_the_oil_pressure_input_0_65535,word,"MASK FOR INPUT OF THE OIL PRESSURE INPUT",2,0,MASK,parameter
 0x0080D16C,amount_of_time_since_oil_pressure_failure_was_detected_0_65535,word,"AMOUNT OF TIME SINCE OIL PRESSURE FAILURE WAS DETECTED.",2,0,SEC.,parameter
 0x0080D16E,time_duration_since_oil_pressure_fault_was_detected_0_65535,word,"TIME DURATION SINCE OIL PRESSURE FAULT WAS DETECTED.",2,0,SEC.,parameter
-0x0080D17C,EPO2EREN,word,CalTerm EPO2EREN: TRUE = OIL PRESSURE ERROR ALLOWED, FALSE = NO ERROR A,2,0,,value
+0x0080D17C,EPO2EREN,word,"CalTerm EPO2EREN: TRUE = OIL PRESSURE ERROR ALLOWED, FALSE = NO ERROR A",2,0,,value
 0x0080D17E,true_oil_pressure_precrank_error_1_true_0_false,word,"TRUE = OIL PRESSURE PRECRANK ERROR",2,0,,parameter
 0x0080D18A,errors_allowed_timer_running_flag_for_oil_pres_0_1,word,"ERRORS ALLOWED TIMER RUNNING FLAG FOR OIL PRES.",2,0,,parameter
 0x0080D18C,pointer_to_oil_pressure_fuel_fault_log_data_0_2_32,dword,"POINTER TO OIL PRESSURE FUEL FAULT LOG DATA",4,0,ADDR,parameter
@@ -1502,7 +1502,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D112,time_duration_since_coolant_temperature_failure_was_detected_0_65535,word,"TIME DURATION SINCE COOLANT TEMPERATURE FAILURE WAS DETECTED",2,0,SEC.,parameter
 0x0080D114,pointer_to_coolant_temperature_fuel_min_threshold_0_2_32,dword,"POINTER TO COOLANT TEMPERATURE FUEL MIN THRESHOLD",4,0,ADDR,parameter
 0x0080D118,pointer_to_coolant_temperature_fuel_max_threshold_0_2_32,dword,"POINTER TO COOLANT TEMPERATURE FUEL MAX THRESHOLD",4,0,ADDR,parameter
-0x0080D120,EPCQEREN,word,CalTerm EPCQEREN: TRUE = COOLANT TEMP. ERROR ALLOWED, FALSE = NO ERROR,2,0,,value
+0x0080D120,EPCQEREN,word,"CalTerm EPCQEREN: TRUE = COOLANT TEMP. ERROR ALLOWED, FALSE = NO ERROR",2,0,,value
 0x0080D122,imt_error_detected_before_cranking_in_restart_situati_1_true_0_false,word,"IMT ERROR DETECTED BEFORE CRANKING IN RESTART SITUATI",2,0,,parameter
 0x0080D124,amount_of_time_over_coolant_temp_fuel_shutdown_threshold_0_65535,word,"AMOUNT OF TIME OVER COOLANT TEMP. FUEL SHUTDOWN THRESHOLD",2,0,SEC,parameter
 0x0080D126,amount_of_time_over_coolant_temp_rpm_shutdown_threshold_0_65535,word,"AMOUNT OF TIME OVER COOLANT TEMP. RPM SHUTDOWN THRESHOLD",2,0,SEC,parameter
@@ -1529,7 +1529,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D190,pointer_to_oil_pressure_rpm_fault_log_data_0_2_32,dword,"POINTER TO OIL PRESSURE RPM FAULT LOG DATA",4,0,ADDR,parameter
 0x0080D198,mask_for_input_of_water_in_fuel_0_65535,word,"MASK FOR INPUT OF WATER IN FUEL",2,0,MASK,parameter
 0x0080D202,pointer_to_engine_sync_fuel_pressure_rpm_limit_threshold_0_2_32,dword,"POINTER TO ENGINE SYNC FUEL PRESSURE RPM LIMIT THRESHOLD",4,0,HEX,parameter
-0x0080D206,EPFPEREN,word,CalTerm EPFPEREN: TRUE=ENG SYNC FUEL PRESSURE ERROR ALLOWED, FALSE=NO ERR,2,0,,value
+0x0080D206,EPFPEREN,word,"CalTerm EPFPEREN: TRUE=ENG SYNC FUEL PRESSURE ERROR ALLOWED, FALSE=NO ERR",2,0,,value
 0x0080D208,true_eng_sync_fuel_pressure_precrank_error_0_1,word,"TRUE=ENG SYNC FUEL PRESSURE PRECRANK ERROR",2,0,SEC,parameter
 0x0080D210,delay_before_warning_abuot_shutdown_from_eng_sync_fuel_pressur_0_65535,word,"DELAY BEFORE WARNING ABUOT SHUTDOWN FROM ENG SYNC FUEL PRESSUR",2,0,SEC,parameter
 0x0080D212,time_since_rpm_crossed_eng_sync_fuel_pressure_start_mon_rpm_0_65535,word,"TIME SINCE RPM CROSSED ENG SYNC FUEL PRESSURE. START MON RPM",2,0,SEC,parameter
@@ -1540,7 +1540,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D226,amount_of_time_since_fuel_temperature_failure_was_detected_0_65535,word,"AMOUNT OF TIME SINCE FUEL TEMPERATURE FAILURE WAS DETECTED",2,0,SEC,parameter
 0x0080D228,pointer_to_fuel_temperature_min_threshold_0_2_32,dword,"POINTER TO FUEL TEMPERATURE MIN THRESHOLD",4,0,ADDR,parameter
 0x0080D230,pointer_to_fuel_temperature_rpm_limit_threshold_0_2_32,dword,"POINTER TO FUEL TEMPERATURE RPM LIMIT THRESHOLD",4,0,ADDR,parameter
-0x0080D234,EPFTEREN,word,CalTerm EPFTEREN: TRUE = FUEL TEMPERATURE ERROR ALLOWED, FALSE = NOT,2,0,NONE,value
+0x0080D234,EPFTEREN,word,"CalTerm EPFTEREN: TRUE = FUEL TEMPERATURE ERROR ALLOWED, FALSE = NOT",2,0,NONE,value
 0x0080D236,fuel_temperature_system_error_detected_before_crankin_1_true_0_false,word,"FUEL TEMPERATURE SYSTEM ERROR DETECTED BEFORE CRANKIN",2,0,NONE,parameter
 0x0080D238,amount_of_time_over_fuel_temperature_fuel_shutdown_threshold_0_65535,word,"AMOUNT OF TIME OVER FUEL TEMPERATURE FUEL SHUTDOWN THRESHOLD",2,0,SEC,parameter
 0x0080D240,time_since_rpm_crossed_fuel_temperature_start_threshold_0_65535,word,"TIME SINCE RPM CROSSED FUEL TEMPERATURE START THRESHOLD",2,0,SEC,parameter
@@ -1551,7 +1551,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D252,amount_of_time_since_ambient_air_pressure_low_failure_was_dete_0_65535,word,"AMOUNT OF TIME SINCE AMBIENT AIR PRESSURE LOW FAILURE WAS DETE",2,0,SEC,parameter
 0x0080D254,amount_of_time_since_ambient_air_pressure_low_failure_was_dete_0_65535,word,"AMOUNT OF TIME SINCE AMBIENT AIR PRESSURE LOW FAILURE WAS DETE",2,0,SEC,parameter
 0x0080D256,points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32,dword,"POINTS TO ENGINE SYNC FUEL PRESSURE FUEL MINIMUN THRESHOLD",4,0,HEX,parameter
-0x0080D262,EPAAEREN,word,CalTerm EPAAEREN: TRUE=AMBIENT AIR PRESSURE ERROR ALLOWED, FALSE=NO ERROR,2,0,,value
+0x0080D262,EPAAEREN,word,"CalTerm EPAAEREN: TRUE=AMBIENT AIR PRESSURE ERROR ALLOWED, FALSE=NO ERROR",2,0,,value
 0x0080D264,true_ambient_air_pressure_precrank_error_0_1,word,"TRUE=AMBIENT AIR PRESSURE PRECRANK ERROR",2,0,SEC,parameter
 0x0080D266,amount_of_time_over_ambient_air_pressure_fuel_shutdown_thresho_0_65535,word,"AMOUNT OF TIME OVER AMBIENT AIR PRESSURE FUEL SHUTDOWN THRESHO",2,0,SEC,parameter
 0x0080D268,amount_of_time_over_ambient_air_pressure_rpm_shutdown_threshol_0_65535,word,"AMOUNT OF TIME OVER AMBIENT AIR PRESSURE RPM SHUTDOWN THRESHOL",2,0,SEC,parameter
@@ -1580,7 +1580,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D348,intermediate_timing_state_used_before_final_timing_selction_0_10,word,"INTERMEDIATE TIMING STATE USED BEFORE FINAL TIMING SELCTION",2,0,NONE,parameter
 0x0080D350,fss_adjustment_to_compensate_for_delta_between_injected_and_co_0_100,word,"FSS ADJUSTMENT TO COMPENSATE FOR DELTA BETWEEN INJECTED AND CO",2,0,MM3S,parameter
 0x0080D352,quantity_of_fuel_to_be_injected_during_next_injection_cycle_0_100,word,"QUANTITY OF FUEL TO BE INJECTED DURING NEXT INJECTION CYCLE",2,0,%FU,parameter
-0x0080D358,JCFSTLFG,word,CalTerm JCFSTLFG: WHEN ACTIVE, THIS FLAG SETS BDCST FOR ACTUAL ENG %TORQUE A,2,1,NONE,flag
+0x0080D358,JCFSTLFG,word,"CalTerm JCFSTLFG: WHEN ACTIVE, THIS FLAG SETS BDCST FOR ACTUAL ENG %TORQUE A",2,1,NONE,flag
 0x0080D368,fueling_value_at_100_throttle_0_100,word,"FUELING VALUE AT 100% THROTTLE.",2,0,MM3S,parameter
 0x0080D370,max_fueling_without_programmable_power_for_esp_tau_0_0_100,word,"MAX FUELING WITHOUT PROGRAMMABLE POWER FOR ESP TAU 0",2,0,%FU,parameter
 0x0080D612,application_specified_hsg_engine_speed_error_filter_time_constan_0_1,word,"APPLICATION-SPECIFIED HSG ENGINE SPEED ERROR FILTER TIME CONSTAN",2,0,NONE,parameter
@@ -1596,14 +1596,14 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D658,reference_speed_before_droop_sent_hsg_ref_hsg_gain_sched_1400_3000,word,"REFERENCE SPEED BEFORE DROOP SENT HSG REF -> HSG GAIN SCHED",2,0,RPM,parameter
 0x0080D660,winning_active_isochronous_speed_1500_4500,word,"WINNING ACTIVE ISOCHRONOUS SPEED",2,0,RPM,parameter
 0x0080D662,winning_active_isochronous_speed_state_0_255,word,"WINNING ACTIVE ISOCHRONOUS SPEED STATE",2,0,ST,parameter
-0x0080D664,HSINRFST,word,CalTerm HSINRFST: INDICATES WHICH ALG. CONTROLS THE HSG, HSG_INDICATED_REF_SPEED,2,0,NONE,value
+0x0080D664,HSINRFST,word,"CalTerm HSINRFST: INDICATES WHICH ALG. CONTROLS THE HSG, HSG_INDICATED_REF_SPEED",2,0,NONE,value
 0x0080D700,bit_0_of_0_15_eeprom_parameter_used_to_enable_cylinder_cutout_ca_0_1,word,"BIT 0 OF 0-15.  EEPROM PARAMETER USED TO ENABLE CYLINDER CUTOUT CA",2,0,HEX,parameter
 0x0080D702,eeprom_indicator_used_to_define_which_cylinders_to_cutout_0_1,word,"EEPROM INDICATOR USED TO DEFINE WHICH CYLINDERS TO CUTOUT",2,0,HEX,parameter
 0x0080D710,multiplex_value_for_throttle_interlock_switch_on_off,byte,"MULTIPLEX VALUE FOR THROTTLE INTERLOCK SWITCH",1,0,HEX,parameter
 0x0080D711,multiplex_value_for_auxiliary_shutdown_switch_on_off,byte,"MULTIPLEX VALUE FOR AUXILIARY SHUTDOWN SWITCH",1,0,HEX,parameter
 0x0080D712,multiplex_value_for_brake_switch_on_off,byte,"MULTIPLEX VALUE FOR BRAKE SWITCH",1,0,HEX,parameter
 0x0080D713,multiplex_value_for_clutch_switch_on_off,byte,"MULTIPLEX VALUE FOR CLUTCH SWITCH",1,0,HEX,parameter
-0x0080D714,JCCMTHMU,byte,CalTerm JCCMTHMU: MUXED VALUE FOR COMMANDED THROTTLE REQUESTED, ALREADY FILTERED &,1,0,PERC,value
+0x0080D714,JCCMTHMU,byte,"CalTerm JCCMTHMU: MUXED VALUE FOR COMMANDED THROTTLE REQUESTED, ALREADY FILTERED &",1,0,PERC,value
 0x0080D715,multiplex_value_for_cruise_enable_switch_switch_on_off,byte,"MULTIPLEX VALUE FOR CRUISE ENABLE SWITCH SWITCH",1,0,HEX,parameter
 0x0080D716,multiplex_value_for_cruise_resume_switch_on_off,byte,"MULTIPLEX VALUE FOR CRUISE RESUME SWITCH",1,0,HEX,parameter
 0x0080D717,multiplex_value_for_cruise_set_switch_on_off,byte,"MULTIPLEX VALUE FOR CRUISE SET SWITCH",1,0,HEX,parameter
@@ -1639,7 +1639,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080DA22,jcomm_ind_torque_at_point_3_available_torque_that_engine_can_0_125,word,"JCOMM IND TORQUE AT POINT 3  AVAILABLE TORQUE THAT ENGINE CAN ",2,0,%,parameter
 0x0080DA24,jcomm_ind_torque_at_point_4_available_torque_that_engine_can_p_0_125,word,"JCOMM IND TORQUE AT POINT 4 AVAILABLE TORQUE THAT ENGINE CAN P",2,0,%,parameter
 0x0080DA26,jcomm_ind_torque_at_point_5_available_torque_that_engine_can_0_125,word,"JCOMM IND TORQUE AT POINT 5  AVAILABLE TORQUE THAT ENGINE CAN ",2,0,%,parameter
-0x0080DA28,JCEVRPP2,word,CalTerm JCEVRPP2: JCOMM-DETERMINED RPM AT HSG BREAK, FOR ENGINE CONFIG. MAP,2,0,RPM,value
+0x0080DA28,JCEVRPP2,word,"CalTerm JCEVRPP2: JCOMM-DETERMINED RPM AT HSG BREAK, FOR ENGINE CONFIG. MAP",2,0,RPM,value
 0x0080DA30,jcomm_determine_rpm_at_engine_configuration_point_3_0_8031_875,word,"JCOMM DETERMINE RPM AT ENGINE CONFIGURATION POINT 3.",2,0,RPM,parameter
 0x0080DA32,determined_peak_engine_fueling_0_100,word,"DETERMINED PEAK ENGINE FUELING",2,0,MM3S,parameter
 0x0080DA36,4_d_fueling_value_used_to_determine_jcomm_drivers_demand_ind_tor_0_100,word,"4-D FUELING VALUE USED TO DETERMINE JCOMM_DRIVERS_DEMAND_IND_TOR",2,0,%FU,parameter
@@ -1649,11 +1649,11 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080DA44,torque_curve_fueling_at_point_2_speed_breakpoint_0_100,word,"TORQUE CURVE FUELING AT POINT 2 SPEED BREAKPOINT.",2,0,MM3S,parameter
 0x0080DA46,torque_curve_fueling_at_point_3_speed_breakpoint_0_100,word,"TORQUE CURVE FUELING AT POINT 3 SPEED BREAKPOINT.",2,0,MM3S,parameter
 0x0080DA48,torque_curve_fueling_at_point_4_speed_breakpoint_0_100,word,"TORQUE CURVE FUELING AT POINT 4 SPEED BREAKPOINT.",2,0,MM3S,parameter
-0x0080DA54,JCHII1OD,word,CalTerm JCHII1OD: JCOMM HIGH IDLE OVERRIDE 0 = FALSE, NO OVERRIDE  1 = TRUE,2,0,NONE,value
+0x0080DA54,JCHII1OD,word,"CalTerm JCHII1OD: JCOMM HIGH IDLE OVERRIDE 0 = FALSE, NO OVERRIDE  1 = TRUE",2,0,NONE,value
 0x0080DA60,jcomm_speed_control_status_1_speed_control_mode_0_n_true_false,word,"JCOMM SPEED CONTROL STATUS 1 = SPEED CONTROL MODE   0 = N",2,0,NONE,parameter
 0x0080DA62,jcomm_torque_derate_fueling_maximum_allowed_fuel_as_per_link_u_0_100,word,"JCOMM TORQUE DERATE FUELING MAXIMUM ALLOWED FUEL AS PER LINK U",2,0,MM3S,parameter
 0x0080DA66,jcomm_speed_governor_mode_indicator_of_which_speed_mode_characte_0_3,word,"JCOMM SPEED GOVERNOR MODE INDICATOR OF WHICH SPEED MODE CHARACTE",2,0,NONE,parameter
-0x0080DA68,JCEGNETY,word,CalTerm JCEGNETY: NETWORK TYPE IN CONTROL OF ENGINE 0 = J1922, 1 = J1939,2,0,NONE,value
+0x0080DA68,JCEGNETY,word,"CalTerm JCEGNETY: NETWORK TYPE IN CONTROL OF ENGINE 0 = J1922, 1 = J1939",2,0,NONE,value
 0x0080DAA0,determined_state_of_operation_of_lamp_2_on_off_short,word,"DETERMINED STATE OF OPERATION OF LAMP 2",2,0,HEX,parameter
 0x0080DAA2,determined_state_of_operation_of_lamp_3_on_off_short,word,"DETERMINED STATE OF OPERATION OF LAMP 3",2,0,HEX,parameter
 0x0080DAA4,determined_state_of_operation_of_lamp_4_on_off_short,word,"DETERMINED STATE OF OPERATION OF LAMP 4",2,0,HEX,parameter
@@ -1723,7 +1723,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080DE2C,number_of_entries_in_the_scratch_pad_0_10,word,"NUMBER OF ENTRIES IN THE SCRATCH PAD",2,0,NONE,parameter
 0x0080DE3A,length_in_bytes_of_scratch_pad_buffer_0_200,word,"LENGTH IN BYTES OF SCRATCH PAD BUFFER",2,0,NONE,parameter
 0x0080DE3C,rpm_value_for_tach_if_normal_input_is_overridden_0_4500,word,"RPM VALUE FOR TACH IF NORMAL INPUT IS OVERRIDDEN.",2,0,RPM,parameter
-0x0080DE3E,DRTKODMD,word,CalTerm DRTKODMD: FLAG TO SET TACH TO TACHOMETER_OVERRIDE_RPM(1=OVERRIDE,0=NO OVER,2,0,NONE,flag
+0x0080DE3E,DRTKODMD,word,"CalTerm DRTKODMD: FLAG TO SET TACH TO TACHOMETER_OVERRIDE_RPM(1=OVERRIDE,0=NO OVER",2,0,NONE,flag
 0x0080DE5C,total_time_offset_moved_to_ti_base_adj_h_none,dword,"TOTAL_TIME_OFFSET MOVED TO TI_BASE_ADJ.H",4,0,NONE,parameter
 0x0080DE6E,test_variable_used_to_snapshot_the_system_interface_variable_s_0_120,word,"TEST VARIABLE USED TO SNAPSHOT THE SYSTEM INTERFACE VARIABLE S",2,0,DADV,parameter
 0x0080DE7A,00_no_clear_action_01_clear_inactive_02_clear_active_03_clear_al_0_6,word,"00=NO_CLEAR_ACTION 01=CLEAR_INACTIVE 02=CLEAR_ACTIVE 03=CLEAR_AL",2,0,NONE,parameter
@@ -2412,7 +2412,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807D7E,time_abuse_event_must_be_continuously_present_before_it_will_b_0_100,word,"TIME ABUSE EVENT MUST BE CONTINUOUSLY PRESENT BEFORE IT WILL B",2,0,SEC,parameter
 0x00807D08,minimum_value_of_alpha_required_to_calculate_cylinder_maintenanc_0_1,word,"MINIMUM VALUE OF ALPHA REQUIRED TO CALCULATE CYLINDER_MAINTENANC",2,0,NONE,parameter
 0x00807D8A,time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000,dword,"TIME THAT MUST ELASP SINCE LAST EVENT TO CONSIDER AN ABUSE ",4,0,SEC,parameter
-0x00807D8E,EDMNMXCV,word,CalTerm EDMNMXCV: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN,2,0,HEX,value
+0x00807D8E,EDMNMXCV,word,"CalTerm EDMNMXCV: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN",2,0,HEX,value
 0x00807D9C,time_abuse_event_must_be_continuously_present_before_it_will_b_0_100,word,"TIME ABUSE EVENT MUST BE CONTINUOUSLY PRESENT BEFORE IT WILL B",2,0,SEC,parameter
 0x00807D9E,time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000,dword,"TIME THAT MUST ELASP SINCE LAST EVENT TO CONSIDER AN ABUSE ",4,0,SEC,parameter
 0x00807D10,minimum_allowable_fueling_for_this_algorithm_to_operate_0_100,word,"MINIMUM ALLOWABLE FUELING FOR THIS ALGORITHM TO OPERATE",2,0,MM3S,parameter
@@ -2427,24 +2427,24 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807D56,frictional_load_torque_in_fueling_at_breakpoint_3_engine_rpm_0_100,word,"FRICTIONAL LOAD TORQUE (IN FUELING) AT BREAKPOINT 3 ENGINE RPM",2,0,NONE,parameter
 0x00807D58,frictional_load_torque_in_fueling_at_breakpoint_4_engine_rpm_0_100,word,"FRICTIONAL LOAD TORQUE (IN FUELING) AT BREAKPOINT 4 ENGINE RPM",2,0,NONE,parameter
 0x00807D80,time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000,dword,"TIME THAT MUST ELASP SINCE LAST EVENT TO CONSIDER AN ABUSE ",4,0,SEC,parameter
-0x00807D84,EDMNMXBW,word,CalTerm EDMNMXBW: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN,2,0,HEX,value
+0x00807D84,EDMNMXBW,word,"CalTerm EDMNMXBW: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN",2,0,HEX,value
 0x00807D88,time_abuse_event_must_be_continuously_present_before_it_will_b_0_100,word,"TIME ABUSE EVENT MUST BE CONTINUOUSLY PRESENT BEFORE IT WILL B",2,0,SEC,parameter
 0x00807D92,time_abuse_event_must_be_continuously_present_before_it_will_b_0_100,word,"TIME ABUSE EVENT MUST BE CONTINUOUSLY PRESENT BEFORE IT WILL B",2,0,SEC,parameter
 0x00807D94,time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000,dword,"TIME THAT MUST ELASP SINCE LAST EVENT TO CONSIDER AN ABUSE ",4,0,SEC,parameter
-0x00807D98,EDMNMXCP,word,CalTerm EDMNMXCP: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN,2,0,HEX,value
-0x00807DA2,EDMNMXCQ,word,CalTerm EDMNMXCQ: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN,2,0,HEX,value
+0x00807D98,EDMNMXCP,word,"CalTerm EDMNMXCP: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN",2,0,HEX,value
+0x00807DA2,EDMNMXCQ,word,"CalTerm EDMNMXCQ: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN",2,0,HEX,value
 0x00807DA6,time_abuse_event_must_be_continuously_present_before_it_will_b_0_100,word,"TIME ABUSE EVENT MUST BE CONTINUOUSLY PRESENT BEFORE IT WILL B",2,0,SEC,parameter
 0x00807DA8,time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000,dword,"TIME THAT MUST ELASP SINCE LAST EVENT TO CONSIDER AN ABUSE ",4,0,SEC,parameter
-0x00807DAC,EDMNMXOS,word,CalTerm EDMNMXOS: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN,2,0,HEX,value
+0x00807DAC,EDMNMXOS,word,"CalTerm EDMNMXOS: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN",2,0,HEX,value
 0x00807DB0,time_abuse_event_must_be_continuously_present_before_it_will_0_100,word,": TIME ABUSE EVENT MUST BE CONTINUOUSLY PRESENT BEFORE IT WILL",2,0,SEC,parameter
 0x00807DB2,time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000,dword,"TIME THAT MUST ELASP SINCE LAST EVENT TO CONSIDER AN ABUSE ",4,0,SEC,parameter
-0x00807DB6,EDMNMXIM,word,CalTerm EDMNMXIM: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN,2,0,HEX,value
+0x00807DB6,EDMNMXIM,word,"CalTerm EDMNMXIM: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN",2,0,HEX,value
 0x00807DBA,time_abuse_event_must_be_continuously_present_before_it_will_b_0_100,word,"TIME ABUSE EVENT MUST BE CONTINUOUSLY PRESENT BEFORE IT WILL B",2,0,SEC,parameter
 0x00807DBC,time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000,dword,"TIME THAT MUST ELASP SINCE LAST EVENT TO CONSIDER AN ABUSE ",4,0,SEC,parameter
-0x00807DC0,EDMNMXO2,word,CalTerm EDMNMXO2: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN,2,0,HEX,value
+0x00807DC0,EDMNMXO2,word,"CalTerm EDMNMXO2: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN",2,0,HEX,value
 0x00807DC4,time_abuse_event_must_be_continuously_present_before_it_will_b_0_100,word,"TIME ABUSE EVENT MUST BE CONTINUOUSLY PRESENT BEFORE IT WILL B",2,0,SEC,parameter
 0x00807DC6,time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000,dword,"TIME THAT MUST ELASP SINCE LAST EVENT TO CONSIDER AN ABUSE ",4,0,SEC,parameter
-0x00807DCA,EDMNMXO3,word,CalTerm EDMNMXO3: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN,2,0,HEX,value
+0x00807DCA,EDMNMXO3,word,"CalTerm EDMNMXO3: DETERMINES DIRECTION FOR SEVERITY LEVELS 0 = MAX, 1 = MIN",2,0,HEX,value
 0x00807DCE,of_main_interrupts_cam_rev_used_for_total_revs_and_total_work_1_255,word,"# OF MAIN INTERRUPTS/CAM REV USED FOR TOTAL REVS AND TOTAL WORK",2,0,CNT,parameter
 0x00807DD0,of_backup_interrupts_cam_rev_used_for_total_revs_and_total_wor_1_255,word,"# OF BACKUP INTERRUPTS/CAM REV USED FOR TOTAL REVS AND TOTAL WOR",2,0,CNT,parameter
 0x00807DD4,calibratible_threshold_for_rifle_oil_pressure_for_engine_warmu_0_100,word,"CALIBRATIBLE THRESHOLD FOR RIFLE OIL PRESSURE FOR ENGINE WARMU",2,0,PSIG,parameter
@@ -2457,8 +2457,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807DE6,boost_pressure_above_which_engine_brakes_may_not_be_enabled_0_50,word,"BOOST PRESSURE ABOVE WHICH ENGINE BRAKES MAY NOT BE ENABLED",2,0,INHG,parameter
 0x00807DE8,minimum_allowable_value_at_which_the_disable_rpm_may_be_set_825_1200,word,"MINIMUM ALLOWABLE VALUE AT WHICH THE DISABLE RPM MAY BE SET",2,0,RPM,parameter
 0x00807DEA,maximum_allowable_value_at_which_the_disable_rpm_may_be_set_825_1200,word,"MAXIMUM ALLOWABLE VALUE AT WHICH THE DISABLE RPM MAY BE SET",2,0,RPM,parameter
-0x00807DEC,EBCALBS1,word,CalTerm EBCALBS1: 0 = DO NOT DELAY ON E-BRAKE TRANSITION, 1 = DELAY ON E-BRAKE TRA,2,0,,value
-0x00807DEE,EBAEDYRP,word,CalTerm EBAEDYRP: RPM ABOVE THIS LIMIT = DELAY 1 EXECUTION, RPM BELOW LIMIT,2,0,RPM,threshold
+0x00807DEC,EBCALBS1,word,"CalTerm EBCALBS1: 0 = DO NOT DELAY ON E-BRAKE TRANSITION, 1 = DELAY ON E-BRAKE TRA",2,0,,value
+0x00807DEE,EBAEDYRP,word,"CalTerm EBAEDYRP: RPM ABOVE THIS LIMIT = DELAY 1 EXECUTION, RPM BELOW LIMIT",2,0,RPM,threshold
 0x00807DF4,eb_calibration_blank_spot_2_none,word,"EB CALIBRATION BLANK SPOT 2",2,0,NONE,parameter
 0x00807E0A,EBDRBTB1,word,CalTerm EBDRBTB1: BITMAPPED EB DRIVER TABLE TO USE WHEN DRIVER 1 ERROR DETECTED.,2,5,HEX,lookup
 0x00807E1A,EBDRBTB2,word,CalTerm EBDRBTB2: BITMAPPED EB DRIVER TABLE TO USE WHEN DRIVER 2 ERROR DETECTED.,2,5,HEX,lookup
@@ -2492,7 +2492,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807ECE,maximum_pulse_period_timeout_backup_max_reset_value_for_back_0_10000,word,"MAXIMUM_PULSE_PERIOD_TIMEOUT_BACKUP:MAX RESET VALUE FOR BACK",2,0,MSEC,parameter
 0x00807ED0,reset_value_for_external_input_timeout_counter_0_10000,word,"RESET VALUE FOR EXTERNAL INPUT TIMEOUT COUNTER",2,0,CNT,parameter
 0x00807ED2,permissible_difference_between_main_and_ext_speed_0_4500,word,"PERMISSIBLE DIFFERENCE BETWEEN MAIN AND EXT SPEED",2,0,RPM,parameter
-0x00807ED4,ESSXSNEN,word,CalTerm ESSXSNEN: ENGINE_SPEED_SENSOR_ENABLES: BITWISE 0=DISABLED,1=ENABLED,2,0,HEX,flag
+0x00807ED4,ESSXSNEN,word,"CalTerm ESSXSNEN: ENGINE_SPEED_SENSOR_ENABLES: BITWISE 0=DISABLED,1=ENABLED",2,0,HEX,flag
 0x807ED8,CSCKES,word,RPM above which engine is considered running (not cranking),2,0,,data
 0x00807EDA,eps_error_detection_performed_when_rpm_this_value_0_4500,word,"EPS ERROR DETECTION PERFORMED WHEN RPM > THIS VALUE",2,0,RPM,parameter
 0x00807EDC,max_cam_sync_lost_duration_0_20,word,"MAX_CAM_SYNC_LOST_DURATION",2,0,SEC,parameter
@@ -2949,7 +2949,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008074D0,low_pump_voltage_threshold_while_cranking_0_to_40,word,"LOW PUMP VOLTAGE THRESHOLD WHILE CRANKING",2,0,VOLT,parameter
 0x008074D2,pump_voltage_clear_threshold_while_running_0_to_40,word,"PUMP VOLTAGE CLEAR THRESHOLD WHILE RUNNING",2,0,VOLT,parameter
 0x008074D4,pump_voltage_clear_threshold_while_cranking_0_to_40,word,"PUMP VOLTAGE CLEAR THRESHOLD WHILE CRANKING",2,0,VOLT,parameter
-0x008078B4,IHPHTMZA,word,CalTerm IHPHTMZA: IAH POSTHEAT TIME - Z MATRIX, POSTHEAT TIME,2,6,SEC,value
+0x008078B4,IHPHTMZA,word,"CalTerm IHPHTMZA: IAH POSTHEAT TIME - Z MATRIX, POSTHEAT TIME",2,6,SEC,value
 0x008079E2,the_transmission_pwm_scaling_from_load_to_duty_cycle_2_2,word,"THE TRANSMISSION PWM SCALING FROM LOAD TO DUTY CYCLE",2,0,%DC,parameter
 0x008079E4,the_transmission_pwm_bias_from_load_to_duty_cycle_100_100,word,"THE TRANSMISSION PWM BIAS FROM LOAD TO DUTY CYCLE",2,0,%DC,parameter
 0x008079E6,the_transmission_pwm_signal_dutycycle_maximum_value_high_time_0_100,word,"THE TRANSMISSION PWM SIGNAL DUTYCYCLE MAXIMUM VALUE(HIGH TIME).",2,0,%DC,parameter
@@ -2960,7 +2960,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008079F0,engine_speed_at_0_fuel_which_de_activates_kick_down_signal_0_8000,word,"ENGINE SPEED AT 0 %FUEL WHICH DE-ACTIVATES KICK DOWN SIGNAL",2,0,RPM,parameter
 0x008079F2,droop_added_to_trans_speed_kick_down_which_activates_kick_d_400_400,word,"DROOP ADDED TO TRANS_SPEED_KICK_DOWN WHICH ACTIVATES KICK D",2,0,R/%F,parameter
 0x008079F4,droop_added_to_trans_speed_kick_up_which_de_activates_kick_400_400,word,"DROOP ADDED TO TRANS_SPEED_KICK_UP WHICH DE-ACTIVATES KICK ",2,0,R/%F,parameter
-0x008079F6,DRTXESLD,word,CalTerm DRTXESLD: BELOW THIS ENGINE SPEED, LOAD INFO ALSO USED IN SPEED DROOP M,2,0,RPM,value
+0x008079F6,DRTXESLD,word,"CalTerm DRTXESLD: BELOW THIS ENGINE SPEED, LOAD INFO ALSO USED IN SPEED DROOP M",2,0,RPM,value
 0x008079FA,minimum_boost_pressure_for_which_the_high_boost_error_can_be_log_0_100,word,"MINIMUM BOOST PRESSURE FOR WHICH THE HIGH BOOST ERROR CAN BE LOG",2,0,INHG,parameter
 0x008079FC,minimum_time_at_a_high_boost_condition_before_setting_the_error_0_60,word,"MINIMUM TIME AT A HIGH BOOST CONDITION BEFORE SETTING THE ERROR",2,0,SEC,parameter
 0x008079FE,hysteresis_duration_on_ac_compressor_clutch_0_3600,word,"HYSTERESIS DURATION ON AC COMPRESSOR CLUTCH",2,0,SEC,parameter
@@ -3097,7 +3097,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x010002B2,datalogger_data_five_length_0_10,word,"DATALOGGER DATA FIVE LENGTH",2,0,LGTH,parameter
 0x010002B4,name_table_name_for_datalogger_data_parameter_5_0_ffff,word,"NAME TABLE NAME FOR DATALOGGER DATA PARAMETER 5",2,0,HEX,parameter
 0x010002B6,name_table_offset_for_datalogger_data_parameter_5_0_ffff,word,"NAME TABLE OFFSET FOR DATALOGGER DATA PARAMETER 5",2,0,HEX,parameter
-0x010002C0,DAT_PLAT,byte,CalTerm DAT_PLAT: PART, SERIAL NUMBER AND CODE NUMBERS FOR ECM,332,2,HEX,value
+0x010002C0,DAT_PLAT,byte,"CalTerm DAT_PLAT: PART, SERIAL NUMBER AND CODE NUMBERS FOR ECM",332,2,HEX,value
 0x010004A0,source_address_allowed_for_muxing_pto_set_switch_parameter_0_ff,byte,"SOURCE ADDRESS ALLOWED FOR MUXING PTO SET SWITCH PARAMETER",1,0,HEX,parameter
 0x010004A1,source_address_allowed_for_muxing_clutch_switch_parameter_0_ff,byte,"SOURCE ADDRESS ALLOWED FOR MUXING CLUTCH SWITCH PARAMETER",1,0,HEX,parameter
 0x010004A2,source_address_allowed_for_muxing_brake_switch_parameter_0_ff,byte,"SOURCE ADDRESS ALLOWED FOR MUXING BRAKE SWITCH PARAMETER",1,0,HEX,parameter
@@ -3412,8 +3412,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080783A,dzg_angle_after_cyl_tdc_angle_after_cyl_tdc_to_put_dzg_first_60_60,dword,"DZG_ANGLE_AFTER_CYL_TDC:ANGLE AFTER CYL TDC TO PUT DZG FIRST ",4,0,DEG,parameter
 0x0080783E,dzg_angular_duration_angular_high_duration_of_dzg_pulse_at_tpu_0_60,dword,"DZG_ANGULAR_DURATION:ANGULAR HIGH DURATION OF DZG PULSE (AT TPU",4,0,DEG,parameter
 0x0080785A,hysteresis_added_to_postheat_stage_rpm_transitions_0_4500,word,"HYSTERESIS ADDED TO POSTHEAT STAGE RPM TRANSITIONS",2,0,RPM,parameter
-0x0080785C,IHPHTPDL,word,CalTerm IHPHTPDL: IF (TEMP1-THIS CAL)<TEMP0, USE TEMP1 FOR POSTHEAT CALCULATIONS,2,0,DEGF,value
-0x0080792C,IHPSDCXA,byte,CalTerm IHPSDCXA: IAH POSTHEAT STAGE TO DUTY CYCLE CONVERSION - X VECTOR, POSTHEAT,5,4,NONE,value
+0x0080785C,IHPHTPDL,word,"CalTerm IHPHTPDL: IF (TEMP1-THIS CAL)<TEMP0, USE TEMP1 FOR POSTHEAT CALCULATIONS",2,0,DEGF,value
+0x0080792C,IHPSDCXA,byte,"CalTerm IHPSDCXA: IAH POSTHEAT STAGE TO DUTY CYCLE CONVERSION - X VECTOR, POSTHEAT",5,4,NONE,value
 0x0080796E,delay_time_before_setting_oil_pressure_high_postprocessed_error_0_600,word,"DELAY TIME BEFORE SETTING OIL PRESSURE HIGH POSTPROCESSED ERROR",2,0,SEC,parameter
 0x0080800C,debounce_count_for_fpc_faults_none,word,"DEBOUNCE COUNT FOR FPC FAULTS",2,0,NONE,parameter
 0x0080801A,bitmap_indicating_when_a_feature_should_clamp_a_fueling_point_0_ffff,word,"BITMAP INDICATING WHEN A FEATURE SHOULD CLAMP A FUELING POINT",2,0,HEX,parameter
@@ -3535,7 +3535,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0100046E,default_network_priority_for_idle_shutdown_message_0_7,word,"DEFAULT NETWORK PRIORITY FOR IDLE SHUTDOWN MESSAGE",2,0,NONE,parameter
 0x0100047A,default_network_priority_for_vehicle_electrical_power_message_0_7,word,"DEFAULT NETWORK PRIORITY FOR VEHICLE ELECTRICAL POWER MESSAGE",2,0,NONE,parameter
 0x0100047C,default_network_priority_for_vehicle_hours_message_0_7,word,"DEFAULT NETWORK PRIORITY FOR VEHICLE HOURS MESSAGE",2,0,NONE,parameter
-0x0100047E,JC39BCFG,word,CalTerm JC39BCFG: BIT 2 - 39/71 ENGINE, BIT 3 - 39/71 RETARDER, BIT 7 - 39/73 PO,2,0,HEX,value
+0x0100047E,JC39BCFG,word,"CalTerm JC39BCFG: BIT 2 - 39/71 ENGINE, BIT 3 - 39/71 RETARDER, BIT 7 - 39/73 PO",2,0,HEX,value
 0x0100048A,default_network_priority_for_water_in_fuel_indicator_message_0_7,word,"DEFAULT NETWORK PRIORITY FOR WATER IN FUEL INDICATOR MESSAGE.",2,0,NONE,parameter
 0x0100049A,source_address_allowed_for_muxing_remote_throttle_parameter_0_ff,byte,"SOURCE ADDRESS ALLOWED FOR MUXING REMOTE THROTTLE PARAMETER",1,0,HEX,parameter
 0x0100049B,source_address_allowed_for_muxing_wet_tank_pressure_parameter_0_ff,byte,"SOURCE ADDRESS ALLOWED FOR MUXING WET TANK PRESSURE PARAMETER",1,0,HEX,parameter
@@ -3545,7 +3545,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0100049F,source_address_allowed_for_muxing_pto_resume_switch_parameter_0_ff,byte,"SOURCE ADDRESS ALLOWED FOR MUXING PTO RESUME SWITCH PARAMETER",1,0,HEX,parameter
 0x0100054A,top_droop_width_for_rsg_0_10,word,"TOP DROOP WIDTH FOR RSG.",2,0,MPH,parameter
 0x0100054E,size_of_cc_engine_brake_adjustable_parameters_n_a,word,"SIZE OF CC_ENGINE_BRAKE ADJUSTABLE PARAMETERS",2,0,NONE,parameter
-0x0100055C,CRDPAJRF,word,CalTerm CRDPAJRF: 1=ROAD_SPEED, 0=PREDICTED_VEHICLE_SPEED USED IN FEEDBACK LO,2,0,1=VS,value
+0x0100055C,CRDPAJRF,word,"CalTerm CRDPAJRF: 1=ROAD_SPEED, 0=PREDICTED_VEHICLE_SPEED USED IN FEEDBACK LO",2,0,1=VS,value
 0x0100056A,maximum_mpg_while_still_getting_drezdc01_and_drrzdc01_0_50,word,"MAXIMUM MPG WHILE STILL GETTING DREZDC01 AND DRRZDC01",2,0,MPG,parameter
 0x0100056C,maximum_mpg_while_still_getting_drezdc02_and_drrzdc02_0_50,word,"MAXIMUM MPG WHILE STILL GETTING DREZDC02 AND DRRZDC02",2,0,MPG,parameter
 0x0100056E,maximum_mpg_while_still_getting_drezdc03_and_drrzdc03_0_50,word,"MAXIMUM MPG WHILE STILL GETTING DREZDC03 AND DRRZDC03",2,0,MPG,parameter
@@ -3793,7 +3793,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807420,requested_location_on_pump_cam_for_soi_100_to_100,word,"REQUESTED LOCATION ON PUMP CAM FOR SOI",2,0,DADV,parameter
 0x00807422,reserved_location_for_future_pump_setup_information_0_to_ff,byte,"RESERVED LOCATION FOR FUTURE PUMP SETUP INFORMATION",1,0,HEX,parameter
 0x00807423,reserved_location_for_future_pump_setup_information_0_to_ff,byte,"RESERVED LOCATION FOR FUTURE PUMP SETUP INFORMATION",1,0,HEX,parameter
-0x00807424,FLSYPSII,word,CalTerm FLSYPSII: ANGULAR POSITION OF VP44_ENGINE_SYNC BTDC, SENT TO PUMP AT,2,0,DADV,value
+0x00807424,FLSYPSII,word,"CalTerm FLSYPSII: ANGULAR POSITION OF VP44_ENGINE_SYNC BTDC, SENT TO PUMP AT",2,0,DADV,value
 0x00807426,target_angular_position_of_sync_pulse_after_tdc_0_to_60,word,"TARGET ANGULAR POSITION OF SYNC PULSE AFTER TDC",2,0,DEG,parameter
 0x00807428,target_angle_during_which_sync_pulse_is_held_low_0_to_120,word,"TARGET ANGLE DURING WHICH SYNC PULSE IS HELD LOW",2,0,DEG,parameter
 0x00807430,maximum_decrease_in_timing_command_allowed_per_loop_0_to_60,word,"MAXIMUM DECREASE IN TIMING COMMAND ALLOWED PER LOOP",2,0,DADV,parameter
@@ -3861,7 +3861,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808050,hsg_integrator_preset_maximum_0_100,word,"HSG INTEGRATOR PRESET MAXIMUM",2,0,MM3S,parameter
 0x00808052,hsg_fueling_clamp_max_0_100,word,"HSG FUELING CLAMP MAX",2,0,MM3S,parameter
 0x00808054,hsg_fueling_clamp_min_0_100,word,"HSG FUELING CLAMP MIN",2,0,MM3S,parameter
-0x00808056,HSPZGVEN,word,CalTerm HSPZGVEN: 1 = RUN GOVERNOR IMMEDIATELY AFTER PRESET, 0 = DON'T RUN U,2,0,NONE,value
+0x00808056,HSPZGVEN,word,"CalTerm HSPZGVEN: 1 = RUN GOVERNOR IMMEDIATELY AFTER PRESET, 0 = DON'T RUN U",2,0,NONE,value
 0x00808058,flag_to_enable_disable_the_hsg_derivative_gain_adjustment_scheme_0_1,word,"FLAG TO ENABLE/DISABLE THE HSG DERIVATIVE GAIN ADJUSTMENT SCHEME",2,0,HEX,parameter
 0x00808060,hsg_pid_derivative_fueling_contribution_lower_limit_260_260,word,"HSG PID DERIVATIVE FUELING CONTRIBUTION LOWER LIMIT",2,0,MM3S,parameter
 0x00808062,hsg_pid_proportional_fueling_contribution_upper_limit_160_160,word,"HSG PID PROPORTIONAL FUELING CONTRIBUTION UPPER LIMIT",2,0,MM3S,parameter
@@ -3930,7 +3930,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808470,engine_speed_above_which_the_overspeed_algorithm_disables_fue_0_4000,word,"ENGINE SPEED ABOVE WHICH THE OVERSPEED ALGORITHM DISABLES FUE",2,0,RPM,parameter
 0x00808472,number_of_engine_speed_targets_per_crankshaft_revolution_1_255,byte,"NUMBER OF ENGINE SPEED TARGETS PER CRANKSHAFT REVOLUTION.",1,0,CNTS,parameter
 0x00808473,consecutive_occurances_of_engine_overspeed_to_cause_a_shutdown_0_7,byte,"CONSECUTIVE OCCURANCES OF ENGINE OVERSPEED TO CAUSE A SHUTDOWN",1,0,NONE,parameter
-0x00808474,ESASOSTY,byte,CalTerm ESASOSTY: ACTION AFTER AN OVERSPEED SHUTDOWN, 0=LATCHING & 1=NON-LATCHING,1,0,T/F,value
+0x00808474,ESASOSTY,byte,"CalTerm ESASOSTY: ACTION AFTER AN OVERSPEED SHUTDOWN, 0=LATCHING & 1=NON-LATCHING",1,0,T/F,value
 0x00808475,padding_to_preserve_word_alignment_0_1,byte,"PADDING TO PRESERVE WORD ALIGNMENT.",1,0,T/F,parameter
 0x00808480,number_of_consecutive_occurances_of_powerdown_data_lost_to_set_1_255,word,"NUMBER OF CONSECUTIVE OCCURANCES OF POWERDOWN DATA LOST TO SET",2,0,CNTS,parameter
 0x00808482,enable_to_protects_parameter_block_data_at_powerdown_enabled_disabled,word,"ENABLE TO PROTECTS PARAMETER BLOCK DATA AT POWERDOWN.",2,0,HEX,parameter
@@ -4067,8 +4067,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x01000550,the_point_on_the_speed_axis_where_e_brake_will_be_at_100_bra_1_5_25,word,"THE POINT ON THE SPEED AXIS WHERE E-BRAKE WILL BE AT 100% BRA",2,0,MPH,parameter
 0x01000552,the_point_on_the_speed_axis_where_e_brake_will_start_braking_1_5_25,word,"THE POINT ON THE SPEED AXIS WHERE E-BRAKE WILL START BRAKING.",2,0,MPH,parameter
 0x01000554,adjustable_parameter_table_size_for_cc_rs_governor_0x0000_0xffff,word,"ADJUSTABLE PARAMETER TABLE SIZE FOR CC/RS GOVERNOR",2,0,HEX,parameter
-0x01000556,CRERESGN,word,CalTerm CRERESGN: GAIN USED BY CC/RSG TO ADJUST DROOP ERROR BASED AXLE RATIO, TI,2,0,,value
-0x01000560,DRCRRZOP,word,CalTerm DRCRRZOP: DRIVER REWARD CC/RS: 0=RSG, 1=CC, 2=BOTH,2,0,SW,value
+0x01000556,CRERESGN,word,"CalTerm CRERESGN: GAIN USED BY CC/RSG TO ADJUST DROOP ERROR BASED AXLE RATIO, TI",2,0,,value
+0x01000560,DRCRRZOP,word,"CalTerm DRCRRZOP: DRIVER REWARD CC/RS: 0=RSG, 1=CC, 2=BOTH",2,0,SW,value
 0x01000568,driver_esp_delta_reward_4_20_20,word,"DRIVER ESP_DELTA REWARD 4",2,0,MPH,parameter
 0x01000576,driver_rsg_shift_reward_4_20_20,word,"DRIVER RSG SHIFT REWARD 4",2,0,MPH,parameter
 0x01000578,maximum_time_at_0mph_while_still_getting_drezdc01_and_drrzdc0_0_100,word,"MAXIMUM %TIME AT 0MPH WHILE STILL GETTING DREZDC01 AND DRRZDC0",2,0,%,parameter

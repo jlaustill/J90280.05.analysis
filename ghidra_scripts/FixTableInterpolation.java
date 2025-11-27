@@ -50,7 +50,7 @@ public class FixTableInterpolation extends GhidraScript {
             // Create parameter types
             DataType pointerType = new PointerDataType();
             DataType ushortType = new UnsignedShortDataType();
-            DataType uintType = new UnsignedIntDataType();
+            DataType uintType = new UnsignedIntegerDataType();
             
             // Create parameters
             Parameter[] params = new Parameter[3];

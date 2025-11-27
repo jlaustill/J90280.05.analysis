@@ -10,6 +10,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -142,6 +144,7 @@ public class BulkLocalVariableRenamer extends GhidraScript {
             long functionAddressLong = entry.getKey();
             List<VariableRename> renames = entry.getValue();
             String functionName = functionNames.get(functionAddressLong);
+            String functionAddressStr = "0x" + String.format("%08x", functionAddressLong);
 
             Address functionAddr = toAddr(functionAddressLong);
             Function function = functionManager.getFunctionAt(functionAddr);
@@ -168,6 +171,74 @@ public class BulkLocalVariableRenamer extends GhidraScript {
                 if (highFunc == null) {
                     println("  ✗ No high function available for " + rename.newVarName);
                     failCount++;
+                    continue;
+                }
+
+                // Check if this is an index-based discovery request (small integer 0-99)
+                long addrValue = parseHexAddress(rename.firstUseAddress);
+                if (addrValue >= 0 && addrValue < 100) {
+                    int varIndex = (int) addrValue;
+                    // Get variables sorted by first-use address and select by index
+                    List<HighSymbol> sortedVars = getVariablesSortedByFirstUse(highFunc);
+
+                    if (varIndex < sortedVars.size()) {
+                        HighSymbol targetSymbol = sortedVars.get(varIndex);
+                        Address discoveredAddr = getFirstUseAddress(targetSymbol);
+                        String oldName = targetSymbol.getName();
+
+                        if (discoveredAddr != null) {
+                            String addrHex = "0x" + Long.toHexString(discoveredAddr.getOffset());
+
+                            // Update CSV with discovered address
+                            try {
+                                updateCsvAddress(csvPath, functionAddressStr, rename.firstUseAddress,
+                                                rename.newVarName, addrHex);
+                                println("  ✓ Index " + varIndex + " → '" + oldName + "' at " + addrHex);
+                                println("      CSV updated with address. Applying rename...");
+                            } catch (IOException e) {
+                                println("  ⚠ CSV update failed: " + e.getMessage());
+                                // Continue with rename anyway
+                            }
+
+                            // Now apply the rename
+                            DataType dataType = null;
+                            if (!rename.newTypeStr.isEmpty() && !rename.newTypeStr.equals("-")) {
+                                dataType = getDataType(rename.newTypeStr, dtm);
+                            }
+
+                            try {
+                                if (dataType != null) {
+                                    HighFunctionDBUtil.updateDBVariable(
+                                        targetSymbol, rename.newVarName, dataType, SourceType.USER_DEFINED);
+                                    println("  ✓ " + oldName + " → " + rename.newVarName +
+                                           " (" + dataType.getName() + ")");
+                                } else {
+                                    HighFunctionDBUtil.updateDBVariable(
+                                        targetSymbol, rename.newVarName, null, SourceType.USER_DEFINED);
+                                    println("  ✓ " + oldName + " → " + rename.newVarName);
+                                }
+                                successCount++;
+                            } catch (Exception e) {
+                                println("  ✗ Rename failed: " + e.getMessage());
+                                failCount++;
+                            }
+                        } else {
+                            println("  ✗ Could not determine address for index " + varIndex);
+                            failCount++;
+                        }
+                    } else {
+                        println("  ✗ Index " + varIndex + " out of range (function has " +
+                               sortedVars.size() + " variables)");
+                        println("      Available variables (sorted by first-use address):");
+                        for (int i = 0; i < sortedVars.size() && i < 20; i++) {
+                            HighSymbol sym = sortedVars.get(i);
+                            Address addr = getFirstUseAddress(sym);
+                            String addrStr = (addr != null) ? "0x" + Long.toHexString(addr.getOffset()) : "unknown";
+                            println("        [" + i + "] " + sym.getName() + " (" +
+                                   sym.getDataType().getName() + ") at " + addrStr);
+                        }
+                        failCount++;
+                    }
                     continue;
                 }
 
@@ -410,5 +481,67 @@ public class BulkLocalVariableRenamer extends GhidraScript {
             }
         }
         return null;
+    }
+
+    /**
+     * Get all local variables sorted by first-use address (lowest to highest)
+     * This provides a stable ordering for index-based selection
+     */
+    private List<HighSymbol> getVariablesSortedByFirstUse(HighFunction highFunc) {
+        List<HighSymbol> variables = new ArrayList<>();
+        LocalSymbolMap localSymbolMap = highFunc.getLocalSymbolMap();
+        Iterator<HighSymbol> symbols = localSymbolMap.getSymbols();
+
+        while (symbols.hasNext()) {
+            HighSymbol sym = symbols.next();
+            // Only include local variables (not parameters)
+            if (sym.getHighVariable() != null) {
+                variables.add(sym);
+            }
+        }
+
+        // Sort by first-use address
+        variables.sort((a, b) -> {
+            Address addrA = getFirstUseAddress(a);
+            Address addrB = getFirstUseAddress(b);
+            if (addrA == null && addrB == null) return 0;
+            if (addrA == null) return 1;
+            if (addrB == null) return -1;
+            return Long.compare(addrA.getOffset(), addrB.getOffset());
+        });
+
+        return variables;
+    }
+
+    /**
+     * Update CSV file with discovered first-use address
+     * Replaces index placeholder with actual address for matching entry
+     */
+    private void updateCsvAddress(String csvPath, String functionAddr, String oldIndex,
+                                  String varName, String newAddress) throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get(csvPath));
+        List<String> updatedLines = new ArrayList<>();
+
+        for (String line : lines) {
+            // Preserve comments, empty lines, and header
+            if (line.startsWith("#") || line.trim().isEmpty() || line.startsWith("function_address")) {
+                updatedLines.add(line);
+                continue;
+            }
+
+            String[] parts = line.split(",", 6);
+            if (parts.length >= 4 &&
+                parts[0].trim().equals(functionAddr) &&
+                parts[3].trim().equals(varName) &&
+                parts[2].trim().equals(oldIndex)) {
+                // Update this line with discovered address
+                parts[2] = newAddress;
+                updatedLines.add(String.join(",", parts));
+            } else {
+                updatedLines.add(line);
+            }
+        }
+
+        Files.write(Paths.get(csvPath), updatedLines);
     }
 }

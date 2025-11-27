@@ -43,7 +43,7 @@ public class BulkVariableCreator extends GhidraScript {
                 }
                 
                 // Parse CSV: address,name,type,comment,length,calterm_type,unit,data_pattern
-                String[] parts = line.split(",");
+                String[] parts = parseCSVLine(line);
                 if (parts.length >= 4) {
                     String addressStr = parts[0].trim();
                     String varName = parts[1].trim();
@@ -286,5 +286,34 @@ public class BulkVariableCreator extends GhidraScript {
             }
         }
         return null;
+    }
+
+    // CSV parser that handles quoted fields with commas
+    private String[] parseCSVLine(String line) {
+        java.util.List<String> fields = new java.util.ArrayList<>();
+        StringBuilder current = new StringBuilder();
+        boolean inQuotes = false;
+
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+
+            if (c == '"') {
+                // Check for escaped quote ""
+                if (inQuotes && i + 1 < line.length() && line.charAt(i + 1) == '"') {
+                    current.append('"');
+                    i++; // Skip next quote
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else if (c == ',' && !inQuotes) {
+                fields.add(current.toString());
+                current = new StringBuilder();
+            } else {
+                current.append(c);
+            }
+        }
+        fields.add(current.toString()); // Add last field
+
+        return fields.toArray(new String[0]);
     }
 }
