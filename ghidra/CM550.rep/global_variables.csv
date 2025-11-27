@@ -4289,3 +4289,34 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080d41a,insite_response_byte_count,byte,Insite response byte count,1,0,,counter
 0x00809a04,output_control_timer_value,word,Output control timer current value,2,0,,timer
 0x00fffe1e,mios_mpwmsm_pulscnt_reg2,word,MIOS MPWMSM pulse count register 2,2,0,,register
+0x008065ce,dtc_fault_table_base,dword,DTC fault table base address pointer,4,0,,pointer
+0x00804f3e,dtc_table_index,word,DTC table current index,2,0,,index
+0x00803252,diagnostic_fuel_demand_limit,word,Diagnostic mode fuel demand limit,2,0,,value
+0x00fffe1a,mios_mpwmsm_channel1_scr,word,MIOS MPWMSM channel 1 status control register,2,0,,register
+0x00fffe16,mios_mpwmsm_channel0_scr,word,MIOS MPWMSM channel 0 status control register,2,0,,register
+0x00fffe12,mios_mpwmsm_status_reg,word,MIOS MPWMSM global status register,2,0,,register
+0x0080d182,j1939_tx_pending_count,word,J1939 transmit pending message count,2,0,,counter
+0x0080c7c6,fuel_timing_state,word,Fuel timing state machine value,2,0,,state
+0x0080d44e,multi_packet_data_length,word,Multi-packet data length for J1939,2,0,,value
+0x0080d3e2,can_rx_buffer_ptr,dword,CAN receive buffer pointer,4,0,,pointer
+0x0080d0aa,engine_rpm_target,word,Engine RPM target setpoint,2,0,,value
+0x0080d092,governor_reference_rpm,word,Governor reference RPM value,2,0,,value
+0x00803614,derate_percentage_active,word,Active derate percentage,2,0,,value
+0x008002f2,engine_state_timer,word,Engine state transition timer,2,0,,timer
+0x0080c786,fuel_demand_smoothed,word,Fuel demand after smoothing filter,2,0,,value
+0x0080c75c,fuel_demand_rate_limited,word,Fuel demand after rate limiting,2,0,,value
+0x008096fe,boost_pressure_control_state,word,Boost pressure control state machine,2,0,,state
+0x0080bdf0,output_control_byte_1,byte,Output control byte 1 for lamps/relays,1,0,,flag
+0x008033a0,output_sequence_state,word,Output sequence state machine,2,0,,state
+0x0080175c,scheduler_slot_index,word,Scheduler slot index for task dispatch,2,0,,index
+0x0080166f,scheduler_phase_flag,byte,Scheduler phase flag for timing,1,0,,flag
+0x0080166e,scheduler_cycle_counter,byte,Scheduler cycle counter,1,0,,counter
+0x0080cfa8,fuel_arbitrator_state,word,Fuel arbitrator state machine,2,0,,state
+0x00805e12,vp44_status_register,word,VP44 status register value,2,0,,status
+0x008002f6,engine_mode_transition_timer,word,Engine mode transition timer,2,0,,timer
+0x0080d419,insite_bytes_remaining,byte,Insite bytes remaining to send,1,0,,counter
+0x0080d2b8,can_tx_data_buffer,dword,CAN transmit data buffer pointer,4,0,,pointer
+0x0080d01e,timer_capture_value,word,Timer capture register value,2,0,,value
+0x00809d4e,derate_threshold_state,word,Derate threshold state machine,2,0,,state
+0x0080973c,boost_pressure_target_data,word,Boost pressure target calculated value,2,0,,value
+0x008068c6,accelerator_pedal_position,word,Accelerator pedal position value,2,0,,value
