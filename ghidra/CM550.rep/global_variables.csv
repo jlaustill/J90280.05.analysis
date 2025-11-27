@@ -4646,3 +4646,192 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008000d8,diagnostic_param_lookup_value,word,Diagnostic parameter lookup value (2 refs),2,0,,value
 0x008000cc,can_fault_monitor_counter,word,CAN fault monitor periodic counter (3 refs),2,0,,counter
 0x008000c8,io_can_fault_monitor_state,word,I/O and CAN fault monitor state (4 refs),2,0,,state
+0x0080d490,insite_parameter_lookup_state,word,INSITE parameter lookup and PID handler state (8 refs),2,0,,state
+0x0080d48e,insite_pid_dtc_handler_state,word,INSITE PID DTC handler state (4 refs),2,0,,state
+0x0080d48c,fault_flag_scanner_state,word,Fault flag scanner and processor state (7 refs),2,0,,state
+0x0080d488,fuel_demand_limit_selector_state,word,Fuel demand limit selector 4 state (1 ref),2,0,,state
+0x0080d098,engine_mode_timing_init_flag,word,Engine mode timing adjuster init flag (2 refs),2,0,,flag
+0x0080d08e,eps_control_mode_selector_state,word,EPS control mode selector state (5 refs),2,0,,state
+0x0080d08a,eps_acceleration_monitor_state,word,EPS acceleration monitor state (4 refs),2,0,,state
+0x0080d088,eps_control_mode_init_state,word,EPS control mode init state (1 ref),2,0,,state
+0x0080d02c,retarder_control_mode_timer,word,Retarder control mode handler timer (9 refs),2,0,,timer
+0x0080d02a,fuel_arbitrator_status_counter,word,Fuel arbitrator status processor counter (6 refs),2,0,,counter
+0x0080d028,torque_control_mode_timer,word,Torque control mode handler timer (18 refs),2,0,,timer
+0x0080cfe8,fuel_mode_selection_result,word,Fuel mode selection calculator result (11 refs),2,0,,value
+0x0080cfe6,fuel_mode_can_message_value,word,Fuel mode CAN message builder value (2 refs),2,0,,value
+0x0080cfe4,fuel_mode_blend_output,word,Fuel mode blend output value (2 refs),2,0,,value
+0x0080c7fc,rpm_source_selector_value,word,RPM source selector for fuel timing (14 refs),2,0,,value
+0x0080c7fa,peak_torque_correction_state,word,Peak torque fuel correction state (3 refs),2,0,,state
+0x0080c7ce,fuel_timing_transition_value_1,word,Fuel timing transition state machine value 1 (6 refs),2,0,,value
+0x0080c7cc,fuel_timing_transition_value_2,word,Fuel timing transition state machine value 2 (6 refs),2,0,,value
+0x0080c7ca,fuel_timing_oil_pressure_timer,word,Fuel timing oil pressure mode timer (4 refs),2,0,,timer
+0x0080c772,engine_fault_rpm_source_value,word,Engine fault monitoring RPM source value (9 refs),2,0,,value
+0x0080bdc4,fault_flag_snapshot_register_1,byte,Fault flag snapshot register 1 (4 refs),1,0,,register
+0x0080bdc2,fault_flag_snapshot_register_2,byte,Fault flag snapshot register 2 (4 refs),1,0,,register
+0x0080bdc0,fault_flag_snapshot_register_3,byte,Fault flag snapshot register 3 (4 refs),1,0,,register
+0x00809d5c,rpm_derate_calculation_state,word,RPM derate calculation state (8 refs),2,0,,state
+0x00809d4e,derate_threshold_monitor_value,word,Derate threshold monitor calculated value (21 refs),2,0,,value
+0x00809d4c,derate_active_value,word,Active derate value used across subsystems (44 refs),2,0,,value
+0x00809b18,engine_runtime_histogram_value,dword,Engine runtime histogram calculated value (3 refs),4,0,,value
+0x00809700,fuel_demand_override_state,word,Fuel demand override state selector (4 refs),2,0,,state
+0x008096f2,boost_pressure_diagnostic_timer,word,Boost pressure diagnostic timer (4 refs),2,0,,timer
+0x008096f0,boost_pressure_control_state,word,Boost pressure control and diagnostics state (1 ref),2,0,,state
+0x00805ff2,vp44_fault_protection_counter,word,VP44 fault protection controller counter (4 refs),2,0,,counter
+0x00804f42,insite_fault_detail_index,word,INSITE fault detail builder index (10 refs),2,0,,index
+0x00803748,boost_pressure_target_pointer,word,Boost pressure target calculation pointer (7 refs),2,0,,pointer
+0x00803344,vp44_timing_override_counter,word,VP44 timing override counter (4 refs),2,0,,counter
+0x00803294,fuel_temp_protection_calculator,word,Fuel temp protection limit calculator value (3 refs),2,0,,value
+0x00801696,fault_lamp_blink_counter,word,Fault lamp blink pattern counter (13 refs),2,0,,counter
+0x00801692,io_control_mask_state_1,word,I/O control mask state machine value 1 (4 refs),2,0,,state
+0x0080168e,io_control_mask_state_2,word,I/O control mask state machine value 2 (7 refs),2,0,,state
+0x0080168a,io_control_mask_toggle,word,I/O control mask toggle value (2 refs),2,0,,value
+0x008001c0,vp44_comm_state_machine_state,dword,VP44 communication state machine state (6 refs),4,0,,state
+0x0080013c,throttle_buffer_decreasing_value,word,Throttle buffer decreasing pattern check value (6 refs),2,0,,value
+0x00800128,io_control_fuel_calculator_ptr,word,I/O control fuel calculator pointer (3 refs),2,0,,pointer
+0x008000c4,tpu_timer_channel_config,word,TPU timer channel configuration (23 refs),2,0,,config
+0x008000c0,diagnostic_table_pointer_1,word,Diagnostic table pointer setup value 1 (1 ref),2,0,,pointer
+0x008000b8,diagnostic_table_pointer_2,word,Diagnostic table pointer setup value 2 (1 ref),2,0,,pointer
+0x008000b4,diagnostic_table_pointer_3,word,Diagnostic table pointer setup value 3 (1 ref),2,0,,pointer
+0x008000ac,diagnostic_table_pointer_4,word,Diagnostic table pointer setup value 4 (1 ref),2,0,,pointer
+0x008000a4,governor_fuel_output_state,dword,Governor fuel output state (7 refs),4,0,,state
+0x0080009c,target_rpm_rate_limiter_output,dword,Target RPM rate limiter output (1 ref),4,0,,value
+0x00800098,rpm_parameter_pointer,dword,RPM parameter pointer setup value (1 ref),4,0,,pointer
+0x00800094,governor_derivative_state,dword,Governor derivative calculation state (4 refs),4,0,,state
+0x00800090,governor_integral_accumulator,dword,Governor integral accumulator state (6 refs),4,0,,accumulator
+0x00800088,governor_proportional_state,dword,Governor proportional calculation state (4 refs),4,0,,state
+0x00800084,fuel_parameter_pointer_1,dword,Fuel parameter pointer setup value 1 (1 ref),4,0,,pointer
+0x0080007c,fuel_parameter_pointer_2,dword,Fuel parameter pointer setup value 2 (1 ref),4,0,,pointer
+0x00800074,fuel_parameter_pointer_3,dword,Fuel parameter pointer setup value 3 (1 ref),4,0,,pointer
+0x00800070,diagnostic_timing_increment_state,dword,Diagnostic timing increment controller state (3 refs),4,0,,state
+0x0080d49c,diagnostic_source_status,word,Diagnostic source status register (38 refs),2,0,,register
+0x0080d49a,diagnostic_source_value,word,Diagnostic source calculated value (14 refs),2,0,,value
+0x0080d498,shutdown_minimum_init_value,word,Shutdown minimum selector init value (5 refs),2,0,,value
+0x0080d496,shutdown_minimum_selector_value,word,Shutdown minimum selector calculated value (17 refs),2,0,,value
+0x0080d494,shutdown_limit_accumulator,word,Shutdown limit accumulator value (24 refs),2,0,,accumulator
+0x0080d492,diagnostic_code_clear_handler_state,word,Diagnostic code clear handler state (13 refs),2,0,,state
+0x0080d420,insite_parameter_table_iterator,word,INSITE parameter table iterator (2 refs),2,0,,counter
+0x0080d41a,insite_response_buffer_length,word,INSITE response buffer length (27 refs),2,0,,length
+0x0080d418,insite_response_buffer_index,word,INSITE response buffer write index (24 refs),2,0,,index
+0x0080d2dc,diagnostic_protocol_init_state,word,Diagnostic protocol init state (1 ref),2,0,,state
+0x0080d086,eps_control_mode_init_value_1,word,EPS control mode init value 1 (1 ref),2,0,,value
+0x0080d084,eps_control_mode_init_value_2,word,EPS control mode init value 2 (1 ref),2,0,,value
+0x0080d082,eps_override_checker_state,word,EPS override checker state (2 refs),2,0,,state
+0x0080d080,eps_override_output_state,word,EPS override output state (3 refs),2,0,,state
+0x0080d07e,eps_acceleration_monitor_value,word,EPS acceleration monitor value (12 refs),2,0,,value
+0x0080d022,retarder_control_mode_state,word,Retarder control mode handler state (7 refs),2,0,,state
+0x0080cff6,param_system_mode_state,word,Parameter system mode controller state (5 refs),2,0,,state
+0x0080cff4,fuel_mode_selection_state,word,Fuel mode selection calculator state (8 refs),2,0,,state
+0x0080cff2,fuel_parameter_blend_state,word,Fuel parameter blend calculator state (3 refs),2,0,,state
+0x0080cff0,fuel_parameter_blend_value,word,Fuel parameter blend calculator value (3 refs),2,0,,value
+0x0080c810,engine_operating_mode_status,word,Engine operating mode status register (100+ refs),2,0,,register
+0x0080c80e,shutdown_protection_state_1,word,Shutdown protection coordinator state 1 (6 refs),2,0,,state
+0x0080c80c,shutdown_protection_state_2,word,Shutdown protection coordinator state 2 (6 refs),2,0,,state
+0x0080c80a,engine_mode_transition_state,word,Engine mode transition state updater value (1 ref),2,0,,state
+0x0080c808,fuel_timing_mode_blend_value,word,Fuel timing mode blend calculator value (3 refs),2,0,,value
+0x0080c804,frictional_load_interpolation_value,word,Frictional load torque interpolator value (7 refs),2,0,,value
+0x0080c802,frictional_load_calculator_state,word,Frictional load interpolation calculator state (4 refs),2,0,,state
+0x00807e68,protection_state2_threshold_value,word,Protection state 2 threshold calculator value (2 refs),2,0,,value
+# Batch 6 continued - Governor and fuel statistics variables (2-6 refs)
+0x00809d0e,governor_interpolation_input_1,word,Governor interpolation input value 1 (5 refs),2,0,,value
+0x00809cc0,governor_mode_init_integral,word,Governor mode 1 init PID integral value (2 refs),2,0,,value
+0x00809cc2,governor_mode_init_rpm_ref,word,Governor mode 1 init RPM reference (2 refs),2,0,,value
+0x00809cbe,governor_mode_init_error_prev,word,Governor mode 1 init previous error (2 refs),2,0,,value
+0x00809cc8,governor_mode_init_fuel_delta,word,Governor mode 1 init fuel command delta (2 refs),2,0,,value
+0x00809cc6,governor_mode_init_output_prev,word,Governor mode 1 init PID output previous (2 refs),2,0,,value
+0x00809cc4,governor_mode_init_deriv_prev,word,Governor mode 1 init derivative term previous (2 refs),2,0,,value
+0x008078b0,governor_fuel_blend_limit_upper,word,Governor fuel blend calculation upper limit (3 refs),2,0,,value
+0x008078b2,governor_fuel_blend_limit_lower,word,Governor fuel blend calculation lower limit (3 refs),2,0,,value
+0x0080787c,governor_derivative_deadband,word,Governor PID derivative deadband threshold (4 refs),2,0,,threshold
+0x0080787e,governor_derivative_filter_coeff,word,Governor derivative filter coefficient (1 ref),2,0,,coefficient
+0x0080008a,governor_pid_proportional_accum,dword,Governor PID proportional accumulator (10 refs),4,0,,accumulator
+# Fuel statistics tracker variables
+0x0080d466,fuel_statistics_init_flag,word,Fuel statistics tracker init flag (3 refs),2,0,,flag
+0x00805eb4,rpm_histogram_buffer_start,dword,RPM histogram buffer start address (2 refs),4,0,,buffer
+0x00805f20,fuel_statistics_accumulator_1,dword,Fuel statistics accumulator 1 (2 refs),4,0,,accumulator
+0x00805f24,runtime_counter_update_arg_1,dword,Runtime counter update arg 1 (2 refs),4,0,,arg
+0x00805f30,fuel_statistics_accumulator_2,dword,Fuel statistics accumulator 2 (2 refs),4,0,,accumulator
+0x00805f34,clutch_operating_stats_value,dword,Clutch operating statistics tracker value (6 refs),4,0,,value
+0x00805f38,runtime_counter_update_arg_2,dword,Runtime counter update arg 2 (2 refs),4,0,,arg
+0x00805f3c,runtime_counter_update_alt_arg,dword,Runtime counter update alt arg (2 refs),4,0,,arg
+0x00805f48,runtime_counter_accumulator_1,dword,Runtime counter accumulator 1 (2 refs),4,0,,accumulator
+0x00805f4c,runtime_counter_accumulator_2,dword,Runtime counter accumulator 2 (2 refs),4,0,,accumulator
+0x00805f50,fuel_demand_fault_counter,dword,Fuel demand fault counter increment value (2 refs),4,0,,counter
+0x00805f54,fuel_statistics_counter,dword,Fuel statistics tracker counter (3 refs),4,0,,counter
+0x00805f70,fuel_timing_control_counter_1,dword,Fuel timing control counter 1 (2 refs),4,0,,counter
+0x00805f74,fuel_timing_control_counter_2,dword,Fuel timing control counter 2 (1 ref),4,0,,counter
+0x00805f7a,rpm_histogram_average_value,word,RPM histogram averaging statistics value (3 refs),2,0,,value
+0x00805f80,rpm_histogram_accumulator,dword,RPM histogram accumulator (4 refs),4,0,,accumulator
+0x00805f84,rpm_histogram_count,dword,RPM histogram sample count (2 refs),4,0,,counter
+0x00805f88,rpm_histogram_sum,dword,RPM histogram sum value (2 refs),4,0,,value
+0x0080d468,fuel_statistics_status_byte,byte,Fuel statistics status byte (3 refs),1,0,,status
+0x0080d469,fuel_statistics_previous_status,byte,Fuel statistics previous status byte (1 ref),1,0,,status
+0x00804bbc,clutch_operating_stats_output,dword,Clutch operating statistics output value (4 refs),4,0,,value
+0x00804bd8,vehicle_hours_statistics_value,dword,Vehicle hours data builder statistics value (4 refs),4,0,,value
+# RPM histogram and averaging statistics variables
+0x00805f8a,rpm_histogram_max_rpm,word,RPM histogram maximum RPM recorded (3 refs),2,0,,value
+0x00805f7c,rpm_histogram_sample_counter_2,dword,RPM histogram sample counter 2 (3 refs),4,0,,counter
+0x00805f78,rpm_histogram_filtered_value,word,RPM histogram filtered output value (2 refs),2,0,,value
+0x00801a82,rpm_averaging_accumulator_1,word,RPM averaging accumulator 1 (4 refs),2,0,,accumulator
+0x00801a80,rpm_averaging_accumulator_2,word,RPM averaging accumulator 2 (4 refs),2,0,,accumulator
+0x00801a84,rpm_histogram_sample_divider,byte,RPM histogram sample divider counter (3 refs),1,0,,counter
+0x00801a7a,high_speed_idle_cooldown_timer,word,High speed idle cooldown timer (5 refs),2,0,,timer
+0x00801a78,high_load_idle_cooldown_timer,word,High load idle cooldown timer (5 refs),2,0,,timer
+0x00801a7c,high_temp_idle_cooldown_timer,word,High temperature idle cooldown timer (5 refs),2,0,,timer
+0x00801a74,non_idle_time_counter,word,Non-idle operating time counter (4 refs),2,0,,counter
+0x00801a7e,engine_mode_previous_state,byte,Engine operating mode previous state (3 refs),1,0,,state
+# Clutch operating statistics variables
+0x00805ffc,rpm_protection_statistics_buffer,dword,RPM protection histogram statistics buffer (3 refs),4,0,,buffer
+0x00806258,clutch_time_accumulator_1,dword,Clutch time percent load accumulator 1 (2 refs),4,0,,accumulator
+0x0080625c,boost_pressure_stats_accumulator,dword,Boost pressure statistics accumulator (2 refs),4,0,,accumulator
+0x00806260,clutch_time_accumulator_2,dword,Clutch time accumulator 2 (2 refs),4,0,,accumulator
+0x00806264,clutch_time_accumulator_3,dword,Clutch time accumulator 3 (2 refs),4,0,,accumulator
+0x0080626c,clutch_operating_time_total,dword,Clutch operating time total (7 refs),4,0,,value
+0x00806274,clutch_transition_accumulator,dword,Clutch transition accumulator (6 refs),4,0,,accumulator
+0x00806278,clutch_statistics_status_flags,word,Clutch operating statistics status flags (7 refs),2,0,,flags
+0x0080627a,derate_event_counter,word,Derate event counter (2 refs),2,0,,counter
+0x0080627c,clutch_slip_event_counter,word,Clutch slip event counter (2 refs),2,0,,counter
+0x0080627e,fuel_demand_statistics_flags,word,Fuel demand statistics accumulator flags (2 refs),2,0,,flags
+0x0080974c,clutch_rpm_proportional_calc,dword,Clutch RPM proportional calculation result (6 refs),4,0,,value
+0x00809750,clutch_statistics_ratio_calc,dword,Clutch statistics ratio calculation result (5 refs),4,0,,value
+0x00804bc8,fuel_economy_statistics_output,word,Fuel economy data builder statistics output (6 refs),2,0,,value
+0x00804bc0,vehicle_distance_statistics_value,dword,Vehicle distance data builder statistics value (3 refs),4,0,,value
+0x00804bc4,vehicle_distance_clutch_value,dword,Vehicle distance clutch transition value (3 refs),4,0,,value
+0x00804bca,clutch_transitions_per_distance,word,Clutch transitions per distance output (4 refs),2,0,,value
+0x008032d2,fault_presence_timer,word,Fault presence timer for logging (3 refs),2,0,,timer
+0x008032d0,clutch_sample_divider,word,Clutch statistics sample divider counter (3 refs),2,0,,counter
+# Target RPM rate limiter variables
+0x008000a6,target_rpm_rate_limiter_previous,word,Target RPM rate limiter previous value (4 refs),2,0,,value
+0x00809d1a,diagnostic_target_rpm_setpoint,word,Diagnostic mode target RPM setpoint (10 refs),2,0,,value
+0x00807884,target_rpm_rate_limit,word,Target RPM rate limiter limit value (3 refs),2,0,,limit
+0x0080009c,target_rpm_absolute_error,word,Target RPM absolute error value (1 ref),2,0,,value
+0x00800096,rpm_interpolation_lookup_arg,word,RPM interpolation table lookup argument (1 ref),2,0,,arg
+# Diagnostic governor copy source values (1 ref each - diagnostic mode init)
+0x00809cca,diag_governor_copy_enable_flag,word,Diagnostic governor copy enable flag (1 ref),2,0,,flag
+0x00809ccc,diag_governor_target_rpm_source,word,Diagnostic governor target RPM source (1 ref),2,0,,value
+0x00809cce,diag_governor_blend_factor_1,word,Diagnostic governor blend factor 1 source (1 ref),2,0,,value
+0x00809cd0,diag_governor_blend_factor_2,word,Diagnostic governor blend factor 2 source (1 ref),2,0,,value
+0x00809cd4,diag_governor_output_upper_limit,word,Diagnostic governor output upper limit source (1 ref),2,0,,limit
+0x00809cd6,diag_governor_output_lower_limit,word,Diagnostic governor output lower limit source (1 ref),2,0,,limit
+0x00809cd8,diag_governor_mode_state_source,word,Diagnostic governor mode state source (1 ref),2,0,,state
+0x00809cda,diag_governor_error_prev_source,word,Diagnostic governor error previous source (1 ref),2,0,,value
+0x00809cdc,diag_governor_integral_source,word,Diagnostic governor integral source (1 ref),2,0,,value
+0x00809cde,diag_governor_rpm_ref_source,word,Diagnostic governor RPM reference source (1 ref),2,0,,value
+0x00809ce0,diag_governor_deriv_prev_source,word,Diagnostic governor derivative previous source (1 ref),2,0,,value
+# Crank and protection state monitor variables
+0x0080329e,crank_protection_state_index,word,Crank protection state sequence index (5 refs),2,0,,index
+0x0080329a,crank_protection_sample_counter,word,Crank protection sample counter (6 refs),2,0,,counter
+0x0080329c,crank_protection_sequence_flag,word,Crank protection sequence complete flag (2 refs),2,0,,flag
+0x008032a0,crank_derate_threshold_previous,word,Crank derate threshold previous state (2 refs),2,0,,state
+0x008032a2,crank_derate_status_previous,word,Crank derate status byte previous state (3 refs),2,0,,state
+0x008032ba,crank_data_buffer_enable_flag,word,Crank data buffer store enable flag (5 refs),2,0,,flag
+0x008032b4,engine_fault_a_timer,word,Engine fault register A presence timer (2 refs),2,0,,timer
+0x008032b6,engine_fault_b_timer,word,Engine fault register B presence timer (2 refs),2,0,,timer
+0x00809726,crank_protection_time_delta,dword,Crank protection time delta value (5 refs),4,0,,value
+0x008032ae,crank_lookup_table_selector,word,Crank lookup table selector value (1 ref),2,0,,selector
+0x008032a8,crank_scaling_lookup_arg,word,Crank scaling factor lookup table arg (2 refs),2,0,,arg
+0x008032a6,crank_operating_time_previous,word,Crank operating time previous value (1 ref),2,0,,value
+0x008032a4,crank_operating_time_snapshot,dword,Crank operating time snapshot (2 refs),4,0,,value
+0x00805faa,crank_protection_accumulator,dword,Crank protection weighted accumulator (5 refs),4,0,,accumulator
+0x0080972a,crank_protection_divisor,word,Crank protection calculation divisor (3 refs),2,0,,value
+0x00805fae,crank_protection_threshold_time,dword,Crank protection threshold time value (4 refs),4,0,,value
+0x00805590,crank_fuel_buffer_index,word,Crank fuel and timing buffer index (9 refs),2,0,,index
