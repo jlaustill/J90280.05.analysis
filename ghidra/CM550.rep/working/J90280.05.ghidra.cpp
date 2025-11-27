@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 16:36:13 MST 2025
+// Thu Nov 27 16:42:01 MST 2025
 
 
 //
@@ -22015,10 +22015,12 @@ uint diagnosticResponseBuilder(undefined4 param_1)
 
 
 //
-// Function: system_startup @ 0x00025596
+// Function: main @ 0x00025596
 //
 
-void system_startup(void)
+/* Setting prototype: void main(void) */
+
+void main(void)
 
 {
   sim_mcr = 0x604f;

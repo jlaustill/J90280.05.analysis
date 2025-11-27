@@ -443,7 +443,7 @@ address,newName
 0x00020918,canTransmissionScheduler
 0x00020980,mainCanTransmissionLoop
 0x00025476,diagnosticResponseBuilder
-0x00025596,system_startup
+0x00025596,main
 0x00025768,systemControl64
 0x00026110,oil_pressure_shutdown_controller
 0x00027168,insiteParameterParser
