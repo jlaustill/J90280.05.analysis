@@ -4836,3 +4836,13 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00803354,output_timing_cycle_counter,word,Counts cycles when fuel demand exceeds threshold (4 refs),2,0,,counter
 0x0080335c,output_timing_duration_countdown,word,Countdown timer loaded from interpolation result (4 refs),2,0,,countdown
 0x00809d48,serial_node_address_offset,word,Serial/CAN node address iterator (increments by 8) (8 refs),2,0,,offset
+0x008033be,output_control_state_transition_flag,byte,State transition flag for engine mode I/O control (0 or 1) (7 refs),1,0,,flag
+0x008077bc,engine_mode_io_control_timeout_initial,word,Initial timeout value loaded into engine_mode_io_control_counter (6 refs),2,0,,timeout
+0x008077c0,output_control_state_2_transition_threshold,word,State 2 transition counter threshold (5 refs),2,0,,threshold
+0x008077c2,output_control_state_1_transition_delay_alt,word,State 1 transition delay (alternate path when flag=0) (5 refs),2,0,,delay
+0x008077c4,output_control_state_1_transition_delay_primary,word,State 1 transition delay (primary path when flag!=0) (5 refs),2,0,,delay
+0x008077c6,output_control_io_override_enable_flag,byte,Engine mode I/O override enable flag (5 refs),1,0,,flag
+0x008077c7,output_control_io_override_condition_flag,byte,Engine mode I/O override condition flag (5 refs),1,0,,flag
+0x008077be,output_control_state_transition_countdown,word,Common countdown for state 2 and fallback transitions (5 refs),2,0,,countdown
+0x008034da,vp44_fso_multibit_fault_debounce_counter,word,VP44 FSO multibit fault debounce counter (7 refs),2,0,,counter
+0x008054a6,j1939_message_type_total_counter,word,J1939 message type classifier counter (7 refs),2,0,,counter

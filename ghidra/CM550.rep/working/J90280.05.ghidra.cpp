@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 16:47:37 MST 2025
+// Thu Nov 27 16:55:48 MST 2025
 
 
 //
@@ -15051,7 +15051,7 @@ uint j1939TimeoutDataClearHandler(void)
   uVar1 = diagnostic_system_flags_2 & 0x100;
   if (((diagnostic_system_flags_2 & 0x100) != 0) &&
      (uVar1 = _DAT_008086f2 + _vp44_sensor_diag_counter, uVar1 < _loopCounter)) {
-    _DAT_008054a6 = 0;
+    j1939_message_type_total_counter = 0;
     _vp44_sensor_diag_counter = 0;
     _DAT_008054b2 = 0;
     _DAT_008054b4 = 0;
@@ -15080,14 +15080,14 @@ uint j1939MessageTypeCounter(undefined4 param_1)
   uVar1 = CONCAT22((short)((uint)in_D0 >> 0x10),diagnostic_system_flags_2) & 0xffff0080;
   if ((diagnostic_system_flags_2 & 0x80) != 0) {
     if (param_1._0_2_ == 1) {
-      _DAT_008054a6 = _DAT_008054a6 + 1;
+      j1939_message_type_total_counter = j1939_message_type_total_counter + 1;
       _DAT_008054b2 = _DAT_008054b2 + 1;
       _DAT_008054b4 = _loopCounter;
       _vp44_sensor_diag_counter = _loopCounter;
       return _loopCounter;
     }
     if (param_1._0_2_ == 2) {
-      _DAT_008054a6 = _DAT_008054a6 + 1;
+      j1939_message_type_total_counter = j1939_message_type_total_counter + 1;
       _DAT_008054b8 = _DAT_008054b8 + 1;
       _DAT_008054ba = _loopCounter;
       _vp44_sensor_diag_counter = _loopCounter;
@@ -15096,7 +15096,7 @@ uint j1939MessageTypeCounter(undefined4 param_1)
     if (param_1._0_2_ != 3) {
       return (int)param_1._0_2_;
     }
-    _DAT_008054a6 = _DAT_008054a6 + 1;
+    j1939_message_type_total_counter = j1939_message_type_total_counter + 1;
     _DAT_008054ac = _DAT_008054ac + 1;
     _DAT_008054ae = _loopCounter;
     _vp44_sensor_diag_counter = _loopCounter;
@@ -31535,9 +31535,9 @@ void outputControlFlagsInit(void)
   output_control_mode_state_variable = 1;
   _output_control_flags_state = 1;
   io_control_flags = io_control_flags | 0x10;
-  engine_mode_io_control_counter = _DAT_008077bc;
+  engine_mode_io_control_counter = engine_mode_io_control_timeout_initial;
   engine_mode_io_control_flags = 1;
-  DAT_008033be = 0;
+  output_control_state_transition_flag = 0;
   return;
 }
 
@@ -31552,8 +31552,8 @@ void outputControlFlagsInit(void)
 void engineModeBasedIoController(void)
 
 {
-  if (DAT_008077c6 != '\0') {
-    if (DAT_008077c7 == '\0') {
+  if (output_control_io_override_enable_flag != 0) {
+    if (output_control_io_override_condition_flag == 0) {
       io_control_flags = io_control_flags & 0xef;
       return;
     }
@@ -31585,7 +31585,7 @@ void engineModeBasedIoController(void)
   }
   if (_output_control_flags_state == 3) {
     if (output_control_mode_state_variable != 3) {
-      DAT_008033be = '\x01';
+      output_control_state_transition_flag = 1;
       engine_mode_io_control_flags = 1;
       io_control_flags = io_control_flags | 0x10;
     }
@@ -31602,11 +31602,11 @@ void engineModeBasedIoController(void)
       }
     }
     else {
-      if (DAT_008033be == '\0') {
-        engine_mode_io_control_counter = _DAT_008077c2;
+      if (output_control_state_transition_flag == 0) {
+        engine_mode_io_control_counter = output_control_state_1_transition_delay_alt;
       }
       else {
-        engine_mode_io_control_counter = _DAT_008077c4;
+        engine_mode_io_control_counter = output_control_state_1_transition_delay_primary;
       }
       io_control_flags = io_control_flags | 0x10;
       engine_mode_io_control_flags = 1;
@@ -31617,18 +31617,18 @@ void engineModeBasedIoController(void)
       if (engine_mode_io_control_flags == 0) {
         engine_mode_io_control_flags = 1;
         io_control_flags = io_control_flags | 0x10;
-        engine_mode_io_control_counter = _DAT_008077c0;
+        engine_mode_io_control_counter = output_control_state_2_transition_threshold;
       }
       else {
         engine_mode_io_control_flags = 0;
         io_control_flags = io_control_flags & 0xef;
-        engine_mode_io_control_counter = _DAT_008077be;
+        engine_mode_io_control_counter = output_control_state_transition_countdown;
       }
     }
     else {
       engine_mode_io_control_flags = 0;
       io_control_flags = io_control_flags & 0xef;
-      engine_mode_io_control_counter = _DAT_008077be;
+      engine_mode_io_control_counter = output_control_state_transition_countdown;
     }
   }
   else if (_output_control_flags_state == 4) {
@@ -34948,15 +34948,16 @@ void vp44FsoMultiBitFaultMonitor(void)
             if (derate_threshold_exceeded != 0) {
               if (required_change_to_clear_in_range_fuel_temp_fault_0_to_300 <
                   current_engine_fuel_demand) {
-                _DAT_008034da = _DAT_008034da + 1;
-                if (fso_multibit_fault_threshold < _DAT_008034da) {
+                vp44_fso_multibit_fault_debounce_counter =
+                     vp44_fso_multibit_fault_debounce_counter + 1;
+                if (fso_multibit_fault_threshold < vp44_fso_multibit_fault_debounce_counter) {
                   vp44_fault_status_reg = vp44_fault_status_reg | 0x4000;
                   vp44_fso_fault_accumulator = vp44_fso_fault_accumulator | 0x4000;
-                  _DAT_008034da = 0;
+                  vp44_fso_multibit_fault_debounce_counter = 0;
                 }
               }
               else {
-                _DAT_008034da = 0;
+                vp44_fso_multibit_fault_debounce_counter = 0;
               }
               vp44_fso_multibit_fault_state = 0;
               return;
@@ -34966,7 +34967,7 @@ void vp44FsoMultiBitFaultMonitor(void)
               vp44_fault_status_reg = vp44_fault_status_reg & 0xdfff;
               vp44_fso_multibit_fault_state = 0;
             }
-            _DAT_008034da = 0;
+            vp44_fso_multibit_fault_debounce_counter = 0;
             return;
           }
           if (derate_threshold_exceeded == 0) {
@@ -34981,7 +34982,7 @@ void vp44FsoMultiBitFaultMonitor(void)
               _DAT_008034dc = 0;
             }
             else {
-              _DAT_008034da = 0;
+              vp44_fso_multibit_fault_debounce_counter = 0;
             }
             vp44_fso_multibit_fault_accumulator = vp44_fso_multibit_fault_accumulator + 1;
             if (fso_multibit_fault_threshold < vp44_fso_multibit_fault_accumulator) {
