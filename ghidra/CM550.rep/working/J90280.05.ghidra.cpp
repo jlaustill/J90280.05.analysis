@@ -1,28 +1,31 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Wed Nov 26 19:05:34 MST 2025
+// Wed Nov 26 19:15:22 MST 2025
 
 
 //
 // Function: rpm_rate_limiter @ 0x0000a16a
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void rpm_rate_limiter(void)
 
 {
   rpm_fuel_protection_t_008091c4.rpm_rate_limiter_output =
-       circular_buffer_t_0080c3fc.data_buffer._6_2_ - _DAT_0080000c;
-  _DAT_0080000c = circular_buffer_t_0080c3fc.data_buffer._6_2_;
+       circular_buffer_t_0080c3fc.data_buffer._6_2_ -
+       rpm_control_timers_t_00800002.previous_engine_rpm;
+  rpm_control_timers_t_00800002.previous_engine_rpm = circular_buffer_t_0080c3fc.data_buffer._6_2_;
   rpm_fuel_protection_t_008091c4.rpm_rate_limited_value = FUN_00035608();
-  if ((short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value < (short)_DAT_008062fa) {
-    rpm_fuel_protection_t_008091c4.rpm_rate_limited_value = _DAT_008062fa;
-    dma_control_block_t_00800026.control_flags1 = (short)_DAT_008062fa * 0x10000 + 0x80000000;
+  if ((short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value <
+      (short)rpm_rate_limits_t_008062f8.minimum) {
+    rpm_fuel_protection_t_008091c4.rpm_rate_limited_value = rpm_rate_limits_t_008062f8.minimum;
+    dma_control_block_t_00800026.control_flags1 =
+         (short)rpm_rate_limits_t_008062f8.minimum * 0x10000 + 0x80000000;
   }
-  else if ((short)_DAT_008062f8 < (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
-    rpm_fuel_protection_t_008091c4.rpm_rate_limited_value = _DAT_008062f8;
-    dma_control_block_t_00800026.control_flags1 = (short)_DAT_008062f8 * 0x10000 + 0x80000000;
+  else if ((short)rpm_rate_limits_t_008062f8.maximum <
+           (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
+    rpm_fuel_protection_t_008091c4.rpm_rate_limited_value = rpm_rate_limits_t_008062f8.maximum;
+    dma_control_block_t_00800026.control_flags1 =
+         (short)rpm_rate_limits_t_008062f8.maximum * 0x10000 + 0x80000000;
   }
   rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc = FUN_00035608();
   return;
@@ -43,36 +46,42 @@ ushort rpm_system_state_controller(void)
   
   uVar1 = engine_control_flags_t_008035d6.engine_operating_state & 0x1000;
   if ((engine_control_flags_t_008035d6.engine_operating_state & 0x1000) != 0) {
-    if (_DAT_008062d8 < (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
+    if ((short)rpm_calibration_params_t_008062d4.threshold_lower <
+        (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
       rpm_fuel_protection_t_008091c4.rpm_threshold_exceeded_flag = 1;
-      _DAT_00800002 = _DAT_008062fe;
+      rpm_control_timers_t_00800002.timer_1 = _DAT_008062fe;
     }
-    else if (_DAT_00800002 == 0) {
+    else if (rpm_control_timers_t_00800002.timer_1 == 0) {
       rpm_fuel_protection_t_008091c4.rpm_threshold_exceeded_flag = 0;
     }
     else {
-      _DAT_00800002 = _DAT_00800002 + -1;
+      rpm_control_timers_t_00800002.timer_1 = rpm_control_timers_t_00800002.timer_1 - 1;
     }
     if ((((_DAT_008091e0 == 0) || (rpm_fuel_protection_t_008091c4.rpm_threshold_exceeded_flag != 0))
-        || ((ushort)circular_buffer_t_0080c3fc.data_buffer._6_2_ < _DAT_008062dc)) ||
-       ((_DAT_008062d8 < (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value ||
-        ((short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc < _DAT_008062da)))) {
+        || ((ushort)circular_buffer_t_0080c3fc.data_buffer._6_2_ <
+            rpm_calibration_params_t_008062d4.threshold_upper)) ||
+       (((short)rpm_calibration_params_t_008062d4.threshold_lower <
+         (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value ||
+        ((short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc <
+         (short)rpm_calibration_params_t_008062d4.secondary_threshold)))) {
       if (_DAT_008091de == 0) {
-        if (_DAT_00800006 == 0) {
+        if (rpm_control_timers_t_00800002.timer_2 == 0) {
           rpm_fuel_protection_t_008091c4.rpm_state_accumulator = 0;
         }
         else {
-          _DAT_00800006 = _DAT_00800006 + -1;
+          rpm_control_timers_t_00800002.timer_2 = rpm_control_timers_t_00800002.timer_2 - 1;
         }
       }
       else {
         rpm_fuel_protection_t_008091c4.rpm_state_accumulator = 1;
-        _DAT_00800006 = _DAT_008062d4;
+        rpm_control_timers_t_00800002.timer_2 =
+             rpm_calibration_params_t_008062d4.timer_reload_value_2;
       }
     }
     else {
       rpm_fuel_protection_t_008091c4.rpm_state_accumulator = 1;
-      _DAT_00800006 = _DAT_008062d4;
+      rpm_control_timers_t_00800002.timer_2 = rpm_calibration_params_t_008062d4.timer_reload_value_2
+      ;
     }
     if (rpm_fuel_protection_t_008091c4.rpm_state_accumulator == 1) {
       _DAT_00800014 = circular_buffer_t_0080c3fc.data_buffer._6_2_;
@@ -82,7 +91,8 @@ ushort rpm_system_state_controller(void)
     }
     uVar1 = rpm_fuel_protection_t_008091c4.fuel_limit_shutdown;
     if (rpm_fuel_protection_t_008091c4.fuel_limit_shutdown < _DAT_00807f3c) {
-      uVar1 = _DAT_008062d6 + rpm_fuel_protection_t_008091c4.fuel_limit_shutdown;
+      uVar1 = rpm_calibration_params_t_008062d4.reserved_02 +
+              rpm_fuel_protection_t_008091c4.fuel_limit_shutdown;
       rpm_fuel_protection_t_008091c4.fuel_limit_shutdown = uVar1;
       if (_DAT_00807f3c < uVar1) {
         rpm_fuel_protection_t_008091c4.fuel_limit_shutdown = _DAT_00807f3c;
@@ -127,13 +137,13 @@ ushort highRpmFuelControlLimiter(void)
   if ((engine_control_flags_t_008035d6.engine_operating_state & 0x2000) != 0) {
     if (_DAT_00806302 < (short)rpm_fuel_protection_t_008091c4.rpm_rate_limited_value) {
       _DAT_008091dc = 1;
-      _DAT_00800004 = _DAT_00806300;
+      rpm_control_timers_t_00800002.reserved_02 = _DAT_00806300;
     }
-    else if (_DAT_00800004 == 0) {
+    else if (rpm_control_timers_t_00800002.reserved_02 == 0) {
       _DAT_008091dc = 0;
     }
     else {
-      _DAT_00800004 = _DAT_00800004 + -1;
+      rpm_control_timers_t_00800002.reserved_02 = rpm_control_timers_t_00800002.reserved_02 - 1;
     }
     wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_limited_value;
     if ((((_DAT_008091e0 == 0) || (_DAT_008091dc != 0)) ||
@@ -143,21 +153,21 @@ ushort highRpmFuelControlLimiter(void)
         (wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc,
         (short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc < _DAT_008062f0)))) {
       if (_DAT_008091de == 0) {
-        if (_DAT_00800008 == 0) {
+        if (rpm_control_timers_t_00800002.reserved_06 == 0) {
           rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator = 0;
         }
         else {
-          _DAT_00800008 = _DAT_00800008 + -1;
+          rpm_control_timers_t_00800002.reserved_06 = rpm_control_timers_t_00800002.reserved_06 - 1;
         }
       }
       else {
         rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator = 1;
-        _DAT_00800008 = _DAT_008062ec;
+        rpm_control_timers_t_00800002.reserved_06 = _DAT_008062ec;
       }
     }
     else {
       rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator = 1;
-      _DAT_00800008 = _DAT_008062ec;
+      rpm_control_timers_t_00800002.reserved_06 = _DAT_008062ec;
     }
     if (rpm_fuel_protection_t_008091c4.high_rpm_fuel_accumulator == 1) {
       _DAT_00800020 = circular_buffer_t_0080c3fc.data_buffer._6_2_;
@@ -231,21 +241,21 @@ ushort lowRpmFuelProtectionLimiter(void)
         (wVar1 = rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc,
         (short)rpm_fuel_protection_t_008091c4.rpm_rate_secondary_calc < _DAT_008062e4)))) {
       if (_DAT_008091de == 0) {
-        if (_DAT_0080000a == 0) {
+        if (rpm_control_timers_t_00800002.reserved_08 == 0) {
           rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator = 0;
         }
         else {
-          _DAT_0080000a = _DAT_0080000a + -1;
+          rpm_control_timers_t_00800002.reserved_08 = rpm_control_timers_t_00800002.reserved_08 - 1;
         }
       }
       else {
         rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator = 1;
-        _DAT_0080000a = _DAT_008062e0;
+        rpm_control_timers_t_00800002.reserved_08 = _DAT_008062e0;
       }
     }
     else {
       rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator = 1;
-      _DAT_0080000a = _DAT_008062e0;
+      rpm_control_timers_t_00800002.reserved_08 = _DAT_008062e0;
     }
     if (rpm_fuel_protection_t_008091c4.low_rpm_fuel_accumulator != 0) {
       rpm_fuel_protection_t_008091c4.low_rpm_fuel_protection_limit = _DAT_008062de;
@@ -269,8 +279,6 @@ ushort lowRpmFuelProtectionLimiter(void)
 // Function: dmaControllerSetup1 @ 0x0000a53e
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void dmaControllerSetup1(void)
 
 {
@@ -281,7 +289,7 @@ void dmaControllerSetup1(void)
   dma_control_block_t_00800026.control_flags2 = 0x80000000;
                     /* Constant: DMA_DESC_ADDR_2 = 0x8062F6 */
   dma_control_block_t_00800026.descriptor_ptr2 = 0x8062f6;
-  _DAT_0080000c = 0;
+  rpm_control_timers_t_00800002.previous_engine_rpm = 0;
   return;
 }
 

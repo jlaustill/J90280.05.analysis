@@ -2865,8 +2865,6 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008062d8,rpm_threshold_lower,word,Lower RPM threshold for system control,2,0,RPM,parameter
 0x008062da,rpm_secondary_threshold,word,Secondary RPM threshold for control logic,2,0,RPM,parameter
 0x008062dc,rpm_threshold_upper,word,Upper RPM threshold for system control,2,0,RPM,parameter
-0x8062f4,dma_desc_source_addr1,dword,DMA descriptor 1 source address pointer,2,0,,address
-0x8062f6,dma_desc_dest_addr1,dword,DMA descriptor 1 destination address pointer,2,0,,address
 0x008062fe,rpm_timer_reload_value_1,word,Timer reload value 1 for RPM control,2,0,CNT,parameter
 0x008068C4,fault_flags_enabled_base,word,Fault enable/confirm flags array base - mirrors fault_flags_active structure,2,0,,flag
 0x008068c4,fault_mask_flags_6,word,Fault mask flags paired with fault_status_flags_6,2,0,,flag
