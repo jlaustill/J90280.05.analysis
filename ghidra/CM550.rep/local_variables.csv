@@ -40,3 +40,4 @@ function_address,function_name,first_use_address,new_variable_name,type,comment
 0x0001b7e8,diagnosticServiceSecurityValidator,0x1b7f8,messageLengthByte,char,Message length/type byte from param_1+5
 0x0001b7e8,diagnosticServiceSecurityValidator,0x1b80a,requiredLength,char,Required message length (3 for services 3/4 else 1)
 0x0001b7e8,diagnosticServiceSecurityValidator,0x1b85e,securityCheckResult,char,Result from systemSecurityCheck() - 0=authorized nonzero=denied
+0x000339c2,vp44CanMessage100ResponseBuilder,0x339e2,byte_swap_temp,byte,Temporary word for byte-swapping (high byte extracted via >> 8)

@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 14:50:19 MST 2025
+// Thu Nov 27 15:03:11 MST 2025
 
 
 //
@@ -34024,30 +34024,28 @@ ushort vp44CanMessage100Parser(int param_1)
 // Function: vp44CanMessage100ResponseBuilder @ 0x000339c2
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void vp44CanMessage100ResponseBuilder(void)
 
 {
-  undefined1 local_6;
-  undefined1 uStack_5;
+  byte byte_swap_temp;
+  byte bStack_5;
   
-  local_6 = (undefined1)((ushort)_DAT_008073ea >> 8);
-  DAT_00809ab8 = local_6;
-  uStack_5 = (undefined1)_DAT_008073ea;
-  DAT_00809ab7 = uStack_5;
-  local_6 = (undefined1)((ushort)_DAT_008073e8 >> 8);
-  DAT_00809ab6 = local_6;
-  uStack_5 = (undefined1)_DAT_008073e8;
-  DAT_00809ab5 = uStack_5;
-  local_6 = (undefined1)((ushort)_DAT_008073e6 >> 8);
-  DAT_00809ab4 = local_6;
-  uStack_5 = (undefined1)_DAT_008073e6;
-  DAT_00809ab3 = uStack_5;
-  local_6 = (undefined1)((ushort)_DAT_008073e4 >> 8);
-  DAT_00809ab2 = local_6;
-  uStack_5 = (undefined1)_DAT_008073e4;
-  DAT_00809ab1 = uStack_5;
+  byte_swap_temp = (byte)(vp44_can_msg_100_cmd_word_3 >> 8);
+  vp44_can_msg_100_tx_byte_0 = byte_swap_temp;
+  bStack_5 = (byte)vp44_can_msg_100_cmd_word_3;
+  vp44_can_msg_100_tx_byte_1 = bStack_5;
+  byte_swap_temp = (byte)(vp44_can_msg_100_cmd_word_2 >> 8);
+  vp44_can_msg_100_tx_byte_2 = byte_swap_temp;
+  bStack_5 = (byte)vp44_can_msg_100_cmd_word_2;
+  vp44_can_msg_100_tx_byte_3 = bStack_5;
+  byte_swap_temp = (byte)(vp44_can_msg_100_cmd_word_1 >> 8);
+  vp44_can_msg_100_tx_byte_4 = byte_swap_temp;
+  bStack_5 = (byte)vp44_can_msg_100_cmd_word_1;
+  vp44_can_msg_100_tx_byte_5 = bStack_5;
+  byte_swap_temp = (byte)(vp44_can_msg_100_cmd_word_0 >> 8);
+  vp44_can_msg_100_tx_byte_6 = byte_swap_temp;
+  bStack_5 = (byte)vp44_can_msg_100_cmd_word_0;
+  vp44_can_msg_100_tx_byte_7 = bStack_5;
   canFrameDataCopy(&serial_port_2_base_register);
   return;
 }

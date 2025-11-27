@@ -4735,3 +4735,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x01000f08,holds_max_value_of_torque_curve_in_use_when_trending_data_is_w_0_100,word,HOLDS MAX VALUE OF TORQUE CURVE IN USE WHEN TRENDING DATA IS W,2,0,MM3S,parameter
 0x01000f0a,average_fuel_consumption_during_a_trending_interval_2_310,word,AVERAGE FUEL CONSUMPTION DURING A TRENDING INTERVAL,2,0,GPH,parameter
 0x01000f0c,snapshot_of_total_fuel_usage_used_in_trending_feature_0_10000000,dword,SNAPSHOT OF TOTAL_FUEL_USAGE USED IN TRENDING FEATURE,4,0,GAL,parameter
+0x008073e4,vp44_can_msg_100_cmd_word_0,word,VP44 CAN msg 100 command word 0 (bytes 7-8),2,0,,command
+0x008073e6,vp44_can_msg_100_cmd_word_1,word,VP44 CAN msg 100 command word 1 (bytes 5-6),2,0,,command
+0x008073e8,vp44_can_msg_100_cmd_word_2,word,VP44 CAN msg 100 command word 2 (bytes 3-4),2,0,,command
+0x008073ea,vp44_can_msg_100_cmd_word_3,word,VP44 CAN msg 100 command word 3 (bytes 1-2),2,0,,command
+0x00809ab1,vp44_can_msg_100_tx_byte_7,byte,VP44 CAN msg 100 transmit byte 7,1,0,,byte
+0x00809ab2,vp44_can_msg_100_tx_byte_6,byte,VP44 CAN msg 100 transmit byte 6,1,0,,byte
+0x00809ab3,vp44_can_msg_100_tx_byte_5,byte,VP44 CAN msg 100 transmit byte 5,1,0,,byte
+0x00809ab4,vp44_can_msg_100_tx_byte_4,byte,VP44 CAN msg 100 transmit byte 4,1,0,,byte
+0x00809ab5,vp44_can_msg_100_tx_byte_3,byte,VP44 CAN msg 100 transmit byte 3,1,0,,byte
+0x00809ab6,vp44_can_msg_100_tx_byte_2,byte,VP44 CAN msg 100 transmit byte 2,1,0,,byte
+0x00809ab7,vp44_can_msg_100_tx_byte_1,byte,VP44 CAN msg 100 transmit byte 1,1,0,,byte
+0x00809ab8,vp44_can_msg_100_tx_byte_0,byte,VP44 CAN msg 100 transmit byte 0,1,0,,byte
