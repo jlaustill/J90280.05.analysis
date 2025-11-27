@@ -5340,3 +5340,91 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x01000F08,holds_max_value_of_torque_curve_in_use_when_trending_data_is_w_0_100,word,HOLDS MAX VALUE OF TORQUE CURVE IN USE WHEN TRENDING DATA IS W,2,0,MM3S,parameter
 0x01000F0A,average_fuel_consumption_during_a_trending_interval_2_310,word,AVERAGE FUEL CONSUMPTION DURING A TRENDING INTERVAL,2,0,GPH,parameter
 0x01000F0C,snapshot_of_total_fuel_usage_used_in_trending_feature_0_10000000,dword,SNAPSHOT OF TOTAL_FUEL_USAGE USED IN TRENDING FEATURE,4,0,GAL,parameter
+0x00800629,bit_pattern_index_counter,byte,Bit pattern to index converter counter (7 refs),1,0,,counter
+0x00807d66,protection_state_config_table,word,Protection state configuration table base - 0x20-byte entries (7 refs),2,0,,table
+0x00809684,rpm_timing_delta_result_flag_1,byte,RPM timing delta comparison result flag 1 (7 refs),1,0,,flag
+0x00809685,rpm_timing_delta_result_flag_2,byte,RPM timing delta comparison result flag 2 (7 refs),1,0,,flag
+0x008019aa,torque_control_mode_byte,byte,Torque control message byte 1 - mode flags (8 refs),1,0,,value
+0x008019ad,torque_control_message_byte_4,byte,Torque control message byte 4 (7 refs),1,0,,value
+0x0080c7d4,rpm_sensor_fault_debounce,byte,RPM sensor fault debounce counter (7 refs),1,0,,counter
+0x0080d2ce,tpu_transmission_active_flag,byte,TPU transmission active/busy flag (8 refs),1,0,,flag
+0x0080d2d1,tpu_transmission_byte_counter,byte,TPU transmission byte index counter (8 refs),1,0,,counter
+0x0080d2db,tpu_diagnostic_retry_counter,byte,TPU diagnostic protocol retry counter (6 refs),1,0,,counter
+0x0080cfac,retarder_control_can_source,byte,Retarder control mode CAN source address (6 refs),1,0,,address
+0x0080c7f8,frictional_load_torque_interpolator_result,word,Frictional load torque interpolator result (6 refs),2,0,,value
+0x0080c7f4,fuel_timing_intake_temp_correction,word,Fuel timing intake manifold temperature correction (6 refs),2,0,,value
+0x0080c7c0,fuel_timing_oil_pressure_mode_state,byte,Fuel timing oil pressure mode controller state (6 refs),1,0,,state
+0x0080bd8c,fuel_demand_percentage_current,word,Fuel demand percentage calculator current value (6 refs),2,0,,value
+0x00809d6e,cold_start_fuel_control_mode,byte,Cold start fuel control slow cycle mode indicator (6 refs),1,0,,mode
+0x0080976a,vp44_injection_timing_state,word,VP44 injection timing slow cycle coordinator state (6 refs),2,0,,state
+0x008096b2,fuel_demand_limit_source_2_flag,byte,Fuel demand limit source 2 selector flag (6 refs),1,0,,flag
+0x00809682,shutdown_protection_fuel_limit,word,Shutdown protection calculator fuel limit (6 refs),2,0,,limit
+0x008073b5,fso_fault_debounce_threshold,byte,VP44 FSO fault detection debounce threshold (6 refs),1,0,,threshold
+0x008068ce,engine_mode_output_control_state,byte,Engine mode output control state machine state (6 refs),1,0,,state
+0x00805f90,fuel_limit_engine_state_capture,word,Fuel limit engine state capture/restore value (6 refs),2,0,,value
+0x00804e78,protection_state_4_emergency_counter,word,Protection state 4 emergency handler counter (6 refs),2,0,,counter
+0x008037f8,sensor_status_history_pointer,word,Sensor status history tracker data pointer (6 refs),2,0,,pointer
+0x008034c2,fso_range_fault_high_counter,byte,VP44 FSO range fault high debounce counter (6 refs),1,0,,counter
+0x008034c1,fso_range_fault_low_counter,byte,VP44 FSO range fault low debounce counter (6 refs),1,0,,counter
+0x00803360,output_timing_duty_cycle_counter,word,Output control timing generator duty cycle counter (6 refs),2,0,,counter
+0x00803286,fuel_limit_interpolator_result,word,Diagnostic/engine state fuel limit interpolator result (6 refs),2,0,,value
+0x008016a2,io_control_delay_timer,word,IO control state machine delay timer (6 refs),2,0,,timer
+0x0080062b,insite_multiframe_response_index,byte,INSITE multi-frame response builder index (6 refs),1,0,,index
+0x00800218,speed_based_parameter_lookup_result,word,Speed-based parameter lookup result value (6 refs),2,0,,value
+0x008001ca,engine_runtime_histogram_accumulator,word,Engine run time histogram accumulator value (6 refs),2,0,,accumulator
+0x008001b0,cold_start_fuel_control_result,word,Cold start fuel control slow cycle result (6 refs),2,0,,value
+0x00800140,throttle_position_validation_buffer,word,Throttle position validator buffer value (6 refs),2,0,,buffer
+0x00ffd85f,serial_port_1_rx_data_register,byte,Serial port 1 receive data register (5 refs),1,0,,hardware
+0x00ffd810,can_controller_config_register,byte,Dual CAN controller configuration register (5 refs),1,0,,hardware
+0x00ffc85f,serial_port_2_rx_data_register,byte,Serial port 2 receive data register (5 refs),1,0,,hardware
+0x0080cfc2,j1939_multiframe_source_address,byte,J1939 multi-frame transmission source address (5 refs),1,0,,address
+0x0080cf89,serial_receive_timer,byte,Serial receive buffer processor timer (5 refs),1,0,,timer
+0x0080c9b4,diagnostic_fuel_arbitration_state,word,Diagnostic mode fuel arbitration handler state (5 refs),2,0,,state
+0x0080c7ec,fuel_timing_blend_rpm_component,word,Fuel timing mode blend RPM-based component (5 refs),2,0,,value
+0x0080c402,parameter_circular_buffer_value,word,Parameter circular buffer write value (5 refs),2,0,,value
+0x00809a32,rpm_load_parameter_lookup_result,word,RPM load parameter lookup result (5 refs),2,0,,value
+0x0080976c,vp44_injection_timing_counter,word,VP44 injection timing slow cycle counter (5 refs),2,0,,counter
+0x00808ec6,duty_cycle_monitor_slot_config,word,Duty cycle monitor slot configuration value (5 refs),2,0,,config
+0x00808920,oil_pressure_protection_threshold,word,Advanced oil pressure protection system threshold (5 refs),2,0,,threshold
+0x008087ce,governor_pid_integral_limit_high,word,Governor PID fuel calculator integral limit high (5 refs),2,0,,limit
+0x008087cc,governor_pid_integral_limit_low,word,Governor PID fuel controller integral limit low (5 refs),2,0,,limit
+0x008086ea,io_control_timeout_table_base,word,IO control timeout table lookup base address (5 refs),2,0,,table
+0x008073de,fso_multibit_fault_threshold,word,VP44 FSO multi-bit fault monitor threshold (5 refs),2,0,,threshold
+0x00805558,vp44_sensor_diag_state_2,word,VP44 sensor diagnostic control state 2 (5 refs),2,0,,state
+0x0080553e,vp44_sensor_diag_state_1,word,VP44 sensor diagnostic control state 1 (5 refs),2,0,,state
+0x008054a8,vp44_sensor_diag_counter,word,VP44 sensor diagnostic control counter (5 refs),2,0,,counter
+0x008034c3,fso_range_fault_clear_counter,byte,VP44 FSO range fault clear debounce counter (5 refs),1,0,,counter
+0x008034ba,fso_stuck_fault_debounce_counter,byte,VP44 FSO stuck fault debounce counter (5 refs),1,0,,counter
+0x008034b9,fso_low_cmd_fault_clear_counter,byte,VP44 FSO low command fault clear counter (5 refs),1,0,,counter
+0x008034b8,fso_high_cmd_fault_debounce_counter,byte,VP44 FSO high command fault debounce counter (5 refs),1,0,,counter
+0x008034b7,fso_bit6_fault_clear_counter,byte,VP44 FSO bit 6 fault clear debounce counter (5 refs),1,0,,counter
+0x008034b5,fso_bit5_fault_clear_counter,byte,VP44 FSO bit 5 fault clear debounce counter (5 refs),1,0,,counter
+0x008034b4,fso_bit5_fault_set_counter,byte,VP44 FSO bit 5 fault set debounce counter (5 refs),1,0,,counter
+0x00803414,vp44_sensor_diag_timer_2,word,VP44 sensor diagnostic control timer 2 (5 refs),2,0,,timer
+0x0080340c,vp44_sensor_diag_timer_1,word,VP44 sensor diagnostic control timer 1 (5 refs),2,0,,timer
+0x008033fa,vp44_control_flags_state,word,VP44 control flags init state value (5 refs),2,0,,state
+0x008033b2,output_timing_interpolation_result,word,Output control timing generator interpolation result (5 refs),2,0,,value
+0x00803364,output_timing_state_selector,word,Output timing generator state selector (5 refs),2,0,,state
+0x0080335e,output_timing_cycle_divider,word,Output timing generator cycle divider (5 refs),2,0,,counter
+0x00803356,output_timing_config_word_3,word,Output timing generator config word 3 (5 refs),2,0,,config
+0x00803352,output_timing_config_word_2,word,Output timing generator config word 2 (5 refs),2,0,,config
+0x0080334e,output_timing_config_word_1,word,Output timing generator config word 1 (5 refs),2,0,,config
+0x00803332,output_timing_base_value,word,Output timing generator base value (5 refs),2,0,,value
+0x00802204,throttle_fault_handler_state,word,Throttle fault handler state value (5 refs),2,0,,state
+0x00801a66,retarder_mode_timeout_value,word,Retarder control mode timeout value (5 refs),2,0,,timer
+0x00801a3d,retarder_control_priority_byte,byte,Retarder control mode priority byte from message (5 refs),1,0,,value
+0x008019a6,torque_control_status_byte,byte,Torque control message status byte (5 refs),1,0,,value
+0x0080171e,fuel_arbitrator_diag_timer,word,Fuel arbitrator diagnostic mode timer (5 refs),2,0,,timer
+0x008016ae,io_control_state_6,word,IO control state machine value 6 (5 refs),2,0,,state
+0x008016ac,io_control_state_5,word,IO control state machine value 5 (5 refs),2,0,,state
+0x008016aa,io_control_state_4,word,IO control state machine value 4 (5 refs),2,0,,state
+0x008016a8,io_control_state_3,word,IO control state machine value 3 (5 refs),2,0,,state
+0x008016a6,io_control_state_2,word,IO control state machine value 2 (5 refs),2,0,,state
+0x008016a4,io_control_state_1,word,IO control state machine value 1 (5 refs),2,0,,state
+0x008016a0,io_control_state_0,word,IO control state machine value 0 (5 refs),2,0,,state
+0x0080062a,bit_pattern_index_result,byte,Bit pattern to index converter result (5 refs),1,0,,value
+0x00800628,bit_pattern_input_value,byte,Bit pattern to index converter input (5 refs),1,0,,value
+0x008001b2,cold_start_sensor_reading_sum,word,Cold start fuel control sensor reading sum (5 refs),2,0,,value
+0x0080000a,rpm_control_timer_delta,word,RPM control timer delta value (5 refs),2,0,,value
+0x00800008,rpm_control_timer_previous,word,RPM control timer previous value (5 refs),2,0,,value
+0x00006400,firmware_vector_table_base,dword,Firmware vector table base address (5 refs),4,0,,pointer
