@@ -4525,3 +4525,124 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008033ba,output_control_flags_state,byte,Output control flags initialization state (11 refs),1,0,,state
 0x00ffd800,serial_port_1_base_register,dword,MC68336 Serial Port 1 (QSM) base register address (12 refs),4,0,,hwreg
 0x00ffc800,serial_port_2_base_register,dword,MC68336 Serial Port 2 (QSM) base register address (11 refs),4,0,,hwreg
+0x00809a06,output_control_timing_value,word,Output control state 4 handler timing value (12 refs),2,0,,value
+0x00803688,vp44_comm_test_sensor_value,word,VP44 communication test redundant sensor value (11 refs),2,0,,value
+0x0080334c,output_control_state_selector,byte,Output control state machine selector value (11 refs),1,0,,state
+0x008032b8,crank_data_buffer_index,word,Crank data buffer store index counter (11 refs),2,0,,index
+0x00803292,fuel_temp_protection_limit,word,Fuel temperature protection limit calculator value (11 refs),2,0,,value
+0x0080169c,lamp_flash_controller_state,word,Periodic lamp flash controller state (11 refs),2,0,,state
+0x008002fc,protection_state2_threshold,dword,Protection state 2 threshold calculator value (11 refs),4,0,,value
+0x008000a8,target_rpm_rate_limiter_state,dword,Target RPM rate limiter state value (11 refs),4,0,,state
+0x0080d49e,pwm_timer_cycle_advance_state,word,PWM timer cycle advance state value (10 refs),2,0,,state
+0x0080d41c,insite_parameter_iterator_alt,word,INSITE parameter table iterator alternate (10 refs),2,0,,counter
+0x0080d2da,tpu_channel_enable_state,word,TPU timer channel enable state (10 refs),2,0,,state
+0x0080d02e,fuel_arbitrator_speed_timer,word,Fuel arbitrator speed limit timer (10 refs),2,0,,timer
+0x0080c814,protection_state_rpm_threshold,word,Protection state RPM threshold table pointer (10 refs),2,0,,pointer
+0x0080bdcb,vp44_io_can_fault_state,byte,VP44 I/O and CAN fault monitor state (10 refs),1,0,,state
+0x0080bdca,io_control_state_delay,byte,I/O control state machine delay value (10 refs),1,0,,state
+0x00809d6c,cold_start_fuel_control_state,word,Cold start fuel control coordinator state (10 refs),2,0,,state
+0x008096fa,boost_pressure_protection_state,word,Boost pressure protection state machine value (10 refs),2,0,,state
+0x00807e66,protection_state2_config,word,Protection state 2 threshold configuration (10 refs),2,0,,config
+0x00807cca,duty_cycle_monitor_config,word,Duty cycle monitor CAN initialization config (10 refs),2,0,,config
+0x00805fec,vp44_fault_protection_counter,word,VP44 fault protection controller counter (10 refs),2,0,,counter
+0x00805e52,vp44_fso_fault_flags,word,VP44 FSO fault flag processor flags (10 refs),2,0,,flags
+0x00804f3c,diagnostic_state_machine_index,word,Diagnostic state machine processor index (10 refs),2,0,,index
+0x0080387e,vp44_fault_protection_threshold,word,VP44 fault protection controller threshold (10 refs),2,0,,value
+0x008034e0,vp44_fso_multibit_fault_state,word,VP44 FSO multi-bit fault monitor state (10 refs),2,0,,state
+0x00803418,dzg_timing_state_variable,word,DZG timing and pressure control state variable (10 refs),2,0,,state
+0x0080168c,active_fault_code_iterator,word,Active fault code iterator index (10 refs),2,0,,index
+0x00801683,fault_code_display_state,byte,Fault code display controller state (10 refs),1,0,,state
+0x008001cc,hour_meter_conversion_state,dword,Hour meter conversion data state (10 refs),4,0,,state
+0x00800134,throttle_position_validator_state,word,Throttle position validator state (10 refs),2,0,,state
+0x008000d4,accelerator_throttle_fault_state,word,Accelerator throttle fault detector state (10 refs),2,0,,state
+0x0080d482,diagnostic_fuel_arbitration_output,word,Diagnostic fuel arbitration PWM output value (9 refs),2,0,,value
+0x0080d47a,fuel_statistics_accumulator,word,Fuel statistics tracker accumulator (9 refs),2,0,,value
+0x0080d096,fuel_timing_offset_value,word,Governor fuel PID timing offset value (9 refs),2,0,,value
+0x0080d034,fuel_arbitrator_session_counter,word,Fuel arbitrator session message counter (9 refs),2,0,,counter
+0x0080cfee,fuel_mode_blend_result,word,Fuel mode blend calculation result (9 refs),2,0,,value
+0x0080c800,rpm_based_fuel_limit_state,word,RPM-based fuel limit calculator state (9 refs),2,0,,state
+0x0080c7d2,duty_cycle_monitor_fault_counter,byte,Duty cycle monitor ISR fault counter (9 refs),1,0,,counter
+0x0080c7c8,fuel_timing_oil_pressure_state,word,Fuel timing oil pressure mode state (9 refs),2,0,,state
+0x0080c770,rpm_timing_comparison_value,word,RPM timing comparison and validation value (9 refs),2,0,,value
+0x0080c76e,rpm_timing_capture_buffer,word,RPM timing capture buffer value (9 refs),2,0,,value
+0x0080c76c,rpm_timing_delta_value,word,RPM timing delta calculation value (9 refs),2,0,,value
+0x0080c768,rpm_timing_offset_value,word,RPM timing offset for filtering (9 refs),2,0,,value
+0x0080c758,timer_capture_delta_value,dword,Timer capture delta accumulation value (9 refs),4,0,,value
+0x0080bde8,vp44_sensor_diagnostic_state,byte,VP44 redundant sensor diagnostic state (9 refs),1,0,,state
+0x0080bde2,vp44_can_response_state,byte,VP44 CAN message response state (9 refs),1,0,,state
+0x0080bdd3,vp44_fuel_temp_sensor_flags,byte,VP44 fuel temperature sensor flags (9 refs),1,0,,flags
+0x0080bdd1,vp44_diagnostic_sensor_state,byte,VP44 diagnostic sensor monitor state (9 refs),1,0,,state
+0x00809d5a,derate_protection_timer,word,Derate protection coordinator timer (9 refs),2,0,,timer
+0x00809d58,derate_fault_recovery_state,word,Derate fault recovery controller state (9 refs),2,0,,state
+0x00809b14,engine_runtime_histogram_counter,dword,Engine runtime histogram accumulator counter (9 refs),4,0,,counter
+0x00809b02,dzg_pressure_control_state,word,DZG pressure control state variable (9 refs),2,0,,state
+0x008096fe,vp44_diagnostic_fault_state,word,VP44 diagnostic fault monitor state (9 refs),2,0,,state
+0x00807cd6,can1_timer_callback_state,word,CAN1 timer callback state variable (9 refs),2,0,,state
+0x00805fee,vp44_protection_threshold_value,word,VP44 fault protection threshold value (9 refs),2,0,,value
+0x00805e54,vp44_fso_fault_accumulator,word,VP44 FSO fault accumulator value (9 refs),2,0,,value
+0x00804f38,diagnostic_state_machine_counter,word,Diagnostic state machine iteration counter (9 refs),2,0,,counter
+0x00803744,fuel_timing_transition_state,word,Fuel timing transition state value (9 refs),2,0,,state
+0x00803740,crank_fuel_timing_state,word,Crank fuel timing state machine value (9 refs),2,0,,state
+0x008036ba,vp44_comm_fault_monitor_state,word,VP44 communication fault monitor state (9 refs),2,0,,state
+0x0080349a,vp44_diagnostic_threshold_state,word,VP44 diagnostic threshold monitor state (9 refs),2,0,,state
+0x00803340,output_control_can_state,byte,Output control CAN interface state (9 refs),1,0,,state
+0x0080328e,fuel_temp_protection_state,word,Fuel temperature protection state (9 refs),2,0,,state
+0x00801698,lamp_flash_timer_state,word,Lamp flash controller timer state (9 refs),2,0,,state
+0x00801686,fault_code_display_counter,byte,Fault code display iteration counter (9 refs),1,0,,counter
+0x008001d0,hour_meter_tick_counter,dword,Hour meter tick accumulator counter (9 refs),4,0,,counter
+0x00800130,throttle_position_raw_value,word,Throttle position raw ADC value (9 refs),2,0,,value
+0x008000d0,accelerator_throttle_raw_value,word,Accelerator throttle raw ADC value (9 refs),2,0,,value
+0x0080d48a,diagnostic_fuel_arbitration_write_flag,word,Diagnostic fuel arbitration write flag (1 ref),2,0,,flag
+0x0080d486,diagnostic_fuel_arbitration_state,word,Diagnostic fuel arbitration handler state (1 ref),2,0,,state
+0x0080d480,diagnostic_timing_increment_value,word,Diagnostic timing increment controller value (4 refs),2,0,,value
+0x0080d47c,fuel_statistics_secondary_accumulator,word,Fuel statistics tracker secondary accumulator (2 refs),2,0,,value
+0x0080d478,fuel_economy_statistics_value,word,Fuel economy data statistics value (7 refs),2,0,,value
+0x0080d476,fuel_statistics_command_value,word,Fuel statistics INSITE command value (6 refs),2,0,,value
+0x0080d094,engine_mode_timing_adjuster_state,word,Engine mode timing adjuster state (7 refs),2,0,,state
+0x0080d092,governor_rpm_error_value,word,Governor PID RPM error tracking value (23 refs),2,0,,value
+0x0080d032,fuel_arbitrator_control_timer,word,Fuel arbitrator control service timer (8 refs),2,0,,timer
+0x0080d030,fuel_arbitrator_status_timer,word,Fuel arbitrator status processor timer (6 refs),2,0,,timer
+0x0080cfec,fuel_mode_blend_state,word,Fuel mode selection blend state (3 refs),2,0,,state
+0x0080cfea,fuel_offset_calculation_result,word,Fuel offset calculator result value (10 refs),2,0,,value
+0x0080c7fe,rpm_based_fuel_limit_threshold,word,RPM-based fuel limit calculator threshold (4 refs),2,0,,value
+0x0080c7d0,duty_cycle_monitor_buffer_state,byte,Duty cycle monitor buffer state (3 refs),1,0,,state
+0x0080c76a,engine_fault_rpm_timing_state,word,Engine fault RPM timing state (4 refs),2,0,,state
+0x0080c760,duty_cycle_timing_capture_value,word,Duty cycle monitor timing capture value (12 refs),2,0,,value
+0x0080c75c,rpm_timer_interrupt_capture,word,RPM timer interrupt capture value (29 refs),2,0,,value
+0x0080bde6,vp44_status_data_flag_1,byte,VP44 status data collector flag 1 (1 ref),1,0,,flag
+0x0080bde4,vp44_status_data_flag_2,byte,VP44 status data collector flag 2 (1 ref),1,0,,flag
+0x0080bdce,vp44_status_history_flag,byte,VP44 status history tracking flag (2 refs),1,0,,flag
+0x0080bdcc,vp44_sensor_status_register,byte,VP44 sensor status multi-bit register (61 refs),1,0,,register
+0x0080bdc8,vp44_sensor_history_state,byte,VP44 sensor history and protection state (6 refs),1,0,,state
+0x0080bdc6,vp44_fuel_temperature_status,byte,VP44 fuel temperature sensor status (45 refs),1,0,,status
+0x00809d56,derate_threshold_state_counter,word,Derate threshold monitor state counter (11 refs),2,0,,counter
+0x00809d50,derate_rpm_calculation_value,word,Derate RPM calculation and fault value (20 refs),2,0,,value
+0x00809b06,vp44_sensor_diagnostic_read_state,word,VP44 sensor diagnostic control read state (3 refs),2,0,,state
+0x00809b04,vp44_sensor_diagnostic_write_state,word,VP44 sensor diagnostic control write state (5 refs),2,0,,state
+0x00809b00,vp44_rpm_based_fault_state,word,VP44 RPM-based fault detector state (2 refs),2,0,,state
+0x008096f8,diagnostic_mode_fuel_state,word,Diagnostic mode fuel adjustment state (39 refs),2,0,,state
+0x008096f6,diagnostic_mode_boost_state,word,Diagnostic mode boost control state (4 refs),2,0,,state
+0x008096f4,boost_pressure_diagnostic_state,word,Boost pressure diagnostic state (5 refs),2,0,,state
+0x00807cd2,rpm_timer_interrupt_threshold,word,RPM timer interrupt threshold value (8 refs),2,0,,value
+0x00805ff0,vp44_fault_protection_timer,word,VP44 fault protection controller timer (6 refs),2,0,,timer
+0x00805e56,vp44_fso_fault_status_register,word,VP44 FSO fault status bit register (17 refs),2,0,,register
+0x00804f3e,diagnostic_queue_iterator_index,word,Diagnostic queue iterator index (18 refs),2,0,,index
+0x00803880,rpm_derate_calculation_table_ptr,word,RPM derate calculation table pointer (13 refs),2,0,,pointer
+0x008034e2,vp44_fso_stuck_high_state,word,VP44 FSO stuck high fault detector state (4 refs),2,0,,state
+0x0080341a,dzg_timing_state_machine_value,word,DZG timing state machine control value (8 refs),2,0,,state
+0x00803416,dzg_timing_accumulator_value,word,DZG timing accumulator calculation value (23 refs),2,0,,value
+0x00803342,vp44_timing_override_state,word,VP44 timing override state (3 refs),2,0,,state
+0x0080333e,vp44_state_debounce_value,word,VP44 state debounce filter value (7 refs),2,0,,value
+0x0080169a,wait_to_start_lamp_state,word,Wait-to-start lamp blink pattern state (3 refs),2,0,,state
+0x00801694,fault_lamp_blink_pattern_state,word,Fault lamp blink pattern generator state (2 refs),2,0,,state
+0x00801688,digit_display_sequencer_state,word,I/O control digit display sequencer state (12 refs),2,0,,state
+0x00801684,fault_code_display_mode,byte,Fault code display controller mode (3 refs),1,0,,state
+0x00801680,digit_display_index,word,I/O control digit display index (3 refs),2,0,,index
+0x008001d4,engine_runtime_histogram_state,dword,Engine runtime histogram accumulator state (2 refs),4,0,,state
+0x008001c8,engine_runtime_histogram_read,dword,Engine runtime histogram read value (1 ref),4,0,,value
+0x008001c4,vp44_comm_state_machine_timer,dword,VP44 communication state machine timer (3 refs),4,0,,timer
+0x00800138,throttle_buffer_validation_value,word,Throttle position buffer validation value (9 refs),2,0,,value
+0x0080012c,throttle_validation_state,word,Throttle position validation state (3 refs),2,0,,state
+0x008000d8,diagnostic_param_lookup_value,word,Diagnostic parameter lookup value (2 refs),2,0,,value
+0x008000cc,can_fault_monitor_counter,word,CAN fault monitor periodic counter (3 refs),2,0,,counter
+0x008000c8,io_can_fault_monitor_state,word,I/O and CAN fault monitor state (4 refs),2,0,,state
