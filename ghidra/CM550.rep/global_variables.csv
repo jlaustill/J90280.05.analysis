@@ -4255,3 +4255,37 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080c7ee,engine_running_mode_timer,word,Engine running mode 3 time accumulator,2,0,,timer
 0x008002d2,engine_mode_previous_state,word,Engine mode previous state for transition detection,2,0,,state
 0x0080bdc6,vp44_combined_status_byte_0,byte,VP44 combined status byte 0 from XOR validation,1,0,,status
+0x0080bdcc,diagnostic_input_flags,byte,Diagnostic input status flags (bit-masked),1,0,,flag
+0x0080bdef,output_lamp_control_flags,byte,Output lamp control flags for indicators,1,0,,flag
+0x0080fffc,sim_chip_select_base_reg0,word,SIM chip select base address register 0,2,0,,register
+0x0080fffa,sim_chip_select_option_reg0,word,SIM chip select option register 0,2,0,,register
+0x00fffe20,mios_mpwmsm_perctl_reg,word,MIOS MPWMSM period control register,2,0,,register
+0x00fffe0a,mios_mpwmsm_scr_reg,word,MIOS MPWMSM status control register,2,0,,register
+0x0080d2b4,can_transmit_buffer_ptr,dword,CAN transmit buffer pointer,4,0,,pointer
+0x00809a03,output_control_state_flags,byte,Output control state machine flags,1,0,,flag
+0x00805e56,vp44_fso_fault_status_latched,word,VP44 FSO fault status latched value,2,0,,flag
+0x008096b6,vp44_diagnostic_mode_state,word,VP44 diagnostic mode state machine value,2,0,,state
+0x008096a8,throttle_position_filtered,word,Throttle position filtered value,2,0,,value
+0x00809d4c,engine_run_time_seconds,word,Engine run time in seconds,2,0,,counter
+0x008035ec,engine_control_mode_flags,word,Engine control mode flags,2,0,,flag
+0x008091ea,intake_manifold_temp_raw,word,Intake manifold temperature raw ADC value,2,0,,value
+0x00fffa27,sim_swsr_watchdog_service,byte,SIM software service register for watchdog,1,0,,register
+0x00ffd00f,external_watchdog_service,byte,External watchdog service register,1,0,,register
+0x00804e9c,calibration_checksum_value,word,Calibration data checksum value,2,0,,value
+0x00804e7c,calibration_block_pointer,dword,Calibration block base pointer,4,0,,pointer
+0x0080d2ca,can_message_id_buffer,dword,CAN message ID buffer for transmission,4,0,,buffer
+0x00800358,interrupt_vector_base,dword,Interrupt vector table base address,4,0,,pointer
+0x0080d2bc,can_transmit_length,word,CAN transmit message length,2,0,,value
+0x00805670,dtc_active_fault_count,word,Active DTC fault count,2,0,,counter
+0x0080d028,timer_overflow_counter,dword,Timer overflow counter for time tracking,4,0,,counter
+0x0080d446,multi_packet_sequence_counter,byte,Multi-packet sequence counter for J1939,1,0,,counter
+0x0080d184,j1939_message_pending_flag,word,J1939 message pending transmission flag,2,0,,flag
+0x0080cfc3,fuel_arbitrator_active_source,byte,Active fuel demand source ID,1,0,,value
+0x0080d444,multi_packet_tx_state,byte,Multi-packet transmission state machine,1,0,,state
+0x0080d2c2,can_tx_message_type,word,CAN transmit message type identifier,2,0,,value
+0x008037b4,shutdown_protection_timer,word,Shutdown protection countdown timer,2,0,,timer
+0x00803416,vp44_comm_timeout_counter,word,VP44 communication timeout counter,2,0,,counter
+0x00800150,system_tick_counter,dword,System tick counter for scheduling,4,0,,counter
+0x0080d41a,insite_response_byte_count,byte,Insite response byte count,1,0,,counter
+0x00809a04,output_control_timer_value,word,Output control timer current value,2,0,,timer
+0x00fffe1e,mios_mpwmsm_pulscnt_reg2,word,MIOS MPWMSM pulse count register 2,2,0,,register
