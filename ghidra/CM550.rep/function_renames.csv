@@ -669,3 +669,5 @@ address,newName
 0x00028588,runTimeCountersUpdate
 0x000285c8,runTimeCountersUpdateAlt
 0x00033524,vp44TimingRangeValidation
+0x0002b476,setDiagnosticSourceFromFuelArbitrator
+0x0002b49a,setDiagnosticSourceFromEngineFlags

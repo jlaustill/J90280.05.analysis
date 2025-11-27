@@ -424,3 +424,10 @@ rpm_rate_limits_t,0x008062F8,threshold_timer_reload,word,2,Timer reload when RPM
 # High RPM Threshold Calibration (4 bytes) - 0x00806300 to 0x00806304
 high_rpm_threshold_calibration_t,0x00806300,threshold_timer_reload,word,2,Timer reload when high RPM threshold exceeded,,needs_review
 high_rpm_threshold_calibration_t,0x00806300,rate_threshold,word,2,RPM rate threshold for high RPM detection,,needs_review
+# Shutdown Minimum Selector State @ 0x0080d494-0x0080d49a
+shutdown_minimum_selector_t,0x0080d494,fuel_value,word,2,Current minimum fuel limit value selected by arbitration,verified
+shutdown_minimum_selector_t,0x0080d494,source_id,word,2,Source ID that set minimum (17=selector17 16=selector16 15=selector15 19=selector19 29=selector29 13=diag_mode),verified
+shutdown_minimum_selector_t,0x0080d494,previous_value,word,2,Previous minimum value for change tracking,verified
+# Diagnostic Source Tracking @ 0x0080d49a-0x0080d49e
+diagnostic_source_t,0x0080d49a,value,word,2,Data/threshold value associated with the diagnostic source,verified
+diagnostic_source_t,0x0080d49a,code,word,2,Subsystem code that triggered diagnostic (see DIAGNOSTIC_SOURCE_CODE enum),verified

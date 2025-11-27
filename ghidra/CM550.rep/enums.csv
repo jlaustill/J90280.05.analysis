@@ -258,3 +258,11 @@ FUEL_SOURCE_ID,0x18,FUEL_SRC_VP44_ACTIVE,VP44 injection system active fuel,1
 FUEL_SOURCE_ID,0x19,FUEL_SRC_HIGH_PERF,High performance mode fuel,1
 FUEL_SOURCE_ID,0x1A,FUEL_SRC_IDLE,Idle mode - zero fuel command,1
 FUEL_SOURCE_ID,0x1B,FUEL_SRC_FAULT,Fault/emergency mode fuel,1
+# Diagnostic Source Codes - identifies which subsystem triggered a diagnostic condition
+DIAGNOSTIC_SOURCE_CODE,0,NONE,No active diagnostic source,2
+DIAGNOSTIC_SOURCE_CODE,1,FUEL_ARBITRATOR,Fuel arbitrator triggered (rpm_target == 2),2
+DIAGNOSTIC_SOURCE_CODE,2,DIAG_STATUS_2,Diagnostic status 2 condition,2
+DIAGNOSTIC_SOURCE_CODE,5,ENGINE_FLAGS,Engine control flags triggered,2
+DIAGNOSTIC_SOURCE_CODE,6,EPS_FAULT,Electronic Position Sensor fault,2
+DIAGNOSTIC_SOURCE_CODE,7,DIAG_STATUS_7,Diagnostic status 7 condition,2
+DIAGNOSTIC_SOURCE_CODE,30,DIAG_STATUS_30,Diagnostic status 30 condition,2

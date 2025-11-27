@@ -1826,9 +1826,6 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x80d49c,diagnostic_status_register,word,Diagnostic operation status and mode flags,2,0,,flag
 0x0080d092,low_rpm_threshold,word,Low RPM threshold for protection,2,0,,value
 0x0080d480,fuel_adjustment_delta,word,Fuel adjustment delta value,2,0,,value
-0x0080d494,shutdown_minimum_fuel_value,word,Shutdown minimum fuel limit value,2,0,,value
-0x0080d496,shutdown_minimum_source_id,word,Shutdown minimum source identifier,2,0,,value
-0x0080d498,shutdown_minimum_previous,word,Previous shutdown minimum value for tracking,2,0,,value
 0x0080fffa,init_checkpoint_secondary,word,Initialization checkpoint secondary value,2,0,,debug
 0x0080fffc,init_checkpoint_primary,word,Initialization checkpoint primary value,2,0,,debug
 0x0080fffe,init_checkpoint_address,word,Initialization checkpoint address value,2,0,,debug
