@@ -4465,3 +4465,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00fff20a,QADC_QACR1,word,QADC control register 1,2,0,,register
 0x00fff200,QADC_QADCMCR,word,QADC module configuration register,2,0,,register
 0x00ffe000,EBI_EBIMCR,word,EBI module configuration register,2,0,,register
+0x00804bb6,derate_threshold_setpoint,word,Derate threshold setpoint value,2,0,,value
+0x0080d492,diagnostic_code_clear_mask,word,Diagnostic code clear mask for DTC operations,2,0,,mask
+0x00800244,vp44_status_data_table,dword,VP44 status data collection table base,4,0,,table
+0x00807cce,can1_timer_buffer_value,word,CAN1 timer buffer captured value,2,0,,value
+0x0080035c,scheduler_performance_counter,dword,Scheduler performance monitoring counter,4,0,,counter
+0x0080cf80,serial_receive_buffer_state,word,Serial receive buffer state machine,2,0,,state
+0x00801698,wait_to_start_lamp_counter,word,Wait-to-start lamp blink counter,2,0,,counter
+0x0080d07e,eps_acceleration_value,word,EPS acceleration sensor value,2,0,,value
+0x008018c6,can_memory_sync_pointer,dword,CAN message memory sync pointer,4,0,,pointer
+0x008096a2,fuel_demand_limit_source,word,Fuel demand limit source selector,2,0,,value
+0x008096c4,diagnostic_mode_fuel_adjustment,word,Diagnostic mode fuel adjustment value,2,0,,value
+0x008096b4,vp44_operating_condition_value,word,VP44 operating condition check value,2,0,,value
