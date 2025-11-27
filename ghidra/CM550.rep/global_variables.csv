@@ -279,7 +279,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x80002a,dma_control_flags1,dword,DMA control/enable flags 1 (0x80000000=enabled),2,0,,flag
 0x80002e,dma_descriptor_ptr2,dword,DMA descriptor chain pointer 2  ,2,0,,data
 0x800032,dma_control_flags2,dword,DMA control/enable flags 2 (0x80000000=enabled),2,0,,flag
-0x00800070,diagnostic_timing_increment_state,dword,Diagnostic timing increment controller state (3 refs),4,0,,state
+0x00800070,diagnostic_timing_increment_state,word,Diagnostic timing increment controller state - accessed via clr.w/move.w,2,0,,state
+0x00800072,diagnostic_timing_increment_reserved,word,Diagnostic timing increment reserved,2,0,,reserved
 0x00800074,fuel_parameter_pointer_3,dword,Fuel parameter pointer setup value 3 (1 ref),4,0,,pointer
 0x0080007c,fuel_parameter_pointer_2,dword,Fuel parameter pointer setup value 2 (1 ref),4,0,,pointer
 0x00800084,fuel_parameter_pointer_1,dword,Fuel parameter pointer setup value 1 (1 ref),4,0,,pointer
@@ -291,7 +292,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00800094,governor_derivative_state,dword,Governor derivative calculation state (4 refs),4,0,,state
 0x00800096,rpm_interpolation_lookup_arg,word,RPM interpolation table lookup argument (1 ref),2,0,,arg
 0x00800098,rpm_parameter_pointer,dword,RPM parameter pointer setup value (1 ref),4,0,,pointer
-0x0080009c,target_rpm_rate_limiter_output,dword,Target RPM rate limiter output (1 ref),4,0,,value
+0x0080009c,target_rpm_rate_limiter_output,word,Target RPM rate limiter output - accessed via move.w,2,0,,value
+0x0080009e,target_rpm_rate_limiter_reserved,word,Target RPM rate limiter reserved,2,0,,reserved
 0x008000a2,governor_interpolation_factor,word,Governor calculation interpolation factor,2,0,,value
 0x008000a4,governor_fuel_output_state,dword,Governor fuel output state (7 refs),4,0,,state
 0x008000a6,target_rpm_rate_limiter_previous,word,Target RPM rate limiter previous value (4 refs),2,0,,value
@@ -312,7 +314,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008000cd,io_control_fault_persistence_counter_4,byte,Persistence counter for I/O control fault 4,1,0,CNT,counter
 0x008000ce,io_control_fault_persistence_counter_5,byte,Persistence counter for I/O control fault 5,1,0,CNT,counter
 0x008000cf,io_control_fault_persistence_counter_6,byte,Persistence counter for I/O control fault 6,1,0,CNT,counter
-0x008000d0,accelerator_throttle_raw_value,word,Accelerator throttle raw ADC value (9 refs),2,0,,value
+0x008000d0,accelerator_throttle_fault_counter,byte,Accelerator throttle fault persistence counter - accessed via move.b/addq.b/clr.b,1,0,,counter
+0x008000d1,io_control_fault_persistence_counter_7,byte,Persistence counter for I/O control fault 7,1,0,CNT,counter
 0x008000d2,accel_throttle_fault_delay_counter,word,Accelerator throttle fault delay counter (5 refs),2,0,,counter
 0x008000d4,accelerator_throttle_fault_state,word,Accelerator throttle fault detector state (10 refs),2,0,,state
 0x008000d8,diagnostic_param_lookup_value,word,Diagnostic parameter lookup value (2 refs),2,0,,value
@@ -333,12 +336,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00800153,current_derate_reserved,byte,Reserved padding byte,1,0,,reserved
 0x0080016e,redundant_sensor_validation_index,word,Redundant sensor validation loop index,2,0,,index
 0x008001b8,vp44_comm_buffer_status,word,VP44 communication buffer status,2,0,,status
-0x008001c0,vp44_comm_state_machine_state,dword,VP44 communication state machine state (6 refs),4,0,,state
-0x008001c4,vp44_comm_state_machine_timer,dword,VP44 communication state machine timer (3 refs),4,0,,timer
-0x008001c8,engine_runtime_histogram_read,dword,Engine runtime histogram read value (1 ref),4,0,,value
+0x008001c0,vp44_buffer_count,word,VP44 buffer entry count - accessed via addq.w/move.w,2,0,,count
+0x008001c2,vp44_buffer_total_size,word,VP44 buffer total size (block_size * buffer_count),2,0,,size
+0x008001c4,vp44_block_size,word,VP44 block size (0x2000 / buffer_count) - accessed via move.w,2,0,,size
+0x008001c6,engine_runtime_histogram_delta,dword,Engine runtime histogram time delta calculation,4,0,,value
 0x008001cc,hour_meter_conversion_state,dword,Hour meter conversion data state (10 refs),4,0,,state
-0x008001d0,hour_meter_tick_counter,dword,Hour meter tick accumulator counter (9 refs),4,0,,counter
-0x008001d4,engine_runtime_histogram_state,dword,Engine runtime histogram accumulator state (2 refs),4,0,,state
+0x008001d0,hour_meter_tick_counter,word,Hour meter tick accumulator counter - accessed via move.w/cmp.w,2,0,,counter
+0x008001d2,hour_meter_tick_divider,word,Hour meter tick divider value,2,0,,divider
+0x008001d4,engine_runtime_histogram_interpolation_b,word,Engine runtime histogram interpolation value B,2,0,,value
+0x008001d6,engine_runtime_histogram_config_type_a,word,Engine runtime config table A type,2,0,,type
 0x008001fe,manifold_temp_table_1_type,word,Manifold temp limit table 1 type (1 ref),2,0,,value
 0x00800200,manifold_temp_table_1_x_ptr,dword,Manifold temp limit table 1 X-axis pointer (1 ref),4,0,,pointer
 0x00800206,manifold_temp_table_1_y_type,word,Manifold temp limit table 1 Y type (1 ref),2,0,,value
@@ -359,7 +365,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080023a,vp44_sensor_fault_debounce_timer,word,VP44 sensor fault debounce timer (3 refs),2,0,,timer
 0x0080023c,vp44_derate_fault_debounce_timer,word,VP44 derate fault debounce timer (3 refs),2,0,,timer
 0x0080023e,vp44_status_mask_array,byte,Array of masks for VP44 status bit filtering,10,0,,array
-0x00800242,vp44_status_collector_index,word,VP44 status data collector index,2,0,,index
+0x00800242,vp44_buffer_index,byte,VP44 status data collector buffer index - accessed via move.b/addq.b/clr.b,1,0,,index
+0x00800243,vp44_buffer_index_reserved,byte,VP44 buffer index reserved byte,1,0,,reserved
 0x00800244,vp44_status_data_table,dword,VP44 status data collection table base,4,0,,table
 0x00800288,peak_torque_correction_applied_flag,word,Peak torque correction applied one-shot flag,2,0,,flag
 0x008002d2,engine_mode_previous_state,word,Engine mode previous state for transition detection,2,0,,state
@@ -413,19 +420,23 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00801678,lamp_1_blink_counter,word,Fault lamp 1 blink cycle counter (7 refs),2,0,,counter
 0x0080167a,lamp_2_blink_counter,word,Lamp 2 blink state counter,2,0,,counter
 0x0080167c,lamp_3_blink_counter,word,Lamp 3 blink state counter,2,0,,counter
-0x00801680,digit_display_index,word,I/O control digit display index (3 refs),2,0,,index
+0x00801680,digit_display_hundreds_digit,byte,I/O control digit display hundreds digit - accessed via move.b,1,0,,value
+0x00801681,digit_display_tens_digit,byte,I/O control digit display tens digit - accessed via move.b,1,0,,value
+0x00801682,digit_display_ones_digit,byte,I/O control digit display ones digit - accessed via move.b,1,0,,value
 0x00801683,fault_code_display_state,byte,Fault code display controller state (10 refs),1,0,,state
 0x00801684,fault_code_display_mode,byte,Fault code display controller mode (3 refs),1,0,,state
 0x00801686,fault_code_display_counter,byte,Fault code display iteration counter (9 refs),1,0,,counter
-0x00801688,digit_display_sequencer_state,word,I/O control digit display sequencer state (12 refs),2,0,,state
+0x00801688,digit_display_sequencer_state,byte,I/O control digit display sequencer state - accessed via move.b/addq.b/clr.b,1,0,,state
+0x00801689,digit_display_sequencer_reserved,byte,Digit display sequencer reserved byte,1,0,,reserved
 0x0080168a,io_control_mask_toggle,word,I/O control mask toggle value (2 refs),2,0,,value
-0x0080168c,active_fault_code_iterator,word,Active fault code iterator index (10 refs),2,0,,index
+0x0080168c,active_fault_code_iterator,byte,Active fault code iterator index - accessed via move.b/addq.b,1,0,,index
+0x0080168d,active_fault_code_iterator_reserved,byte,Active fault code iterator reserved byte,1,0,,reserved
 0x0080168e,io_control_mask_state_2,word,I/O control mask state machine value 2 (7 refs),2,0,,state
 0x00801692,io_control_mask_state_1,word,I/O control mask state machine value 1 (4 refs),2,0,,state
 0x00801694,fault_lamp_blink_pattern_state,word,Fault lamp blink pattern generator state (2 refs),2,0,,state
 0x00801696,fault_lamp_blink_counter,word,Fault lamp blink pattern counter (13 refs),2,0,,counter
 0x00801698,lamp_flash_timer_state,word,Lamp flash controller timer state (9 refs),2,0,,state
-0x0080169a,wait_to_start_lamp_state,word,Wait-to-start lamp blink pattern state (3 refs),2,0,,state
+0x0080169a,wait_to_start_lamp_state,byte,Wait-to-start lamp blink pattern state - accessed via tst.b,1,0,,state
 0x0080169c,lamp_flash_controller_state,word,Periodic lamp flash controller state (11 refs),2,0,,state
 0x008016b0,eps_diagnostic_table_ptr,dword,EPS diagnostic calibration table pointer (1 ref),4,0,,pointer
 0x008016b4,eps_diagnostic_rpm_snapshot,dword,EPS diagnostic RPM snapshot value (2 refs),4,0,,value
@@ -463,7 +474,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00801758,crank_rpm_debounce_counter,word,Crank RPM non-zero debounce counter (2 refs),2,0,,counter
 0x0080175a,crank_sensor_fault_debounce_counter,word,Crank sensor fault debounce counter (2 refs),2,0,,counter
 0x0080175c,scheduler_slot_index,word,Scheduler slot index for task dispatch,2,0,,index
-0x008018a0,oil_pressure_fuel_calculation,dword,Oil pressure protection fuel calculation value,4,0,,value
+0x008018a0,oil_pressure_fuel_calculation,word,Oil pressure protection fuel calculation value - accessed via add.w/sub.w,2,0,,value
 0x008018ae,can_mem_table_start_ptr_1,dword,CAN memory table start pointer 1 (2 refs),4,0,,pointer
 0x008018b2,can_mem_table_end_ptr_1,dword,CAN memory table end pointer 1 (2 refs),4,0,,pointer
 0x008018b6,can_mem_table_src_ptr_1,dword,CAN memory table source pointer 1 (1 ref),4,0,,pointer
@@ -633,7 +644,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00803292,fuel_temp_protection_limit,word,Fuel temperature protection limit calculator value (11 refs),2,0,,value
 0x00803294,fuel_temp_protection_calculator,word,Fuel temp protection limit calculator value (3 refs),2,0,,value
 0x00803296,fuel_temp_limit_previous,word,Previous fuel temp calculated limit (2 refs),2,0,,value
-0x00803298,crank_protection_state_flags,word,Crank protection state flags bitmap (6 refs),2,0,,flags
+0x00803298,crank_protection_state_flags,byte,Crank protection state flags bitmap - accessed via clr.b/ori.b/cmp.b,1,0,,flags
 0x0080329a,crank_protection_sample_counter,word,Crank protection sample counter (6 refs),2,0,,counter
 0x0080329c,crank_protection_sequence_flag,word,Crank protection sequence complete flag (2 refs),2,0,,flag
 0x0080329e,crank_protection_state_index,word,Crank protection state sequence index (5 refs),2,0,,index
@@ -864,9 +875,12 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00804d84,engine_startup_inhibit_flag,word,Engine startup inhibit flag,2,0,,flag
 0x00804de0,protection_state2_output_value,word,Protection state 2 threshold output value (1 ref),2,0,,value
 0x00804e76,diagnostic_protection_state,word,Diagnostic protection evaluator state (12 refs),2,0,,state
-0x00804e7c,calibration_block_pointer,dword,Calibration block base pointer,4,0,,pointer
-0x00804e9c,calibration_checksum_value,word,Calibration data checksum value,2,0,,value
-0x00804efc,diagnostic_code_status_array,dword,Diagnostic code status array base,4,0,,array
+0x00804e7c,diagnostic_pending_code_count,byte,Diagnostic pending code count - accessed via subq.b/addq.b/cmpi.b,1,0,,count
+0x00804e7d,diagnostic_pending_code_array,byte,Diagnostic pending code array[31] - codes waiting to activate,1,0,,array
+0x00804e9c,diagnostic_active_code_count,byte,Diagnostic active code count - accessed via subq.b/addq.b/cmpi.b,1,0,,count
+0x00804e9d,diagnostic_active_code_array,byte,Diagnostic active code array[31] - currently active fault codes,1,0,,array
+0x00804efc,diagnostic_code_status_count,word,Diagnostic code status active count - accessed via subq.w,2,0,,count
+0x00804efe,diagnostic_code_status_reserved,word,Diagnostic code status reserved,2,0,,reserved
 0x00804f38,diagnostic_state_machine_counter,word,Diagnostic state machine iteration counter (9 refs),2,0,,counter
 0x00804f3c,diagnostic_state_machine_index,word,Diagnostic state machine processor index (10 refs),2,0,,index
 0x00804f3e,diagnostic_queue_iterator_index,word,Diagnostic queue iterator index (18 refs),2,0,,index
@@ -2487,8 +2501,9 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807C1C,replaced_old_crank_timer_count2_0,word,REPLACED OLD CRANK_TIMER_COUNT2,2,0,HEX,parameter
 0x00807C1E,value_used_to_detect_sync_pulse_0_100,word,VALUE USED TO DETECT SYNC PULSE,2,0,%,parameter
 0x00807C20,value_used_to_detect_sync_pulse_0_100,word,% VALUE USED TO DETECT SYNC PULSE,2,0,%,parameter
-0x00807C22,used_in_cranking_mode_0_4000,dword,USED IN CRANKING MODE,4,0,USEC,parameter
-0x00807C26,used_in_cranking_mode_0_4000,dword,USED IN CRANKING MODE,4,0,USEC,parameter
+0x00807C22,cold_start_fuel_minimum_value,word,Cold start fuel adjustment minimum value - accessed via cmp.w,2,0,USEC,parameter
+0x00807C24,cold_start_rpm_threshold_high,word,Cold start engine RPM threshold high,2,0,RPM,parameter
+0x00807C26,cold_start_fuel_demand_threshold,word,Cold start fuel demand minimum threshold - accessed via cmp.w,2,0,USEC,parameter
 0x00807C2A,the_value_above_set_speed_where_e_brakes_will_turn_off_regard_0_5_10,word,THE VALUE ABOVE SET SPEED WHERE E-BRAKES WILL TURN OFF REGARD,2,0,MPH,parameter
 0x00807C2C,the_point_on_the_braking_axis_where_engine_braking_will_begi_0_100,word,THE POINT ON THE % BRAKING AXIS WHERE ENGINE BRAKING WILL BEGI,2,0,%BR,parameter
 0x00807C2E,the_value_which_causes_one_add_n_l_brake_to_be_applied_at_a_gi_0_300,word,THE VALUE WHICH CAUSES ONE ADD'N'L BRAKE TO BE APPLIED AT A GI,2,0,%B/M,parameter
@@ -2529,8 +2544,10 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0X00807CC4,CRERGNUL,word,TOOL MAXIMUM ACCEPTABLE CRUISE_RSG_GAIN VALUE,2,0,,lookup
 0X00807CC6,CRFLOFPZ,word,ADJUSTMENT TO RSG INTEGRATOR PRESET FUEL CALCULATION,2,0,%FU,data
 0x00807cca,duty_cycle_monitor_config,word,Duty cycle monitor CAN initialization config (10 refs),2,0,,config
-0x00807cce,can1_timer_buffer_value,word,CAN1 timer buffer captured value,2,0,,value
-0x00807cd0,can1_timer_buffer_config,word,CAN1 timer buffer configuration value (12 refs),2,0,,config
+0x00807cce,can1_timer_buffer_count,byte,CAN1 timer buffer entry count - accessed via move.b,1,0,,count
+0x00807ccf,can1_timer_buffer_reserved,byte,CAN1 timer buffer reserved byte,1,0,,reserved
+0x00807cd0,can1_timer_buffer_divisor,byte,CAN1 timer buffer divisor config - accessed via move.b/cmpi.b,1,0,,config
+0x00807cd1,can1_timer_buffer_config_reserved,byte,CAN1 timer buffer config reserved,1,0,,reserved
 0x00807cd2,rpm_timer_interrupt_threshold,word,RPM timer interrupt threshold value (8 refs),2,0,,value
 0x00807cd6,can1_timer_callback_state,word,CAN1 timer callback state variable (9 refs),2,0,,state
 0x00807CE6,time_to_delay_before_setting_a_new_throttle_min_0_25500,word,TIME TO DELAY BEFORE SETTING A NEW THROTTLE_MIN,2,0,MSEC,parameter
@@ -2547,7 +2564,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807CFE,intake_manifold_temperature_at_motoring_conditions_50_293,word,INTAKE MANIFOLD TEMPERATURE AT MOTORING CONDITIONS,2,0,DEGF,parameter
 0X00807D00,CPTPMNDC,word,MINIMUM DIFFERENCE EXPECTED AND MEASURED INTAKE TEMPERATURE,2,0,DEGF,data
 0x00807D00,minimum_difference_expected_and_measured_intake_temperature_0_200,word,MINIMUM DIFFERENCE EXPECTED AND MEASURED INTAKE TEMPERATURE,2,0,DEGF,parameter
-0x00807D02,maximum_allowed_timing_advance_for_this_algorithm_0_20,word,MAXIMUM ALLOWED TIMING ADVANCE FOR THIS ALGORITHM,2,0,IADV,parameter
+0x00807D02,maximum_allowed_timing_advance_for_this_algorithm_0_20,byte,MAXIMUM ALLOWED TIMING ADVANCE FOR THIS ALGORITHM - accessed via move.b,1,0,IADV,parameter
 0X00807D04,CPMXTAES,word,MAXIMUM ALLOWED ENGINE SPEED FOR TIMING ADVANCE IN THIS ALGORITHM,2,0,RPM,data
 0x00807D04,maximum_allowed_engine_speed_for_timing_advance_in_this_algor_0_4500,word,MAXIMUM ALLOWED ENGINE SPEED FOR TIMING ADVANCE IN THIS ALGOR,2,0,RPM,parameter
 0X00807D06,CPMXES,word,MAXIMUM ALLOWABLE ENGINE SPEED FOR THIS ALGORITHM TO OPERATE,2,0,RPM,data
@@ -2946,7 +2963,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808496,the_can_1_bit_timing_1_register_0_255,word,THE CAN 1 BIT TIMING 1 REGISTER,2,0,NONE,parameter
 0x00808498,the_can_1_extended_mask_0x0_0xffffffff,dword,THE CAN 1 EXTENDED MASK,4,0,HEX,parameter
 0x0080849C,the_can_1_standard_mask_0_65535,word,THE CAN 1 STANDARD MASK,2,0,HEX,parameter
-0x0080849E,mask_used_for_can_msg_object_15_0_ffffffff,dword,MASK USED FOR CAN MSG OBJECT 15.,4,0,HEX,parameter
+0x0080849E,mask_used_for_can_msg_object_15_0_ffffffff,word,MASK USED FOR CAN MSG OBJECT 15. - accessed via move.w,2,0,HEX,parameter
 0x008084A2,the_can_cpu_interface_register_0_255,word,THE CAN CPU INTERFACE REGISTER,2,0,NONE,parameter
 0x008084A4,the_can_bus_configuration_register_0_255,word,THE CAN BUS CONFIGURATION REGISTER,2,0,NONE,parameter
 0x008084A6,the_can_bit_timing_0_register_0_255,word,THE CAN BIT TIMING 0 REGISTER,2,0,NONE,parameter
@@ -3311,8 +3328,9 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00809b0a,dzg_timing_pressure_state_1,word,DZG timing and pressure control state variable 1 (11 refs),2,0,,state
 0x00809b10,hour_meter_conversion_data,dword,Hour meter conversion data accumulator (12 refs),4,0,,accumulator
 0x00809b14,engine_runtime_histogram_counter,dword,Engine runtime histogram accumulator counter (9 refs),4,0,,counter
-0x00809b18,engine_runtime_histogram_value,dword,Engine runtime histogram calculated value (3 refs),4,0,,value
-0x00809b1a,engine_runtime_histogram_index,word,Engine runtime histogram bin index (11 refs),2,0,,index
+0x00809b18,engine_runtime_histogram_value,word,Engine runtime histogram calculated value - accessed via move.w/clr.w,2,0,,value
+0x00809b1a,engine_runtime_histogram_index,byte,Engine runtime histogram bin index - accessed via move.b,1,0,,index
+0x00809b1b,engine_runtime_histogram_mode,byte,Engine runtime histogram mode flag (A4 register),1,0,,mode
 0x00809cbe,governor_mode_init_error_prev,word,Governor mode 1 init previous error (2 refs),2,0,,value
 0x00809cc0,governor_mode_init_integral,word,Governor mode 1 init PID integral value (2 refs),2,0,,value
 0x00809cc2,governor_mode_init_rpm_ref,word,Governor mode 1 init RPM reference (2 refs),2,0,,value
@@ -3964,7 +3982,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080c7a4,throttle_fault_threshold_high,word,Throttle fault threshold high value (2 refs),2,0,,threshold
 0x0080c7a6,throttle_fault_threshold_alt,word,Throttle fault threshold alternate value (2 refs),2,0,,threshold
 0x0080c7ae,rpm_sample_index,word,Index for RPM sample circular buffer,2,0,,index
-0x0080c7b2,rpm_timer_capture_value,word,RPM timer capture value,2,0,,value
+0x0080c7b2,rpm_timer_capture_state,byte,RPM timer capture state flag - accessed via cmpi.b/tst.b,1,0,,state
+0x0080c7b3,rpm_timer_capture_mode,byte,RPM timer capture mode flag - accessed via cmpi.b,1,0,,mode
 0x0080c7b8,throttle_fault_delay_counter,word,Throttle fault detection delay counter (6 refs),2,0,,counter
 0x0080c7c4,fuel_timing_control_value,word,Primary fuel timing control value for oil pressure modes,2,0,,value
 0x0080c7c6,fuel_timing_state,word,Fuel timing state machine value,2,0,,state
@@ -4094,10 +4113,10 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080d032,fuel_arbitrator_session_timer,word,Fuel arbitrator session countdown timer (11 refs),2,0,,timer
 0x0080d034,fuel_arbitrator_session_counter,word,Fuel arbitrator session message counter (9 refs),2,0,,counter
 0x0080d036,fuel_arbitrator_throttle_override,word,Fuel arbitrator throttle override value,2,0,,value
-0x0080D042,accumulated_backup_eps_period_between_vss_interrupts_0_65535,dword,ACCUMULATED BACKUP EPS PERIOD BETWEEN VSS INTERRUPTS,4,0,TCNT,parameter
+0x0080D042,accumulated_backup_eps_period_between_vss_interrupts_0_65535,word,ACCUMULATED BACKUP EPS PERIOD BETWEEN VSS INTERRUPTS - accessed via clr.w/move.w,2,0,TCNT,parameter
 0x0080D048,number_of_backup_eps_interrupts_between_vss_interrupts_0_65535,word,NUMBER OF BACKUP EPS INTERRUPTS BETWEEN VSS INTERRUPTS,2,0,CNT,parameter
 0x0080d04c,io_control_active_mask,word,IO control active mask built from table,2,0,,mask
-0x0080D04E,eps_period_backup_time_between_the_two_most_recent_eps_200_16777216,dword,EPS_PERIOD_BACKUP: TIME BETWEEN THE TWO MOST RECENT EPS,4,0,CNTS,parameter
+0x0080D04E,eps_period_backup_time_between_the_two_most_recent_eps_200_16777216,word,EPS_PERIOD_BACKUP: TIME BETWEEN THE TWO MOST RECENT EPS - accessed via move.w,2,0,CNTS,parameter
 0x0080D052,main_signal_edge_time_stamp_0_65535,word,MAIN SIGNAL EDGE TIME STAMP,2,0,CNTS,parameter
 0x0080D054,backup_signal_edge_time_stamp_0_65535,word,BACKUP SIGNAL EDGE TIME STAMP,2,0,CNTS,parameter
 0X0080D056,CMLSEL,word,CAM_SYNC_LOST_DURATION,2,0,SEC,data
@@ -4247,7 +4266,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D198,mask_for_input_of_water_in_fuel_0_65535,word,MASK FOR INPUT OF WATER IN FUEL,2,0,MASK,parameter
 0x0080D19A,amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535,word,AMOUNT OF TIME SINCE WATER IN FUEL LOW FAILURE WAS DETECTED,2,0,SEC,parameter
 0x0080D19C,amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535,word,AMOUNT OF TIME SINCE WATER IN FUEL LOW FAILURE WAS DETECTED,2,0,SEC,parameter
-0x0080D19E,points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32,dword,POINTS TO ENGINE SYNC FUEL PRESSURE FUEL MINIMUN THRESHOLD,4,0,HEX,parameter
+0x0080D19E,engine_sync_fuel_pressure_min_threshold_flag,word,Engine sync fuel pressure minimum threshold flag - accessed via move.w,2,0,HEX,parameter
 0x0080D1A2,points_to_water_in_fuel_fuel_maximum_threshold_0_2_32,dword,POINTS TO WATER IN FUEL FUEL MAXIMUM THRESHOLD,4,0,HEX,parameter
 0x80d1a4,system_logging_state,word,System data logging state flag (1=active 2=error mode),2,0,,flag
 0x0080D1A6,pointer_to_water_in_fuel_rpm_limit_threshold_0_2_32,dword,POINTER TO WATER IN FUEL RPM LIMIT THRESHOLD,4,0,HEX,parameter
@@ -4264,7 +4283,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D1C6,mask_for_input_of_boost_pressure_0_65535,word,MASK FOR INPUT OF BOOST PRESSURE,2,0,MASK,parameter
 0x0080D1C8,amount_of_time_since_boost_pressure_low_failure_was_detected_0_65535,word,AMOUNT OF TIME SINCE BOOST PRESSURE LOW FAILURE WAS DETECTED,2,0,SEC,parameter
 0x0080D1CA,amount_of_time_since_boost_pressure_low_failure_was_detected_0_65535,word,AMOUNT OF TIME SINCE BOOST PRESSURE LOW FAILURE WAS DETECTED,2,0,SEC,parameter
-0x0080D1CC,points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32,dword,POINTS TO ENGINE SYNC FUEL PRESSURE FUEL MINIMUN THRESHOLD,4,0,HEX,parameter
+0x0080D1CC,engine_sync_fuel_pressure_min_threshold_flag_2,word,Engine sync fuel pressure minimum threshold flag 2,2,0,HEX,parameter
 0x0080D1D0,points_to_boost_pressure_fuel_maximum_threshold_0_2_32,dword,POINTS TO BOOST PRESSURE FUEL MAXIMUM THRESHOLD,4,0,HEX,parameter
 0x0080D1D4,pointer_to_boost_pressure_rpm_limit_threshold_0_2_32,dword,POINTER TO BOOST PRESSURE RPM LIMIT THRESHOLD,4,0,HEX,parameter
 0x0080D1D8,EPBSEREN,word,"CalTerm EPBSEREN: TRUE=BOOST PRESSURE ERROR ALLOWED, FALSE=NO ERROR ALLOW",2,0,,value
@@ -4280,8 +4299,9 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D1F4,mask_for_input_of_engine_sync_fuel_pressure_0_65535,word,MASK FOR INPUT OF ENGINE SYNC FUEL PRESSURE,2,0,MASK,parameter
 0x0080D1F6,amount_of_time_since_eng_sync_fuel_pressure_low_failure_was_de_0_65535,word,AMOUNT OF TIME SINCE ENG SYNC FUEL PRESSURE LOW FAILURE WAS DE,2,0,SEC,parameter
 0x0080D1F8,amount_of_time_since_eng_sync_fuel_pressure_low_failure_was_de_0_65535,word,AMOUNT OF TIME SINCE ENG SYNC FUEL PRESSURE LOW FAILURE WAS DE,2,0,SEC,parameter
-0x0080D1FA,points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32,dword,POINTS TO ENGINE SYNC FUEL PRESSURE FUEL MINIMUN THRESHOLD,4,0,HEX,parameter
-0x0080D1FE,points_to_engine_sync_fuel_pressure_fuel_maximum_threshold_0_2_32,dword,POINTS TO ENGINE SYNC FUEL PRESSURE FUEL MAXIMUM THRESHOLD,4,0,HEX,parameter
+0x0080D1FA,engine_sync_fuel_pressure_min_threshold_flag_3,word,Engine sync fuel pressure minimum threshold flag 3,2,0,HEX,parameter
+0x0080D1FC,engine_sync_fuel_pressure_reserved,word,Engine sync fuel pressure reserved,2,0,HEX,parameter
+0x0080D1FE,engine_sync_fuel_pressure_max_threshold_flag,word,Engine sync fuel pressure maximum threshold flag,2,0,HEX,parameter
 0x0080D202,pointer_to_engine_sync_fuel_pressure_rpm_limit_threshold_0_2_32,dword,POINTER TO ENGINE SYNC FUEL PRESSURE RPM LIMIT THRESHOLD,4,0,HEX,parameter
 0x0080D206,EPFPEREN,word,"CalTerm EPFPEREN: TRUE=ENG SYNC FUEL PRESSURE ERROR ALLOWED, FALSE=NO ERR",2,0,,value
 0x0080D208,true_eng_sync_fuel_pressure_precrank_error_0_1,word,TRUE=ENG SYNC FUEL PRESSURE PRECRANK ERROR,2,0,SEC,parameter
@@ -4312,7 +4332,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D250,mask_for_input_of_ambient_air_pressure_0_65535,word,MASK FOR INPUT OF AMBIENT AIR PRESSURE,2,0,MASK,parameter
 0x0080D252,amount_of_time_since_ambient_air_pressure_low_failure_was_dete_0_65535,word,AMOUNT OF TIME SINCE AMBIENT AIR PRESSURE LOW FAILURE WAS DETE,2,0,SEC,parameter
 0x0080D254,amount_of_time_since_ambient_air_pressure_low_failure_was_dete_0_65535,word,AMOUNT OF TIME SINCE AMBIENT AIR PRESSURE LOW FAILURE WAS DETE,2,0,SEC,parameter
-0x0080D256,points_to_engine_sync_fuel_pressure_fuel_minimun_threshold_0_2_32,dword,POINTS TO ENGINE SYNC FUEL PRESSURE FUEL MINIMUN THRESHOLD,4,0,HEX,parameter
+0x0080D256,engine_sync_fuel_pressure_min_threshold_flag_4,word,Engine sync fuel pressure minimum threshold flag 4,2,0,HEX,parameter
 0x0080D25A,points_to_ambient_air_pressure_fuel_maximum_threshold_0_2_32,dword,POINTS TO AMBIENT AIR PRESSURE FUEL MAXIMUM THRESHOLD,4,0,HEX,parameter
 0x0080D25E,pointer_to_ambient_air_pressure_rpm_limit_threshold_0_2_32,dword,POINTER TO AMBIENT AIR PRESSURE RPM LIMIT THRESHOLD,4,0,HEX,parameter
 0x0080D262,EPAAEREN,word,"CalTerm EPAAEREN: TRUE=AMBIENT AIR PRESSURE ERROR ALLOWED, FALSE=NO ERROR",2,0,,value
@@ -4365,9 +4385,9 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080D2CB,count_of_eps_pulses_since_ess_missing_tooth_0_255,byte,COUNT OF EPS PULSES SINCE ESS MISSING TOOTH,1,0,CNT,parameter
 0x0080D2CC,eps_pulse_count_since_addtnl_eps_pulse_0_255,byte,EPS PULSE COUNT SINCE ADDTNL EPS PULSE,1,0,CNT,parameter
 0x0080D2CD,CSSYSSCM,byte,CalTerm CSSYSSCM: 0-NO SYNC  1-LOST SYNC  2-HAVE SYNC,1,0,NLH,value
-0x0080d2d0,tpu_channel_state_value,word,TPU channel state machine current value (11 refs),2,0,,state
+0x0080d2d0,tpu_channel_state_value,byte,TPU channel state machine current value - accessed via cmpi.b/move.b,1,0,,state
 0x0080d2d3,tpu_transmission_state,byte,TPU transmission state machine,1,0,,state
-0x0080d2da,tpu_channel_enable_state,word,TPU timer channel enable state (10 refs),2,0,,state
+0x0080d2da,tpu_channel_enable_state,byte,TPU timer channel enable state - accessed via clr.b/move.b,1,0,,state
 0x0080d2dc,diagnostic_protocol_init_state,word,Diagnostic protocol init state (1 ref),2,0,,state
 0x0080D2DE,tracks_progress_of_fan_on_due_to_ac_0_3600,word,TRACKS PROGRESS OF FAN ON DUE TO AC,2,0,SEC,parameter
 0x80d2de,patch_data_source,byte,Source data buffer for memory patching operations,1,0,,data
@@ -4424,17 +4444,20 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080d40f,insite_response_write_offset,byte,INSITE response buffer write offset (many refs),1,0,,offset
 0x0080d414,insite_data_read_ptr,dword,INSITE data buffer read pointer (11 refs),4,0,,pointer
 0x0080d417,insite_data_buffer_offset,byte,INSITE data buffer offset counter (11 refs),1,0,,offset
-0x0080d418,insite_response_buffer_index,word,INSITE response buffer write index (24 refs),2,0,,index
-0x0080d419,insite_bytes_remaining,byte,Insite bytes remaining to send,1,0,,counter
-0x0080d41a,insite_response_buffer_length,word,INSITE response buffer length (27 refs),2,0,,length
-0x0080d41c,insite_parameter_iterator_alt,word,INSITE parameter table iterator alternate (10 refs),2,0,,counter
-0x0080d420,insite_parameter_table_iterator,word,INSITE parameter table iterator (2 refs),2,0,,counter
-0x0080d440,insite_parameter_table_iterator,word,INSITE parameter table iteration counter (11 refs),2,0,,counter
+0x0080d418,insite_response_buffer_index,byte,INSITE response buffer write index,1,0,,index
+0x0080d419,insite_bytes_remaining,byte,INSITE bytes remaining to send,1,0,,count
+0x0080d41a,insite_response_buffer_length,byte,INSITE response buffer length - accessed via move.b,1,0,,length
+0x0080d41b,insite_response_buffer_reserved,byte,INSITE response buffer reserved,1,0,,reserved
+0x0080d41c,insite_parameter_checksum_ptr,dword,INSITE parameter checksum/result pointer - accessed via move.l as pointer,4,0,,pointer
+0x0080d420,insite_parameter_table_current_byte,byte,INSITE parameter table current byte - accessed via move.b,1,0,,value
+0x0080d421,insite_parameter_table_reserved,byte,INSITE parameter table reserved byte,1,0,,reserved
+0x0080d440,insite_parameter_table_ptr,dword,INSITE parameter table pointer - accessed via move.l as pointer,4,0,,pointer
 0x0080d444,multi_packet_tx_state,byte,Multi-packet transmission state machine,1,0,,state
 0x0080d445,insite_multi_frame_state,byte,Insite multi-frame response state,1,0,,state
 0x0080d446,multi_packet_sequence_counter,byte,Multi-packet sequence counter for J1939,1,0,,counter
 0x0080d447,insite_dtc_pid_byte,byte,INSITE DTC/PID parameter byte (4 refs),1,0,,value
-0x0080d448,insite_live_data_parameter_index,word,INSITE live data parameter table index (11 refs),2,0,,index
+0x0080d448,insite_live_data_parameter_index,byte,INSITE live data parameter index - accessed via move.b,1,0,,index
+0x0080d449,insite_live_data_reserved,byte,INSITE live data reserved byte,1,0,,reserved
 0x80d44e,memory_patch_count,byte,Number of memory patches to apply (max 10),1,0,,data
 0x0080d44e,multi_packet_data_length,word,Multi-packet data length for J1939,2,0,,value
 0x0080d450,secured_shutdown_request_flag,word,Secured operation shutdown request flag,2,0,,flag
@@ -4462,7 +4485,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080d49a,diagnostic_source_value,word,Diagnostic source calculated value (14 refs),2,0,,value
 0x80d49c,diagnostic_status_register,word,Diagnostic operation status and mode flags,2,0,,flag
 0x0080d49c,diagnostic_source_status,word,Diagnostic source status register (38 refs),2,0,,register
-0x0080d49e,pwm_timer_cycle_advance_state,word,PWM timer cycle advance state value (10 refs),2,0,,state
+0x0080d49e,pwm_timer_cycle_advance_state,byte,PWM timer cycle advance state - accessed via move.b,1,0,,state
 0x80D4C4,loopCounter,dword,Main loop execution counter (incremented every cycle),2,0,,counter
 0x0080d4c4,system_loop_counter,dword,System main loop iteration counter,4,0,,counter
 0x0080d4c6,system_time_seconds_counter,word,System time seconds counter for elapsed time,2,0,,counter
