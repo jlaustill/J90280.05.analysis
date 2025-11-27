@@ -4352,3 +4352,116 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00fff208,qadc_port_b_data,word,QADC port B data register,2,0,,register
 0x00807840,dzg_timing_control_params,word,DZG timing and pressure control parameters,2,0,,value
 0x00809258,intake_manifold_temp_processed,word,Intake manifold temperature processed,2,0,,value
+0x00fffe20,MIOS_MPWMSM0_PERR,word,MIOS MPWMSM submodule 0 period register,2,0,,register
+0x00fffe0a,MIOS_MPWMSM0_SCR,word,MIOS MPWMSM submodule 0 status/control register,2,0,,register
+0x00fffa27,SIM_SWSR,byte,SIM software service register (watchdog),1,0,,register
+0x00fffe1e,MIOS_MPWMSM0_PULR,word,MIOS MPWMSM submodule 0 pulse register,2,0,,register
+0x00fffe1a,MIOS_MPWMSM0_CNTR,word,MIOS MPWMSM submodule 0 counter register,2,0,,register
+0x00fffe16,MIOS_MPWMSM0_PERR2,word,MIOS MPWMSM submodule 0 period register 2,2,0,,register
+0x00fffe12,MIOS_MPWMSM0_FLAG,word,MIOS MPWMSM submodule 0 flag register,2,0,,register
+0x00fffe1c,MIOS_MPWMSM0_PULR2,word,MIOS MPWMSM submodule 0 pulse register 2,2,0,,register
+0x00fffe18,MIOS_MPWMSM0_CNTR2,word,MIOS MPWMSM submodule 0 counter register 2,2,0,,register
+0x00fffc0a,TPU_CISR,word,TPU channel interrupt status register,2,0,,register
+0x00fff206,QADC_PORTQA,word,QADC port QA data register,2,0,,register
+0x00fff208,QADC_PORTQB,word,QADC port QB data register,2,0,,register
+0x00fffc1a,TPU_CIER,word,TPU channel interrupt enable register,2,0,,register
+0x00ffff38,QSM_SCCR1,word,QSM SCI control register 1,2,0,,register
+0x00ffff18,QSM_PQSPAR,word,QSM port QS pin assignment register,2,0,,register
+0x00ffff3a,QSM_SCCR2,word,QSM SCI control register 2,2,0,,register
+0x00fff404,QADC64_QACR0,word,QADC64 control register 0,2,0,,register
+0x00fffe14,MIOS_MPWMSM0_SCR2,word,MIOS MPWMSM submodule 0 status/control register 2,2,0,,register
+0x00fffe0e,MIOS_MPWMSM0_DCR,word,MIOS MPWMSM submodule 0 data/control register,2,0,,register
+0x00fffc1c,TPU_CFSR0,word,TPU channel function select register 0,2,0,,register
+0x00fff450,QADC64_CCW0,word,QADC64 conversion command word 0,2,0,,register
+0x00fff448,QADC64_RJURR,word,QADC64 right-justified unsigned result register,2,0,,register
+0x00fff420,QADC64_QADCSR,word,QADC64 status register,2,0,,register
+0x00fff41a,QADC64_QACR2,word,QADC64 control register 2,2,0,,register
+0x00fff418,QADC64_QACR1,word,QADC64 control register 1,2,0,,register
+0x00fffa19,SIM_SYPCR,byte,SIM system protection control register,1,0,,register
+0x00fff432,QADC64_DDRQA,word,QADC64 port QA data direction register,2,0,,register
+0x00fff430,QADC64_PQAPAR,word,QADC64 port QA pin assignment register,2,0,,register
+0x00fff428,QADC64_QADCINT,word,QADC64 interrupt register,2,0,,register
+0x00fff414,QADC64_QADCMCR,word,QADC64 module configuration register,2,0,,register
+0x00ffffa0,IMB_CSBAR0,word,IMB chip select base address register 0,2,0,,register
+0x00fffc1f,TPU_CFSR1,byte,TPU channel function select register 1,1,0,,register
+0x00fffc0e,TPU_CR,word,TPU control register,2,0,,register
+0x00fffa11,SIM_SYNCR,byte,SIM clock synthesizer control register,1,0,,register
+0x00ffff16,QSM_DDRQS,word,QSM port QS data direction register,2,0,,register
+0x00ffff12,QSM_PQSCTL,word,QSM port QS control register,2,0,,register
+0x00ffff10,QSM_PORTQS,word,QSM port QS data register,2,0,,register
+0x00fffd43,TPU_PRAM_CH0_3,byte,TPU parameter RAM channel 0 offset 3,1,0,,register
+0x00fffd26,TPU_PRAM_CH1_6,word,TPU parameter RAM channel 1 offset 6,2,0,,register
+0x00fffd24,TPU_PRAM_CH1_4,word,TPU parameter RAM channel 1 offset 4,2,0,,register
+0x00fff440,QADC64_LJSRR,word,QADC64 left-justified signed result register,2,0,,register
+0x00fff438,QADC64_DDRQB,word,QADC64 port QB data direction register,2,0,,register
+0x00ffffa6,IMB_CSOR1,word,IMB chip select option register 1,2,0,,register
+0x00ffffa2,IMB_CSOR0,word,IMB chip select option register 0,2,0,,register
+0x00ffff28,QSM_SPCR2,word,QSM SPI control register 2,2,0,,register
+0x00ffff04,QSM_QSMCR,word,QSM module configuration register,2,0,,register
+0x00ffff02,QSM_QTEST,word,QSM test register,2,0,,register
+0x00ffff00,QSM_QMCR,word,QSM module control register,2,0,,register
+0x00fffe0c,MIOS_MPWMSM0_DCR2,word,MIOS MPWMSM submodule 0 data/control register 2,2,0,,register
+0x00fffd42,TPU_PRAM_CH0_2,word,TPU parameter RAM channel 0 offset 2,2,0,,register
+0x00fffd40,TPU_PRAM_CH0_0,word,TPU parameter RAM channel 0 offset 0,2,0,,register
+0x00fffd20,TPU_PRAM_CH1_0,word,TPU parameter RAM channel 1 offset 0,2,0,,register
+0x00fffc0c,TPU_DSCR,word,TPU development support control register,2,0,,register
+0x00ffffd2,IMB_PITR,word,IMB periodic interrupt timer register,2,0,,register
+0x00ffff30,QSM_SPSR,word,QSM SPI status register,2,0,,register
+0x00ffff1b,QSM_QPAR,byte,QSM pin assignment register,1,0,,register
+0x00fffc04,TPU_TICR,word,TPU interrupt configuration register,2,0,,register
+0x00fffa24,SIM_PICR,word,SIM periodic interrupt control register,2,0,,register
+0x00fffa22,SIM_RSR,word,SIM reset status register,2,0,,register
+0x00fffa15,SIM_SIMCR,byte,SIM module configuration register,1,0,,register
+0x00ffffc4,IMB_CSBAR3,word,IMB chip select base address register 3,2,0,,register
+0x00ffff06,QSM_QILR,word,QSM interrupt level register,2,0,,register
+0x00fffe00,MIOS_MCPSMSCR,word,MIOS counter prescaler submodule status/control,2,0,,register
+0x00fffd45,TPU_PRAM_CH0_5,byte,TPU parameter RAM channel 0 offset 5,1,0,,register
+0x00fffd44,TPU_PRAM_CH0_4,word,TPU parameter RAM channel 0 offset 4,2,0,,register
+0x00fffd41,TPU_PRAM_CH0_1,byte,TPU parameter RAM channel 0 offset 1,1,0,,register
+0x00fffd2a,TPU_PRAM_CH1_10,word,TPU parameter RAM channel 1 offset 10,2,0,,register
+0x00fffd28,TPU_PRAM_CH1_8,word,TPU parameter RAM channel 1 offset 8,2,0,,register
+0x00fffd22,TPU_PRAM_CH1_2,word,TPU parameter RAM channel 1 offset 2,2,0,,register
+0x00fffd06,TPU_PRAM_CH2_6,word,TPU parameter RAM channel 2 offset 6,2,0,,register
+0x00fffc18,TPU_HSRR1,word,TPU host service request register 1,2,0,,register
+0x00fffc17,TPU_HSRR0_H,byte,TPU host service request register 0 high byte,1,0,,register
+0x00fffc16,TPU_HSRR0,word,TPU host service request register 0,2,0,,register
+0x00fffc15,TPU_HSQR1_H,byte,TPU host sequence register 1 high byte,1,0,,register
+0x00fffc05,TPU_TICR_H,byte,TPU interrupt configuration register high byte,1,0,,register
+0x00fffc00,TPU_TPUMCR,word,TPU module configuration register,2,0,,register
+0x00fff460,QADC64_CCW8,word,QADC64 conversion command word 8,2,0,,register
+0x00fff410,QADC64_PORTQA,word,QADC64 port QA data register,2,0,,register
+0x00fff408,QADC64_QADCTEST,word,QADC64 test register,2,0,,register
+0x00fff400,QADC64_QMCR,word,QADC64 module control register,2,0,,register
+0x00fffffc,IMB_CSBAR10,word,IMB chip select base address register 10,2,0,,register
+0x00ffffd0,IMB_PICR,word,IMB periodic interrupt control register,2,0,,register
+0x00ffffc0,IMB_CSBAR2,word,IMB chip select base address register 2,2,0,,register
+0x00ffffa4,IMB_CSBAR1,word,IMB chip select base address register 1,2,0,,register
+0x00ffff34,QSM_SPCR0,word,QSM SPI control register 0,2,0,,register
+0x00ffff26,QSM_SPCR1,word,QSM SPI control register 1,2,0,,register
+0x00ffff22,QSM_NEWQP,word,QSM new queue pointer register,2,0,,register
+0x00ffff20,QSM_SPCR3,word,QSM SPI control register 3,2,0,,register
+0x00ffff0c,QSM_QILR_IVL,word,QSM interrupt level vector register,2,0,,register
+0x00ffff08,QSM_QIVR,word,QSM interrupt vector register,2,0,,register
+0x00fffe08,MIOS_MPWMSM0_DCR3,word,MIOS MPWMSM submodule 0 data/control register 3,2,0,,register
+0x00fffd08,TPU_PRAM_CH2_8,word,TPU parameter RAM channel 2 offset 8,2,0,,register
+0x00fffd04,TPU_PRAM_CH2_4,word,TPU parameter RAM channel 2 offset 4,2,0,,register
+0x00fffc08,TPU_TCR,word,TPU test configuration register,2,0,,register
+0x00fffb04,SRAM_RAMMCR,word,SRAM module configuration register,2,0,,register
+0x00fffa76,SIM_CSPAR1,word,SIM chip select pin assignment register 1,2,0,,register
+0x00fffa74,SIM_CSPAR0,word,SIM chip select pin assignment register 0,2,0,,register
+0x00fffa72,SIM_DDRE,word,SIM port E data direction register,2,0,,register
+0x00fffa70,SIM_PORTE,word,SIM port E data register,2,0,,register
+0x00fffa6e,SIM_DDRF,word,SIM port F data direction register,2,0,,register
+0x00fffa6c,SIM_PORTF,word,SIM port F data register,2,0,,register
+0x00fffa6a,SIM_PEPAR,word,SIM port E pin assignment register,2,0,,register
+0x00fffa68,SIM_PFPAR,word,SIM port F pin assignment register,2,0,,register
+0x00fffa66,SIM_PORTC,word,SIM port C data register,2,0,,register
+0x00fffa64,SIM_CSPDR,word,SIM chip select pin data register,2,0,,register
+0x00fff434,QADC64_PQBPAR,word,QADC64 port QB pin assignment register,2,0,,register
+0x00fff41c,QADC64_QSTAT,word,QADC64 status register,2,0,,register
+0x00fff230,QADC_CCW0,word,QADC conversion command word 0,2,0,,register
+0x00fff20e,QADC_QSTAT,word,QADC status register,2,0,,register
+0x00fff20c,QADC_QACR2,word,QADC control register 2,2,0,,register
+0x00fff20a,QADC_QACR1,word,QADC control register 1,2,0,,register
+0x00fff200,QADC_QADCMCR,word,QADC module configuration register,2,0,,register
+0x00ffe000,EBI_EBIMCR,word,EBI module configuration register,2,0,,register
