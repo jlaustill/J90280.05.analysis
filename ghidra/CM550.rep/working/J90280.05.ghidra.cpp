@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 14:44:44 MST 2025
+// Fri Nov 28 15:13:29 MST 2025
 
 
 //
@@ -930,26 +930,26 @@ ushort fuelTimingModeArbitrationSlowCycle40Coordinator(void)
       uVar1 = vp44TimingConditionChecker();
       if ((short)uVar1 == 0) {
         if (((vp44_status_flags_1 & 0x4000) == 0) || (protection_mode_state != 1)) {
-          timing_mode_source_selector = 0;
+          timing_mode_source_selector = BLEND_RAMP_DEFAULT;
           fuel_timing_mode_blend_factor = timing_protection_blend_ramp;
         }
         else {
-          timing_mode_source_selector = 3;
+          timing_mode_source_selector = ARBITRATION_2;
           fuel_timing_mode_blend_factor = fuel_timing_mode_arbitration_2;
         }
       }
       else {
-        timing_mode_source_selector = 2;
+        timing_mode_source_selector = ARBITRATION_1;
         fuel_timing_mode_blend_factor = fuel_timing_mode_arbitration_1;
       }
     }
     else {
-      timing_mode_source_selector = 1;
+      timing_mode_source_selector = ARBITRATION_VALUE;
       fuel_timing_mode_blend_factor = fuel_timing_mode_arb_value;
     }
   }
   else {
-    timing_mode_source_selector = 4;
+    timing_mode_source_selector = PARAM_OVERRIDE;
     fuel_timing_mode_blend_factor = fuel_timing_mode_arbitration_param_2;
   }
   if (0x4000 < fuel_timing_mode_blend_factor) {
@@ -5537,23 +5537,23 @@ uint engineRunTimeHistogramAccumulator(void)
     dVar3 = hour_meter_conversion_data;
     if ((hour_meter_conversion_data < hour_meter_conversion_state) &&
        (hour_meter_conversion_data != 0)) {
-      engine_runtime_histogram_mode = 1;
+      engine_runtime_histogram_mode = INCREMENT;
     }
     else if ((hour_meter_conversion_data == 0) &&
             ((engine_runtime_histogram_counter == 0 ||
              (dVar3 = engine_runtime_histogram_counter,
              hour_meter_conversion_state <= engine_runtime_histogram_counter)))) {
-      engine_runtime_histogram_mode = 1;
+      engine_runtime_histogram_mode = INCREMENT;
     }
     else if (engine_runtime_histogram_counter < hour_meter_conversion_state) {
-      engine_runtime_histogram_mode = 2;
+      engine_runtime_histogram_mode = DECREMENT;
       dVar3 = engine_runtime_histogram_counter;
     }
     else {
-      engine_runtime_histogram_mode = 0;
+      engine_runtime_histogram_mode = IDLE;
       dVar3 = engine_runtime_histogram_counter;
     }
-    if (engine_runtime_histogram_mode == 1) {
+    if (engine_runtime_histogram_mode == INCREMENT) {
       uVar4 = (uint)engine_runtime_histogram_index;
       *(int *)(&engine_runtime_histogram_index + (short)(ushort)engine_runtime_histogram_index * 4)
            = *(int *)(&engine_runtime_histogram_index +
@@ -5561,7 +5561,7 @@ uint engineRunTimeHistogramAccumulator(void)
       hour_meter_conversion_data = hour_meter_conversion_data + 1;
       return uVar4;
     }
-    if (engine_runtime_histogram_mode == 2) {
+    if (engine_runtime_histogram_mode == DECREMENT) {
       dVar3 = (dword)engine_runtime_histogram_index;
       piVar1 = (int *)((short)(ushort)engine_runtime_histogram_index * 4 + 0x809be4);
       *piVar1 = *piVar1 + 1;
@@ -7645,7 +7645,7 @@ uint engine_fault_monitoring_and_rpm_calculation(void)
            ((engine_fault_status_register_2 & 0x4000) == 0)))) {
     engine_fault_status_register_1 = engine_fault_status_register_1 & 0xbfff;
   }
-  if ((((rpm_timer_capture_state == 1) || (rpm_timer_capture_state == 0)) &&
+  if ((((rpm_timer_capture_state == CAPTURING) || (rpm_timer_capture_state == INITIALIZING)) &&
       (engine_fault_counter_5 = 0, (engine_fault_status_register_1 & 0x800) != 0)) &&
      ((engine_fault_status_register_2 & 0x800) == 0)) {
     engine_fault_status_register_1 = engine_fault_status_register_1 & 0xf7ff;
@@ -9609,7 +9609,7 @@ undefined8 rpmTimerInterruptHandler(void)
         fault_flags_active_base = fault_flags_active_base | 1;
         fault_flags_history_base = fault_flags_history_base | 1;
       }
-      rpm_timer_capture_state = 2;
+      rpm_timer_capture_state = FAULT_DETECTED;
       engine_fault_status_register_1 = engine_fault_status_register_1 | 0x800;
       engine_fault_status_register_2 = engine_fault_status_register_2 | 0x800;
     }
@@ -10003,7 +10003,7 @@ undefined8 rpmTimerInterruptHandler2(void)
         fault_flags_active_base = fault_flags_active_base | 1;
         fault_flags_history_base = fault_flags_history_base | 1;
       }
-      rpm_timer_capture_state = 2;
+      rpm_timer_capture_state = FAULT_DETECTED;
       engine_fault_status_register_1 = engine_fault_status_register_1 | 0x800;
       engine_fault_status_register_2 = engine_fault_status_register_2 | 0x800;
     }
@@ -10140,7 +10140,7 @@ undefined8 rpmTimerInterruptHandler3(void)
   rpm_timer_capture_value = rpm_timer_capture_value & 0xffff;
   uVar3 = (undefined2)(dVar1 >> 0x10);
   iVar2 = throttleTimeAccumulatorProcessor(dVar1,CONCAT22(IMB_CSBAR1,uVar4));
-  if (rpm_timer_capture_state == 1) {
+  if (rpm_timer_capture_state == CAPTURING) {
     if (iVar2 == 0) {
       IMB_CSBAR0 = 0xffff;
       can1_canidar2 = can1_canidar2 & 0xffcf | 0x20;
@@ -10181,18 +10181,18 @@ int throttleTimeAccumulatorProcessor(int param_1,undefined4 param_2)
   sVar1 = throttlePositionValidator(unaff_A2 >> 0x10);
   if (sVar1 != 0) {
     if (can1_timer_buffer_count == _throttle_zero_position_counter) {
-      rpm_timer_capture_state = 1;
+      rpm_timer_capture_state = CAPTURING;
     }
     else {
-      if (rpm_timer_capture_state == 1) {
-        rpm_timer_capture_state = 2;
+      if (rpm_timer_capture_state == CAPTURING) {
+        rpm_timer_capture_state = FAULT_DETECTED;
       }
       if ((current_engine_fuel_demand < time_to_delay_before_setting_a_new_throttle_min_0_25500) &&
          (throttle_fault_delay_counter <
           minimum_allowable_engine_speed_for_this_algorithm_to_operate_0_4500._0_1_)) {
         throttle_fault_delay_counter = throttle_fault_delay_counter + 1;
       }
-      else if (((rpm_timer_capture_state == 2) &&
+      else if (((rpm_timer_capture_state == FAULT_DETECTED) &&
                (throttle_fault_threshold_low <= throttle_fault_threshold_high)) ||
               ((pwm_timer_calc_value_2._0_1_ == '\x02' &&
                (throttle_fault_threshold_low <= throttle_fault_threshold_alt)))) {
@@ -10210,11 +10210,11 @@ int throttleTimeAccumulatorProcessor(int param_1,undefined4 param_2)
     _rpm_timer_interrupt_capture = throttle_timer_capture_backup + _rpm_timer_interrupt_capture;
     rpm_sample_index = 0;
   }
-  else if ((rpm_sample_index < can1_timer_buffer_count) || (rpm_timer_capture_state != 1)) {
+  else if ((rpm_sample_index < can1_timer_buffer_count) || (rpm_timer_capture_state != CAPTURING)) {
     rpm_sample_index = rpm_sample_index + 1;
   }
   else {
-    rpm_timer_capture_state = 2;
+    rpm_timer_capture_state = FAULT_DETECTED;
   }
   _engine_rpm_divisor_1 =
        _rpm_timer_interrupt_capture + (_engine_rpm_divisor_1 - *_throttle_position_buffer_ptr);
@@ -10442,7 +10442,7 @@ void dutyCycleMonitorCanInit(void)
   can1_canidmr1 = can1_canidmr1 & 0xfff3;
   can1_cantbsel = can1_cantbsel & 0xfffd;
   can1_canidmr2 = can1_canidmr2 & 0xfffd;
-  rpm_timer_capture_state = 0;
+  rpm_timer_capture_state = INITIALIZING;
   rpm_timer_capture_mode = 0;
   duty_cycle_buffer_end_ptr = (uint)can1_timer_buffer_reserved * 4 + 0x80c5bc;
   for (pdVar1 = &duty_cycle_monitor_buffer_start; pdVar1 <= duty_cycle_buffer_end_ptr;
@@ -10499,7 +10499,7 @@ undefined8 dutyCycleMonitorIsrHandler(void)
       duty_cycle_monitor_fault_counter = duty_cycle_monitor_fault_counter - 1;
     }
     if (rpm_sample_index == fuel_rate_at_maximum_fueling_conditions_32000_450000) {
-      rpm_timer_capture_state = 1;
+      rpm_timer_capture_state = CAPTURING;
       rpm_timer_capture_mode = 1;
       if (((engine_fault_status_register_1 & 0x800) != 0) &&
          ((engine_fault_status_register_2 & 0x800) == 0)) {
@@ -10515,7 +10515,7 @@ undefined8 dutyCycleMonitorIsrHandler(void)
       }
     }
     else {
-      rpm_timer_capture_state = 2;
+      rpm_timer_capture_state = FAULT_DETECTED;
       rpm_timer_capture_mode = 2;
       rpm_sample_index = fuel_rate_at_maximum_fueling_conditions_32000_450000;
       if (duty_cycle_error_counter < duty_cycle_monitor_DCMNESTB_00807d1e.rpm_thresholds._0_1_) {
@@ -10539,7 +10539,7 @@ undefined8 dutyCycleMonitorIsrHandler(void)
       duty_cycle_monitor_fault_counter = duty_cycle_monitor_fault_counter - 1;
     }
     if (rpm_sample_index == CPBS01) {
-      rpm_timer_capture_state = 1;
+      rpm_timer_capture_state = CAPTURING;
       rpm_timer_capture_mode = 1;
       if (((engine_fault_status_register_1 & 0x800) != 0) &&
          ((engine_fault_status_register_2 & 0x800) == 0)) {
@@ -10555,7 +10555,7 @@ undefined8 dutyCycleMonitorIsrHandler(void)
       }
     }
     else {
-      rpm_timer_capture_state = 2;
+      rpm_timer_capture_state = FAULT_DETECTED;
       rpm_timer_capture_mode = 2;
       rpm_sample_index = CPBS01;
       if (duty_cycle_error_counter < duty_cycle_monitor_DCMNESTB_00807d1e.rpm_thresholds._0_1_) {
@@ -12967,7 +12967,7 @@ ushort highRpmEngineProtectionStateMachine(void)
   uVar1 = diagnostic_system_flags_1 & 2;
   if ((diagnostic_system_flags_1 & 2) != 0) {
     uVar1 = derateChangeDetector();
-    if (high_rpm_protection_state == 0) {
+    if (high_rpm_protection_state == MONITORING) {
       high_rpm_protection_timer = high_rpm_protection_initial_timer;
       high_rpm_protection_warning_flag = 0;
       high_rpm_protection_fault_flag = 0;
@@ -12992,28 +12992,28 @@ ushort highRpmEngineProtectionStateMachine(void)
         }
         if ((((uVar1 == 0) && (derate_bit4_changed_flag == 0)) && (derate_bit8_changed_flag == 0))
            && (derate_value_changed_flag == 0)) {
-          high_rpm_protection_state = 1;
+          high_rpm_protection_state = TIMER_COUNTING;
           return 0;
         }
       }
     }
-    else if (high_rpm_protection_state == 1) {
+    else if (high_rpm_protection_state == TIMER_COUNTING) {
       high_rpm_protection_timer = high_rpm_protection_timer - 1;
       if ((((oil_pressure_protection_enabled != 0) && ((diagnostic_system_flags_2 & 8) == 0)) ||
           (engine_operating_mode != HIGH_RPM_RUNNING)) ||
          (((throttle_position_raw <= the_can_1_cpu_interface_register_0_255 ||
            (derate_bit4_changed_flag != 0)) ||
           ((derate_bit8_changed_flag != 0 || (derate_value_changed_flag != 0)))))) {
-        high_rpm_protection_state = 0;
+        high_rpm_protection_state = MONITORING;
       }
       uVar1 = high_rpm_protection_timer;
       if (high_rpm_protection_timer <= the_can_1_bit_timing_1_register_0_255) {
-        high_rpm_protection_state = 2;
+        high_rpm_protection_state = WARNING_ACTIVE;
         high_rpm_protection_warning_flag = 1;
         return high_rpm_protection_timer;
       }
     }
-    else if (high_rpm_protection_state == 2) {
+    else if (high_rpm_protection_state == WARNING_ACTIVE) {
       high_rpm_protection_timer = high_rpm_protection_timer - 1;
       uVar1 = diagnostic_system_flags_1 & 4;
       if ((diagnostic_system_flags_1 & 4) == 0) {
@@ -13022,19 +13022,19 @@ ushort highRpmEngineProtectionStateMachine(void)
             (throttle_position_value != 0)) ||
            (((engine_operating_mode != HIGH_RPM_RUNNING || (derate_bit4_changed_flag != 0)) ||
             ((derate_bit8_changed_flag != 0 || (derate_value_changed_flag != 0)))))) {
-          high_rpm_protection_state = 0;
+          high_rpm_protection_state = MONITORING;
         }
       }
       else {
         uVar1 = derate_bit8_changed_flag | derate_bit4_changed_flag;
         if ((uVar1 != 0) || (derate_value_changed_flag != 0)) {
-          high_rpm_protection_state = 3;
+          high_rpm_protection_state = FAULT_TRIGGERED;
           high_rpm_protection_warning_flag = 0;
           high_rpm_protection_fault_flag = 1;
         }
       }
       if (high_rpm_protection_timer == 0) {
-        high_rpm_protection_state = 4;
+        high_rpm_protection_state = SHUTDOWN_PENDING;
         high_rpm_protection_warning_flag = 0;
         high_rpm_shutdown_active_flag = 1;
         if (the_can_1_bit_timing_0_register_0_255 != 0) {
@@ -13045,14 +13045,14 @@ ushort highRpmEngineProtectionStateMachine(void)
         return uVar1;
       }
     }
-    else if (high_rpm_protection_state == 3) {
+    else if (high_rpm_protection_state == FAULT_TRIGGERED) {
       if ((throttle_position_value != 0) || (engine_operating_mode == IDLE)) {
-        high_rpm_protection_state = 0;
+        high_rpm_protection_state = MONITORING;
         return uVar1;
       }
     }
-    else if ((high_rpm_protection_state == 4) && (engine_operating_mode == IDLE)) {
-      high_rpm_protection_state = 0;
+    else if ((high_rpm_protection_state == SHUTDOWN_PENDING) && (engine_operating_mode == IDLE)) {
+      high_rpm_protection_state = MONITORING;
     }
   }
   return uVar1;
@@ -13068,7 +13068,7 @@ void initFuelArbitratorThreshold3(void)
 
 {
   high_rpm_protection_timer = high_rpm_protection_initial_timer;
-  high_rpm_protection_state = 0;
+  high_rpm_protection_state = MONITORING;
   high_rpm_shutdown_active_flag = 0;
   return;
 }
@@ -24180,7 +24180,7 @@ void diagnosticTableSnapshotCapture(undefined4 param_1)
     *(word *)(sVar1 + 0x805a56) = diagnostic_fuel_arbitration_output;
     *(undefined2 *)(sVar1 + 0x805a58) = _vp44_can_msg_100_status_flags;
     *(word *)(sVar1 + 0x805a5a) = fso_monitoring_command_value;
-    *(word *)(sVar1 + 0x805a5c) = vp44_state_debounce_value;
+    *(VP44_STATE *)(sVar1 + 0x805a5c) = vp44_state_debounce_value;
     *(word *)(sVar1 + 0x805a5e) = vp44_timing_mode_selector;
     *(undefined2 *)(sVar1 + 0x805a60) = _fault_flag_snapshot_register_1;
   }
@@ -24205,7 +24205,7 @@ void diagnosticTableSnapshotCapture(undefined4 param_1)
     *(word *)(sVar1 + 0x805696) = diagnostic_fuel_arbitration_output;
     *(undefined2 *)(sVar1 + 0x805698) = _vp44_can_msg_100_status_flags;
     *(word *)(sVar1 + 0x80569a) = fso_monitoring_command_value;
-    *(word *)(sVar1 + 0x80569c) = vp44_state_debounce_value;
+    *(VP44_STATE *)(sVar1 + 0x80569c) = vp44_state_debounce_value;
     *(word *)(sVar1 + 0x80569e) = vp44_timing_mode_selector;
     *(undefined2 *)(sVar1 + 0x8056a0) = _fault_flag_snapshot_register_1;
   }
@@ -26775,7 +26775,7 @@ void pwmTimerMode0Init(void)
   if ((char)time_fault_conditions_must_exist_before_logging_a_throttle_faul_0_2000 != '\x01') {
     return;
   }
-  pwm_timer_cycle_advance_state = pwm_timing_cycle_count - 1;
+  pwm_timer_cycle_advance_state = pwm_timing_cycle_count - CYCLE_PHASE_1;
   iVar1 = 0;
   iVar2 = 0;
   uVar3 = (uint)intake_manifold_temperature_at_maximum_fueling_condition_50_293._0_1_;
@@ -26831,12 +26831,12 @@ void pwmTimerMode1ChannelSetup(void)
   ushort uVar3;
   uint uVar4;
   
-  pwm_timer_cycle_advance_state = pwm_timing_cycle_count - 1;
+  pwm_timer_cycle_advance_state = pwm_timing_cycle_count - CYCLE_PHASE_1;
   iVar1 = pwm_temperature_shifted_workspace +
           _user_specified_number_of_engine_data_samples_taken_by_trending_f_0_100 +
           _enable_flag_that_indicates_presence_of_an_ambient_air_press_true_false +
           *(int *)(&pwm_timing_advance_lookup_table +
-                  (short)(ushort)(byte)(pwm_timing_cycle_count - 1) * 2) + 0x100;
+                  (short)(ushort)(byte)(pwm_timing_cycle_count - CYCLE_PHASE_1) * 2) + 0x100;
   uVar4 = (iVar1 >> 0x10 & 0xffffU) % (maximum_allowed_timing_advance_for_this_algorithm_0_20 + 2);
   uVar3 = (ushort)uVar4;
   uVar2 = (ushort)(iVar1 >> 1) & 0x7f00;
@@ -26962,25 +26962,27 @@ undefined8 pwmTimerCycleAdvance(void)
   undefined4 in_D1;
   uint uVar1;
   
-  if (rpm_timer_capture_state == 1) {
+  if (rpm_timer_capture_state == CAPTURING) {
     switch(pwm_timer_cycle_advance_state) {
-    case 0:
-    case 4:
-    case 5:
+    case CYCLE_PHASE_0:
+    case CYCLE_PHASE_4:
+    case CYCLE_PHASE_5:
       if ((char)pwm_timer_calc_value_1 == '\0') {
-        pwm_timer_cycle_advance_state = (byte)((pwm_timer_cycle_advance_state + 3) % 6);
+        pwm_timer_cycle_advance_state =
+             (PWM_TIMER_CYCLE_STATE)((pwm_timer_cycle_advance_state + 3) % 6);
       }
       break;
-    case 1:
-    case 2:
-    case 3:
+    case CYCLE_PHASE_1:
+    case CYCLE_PHASE_2:
+    case CYCLE_PHASE_3:
       if ((char)pwm_timer_calc_value_1 != '\0') {
-        pwm_timer_cycle_advance_state = (byte)((pwm_timer_cycle_advance_state + 3) % 6);
+        pwm_timer_cycle_advance_state =
+             (PWM_TIMER_CYCLE_STATE)((pwm_timer_cycle_advance_state + 3) % 6);
       }
     }
   }
   uVar1 = (pwm_timer_cycle_advance_state + 1) % 6;
-  pwm_timer_cycle_advance_state = (byte)uVar1;
+  pwm_timer_cycle_advance_state = (PWM_TIMER_CYCLE_STATE)uVar1;
   vp44_timing_table_index = (char)((pwm_timer_cycle_advance_param + uVar1) % 6) + 1;
   pwmTimerMode1Update();
   can1_canidmr2 = can1_canidmr2 & 0xfff7;
@@ -28309,13 +28311,15 @@ ushort vp44DiagnosticModeStateMachine(void)
     bVar2 = false;
   }
   vp44_sensor_bit0_prev_state = -bVar5 & 1;
-  if ((vp44_operating_condition_prev == 4) || (vp44_operating_condition_value != 4)) {
+  if ((vp44_operating_condition_prev == TRANSITION_STATE_4) ||
+     (vp44_operating_condition_value != TRANSITION_STATE_4)) {
     bVar5 = false;
   }
   else {
     bVar5 = true;
   }
-  if ((vp44_operating_condition_prev == 3) || (vp44_operating_condition_value != 3)) {
+  if ((vp44_operating_condition_prev == TRANSITION_STATE_3) ||
+     (vp44_operating_condition_value != TRANSITION_STATE_3)) {
     bVar1 = false;
   }
   else {
@@ -28341,7 +28345,8 @@ ushort vp44DiagnosticModeStateMachine(void)
     else {
       bVar2 = true;
     }
-    if ((vp44_operating_condition_value == 2) || (vp44_operating_condition_value == 1)) {
+    if ((vp44_operating_condition_value == FUEL_CONTROL_B) ||
+       (vp44_operating_condition_value == FUEL_CONTROL_A)) {
       bVar1 = true;
     }
     else {
@@ -28432,8 +28437,8 @@ void vp44ControlVariablesReset(void)
 {
   vp44_sensor_bit2_prev_state = 0;
   vp44_sensor_bit0_prev_state = 0;
-  vp44_operating_condition_value = 0;
-  vp44_operating_condition_prev = 0;
+  vp44_operating_condition_value = RESET_INACTIVE;
+  vp44_operating_condition_prev = RESET_INACTIVE;
   return;
 }
 
@@ -29525,17 +29530,18 @@ void rpmHistogramAndProtectionStatisticsAccumulator(void)
       rpm_protection_overflow_counter = rpm_protection_overflow_counter + 1;
     }
   }
-  if ((high_rpm_protection_state == 4) && (high_rpm_state_4_latch_flag == 0)) {
+  if ((high_rpm_protection_state == SHUTDOWN_PENDING) && (high_rpm_state_4_latch_flag == 0)) {
     rpm_protection_stats_counter = rpm_protection_stats_counter + 1;
     high_rpm_state_4_latch_flag = 1;
     high_rpm_state_3_latch_flag = 0;
   }
-  if ((high_rpm_protection_state == 3) && (high_rpm_state_3_latch_flag == 0)) {
+  if ((high_rpm_protection_state == FAULT_TRIGGERED) && (high_rpm_state_3_latch_flag == 0)) {
     rpm_protection_stats_accumulator = rpm_protection_stats_accumulator + 1;
     high_rpm_state_3_latch_flag = 1;
     high_rpm_state_4_latch_flag = 0;
   }
-  if ((high_rpm_protection_state != 4) && (high_rpm_protection_state != 3)) {
+  if ((high_rpm_protection_state != SHUTDOWN_PENDING) &&
+     (high_rpm_protection_state != FAULT_TRIGGERED)) {
     high_rpm_state_3_latch_flag = 0;
     high_rpm_state_4_latch_flag = 0;
   }
@@ -29680,20 +29686,20 @@ ushort clutchOperatingStatisticsTracker(void)
       clutch_transitions_per_distance = 0xffff;
     }
     if ((derate_status_byte & 8) == 0) {
-      derate_event_state_machine = 0;
+      derate_event_state_machine = NO_DERATE;
     }
     else {
-      if (derate_event_state_machine == 0) {
-        derate_event_state_machine = 1;
+      if (derate_event_state_machine == NO_DERATE) {
+        derate_event_state_machine = TIMING_ACTIVE;
         derate_event_timer = 0;
       }
-      else if ((derate_event_state_machine == 1) &&
+      else if ((derate_event_state_machine == TIMING_ACTIVE) &&
               (derate_event_timer < _derate_event_threshold_time)) {
         derate_event_timer = derate_event_timer + 1;
       }
       else {
         derate_event_counter = derate_event_counter + 1;
-        derate_event_state_machine = 2;
+        derate_event_state_machine = EVENT_COUNTED;
       }
       accumulatorWithOverflowCarry(&derate_time_accumulator,&derate_time_accumulator_arg);
     }
@@ -29729,7 +29735,7 @@ ushort clutchOperatingStatisticsTracker(void)
 void statisticsTrackingFlagsReset(void)
 
 {
-  derate_event_state_machine = 0;
+  derate_event_state_machine = NO_DERATE;
   clutch_slip_detection_state = 0;
   high_rpm_state_4_latch_flag = 0;
   high_rpm_state_3_latch_flag = 0;
@@ -30381,12 +30387,12 @@ void vp44StateVariablesInit(void)
   }
   output_timing_base_value = 0;
   vp44_state_output_timing_base = 0;
-  vp44_operating_condition_value = 0;
-  vp44_state_operating_condition_cached = 0;
-  vp44_state_input_current = 4;
-  vp44_state_previous = 4;
-  vp44_state_current_debounced = 4;
-  vp44_state_debounce_value = 4;
+  vp44_operating_condition_value = RESET_INACTIVE;
+  vp44_state_operating_condition_cached = RESET_INACTIVE;
+  vp44_state_input_current = STATE_4_DEFAULT;
+  vp44_state_previous = STATE_4_DEFAULT;
+  vp44_state_current_debounced = STATE_4_DEFAULT;
+  vp44_state_debounce_value = STATE_4_DEFAULT;
   vp44_state_debounce_countdown = 0;
   vp44_state_processing_timeout_counter = vp44_state_processing_timeout_reload;
   return;
@@ -30410,10 +30416,10 @@ void vp44StateProcessor(void)
   vp44_diagnostic_mode_state = (VP44_DIAG_MODE)uVar1;
   uVar2 = vp44OperatingConditionChecker();
   if ((short)uVar2 == 0) {
-    if (vp44_state_current_debounced == 2) {
+    if (vp44_state_current_debounced == STATE_2_MONITOR) {
       vp44_diagnostic_mode_state = vp44State2TransitionHandler();
     }
-    else if (vp44_state_current_debounced == 1) {
+    else if (vp44_state_current_debounced == STATE_1_ACTIVE) {
       uVar2 = vp44State1TransitionHandler();
       vp44_diagnostic_mode_state = (VP44_DIAG_MODE)uVar2;
     }
@@ -30480,10 +30486,10 @@ short vp44StateDebounceFilter(void)
 undefined2 vp44StateToControlModeMapper(void)
 
 {
-  if (vp44_state_current_debounced == 5) {
+  if (vp44_state_current_debounced == STATE_5_FAULT) {
     return 1;
   }
-  if (vp44_state_current_debounced == 0) {
+  if (vp44_state_current_debounced == STATE_0_IDLE) {
     return 0;
   }
   return vp44_state_output_timing_base;
@@ -30505,7 +30511,8 @@ undefined4 vp44OperatingConditionChecker(void)
       (((derate_status_byte & 8) == 0 &&
        ((fuel_temp_limit_delta == 0 ||
         (shutdown_delay_for_engine_sync_fuel_pressure_shutdown_0_255 == 0)))))) &&
-     ((vp44_operating_condition_value != 2 && (vp44_operating_condition_value != 1)))) {
+     ((vp44_operating_condition_value != FUEL_CONTROL_B &&
+      (vp44_operating_condition_value != FUEL_CONTROL_A)))) {
     return 0;
   }
   return 1;
@@ -30544,7 +30551,7 @@ VP44_DIAG_MODE vp44State2TransitionHandler(void)
       VVar1 = BOOST_PRESSURE_INIT;
     }
   }
-  else if (vp44_state_debounce_value == 2) {
+  else if (vp44_state_debounce_value == STATE_2_MONITOR) {
     if (vp44_state_processing_timeout_counter == 0) {
       VVar1 = SENSOR_BIT2_PROTECTION;
     }
@@ -30581,7 +30588,7 @@ undefined4 vp44State1TransitionHandler(void)
   uVar1 = (undefined2)((uint)in_D0 >> 0x10);
   VVar2 = vp44_diagnostic_mode_state;
   if (protection_system_enable_flag != 0) {
-    if (vp44_state_debounce_value == 1) {
+    if (vp44_state_debounce_value == STATE_1_ACTIVE) {
       if (vp44_state_processing_timeout_counter == 0) {
         uVar1 = 0;
         VVar2 = SENSOR_BIT8_TRIGGERED;
@@ -30610,9 +30617,11 @@ uint vp44State3Or4TransitionChecker(void)
 {
   uint in_D0;
   
-  if (((vp44_state_current_debounced != 3) &&
-      ((vp44_state_operating_condition_cached == 4 || (vp44_operating_condition_value != 4)))) &&
-     ((vp44_state_operating_condition_cached == 3 || (vp44_operating_condition_value != 3)))) {
+  if (((vp44_state_current_debounced != STATE_3_TRANSITION) &&
+      ((vp44_state_operating_condition_cached == TRANSITION_STATE_4 ||
+       (vp44_operating_condition_value != TRANSITION_STATE_4)))) &&
+     ((vp44_state_operating_condition_cached == TRANSITION_STATE_3 ||
+      (vp44_operating_condition_value != TRANSITION_STATE_3)))) {
     return in_D0 & 0xffff0000;
   }
   return 1;
@@ -32002,22 +32011,22 @@ ushort fuelDemandFaultFlagUpdater(uint param_1)
 ushort fuelDemandLimitSource2Selector(void)
 
 {
-  ushort uVar1;
+  VP44_OPERATING_CONDITION VVar1;
   
-  uVar1 = vp44_operating_condition_value | protection_system_enable_flag;
-  if (uVar1 != 0) {
-    if (_fuel_demand_limit_source_2_flag == 0) {
+  VVar1 = vp44_operating_condition_value | protection_system_enable_flag;
+  if (VVar1 != RESET_INACTIVE) {
+    if (_fuel_demand_limit_source_2_flag == RESET_INACTIVE) {
       vp44_diagnostic_fault_state = 0;
       fuel_demand_limit_source = NO_LIMIT_ACTIVE;
-      return uVar1;
+      return VVar1;
     }
-    uVar1 = _fuel_demand_limit_source_2_flag;
+    VVar1 = _fuel_demand_limit_source_2_flag;
     if (_fuel_demand_limit_source_2_flag < vp44_diagnostic_fault_state) {
       vp44_diagnostic_fault_state = _fuel_demand_limit_source_2_flag;
       fuel_demand_limit_source = VP44_DIAGNOSTIC_FAULT;
     }
   }
-  return uVar1;
+  return VVar1;
 }
 
 
@@ -32718,14 +32727,14 @@ void vp44SensorStatusMonitor(void)
     else if (vp44_state_debounce_value == vp44_sensor_prev_debounce) {
       if (vp44_sensor_state_counter + 1 < (uint)vp44_state_debounce_threshold) {
         vp44_sensor_state_counter = vp44_sensor_state_counter + 1;
-        vp44_sensor_status_monitor_state = 4;
+        vp44_sensor_status_monitor_state = STATE_4_DEFAULT;
       }
       else {
         vp44_sensor_status_monitor_state = vp44_state_debounce_value;
       }
     }
     else if (vp44_sensor_state_counter < 2) {
-      vp44_sensor_status_monitor_state = 4;
+      vp44_sensor_status_monitor_state = STATE_4_DEFAULT;
     }
     else {
       vp44_sensor_state_counter = vp44_sensor_state_counter - 1;
@@ -32733,13 +32742,13 @@ void vp44SensorStatusMonitor(void)
     if (vp44_state_debounce_threshold < 2) {
       vp44_sensor_status_monitor_state = vp44_state_debounce_value;
     }
-    if (vp44_sensor_status_monitor_state == 5) {
+    if (vp44_sensor_status_monitor_state == STATE_5_FAULT) {
       sensor_status_register = sensor_status_register | 0x10;
     }
-    else if (vp44_sensor_status_monitor_state == 0) {
+    else if (vp44_sensor_status_monitor_state == STATE_0_IDLE) {
       sensor_status_register = sensor_status_register & 0xef;
     }
-    if (vp44_sensor_status_monitor_state == 2) {
+    if (vp44_sensor_status_monitor_state == STATE_2_MONITOR) {
       if (vp44_sensor_debounce_counter < vp44_state_processing_timeout_reload) {
         sensor_status_register = sensor_status_register & 0xfd | 4;
         vp44_sensor_debounce_counter = vp44_sensor_debounce_counter + 1;
@@ -32752,13 +32761,13 @@ void vp44SensorStatusMonitor(void)
       sensor_status_register = sensor_status_register & 0xf9;
       vp44_sensor_debounce_counter = 0;
     }
-    if (vp44_sensor_status_monitor_state == 3) {
+    if (vp44_sensor_status_monitor_state == STATE_3_TRANSITION) {
       sensor_status_register = sensor_status_register | 1;
     }
     else {
       sensor_status_register = sensor_status_register & 0xfe;
     }
-    if (vp44_sensor_status_monitor_state == 1) {
+    if (vp44_sensor_status_monitor_state == STATE_1_ACTIVE) {
       sensor_status_register = sensor_status_register | 8;
     }
     else {
@@ -32781,8 +32790,8 @@ void vp44DiagnosticStateInit(void)
 
 {
   if (_vp44_extended_processing_enable == 0) {
-    vp44_sensor_prev_debounce = 4;
-    vp44_sensor_status_monitor_state = 4;
+    vp44_sensor_prev_debounce = STATE_4_DEFAULT;
+    vp44_sensor_status_monitor_state = STATE_4_DEFAULT;
     vp44_sensor_state_counter = 0;
   }
   return;
