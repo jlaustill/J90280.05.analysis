@@ -567,3 +567,23 @@ TIMING_MODE_SOURCE,1,ARBITRATION_VALUE,Fuel timing mode arbitration value,2
 TIMING_MODE_SOURCE,2,ARBITRATION_1,Fuel timing mode arbitration 1 (VP44 timing),2
 TIMING_MODE_SOURCE,3,ARBITRATION_2,Fuel timing mode arbitration 2 (protection mode active),2
 TIMING_MODE_SOURCE,4,PARAM_OVERRIDE,Parameter override mode (fuel_timing_mode_arbitration_param_2),2
+# VP44 Operating Condition - pump condition state tracked in vp44_operating_condition_value
+# Values 1 & 2 treated as fuel control active; 3 & 4 trigger mode transitions
+VP44_OPERATING_CONDITION,0,RESET_INACTIVE,Reset/inactive state - initialized in vp44ControlVariablesReset,2
+VP44_OPERATING_CONDITION,1,FUEL_CONTROL_A,Fuel control condition A - checked with value 2,2
+VP44_OPERATING_CONDITION,2,FUEL_CONTROL_B,Fuel control condition B - checked with value 1,2
+VP44_OPERATING_CONDITION,3,TRANSITION_STATE_3,Transition state 3 - triggers mode change on entry,2
+VP44_OPERATING_CONDITION,4,TRANSITION_STATE_4,Transition state 4 - triggers mode change on entry,2
+# VP44 State - pump state machine values for communication/debounce
+# Used by vp44_state_current_debounced, vp44_state_previous, vp44_state_input_current, etc.
+VP44_STATE,0,STATE_0_IDLE,State 0 - idle/cleared state (returns 0 from mapper),2
+VP44_STATE,1,STATE_1_ACTIVE,State 1 - active state with timer/transition handling,2
+VP44_STATE,2,STATE_2_MONITOR,State 2 - monitoring state with transition handling,2
+VP44_STATE,3,STATE_3_TRANSITION,State 3 - transition state,2
+VP44_STATE,4,STATE_4_DEFAULT,State 4 - default init state (set in vp44StateVariablesInit),2
+VP44_STATE,5,STATE_5_FAULT,State 5 - fault/error state (returns 1 from mapper),2
+# Engine Runtime Histogram Mode - hour meter and runtime tracking mode
+# Used by engine_runtime_histogram_mode in hourMeterConversionProcessor
+ENGINE_HISTOGRAM_MODE,0,IDLE,No histogram update needed,1
+ENGINE_HISTOGRAM_MODE,1,INCREMENT,Increment histogram index (data < conversion state),1
+ENGINE_HISTOGRAM_MODE,2,DECREMENT,Decrement histogram index (counter < conversion state),1

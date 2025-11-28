@@ -1,6 +1,6 @@
 # Plan: Discover and Document New Enums and Structs
 
-## Status: COMPLETED (Phase 3)
+## Status: Phase 4 - Pending Verification
 
 ## Summary of Changes
 
@@ -122,7 +122,31 @@ if (high_rpm_protection_state == SHUTDOWN_PENDING) {
 - Add function prototypes for better parameter typing
 - Define local variable structures in key functions
 
-### Additional Enum Candidates
+### Additional Enum Candidates (Remaining)
 - `fuel_timing_mode_blend_factor` - timing mode constants (0x4000)
-- `vp44_operating_condition_value` - VP44 condition states (1-4)
-- `vp44_communication_status` - VP44 comm states (1-4)
+- ~~`vp44_operating_condition_value` - VP44 condition states (1-4)~~ ✓ DONE
+- ~~`vp44_communication_status` - VP44 comm states (1-4)~~ (Found to be bit field, not enum)
+
+### Phase 4 - Final Enum Work (Pending Verification)
+
+| Enum Name | Entries | Variable(s) | Purpose |
+|-----------|---------|-------------|---------|
+| **VP44_OPERATING_CONDITION** | 5 | `vp44_operating_condition_value`, `vp44_operating_condition_prev`, `vp44_state_operating_condition_cached` | VP44 pump condition state tracking |
+| **VP44_STATE** | 6 | `vp44_state_current_debounced`, `vp44_state_previous`, `vp44_state_input_current`, `vp44_state_debounce_value` (x2), `vp44_sensor_prev_debounce`, `vp44_sensor_status_monitor_state` | VP44 pump state machine for communication/debounce |
+| **ENGINE_HISTOGRAM_MODE** | 3 | `engine_runtime_histogram_mode` | Hour meter and runtime tracking mode |
+
+**Phase 4 Total: 14 new enum values, 11 variables typed**
+
+### Phase 4 Global Variables Updated
+
+- `vp44_operating_condition_value` (0x008096b4) → type: VP44_OPERATING_CONDITION
+- `vp44_operating_condition_prev` (0x0080327c) → type: VP44_OPERATING_CONDITION
+- `vp44_state_operating_condition_cached` (0x0080333a) → type: VP44_OPERATING_CONDITION
+- `vp44_state_current_debounced` (0x00803336) → type: VP44_STATE
+- `vp44_state_previous` (0x00803338) → type: VP44_STATE
+- `vp44_state_input_current` (0x00803330) → type: VP44_STATE
+- `vp44_state_debounce_value` (0x0080333e) → type: VP44_STATE
+- `vp44_state_debounce_value` (0x0080938c) → type: VP44_STATE
+- `vp44_sensor_prev_debounce` (0x008033f4) → type: VP44_STATE
+- `vp44_sensor_status_monitor_state` (0x008033f6) → type: VP44_STATE
+- `engine_runtime_histogram_mode` (0x00809b1b) → type: ENGINE_HISTOGRAM_MODE

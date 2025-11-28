@@ -659,7 +659,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00803278,boost_diagnostic_delta_calc,word,Boost diagnostic delta calculation (3 refs),2,0,,delta
 0x0080327a,vp44_sensor_bit2_prev_state,byte,VP44 sensor bit 2 previous state (3 refs),1,0,,state
 0x0080327b,vp44_sensor_bit0_prev_state,byte,VP44 sensor bit 0 previous state (3 refs),1,0,,state
-0x0080327c,vp44_operating_condition_prev,word,VP44 operating condition previous value (4 refs),2,0,,value
+0x0080327c,vp44_operating_condition_prev,VP44_OPERATING_CONDITION,VP44 operating condition previous value (4 refs),2,0,,value
 0x0080327e,boost_pressure_feedback_previous,word,Previous boost pressure feedback for rate limiting,2,0,,value
 0x00803280,boost_pressure_protection_mode_prev,word,Boost pressure protection mode previous (4 refs),2,0,,state
 0x00803282,rpm_fuel_calculation_scratch,dword,Scratch register for RPM-based fuel calculation,4,0,,value
@@ -721,7 +721,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00803312,vp44_fuel_limit_upper,word,VP44 fuel temp limit upper bound (2 refs),2,0,,value
 0x00803314,vp44_fuel_limit_lower,word,VP44 fuel temp limit lower bound (2 refs),2,0,,value
 0x00803332,output_timing_base_value,word,Output timing generator base value (5 refs),2,0,,value
-0x0080333e,vp44_state_debounce_value,word,VP44 state debounce filter value (7 refs),2,0,,value
+0x0080333e,vp44_state_debounce_value,VP44_STATE,VP44 state debounce filter value (7 refs),2,0,,value
 0x00803340,output_control_can_state,byte,Output control CAN interface state (9 refs),1,0,,state
 0x00803342,vp44_timing_override_state,word,VP44 timing override state (3 refs),2,0,,state
 0x00803344,vp44_timing_override_counter,word,VP44 timing override counter (4 refs),2,0,,counter
@@ -750,8 +750,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008033ee,fuel_temp_primary_counter_flag,word,Fuel temp primary counter enable flag (7 refs),2,0,,flag
 0x008033f0,fuel_temp_secondary_counter_flag,word,Fuel temp secondary counter enable flag (3 refs),2,0,,flag
 0x008033f2,vp44_sensor_debounce_counter,word,VP44 sensor status debounce counter (3 refs),2,0,,counter
-0x008033f4,vp44_sensor_prev_debounce,word,VP44 sensor previous debounce value (3 refs),2,0,,value
-0x008033f6,vp44_sensor_status_monitor_state,word,VP44 sensor status monitor state (11 refs),2,0,,state
+0x008033f4,vp44_sensor_prev_debounce,VP44_STATE,VP44 sensor previous debounce value (3 refs),2,0,,value
+0x008033f6,vp44_sensor_status_monitor_state,VP44_STATE,VP44 sensor status monitor state (11 refs),2,0,,state
 0x008033f8,vp44_sensor_state_counter,word,VP44 sensor state transition counter (6 refs),2,0,,counter
 0x008033fa,vp44_control_flags_state,word,VP44 control flags init state value (5 refs),2,0,,state
 0x0080340c,vp44_sensor_diag_timer_1,word,VP44 sensor diagnostic control timer 1 (5 refs),2,0,,timer
@@ -2754,7 +2754,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008092c6,load_percentage,word,Engine load percentage,2,0,,value
 0x008092f2,insite_diagnostic_reading,word,INSITE diagnostic reading value (1 ref),2,0,,value
 0x00809308,retarder_input_value,word,Retarder input value for calculations,2,0,,value
-0x0080938c,vp44_state_debounce_value,word,VP44 state debounce filter value (12 refs),2,0,,value
+0x0080938c,vp44_state_debounce_value,VP44_STATE,VP44 state debounce filter value (12 refs),2,0,,value
 0x00809488,clutch_time_accumulator_1,dword,Clutch time accumulator 1 (2 refs),4,0,,accumulator
 0x0080948c,boost_pressure_stats_accumulator,dword,Boost pressure statistics accumulator (2 refs),4,0,,accumulator
 0x00809490,clutch_time_accumulator_2,dword,Clutch time accumulator 2 (2 refs),4,0,,accumulator
@@ -2824,7 +2824,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008096ac,fuel_limit_protection,word,Fuel limit from protection systems,2,0,,value
 0x008096ae,fuel_limit_rpm_based,word,RPM-based fuel limit,2,0,,value
 0x008096b2,fuel_demand_limit_source_2_flag,byte,Fuel demand limit source 2 selector flag (6 refs),1,0,,flag
-0x008096b4,vp44_operating_condition_value,word,VP44 operating condition check value,2,0,,value
+0x008096b4,vp44_operating_condition_value,VP44_OPERATING_CONDITION,VP44 operating condition check value,2,0,,value
 0x008096b6,vp44_diagnostic_mode_state,VP44_DIAG_MODE,VP44 diagnostic mode state machine,2,0,,state
 0x008096c2,protection_param_2,word,Protection table parameter 2 (2 refs),2,0,,value
 0x008096c4,diagnostic_mode_fuel_adjustment,word,Diagnostic mode fuel adjustment value,2,0,,value
@@ -2974,7 +2974,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00809b14,engine_runtime_histogram_counter,dword,Engine runtime histogram accumulator counter (9 refs),4,0,,counter
 0x00809b18,engine_runtime_histogram_value,word,Engine runtime histogram calculated value - accessed via move.w/clr.w,2,0,,value
 0x00809b1a,engine_runtime_histogram_index,byte,Engine runtime histogram bin index - accessed via move.b,1,0,,index
-0x00809b1b,engine_runtime_histogram_mode,byte,Engine runtime histogram mode flag (A4 register),1,0,,mode
+0x00809b1b,engine_runtime_histogram_mode,ENGINE_HISTOGRAM_MODE,Engine runtime histogram mode flag (A4 register),1,0,,mode
 0x00809cbe,governor_mode_init_error_prev,word,Governor mode 1 init previous error (2 refs),2,0,,value
 0x00809cc0,governor_mode_init_integral,word,Governor mode 1 init PID integral value (2 refs),2,0,,value
 0x00809cc2,governor_mode_init_rpm_ref,word,Governor mode 1 init RPM reference (2 refs),2,0,,value
@@ -4829,12 +4829,12 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080335a,output_control_timing_reset_counter,word,Countdown counter loaded from 0x00807266,2,0,,counter
 0x00803366,output_control_lookup_failure_flag,byte,0=success 1=failure for io_control_flags,1,0,,flag
 0x0080332e,vp44_state_processing_timeout_counter,word,VP44 state machine timeout countdown (loaded from 0x80734e) (9 refs),2,0,,counter
-0x00803336,vp44_state_current_debounced,word,VP44 debounced state from vp44StateDebounceFilter (8 refs),2,0,,state
+0x00803336,vp44_state_current_debounced,VP44_STATE,VP44 debounced state from vp44StateDebounceFilter (8 refs),2,0,,state
 0x00803334,vp44_state_debounce_countdown,word,VP44 state debounce countdown timer (8 refs),2,0,,countdown
 0x0080333c,vp44_state_output_timing_base,word,VP44 state machine output timing base value (7 refs),2,0,,value
-0x0080333a,vp44_state_operating_condition_cached,word,VP44 cached operating condition for state comparison (7 refs),2,0,,state
-0x00803330,vp44_state_input_current,word,VP44 current state input value (7 refs),2,0,,state
-0x00803338,vp44_state_previous,word,VP44 previous state for transition detection (7 refs),2,0,,state
+0x0080333a,vp44_state_operating_condition_cached,VP44_OPERATING_CONDITION,VP44 cached operating condition for state comparison (7 refs),2,0,,state
+0x00803330,vp44_state_input_current,VP44_STATE,VP44 current state input value (7 refs),2,0,,state
+0x00803338,vp44_state_previous,VP44_STATE,VP44 previous state for transition detection (7 refs),2,0,,state
 0x00803358,output_control_state_sequencer,word,Output control state sequencer counter (7 refs),2,0,,counter
 0x008033b6,output_control_idle_timeout_threshold,word,Output control idle timeout threshold (initialized to 10) (5 refs),2,0,,threshold
 0x008033b8,output_control_active_flag,word,Output control active state flag (0=idle 1=active) (4 refs),2,0,,flag
