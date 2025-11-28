@@ -5909,3 +5909,50 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008079ce,throttle_buffer_high_threshold,word,Throttle buffer high threshold value (bufferThresholdValidator),2,0,,threshold
 0x00807d54,frictional_load_torque_table_value,word,Frictional load torque table value (frictionalLoadTorqueTransitionHandler),2,0,,value
 0x00807e70,diagnostic_protection_threshold,word,Diagnostic protection threshold (diagnosticProtectionEvaluator),2,0,,threshold
+0x00ffc806,toucan_control_reg_0,byte,TouCAN CANCTRL0 - Control Register 0 (CAN module),1,0,,hw_register
+0x00ffc808,toucan_prescaler_div,byte,TouCAN PRESDIV - Prescaler Divide Register,1,0,,hw_register
+0x00ffc809,toucan_control_reg_2,byte,TouCAN CTRL2 - Control Register 2,1,0,,hw_register
+0x00ffc80a,toucan_free_timer_high,byte,TouCAN Free Running Timer high byte,1,0,,hw_register
+0x00ffc80b,toucan_free_timer_low,byte,TouCAN Free Running Timer low byte,1,0,,hw_register
+0x00ffc810,toucan_mb0_control,word,TouCAN MB0 - Message Buffer 0 Control/Status,2,0,,hw_register
+0x00ffc812,toucan_mb0_timer,word,TouCAN MB0 - Message Buffer 0 Timer Capture,2,0,,hw_register
+0x00ffc816,toucan_mb0_id_low,word,TouCAN MB0 - Message Buffer 0 ID Low,2,0,,hw_register
+0x00ffc81f,toucan_mb0_data_7,byte,TouCAN MB0 - Message Buffer 0 Data Byte 7,1,0,,hw_register
+0x00ffc820,toucan_mb1_control,word,TouCAN MB1 - Message Buffer 1 Control/Status,2,0,,hw_register
+0x00ffc822,toucan_mb1_timer,word,TouCAN MB1 - Message Buffer 1 Timer Capture,2,0,,hw_register
+0x00ffc826,toucan_mb1_id_low,word,TouCAN MB1 - Message Buffer 1 ID Low,2,0,,hw_register
+0x00ffc82f,toucan_mb1_data_7,byte,TouCAN MB1 - Message Buffer 1 Data Byte 7,1,0,,hw_register
+0x00ffc830,toucan_mb2_control,word,TouCAN MB2 - Message Buffer 2 Control/Status,2,0,,hw_register
+0x00ffc832,toucan_mb2_timer,word,TouCAN MB2 - Message Buffer 2 Timer Capture,2,0,,hw_register
+0x00ffc836,toucan_mb2_id_low,word,TouCAN MB2 - Message Buffer 2 ID Low,2,0,,hw_register
+0x00ffc83f,toucan_mb2_data_7,byte,TouCAN MB2 - Message Buffer 2 Data Byte 7,1,0,,hw_register
+0x00ffc840,toucan_mb3_control,word,TouCAN MB3 - Message Buffer 3 Control/Status,2,0,,hw_register
+0x00ffc842,toucan_mb3_timer,word,TouCAN MB3 - Message Buffer 3 Timer Capture,2,0,,hw_register
+0x00ffc846,toucan_mb3_id_low,word,TouCAN MB3 - Message Buffer 3 ID Low,2,0,,hw_register
+0x00ffc84f,toucan_mb3_data_7,byte,TouCAN MB3 - Message Buffer 3 Data Byte 7,1,0,,hw_register
+0x00ffc850,toucan_mb4_control,word,TouCAN MB4 - Message Buffer 4 Control/Status,2,0,,hw_register
+0x00ffc852,toucan_mb4_timer,word,TouCAN MB4 - Message Buffer 4 Timer Capture,2,0,,hw_register
+0x00ffc856,toucan_mb4_id_low,word,TouCAN MB4 - Message Buffer 4 ID Low,2,0,,hw_register
+0x00ffc860,toucan_mb5_control,word,TouCAN MB5 - Message Buffer 5 Control/Status,2,0,,hw_register
+0x00ffc862,toucan_mb5_timer,word,TouCAN MB5 - Message Buffer 5 Timer Capture,2,0,,hw_register
+0x00ffc866,toucan_mb5_id_low,word,TouCAN MB5 - Message Buffer 5 ID Low,2,0,,hw_register
+0x00ffd000,qsm_config_reg_high,byte,QSM QSMCR high - Configuration Register high byte,1,0,,hw_register
+0x00ffd001,qsm_config_reg_low,byte,QSM QSMCR low - Configuration Register low byte,1,0,,hw_register
+0x00ffd002,qsm_test_reg_high,byte,QSM QTEST high - Test Register high byte,1,0,,hw_register
+0x00ffd003,qsm_test_reg_low,byte,QSM QTEST low - Test Register low byte,1,0,,hw_register
+0x00ffd005,qsm_int_level_reg,byte,QSM QILR - Interrupt Level Register,1,0,,hw_register
+0x00ffd007,qsm_int_vector_reg,byte,QSM QIVR - Interrupt Vector Register,1,0,,hw_register
+0x00ffd008,qsm_sci_control_0_high,byte,QSM SCCR0 high - SCI Control Register 0 high byte,1,0,,hw_register
+0x00ffd009,qsm_sci_control_0_low,byte,QSM SCCR0 low - SCI Control Register 0 low byte,1,0,,hw_register
+0x00ffd00a,qsm_sci_control_1_high,byte,QSM SCCR1 high - SCI Control Register 1 high byte,1,0,,hw_register
+0x00ffd00c,qsm_sci_status_reg,word,QSM SCSR - SCI Status Register,2,0,,hw_register
+0x00ffd00e,qsm_sci_data_reg,word,QSM SCDR - SCI Data Register,2,0,,hw_register
+0x00ffd806,sim_tpu_control_0,byte,SIM/TPU Control Register 0,1,0,,hw_register
+0x00ffd808,sim_tpu_prescaler,byte,SIM/TPU Prescaler Divide Register,1,0,,hw_register
+0x00ffd809,sim_tpu_control_2,byte,SIM/TPU Control Register 2,1,0,,hw_register
+0x00ffd80a,sim_tpu_timer_high,byte,SIM/TPU Free Running Timer high byte,1,0,,hw_register
+0x00ffd80b,sim_tpu_timer_low,byte,SIM/TPU Free Running Timer low byte,1,0,,hw_register
+0x00ffd81f,sim_tpu_mb0_data_7,byte,SIM/TPU Message Buffer 0 Data Byte 7,1,0,,hw_register
+0x00ffd82f,sim_tpu_mb1_data_7,byte,SIM/TPU Message Buffer 1 Data Byte 7,1,0,,hw_register
+0x00ffd83f,sim_tpu_mb2_data_7,byte,SIM/TPU Message Buffer 2 Data Byte 7,1,0,,hw_register
+0x00ffd84f,sim_tpu_mb3_data_7,byte,SIM/TPU Message Buffer 3 Data Byte 7,1,0,,hw_register

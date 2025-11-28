@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 09:48:05 MST 2025
+// Fri Nov 28 11:31:46 MST 2025
 
 
 //
@@ -1764,24 +1764,24 @@ void tpuTimerInitializer(void)
 {
   _tpu_timer_channel_config = &serial_port_2_base_register;
   serial_port_1_isr_state = 6;
-  _DAT_00ffc812 = 0x2240;
-  DAT_00ffc816 = 0x80;
-  _DAT_00ffc810 = 0x9955;
-  _DAT_00ffc822 = 0x2000;
-  DAT_00ffc826 = 0x88;
-  _DAT_00ffc820 = 0x5559;
-  _DAT_00ffc832 = 0xa240;
-  DAT_00ffc836 = 0x80;
-  _DAT_00ffc830 = 0x9955;
-  _DAT_00ffc842 = 0xa000;
-  DAT_00ffc846 = 0x88;
-  _DAT_00ffc840 = 0x5559;
-  _DAT_00ffc852 = 0xe240;
-  DAT_00ffc856 = 0x80;
-  _DAT_00ffc850 = 0x9955;
-  _DAT_00ffc862 = 0xe000;
-  DAT_00ffc866 = 0x88;
-  _DAT_00ffc860 = 0x5559;
+  toucan_mb0_timer = 0x2240;
+  toucan_mb0_id_low._0_1_ = 0x80;
+  toucan_mb0_control = 0x9955;
+  toucan_mb1_timer = 0x2000;
+  toucan_mb1_id_low._0_1_ = 0x88;
+  toucan_mb1_control = 0x5559;
+  toucan_mb2_timer = 0xa240;
+  toucan_mb2_id_low._0_1_ = 0x80;
+  toucan_mb2_control = 0x9955;
+  toucan_mb3_timer = 0xa000;
+  toucan_mb3_id_low._0_1_ = 0x88;
+  toucan_mb3_control = 0x5559;
+  toucan_mb4_timer = 0xe240;
+  toucan_mb4_id_low._0_1_ = 0x80;
+  toucan_mb4_control = 0x9955;
+  toucan_mb5_timer = 0xe000;
+  toucan_mb5_id_low._0_1_ = 0x88;
+  toucan_mb5_control = 0x5559;
   serial_port_2_base_register._0_1_ = serial_port_2_base_register._0_1_ | 10;
   return;
 }
@@ -4071,7 +4071,7 @@ undefined4 calibrationDataCopyWithChecksum(void)
   for (pdVar2 = &flash_program_block_1_buffer; pdVar2 < (dword *)0x80488c; pdVar2 = pdVar2 + 1) {
     *pdVar2 = *pdVar4;
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     pdVar4 = pdVar4 + 1;
   }
   puVar5 = &DAT_00004400;
@@ -4079,7 +4079,7 @@ undefined4 calibrationDataCopyWithChecksum(void)
       pwVar3 = pwVar3 + 2) {
     *(undefined4 *)pwVar3 = *puVar5;
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     puVar5 = puVar5 + 1;
   }
   calibration_checksum_workspace._0_2_ = 1;
@@ -4109,7 +4109,7 @@ undefined4 calibrationDataCopySecondary(void)
   for (pdVar2 = &flash_program_block_1_buffer; pdVar2 < (dword *)0x80488c; pdVar2 = pdVar2 + 1) {
     *pdVar2 = *pdVar4;
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     pdVar4 = pdVar4 + 1;
   }
   pdVar4 = &firmware_vector_table_base;
@@ -4117,7 +4117,7 @@ undefined4 calibrationDataCopySecondary(void)
       pwVar3 = (word *)((int)pwVar3 + 4)) {
     *(dword *)pwVar3 = *pdVar4;
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     pdVar4 = pdVar4 + 1;
   }
   calibration_checksum_workspace._0_2_ = 2;
@@ -4168,19 +4168,19 @@ int eepromCalibrationWritePrimary(void)
   iVar1 = flashEraseFromRam(0x4000);
   if (iVar1 == 0) {
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     sVar2 = flashProgramFromRam(0x4000,&flash_program_block_1_buffer,CONCAT22(10,uVar6));
     if (sVar2 == 1) {
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
       sVar2 = flashProgramFromRam(0x4400,&flash_program_block_2_buffer,CONCAT22(0x1a42,uVar6));
       cVar3 = sVar2 == 0;
       if (sVar2 == 1) {
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         local_6 = arrayRangeSum((short *)&DAT_00004000,(short *)&calibration_checksum_end_marker);
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         uVar5 = (ushort)(byte)(cVar3 << 4 | 8);
         parameterCircularBufferWrite(0x803500,(undefined1 *)&local_6,CONCAT22(2,uVar5));
         uVar4 = 0;
@@ -4259,19 +4259,19 @@ int eepromCalibrationWriteSecondary(void)
   iVar1 = flashEraseFromRam(0x6000);
   if (iVar1 == 0) {
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     sVar2 = flashProgramFromRam(0x6000,&flash_program_block_1_buffer,CONCAT22(10,uVar6));
     if (sVar2 == 1) {
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
       sVar2 = flashProgramFromRam(0x6400,&flash_program_block_2_buffer,CONCAT22(0x1a42,uVar6));
       cVar3 = sVar2 == 0;
       if (sVar2 == 1) {
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         local_6 = arrayRangeSum((short *)&DAT_00006000,(short *)0x7e42);
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         uVar5 = (ushort)(byte)(cVar3 << 4 | 8);
         parameterCircularBufferWrite(0x803502,(undefined1 *)&local_6,CONCAT22(2,uVar5));
         uVar4 = 0;
@@ -4470,7 +4470,7 @@ void firmwareDataCopyToWorkingMemory(void)
   pdVar1 = (dword *)&firmware_data_source;
   for (pdVar2 = &can_memory_table_start; pdVar2 < (dword *)0x808ab2; pdVar2 = pdVar2 + 1) {
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     *pdVar2 = *pdVar1;
     pdVar1 = pdVar1 + 1;
   }
@@ -6458,16 +6458,17 @@ ushort vp44_status_data_collector(void)
   undefined4 local_c;
   undefined4 local_8;
   
-  local_8 = CONCAT13(DAT_00ffd003,CONCAT12(DAT_00ffd002,CONCAT11(DAT_00ffd001,DAT_00ffd000)));
-  local_c._1_3_ = (uint3)CONCAT11(DAT_00ffd007,DAT_00ffd005);
+  local_8 = CONCAT13(qsm_test_reg_low,
+                     CONCAT12(qsm_test_reg_high,CONCAT11(qsm_config_reg_low,qsm_config_reg_high)));
+  local_c._1_3_ = (uint3)CONCAT11(qsm_int_vector_reg,qsm_int_level_reg);
   local_c = CONCAT13(sim_rsr,local_c._1_3_);
   local_10 = (uint)sim_swsr;
-  vp44_status_buffer_start = DAT_00ffd000;
-  vp44_status_byte1 = DAT_00ffd001;
-  vp44_status_byte2 = DAT_00ffd002;
-  vp44_status_byte3 = DAT_00ffd003;
-  vp44_status_byte4 = DAT_00ffd005;
-  vp44_status_byte5 = DAT_00ffd007;
+  vp44_status_buffer_start = qsm_config_reg_high;
+  vp44_status_byte1 = qsm_config_reg_low;
+  vp44_status_byte2 = qsm_test_reg_high;
+  vp44_status_byte3 = qsm_test_reg_low;
+  vp44_status_byte4 = qsm_int_level_reg;
+  vp44_status_byte5 = qsm_int_vector_reg;
   vp44_status_byte6 = 0;
   vp44_status_byte7 = sim_rsr;
   vp44_status_byte8 = sim_swsr;
@@ -6722,9 +6723,9 @@ void initVP44StatusMonitoring(void)
 void initCANBus(void)
 
 {
-  DAT_00ffd008 = 0xf;
-  DAT_00ffd009 = 0x80;
-  DAT_00ffd00a = 0x80;
+  qsm_sci_control_0_high = 0xf;
+  qsm_sci_control_0_low = 0x80;
+  qsm_sci_control_1_high = 0x80;
   SIM_CAN_CONTROL_PORT_1 = 0;
   sim_data_direction_control = sim_data_direction_control | 0x10;
   can1_cantbsel = can1_cantbsel & 0xdfff;
@@ -11924,7 +11925,7 @@ undefined8 main_loop(void)
   }
   schedulerPerformanceMonitor();
   REG_SIM_SWSR = 0xaa;
-  external_watchdog_service = 0xaa;
+  qsm_sci_data_reg._1_1_ = 0xaa;
   return CONCAT44(in_D0,in_D1);
 }
 
@@ -12220,7 +12221,7 @@ undefined4 flashEraseWithWatchdog(void)
   ushort uVar4;
   
   REG_SIM_SWSR = 0xaa;
-  external_watchdog_service = 0xaa;
+  qsm_sci_data_reg._1_1_ = 0xaa;
   uVar4 = 0;
   *(undefined2 *)flash_control_register_ptr = 0x2020;
   *(undefined2 *)flash_control_register_ptr = 0xd0d0;
@@ -12232,7 +12233,7 @@ undefined4 flashEraseWithWatchdog(void)
       _calibration_download_size_n_a = 0xffff;
       return 1;
     }
-    if ((DAT_00ffd000 & 1) == 0) {
+    if ((qsm_config_reg_high & 1) == 0) {
       uVar4 = 0;
     }
     else {
@@ -12247,7 +12248,7 @@ undefined4 flashEraseWithWatchdog(void)
             uVar4 = 0;
             do {
               REG_SIM_SWSR = 0xaa;
-              external_watchdog_service = 0xaa;
+              qsm_sci_data_reg._1_1_ = 0xaa;
               uVar4 = uVar4 + 1;
             } while (uVar4 < 0xa0);
             sVar3 = sVar3 + 1;
@@ -12263,7 +12264,7 @@ undefined4 flashEraseWithWatchdog(void)
       uVar2 = 0;
       do {
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         uVar2 = uVar2 + 1;
       } while (uVar2 < 0xa0);
       sVar3 = sVar3 + 1;
@@ -12314,7 +12315,7 @@ undefined4 flashProgramWordWithWatchdog(void)
   uVar1 = 0;
   while( true ) {
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     if (flash_write_end_address <= flash_control_register_ptr) {
       if ((_calibration_download_size_n_a & 0x10) != 0x10) {
         return 1;
@@ -12326,7 +12327,7 @@ undefined4 flashProgramWordWithWatchdog(void)
     uVar2 = 0;
     while (uVar2 < 5000) {
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
       uVar2 = uVar2 + 1;
     }
     _calibration_download_size_n_a = 0xffff;
@@ -13658,7 +13659,7 @@ void serialReceiveBufferProcessor(uint param_1)
       *(undefined1 *)((int)&serial_port_1_base_register + iVar1 + 1) = 0xfd;
       *_serial_receive_buffer_state = *(uint *)((int)&serial_port_1_base_register + iVar1 + 2) >> 3;
       *(short *)(_serial_receive_buffer_state + 1) =
-           (short)((int)((byte)(&DAT_00ffd806)[iVar1] & 0xf0) >> 4);
+           (short)((int)((&sim_tpu_control_0)[iVar1] & 0xf0) >> 4);
       *(uint *)((int)_serial_receive_buffer_state + 6) = (int)_serial_receive_buffer_state + 10;
       uVar2 = 0;
       puVar4 = (undefined1 *)(iVar1 + 0xffd807);
@@ -19795,17 +19796,15 @@ void initParameterScalingSystem(void)
 // Function: pwmOutputInit @ 0x0001f860
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void pwmOutputInit(void)
 
 {
-  _DAT_00ffd00c =
+  qsm_sci_status_reg =
        (pwm_output_channel_select & 7) << 0xc |
        (ushort)(30000000 / ((uint)pwm_output_period_multiplier * (uint)pwm_output_frequency_divisor)
                ) & 0xfff;
   if (pwm_output_enable_flag == 1) {
-    _DAT_00ffd00c = _DAT_00ffd00c | 0x8000;
+    qsm_sci_status_reg = qsm_sci_status_reg | 0x8000;
   }
   return;
 }
@@ -20827,20 +20826,20 @@ void dualCanControllerInit(void)
 {
   byte bVar1;
   byte *pbVar2;
-  undefined *puVar3;
+  word *pwVar3;
   
   do {
     serial_port_1_base_register._2_1_ = DAT_008088c3;
   } while ((DAT_008088c3 & 0x80) != 0);
-  DAT_00ffd808 = can_controller_1_baud_byte_0;
-  DAT_00ffd809 = can_controller_1_baud_byte_1;
-  DAT_00ffd80a = PTGNQDTB._0_1_;
-  DAT_00ffd80b = (undefined1)PTGNQDTB;
-  _DAT_00ffd806 = can_controller_1_timing_word;
-  DAT_00ffd82f = can_controller_1_filter_byte_1;
-  DAT_00ffd83f = can_controller_1_filter_byte_2;
-  DAT_00ffd84f = can_controller_1_filter_byte_3;
-  DAT_00ffd81f = 0;
+  sim_tpu_prescaler = can_controller_1_baud_byte_0;
+  sim_tpu_control_2 = can_controller_1_baud_byte_1;
+  sim_tpu_timer_high = PTGNQDTB._0_1_;
+  sim_tpu_timer_low = (byte)PTGNQDTB;
+  _sim_tpu_control_0 = can_controller_1_timing_word;
+  sim_tpu_mb1_data_7 = can_controller_1_filter_byte_1;
+  sim_tpu_mb2_data_7 = can_controller_1_filter_byte_2;
+  sim_tpu_mb3_data_7 = can_controller_1_filter_byte_3;
+  sim_tpu_mb0_data_7 = 0;
   serial_port_1_base_register._0_1_ = 0;
   pbVar2 = &can_controller_config_register;
   bVar1 = 1;
@@ -20853,21 +20852,21 @@ void dualCanControllerInit(void)
   do {
     serial_port_2_base_register._2_1_ = DAT_008088d1;
   } while ((DAT_008088d1 & 0x80) != 0);
-  DAT_00ffc808 = can_controller_2_baud_byte_0;
-  DAT_00ffc809 = can_controller_2_baud_byte_1;
-  DAT_00ffc80a = can_controller_2_baud_byte_2;
-  DAT_00ffc80b = can_controller_2_baud_byte_3;
-  _DAT_00ffc806 = can_controller_2_timing_word;
-  DAT_00ffc82f = can_controller_2_filter_byte_1;
-  DAT_00ffc83f = can_controller_2_filter_byte_2;
-  DAT_00ffc84f = can_controller_2_filter_byte_3;
-  DAT_00ffc81f = 0;
+  toucan_prescaler_div = can_controller_2_baud_byte_0;
+  toucan_control_reg_2 = can_controller_2_baud_byte_1;
+  toucan_free_timer_high = can_controller_2_baud_byte_2;
+  toucan_free_timer_low = can_controller_2_baud_byte_3;
+  _toucan_control_reg_0 = can_controller_2_timing_word;
+  toucan_mb1_data_7 = can_controller_2_filter_byte_1;
+  toucan_mb2_data_7 = can_controller_2_filter_byte_2;
+  toucan_mb3_data_7 = can_controller_2_filter_byte_3;
+  toucan_mb0_data_7 = 0;
   serial_port_2_base_register._0_1_ = 0;
-  puVar3 = &DAT_00ffc810;
+  pwVar3 = &toucan_mb0_control;
   bVar1 = 1;
   do {
-    *puVar3 = 0x7d;
-    puVar3 = puVar3 + 0x10;
+    *(undefined1 *)pwVar3 = 0x7d;
+    pwVar3 = pwVar3 + 8;
     bVar1 = bVar1 + 1;
   } while (bVar1 < 0x10);
   serial_port_2_base_register._0_1_ = serial_port_2_base_register._0_1_ & 0xfe;
@@ -21171,7 +21170,7 @@ void vp44StatusInitAndWait(void)
   word local_6;
   
   REG_SIM_SWSR = 0xaa;
-  external_watchdog_service = 0xaa;
+  qsm_sci_data_reg._1_1_ = 0xaa;
   cVar3 = '\x01';
   cVar4 = '\0';
   cVar5 = '\0';
@@ -21196,7 +21195,7 @@ void vp44StatusInitAndWait(void)
       uVar7 = 0;
       do {
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         uVar7 = uVar7 + 1;
       } while (uVar7 < 0xa0);
       sVar1 = sVar1 + 1;
@@ -21204,7 +21203,7 @@ void vp44StatusInitAndWait(void)
     uVar2 = uVar2 + 1;
   }
   REG_SIM_SWSR = 0xaa;
-  external_watchdog_service = 0xaa;
+  qsm_sci_data_reg._1_1_ = 0xaa;
   phase4InitSequence();
   return;
 }
@@ -21244,7 +21243,7 @@ void vp44CommunicationTestAndInit(void)
   uVar15 = (undefined2)((uint)unaff_D2 >> 0x10);
   protectionFlagAccumulator();
   REG_SIM_SWSR = 0xaa;
-  external_watchdog_service = 0xaa;
+  qsm_sci_data_reg._1_1_ = 0xaa;
   amount_of_time_since_water_in_fuel_low_failure_was_detected_0_65535 = 1;
   uVar14 = (ushort)(byte)(in_XF << 4);
   uVar5 = 0;
@@ -21270,24 +21269,24 @@ void vp44CommunicationTestAndInit(void)
   }
   sVar2 = calibration_checksum_workspace._0_2_;
   REG_SIM_SWSR = 0xaa;
-  external_watchdog_service = 0xaa;
+  qsm_sci_data_reg._1_1_ = 0xaa;
   bVar13 = 1;
   do {
     if (((sVar2 == 2) && (bVar13 == 1)) || ((sVar2 == 1 && (bVar13 == 2)))) {
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
       uVar1 = eepromCalibrationWritePrimary();
       unaff_D7 = uVar1 & 0xffff;
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
     }
     else if (((sVar2 == 1) && (bVar13 == 1)) || ((sVar2 == 2 && (bVar13 == 2)))) {
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
       uVar1 = eepromCalibrationWriteSecondary();
       unaff_D7 = uVar1 & 0xffff;
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
     }
     if ((short)unaff_D7 == 1) {
       vp44StatusInitAndWait();
@@ -21304,7 +21303,7 @@ void vp44CommunicationTestAndInit(void)
       uVar5 = 0;
       while( true ) {
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         if ((999 < uVar5) || (vp44_comm_test_flag == vp44_comm_test_sensor_value)) break;
         emptyPlaceholderFunction();
         sVar3 = 0;
@@ -21321,7 +21320,7 @@ void vp44CommunicationTestAndInit(void)
     bVar6 = 0;
     while (bVar6 < 4) {
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
       vp44_status_data_collector();
       delayWithWatchdogService(CONCAT22(10000,uVar15));
       bVar6 = bVar6 + 1;
@@ -21340,7 +21339,7 @@ void vp44CommunicationTestAndInit(void)
   uVar5 = 0;
   while( true ) {
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     if ((999 < uVar5) || (_loop_counter_reference == local_a)) break;
     emptyPlaceholderFunction();
     sVar2 = 0;
@@ -21367,7 +21366,7 @@ void vp44CommunicationTestAndInit(void)
       uVar14 = 0;
       do {
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         uVar14 = uVar14 + 1;
       } while (uVar14 < 0xa0);
       sVar2 = sVar2 + 1;
@@ -21377,19 +21376,19 @@ void vp44CommunicationTestAndInit(void)
   flashBootloaderProgrammer();
   sim_data_direction_control = sim_data_direction_control & 0xf3;
   REG_SIM_SWSR = 0xaa;
-  external_watchdog_service = 0xaa;
+  qsm_sci_data_reg._1_1_ = 0xaa;
   ioControlAndCanPinSwitching();
   local_6 = 0;
   sVar2 = hardware_timer_register._0_2_;
   do {
     while ((ushort)(hardware_timer_register._0_2_ - sVar2) < 500) {
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
       vp44_status_data_collector();
       if ((vp44_communication_status & 1) != 0) {
         sim_data_direction_control = sim_data_direction_control & 0xfb | 8;
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         ioControlAndCanPinSwitching();
         vp44StatusInitAndWait();
       }
@@ -21399,10 +21398,10 @@ void vp44CommunicationTestAndInit(void)
   } while (local_6 < 0x28);
   sim_data_direction_control = sim_data_direction_control & 0xfb | 8;
   REG_SIM_SWSR = 0xaa;
-  external_watchdog_service = 0xaa;
+  qsm_sci_data_reg._1_1_ = 0xaa;
   ioControlAndCanPinSwitching();
   REG_SIM_SWSR = 0xaa;
-  external_watchdog_service = 0xaa;
+  qsm_sci_data_reg._1_1_ = 0xaa;
   bVar13 = 0;
   while( true ) {
     cVar12 = bVar13 < 4;
@@ -21410,7 +21409,7 @@ void vp44CommunicationTestAndInit(void)
     cVar9 = (char)(bVar13 - 4) < '\0';
     if (!(bool)cVar12) break;
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     vp44_status_data_collector();
     delayWithWatchdogService(CONCAT22(10000,uVar15));
     bVar13 = bVar13 + 1;
@@ -21433,7 +21432,7 @@ void vp44CommunicationTestAndInit(void)
       uVar14 = 0;
       do {
         REG_SIM_SWSR = 0xaa;
-        external_watchdog_service = 0xaa;
+        qsm_sci_data_reg._1_1_ = 0xaa;
         uVar14 = uVar14 + 1;
       } while (uVar14 < 0xa0);
       sVar2 = sVar2 + 1;
@@ -21476,7 +21475,7 @@ short huffmanTreeBuilder(int param_1)
       uVar3 = (ushort)uVar1;
       if (uVar2 <= uVar3) break;
       REG_SIM_SWSR = 0xaa;
-      external_watchdog_service = 0xaa;
+      qsm_sci_data_reg._1_1_ = 0xaa;
       if (*(short *)(param_1 + uVar1 * 6) != 0) {
         if (*(ushort *)(param_1 + uVar1 * 6) < *(ushort *)(param_1 + (uint)uVar5 * 6)) {
           uVar4 = (uint)uVar5;
@@ -21521,7 +21520,7 @@ void huffmanDecompress(int param_1,undefined4 param_2)
   bVar1 = false;
   while( true ) {
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
     uVar3 = param_2._0_2_;
     do {
       bVar2 = (byte)((int)(uint)bVar2 >> 1);
@@ -21645,7 +21644,7 @@ void waitForPortPinStable(void)
   uVar2 = (undefined2)((uint)unaff_D2 >> 0x10);
   bVar1 = 0;
   while (bVar1 < 5) {
-    if ((DAT_00ffd000 & 1) == 0) {
+    if ((qsm_config_reg_high & 1) == 0) {
       bVar1 = 0;
     }
     else {
@@ -21684,7 +21683,7 @@ byte portPinTestSequence2(void)
   QADC_PORTQB = QADC_PORTQB | 0x700;
   QADC_PORTQA = 0x600;
   busyWaitDelayLoop(CONCAT22(1,uVar3));
-  DAT_00807c86 = -((DAT_00ffd001 & 1) != 0) & 1U &
+  DAT_00807c86 = -((qsm_config_reg_low & 1) != 0) & 1U &
                  -((QADC_PORTQA & 1) != 0) & 1U & -(uVar2 == 0) & 1U & -(uVar1 != 0) & 1U;
   return DAT_00807c86;
 }
@@ -21740,8 +21739,8 @@ void hardwareInitAndStartup(void)
   undefined4 uVar1;
   code *pcVar3;
   
-  DAT_00ffd008 = 0x40;
-  DAT_00ffd00e = 0x80;
+  qsm_sci_control_0_high = 0x40;
+  qsm_sci_data_reg._0_1_ = 0x80;
   waitForPortPinStable();
   sim_sypcr = sim_sypcr | 8;
   sim_rsr = sim_rsr | 8;
@@ -21814,7 +21813,7 @@ void ramClearWithWatchdog(void)
       *(dword *)pwVar2 = 0;
     }
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
   }
   return;
 }
@@ -23177,7 +23176,7 @@ void clearWorkingMemory(void)
       pwVar2[1] = 0;
     }
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
   }
   return;
 }
@@ -27003,7 +27002,7 @@ void delayWithWatchdogService(undefined4 param_1)
 {
   while (param_1._0_2_ != 0) {
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
   }
   return;
 }
@@ -27019,7 +27018,7 @@ void watchdogServiceLoop(undefined4 param_1)
 {
   while (param_1._0_2_ != 0) {
     REG_SIM_SWSR = 0xaa;
-    external_watchdog_service = 0xaa;
+    qsm_sci_data_reg._1_1_ = 0xaa;
   }
   return;
 }
