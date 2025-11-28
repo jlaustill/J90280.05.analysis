@@ -5708,6 +5708,66 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00809532,adc_throttle_fault_increment_ptr,dword,ADC throttle fault increment pointer (initADCChannelConfiguration),4,0,,pointer
 0x00809534,adc_throttle_fault_set_ptr,dword,ADC sampled throttle fault clear counts pointer (initADCChannelConfiguration),4,0,,pointer
 0x0080953a,adc_sampled_throttle_fault_clear_ptr,dword,ADC sampled throttle fault clear ptr (initADCChannelConfiguration),4,0,,pointer
+0x0080953e,adc_channel_3_config_value,word,ADC channel 3 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809540,adc_ambient_air_pressure_filter_ptr,dword,ADC ambient air pressure filter ptr (initADCChannelConfiguration),4,0,,pointer
+0x00809546,adc_channel_3_mux_ptr,dword,ADC channel 3 mux setting ptr (initADCChannelConfiguration),4,0,,pointer
+0x0080954a,adc_channel_4_config_value,word,ADC channel 4 config value 2 (initADCChannelConfiguration),2,0,,config
+0x0080954c,adc_battery_voltage_error_limit_ptr,dword,ADC battery voltage high error limit ptr (initADCChannelConfiguration),4,0,,pointer
+0x00809552,adc_channel_4_mux_ptr,dword,ADC channel 4 mux setting ptr (initADCChannelConfiguration),4,0,,pointer
+0x00809556,adc_channel_5_config_value,word,ADC channel 5 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809558,adc_channel_5_filter_ptr,dword,ADC channel 5 digital filter ptr (initADCChannelConfiguration),4,0,,pointer
+0x0080955e,adc_channel_5_error_limit_ptr,dword,ADC channel 5 high error limit ptr (initADCChannelConfiguration),4,0,,pointer
+0x00809562,adc_channel_6_config_value,word,ADC channel 6 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809564,adc_channel_6_filter_ptr,dword,ADC channel 6 digital filter ptr (initADCChannelConfiguration),4,0,,pointer
+0x0080956a,adc_channel_6_fault_set_ptr,dword,ADC channel 6 fault set ptr (initADCChannelConfiguration),4,0,,pointer
+0x0080956e,adc_channel_7_config_value,word,ADC channel 7 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809570,adc_throttle_error_number_ptr,dword,ADC throttle position error number ptr (initADCChannelConfiguration),4,0,,pointer
+0x00809576,adc_channel_7_filter_ptr,dword,ADC channel 7 digital filter ptr (initADCChannelConfiguration),4,0,,pointer
+0x0080957a,adc_channel_8_config_value,word,ADC channel 8 config value 2 (initADCChannelConfiguration),2,0,,config
+0x0080957c,adc_water_in_fuel_fault_clear_ptr,dword,ADC water in fuel fault clear counts ptr (initADCChannelConfiguration),4,0,,pointer
+0x00809582,adc_water_in_fuel_fault_set_ptr,dword,ADC water in fuel fault set ptr (initADCChannelConfiguration),4,0,,pointer
+0x00809586,adc_channel_9_config_value,word,ADC channel 9 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809588,adc_water_in_fuel_channel_addr_ptr,dword,ADC water in fuel channel address ptr (initADCChannelConfiguration),4,0,,pointer
+0x0080958e,adc_water_in_fuel_tristate_ptr,dword,ADC water in fuel tri-state error ptr (initADCChannelConfiguration),4,0,,pointer
+0x00809592,adc_channel_10_config_value,word,ADC channel 10 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809594,adc_channel_10_fault_clear_ptr,dword,ADC channel 10 fault clear counts ptr (initADCChannelConfiguration),4,0,,pointer
+0x0080959a,adc_channel_10_fault_set_ptr,dword,ADC channel 10 fault set ptr (initADCChannelConfiguration),4,0,,pointer
+0x0080959e,adc_channel_11_config_value,word,ADC channel 11 config value 2 (initADCChannelConfiguration),2,0,,config
+0x008095a0,adc_egr_feedback_channel_addr_ptr,dword,ADC EGR feedback channel address ptr (initADCChannelConfiguration),4,0,,pointer
+0x008095a6,adc_channel_11_fault_decrement_ptr,dword,ADC channel 11 fault decrement ptr (initADCChannelConfiguration),4,0,,pointer
+0x008095aa,adc_channel_12_config_value,word,ADC channel 12 config value 2 (initADCChannelConfiguration),2,0,,config
+0x008095ac,adc_programming_pulse_error_ptr,dword,ADC programming pulse error number ptr (initADCChannelConfiguration),4,0,,pointer
+0x008095b2,adc_channel_12_fault_ptr,dword,ADC channel 12 ADHBSVFD ptr (initADCChannelConfiguration),4,0,,pointer
+0x008095b6,adc_channel_13_config_value,word,ADC channel 13 config value 2 (initADCChannelConfiguration),2,0,,config
+0x008095b8,adc_channel_13_fault_ptr,dword,ADC channel 13 ADHBSVCA ptr (initADCChannelConfiguration),4,0,,pointer
+0x008095be,adc_channel_13_default_ptr,dword,ADC channel 13 global default ptr (initADCChannelConfiguration),4,0,,pointer
+0x008095c2,adc_channel_14_config_value,word,ADC channel 14 config value 2 (initADCChannelConfiguration),2,0,,config
+0x008095c4,adc_channel_14_error_limit_ptr,dword,ADC channel 14 high error limit ptr (initADCChannelConfiguration),4,0,,pointer
+0x008095ca,adc_channel_14_mux_ptr,dword,ADC channel 14 mux setting ptr (initADCChannelConfiguration),4,0,,pointer
+0x008095ce,adc_channel_15_config_value,word,ADC channel 15 config value 2 (initADCChannelConfiguration),2,0,,config
+0x008095d0,adc_channel_15_table_ptr_1,dword,ADC channel 15 table pointer 1 0x806d3a (initADCChannelConfiguration),4,0,,pointer
+0x008095d6,adc_channel_15_table_ptr_2,dword,ADC channel 15 table pointer 2 0x806d40 (initADCChannelConfiguration),4,0,,pointer
+0x008095da,adc_channel_16_config_value,word,ADC channel 16 config value 2 (initADCChannelConfiguration),2,0,,config
+0x008095dc,adc_channel_16_table_ptr_1,dword,ADC channel 16 table pointer 1 0x806d46 (initADCChannelConfiguration),4,0,,pointer
+0x008095e2,adc_channel_16_table_ptr_2,dword,ADC channel 16 table pointer 2 0x806d4c (initADCChannelConfiguration),4,0,,pointer
+0x008095e6,adc_channel_17_config_value,word,ADC channel 17 config value 2 (initADCChannelConfiguration),2,0,,config
+0x008095e8,adc_channel_17_table_ptr_1,dword,ADC channel 17 table pointer 1 0x806d52 (initADCChannelConfiguration),4,0,,pointer
+0x008095ee,adc_channel_17_table_ptr_2,dword,ADC channel 17 table pointer 2 0x806d58 (initADCChannelConfiguration),4,0,,pointer
+0x008095f2,adc_channel_18_config_value,word,ADC channel 18 config value 2 (initADCChannelConfiguration),2,0,,config
+0x008095f4,adc_channel_18_table_ptr_1,dword,ADC channel 18 table pointer 1 0x806d5e (initADCChannelConfiguration),4,0,,pointer
+0x008095fa,adc_channel_18_table_ptr_2,dword,ADC channel 18 table pointer 2 0x806d64 (initADCChannelConfiguration),4,0,,pointer
+0x008095fe,adc_channel_19_config_value,word,ADC channel 19 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809600,adc_channel_19_table_ptr_1,dword,ADC channel 19 table pointer 1 0x806d6a (initADCChannelConfiguration),4,0,,pointer
+0x00809606,adc_channel_19_table_ptr_2,dword,ADC channel 19 table pointer 2 0x806d70 (initADCChannelConfiguration),4,0,,pointer
+0x0080960a,adc_channel_20_config_value,word,ADC channel 20 config value 2 (initADCChannelConfiguration),2,0,,config
+0x0080960c,adc_channel_20_table_ptr_1,dword,ADC channel 20 table pointer 1 0x806d76 (initADCChannelConfiguration),4,0,,pointer
+0x00809612,adc_channel_20_table_ptr_2,dword,ADC channel 20 table pointer 2 0x806d9c (initADCChannelConfiguration),4,0,,pointer
+0x00809616,adc_channel_21_config_value,word,ADC channel 21 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809618,adc_channel_21_table_ptr_1,dword,ADC channel 21 table pointer 1 0x806dc2 (initADCChannelConfiguration),4,0,,pointer
+0x0080961e,adc_channel_21_table_ptr_2,dword,ADC channel 21 table pointer 2 0x806dd4 (initADCChannelConfiguration),4,0,,pointer
+0x00809622,adc_channel_22_config_value,word,ADC channel 22 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809624,adc_channel_22_table_ptr_1,dword,ADC channel 22 table pointer 1 0x806de6 (initADCChannelConfiguration),4,0,,pointer
+0x0080962a,adc_channel_22_table_ptr_2,dword,ADC channel 22 table pointer 2 0x806dee (initADCChannelConfiguration),4,0,,pointer
 0x00807388,rpm_derate_base_offset,word,RPM derate base offset (rpmDerateCalculationController),2,0,,offset
 0x00807392,rpm_derate_lower_threshold,word,RPM derate lower threshold (rpmDerateCalculationController),2,0,,threshold
 0x00807394,rpm_derate_upper_threshold,word,RPM derate upper threshold (rpmDerateCalculationController),2,0,,threshold
