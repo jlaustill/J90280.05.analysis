@@ -5074,3 +5074,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008087c2,eps_backup_duration_init,word,EPS backup duration init value (2 refs),2,0,,init
 0x008087c6,governor_pid_integral_max,word,Governor PID integral upper limit (2 refs),2,0,,limit
 0x00807d52,engine_running_timer_threshold,word,Engine running mode timer threshold (2 refs),2,0,,threshold
+0x00807856,hour_meter_multiplier,word,Hour meter conversion multiplier (2 refs),2,0,,multiplier
+0x00807d2c,rpm_source_selector_init,word,RPM source selector init value (2 refs),2,0,,init
+0x00807d38,frictional_load_fuel_init,word,Frictional load fuel offset init (2 refs),2,0,,init
+0x00807d3c,frictional_load_state_init,word,Frictional load calculator state init (2 refs),2,0,,init
+0x00807d40,frictional_load_torque_init,word,Frictional load torque interpolator init (2 refs),2,0,,init
+0x00807d4e,shutdown_protection_step_2,word,Shutdown protection increment step 2 (2 refs),2,0,,step
+0x00807d50,shutdown_protection_step_1,word,Shutdown protection increment step 1 (2 refs),2,0,,step
+0x00807f1c,intake_manifold_temp_threshold,word,Intake manifold temp comparison threshold (2 refs),2,0,,threshold
+0x00807f1e,throttle_position_raw_threshold,word,Throttle position raw comparison threshold (2 refs),2,0,,threshold
+0x00807f20,intake_temp_upper_threshold,word,Intake temp upper comparison threshold (2 refs),2,0,,threshold
+0x00807cde,engine_fault_timer_init,word,Engine fault timer init value (2 refs),2,0,,init
+0x0080738a,derate_rpm_adjustment_max,word,Derate RPM adjustment upper clamp (2 refs),2,0,,limit
