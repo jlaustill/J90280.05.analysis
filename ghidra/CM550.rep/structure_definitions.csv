@@ -438,3 +438,9 @@ q16_fixed_point_t,,fractional_part,word,2,Low 16 bits - fractional portion (._2_
 # Governor PID Integral @ 0x008016e2 - Q16.16 fixed point accumulator
 governor_pid_integral_t,0x008016e2,integer_part,word,2,Integer portion of PID integral (governor_fuel_pid_integral._0_2_),,new
 governor_pid_integral_t,0x008016e2,fractional_part,word,2,Fractional portion of PID integral (governor_fuel_pid_integral._2_2_),,new
+# Table Interpolation Arguments Structure - used by lookupTableInterpolation function
+# 12 bytes total - passed as pointer to lookup functions
+table_interp_args_t,,current_index,word,2,Current interpolation index into table,,verified
+table_interp_args_t,,x_axis_ptr,dword,4,Pointer to X-axis table (input values),,verified
+table_interp_args_t,,input_value,word,2,Input value for table lookup,,verified
+table_interp_args_t,,y_axis_ptr,dword,4,Pointer to Y-axis table (output values),,verified

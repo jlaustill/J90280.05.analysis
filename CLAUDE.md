@@ -6,3 +6,37 @@
 - NEVER make assumptions, ZERO acceptions! If definitive proof isn't available, ask the user for more data!
 - the playbook should only contain steps the user should take to replay. It should NOT contain findings, notes, todo's or anything else ZERO EXCEPTIONS
 - always use decimal in variable and function names to keep them human readable
+
+## ⚠️ CRITICAL: CSV-Only Workflow (No Direct Ghidra Changes)
+
+**NEVER make changes directly in Ghidra using MCP tools or manual edits.** All changes MUST be made in CSV files only.
+
+### Why This Matters:
+- Direct Ghidra changes (via MCP `rename_*`, `set_*` tools) modify the database but are NOT persisted to CSVs
+- This creates inconsistency between the CSV source of truth and the Ghidra state
+- Direct changes can cause unexpected side effects (e.g., variable types changing to `undefined`)
+- The Ghidra project can be rebuilt from CSVs, but not vice versa
+
+### Correct Workflow:
+1. **Edit CSV files** with your discoveries (function_renames.csv, global_variables.csv, etc.)
+2. **Run ApplyAndExport** (`Ctrl+Shift+E`) in Ghidra to apply CSV changes
+3. **Verify the output** in `ghidra/CM550.rep/working/J90280.05.ghidra.cpp`
+4. **Only commit after verification** - ensure ApplyAndExport was run and output looks correct
+
+### Pre-Commit Checklist:
+- [ ] All changes are in CSV files (NOT made directly in Ghidra)
+- [ ] ApplyAndExport (`Ctrl+Shift+E`) was run in Ghidra
+- [ ] Verified `ghidra/CM550.rep/working/J90280.05.ghidra.cpp` shows expected changes
+- [ ] No unexpected type changes (e.g., `byte *` becoming `undefined *`)
+
+### MCP Tools - READ ONLY:
+The Ghidra MCP tools should be used for **reading/analysis only**:
+- ✅ `decompile_function` - Read decompiled code
+- ✅ `search_functions_by_name` - Find functions
+- ✅ `get_function_xrefs` - Analyze call hierarchy
+- ✅ `list_strings` - Find string references
+- ❌ `rename_function_by_address` - DO NOT USE (use CSV instead)
+- ❌ `rename_variable` - DO NOT USE (use CSV instead)
+- ❌ `rename_data` - DO NOT USE (use CSV instead)
+- ❌ `set_function_prototype` - DO NOT USE (use CSV instead)
+- ❌ `set_local_variable_type` - DO NOT USE (use CSV instead)
