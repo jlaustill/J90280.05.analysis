@@ -5768,6 +5768,76 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00809622,adc_channel_22_config_value,word,ADC channel 22 config value 2 (initADCChannelConfiguration),2,0,,config
 0x00809624,adc_channel_22_table_ptr_1,dword,ADC channel 22 table pointer 1 0x806de6 (initADCChannelConfiguration),4,0,,pointer
 0x0080962a,adc_channel_22_table_ptr_2,dword,ADC channel 22 table pointer 2 0x806dee (initADCChannelConfiguration),4,0,,pointer
+0x0080962e,adc_channel_23_config_value,word,ADC channel 23 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809630,adc_channel_23_table_ptr_1,dword,ADC channel 23 table pointer 1 0x806df6 (initADCChannelConfiguration),4,0,,pointer
+0x00809636,adc_channel_23_table_ptr_2,dword,ADC channel 23 table pointer 2 0x806dfc (initADCChannelConfiguration),4,0,,pointer
+0x0080963a,adc_channel_24_config_value,word,ADC channel 24 config value 2 (initADCChannelConfiguration),2,0,,config
+0x0080963c,adc_channel_24_table_ptr_1,dword,ADC channel 24 table pointer 1 0x806e02 (initADCChannelConfiguration),4,0,,pointer
+0x00809642,adc_channel_24_table_ptr_2,dword,ADC channel 24 table pointer 2 0x806e08 (initADCChannelConfiguration),4,0,,pointer
+0x00809646,adc_channel_25_config_value,word,ADC channel 25 config value 2 (initADCChannelConfiguration),2,0,,config
+0x00809648,adc_channel_25_table_ptr_1,dword,ADC channel 25 table pointer 1 0x806e0e (initADCChannelConfiguration),4,0,,pointer
+0x0080964e,adc_channel_25_table_ptr_2,dword,ADC channel 25 table pointer 2 0x806e14 (initADCChannelConfiguration),4,0,,pointer
+0x0080966e,vp44_control_structure_init_value,word,VP44 control structure init value (vp44ControlStructureInit),2,0,,init
+0x0080968e,fuel_timing_transition_state,word,Fuel timing transition state machine state (fuelTimingTransitionStateMachine),2,0,,state
+0x00809704,fuel_demand_state_24_write_flag,word,Fuel demand state 24 override write flag (fuelDemandState24Override),2,0,,flag
+0x00809734,derate_table_pointer,dword,Derate table EPFLTB pointer (derateTablePointerInit),4,0,,pointer
+0x00809738,derate_table_init_flag,dword,Derate table init flag (derateTablePointerInit),4,0,,flag
+0x00809a0e,output_control_state_4_write_flag,word,Output control state 4 write flag (outputControlState4Handler),2,0,,flag
+0x00809a8a,vp44_fault_protection_can_id_1,word,VP44 fault protection CAN ID 1 0x5559 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809a8e,vp44_fault_protection_mask_1,word,VP44 fault protection mask 1 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809a90,vp44_fault_protection_flags_1,byte,VP44 fault protection flags 1 0x88 (vp44FaultProtectionSystemInit),1,0,,config
+0x00809a9a,vp44_fault_protection_can_id_2,word,VP44 fault protection CAN ID 2 0x9955 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809a9c,vp44_fault_protection_addr_2,word,VP44 fault protection address 2 0x2240 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809a9e,vp44_fault_protection_mask_2,word,VP44 fault protection mask 2 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809aa0,vp44_fault_protection_flags_2,byte,VP44 fault protection flags 2 0x80 (vp44FaultProtectionSystemInit),1,0,,config
+0x00809aaa,vp44_fault_protection_can_id_3,word,VP44 fault protection CAN ID 3 0x5559 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809aac,vp44_fault_protection_addr_3,word,VP44 fault protection address 3 0xa000 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809aae,vp44_fault_protection_mask_3,word,VP44 fault protection mask 3 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809ab0,vp44_fault_protection_flags_3,byte,VP44 fault protection flags 3 0x88 (vp44FaultProtectionSystemInit),1,0,,config
+0x00809aba,vp44_fault_protection_can_id_4,word,VP44 fault protection CAN ID 4 0x9955 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809abc,vp44_fault_protection_addr_4,word,VP44 fault protection address 4 0xa240 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809abe,vp44_fault_protection_mask_4,word,VP44 fault protection mask 4 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809ac0,vp44_fault_protection_flags_4,byte,VP44 fault protection flags 4 0x80 (vp44FaultProtectionSystemInit),1,0,,config
+0x00809ac2,vp44_can_msg_200_byte_1,byte,VP44 CAN message 200 parsed byte 1 (vp44CanMessage200Parser),1,0,,data
+0x00809ac3,vp44_can_msg_200_byte_2,byte,VP44 CAN message 200 parsed byte 2 (vp44CanMessage200Parser),1,0,,data
+0x00809ac4,vp44_can_msg_200_byte_3,byte,VP44 CAN message 200 parsed byte 3 (vp44CanMessage200Parser),1,0,,data
+0x00809ac5,vp44_can_msg_200_byte_4,byte,VP44 CAN message 200 parsed byte 4 (vp44CanMessage200Parser),1,0,,data
+0x00809ac6,vp44_can_msg_200_byte_5,byte,VP44 CAN message 200 parsed byte 5 (vp44CanMessage200Parser),1,0,,data
+0x00809ac7,vp44_can_msg_200_byte_6,byte,VP44 CAN message 200 parsed byte 6 (vp44CanMessage200Parser),1,0,,data
+0x00809ac8,vp44_can_msg_200_byte_7,byte,VP44 CAN message 200 parsed byte 7 (vp44CanMessage200Parser),1,0,,data
+0x00809aca,vp44_fault_protection_can_id_5,word,VP44 fault protection CAN ID 5 0x5559 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809acc,vp44_fault_protection_addr_5,word,VP44 fault protection address 5 0xe000 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809ace,vp44_fault_protection_mask_5,word,VP44 fault protection mask 5 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809ad0,vp44_fault_protection_flags_5,byte,VP44 fault protection flags 5 0x88 (vp44FaultProtectionSystemInit),1,0,,config
+0x00809ad1,vp44_can_msg_200_parsed_byte_8,byte,VP44 CAN message 200 parsed byte 8 (vp44CanMessage200Parser),1,0,,data
+0x00809ad2,vp44_can_msg_200_parsed_byte_9,byte,VP44 CAN message 200 parsed byte 9 (vp44CanMessage200Parser),1,0,,data
+0x00809ad3,vp44_can_msg_200_parsed_byte_10,byte,VP44 CAN message 200 parsed byte 10 (vp44CanMessage200Parser),1,0,,data
+0x00809ad4,vp44_can_msg_200_parsed_byte_11,byte,VP44 CAN message 200 parsed byte 11 (vp44CanMessage200Parser),1,0,,data
+0x00809ad5,vp44_can_msg_200_parsed_byte_12,byte,VP44 CAN message 200 parsed byte 12 (vp44CanMessage200Parser),1,0,,data
+0x00809ad6,vp44_can_msg_200_parsed_byte_13,byte,VP44 CAN message 200 parsed byte 13 (vp44CanMessage200Parser),1,0,,data
+0x00809ad7,vp44_can_msg_200_parsed_byte_14,byte,VP44 CAN message 200 parsed byte 14 (vp44CanMessage200Parser),1,0,,data
+0x00809ad8,vp44_can_msg_200_parsed_byte_15,byte,VP44 CAN message 200 parsed byte 15 (vp44CanMessage200Parser),1,0,,data
+0x00809ada,vp44_fault_protection_can_id_6,word,VP44 fault protection CAN ID 6 0x9955 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809adc,vp44_fault_protection_addr_6,word,VP44 fault protection address 6 0xe240 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809ade,vp44_fault_protection_mask_6,word,VP44 fault protection mask 6 (vp44FaultProtectionSystemInit),2,0,,config
+0x00809ae0,vp44_fault_protection_flags_6,byte,VP44 fault protection flags 6 0x80 (vp44FaultProtectionSystemInit),1,0,,config
+0x00809b0e,time_delta_calculator_state,word,Time delta calculator state (timeDeltaCalculator),2,0,,state
+0x00809b1c,hour_meter_conversion_init_value_1,word,Hour meter conversion init value 1 (initHourMeterConversionData),2,0,,init
+0x00809be6,hour_meter_conversion_init_value_2,word,Hour meter conversion init value 2 (initHourMeterConversionData),2,0,,init
+0x00809cb2,fuel_timing_mode_arbitration_param_1,word,Fuel timing mode arbitration param 1 (fuelTimingModeArbitrationSlowCycle40Coordinator),2,0,,parameter
+0x00809cbc,fuel_timing_mode_arbitration_param_2,word,Fuel timing mode arbitration param 2 (fuelTimingModeArbitrationSlowCycle40Coordinator),2,0,,parameter
+0x00809ce2,diagnostic_data_copy_source,word,Diagnostic data copy source offset (diagnosticDataCopyHandler),2,0,,offset
+0x00809ce4,diagnostic_data_copy_dest,word,Diagnostic data copy destination offset (diagnosticDataCopyHandler),2,0,,offset
+0x00809d46,serial_port_1_isr_counter,word,Serial port 1 ISR handler counter (serialPort1IsrHandler),2,0,,counter
+0x00809d4a,serial_port_1_isr_state,word,Serial port 1 ISR handler state (serialPort1IsrHandler),2,0,,state
+0x00809d88,can1_timer_buffer_init_value,word,CAN1 timer buffer init value (can1TimerBufferInitConditional),2,0,,init
+0x0080c792,can1_timer_buffer_state,word,CAN1 timer buffer state (can1TimerBufferInitConditional),2,0,,state
+0x0080c79b,pwm_timer_mode_dispatch_state,byte,PWM timer mode dispatcher state (pwmTimerModeDispatcher),1,0,,state
+0x0080c7b4,pwm_timer_calc_value_1,word,PWM timer calculation value 1 (pwmTimerModeDispatcher),2,0,,value
+0x0080c7b6,pwm_timer_calc_value_2,word,PWM timer calculation value 2 (pwmTimerModeDispatcher),2,0,,value
+0x0080c818,pwm_timer_output_value,word,PWM timer output value (pwmTimerModeDispatcher),2,0,,value
+0x0080c83a,pwm_timer_counter,word,PWM timer counter (pwmTimerModeDispatcher),2,0,,counter
+0x0080c842,pwm_timer_state,word,PWM timer state (pwmTimerModeDispatcher),2,0,,state
 0x00807388,rpm_derate_base_offset,word,RPM derate base offset (rpmDerateCalculationController),2,0,,offset
 0x00807392,rpm_derate_lower_threshold,word,RPM derate lower threshold (rpmDerateCalculationController),2,0,,threshold
 0x00807394,rpm_derate_upper_threshold,word,RPM derate upper threshold (rpmDerateCalculationController),2,0,,threshold
