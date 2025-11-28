@@ -5521,4 +5521,45 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008037e0,j1939_priority_pgn65252,byte,J1939 priority byte for PGN 65252 engine hours (engineHoursPGN_65252_Builder),1,0,,priority
 0x008037e6,j1939_priority_pgn65264,byte,J1939 priority byte for PGN 65264 cruise control (cruiseControlPGN_65264_Builder),1,0,,priority
 0x008037ec,j1939_priority_pgn65527,byte,J1939 priority byte for PGN 65527 electronic brake (electronicBrakePGN_65527_Builder),1,0,,priority
+0x008037ba,j1939_priority_pgn65265,byte,J1939 priority byte for PGN 65265 cruise control/vehicle speed (j1939MessageSetup_PGN_65265),1,0,,priority
+0x008037bc,j1939_priority_pgn65259,byte,J1939 priority byte for PGN 65259 engine serial number (engineSerialNumberPGN_65259_Builder),1,0,,priority
+0x008037be,j1939_priority_pgn65226,byte,J1939 priority byte for PGN 65226 engine coolant (engineCoolantPGN_65226_Builder),1,0,,priority
+0x008037c0,j1939_priority_pgn65227,byte,J1939 priority byte for PGN 65227 DM2 (diagnosticDM2PGN_65227_Builder),1,0,,priority
+0x008037c2,j1939_priority_pgn65229,byte,J1939 priority byte for PGN 65229 DM4 (diagnosticDM4PGN_65229_Builder),1,0,,priority
+0x008037c4,j1939_priority_pgn65230,byte,J1939 priority byte for PGN 65230 DM5 (diagnosticDM5PGN_65230_Builder),1,0,,priority
+0x008037c6,j1939_priority_pgn65232,byte,J1939 priority byte for PGN 65232 DM8 (diagnosticDM8PGN_65232_Builder),1,0,,priority
+0x008037ca,j1939_priority_vp44_cmd_256,byte,J1939 priority byte for VP44 command 0x100 (vp44Command0x100Builder),1,0,,priority
+0x008037ce,j1939_priority_pgn65247,byte,J1939 priority byte for PGN 65247 electronic engine (secondaryParamPGN_65247_Builder),1,0,,priority
+0x008037d2,j1939_priority_pgn65263,byte,J1939 priority byte for PGN 65263 fluid level (engineFluidLevelPGN_65263_Builder),1,0,,priority
+0x008037d6,j1939_priority_pgn15728640,byte,J1939 priority byte for PGN 15728640 Cummins TSC (cumminsProprietaryTSC_PGN_15728640_Builder),1,0,,priority
+0x008037da,j1939_priority_pgn65257,byte,J1939 priority byte for PGN 65257 intake exhaust (intakeExhaustConditionsPGN_65257_Builder),1,0,,priority
+0x008037dc,j1939_priority_pgn65266,byte,J1939 priority byte for PGN 65266 fuel economy (fuelEconomyPGN_65266_Builder),1,0,,priority
+0x008037de,j1939_priority_pgn65244,byte,J1939 priority byte for PGN 65244 I/O control (ioControlPGN_65244_Builder),1,0,,priority
+0x008037e2,j1939_priority_pgn65526,byte,J1939 priority byte for PGN 65526 intake manifold (intakeManifoldPGN_65526_Builder),1,0,,priority
+0x008037e8,j1939_priority_pgn65249,byte,J1939 priority byte for PGN 65249 retarder config (retarderConfigPGN_65249_Builder),1,0,,priority
+0x008037ea,j1939_priority_pgn65248,byte,J1939 priority byte for PGN 65248 vehicle distance (vehicleDistancePGN_65248_Builder),1,0,,priority
 0x008037ee,j1939_priority_pgn65255,byte,J1939 priority byte for PGN 65255 vehicle hours (vehicleHoursPGN_65255_Builder),1,0,,priority
+0x008037f0,diagnostic_command_state_init,word,Diagnostic command state initial value (initDiagnosticProtocol),2,0,,init
+0x008037f2,rpm_source_selector_flag,word,RPM source selector flag 1=use init (rpmSourceSelectorForFrictionalLoad),2,0,,flag
+0x008037f8,sensor_status_history_pointer,word,Sensor status history pointer/threshold (sensorStatusHistoryTracker),2,0,,pointer
+0x008037fa,sensor_status_validation_counter_init,word,Sensor status validation counter init (sensorStatusHistoryTracker),2,0,,counter
+0x008037fc,oil_pressure_state_index_limit,word,Oil pressure state index limit (sensorStatusHistoryTracker),2,0,,limit
+0x00803806,oil_pressure_rpm_target_special,word,Oil pressure RPM target special value (oilPressureRpmLimitTargetSelector),2,0,,target
+0x0080380a,oil_pressure_rpm_limit_reference,word,Oil pressure RPM limit reference (oil_pressure_shutdown_controller),2,0,,reference
+0x0080380e,fuel_demand_scale_multiplier,word,Fuel demand scale factor multiplier (fuelDemandScaleFactorCalculator),2,0,,multiplier
+0x00803814,fuel_statistics_base_offset,dword,Fuel statistics base offset value (fuelStatisticsTracker),4,0,,offset
+0x00803818,rpm_histogram_non_idle_threshold,word,RPM histogram non-idle time threshold (rpmHistogramAndAveragingStatistics),2,0,,threshold
+0x0080381a,diagnostic_mode_fuel_limit_value,word,Diagnostic mode fuel limit value (diagnosticModeFuelArbitrationHandler),2,0,,limit
+0x0080381c,diagnostic_source_5_param_value,word,Diagnostic source 5 parameter value (setDiagnosticSourceFromEngineFlags),2,0,,parameter
+0x00803820,protection_init_timeout_param,word,Protection init timeout parameter (engine_protection_init),2,0,,parameter
+0x00803822,protection_init_timing_param_1,word,Protection init timing parameter 1 (engine_protection_init),2,0,,parameter
+0x00803824,protection_init_mode_param,word,Protection init mode parameter (engine_protection_init),2,0,,parameter
+0x00803826,protection_init_timing_param_2,word,Protection init timing parameter 2 (engine_protection_init),2,0,,parameter
+0x00803828,protection_timeout_base_value,word,Protection timeout base value (engineProtectionTimeoutCalculator multi),2,0,,timeout
+0x0080382c,diagnostic_fuel_gain_factor,word,Diagnostic fuel gain factor (diagnosticFuelGainCalculator),2,0,,factor
+0x00803830,boost_pressure_scale_divisor,word,Boost pressure scale divisor (boostPressureFeedbackController),2,0,,divisor
+0x00803832,fuel_temp_calculated_limit,word,Fuel temperature calculated limit (boostPressureFeedbackController),2,0,,limit
+0x00803836,fuel_demand_limit_special_value,word,Fuel demand limit special value (fuelDemandLimitOrchestrator),2,0,,limit
+0x00803838,fuel_temp_protection_threshold,word,Fuel temperature protection threshold (fuelTemperatureLimitingPrimary multi),2,0,,threshold
+0x0080383c,fuel_temp_protection_limit,word,Fuel temperature protection limit (fuelTemperatureLimitingPrimary multi),2,0,,limit
+0x00803840,fuel_temp_protection_timer,word,Fuel temperature protection timer (fuelTemperatureProtectionSlowCycle40Coordinator),2,0,,timer
