@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 11:49:33 MST 2025
+// Fri Nov 28 12:04:29 MST 2025
 
 
 //
@@ -16036,18 +16036,18 @@ undefined4 diagMemoryReadResponseBuilder(byte *param_1,undefined1 *param_2,uint 
   int iVar1;
   char cVar2;
   byte bVar3;
-  undefined3 uVar4;
+  byte bVar4;
+  undefined3 uVar5;
   undefined4 in_D0;
-  uint uVar5;
-  undefined4 uVar6;
-  undefined2 uVar7;
+  uint uVar6;
+  undefined4 uVar7;
+  undefined2 uVar8;
   j1939_header_t *msg_header;
   undefined4 unaff_D2;
-  byte bVar8;
-  undefined1 uVar9;
+  byte bVar9;
   ushort uVar10;
-  undefined1 *puVar11;
-  undefined1 *puVar12;
+  byte *pbVar11;
+  byte *pbVar12;
   undefined2 uVar13;
   
   uVar13 = (undefined2)((uint)unaff_D2 >> 0x10);
@@ -16055,37 +16055,37 @@ undefined4 diagMemoryReadResponseBuilder(byte *param_1,undefined1 *param_2,uint 
   if (0x6e4 < param_3) {
     return 2;
   }
-  uVar5 = addressLookupFunction(CONCAT22((short)CONCAT31((int3)((uint)in_D0 >> 8),cVar2),uVar13));
-  bVar8 = (byte)uVar5;
-  if (bVar8 < 8) {
-    bVar8 = 8;
+  uVar6 = addressLookupFunction(CONCAT22((short)CONCAT31((int3)((uint)in_D0 >> 8),cVar2),uVar13));
+  bVar9 = (byte)uVar6;
+  if (bVar9 < 8) {
+    bVar9 = 8;
   }
-  if (((ushort)bVar8 != *(ushort *)(param_1 + 4)) &&
-     ((ushort)(bVar8 + 10) != *(short *)(param_1 + 4))) {
+  if (((ushort)bVar9 != *(ushort *)(param_1 + 4)) &&
+     ((ushort)(bVar9 + 10) != *(short *)(param_1 + 4))) {
     return 2;
   }
   uVar10 = (ushort)param_3;
-  uVar6 = addressRangeValidator((uint)param_2,CONCAT22(uVar10,uVar13));
-  uVar4 = (undefined3)((uint)uVar6 >> 8);
-  if (((char)uVar6 == '\n') || ((char)uVar6 == '\t')) {
-    return uVar6;
+  uVar7 = addressRangeValidator((uint)param_2,CONCAT22(uVar10,uVar13));
+  uVar5 = (undefined3)((uint)uVar7 >> 8);
+  if (((char)uVar7 == '\n') || ((char)uVar7 == '\t')) {
+    return uVar7;
   }
   if ((cVar2 == 'C') && (uVar10 < 0x100)) {
-    uVar9 = 0x44;
+    bVar9 = 0x44;
     *(undefined1 *)(*(int *)(param_1 + 6) + 3) = *(undefined1 *)(*(int *)(param_1 + 6) + 6);
   }
   else {
-    uVar4 = 0;
-    uVar9 = (&DAT_0001bd6c)[(short)(ushort)(byte)(cVar2 + 0xbd)];
+    uVar5 = 0;
+    bVar9 = (&diag_memory_read_response_code_table)[(short)(ushort)(byte)(cVar2 + 0xbd)];
   }
-  uVar7 = (undefined2)CONCAT31(uVar4,uVar9);
-  uVar5 = addressLookupFunction(CONCAT22(uVar7,uVar13));
-  bVar8 = (char)uVar5 - 1;
-  msg_header = (j1939_header_t *)multiPacketBufferAllocator(CONCAT22(uVar10 + bVar8 + 1,uVar7));
+  uVar8 = (undefined2)CONCAT31(uVar5,bVar9);
+  uVar6 = addressLookupFunction(CONCAT22(uVar8,uVar13));
+  bVar4 = (char)uVar6 - 1;
+  msg_header = (j1939_header_t *)multiPacketBufferAllocator(CONCAT22(uVar10 + bVar4 + 1,uVar8));
   if (msg_header == (j1939_header_t *)0x0) {
     return 4;
   }
-  puVar12 = (undefined1 *)msg_header[1].id;
+  pbVar12 = (byte *)msg_header[1].id;
   msg_header->id = 0xef0000;
   bVar3 = *param_1;
   *(byte *)&msg_header->id = *(byte *)&msg_header->id & 0xe3;
@@ -16093,16 +16093,16 @@ undefined4 diagMemoryReadResponseBuilder(byte *param_1,undefined1 *param_2,uint 
   *(byte *)((int)&msg_header->id + 2) = param_1[3];
   *(byte *)((int)&msg_header->id + 3) = param_1[2];
   iVar1 = *(int *)(param_1 + 6);
-  puVar11 = puVar12 + 1;
-  *puVar12 = uVar9;
-  puVar12 = puVar11;
-  memcpy(puVar11,(undefined1 *)(iVar1 + 1),(uint)CONCAT12(bVar8,uVar13));
+  pbVar11 = pbVar12 + 1;
+  *pbVar12 = bVar9;
+  pbVar12 = pbVar11;
+  memcpy(pbVar11,(undefined1 *)(iVar1 + 1),(uint)CONCAT12(bVar4,uVar13));
   if ((undefined1 *)0xffffff < param_2) {
     param_2 = param_2 + -0x7fcb08;
   }
-  memcpy(puVar11 + bVar8,param_2,CONCAT22(uVar10,(short)((uint)puVar12 >> 0x10)));
-  uVar6 = sendCanMessage(msg_header);
-  return CONCAT31((int3)((uint)uVar6 >> 8),0xff);
+  memcpy(pbVar11 + bVar4,param_2,CONCAT22(uVar10,(short)((uint)pbVar12 >> 0x10)));
+  uVar7 = sendCanMessage(msg_header);
+  return CONCAT31((int3)((uint)uVar7 >> 8),0xff);
 }
 
 
@@ -20429,6 +20429,8 @@ void insiteVersionInfoBuilder(void)
 // Function: hourMeterEventLogger @ 0x000202a4
 //
 
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void hourMeterEventLogger(void)
 
 {
@@ -20449,8 +20451,8 @@ void hourMeterEventLogger(void)
     iVar4 = (uint)(local_5 & 0x7f) * 6;
     if (((*(char *)((int)&diagnostic_sensor_data_ptr + iVar4) != '\0') &&
         ((*(ushort *)(&dtc_fault_table_base + iVar4) & 0x800) == 0)) &&
-       (((uint)DAT_000202a2 & 1 << ((int)(*(ushort *)(&dtc_fault_table_base + iVar4) & 0x780) >> 7))
-        != 0)) {
+       (((uint)_hour_meter_fault_category_mask &
+        1 << ((int)(*(ushort *)(&dtc_fault_table_base + iVar4) & 0x780) >> 7)) != 0)) {
       bVar1 = *(byte *)((int)&diagnostic_sensor_data_ptr + iVar4);
       bVar7 = '\x01' << (bVar1 & 7);
       sVar3 = (short)((int)(uint)bVar1 >> 3);
@@ -21452,7 +21454,8 @@ short huffmanTreeBuilder(int param_1)
   
   *(undefined2 *)(param_1 + 0xc06) = 0xffff;
   for (uVar2 = 0; uVar2 < 0x100; uVar2 = uVar2 + 1) {
-    *(ushort *)(param_1 + (uint)uVar2 * 6) = (ushort)(byte)(&DAT_0002160e)[(short)uVar2];
+    *(ushort *)(param_1 + (uint)uVar2 * 6) = (ushort)(&huffman_symbol_frequency_table)[(short)uVar2]
+    ;
   }
   *(undefined2 *)(param_1 + 0x600) = 1;
   uVar2 = 0x101;
@@ -21504,7 +21507,7 @@ void huffmanDecompress(int param_1,undefined4 param_2)
   word *local_8;
   
   bVar2 = 0;
-  pbVar4 = &DAT_0002170d;
+  pbVar4 = &huffman_compressed_data_start;
   local_8 = &rpm_rate_limit_countdown;
   bVar1 = false;
   while( true ) {
@@ -21516,7 +21519,7 @@ void huffmanDecompress(int param_1,undefined4 param_2)
       if (bVar2 == 0) {
         bVar2 = 0x80;
         pbVar4 = pbVar4 + 1;
-        if (&DAT_00024d04 < pbVar4) {
+        if (&huffman_compressed_data_end < pbVar4) {
           bVar1 = true;
         }
       }
@@ -21822,24 +21825,24 @@ void flashBootloaderProgrammer(void)
   int iVar1;
   undefined4 unaff_D2;
   code *pcVar2;
-  code *pcVar3;
+  byte *pbVar3;
   code *pcVar4;
   undefined2 uVar5;
   undefined1 auStack_104 [256];
   
   uVar5 = (undefined2)((uint)unaff_D2 >> 0x10);
-  if ((flash_bootloader_param == 0xbad1) && (_DAT_00000014 < DAT_000214fe)) {
+  if ((flash_bootloader_param == 0xbad1) && (_DAT_00000014 < flash_bootloader_code_limit)) {
     sim_data_direction_control = sim_data_direction_control | 2;
     ioControlAndCanPinSwitching();
     iVar1 = flashEraseFromRam(0);
     if (iVar1 == 0) {
       pcVar4 = (code *)0x0;
-      pcVar3 = (code *)&DAT_000214ea;
-      while (pcVar3 < flashBootloaderProgrammer) {
+      pbVar3 = &flash_bootloader_code_start;
+      while (pbVar3 < flashBootloaderProgrammer) {
         pcVar2 = (code *)auStack_104;
-        for (; (pcVar2 < &stack0xfffffffc && (pcVar3 < flashBootloaderProgrammer));
-            pcVar3 = pcVar3 + 1) {
-          *pcVar2 = *pcVar3;
+        for (; (pcVar2 < &stack0xfffffffc && (pbVar3 < flashBootloaderProgrammer));
+            pbVar3 = (byte *)((code *)pbVar3 + 1)) {
+          *pcVar2 = (code)*pbVar3;
           pcVar2 = pcVar2 + 1;
         }
         flashProgramFromRam((int)pcVar4,auStack_104,
@@ -23130,7 +23133,7 @@ void initQADC(void)
   QADC_QACR2 = 0;
   QADC_QSTAT = 0x1100;
   bVar1 = 0;
-  pbVar2 = &DAT_00026e56;
+  pbVar2 = &qadc_channel_config_table;
   pwVar3 = &QADC_CCW0;
   do {
     *pwVar3 = *pbVar2 & 0x3f | 0xc0;
@@ -24838,33 +24841,32 @@ void initDiagnosticSystemState(void)
 void initInternalRamAndCAN1(void)
 
 {
-  undefined4 *puVar1;
-  word *pwVar2;
-  word *pwVar3;
+  dword *pdVar1;
+  dword *pdVar2;
+  dword *pdVar3;
   
   if ((can1_canmcr & 0x400) != 0x400) {
     qsm_qilr = 0xffe0;
-    puVar1 = &DAT_00028c10;
-    pwVar3 = &EBI_EBIMCR;
+    pdVar1 = &internal_ram_init_data_block_1;
+    pdVar2 = (dword *)&EBI_EBIMCR;
     do {
-      pwVar2 = pwVar3 + 2;
-      *(undefined4 *)pwVar3 = *puVar1;
-      puVar1 = puVar1 + 1;
-      pwVar3 = pwVar2;
-    } while (pwVar2 < (word *)0xffe68c);
+      pdVar3 = pdVar2 + 1;
+      *pdVar2 = *pdVar1;
+      pdVar1 = pdVar1 + 1;
+      pdVar2 = pdVar3;
+    } while (pdVar3 < (dword *)0xffe68c);
     do {
-      pwVar3 = pwVar2 + 2;
-      pwVar2[0] = 0;
-      pwVar2[1] = 0;
-      pwVar2 = pwVar3;
-    } while (pwVar3 < (word *)0xffe6ff);
-    puVar1 = &DAT_0002929c;
+      pdVar1 = pdVar3 + 1;
+      *pdVar3 = 0;
+      pdVar3 = pdVar1;
+    } while (pdVar1 < (dword *)0xffe6ff);
+    pdVar2 = &internal_ram_init_data_block_2;
     do {
-      pwVar2 = pwVar3 + 2;
-      *(undefined4 *)pwVar3 = *puVar1;
-      puVar1 = puVar1 + 1;
-      pwVar3 = pwVar2;
-    } while (pwVar2 < (word *)0xffe7ff);
+      pdVar3 = pdVar1 + 1;
+      *pdVar1 = *pdVar2;
+      pdVar2 = pdVar2 + 1;
+      pdVar1 = pdVar3;
+    } while (pdVar3 < (dword *)0xffe7ff);
     can1_canmcr = 0x407;
     can1_cantbsel = 0;
     can1_cantaak = 0x440;
@@ -25190,7 +25192,7 @@ byte * diagnosticMultiPacketResponseBuilder(byte *param_1,undefined4 param_2)
     else {
       *puVar7 = 0xd;
       puVar6 = puVar7 + 2;
-      puVar7[1] = *(undefined1 *)((int)&DAT_000298be + (int)(short)(param_2._0_2_ & 0xff));
+      puVar7[1] = (&diag_multi_packet_status_code_table)[(short)(param_2._0_2_ & 0xff)];
     }
     puVar7 = *(undefined1 **)(param_1 + 6);
     for (bVar4 = 0; bVar4 < bVar2; bVar4 = bVar4 + 1) {
@@ -26710,18 +26712,18 @@ undefined4 addressRangeValidator(uint param_1,uint param_2)
   uint uVar2;
   byte bVar3;
   uint uVar4;
-  uint *puVar5;
+  dword *pdVar5;
   
   uVar2 = param_2 >> 0x10;
   uVar4 = (param_1 + uVar2) - 1;
   if (uVar4 < param_1) {
     return 9;
   }
-  puVar5 = &DAT_0002b512;
+  pdVar5 = &address_range_validation_table;
   bVar3 = 0;
-  while ((param_1 < *puVar5 || (puVar5[1] < uVar4))) {
+  while ((param_1 < *pdVar5 || (pdVar5[1] < uVar4))) {
     uVar2 = 0;
-    puVar5 = (uint *)((int)puVar5 + 10);
+    pdVar5 = (dword *)((int)pdVar5 + 10);
     bVar3 = bVar3 + 1;
     if (4 < bVar3) {
       return 9;
@@ -26729,9 +26731,9 @@ undefined4 addressRangeValidator(uint param_1,uint param_2)
   }
   uVar1 = (undefined3)(uVar2 >> 8);
   if (water_in_fuel_detection_flag == 1) {
-    return CONCAT31(uVar1,*(undefined1 *)(puVar5 + 2));
+    return CONCAT31(uVar1,*(undefined1 *)(pdVar5 + 2));
   }
-  return CONCAT31(uVar1,*(undefined1 *)((int)puVar5 + 9));
+  return CONCAT31(uVar1,*(undefined1 *)((int)pdVar5 + 9));
 }
 
 
@@ -29044,7 +29046,8 @@ uint crankAndProtectionStateMonitor(void)
       if (crank_derate_threshold_previous == 1) {
         crank_protection_state_flags = crank_protection_state_flags | 4;
       }
-      if ((&DAT_0002de86)[(short)crank_protection_sample_counter] == crank_protection_state_flags) {
+      if ((&crank_protection_sequence_table)[(short)crank_protection_sample_counter] ==
+          crank_protection_state_flags) {
         crank_derate_threshold_previous = derate_threshold_exceeded;
         crank_derate_status_previous = (word)((derate_status_byte & 8) != 0);
         crank_protection_sample_counter = crank_protection_sample_counter + 1;

@@ -6073,3 +6073,16 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080cfa4,can_transmission_scheduler_data,dword,CAN transmission scheduler data buffer (canTransmissionScheduler/timerBasedTaskScheduler),4,0,,buffer
 0x0080cfad,retarder_control_source_byte,byte,Retarder control source status byte (diagnosticGroupSnapshotCapture/memoryRegisterController),1,0,,status
 0x0080d422,insite_parameter_checksum_buffer,word,INSITE parameter checksum buffer (insiteParameterTableIterator/initDiagnosticProtocol),2,0,,buffer
+0x0001bd6c,diag_memory_read_response_code_table,byte,Memory read response code lookup table (diagMemoryReadResponseBuilder),1,0,,table
+0x000202a2,hour_meter_fault_category_mask,byte,Bitmask for fault category filtering in hour meter event logging (hourMeterEventLogger),1,0,,bitmask
+0x000214ea,flash_bootloader_code_start,code,Start address of flash bootloader code region (flashBootloaderProgrammer source),1,0,,code_ptr
+0x000214fe,flash_bootloader_code_limit,dword,Upper limit address for bootloader programming comparison (flashBootloaderProgrammer),4,0,,pointer
+0x0002160e,huffman_symbol_frequency_table,byte,Huffman symbol frequency table - 256 byte entries for tree building (huffmanTreeBuilder),1,0,,table
+0x0002170d,huffman_compressed_data_start,byte,Start of Huffman compressed data stream (huffmanDecompress),1,0,,data
+0x00024d04,huffman_compressed_data_end,byte,End marker/limit for Huffman compressed data (huffmanDecompress),1,0,,data
+0x00026e56,qadc_channel_config_table,byte,QADC channel configuration table - 40 entries for ADC setup (initQADC),1,0,,table
+0x00028c10,internal_ram_init_data_block_1,dword,Internal RAM initialization data block 1 for EBI registers (initInternalRamAndCAN1),4,0,,init_data
+0x0002929c,internal_ram_init_data_block_2,dword,Internal RAM initialization data block 2 for CAN1 mailboxes (initInternalRamAndCAN1),4,0,,init_data
+0x000298be,diag_multi_packet_status_code_table,byte,Status code table for diagnostic multi-packet responses (diagnosticMultiPacketResponseBuilder),1,0,,table
+0x0002b512,address_range_validation_table,dword,Address range validation table - 5 entries with start/end/permissions (addressRangeValidator),4,0,,table
+0x0002de86,crank_protection_sequence_table,byte,Expected crank protection state sequence table - 12 entries (crankAndProtectionStateMonitor),1,0,,table
