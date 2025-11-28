@@ -5014,3 +5014,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808954,vp44_sensor_value_1,word,VP44 sensor value 1 for CAN message (2 refs),2,0,,value
 0x0080895e,vp44_sensor_value_2,word,VP44 sensor value 2 for CAN message (2 refs),2,0,,value
 0x0080c7b0,rpm_sample_comparison_index,word,RPM sample array comparison index (2 refs),2,0,,index
+0x00800ee4,debounce_state_flag,byte,Debounce state machine flag (3 refs),1,0,,flag
+0x00800eec,debounce_buffer_pointer_array,dword,Debounce buffer pointer array base (3 refs),4,0,,pointer
+0x00800ef0,debounce_output_pointer_array,dword,Debounce output pointer array base (3 refs),4,0,,pointer
+0x00801634,io_control_command_array,byte,I/O control command array base (3 refs),1,0,,array
+0x00801636,io_control_param_array,word,I/O control parameter array base (3 refs),2,0,,array
+0x00801638,io_control_timeout_array,word,I/O control timeout array base (3 refs),2,0,,array
+0x008007b3,retarder_control_source_previous,byte,Retarder control CAN source previous value (3 refs),1,0,,value
+0x0080892a,rpm_range_upper_limit,word,RPM range upper limit for validation (2 refs),2,0,,limit
+0x0080892c,rpm_range_lower_limit,word,RPM range lower limit for validation (2 refs),2,0,,limit
+0x0080894c,cached_parameter_upper_limit,word,Cached parameter upper limit comparison (2 refs),2,0,,limit
+0x0080894e,vp44_sensor_value_3,word,VP44 sensor value 3 for CAN message (2 refs),2,0,,value
+0x00808950,vp44_sensor_value_4,word,VP44 sensor value 4 for CAN message (2 refs),2,0,,value
