@@ -4858,3 +4858,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00800000,rpm_rate_limit_countdown,word,RPM rate limit threshold countdown timer (7 refs),2,0,,countdown
 0x0080011c,retarder_lookup_table_ptr,dword,Pointer to retarder mode lookup table (7 refs),4,0,,pointer
 0x00804f44,diagnostic_active_fault_counter,word,Active diagnostic fault count tracker (7 refs),2,0,,counter
+0x0080cf8c,serial_node_transmit_ptr,dword,Serial port transmit buffer pointer (7 refs),4,0,,pointer
+0x00809692,intake_temp_protection_accumulator,word,Intake temp shutdown threshold accumulator (7 refs),2,0,,accumulator
+0x0080968c,intake_temp_derate_timer,word,Intake temp derate timer counter (7 refs),2,0,,timer
+0x0080561e,fault_code_active_list_count,word,Count of active faults in list (7 refs),2,0,,counter
+0x00804ebc,diagnostic_pending_list_count,word,Diagnostic pending code list counter (7 refs),2,0,,counter
+0x008034e8,vp44_fso_rpm_fault_counter,word,VP44 FSO RPM-based fault counter (7 refs),2,0,,counter
+0x0080d03a,fuel_demand_change_flag,byte,Fuel demand/governor RPM change flag (4 refs),1,0,,flag
+0x0080d050,crank_state_active_flag,byte,Crank state active flag (4 refs),1,0,,flag
+0x0080cfcc,can_cpu_interface_address,byte,CAN CPU interface register address (4 refs),1,0,,address
+0x0080c994,high_rpm_protection_triggered_flag,word,High RPM protection triggered flag (4 refs),2,0,,flag
+0x0080c7e4,can1_init_state_flag,word,CAN1 initialization state flag (4 refs),2,0,,flag
+0x0080cc3a,fuel_delivery_phase_lag_result,word,Fuel delivery phase lag calculation result (4 refs),2,0,,result

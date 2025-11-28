@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 16:59:36 MST 2025
+// Thu Nov 27 18:05:56 MST 2025
 
 
 //
@@ -6214,13 +6214,13 @@ void diagnosticStateMachineProcessor(void)
                                  ,CONCAT22(uVar4,uVar9) & 0xffffff);
             }
             diagnostic_pending_code_count = diagnostic_pending_code_count - 1;
-            _DAT_00804ebc = _DAT_00804ebc + -1;
+            diagnostic_pending_list_count = diagnostic_pending_list_count - 1;
             (&diagnostic_pending_code_count)[(short)(ushort)bVar6] =
                  (&diagnostic_pending_code_count)[(short)diagnostic_state_machine_index];
             iVar1 = (int)(short)diagnostic_state_machine_index;
             diagnostic_state_machine_index = diagnostic_state_machine_index - 1;
-            *(undefined2 *)(&DAT_00804ebc + (short)(ushort)bVar6 * 2) =
-                 *(undefined2 *)(&DAT_00804ebc + iVar1 * 2);
+            (&diagnostic_pending_list_count)[(short)(ushort)bVar6] =
+                 (&diagnostic_pending_list_count)[iVar1];
           }
         }
         if (diagnostic_active_code_count != 0x1f) {
@@ -6280,11 +6280,11 @@ void diagnosticStateMachineProcessor(void)
             }
           }
           diagnostic_pending_code_count = diagnostic_pending_code_count + 1;
-          _DAT_00804ebc = _DAT_00804ebc + 1;
+          diagnostic_pending_list_count = diagnostic_pending_list_count + 1;
           diagnostic_state_machine_index = diagnostic_state_machine_index + 1;
           (&diagnostic_pending_code_count)[(short)diagnostic_state_machine_index] = (byte)uVar4;
-          *(undefined2 *)(&DAT_00804ebc + (short)diagnostic_state_machine_index * 2) =
-               *(undefined2 *)(&DAT_008065cc + (uint)uVar4 * 6);
+          (&diagnostic_pending_list_count)[(short)diagnostic_state_machine_index] =
+               *(word *)(&DAT_008065cc + (uint)uVar4 * 6);
           if ((*(char *)((int)&diagnostic_sensor_data_ptr + (uint)uVar4 * 6) != '\0') &&
              ((*(ushort *)(&dtc_fault_table_base + (uint)uVar4 * 6) & 0x40) == 0)) {
             insite_fault_detail_state = insite_fault_detail_state + 1;
@@ -8743,7 +8743,7 @@ uint diagnosticProtectionEvaluator(void)
                           (puVar5,(undefined4 *)(&protection_state_rpm_threshold + iVar3 * 0x17),0);
         if ((short)uVar4 != 0) {
           *(undefined2 *)(&DAT_0080c82c + iVar2) = 1;
-          _DAT_0080c994 = 1;
+          high_rpm_protection_triggered_flag = 1;
         }
       }
       uVar4 = CONCAT22((short)(uVar4 >> 0x10),uVar1) & 0xffff0002;
@@ -8753,7 +8753,7 @@ uint diagnosticProtectionEvaluator(void)
                            0x10000);
         if ((short)uVar4 != 0) {
           *(undefined2 *)(&DAT_0080c82c + iVar2) = 1;
-          _DAT_0080c994 = 1;
+          high_rpm_protection_triggered_flag = 1;
         }
       }
     }
@@ -9083,10 +9083,10 @@ ushort protectionState4EmergencyHandler(void)
       uVar4 = (uint)(ushort)((short)uVar4 + 4);
       wVar5 = wVar5 + 1;
     }
-    if (_DAT_0080c994 != 0 || _DAT_0080c986 != 0) {
+    if (high_rpm_protection_triggered_flag != 0 || _DAT_0080c986 != 0) {
       lamp_3_blink_trigger = 1;
     }
-    uVar2 = _DAT_0080c994 | _DAT_0080c984;
+    uVar2 = high_rpm_protection_triggered_flag | _DAT_0080c984;
     if (uVar2 != 0) {
       high_rpm_shutdown_active_flag = 1;
     }
@@ -10732,7 +10732,7 @@ void dutyCycleMonitorBufferInit(void)
   _duty_cycle_monitor_slot_config = timerAccumulatorWithWatchdog;
   can1_cantbsel = can1_cantbsel & 0xfffd | 2;
   DAT_0080c7de = 0;
-  _DAT_0080c7e4 = 0;
+  _can1_init_state_flag = 0;
   return;
 }
 
@@ -10766,7 +10766,7 @@ void phase2_slot_0_handler(void)
   _duty_cycle_monitor_slot_config = timerAccumulatorWithWatchdog;
   can1_cantbsel = can1_cantbsel & 0xfffd | 2;
   DAT_0080c7de = 0;
-  _DAT_0080c7e4 = 0;
+  _can1_init_state_flag = 0;
   return;
 }
 
@@ -10797,7 +10797,7 @@ void phase2_slot_1_handler(void)
   _duty_cycle_monitor_slot_config = timerAccumulatorWithWatchdog;
   can1_cantbsel = can1_cantbsel & 0xfffd | 2;
   DAT_0080c7de = 0;
-  _DAT_0080c7e4 = 0;
+  _can1_init_state_flag = 0;
   return;
 }
 
@@ -10813,7 +10813,7 @@ void phase2_slot_5_handler(void)
 
 {
   DAT_0080c7de = 0;
-  _DAT_0080c7e4 = 0;
+  _can1_init_state_flag = 0;
   return;
 }
 
@@ -12739,16 +12739,18 @@ void fuel_delivery_controller(void)
       iVar3 = (int)final_fuel_delivery_command._0_2_ +
               (int)_fuel_delivery_rate_delta + (int)_fuel_delivery_scaled;
       if ((int)(uint)intercept_of_rpm_vs_phase_lag_line_defining_time_offset_for_syn_0_16 < iVar3) {
-        _DAT_0080cc3a = intercept_of_rpm_vs_phase_lag_line_defining_time_offset_for_syn_0_16;
+        fuel_delivery_phase_lag_result =
+             intercept_of_rpm_vs_phase_lag_line_defining_time_offset_for_syn_0_16;
       }
       else if (iVar3 < (int)(uint)
                             slope_of_rpm_vs_phase_lag_line_defining_time_offset_for_s_0_0_031136) {
-        _DAT_0080cc3a = slope_of_rpm_vs_phase_lag_line_defining_time_offset_for_s_0_0_031136;
+        fuel_delivery_phase_lag_result =
+             slope_of_rpm_vs_phase_lag_line_defining_time_offset_for_s_0_0_031136;
       }
       else {
-        _DAT_0080cc3a = (word)iVar3;
+        fuel_delivery_phase_lag_result = (word)iVar3;
       }
-      diagnostic_rpm_threshold_status = _DAT_0080cc3a;
+      diagnostic_rpm_threshold_status = fuel_delivery_phase_lag_result;
     }
   }
   return;
@@ -13629,10 +13631,10 @@ uint serialTransmitHandler(void)
   uint uVar2;
   
   _DAT_00805576 = 1;
-  *_DAT_0080cf8c = 0xfd;
+  *(undefined1 *)serial_node_transmit_ptr = 0xfd;
   uVar2 = can_transmit_buffer_ptr_2;
   if ((can_transmit_buffer_ptr_2 == can_transmit_buffer_ptr_1) && (DAT_0080cf88 != '\x01')) {
-    *_DAT_0080cf8c = 0x7f;
+    *(undefined1 *)serial_node_transmit_ptr = 0x7f;
   }
   else {
     canFrameDataCopy(&serial_port_1_base_register);
@@ -14353,7 +14355,7 @@ void diagnosticMessage45Builder(void)
   
   fuelDemandPercentageCalculator();
   if ((arbitrated_fuel_limit != _DAT_00800638) || (governor_rpm_error_value != _DAT_0080063a)) {
-    DAT_0080d03a = '\x01';
+    fuel_demand_change_flag = 1;
     _DAT_00800638 = arbitrated_fuel_limit;
     _DAT_0080063a = governor_rpm_error_value;
   }
@@ -14421,7 +14423,7 @@ LAB_0001a2b8:
   if (derate_threshold_exceeded == 0) {
     bVar4 = bVar4 | 0x20;
   }
-  if (DAT_0080d03a == '\x01') {
+  if (fuel_demand_change_flag == 1) {
     bVar4 = bVar4 | 0x40;
   }
   *local_8 = bVar4;
@@ -14738,7 +14740,7 @@ void extendedDiagnosticService4C(void)
                                (char)local_8 + '\x02');
     if ((*local_8 & 1) != 0) {
       diagnosticMessage46Builder();
-      DAT_0080d03a = 0;
+      fuel_demand_change_flag = 0;
     }
     if ((*local_8 & 8) != 0) {
       diagnosticMessage54Builder();
@@ -14930,7 +14932,7 @@ void extendedDiagnosticService51(void)
                                (char)local_8 + '\x02');
     if ((*local_8 & 1) != 0) {
       diagnosticMessage46Builder();
-      DAT_0080d03a = 0;
+      fuel_demand_change_flag = 0;
     }
     if ((*local_8 & 8) != 0) {
       diagnosticMessage54Builder();
@@ -15137,7 +15139,7 @@ void canMessageFilterInit(void)
     pdVar5 = (dword *)((int)pdVar5 + 2);
   } while (bVar1 < 4);
   _j1939_multiframe_source_address = _DAT_008084a0;
-  _DAT_0080cfcc = the_can_cpu_interface_register_0_255;
+  _can_cpu_interface_address = the_can_cpu_interface_register_0_255;
   return;
 }
 
@@ -16347,7 +16349,7 @@ void sendJ1939MultiFrame(uint *param_1)
       pcVar8 = &DAT_00800ee4;
     }
     else {
-      if ((byte)*param_1 != _DAT_0080cfcc) {
+      if ((byte)*param_1 != _can_cpu_interface_address) {
         **(undefined1 **)((int)param_1 + 10) = 3;
         return;
       }
@@ -18553,7 +18555,7 @@ void epsSignalQualityValidator(void)
      (eps_period_backup_time_between_the_two_most_recent_eps_200_16777216 != 0)) {
     faultLampBlinkPatternGenerator();
   }
-  if ((_DAT_0080d050 != 0) || (wait_to_start_lamp_state != 0)) {
+  if ((_crank_state_active_flag != 0) || (wait_to_start_lamp_state != 0)) {
     waitToStartLampBlinkPattern();
   }
   if (((_DAT_0080373c != 0) &&
@@ -19603,7 +19605,7 @@ void crankStateVariablesReset(void)
 
 {
   crank_initial_advace_break_speed_0_1000 = 0;
-  _DAT_0080d050 = 0;
+  _crank_state_active_flag = 0;
   crank_initial_fuel_break_speed_0_1000 = 0;
   _crank_fuel_delta_accumulator = 0;
   _crank_timing_delta_accumulator = 0;
@@ -19793,7 +19795,7 @@ uint crankFuelCalculationAndProtection(void)
               *(int *)((short)(crank_fuel_buffer_index * 2) * 8 + 0x8055ce);
       _DGCLTPLF = uVar3;
     }
-    if ((crank_state_reset_trigger == 1) || (_DAT_0080d050 == 1)) {
+    if ((crank_state_reset_trigger == 1) || (_crank_state_active_flag == 1)) {
       *(undefined4 *)(puVar5 + -4) = 0x1f7b4;
       crankFuelAndTimingBufferStore();
       *(undefined4 *)(puVar5 + -4) = 0x1f7b8;
@@ -20492,8 +20494,6 @@ void insiteVersionInfoBuilder(void)
 // Function: hourMeterEventLogger @ 0x000202a4
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void hourMeterEventLogger(void)
 
 {
@@ -20502,7 +20502,7 @@ void hourMeterEventLogger(void)
   short sVar3;
   int iVar4;
   uint uVar5;
-  ushort uVar6;
+  word wVar6;
   byte bVar7;
   byte *pbVar8;
   byte local_5;
@@ -20522,15 +20522,15 @@ void hourMeterEventLogger(void)
       if ((bVar7 & *(byte *)((int)&
                                   maximum_time_between_tailshaft_pulses_allowed_before_vehicle_0_04_40
                             + (int)sVar3)) != 0) {
-        uVar6 = _DAT_0080561e;
-        for (pbVar8 = &DAT_00805620; (uVar6 != 0 && (bVar1 != *pbVar8)); pbVar8 = pbVar8 + 2) {
-          uVar6 = uVar6 - 1;
+        wVar6 = fault_code_active_list_count;
+        for (pbVar8 = &DAT_00805620; (wVar6 != 0 && (bVar1 != *pbVar8)); pbVar8 = pbVar8 + 2) {
+          wVar6 = wVar6 - 1;
         }
-        if (uVar6 == 0) {
+        if (wVar6 == 0) {
           if ((local_5 & 0x80) != 0) {
             *pbVar8 = bVar1;
             pbVar8[1] = 1;
-            _DAT_0080561e = _DAT_0080561e + 1;
+            fault_code_active_list_count = fault_code_active_list_count + 1;
             *(byte *)(sVar3 + 0x8055fe) = bVar7 | *(byte *)(sVar3 + 0x8055fe);
           }
         }
@@ -20539,12 +20539,12 @@ void hourMeterEventLogger(void)
           pbVar8[1] = bVar1;
           if (bVar1 == 0) {
             *(byte *)(sVar3 + 0x8055fe) = ~bVar7 & *(byte *)(sVar3 + 0x8055fe);
-            uVar6 = _DAT_0080561e - 1;
-            bVar2 = 1 < _DAT_0080561e;
-            _DAT_0080561e = uVar6;
+            wVar6 = fault_code_active_list_count - 1;
+            bVar2 = 1 < fault_code_active_list_count;
+            fault_code_active_list_count = wVar6;
             if (bVar2) {
-              *pbVar8 = (&DAT_00805620)[(short)uVar6 * 2];
-              pbVar8[1] = (&DAT_00805621)[(short)_DAT_0080561e * 2];
+              *pbVar8 = (&DAT_00805620)[(short)wVar6 * 2];
+              pbVar8[1] = (&DAT_00805621)[(short)fault_code_active_list_count * 2];
             }
           }
         }
@@ -21008,12 +21008,13 @@ void canTransmissionScheduler(void)
   systemFunction4xParameterizedAlt();
   serial_node_address_state = serial_node_address_offset + 1;
   serial_node_address_offset = serial_node_address_offset + 8;
-  _DAT_0080cf8c = &serial_port_1_base_register + (uint)serial_node_address_state * 4;
+  serial_node_transmit_ptr =
+       (dword)(&serial_port_1_base_register + (uint)serial_node_address_state * 4);
   serial_node_address_limit = serial_node_address_offset;
-  *(undefined1 *)_DAT_0080cf8c = 0x55;
-  *(undefined1 *)((int)_DAT_0080cf8c + 1) = 0xfb;
-  *(undefined1 *)_DAT_0080cf8c = 0xef;
-  *(undefined1 *)((int)_DAT_0080cf8c + 6) = 4;
+  *(undefined1 *)serial_node_transmit_ptr = 0x55;
+  *(undefined1 *)(serial_node_transmit_ptr + 1) = 0xfb;
+  *(undefined1 *)serial_node_transmit_ptr = 0xef;
+  *(undefined1 *)(serial_node_transmit_ptr + 6) = 4;
   pbVar7 = &can_controller_config_register + (uint)serial_node_address_state * 0x10;
   uVar2 = (uint)_j1939_multiframe_source_address;
   bVar5 = j1939_source_address_primary << 3;
@@ -21042,7 +21043,7 @@ void canTransmissionScheduler(void)
     pbVar7[5] = *(byte *)(bVar5 + 0x8088ea);
     pbVar7 = pbVar7 + 0x10;
   }
-  uVar2 = (uint)_DAT_0080cfcc;
+  uVar2 = (uint)_can_cpu_interface_address;
   bVar5 = j1939_source_address_secondary << 3;
   for (bVar4 = 0; bVar4 < _DAT_008088e2; bVar4 = bVar4 + 1) {
     *pbVar7 = 0x99;
@@ -21172,7 +21173,7 @@ void mainCanTransmissionLoop(void)
     pbVar6[5] = *(byte *)(unaff_A3 + (uint)bVar5);
     pbVar6 = pbVar6 + 0x10;
   }
-  uVar2 = (uint)_DAT_0080cfcc;
+  uVar2 = (uint)_can_cpu_interface_address;
   bVar5 = j1939_source_address_secondary << 3;
   for (bVar4 = 0; bVar4 < _DAT_008088e2; bVar4 = bVar4 + 1) {
     *pbVar6 = 0x99;
@@ -27443,27 +27444,30 @@ uint fuelTimingTransitionStateMachine(void)
   uint uVar4;
   
   if (fuel_timing_oil_pressure_timer < _software_padding_0_255) {
-    _DAT_00809692 = shutdown_threshold_for_intake_temp_rpm_0_65535;
+    intake_temp_protection_accumulator = shutdown_threshold_for_intake_temp_rpm_0_65535;
   }
   else {
-    _DAT_00809692 = fault_index_indicating_epf_imt_rpm_error_found_0_ffff + _DAT_00809692;
-    if (shutdown_threshold_for_intake_temp_fuel_0_65535 < _DAT_00809692) {
-      _DAT_00809692 = shutdown_threshold_for_intake_temp_fuel_0_65535;
+    intake_temp_protection_accumulator =
+         fault_index_indicating_epf_imt_rpm_error_found_0_ffff + intake_temp_protection_accumulator;
+    if (shutdown_threshold_for_intake_temp_fuel_0_65535 < intake_temp_protection_accumulator) {
+      intake_temp_protection_accumulator = shutdown_threshold_for_intake_temp_fuel_0_65535;
     }
   }
   if (protection_system_enable_flag == 0) {
-    if (_DAT_0080968c < time_to_reach_full_derate_during_intake_temp_engine_prote_0_0039_256) {
-      _DAT_0080968c = _DAT_0080968c + 1;
+    if (intake_temp_derate_timer <
+        time_to_reach_full_derate_during_intake_temp_engine_prote_0_0039_256) {
+      intake_temp_derate_timer = intake_temp_derate_timer + 1;
     }
   }
   else {
-    _DAT_0080968c = 0;
+    intake_temp_derate_timer = 0;
   }
   if (fuel_pressure_filtered < throttle_position_value) {
     fuel_pressure_filtered = coreTableInterpolation();
   }
   if ((determines_how_engine_position_is_sync_d_to_cam_0 <= fuel_timing_oil_pressure_state) &&
-     (time_to_reach_full_derate_during_intake_temp_engine_prote_0_0039_256 <= _DAT_0080968c)) {
+     (time_to_reach_full_derate_during_intake_temp_engine_prote_0_0039_256 <=
+      intake_temp_derate_timer)) {
     fuel_pressure_filtered = throttle_position_value;
   }
   if ((_DAT_00803210 == 2) && (oil_pressure_mode_selector == 0)) {
@@ -27495,7 +27499,8 @@ uint fuelTimingTransitionStateMachine(void)
     if (((((vp44_status_flags_2 & 0x20) == 0) ||
          (throttle_position_filtered < minimum_threshold_for_intake_temperature_rpm_limiting_50_293)
          ) || (maximum_temperature_threshold_for_imt_tvo_limiting_50_to_293 <
-               throttle_position_filtered)) || (_DAT_00809692 < throttle_position_value)) {
+               throttle_position_filtered)) ||
+       (intake_temp_protection_accumulator < throttle_position_value)) {
       fuel_timing_transition_value_2 = 0;
     }
     else {
@@ -27523,7 +27528,8 @@ uint fuelTimingTransitionStateMachine(void)
          || (uVar4 = (uint)throttle_position_filtered,
             maximum_temperature_threshold_for_imt_tvo_limiting_50_to_293 <
             throttle_position_filtered)) ||
-        (uVar4 = (uint)throttle_position_value, _DAT_00809692 < throttle_position_value)))) {
+        (uVar4 = (uint)throttle_position_value,
+        intake_temp_protection_accumulator < throttle_position_value)))) {
       fuel_timing_transition_value_2 = 1;
       return uVar4;
     }
@@ -27541,8 +27547,9 @@ uint fuelTimingTransitionStateMachine(void)
       throttle_position_filtered <= rpm_to_reach_before_imt_errors_0_8000)) &&
      ((uVar4 = CONCAT22(sVar1,fuel_timing_oil_pressure_state),
       fuel_timing_oil_pressure_state < determines_how_engine_position_is_sync_d_to_cam_0 ||
-      (uVar4 = CONCAT22(sVar1,_DAT_0080968c),
-      _DAT_0080968c < time_to_reach_full_derate_during_intake_temp_engine_prote_0_0039_256)))) {
+      (uVar4 = CONCAT22(sVar1,intake_temp_derate_timer),
+      intake_temp_derate_timer <
+      time_to_reach_full_derate_during_intake_temp_engine_prote_0_0039_256)))) {
     fuel_timing_transition_value_1 = 0;
     return uVar4;
   }
@@ -29109,7 +29116,7 @@ uint crankAndProtectionStateMonitor(void)
       }
       if ((crank_protection_sample_counter == 0xc) &&
          (crank_initial_fuel_break_speed_0_1000 = 1, crank_data_buffer_enable_flag == 1)) {
-        _DAT_0080d050 = 1;
+        _crank_state_active_flag = 1;
       }
     }
     if (((current_engine_rpm != 0) && ((engine_fault_register_a & 0x100) != 0)) &&
@@ -35427,10 +35434,10 @@ void vp44FsoFaultEnableController(void)
 ushort vp44RpmBasedFaultDetector(void)
 
 {
-  ushort uVar1;
+  word wVar1;
   ushort uVar2;
   
-  uVar1 = _DAT_008034e8;
+  wVar1 = vp44_fso_rpm_fault_counter;
   vp44_rpm_based_fault_state = CONCAT11(vp44_timing_cmd_out_high_byte,vp44_timing_cmd_out_low_byte);
   uVar2 = vp44_flag_register_1 & 0x2000;
   if ((((((vp44_flag_register_1 & 0x2000) != 0) && (fuel_arbitrator_diag_t_0080cff8.rpm_target != 1)
@@ -35439,15 +35446,15 @@ ushort vp44RpmBasedFaultDetector(void)
      ((derate_threshold_exceeded == 0 &&
       ((uVar2 = vp44_rpm_based_fault_state, _DAT_008077b8 < vp44_rpm_based_fault_state &&
        (uVar2 = current_engine_fuel_demand, _DAT_008077ba < current_engine_fuel_demand)))))) {
-    if (_DAT_008034e8 < _DAT_008077b6) {
-      _DAT_008034e8 = _DAT_008034e8 + 1;
-      return uVar1;
+    if (vp44_fso_rpm_fault_counter < _DAT_008077b6) {
+      vp44_fso_rpm_fault_counter = vp44_fso_rpm_fault_counter + 1;
+      return wVar1;
     }
     vp44_fault_status_reg = vp44_fault_status_reg | 0x20;
     vp44_fso_fault_accumulator = vp44_fso_fault_accumulator | 0x20;
-    return _DAT_008034e8;
+    return vp44_fso_rpm_fault_counter;
   }
-  _DAT_008034e8 = 0;
+  vp44_fso_rpm_fault_counter = 0;
   return uVar2;
 }
 
@@ -35457,12 +35464,10 @@ ushort vp44RpmBasedFaultDetector(void)
 // Function: vp44FaultBit5Reset @ 0x00035548
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void vp44FaultBit5Reset(void)
 
 {
-  _DAT_008034e8 = 0;
+  vp44_fso_rpm_fault_counter = 0;
   vp44_fault_status_reg = vp44_fault_status_reg & 0xffdf;
   return;
 }
