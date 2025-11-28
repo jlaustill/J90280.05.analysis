@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 08:04:55 MST 2025
+// Fri Nov 28 08:07:55 MST 2025
 
 
 //
@@ -437,14 +437,14 @@ void sensorFaultDebounceMonitor(void)
   word wVar6;
   int iVar7;
   byte *pbVar8;
-  char *pcVar9;
+  byte *pbVar9;
   short *psVar10;
   
   sVar5 = 0;
   pbVar8 = &request_to_strobe_set_0_then_set_1_cold_start_aid_1_driver_0_1;
   iVar7 = 0x8068ea;
   uVar4 = 1;
-  pcVar9 = &DAT_00800036;
+  pbVar9 = &sensor_fault_debounce_counter_base;
   psVar10 = (short *)&DAT_00809526;
   wVar6 = _engine_control_flags_register;
   do {
@@ -546,7 +546,7 @@ LAB_0000a964:
           *(short *)(pbVar8 + 10) = sVar2;
           if (*(char *)(iVar7 + 0x13) != '\0') {
             if (*(short *)(pbVar8 + 10) == 4) {
-              if (*pcVar9 == '\x04') {
+              if (*pbVar9 == 4) {
                 (&fault_flags_active_base)[(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)] =
                      1 << (*(byte *)(iVar7 + 0x16) & 0xf) |
                      (&fault_flags_active_base)[(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)];
@@ -555,10 +555,10 @@ LAB_0000a964:
                      (&fault_flags_history_base)[(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)];
               }
               else {
-                *pcVar9 = *pcVar9 + '\x01';
+                *pbVar9 = *pbVar9 + 1;
               }
             }
-            else if (*pcVar9 == '\0') {
+            else if (*pbVar9 == 0) {
               if (((uint)(&fault_flags_active_base)
                          [(short)((int)(uint)*(byte *)(iVar7 + 0x16) >> 4)] &
                   1 << (*(byte *)(iVar7 + 0x16) & 0xf)) != 0) {
@@ -572,7 +572,7 @@ LAB_0000a964:
               }
             }
             else {
-              *pcVar9 = *pcVar9 + -1;
+              *pbVar9 = *pbVar9 - 1;
             }
           }
           uVar3 = coreTableInterpolation();
@@ -589,7 +589,7 @@ LAB_0000a964:
     pbVar8 = pbVar8 + 0x16;
     iVar7 = iVar7 + 0x18;
     psVar10 = psVar10 + 6;
-    pcVar9 = pcVar9 + 1;
+    pbVar9 = pbVar9 + 1;
     sVar5 = sVar5 + 1;
     if (sVar5 == 0x10) {
       uVar4 = 1;
@@ -3013,8 +3013,6 @@ void param_lookup_3(void)
 // Function: fuelTableBlendInterpolation @ 0x0000d7c0
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 short fuelTableBlendInterpolation(undefined4 param_1)
 
 {
@@ -3024,12 +3022,12 @@ short fuelTableBlendInterpolation(undefined4 param_1)
   
   if (fuel_timing_mode_selector != 0) {
     fuel_blend_lookup_input = param_1._0_2_;
-    uVar1 = tableInterpolationLookup((short *)&DAT_008000ec);
+    uVar1 = tableInterpolationLookup((short *)&fuel_blend_table_1_base);
     unaff_D2w = (ushort)((ulonglong)uVar1 >> 0x20);
   }
   if (fuel_timing_mode_selector < 0x4000) {
-    _DAT_00800106 = param_1._0_2_;
-    uVar1 = tableInterpolationLookup((short *)&DAT_00800100);
+    fuel_blend_lookup_input_2 = param_1._0_2_;
+    uVar1 = tableInterpolationLookup((short *)&fuel_blend_table_3_base);
     unaff_D3w = (ushort)((ulonglong)uVar1 >> 0x20);
   }
   if (fuel_timing_mode_selector == 0x4000) {
@@ -3236,23 +3234,22 @@ void fuelModeSelectionCalculator(void)
 // Function: fuelBlendTablePointerSetup @ 0x0000dbc2
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void fuelBlendTablePointerSetup(void)
 
 {
-  _DAT_008000ec = 2;
+  fuel_blend_table_1_base = 2;
   fuel_blend_table_1_ptr = 0x807f42;
-  _DAT_008000fa = 400;
+  fuel_blend_table_1_limit = 400;
   fuel_blend_table_2_base = 2;
-  _DAT_008000f6 = 0x807f68;
-  _DAT_008000fc = &lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
-  _DAT_00800100 = 2;
-  _DAT_00800102 = 0x808002;
-  _DAT_0080010e = 400;
-  _DAT_00800108 = 2;
-  _DAT_0080010a = 0x808028;
-  _DAT_00800110 = 0x808032;
+  fuel_blend_table_2_ptr = 0x807f68;
+  fuel_blend_intake_temp_ptr =
+       (dword)&lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
+  fuel_blend_table_3_base = 2;
+  fuel_blend_table_3_ptr = 0x808002;
+  fuel_blend_table_3_limit = 400;
+  fuel_blend_table_4_base = 2;
+  fuel_blend_table_4_ptr = 0x808028;
+  fuel_blend_table_5_ptr = 0x808032;
   return;
 }
 

@@ -5164,3 +5164,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008000ee,fuel_blend_table_1_ptr,dword,Fuel blend table 1 pointer 0x807f42 (fuelBlendTablePointerSetup),4,0,,pointer
 0x008000f2,fuel_blend_lookup_input,word,Fuel blend table lookup input (fuelTableBlendInterpolation),2,0,,input
 0x008000f4,fuel_blend_table_2_base,word,Fuel blend table 2 base value (fuelBlendTablePointerSetup),2,0,,lookup
+0x00800036,sensor_fault_debounce_counter_base,byte,Sensor fault debounce counter array base (sensorFaultDebounceMonitor),1,0,,counter
+0x008000ec,fuel_blend_table_1_base,word,Fuel blend table 1 base value (fuelBlendTablePointerSetup),2,0,,lookup
+0x008000f6,fuel_blend_table_2_ptr,dword,Fuel blend table 2 pointer 0x807f68 (fuelBlendTablePointerSetup),4,0,,pointer
+0x008000fa,fuel_blend_table_1_limit,word,Fuel blend table 1 limit value 400 (fuelBlendTablePointerSetup),2,0,,limit
+0x008000fc,fuel_blend_intake_temp_ptr,dword,Fuel blend intake manifold temp limit pointer (fuelBlendTablePointerSetup),4,0,,pointer
+0x00800100,fuel_blend_table_3_base,word,Fuel blend table 3 base value (fuelBlendTablePointerSetup),2,0,,lookup
+0x00800102,fuel_blend_table_3_ptr,dword,Fuel blend table 3 pointer 0x808002 (fuelBlendTablePointerSetup),4,0,,pointer
+0x00800106,fuel_blend_lookup_input_2,word,Fuel blend table lookup input 2 (fuelTableBlendInterpolation),2,0,,input
+0x00800108,fuel_blend_table_4_base,word,Fuel blend table 4 base value (fuelBlendTablePointerSetup),2,0,,lookup
+0x0080010a,fuel_blend_table_4_ptr,dword,Fuel blend table 4 pointer 0x808028 (fuelBlendTablePointerSetup),4,0,,pointer
+0x0080010e,fuel_blend_table_3_limit,word,Fuel blend table 3 limit value 400 (fuelBlendTablePointerSetup),2,0,,limit
+0x00800110,fuel_blend_table_5_ptr,dword,Fuel blend table 5 pointer 0x808032 (fuelBlendTablePointerSetup),4,0,,pointer
