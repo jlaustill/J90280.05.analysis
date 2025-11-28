@@ -4906,3 +4906,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008007b0,fuel_arbitrator_previous_state,word,Fuel arbitrator previous state for comparison (4 refs),2,0,,state
 0x008001f0,engine_rpm_histogram_threshold_select,word,Selected RPM threshold for histogram binning (4 refs),2,0,,threshold
 0x00800004,high_rpm_threshold_countdown,word,High RPM threshold countdown timer (4 refs),2,0,,countdown
+0x00800122,retarder_lookup_table_pointer,dword,Pointer to retarder lookup table (0x807952 or 0x80797a) (3 refs),4,0,,pointer
+0x00800624,diagnostic_buffer_write_pointer,dword,Diagnostic buffer write position pointer (3 refs),4,0,,pointer
+0x00806e1a,fuel_limit_rpm_error_offset,word,Fuel limit offset added to governor RPM error (3 refs),2,0,,offset
+0x00806fa4,timing_protection_blend_increment,word,Timing protection blend ramp increment value (3 refs),2,0,,increment
+0x00807204,oil_pressure_throttle_threshold,word,Oil pressure protection throttle position threshold (3 refs),2,0,,threshold
+0x00807206,oil_pressure_debounce_threshold,word,Oil pressure protection debounce counter threshold (3 refs),2,0,,threshold
+0x0080726e,output_sequence_rpm_hysteresis,word,Output sequence RPM threshold hysteresis value (3 refs),2,0,,hysteresis
+0x00809686,rpm_timing_capture_delta,word,Delta between current and previous RPM timing captures (3 refs),2,0,,delta
+0x008091d8,rpm_rate_limit_active_flag,word,RPM rate limiting active flag (0=inactive 1=active) (3 refs),2,0,,flag
+0x008096b0,fuel_mode_state_selector,word,Fuel mode state selector (1/2/3 states) (3 refs),2,0,,state
+0x00809d70,cold_start_fuel_limit_value,word,Cold start fuel limit value for proportional calc (3 refs),2,0,,limit
+0x0080c7f2,fuel_timing_blend_lookup_result,word,Fuel timing blend lookup table interpolation result (3 refs),2,0,,value
