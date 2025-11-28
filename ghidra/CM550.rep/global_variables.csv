@@ -5219,3 +5219,35 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008002b8,load_trending_table_4_ptr,dword,Load trending table 4 pointer 0x80828c (initLoadTrendingSystem),4,0,,pointer
 0x008002c0,load_trending_table_5_ptr,dword,Load trending table 5 pointer 0x8082b2 (initLoadTrendingSystem),4,0,,pointer
 0x008002c6,load_trending_table_6_ptr,dword,Load trending table 6 pointer 0x8082ca (initLoadTrendingSystem),4,0,,pointer
+0x008002aa,load_trending_table_2_base,word,Load trending table 2 base value (initLoadTrendingSystem),2,0,,lookup
+0x008002be,load_trending_table_5_base,word,Load trending table 5 base value (initLoadTrendingSystem),2,0,,lookup
+0x00800332,rpm_filter_buffer_ptr,dword,RPM filter buffer current pointer (can1TimerBufferInitConditional),4,0,,pointer
+0x00800346,engine_rpm_delta,word,Engine RPM delta for fuel timing (fuelTimingOilPressureModeController),2,0,,delta
+0x00800374,fuel_demand_blend_input,word,Fuel demand value for blending (fuelDemandTableBlendCalculator),2,0,,input
+0x008003a4,fuel_limit_table_1_ptr,dword,Fuel limit table 1 pointer 0x808862 (fuelLimitParameterPointerSetup),4,0,,pointer
+0x008003ac,fuel_limit_table_2_ptr,dword,Fuel limit table 2 pointer 0x808876 (fuelLimitParameterPointerSetup),4,0,,pointer
+0x008003b0,fuel_limit_table_1_base_ptr,dword,Fuel limit table 1 base pointer 0x807f42 (fuelLimitParameterPointerSetup),4,0,,pointer
+0x008003b2,fuel_limit_lookup_1_base,word,Fuel limit lookup table 1 base value 2 (fuelLimitParameterPointerSetup),2,0,,lookup
+0x008003b8,fuel_limit_lookup_1_divisor,word,Fuel limit lookup table 1 divisor value 2 (fuelLimitParameterPointerSetup),2,0,,lookup
+0x008003ba,fuel_limit_table_3_ptr,dword,Fuel limit table 3 pointer 0x807f68 (fuelLimitParameterPointerSetup),4,0,,pointer
+0x008003be,fuel_limit_table_1_limit,word,Fuel limit table 1 limit value 400 (fuelLimitParameterPointerSetup),2,0,,limit
+0x008003c0,fuel_limit_intake_temp_ptr,dword,Fuel limit intake temp limit pointer (fuelLimitParameterPointerSetup),4,0,,pointer
+0x008003c6,fuel_limit_table_4_ptr,dword,Fuel limit table 4 pointer 0x808002 (fuelLimitParameterPointerSetup),4,0,,pointer
+0x008003cc,fuel_limit_lookup_2_divisor,word,Fuel limit lookup table 2 divisor value 2 (fuelLimitParameterPointerSetup),2,0,,lookup
+0x008003ce,fuel_limit_table_5_ptr,dword,Fuel limit table 5 pointer 0x808028 (fuelLimitParameterPointerSetup),4,0,,pointer
+0x008003d2,fuel_limit_table_2_limit,word,Fuel limit table 2 limit value 400 (fuelLimitParameterPointerSetup),2,0,,limit
+0x008003d4,fuel_limit_table_6_ptr,dword,Fuel limit table 6 pointer 0x808032 (fuelLimitParameterPointerSetup),4,0,,pointer
+0x008003d8,fuel_delivery_param_ptr,dword,Fuel delivery parameter pointer 0x808464 (fuelDeliverySystemInit),4,0,,pointer
+0x008003f2,fuel_timing_mode_table_1_ptr,dword,Fuel timing mode table 1 pointer 0x807f42 (fuelTimingModeInit),4,0,,pointer
+0x008003f6,fuel_timing_mode_rpm_input_1,word,Fuel timing mode RPM input 1 (activeParamReadFunction),2,0,RPM,input
+0x008003f8,fuel_timing_mode_lookup_1_base,word,Fuel timing mode lookup 1 divisor value 2 (fuelTimingModeInit),2,0,,lookup
+0x008003fa,fuel_timing_mode_table_2_ptr,dword,Fuel timing mode table 2 pointer 0x807f68 (fuelTimingModeInit),4,0,,pointer
+0x00800400,fuel_timing_mode_intake_temp_ptr,dword,Fuel timing mode intake temp limit pointer (fuelTimingModeInit),4,0,,pointer
+0x00800406,fuel_timing_mode_table_3_ptr,dword,Fuel timing mode table 3 pointer 0x808002 (fuelTimingModeInit),4,0,,pointer
+0x0080040a,fuel_timing_mode_rpm_input_2,word,Fuel timing mode RPM input 2 (activeParamReadFunction),2,0,RPM,input
+0x0080040c,fuel_timing_mode_lookup_2_base,word,Fuel timing mode lookup 2 divisor value 2 (fuelTimingModeInit),2,0,,lookup
+0x0080040e,fuel_timing_mode_table_4_ptr,dword,Fuel timing mode table 4 pointer 0x808028 (fuelTimingModeInit),4,0,,pointer
+0x00800414,fuel_timing_mode_table_5_ptr,dword,Fuel timing mode table 5 pointer 0x808032 (fuelTimingModeInit),4,0,,pointer
+0x008007b8,multi_packet_buffer_size,word,Multi-packet buffer size (multiPacketBufferAllocator),2,0,,size
+0x008007ba,multi_packet_data_ptr,dword,Multi-packet data pointer 0x8007c4 (multiPacketBufferAllocator),4,0,,pointer
+0x008007be,multi_packet_status_ptr,dword,Multi-packet status pointer 0x8007c2 (multiPacketBufferAllocator),4,0,,pointer

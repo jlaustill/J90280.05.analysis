@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 08:20:32 MST 2025
+// Fri Nov 28 08:27:52 MST 2025
 
 
 //
@@ -8260,12 +8260,12 @@ void initLoadTrendingSystem(void)
   load_trending_table_1_ptr = 0x8080c2;
   _DAT_008002a2 = 2;
   load_trending_table_2_ptr = 0x8080e8;
-  _DAT_008002aa = 2;
+  load_trending_table_2_base = 2;
   load_trending_table_3_ptr = 0x808100;
   load_trending_table_4_ptr = 0x80828c;
   _DAT_008002b6 = 2;
   load_trending_table_5_ptr = 0x8082b2;
-  _DAT_008002be = 2;
+  load_trending_table_5_base = 2;
   load_trending_table_6_ptr = 0x8082ca;
   return;
 }
@@ -10082,7 +10082,7 @@ uint can1TimerBufferInitConditional(void)
     }
     _engine_rpm_divisor_1 = _CRFLOFPZ * can1_timer_buffer_count;
     uVar1 = _CRFLOFPZ * can1_timer_buffer_divisor;
-    _DAT_00800332 = &rpm_filter_buffer_start;
+    rpm_filter_buffer_ptr = (dword)&rpm_filter_buffer_start;
     rpm_timer_interrupt_handler_ptr = (dword)rpmTimerInterruptHandler3;
     can1_reserved = can1_reserved & 0xf0ff | 0xd00;
     IMB_CSOR0 = 0x100;
@@ -10306,7 +10306,7 @@ ushort fuelTimingOilPressureModeController(void)
       else if (fuel_timing_oil_pressure_timer < _software_padding_0_255) {
         fuel_timing_oil_pressure_timer = fuel_timing_oil_pressure_timer + 1;
       }
-      _DAT_00800346 = engine_rpm_previous_sample - current_engine_rpm;
+      engine_rpm_delta = engine_rpm_previous_sample - current_engine_rpm;
       engine_rpm_previous_sample = current_engine_rpm;
       rpm_moving_average = exponentialMovingAverage();
       if ((int)(uint)crank_exited_initial_rpm_offset_1000_1000 < (int)(short)rpm_moving_average) {
@@ -12420,7 +12420,7 @@ void fuelDemandTableBlendCalculator(void)
   if ((diagnostic_status_flags & 0x100) == 0) {
     wVar1 = current_fuel_demand_value;
     if (_DAT_0080ccf2 == 1) {
-      _DAT_00800374 = current_fuel_demand_value;
+      fuel_demand_blend_input = current_fuel_demand_value;
       wVar1 = lookupTableInterpolation((short *)&DAT_0080036e);
     }
     if (fuel_timing_mode_blend_factor == 0x4000) {
@@ -12629,22 +12629,23 @@ void fuel_timing_calculation_with_fault_checking(void)
 void fuelLimitParameterPointerSetup(void)
 
 {
-  _DAT_008003b2 = 0x807f42;
+  _fuel_limit_lookup_1_base = 0x807f42;
   _fuel_lookup_table_1_base = 2;
-  _DAT_008003be = 400;
-  _DAT_008003ba = 0x807f68;
-  _DAT_008003b8 = 2;
-  _DAT_008003c0 = &lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
-  _DAT_008003c6 = 0x808002;
+  fuel_limit_table_1_limit = 400;
+  fuel_limit_table_3_ptr = 0x807f68;
+  fuel_limit_lookup_1_divisor = 2;
+  fuel_limit_intake_temp_ptr =
+       (dword)&lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
+  fuel_limit_table_4_ptr = 0x808002;
   _fuel_lookup_table_2_base = 2;
-  _DAT_008003d2 = 400;
-  _DAT_008003ce = 0x808028;
-  _DAT_008003cc = 2;
-  _DAT_008003d4 = 0x808032;
+  fuel_limit_table_2_limit = 400;
+  fuel_limit_table_5_ptr = 0x808028;
+  fuel_limit_lookup_2_divisor = 2;
+  fuel_limit_table_6_ptr = 0x808032;
   _fuel_correction_input = throttle_position_raw;
-  _DAT_008003a6 = 0x808862;
-  _DAT_008003ac = 0x808876;
-  _fuel_correction_table_base = 2;
+  ram0x008003a6 = 0x808862;
+  fuel_limit_table_2_ptr = 0x808876;
+  fuel_correction_table_base._0_2_ = 2;
   return;
 }
 
@@ -12801,7 +12802,7 @@ void fuelDeliverySystemInit(void)
   _fuel_delivery_offset_factor = _DAT_00808462;
   _fuel_delivery_rate_limit_gain = _DAT_00808460;
   _fuel_delivery_status = 0x80000000;
-  _DAT_008003d8 = 0x808464;
+  fuel_delivery_param_ptr = 0x808464;
   return;
 }
 
@@ -13158,8 +13159,6 @@ void initFuelArbitratorThreshold5(void)
 // Function: activeParamReadFunction @ 0x00018f82
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 short activeParamReadFunction(void)
 
 {
@@ -13177,7 +13176,7 @@ short activeParamReadFunction(void)
   wVar1 = fuel_timing_mode_selector;
   if (active_derate_value != 0) {
     if (fuel_timing_mode_selector != 0) {
-      _DAT_008003f6 = current_engine_rpm;
+      fuel_timing_mode_rpm_input_1 = current_engine_rpm;
       derate_interpolation_value_1 = active_derate_value;
       tableInterpolationLookup((short *)&interpolation_table_1_base);
       unaff_D3w = extraout_D0w;
@@ -13195,7 +13194,7 @@ short activeParamReadFunction(void)
       }
     }
     if (wVar1 < 0x4000) {
-      _DAT_0080040a = current_engine_rpm;
+      fuel_timing_mode_rpm_input_2 = current_engine_rpm;
       derate_interpolation_value_2 = active_derate_value;
       tableInterpolationLookup((short *)&interpolation_table_2_base);
       unaff_D2w = extraout_D0w_02;
@@ -13227,21 +13226,20 @@ short activeParamReadFunction(void)
 // Function: fuelTimingModeInit @ 0x00019076
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void fuelTimingModeInit(void)
 
 {
-  _DAT_008003f2 = 0x807f42;
+  fuel_timing_mode_table_1_ptr = 0x807f42;
   interpolation_table_1_base = 2;
-  _DAT_008003fa = 0x807f68;
-  _DAT_008003f8 = 2;
-  _DAT_00800400 = &lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
-  _DAT_00800406 = 0x808002;
+  fuel_timing_mode_table_2_ptr = 0x807f68;
+  fuel_timing_mode_lookup_1_base = 2;
+  fuel_timing_mode_intake_temp_ptr =
+       (dword)&lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
+  fuel_timing_mode_table_3_ptr = 0x808002;
   interpolation_table_2_base = 2;
-  _DAT_0080040e = 0x808028;
-  _DAT_0080040c = 2;
-  _DAT_00800414 = 0x808032;
+  fuel_timing_mode_table_4_ptr = 0x808028;
+  fuel_timing_mode_lookup_2_base = 2;
+  fuel_timing_mode_table_5_ptr = 0x808032;
   fuel_timing_mode_selector = 0x4000;
   return;
 }
@@ -17020,9 +17018,9 @@ undefined4 multiPacketBufferAllocator(undefined4 param_1)
   if ((DAT_008007c2 & 0xf0) != 0) {
     return 0;
   }
-  _DAT_008007ba = 0x8007c4;
-  _DAT_008007b8 = param_1._0_2_;
-  _DAT_008007be = &DAT_008007c2;
+  multi_packet_data_ptr = 0x8007c4;
+  multi_packet_buffer_size = param_1._0_2_;
+  multi_packet_status_ptr = (dword)&DAT_008007c2;
   return 0x8007b4;
 }
 
