@@ -5038,3 +5038,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808a74,fuel_limit_floor_value,word,Fuel limit minimum clamp value (2 refs),2,0,,limit
 0x00808a82,rpm_divisor_value,word,RPM divisor for fuel calculations (2 refs),2,0,,divisor
 0x00808ec2,state_machine_return_address,dword,State machine return address pointer (3 refs),4,0,,pointer
+0x0080367e,loop_termination_flag,word,Loop exit comparison flag (3 refs),2,0,,flag
+0x0080bd9c,manifold_temp_lookup_result,word,Manifold temp table interpolation result (2 refs),2,0,,value
+0x0080bd90,manifold_temp_calculated,word,Manifold temp calculated value (2 refs),2,0,,value
+0x0080c7c2,rpm_moving_average,word,RPM exponential moving average (2 refs),2,0,,average
+0x0080cfce,diagnostic_mode_state,byte,Diagnostic mode state flag (2 refs),1,0,,state
+0x0080c99c,diagnostic_condition_flag,byte,Diagnostic condition check flag (2 refs),1,0,,flag
+0x00809b0c,fuel_cylinder_average,word,Fuel cylinder exponential moving average (2 refs),2,0,,average
+0x008088de,histogram_bin_count_3,byte,Histogram bin 3 iteration count (2 refs),1,0,,count
+0x00808828,fuel_timing_offset_step,word,Fuel timing offset adjustment step (2 refs),2,0,,step
+0x0080882a,fuel_timing_offset_max,word,Fuel timing offset upper limit (2 refs),2,0,,limit
+0x0080882c,fuel_timing_offset_min,word,Fuel timing offset lower limit (2 refs),2,0,,limit
+0x00808838,fuel_timing_offset_limit,word,Fuel timing offset value limit (2 refs),2,0,,limit
