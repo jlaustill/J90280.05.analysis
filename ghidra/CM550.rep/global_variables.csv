@@ -4846,3 +4846,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008077be,output_control_state_transition_countdown,word,Common countdown for state 2 and fallback transitions (5 refs),2,0,,countdown
 0x008034da,vp44_fso_multibit_fault_debounce_counter,word,VP44 FSO multibit fault debounce counter (7 refs),2,0,,counter
 0x008054a6,j1939_message_type_total_counter,word,J1939 message type classifier counter (7 refs),2,0,,counter
+0x0080d2d6,tpu_transmission_state_machine,byte,TPU transmission state (0=init 1=sending 2=complete 3=done) (7 refs),1,0,,state
+0x0080d03e,io_control_bit0_state,byte,I/O control state for bit 0 of io_control_source_register (0-2) (7 refs),1,0,,state
+0x0080d040,io_control_bit1_state,byte,I/O control state for bit 1 of io_control_source_register (0-2) (7 refs),1,0,,state
+0x0080d044,io_control_bit6_state,byte,I/O control state for bit 6 of io_control_source_register (0-2) (7 refs),1,0,,state
+0x0080d046,io_control_bit4_state,byte,I/O control state for bit 4 of io_control_source_register (0-2) (7 refs),1,0,,state
+0x00809d40,retarder_scaled_percentage_output,word,Retarder percentage scaled output (0-32000) (7 refs),2,0,,output
+0x00807cdc,rpm_fault_limit_calibration,word,RPM-based fault limit calibration value (7 refs),2,0,,calibration
+0x00805f6c,crank_timing_state_current,dword,Current crank timing state for delta calculations (8 refs),4,0,,state
+0x008002da,protection_state_machine_index,byte,Protection state machine cycle index (0-4) (7 refs),1,0,,index
+0x00800000,rpm_rate_limit_countdown,word,RPM rate limit threshold countdown timer (7 refs),2,0,,countdown
+0x0080011c,retarder_lookup_table_ptr,dword,Pointer to retarder mode lookup table (7 refs),4,0,,pointer
+0x00804f44,diagnostic_active_fault_counter,word,Active diagnostic fault count tracker (7 refs),2,0,,counter
