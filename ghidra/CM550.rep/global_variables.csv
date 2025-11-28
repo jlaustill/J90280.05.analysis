@@ -5176,3 +5176,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080010a,fuel_blend_table_4_ptr,dword,Fuel blend table 4 pointer 0x808028 (fuelBlendTablePointerSetup),4,0,,pointer
 0x0080010e,fuel_blend_table_3_limit,word,Fuel blend table 3 limit value 400 (fuelBlendTablePointerSetup),2,0,,limit
 0x00800110,fuel_blend_table_5_ptr,dword,Fuel blend table 5 pointer 0x808032 (fuelBlendTablePointerSetup),4,0,,pointer
+0x0080011a,io_control_fuel_rpm_input,word,RPM input for I/O control fuel lookup (ioControlBasedFuelCalculator),2,0,RPM,input
+0x00800126,io_control_fuel_table_param,word,I/O control fuel table parameter (ioControlBasedFuelCalculator),2,0,,parameter
+0x00800162,ac_control_kickdown_ptr,dword,AC control kickdown speed parameter pointer (initAcControlSystem),4,0,,pointer
+0x00800166,kickdown_throttle_input,word,Kickdown signal throttle input (kickdownSignalSlowCycle40Coordinator),2,0,,input
+0x00800168,ac_control_accel_threshold_ptr,dword,AC control accel threshold parameter pointer (initAcControlSystem),4,0,,pointer
+0x00800172,anc_speed_limit_table_1_ptr,dword,ANC speed limit table 1 pointer 0x807af4 (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x00800178,anc_speed_limit_table_2_base,word,ANC speed limit table 2 base value (initAncSpeedLimitAndAltitudeDerate),2,0,,lookup
+0x0080017a,anc_speed_limit_table_2_ptr,dword,ANC speed limit table 2 pointer 0x807b10 (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x00800180,anc_speed_limit_table_3_ptr,dword,ANC speed limit table 3 pointer 0x807b20 (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x00800186,anc_duty_cycle_ptr,dword,ANC duty cycle conversion factor pointer (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x0080018c,anc_min_active_time_ptr,dword,ANC minimum active time parameter pointer (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x00800192,anc_disable_duration_ptr,dword,ANC disable duration parameter pointer (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer

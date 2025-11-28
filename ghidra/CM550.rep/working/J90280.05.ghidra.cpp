@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 08:07:55 MST 2025
+// Fri Nov 28 08:10:20 MST 2025
 
 
 //
@@ -3312,10 +3312,10 @@ void ioControlBasedFuelCalculator(void)
       retarder_lookup_table_ptr = (dword)&ADO2TPAI;
     }
   }
-  _DAT_0080011a = current_engine_rpm;
+  io_control_fuel_rpm_input = current_engine_rpm;
   sVar1 = lookupTableInterpolation((short *)&DAT_00800114);
   if (0 < sVar1) {
-    _DAT_00800126 = *(undefined2 *)(retarder_lookup_table_pointer + 8);
+    io_control_fuel_table_param = *(word *)(retarder_lookup_table_pointer + 8);
     sVar2 = lookupTableInterpolation((short *)&DAT_00800120);
     if (0 < sVar2) {
       retarder_scaled_percentage_output = (word)((uint)(sVar1 * 0x6400) / (uint)(int)sVar2);
@@ -3999,8 +3999,6 @@ ushort initDerateSystem(void)
 // Function: kickdownSignalSlowCycle40Coordinator @ 0x0000eb5a
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void kickdownSignalSlowCycle40Coordinator(void)
 
 {
@@ -4011,7 +4009,7 @@ void kickdownSignalSlowCycle40Coordinator(void)
     timing_accumulator_flag_mask = 0;
     return;
   }
-  _DAT_00800166 = throttle_position_raw;
+  kickdown_throttle_input = throttle_position_raw;
   timing_table_lookup_result = lookupTableInterpolation((short *)&DAT_00800160);
   timing_accumulator_flag_mask = 2;
   return;
@@ -4042,8 +4040,8 @@ void timingAccumulatorUpdate(void)
 void initAcControlSystem(void)
 
 {
-  _DAT_00800162 = &engine_speed_at_0_fuel_which_activates_kick_down_signal_0_8000;
-  _DAT_00800168 = &accel_threshold_to_disable_a_c_1200_1200;
+  ac_control_kickdown_ptr = (dword)&engine_speed_at_0_fuel_which_activates_kick_down_signal_0_8000;
+  ac_control_accel_threshold_ptr = (dword)&accel_threshold_to_disable_a_c_1200_1200;
   _DAT_00800160 = 2;
   return;
 }
@@ -5191,11 +5189,13 @@ void initAncSpeedLimitAndAltitudeDerate(void)
 
 {
   _DAT_0080018a = current_engine_rpm;
-  _DAT_00800186 = &duty_cycle_conversion_factor_for_cool_temp_gauge_hot_state_0_9;
-  _DAT_0080018c = &minimum_amount_of_time_which_the_anc_speed_limit_will_be_active_0_20;
+  anc_duty_cycle_ptr = (dword)&duty_cycle_conversion_factor_for_cool_temp_gauge_hot_state_0_9;
+  anc_min_active_time_ptr =
+       (dword)&minimum_amount_of_time_which_the_anc_speed_limit_will_be_active_0_20;
   _DAT_00800184 = 2;
   _DAT_00800196 = current_engine_rpm;
-  _DAT_00800192 = &duration_anc_speed_limit_will_be_disabled_after_a_bare_engine_a_0_20;
+  anc_disable_duration_ptr =
+       (dword)&duration_anc_speed_limit_will_be_disabled_after_a_bare_engine_a_0_20;
   _DAT_00800190 = 2;
   cold_start_sensor_sum_saved = cold_start_sensor_reading_sum;
   _DAT_0080019a = 0x807a66;
@@ -5206,12 +5206,12 @@ void initAncSpeedLimitAndAltitudeDerate(void)
   _DAT_008001ac = 0x807ad8;
   _DAT_008001a4 = 2;
   _DAT_00800176 = current_engine_rpm;
-  _DAT_00800172 = 0x807af4;
+  anc_speed_limit_table_1_ptr = 0x807af4;
   _DAT_00800170 = 2;
   _DAT_0080017e = current_fuel_demand_value;
-  _DAT_0080017a = 0x807b10;
-  _DAT_00800178 = 2;
-  _DAT_00800180 = 0x807b20;
+  anc_speed_limit_table_2_ptr = 0x807b10;
+  anc_speed_limit_table_2_base = 2;
+  anc_speed_limit_table_3_ptr = 0x807b20;
   return;
 }
 
