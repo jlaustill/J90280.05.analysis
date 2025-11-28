@@ -698,7 +698,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008032d4,fuel_temp_exceedance_timer,word,Fuel temperature exceedance timer (3 refs),2,0,,timer
 0x008032d6,fuel_limit_near_exceedance_timer,word,Fuel limit near exceedance timer (3 refs),2,0,,timer
 0x008032d8,clutch_slip_detection_state,word,Clutch slip detection state flag (4 refs),2,0,,state
-0x008032da,derate_event_state_machine,word,Derate event state machine state (6 refs),2,0,,state
+0x008032da,derate_event_state_machine,DERATE_EVENT_STATE,Derate event state machine state (6 refs),2,0,,state
 0x008032dc,vp44_fault_protection_init_flag,byte,VP44 fault protection init complete flag (2 refs),1,0,,flag
 0x008032dd,vp44_derate_bit8_previous,byte,VP44 derate bit 8 previous state (2 refs),1,0,,flag
 0x008032de,vp44_derate_bit4_previous,byte,VP44 derate bit 4 previous state (2 refs),1,0,,flag
@@ -2786,13 +2786,13 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008094e6,clutch_slip_detection_state,word,Clutch slip detection state (3 refs),2,0,,state
 0x008094e8,clutch_sample_divider,word,Clutch sample divider counter (3 refs),2,0,,counter
 0x008094ea,clutch_rpm_previous,word,Clutch RPM previous value for delta (3 refs),2,0,,value
-0x008094ec,derate_event_state_machine,word,Derate event state machine (4 refs),2,0,,state
+0x008094ec,derate_event_state_machine,DERATE_EVENT_STATE,Derate event state machine (4 refs),2,0,,state
 0x008094ee,derate_event_timer,word,Derate event timer (3 refs),2,0,,counter
 0x00809652,current_fuel_demand_limit,word,Current fuel demand limit value,2,0,,value
 0x00809658,diagnostic_mode_buffer,byte,Diagnostic mode buffer/state value (2 refs),1,0,,value
 0x0080965a,fuel_timing_mode_blend_factor,word,Fuel timing mode blend factor Q14,2,0,,value
 0x0080965c,timing_protection_blend_ramp,word,Timing protection blend ramp 0-16384,2,0,,value
-0x0080965e,timing_mode_source_selector,word,Timing mode source selector 0-4,2,0,,state
+0x0080965e,timing_mode_source_selector,TIMING_MODE_SOURCE,Timing mode source selector 0-4,2,0,,state
 0x00809660,timing_transition_result,word,Timing mode transition result,2,0,,value
 0x00809662,timing_fuel_blend_result,word,Timing fuel blend result,2,0,,value
 0x00809664,timing_oil_pressure_result,word,Timing oil pressure condition result,2,0,,value
@@ -3502,7 +3502,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080c7a4,throttle_fault_threshold_high,word,Throttle fault threshold high value (2 refs),2,0,,threshold
 0x0080c7a6,throttle_fault_threshold_alt,word,Throttle fault threshold alternate value (2 refs),2,0,,threshold
 0x0080c7ae,rpm_sample_index,word,Index for RPM sample circular buffer,2,0,,index
-0x0080c7b2,rpm_timer_capture_state,byte,RPM timer capture state flag - accessed via cmpi.b/tst.b,1,0,,state
+0x0080c7b2,rpm_timer_capture_state,RPM_CAPTURE_STATE,RPM timer capture state flag - accessed via cmpi.b/tst.b,1,0,,state
 0x0080c7b3,rpm_timer_capture_mode,byte,RPM timer capture mode flag - accessed via cmpi.b,1,0,,mode
 0x0080c7b8,throttle_fault_delay_counter,word,Throttle fault detection delay counter (6 refs),2,0,,counter
 0x0080c7c0,fuel_timing_oil_pressure_mode_state,byte,Fuel timing oil pressure mode controller state (6 refs),1,0,,state
@@ -3571,7 +3571,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080cc62,param_pointer_set_2,dword,Parameter pointer set 2 - points to different param tables based on oil pressure mode,4,0,,pointer
 0x0080cc66,param_pointer_set_3,dword,Parameter pointer set 3 - points to different param tables based on oil pressure mode,4,0,,pointer
 0x0080cc6a,high_rpm_protection_fault_flag,word,High RPM protection fault active flag,2,0,,flag
-0x0080cc6c,high_rpm_protection_state,word,High RPM protection state machine state,2,0,,state
+0x0080cc6c,high_rpm_protection_state,HIGH_RPM_PROTECTION_STATE,High RPM protection state machine state,2,0,,state
 0x0080cc6e,high_rpm_protection_timer,word,High RPM protection countdown timer,2,0,,timer
 0x0080cc72,high_rpm_protection_warning_flag,word,High RPM protection warning active flag,2,0,,flag
 0x0080ccc4,timer_counting_against_oil_pressure_threshold_time_0_60,word,TIMER COUNTING AGAINST OIL_PRESSURE_THRESHOLD_TIME,2,0,SEC,parameter
@@ -3980,7 +3980,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080d498,shutdown_minimum_init_value,word,Shutdown minimum selector init value (5 refs),2,0,,value
 0x0080d49a,cached_parameter_value,word,Cached parameter value for diagnostic responses,2,0,,value
 0x0080d49c,diagnostic_status_register,DIAGNOSTIC_STATUS,Diagnostic operation mode state machine,2,0,,state
-0x0080d49e,pwm_timer_cycle_advance_state,byte,PWM timer cycle advance state - accessed via move.b,1,0,,state
+0x0080d49e,pwm_timer_cycle_advance_state,PWM_TIMER_CYCLE_STATE,PWM timer cycle advance state - accessed via move.b,1,0,,state
 0x0080d4c4,system_loop_counter,dword,System main loop iteration counter,4,0,,counter
 0x0080d4c6,system_time_seconds_counter,word,System time seconds counter for elapsed time,2,0,,counter
 0x0080d5ac,signal_transmitted_by_slave_to_signify_beginning_of_data_transfer_n_a,byte,SIGNAL TRANSMITTED BY SLAVE TO SIGNIFY BEGINNING OF DATA TRANSFER.,1,0,HEX,parameter
@@ -4868,11 +4868,11 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008077be,output_control_state_transition_countdown,word,Common countdown for state 2 and fallback transitions (5 refs),2,0,,countdown
 0x008034da,vp44_fso_multibit_fault_debounce_counter,word,VP44 FSO multibit fault debounce counter (7 refs),2,0,,counter
 0x008054a6,j1939_message_type_total_counter,word,J1939 message type classifier counter (7 refs),2,0,,counter
-0x0080d2d6,tpu_transmission_state_machine,byte,TPU transmission state (0=init 1=sending 2=complete 3=done) (7 refs),1,0,,state
-0x0080d03e,io_control_bit0_state,byte,I/O control state for bit 0 of io_control_source_register (0-2) (7 refs),1,0,,state
-0x0080d040,io_control_bit1_state,byte,I/O control state for bit 1 of io_control_source_register (0-2) (7 refs),1,0,,state
-0x0080d044,io_control_bit6_state,byte,I/O control state for bit 6 of io_control_source_register (0-2) (7 refs),1,0,,state
-0x0080d046,io_control_bit4_state,byte,I/O control state for bit 4 of io_control_source_register (0-2) (7 refs),1,0,,state
+0x0080d2d6,tpu_transmission_state_machine,TPU_TRANSMISSION_STATE,TPU transmission state (0=init 1=sending 2=complete 3=done) (7 refs),1,0,,state
+0x0080d03e,io_control_bit0_state,IO_CONTROL_STATE,I/O control state for bit 0 of io_control_source_register (0-2) (7 refs),1,0,,state
+0x0080d040,io_control_bit1_state,IO_CONTROL_STATE,I/O control state for bit 1 of io_control_source_register (0-2) (7 refs),1,0,,state
+0x0080d044,io_control_bit6_state,IO_CONTROL_STATE,I/O control state for bit 6 of io_control_source_register (0-2) (7 refs),1,0,,state
+0x0080d046,io_control_bit4_state,IO_CONTROL_STATE,I/O control state for bit 4 of io_control_source_register (0-2) (7 refs),1,0,,state
 0x00809d40,retarder_scaled_percentage_output,word,Retarder percentage scaled output (0-32000) (7 refs),2,0,,output
 0x00807cdc,rpm_fault_limit_calibration,word,RPM-based fault limit calibration value (7 refs),2,0,,calibration
 0x00805f6c,crank_timing_state_current,dword,Current crank timing state for delta calculations (8 refs),4,0,,state

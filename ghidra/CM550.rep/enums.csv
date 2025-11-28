@@ -524,3 +524,46 @@ VP44_DIAG_MODE,6,SENSOR_TYPE_1_MODE,Sensor type 1 mode (vp44_sensor_type_selecto
 VP44_DIAG_MODE,7,PROTECTION_CONTINUE,Protection system continue state,2
 VP44_DIAG_MODE,8,EXIT_DISABLED,Exit/disabled state - protection clearing,2
 VP44_DIAG_MODE,256,UNINITIALIZED,Transitional/uninitialized state (0x100),2
+# High RPM Protection State - engine protection state machine in highRpmEngineProtectionStateMachine
+# Tracked in high_rpm_protection_state, manages high RPM warning and shutdown sequence
+HIGH_RPM_PROTECTION_STATE,0,MONITORING,Initial state - monitoring conditions for entry,2
+HIGH_RPM_PROTECTION_STATE,1,TIMER_COUNTING,Timer countdown active - conditions met,2
+HIGH_RPM_PROTECTION_STATE,2,WARNING_ACTIVE,Warning threshold reached - protection active,2
+HIGH_RPM_PROTECTION_STATE,3,FAULT_TRIGGERED,Fault triggered - derate change detected during protection,2
+HIGH_RPM_PROTECTION_STATE,4,SHUTDOWN_PENDING,Shutdown pending - timer expired waiting for idle,2
+# TPU Transmission State Machine - CAN/serial transmission state machine
+# Tracked in tpu_transmission_state_machine, controls byte transmission sequence
+TPU_TRANSMISSION_STATE,0,INIT_SEND,Initial send state - start transmission,1
+TPU_TRANSMISSION_STATE,1,SENDING_DATA,Actively sending data bytes,1
+TPU_TRANSMISSION_STATE,2,CHECKSUM_CALC,Checksum calculation state,1
+TPU_TRANSMISSION_STATE,3,TRANSMISSION_COMPLETE,Transmission complete - cleanup,1
+# PWM Timer Cycle Advance State - timing cycle phase state (0-5 modulo 6)
+# Tracked in pwm_timer_cycle_advance_state, cycles through timing phases
+PWM_TIMER_CYCLE_STATE,0,CYCLE_PHASE_0,Timing cycle phase 0,1
+PWM_TIMER_CYCLE_STATE,1,CYCLE_PHASE_1,Timing cycle phase 1,1
+PWM_TIMER_CYCLE_STATE,2,CYCLE_PHASE_2,Timing cycle phase 2,1
+PWM_TIMER_CYCLE_STATE,3,CYCLE_PHASE_3,Timing cycle phase 3,1
+PWM_TIMER_CYCLE_STATE,4,CYCLE_PHASE_4,Timing cycle phase 4,1
+PWM_TIMER_CYCLE_STATE,5,CYCLE_PHASE_5,Timing cycle phase 5,1
+# Derate Event State Machine - tracks derate event duration for statistics
+# Tracked in derate_event_state_machine, monitors derate condition timing
+DERATE_EVENT_STATE,0,NO_DERATE,No derate condition active,2
+DERATE_EVENT_STATE,1,TIMING_ACTIVE,Derate timing accumulator active,2
+DERATE_EVENT_STATE,2,EVENT_COUNTED,Event counted - counter incremented,2
+# I/O Control State - per-bit state machine for io_control_source_register bits
+# Tracked in io_control_bitX_state, controls output pin state transitions
+IO_CONTROL_STATE,0,OFF_INACTIVE,Output off/inactive - waiting for condition,1
+IO_CONTROL_STATE,1,TRANSITIONING,Transition state - checking conditions,1
+IO_CONTROL_STATE,2,ON_ACTIVE,Output on/active - condition met,1
+# RPM Timer Capture State - RPM measurement state machine
+# Tracked in rpm_timer_capture_state, controls crank/cam pulse processing
+RPM_CAPTURE_STATE,0,INITIALIZING,Initial state - buffers being configured,1
+RPM_CAPTURE_STATE,1,CAPTURING,Actively capturing timer pulses,1
+RPM_CAPTURE_STATE,2,FAULT_DETECTED,Fault detected in capture sequence,1
+# Timing Mode Source Selector - identifies fuel timing blend source
+# Tracked in timing_mode_source_selector, set in fuel timing arbitration
+TIMING_MODE_SOURCE,0,BLEND_RAMP_DEFAULT,Default timing protection blend ramp,2
+TIMING_MODE_SOURCE,1,ARBITRATION_VALUE,Fuel timing mode arbitration value,2
+TIMING_MODE_SOURCE,2,ARBITRATION_1,Fuel timing mode arbitration 1 (VP44 timing),2
+TIMING_MODE_SOURCE,3,ARBITRATION_2,Fuel timing mode arbitration 2 (protection mode active),2
+TIMING_MODE_SOURCE,4,PARAM_OVERRIDE,Parameter override mode (fuel_timing_mode_arbitration_param_2),2
