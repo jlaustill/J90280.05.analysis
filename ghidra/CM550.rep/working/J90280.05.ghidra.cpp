@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 08:37:55 MST 2025
+// Fri Nov 28 08:42:10 MST 2025
 
 
 //
@@ -23780,20 +23780,20 @@ void diagnosticServiceDispatcherByPgn(int param_1)
 {
   undefined4 unaff_D2;
   byte bVar1;
-  char *pcVar2;
+  dword *pdVar2;
   undefined2 uVar3;
   
   uVar3 = (undefined2)((uint)unaff_D2 >> 0x10);
-  pcVar2 = &DAT_008019b8;
+  pdVar2 = &diag_service_pgn_dispatch_ptr;
   if ((*(byte *)(param_1 + 2) == _j1939_multiframe_source_address) || (*(char *)(param_1 + 2) == -1)
      ) {
     for (bVar1 = 0; bVar1 < DAT_00801a36; bVar1 = bVar1 + 1) {
-      if ((pcVar2[1] == **(char **)(param_1 + 6)) &&
-         (*(char *)(*(int *)(param_1 + 6) + 1) == *pcVar2)) {
-        (**(code **)(pcVar2 + 2))((short)param_1);
+      if ((*(char *)((int)pdVar2 + 1) == **(char **)(param_1 + 6)) &&
+         (*(char *)(*(int *)(param_1 + 6) + 1) == *(char *)pdVar2)) {
+        (**(code **)((int)pdVar2 + 2))((short)param_1);
         break;
       }
-      pcVar2 = pcVar2 + 6;
+      pdVar2 = (dword *)((int)pdVar2 + 6);
     }
     if ((bVar1 == DAT_00801a36) && (*(char *)(param_1 + 2) != -1)) {
       diagnosticCanResponseSender(param_1,CONCAT22(1,uVar3));
@@ -25108,7 +25108,7 @@ void j1939MessageSetup_PGN_65265(void)
   j1939_pgn_65265_data_ptr = (dword)&j1939_pgn_65265_data_byte1;
   j1939_pgn_65265_unused_ptr = 0x801acc;
   j1939_pgn_65265_data_byte1 = 0xf3;
-  DAT_00801acb = 0xff;
+  j1939_pgn65265_reserved_byte = 0xff;
   canTransmissionController();
   return;
 }
@@ -25124,36 +25124,38 @@ void engineSerialNumberDataBuilder(void)
 {
   byte bVar1;
   undefined *puVar2;
-  undefined1 *puVar3;
+  byte *pbVar3;
+  undefined1 *puVar4;
+  byte *pbVar5;
   
   bVar1 = 0;
   puVar2 = &DAT_00801adc;
-  puVar3 = &DAT_00004404;
+  puVar4 = &DAT_00004404;
   do {
-    *puVar2 = *puVar3;
+    *puVar2 = *puVar4;
     bVar1 = bVar1 + 1;
     puVar2 = puVar2 + 1;
-    puVar3 = puVar3 + 1;
+    puVar4 = puVar4 + 1;
   } while (bVar1 < 5);
-  DAT_00801ae1 = 0x2a;
+  engine_serial_separator_1 = 0x2a;
   bVar1 = 0;
-  puVar2 = &DAT_00801ae2;
-  puVar3 = &DAT_00004409;
+  pbVar3 = &engine_serial_part2_start;
+  pbVar5 = &DAT_00004409;
   do {
-    *puVar2 = *puVar3;
+    *pbVar3 = *pbVar5;
     bVar1 = bVar1 + 1;
-    puVar2 = puVar2 + 1;
-    puVar3 = puVar3 + 1;
+    pbVar3 = pbVar3 + 1;
+    pbVar5 = pbVar5 + 1;
   } while (bVar1 < 0x11);
-  DAT_00801af3 = 0x2a;
+  engine_serial_separator_2 = 0x2a;
   bVar1 = 0;
-  puVar2 = &DAT_00801af4;
-  puVar3 = &DAT_0000441a;
+  pbVar3 = &engine_serial_part3_start;
+  pbVar5 = &DAT_0000441a;
   do {
-    *puVar2 = *puVar3;
+    *pbVar3 = *pbVar5;
     bVar1 = bVar1 + 1;
-    puVar2 = puVar2 + 1;
-    puVar3 = puVar3 + 1;
+    pbVar3 = pbVar3 + 1;
+    pbVar5 = pbVar5 + 1;
   } while (bVar1 < 4);
   sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65259);
   return;
@@ -25171,9 +25173,9 @@ void engineSerialNumberPGN_65259_Builder(void)
 
 {
   j1939_message_buffer_pgn65259 = CONCAT13((char)((_DAT_008037bc & 7) << 2),0xfeeb00);
-  _DAT_00801ad2 = 0x1c;
-  _DAT_00801ad4 = &DAT_00801adc;
-  _DAT_00801ad8 = 0x801af8;
+  j1939_pgn65259_msg_size = 0x1c;
+  j1939_pgn65259_data_ptr = (dword)&DAT_00801adc;
+  j1939_pgn65259_unused_ptr = 0x801af8;
   j1939_message_buffer_pgn65259 =
        CONCAT31(j1939_message_buffer_pgn65259._0_3_,j1939_source_address_primary);
   canTransmissionController();
@@ -25304,7 +25306,7 @@ void engineCoolantPGN_65226_Builder(void)
 
 {
   j1939_message_buffer_pgn65226 = CONCAT13((char)((_DAT_008037be & 7) << 2),0xfeca00);
-  _DAT_00801b00 = &j1939_transport_sequence_counter;
+  j1939_pgn65226_data_ptr = (dword)&j1939_transport_sequence_counter;
   _DAT_00801b04 = &j1939_transport_protocol_header;
   j1939_message_buffer_pgn65226 =
        CONCAT31(j1939_message_buffer_pgn65226._0_3_,j1939_source_address_primary);
@@ -25381,11 +25383,11 @@ void diagnosticDM2PGN_65227_Builder(void)
 
 {
   j1939_message_buffer_pgn65227 = CONCAT13((char)((_DAT_008037c0 & 7) << 2),0xfecb00);
-  _DAT_00802206 = &DAT_0080220e;
-  _DAT_0080220a = &DAT_00802904;
+  dm2_pgn65227_data_ptr = (dword)&DAT_0080220e;
+  dm2_pgn65227_unused_ptr = (dword)&DAT_00802904;
   j1939_message_buffer_pgn65227 =
        CONCAT31(j1939_message_buffer_pgn65227._0_3_,j1939_source_address_primary);
-  DAT_0080220f = 0xff;
+  dm2_pgn65227_reserved = 0xff;
   DAT_00802213 = DAT_00802213 & 0x7f;
   canTransmissionController();
   return;
@@ -25547,8 +25549,8 @@ void diagnosticDM4PGN_65229_Builder(void)
   dword *pdVar2;
   
   j1939_message_buffer_pgn65229 = CONCAT13((char)((_DAT_008037c2 & 7) << 2),0xfecd00);
-  _DAT_0080290c = &j1939_multiframe_data_buffer;
-  _DAT_00802910 = &DAT_00802fec;
+  dm4_pgn65229_data_ptr = (dword)&j1939_multiframe_data_buffer;
+  dm4_pgn65229_unused_ptr = (dword)&DAT_00802fec;
   j1939_message_buffer_pgn65229 =
        CONCAT31(j1939_message_buffer_pgn65229._0_3_,j1939_source_address_primary);
   bVar1 = 0;
@@ -25578,10 +25580,10 @@ void diagnosticDM5DataBuilder(void)
   
   local_6 = 0;
   DAT_00802ffc = diagnostic_pending_code_count;
-  DAT_00802ffd = diagnostic_active_code_count;
-  DAT_00802ffe = DAT_008084c7;
-  DAT_00802fff = DAT_008084c9;
-  _DAT_00803000 = byteSwap16(&diagnostic_status_flags_word);
+  dm5_active_code_count = diagnostic_active_code_count;
+  dm5_obd_compliance = DAT_008084c7;
+  dm5_obd_compliance_2 = DAT_008084c9;
+  dm5_status_flags_swapped = byteSwap16(&diagnostic_status_flags_word);
   if (_diagnostic_mode_state == 1) {
     local_6 = local_6 & 0xfeff;
   }
@@ -25591,7 +25593,7 @@ void diagnosticDM5DataBuilder(void)
   else if ((_diagnostic_mode_state == 0) && ((diagnostic_status_flags_word & 0x100) != 0)) {
     local_6 = local_6 | 0x100;
   }
-  _DAT_00803002 = byteSwap16(&local_6);
+  dm5_status_flags_2_swapped = byteSwap16(&local_6);
   sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65230);
   return;
 }
@@ -25608,9 +25610,9 @@ void diagnosticDM5PGN_65230_Builder(void)
 
 {
   j1939_message_buffer_pgn65230 = CONCAT13((char)((_DAT_008037c4 & 7) << 2),0xfece00);
-  _DAT_00802ff2 = 8;
-  _DAT_00802ff4 = &DAT_00802ffc;
-  _DAT_00802ff8 = 0x803004;
+  dm5_pgn65230_msg_size = 8;
+  dm5_pgn65230_data_ptr = (dword)&DAT_00802ffc;
+  dm5_pgn65230_unused_ptr = 0x803004;
   j1939_message_buffer_pgn65230 =
        CONCAT31(j1939_message_buffer_pgn65230._0_3_,j1939_source_address_primary);
   canTransmissionController();
@@ -25646,14 +25648,14 @@ void diagnosticDM8PGN_65232_Builder(void)
 
 {
   j1939_message_buffer_pgn65232 = CONCAT13((char)((_DAT_008037c6 & 7) << 2),0xfed000);
-  _DAT_0080300a = 8;
-  _DAT_0080300c = &DAT_00803014;
-  _DAT_00803010 = 0x80301c;
+  dm8_pgn65232_msg_size = 8;
+  dm8_pgn65232_data_ptr = (dword)&DAT_00803014;
+  dm8_pgn65232_unused_ptr = 0x80301c;
   j1939_message_buffer_pgn65232 =
        CONCAT31(j1939_message_buffer_pgn65232._0_3_,j1939_source_address_primary);
-  DAT_00803015 = 0xff;
-  _DAT_00803018 = 0xffff;
-  _DAT_0080301a = 0xffff;
+  dm8_reserved_byte = 0xff;
+  dm8_reserved_word_1 = 0xffff;
+  dm8_reserved_word_2 = 0xffff;
   return;
 }
 
@@ -25669,8 +25671,8 @@ void diagnosticDM11PGN_65234_Builder(void)
 
 {
   j1939_message_buffer_pgn65234 = CONCAT13((char)((_DAT_008037c8 & 7) << 2),0xfed200);
-  _DAT_00803022 = 2;
-  _DAT_00803024 = &DAT_0080302c;
+  _dm11_pgn65234_data_ptr = 2;
+  dm11_pgn65234_unused_ptr = (dword)&DAT_0080302c;
   _DAT_00803028 = 0x803034;
   j1939_message_buffer_pgn65234 =
        CONCAT31(j1939_message_buffer_pgn65234._0_3_,j1939_source_address_primary);
@@ -25771,7 +25773,7 @@ void vp44Command0x100Builder(void)
   _vp44_cmd_msg_buffer = CONCAT31(_vp44_cmd_msg_buffer,j1939_source_address_primary);
   _vp44_timing_byte4 = 5;
   _vp44_timing_byte6 = &j1939_tx_msg_buffer;
-  _DAT_00803048 = 0x80304c;
+  vp44_cmd_0x100_data_ptr = 0x80304c;
   return;
 }
 

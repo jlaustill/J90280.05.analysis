@@ -5299,3 +5299,35 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00801a99,diag_can_response_data_0,byte,Diagnostic CAN response data byte 0 (diagnosticCanResponseSender),1,0,,data
 0x00801a9a,diag_can_response_data_1,byte,Diagnostic CAN response data byte 1 (diagnosticCanResponseSender),1,0,,data
 0x00801a9b,diag_can_response_data_2,byte,Diagnostic CAN response data byte 2 (diagnosticCanResponseSender),1,0,,data
+0x008019b8,diag_service_pgn_dispatch_ptr,dword,Diagnostic service PGN dispatch pointer (diagnosticServiceDispatcherByPgn),4,0,,pointer
+0x00801acb,j1939_pgn65265_reserved_byte,byte,J1939 PGN 65265 reserved byte 0xff (j1939MessageSetup_PGN_65265),1,0,,reserved
+0x00801ad2,j1939_pgn65259_msg_size,word,J1939 PGN 65259 message size 0x1c (engineSerialNumberPGN_65259_Builder),2,0,,size
+0x00801ad4,j1939_pgn65259_data_ptr,dword,J1939 PGN 65259 data pointer (engineSerialNumberPGN_65259_Builder),4,0,,pointer
+0x00801ad8,j1939_pgn65259_unused_ptr,dword,J1939 PGN 65259 unused pointer 0x801af8 (engineSerialNumberPGN_65259_Builder),4,0,,pointer
+0x00801ae1,engine_serial_separator_1,byte,Engine serial number separator 0x2a (engineSerialNumberDataBuilder),1,0,,separator
+0x00801ae2,engine_serial_part2_start,byte,Engine serial number part 2 start (engineSerialNumberDataBuilder),1,0,,data
+0x00801af3,engine_serial_separator_2,byte,Engine serial number separator 0x2a (engineSerialNumberDataBuilder),1,0,,separator
+0x00801af4,engine_serial_part3_start,byte,Engine serial number part 3 start (engineSerialNumberDataBuilder),1,0,,data
+0x00801b00,j1939_pgn65226_data_ptr,dword,J1939 PGN 65226 data pointer (engineCoolantPGN_65226_Builder),4,0,,pointer
+0x00802206,dm2_pgn65227_data_ptr,dword,DM2 PGN 65227 data pointer (diagnosticDM2PGN_65227_Builder),4,0,,pointer
+0x0080220a,dm2_pgn65227_unused_ptr,dword,DM2 PGN 65227 unused pointer (diagnosticDM2PGN_65227_Builder),4,0,,pointer
+0x0080220f,dm2_pgn65227_reserved,byte,DM2 PGN 65227 reserved 0xff (diagnosticDM2PGN_65227_Builder),1,0,,reserved
+0x0080290c,dm4_pgn65229_data_ptr,dword,DM4 PGN 65229 data pointer (diagnosticDM4PGN_65229_Builder),4,0,,pointer
+0x00802910,dm4_pgn65229_unused_ptr,dword,DM4 PGN 65229 unused pointer (diagnosticDM4PGN_65229_Builder),4,0,,pointer
+0x00802ff2,dm5_pgn65230_msg_size,word,DM5 PGN 65230 message size 8 (diagnosticDM5PGN_65230_Builder),2,0,,size
+0x00802ff4,dm5_pgn65230_data_ptr,dword,DM5 PGN 65230 data pointer (diagnosticDM5PGN_65230_Builder),4,0,,pointer
+0x00802ff8,dm5_pgn65230_unused_ptr,dword,DM5 PGN 65230 unused pointer 0x803004 (diagnosticDM5PGN_65230_Builder),4,0,,pointer
+0x00802ffd,dm5_active_code_count,byte,DM5 active diagnostic code count (diagnosticDM5DataBuilder),1,0,,count
+0x00802ffe,dm5_obd_compliance,byte,DM5 OBD compliance byte (diagnosticDM5DataBuilder),1,0,,value
+0x00802fff,dm5_obd_compliance_2,byte,DM5 OBD compliance byte 2 (diagnosticDM5DataBuilder),1,0,,value
+0x00803000,dm5_status_flags_swapped,word,DM5 status flags byte-swapped (diagnosticDM5DataBuilder),2,0,,flags
+0x00803002,dm5_status_flags_2_swapped,word,DM5 status flags 2 byte-swapped (diagnosticDM5DataBuilder),2,0,,flags
+0x0080300a,dm8_pgn65232_msg_size,word,DM8 PGN 65232 message size 8 (diagnosticDM8PGN_65232_Builder),2,0,,size
+0x0080300c,dm8_pgn65232_data_ptr,dword,DM8 PGN 65232 data pointer (diagnosticDM8PGN_65232_Builder),4,0,,pointer
+0x00803010,dm8_pgn65232_unused_ptr,dword,DM8 PGN 65232 unused pointer 0x80301c (diagnosticDM8PGN_65232_Builder),4,0,,pointer
+0x00803015,dm8_reserved_byte,byte,DM8 reserved byte 0xff (diagnosticDM8PGN_65232_Builder),1,0,,reserved
+0x00803018,dm8_reserved_word_1,word,DM8 reserved word 1 0xffff (diagnosticDM8PGN_65232_Builder),2,0,,reserved
+0x0080301a,dm8_reserved_word_2,word,DM8 reserved word 2 0xffff (diagnosticDM8PGN_65232_Builder),2,0,,reserved
+0x00803022,dm11_pgn65234_data_ptr,dword,DM11 PGN 65234 data pointer (diagnosticDM11PGN_65234_Builder),4,0,,pointer
+0x00803024,dm11_pgn65234_unused_ptr,dword,DM11 PGN 65234 unused pointer (diagnosticDM11PGN_65234_Builder),4,0,,pointer
+0x00803048,vp44_cmd_0x100_data_ptr,dword,VP44 command 0x100 data pointer (vp44Command0x100Builder),4,0,,pointer
