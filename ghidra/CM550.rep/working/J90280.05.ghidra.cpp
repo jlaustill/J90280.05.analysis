@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 18:19:56 MST 2025
+// Thu Nov 27 18:25:11 MST 2025
 
 
 //
@@ -10733,7 +10733,7 @@ void dutyCycleMonitorBufferInit(void)
   can1_canidmr1 = can1_canidmr1 & 0xfff3 | 8;
   _duty_cycle_monitor_slot_config = timerAccumulatorWithWatchdog;
   can1_cantbsel = can1_cantbsel & 0xfffd | 2;
-  DAT_0080c7de = 0;
+  can_initialization_clear_flag._0_1_ = 0;
   _can1_init_state_flag = 0;
   return;
 }
@@ -10767,7 +10767,7 @@ void phase2_slot_0_handler(void)
   can1_canidmr1 = can1_canidmr1 & 0xfff3 | 8;
   _duty_cycle_monitor_slot_config = timerAccumulatorWithWatchdog;
   can1_cantbsel = can1_cantbsel & 0xfffd | 2;
-  DAT_0080c7de = 0;
+  can_initialization_clear_flag._0_1_ = 0;
   _can1_init_state_flag = 0;
   return;
 }
@@ -10798,7 +10798,7 @@ void phase2_slot_1_handler(void)
   can1_canidmr1 = can1_canidmr1 & 0xfff3 | 8;
   _duty_cycle_monitor_slot_config = timerAccumulatorWithWatchdog;
   can1_cantbsel = can1_cantbsel & 0xfffd | 2;
-  DAT_0080c7de = 0;
+  can_initialization_clear_flag._0_1_ = 0;
   _can1_init_state_flag = 0;
   return;
 }
@@ -10814,7 +10814,7 @@ void phase2_slot_1_handler(void)
 void phase2_slot_5_handler(void)
 
 {
-  DAT_0080c7de = 0;
+  can_initialization_clear_flag._0_1_ = 0;
   _can1_init_state_flag = 0;
   return;
 }
@@ -15817,7 +15817,7 @@ void diagnosticGroupSnapshotCapture(undefined4 param_1)
     _DAT_0080554e = 0;
     return;
   }
-  _DAT_0080556e = 1;
+  timing_measurement_active_flag_1 = 1;
   _DAT_00805572 = retarder_mode_can_source_priority;
   DAT_00805554 = 1;
   DAT_00805555 = DAT_0080cfad;
@@ -15828,8 +15828,8 @@ void diagnosticGroupSnapshotCapture(undefined4 param_1)
   _DAT_0080555e = 0;
   _DAT_00805560 = 0;
   _DGCLLVLF = 0;
-  _DAT_00805564 = _loopCounter;
-  _DAT_00805568 = 0;
+  loop_counter_capture_start_1 = _loopCounter;
+  loop_counter_elapsed_time_1 = 0;
   return;
 }
 
@@ -15909,12 +15909,12 @@ uint memoryRegisterController(void)
        (uVar2 = (uint)_retarder_control_can_source, uVar2 != DAT_008007b3)) {
       if (fuel_arbitrator_state == 0) {
         if (_DAT_008007ae != 0) {
-          _DAT_0080556e = 0;
-          _DAT_00805568 = _loopCounter - _DAT_00805564;
+          timing_measurement_active_flag_1 = 0;
+          loop_counter_elapsed_time_1 = _loopCounter - loop_counter_capture_start_1;
           uVar2 = diagnosticGroupPositionBufferStore(CONCAT22(1,uVar5));
         }
       }
-      else if (_DAT_0080556e == 1) {
+      else if (timing_measurement_active_flag_1 == 1) {
         if (_retarder_control_can_source == DAT_008007b3) {
           if (vp44_sensor_diag_state_2 < 5) {
             uVar2 = (uint)vp44_sensor_diag_state_2;
@@ -15930,7 +15930,7 @@ uint memoryRegisterController(void)
           }
         }
         else {
-          _DAT_00805568 = _loopCounter - _DAT_00805564;
+          loop_counter_elapsed_time_1 = _loopCounter - loop_counter_capture_start_1;
           diagnosticGroupPositionBufferStore(CONCAT22(1,uVar5));
           uVar2 = diagnosticGroupSnapshotCapture(CONCAT22(1,uVar5));
         }
@@ -25643,7 +25643,7 @@ void diagnosticByteResponseSender(undefined4 param_1)
 {
   DAT_00803014 = param_1._1_1_;
   _DAT_00803016 = byteSwap16((undefined2 *)((int)&param_1 + 2));
-  sendCanMessage((j1939_header_t *)&DAT_00803006);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65232);
   return;
 }
 
@@ -25658,11 +25658,12 @@ void diagnosticByteResponseSender(undefined4 param_1)
 void diagnosticDM8PGN_65232_Builder(void)
 
 {
-  _DAT_00803006 = CONCAT13((char)((_DAT_008037c6 & 7) << 2),0xfed000);
+  j1939_message_buffer_pgn65232 = CONCAT13((char)((_DAT_008037c6 & 7) << 2),0xfed000);
   _DAT_0080300a = 8;
   _DAT_0080300c = &DAT_00803014;
   _DAT_00803010 = 0x80301c;
-  _DAT_00803006 = CONCAT31(_DAT_00803006,j1939_source_address_primary);
+  j1939_message_buffer_pgn65232 =
+       CONCAT31(j1939_message_buffer_pgn65232._0_3_,j1939_source_address_primary);
   DAT_00803015 = 0xff;
   _DAT_00803018 = 0xffff;
   _DAT_0080301a = 0xffff;
@@ -25979,7 +25980,7 @@ byte fuelParameterCanMessageBuilder(void)
       }
     }
     DAT_00803099 = (char)(uVar2 >> 8) + '}';
-    bVar1 = sendCanMessage((j1939_header_t *)&DAT_0080309a);
+    bVar1 = sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65251);
   }
   return bVar1;
 }
@@ -25995,8 +25996,9 @@ byte fuelParameterCanMessageBuilder(void)
 void extendedDiagPGN_65251_Builder(void)
 
 {
-  _DAT_0080309a = CONCAT13((char)((_DAT_008037d0 & 7) << 2),0xfee300);
-  _DAT_0080309a = CONCAT31(_DAT_0080309a,j1939_source_address_primary);
+  j1939_message_buffer_pgn65251 = CONCAT13((char)((_DAT_008037d0 & 7) << 2),0xfee300);
+  j1939_message_buffer_pgn65251 =
+       CONCAT31(j1939_message_buffer_pgn65251._0_3_,j1939_source_address_primary);
   _DAT_0080309e = 0x1c;
   _DAT_008030a0 = &DAT_0080307e;
   _DAT_008030a4 = &DAT_008030a8;
@@ -26099,7 +26101,7 @@ void engineFluidLevelDataBuilder(void)
     local_6 = -0x500;
     engine_fluid_calc_result = byteSwap16(&local_6);
   }
-  sendCanMessage((j1939_header_t *)&DAT_008030c2);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65262);
   return;
 }
 
@@ -26114,11 +26116,12 @@ void engineFluidLevelDataBuilder(void)
 void engineTemperaturePGN_65262_Builder(void)
 
 {
-  _DAT_008030c2 = CONCAT13((char)((_DAT_008037d8 & 7) << 2),0xfeee00);
+  j1939_message_buffer_pgn65262 = CONCAT13((char)((_DAT_008037d8 & 7) << 2),0xfeee00);
   _DAT_008030c6 = 8;
   _DAT_008030c8 = &engine_temp_processed1;
   _DAT_008030cc = 0x8030d8;
-  _DAT_008030c2 = CONCAT31(_DAT_008030c2,j1939_source_address_primary);
+  j1939_message_buffer_pgn65262 =
+       CONCAT31(j1939_message_buffer_pgn65262._0_3_,j1939_source_address_primary);
   _DAT_008030d4 = 0xffff;
   DAT_008030d6 = 0xff;
   DAT_008030d7 = 0xff;
@@ -26216,7 +26219,7 @@ void intakeExhaustConditionsDataBuilder(void)
   local_8 = insite_fuel_statistics_output >> 2;
   local_8 = proportionalCalculation(local_8,0x39c2c3,1000000);
   _DAT_00803104 = byteSwap32(&local_8);
-  sendCanMessage((j1939_header_t *)&DAT_008030f2);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65257);
   return;
 }
 
@@ -26231,11 +26234,12 @@ void intakeExhaustConditionsDataBuilder(void)
 void intakeExhaustConditionsPGN_65257_Builder(void)
 
 {
-  _DAT_008030f2 = CONCAT13((char)((_DAT_008037da & 7) << 2),0xfee900);
+  j1939_message_buffer_pgn65257 = CONCAT13((char)((_DAT_008037da & 7) << 2),0xfee900);
   _DAT_008030f6 = 8;
   _DAT_008030f8 = &DAT_00803100;
   _DAT_008030fc = 0x803108;
-  _DAT_008030f2 = CONCAT31(_DAT_008030f2,j1939_source_address_primary);
+  j1939_message_buffer_pgn65257 =
+       CONCAT31(j1939_message_buffer_pgn65257._0_3_,j1939_source_address_primary);
   canTransmissionController();
   return;
 }
@@ -26315,7 +26319,7 @@ void ioControlDataBuilder(void)
   _DAT_00803136 = byteSwap32(&local_8);
   local_8 = proportionalCalculation(insite_runtime_hours_accumulator,0x14,0x40);
   _DAT_0080313a = byteSwap32(&local_8);
-  sendCanMessage((j1939_header_t *)&DAT_00803128);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65244);
   return;
 }
 
@@ -26330,11 +26334,12 @@ void ioControlDataBuilder(void)
 void ioControlPGN_65244_Builder(void)
 
 {
-  _DAT_00803128 = CONCAT13((char)((_DAT_008037de & 7) << 2),0xfedc00);
+  j1939_message_buffer_pgn65244 = CONCAT13((char)((_DAT_008037de & 7) << 2),0xfedc00);
   _DAT_0080312c = 8;
   _DAT_0080312e = &DAT_00803136;
   _DAT_00803132 = 0x80313e;
-  _DAT_00803128 = CONCAT31(_DAT_00803128,j1939_source_address_primary);
+  j1939_message_buffer_pgn65244 =
+       CONCAT31(j1939_message_buffer_pgn65244._0_3_,j1939_source_address_primary);
   canTransmissionController();
   return;
 }
@@ -26377,7 +26382,7 @@ void intakeManifoldDataBuilder(void)
   DAT_00803167 = (undefined1)
                  ((short)((((short)diagnostic_sensor_reading >> 7) * 0x1afa) / 1000) >> 1);
   DAT_00803168 = (char)((((short)intake_manifold_temp_raw >> 7) * 5 + -0xa0) / 9) + '(';
-  sendCanMessage((j1939_header_t *)&DAT_00803158);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65270);
   return;
 }
 
@@ -26392,11 +26397,12 @@ void intakeManifoldDataBuilder(void)
 void intakeManifoldPGN_65526_Builder(void)
 
 {
-  _DAT_00803158 = CONCAT13((char)((_DAT_008037e2 & 7) << 2),0xfef600);
+  j1939_message_buffer_pgn65270 = CONCAT13((char)((_DAT_008037e2 & 7) << 2),0xfef600);
   _DAT_0080315c = 8;
   _DAT_0080315e = &DAT_00803166;
   _DAT_00803162 = 0x80316e;
-  _DAT_00803158 = CONCAT31(_DAT_00803158,j1939_source_address_primary);
+  j1939_message_buffer_pgn65270 =
+       CONCAT31(j1939_message_buffer_pgn65270._0_3_,j1939_source_address_primary);
   DAT_00803166 = 0xff;
   DAT_00803169 = 0xff;
   DAT_0080316a = 0xff;
@@ -31092,9 +31098,10 @@ void outputControlState4Handler(void)
   undefined8 uVar4;
   
   if ((output_timing_state_previous != 4) &&
-     (output_control_status_byte = output_control_status_byte & 0xfb, _DAT_00804a0a != 0)) {
+     (output_control_status_byte = output_control_status_byte & 0xfb,
+     output_control_countdown_timer != 0)) {
     engine_mode_output_control_state = 8;
-    _DAT_00804a0a = _DAT_00804a0a + -1;
+    output_control_countdown_timer = output_control_countdown_timer - 1;
     outputControlState5FaultHandler();
     return;
   }
@@ -33909,18 +33916,18 @@ void vp44TimingRangeValidation(void)
       vp44_timing_final_value = intercept_used_to_convert_final_timing_to_vp44_units_360_to_360;
     }
     else if ((short)vp44_timing_final_value < 0) {
-      vp44_timing_negative_fault_counter = vp44_timing_negative_fault_counter + 1;
+      derate_threshold_change_counter._1_1_ = (byte)derate_threshold_change_counter + 1;
       if ((byte)in_range_fuel_temp_fault_enabled_when_coolant_temp_is_above_50_to_255 <
-          vp44_timing_negative_fault_counter) {
+          (byte)derate_threshold_change_counter) {
         vp44_fault_status_reg = vp44_fault_status_reg | 0x400;
         vp44_fso_fault_accumulator = vp44_fso_fault_accumulator | 0x400;
-        vp44_timing_negative_fault_counter = 0;
+        derate_threshold_change_counter._1_1_ = 0;
       }
       vp44_timing_final_value = 0;
     }
     else {
       vp44_timing_max_fault_counter = 0;
-      vp44_timing_negative_fault_counter = 0;
+      derate_threshold_change_counter._1_1_ = 0;
     }
   }
   local_6 = (byte)(vp44_timing_final_value >> 8);
@@ -34229,8 +34236,8 @@ void derateThresholdIoController(void)
   else {
     sim_data_direction_control = sim_data_direction_control | 0x40;
   }
-  if ((derate_threshold_exceeded != _DAT_008034ae) && (DAT_008034a4 < 2)) {
-    DAT_008034a4 = DAT_008034a4 + 1;
+  if ((derate_threshold_exceeded != _DAT_008034ae) && (derate_threshold_change_counter._0_1_ < 2)) {
+    derate_threshold_change_counter._0_1_ = derate_threshold_change_counter._0_1_ + 1;
   }
   _DAT_008034ae = derate_threshold_exceeded;
   return;
@@ -34913,7 +34920,7 @@ void vp44FsoMultiBitFaultMonitor(void)
 {
   bool bVar1;
   
-  if ((vp44_fso_fault_detection_enable != 0) && (1 < DAT_008034a4)) {
+  if ((vp44_fso_fault_detection_enable != 0) && (1 < derate_threshold_change_counter._0_1_)) {
     if (((engine_fault_status_register_3 & 0x800) == 0) ||
        ((vp44_fso_fault_enable_mask & 0x800) == 0)) {
       bVar1 = false;

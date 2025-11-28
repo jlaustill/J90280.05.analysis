@@ -4918,3 +4918,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008096b0,fuel_mode_state_selector,word,Fuel mode state selector (1/2/3 states) (3 refs),2,0,,state
 0x00809d70,cold_start_fuel_limit_value,word,Cold start fuel limit value for proportional calc (3 refs),2,0,,limit
 0x0080c7f2,fuel_timing_blend_lookup_result,word,Fuel timing blend lookup table interpolation result (3 refs),2,0,,value
+0x00803006,j1939_message_buffer_pgn65232,dword,J1939 CAN message buffer PGN 65232/0xFED0 (4 refs),4,0,,buffer
+0x0080309a,j1939_message_buffer_pgn65251,dword,J1939 CAN message buffer PGN 65251/0xFEE3 (4 refs),4,0,,buffer
+0x008030c2,j1939_message_buffer_pgn65262,dword,J1939 CAN message buffer PGN 65262/0xFEEE (4 refs),4,0,,buffer
+0x008030f2,j1939_message_buffer_pgn65257,dword,J1939 CAN message buffer PGN 65257/0xFEE9 (4 refs),4,0,,buffer
+0x00803128,j1939_message_buffer_pgn65244,dword,J1939 CAN message buffer PGN 65244/0xFEDC (4 refs),4,0,,buffer
+0x00803158,j1939_message_buffer_pgn65270,dword,J1939 CAN message buffer PGN 65270/0xFEF6 (4 refs),4,0,,buffer
+0x008034a4,derate_threshold_change_counter,word,Derate threshold change detection counter (4 refs),2,0,,counter
+0x00804a0a,output_control_countdown_timer,word,Output control status countdown timer (3 refs),2,0,,timer
+0x00805564,loop_counter_capture_start_1,dword,Loop counter capture start for timing measurement 1 (3 refs),4,0,,capture
+0x00805568,loop_counter_elapsed_time_1,dword,Loop counter elapsed time measurement 1 (3 refs),4,0,,elapsed
+0x0080556e,timing_measurement_active_flag_1,word,Timing measurement 1 active flag (0/1) (3 refs),2,0,,flag
+0x0080c7de,can_initialization_clear_flag,word,CAN initialization clear/reset flag (4 refs),2,0,,flag
