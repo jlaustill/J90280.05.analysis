@@ -5563,3 +5563,50 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00803838,fuel_temp_protection_threshold,word,Fuel temperature protection threshold (fuelTemperatureLimitingPrimary multi),2,0,,threshold
 0x0080383c,fuel_temp_protection_limit,word,Fuel temperature protection limit (fuelTemperatureLimitingPrimary multi),2,0,,limit
 0x00803840,fuel_temp_protection_timer,word,Fuel temperature protection timer (fuelTemperatureProtectionSlowCycle40Coordinator),2,0,,timer
+0x00803856,derate_table_pointer_init,word,Derate table pointer init value (derateTablePointerInit),2,0,,init
+0x008049ec,calibration_validator_ptr,dword,Calibration validator data pointer (calibrationDataValidatorInit),4,0,,pointer
+0x00804a0c,engine_run_counter_snapshot_1,dword,Engine run counter snapshot 1 (engineRunTimeHistogramAccumulator),4,0,,snapshot
+0x00804a10,engine_run_counter_snapshot_2,dword,Engine run counter snapshot 2 (engineRunTimeHistogramAccumulator),4,0,,snapshot
+0x00804a14,engine_run_counter_snapshot_0,dword,Engine run counter snapshot 0 (engineRunTimeHistogramAccumulator),4,0,,snapshot
+0x0080553b,diagnostic_snapshot_limited_byte,byte,Diagnostic snapshot limited value byte (diagnosticGroupSnapshotCapture),1,0,,snapshot
+0x0080553c,diagnostic_snapshot_fuel_mode_0,word,Diagnostic snapshot fuel mode 0 (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x00805542,diagnostic_snapshot_zero_0,word,Diagnostic snapshot zero value 0 (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x00805544,diagnostic_snapshot_zero_1,word,Diagnostic snapshot zero value 1 (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x00805546,diagnostic_snapshot_zero_2,word,Diagnostic snapshot zero value 2 (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x00805555,diagnostic_snapshot_byte_1,byte,Diagnostic snapshot byte 1 from DAT_0080cfad (diagnosticGroupSnapshotCapture),1,0,,snapshot
+0x00805556,diagnostic_snapshot_fuel_mode_1,word,Diagnostic snapshot fuel mode 1 (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x0080555c,diagnostic_snapshot_zero_3,word,Diagnostic snapshot zero value 3 (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x0080555e,diagnostic_snapshot_zero_4,word,Diagnostic snapshot zero value 4 (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x00805560,diagnostic_snapshot_zero_5,word,Diagnostic snapshot zero value 5 (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x00805570,diagnostic_snapshot_fuel_mode_capture,word,Diagnostic snapshot fuel mode capture (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x00805572,diagnostic_snapshot_retarder_mode,word,Diagnostic snapshot retarder mode (diagnosticGroupSnapshotCapture),2,0,,snapshot
+0x008062d6,rpm_state_controller_param,word,RPM state controller parameter (rpm_system_state_controller),2,0,,parameter
+0x00806375,insite_dtc_search_code_1,byte,INSITE DTC search code 1 (insiteCommandByteDispatcher),1,0,,code
+0x008063a7,insite_dtc_search_code_2,byte,INSITE DTC search code 2 (insiteCommandByteDispatcher),1,0,,code
+0x008063b9,insite_dtc_search_code_3,byte,INSITE DTC search code 3 (insiteCommandByteDispatcher),1,0,,code
+0x008063d3,insite_dtc_search_code_4,byte,INSITE DTC search code 4 (insiteCommandByteDispatcher),1,0,,code
+0x008063db,insite_dtc_search_code_5,byte,INSITE DTC search code 5 (insiteCommandByteDispatcher),1,0,,code
+0x008063e1,insite_dtc_search_code_6,byte,INSITE DTC search code 6 (insiteCommandByteDispatcher),1,0,,code
+0x008063fb,insite_dtc_search_code_7,byte,INSITE DTC search code 7 (insiteCommandByteDispatcher),1,0,,code
+0x008063fd,insite_dtc_search_code_8,byte,INSITE DTC search code 8 (insiteCommandByteDispatcher),1,0,,code
+0x008063ff,insite_dtc_search_code_9,byte,INSITE DTC search code 9 (insiteCommandByteDispatcher),1,0,,code
+0x008068d0,vp44_timing_param_1,word,VP44 injection timing parameter 1 (vp44InjectionTimingSlowCycle40Coordinator),2,0,,parameter
+0x00806fa0,timing_protection_flags_param,word,Timing protection flags parameter (timingProtectionFlagsOrchestrator),2,0,,parameter
+0x00806fa8,fuel_timing_mode_arbitration_1,word,Fuel timing mode arbitration param 1 (fuelTimingModeArbitrationSlowCycle40Coordinator),2,0,,parameter
+0x00806fac,fuel_timing_mode_arbitration_2,word,Fuel timing mode arbitration param 2 (fuelTimingModeArbitrationSlowCycle40Coordinator),2,0,,parameter
+0x00806fb6,shutdown_protection_param_1,word,Shutdown protection parameter 1 (shutdownProtectionCalculator),2,0,,parameter
+0x00806fb8,shutdown_protection_param_2,word,Shutdown protection parameter 2 (shutdownProtectionCalculator),2,0,,parameter
+0x0080712e,fuel_pressure_sync_param,word,Fuel pressure sync state machine param (fuelPressureSyncStateMachine),2,0,,parameter
+0x008071a6,shutdown_limit_selector_param,word,Shutdown limit selector parameter (shutdownLimitSelector),2,0,,parameter
+0x0080725c,diagnostic_fuel_override_param,word,Diagnostic fuel override parameter (diagnosticFuelOverrideHandler),2,0,,parameter
+0x00807262,output_control_fuel_threshold,word,Output control fuel threshold (outputControlState4Handler),2,0,,threshold
+0x00807264,output_control_cycle_limit,word,Output control timing cycle limit (outputControlState4Handler),2,0,,limit
+0x00807270,output_control_rpm_offset,word,Output control RPM offset (outputControlState4Handler),2,0,,offset
+0x00807274,output_control_throttle_limit,word,Output control throttle limit (outputControlState4Handler),2,0,,limit
+0x00807276,output_control_rpm_limit,word,Output control RPM limit (outputControlState4Handler),2,0,,limit
+0x0080734a,sensor_fault_rpm_selector_param,word,Sensor fault RPM source selector param (sensorFaultBasedRpmSourceSelector),2,0,,parameter
+0x00807350,vp44_state2_transition_param,word,VP44 state 2 transition parameter (vp44State2TransitionHandler),2,0,,parameter
+0x00807386,rpm_derate_scale_factor,word,RPM derate scale factor (rpmDerateCalculationController),2,0,,factor
+0x00807388,rpm_derate_base_offset,word,RPM derate base offset (rpmDerateCalculationController),2,0,,offset
+0x00807392,rpm_derate_lower_threshold,word,RPM derate lower threshold (rpmDerateCalculationController),2,0,,threshold
+0x00807394,rpm_derate_upper_threshold,word,RPM derate upper threshold (rpmDerateCalculationController),2,0,,threshold
