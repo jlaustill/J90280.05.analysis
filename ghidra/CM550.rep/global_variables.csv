@@ -5152,3 +5152,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00800060,timing_table_3_ptr,dword,Timing parameter table 3 pointer 0x806e5a (timingParameterPointerSetup),4,0,,pointer
 0x00800066,timing_table_4_ptr,dword,Timing parameter table 4 pointer 0x808862 (timingParameterPointerSetup),4,0,,pointer
 0x0080006c,timing_table_5_ptr,dword,Timing parameter table 5 pointer 0x808876 (timingParameterPointerSetup),4,0,,pointer
+0x0080007a,shutdown_protection_rpm_input,word,RPM input for shutdown protection fuel lookup (shutdownProtectionCalculator),2,0,RPM,input
+0x00800082,shutdown_protection_diag_input,word,Diagnostic reading input for shutdown protection lookup (shutdownProtectionCalculator),2,0,,input
+0x008000ae,diagnostic_table_5_ptr,dword,Diagnostic table 5 pointer 0x8078b6 (diagnosticTablePointerSetup),4,0,,pointer
+0x008000ba,diagnostic_table_6_ptr,dword,Diagnostic table 6 pointer 0x8078d6 (diagnosticTablePointerSetup),4,0,,pointer
+0x008000da,diagnostic_data_table_1_ptr,dword,Diagnostic data table 1 pointer 0x807f42 (diagnosticDataBufferSetup),4,0,,pointer
+0x008000e0,diagnostic_data_table_1_base,word,Diagnostic data table 1 base value (diagnosticDataBufferSetup),2,0,,lookup
+0x008000e2,diagnostic_data_table_2_ptr,dword,Diagnostic data table 2 pointer 0x807f68 (diagnosticDataBufferSetup),4,0,,pointer
+0x008000e6,diagnostic_data_table_limit,word,Diagnostic data table limit value 400 (diagnosticDataBufferSetup),2,0,,limit
+0x008000e8,diagnostic_data_intake_temp_ptr,dword,Diagnostic data intake manifold temp limit pointer (diagnosticDataBufferSetup),4,0,,pointer
+0x008000ee,fuel_blend_table_1_ptr,dword,Fuel blend table 1 pointer 0x807f42 (fuelBlendTablePointerSetup),4,0,,pointer
+0x008000f2,fuel_blend_lookup_input,word,Fuel blend table lookup input (fuelTableBlendInterpolation),2,0,,input
+0x008000f4,fuel_blend_table_2_base,word,Fuel blend table 2 base value (fuelBlendTablePointerSetup),2,0,,lookup

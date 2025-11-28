@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 08:00:53 MST 2025
+// Fri Nov 28 08:04:55 MST 2025
 
 
 //
@@ -1140,8 +1140,8 @@ ulonglong shutdownProtectionCalculator(void)
   }
   if ((((fault_status_flags_2 & 4) == 0) || ((accelerator_pedal_position & 4) == 0)) &&
      (((fault_status_flags_2 & 8) == 0 || ((accelerator_pedal_position & 8) == 0)))) {
-    _DAT_0080007a = current_engine_rpm;
-    _DAT_00800082 = insite_diagnostic_reading;
+    shutdown_protection_rpm_input = current_engine_rpm;
+    shutdown_protection_diag_input = insite_diagnostic_reading;
     uVar3 = tableInterpolationLookup((short *)&fuel_parameter_pointer_3);
     shutdown_protection_fuel_limit = (word)(uVar3 >> 0x20);
     return uVar3;
@@ -1744,10 +1744,10 @@ void diagnosticTablePointerSetup(void)
 
 {
   diagnostic_table_pointer_4 = 2;
-  _DAT_008000ae = 0x8078b6;
+  diagnostic_table_5_ptr = 0x8078b6;
   _diagnostic_table_pointer_3 = 0x8078c6;
   diagnostic_table_pointer_2 = 2;
-  _DAT_008000ba = 0x8078d6;
+  diagnostic_table_6_ptr = 0x8078d6;
   _diagnostic_table_pointer_1 = 0x8078e6;
   _derate_base_value = 0;
   return;
@@ -2963,18 +2963,17 @@ void param_lookup_2(void)
 // Function: diagnosticDataBufferSetup @ 0x0000d71a
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void diagnosticDataBufferSetup(void)
 
 {
   param_lookup_rpm_input = current_engine_rpm;
   diagnostic_param_lookup_value = 2;
-  _DAT_008000da = 0x807f42;
-  _DAT_008000e6 = 400;
-  _DAT_008000e0 = 2;
-  _DAT_008000e2 = 0x807f68;
-  _DAT_008000e8 = &lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
+  diagnostic_data_table_1_ptr = 0x807f42;
+  diagnostic_data_table_limit = 400;
+  diagnostic_data_table_1_base = 2;
+  diagnostic_data_table_2_ptr = 0x807f68;
+  diagnostic_data_intake_temp_ptr =
+       (dword)&lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
   return;
 }
 
@@ -3024,7 +3023,7 @@ short fuelTableBlendInterpolation(undefined4 param_1)
   undefined8 uVar1;
   
   if (fuel_timing_mode_selector != 0) {
-    _DAT_008000f2 = param_1._0_2_;
+    fuel_blend_lookup_input = param_1._0_2_;
     uVar1 = tableInterpolationLookup((short *)&DAT_008000ec);
     unaff_D2w = (ushort)((ulonglong)uVar1 >> 0x20);
   }
@@ -3243,9 +3242,9 @@ void fuelBlendTablePointerSetup(void)
 
 {
   _DAT_008000ec = 2;
-  _DAT_008000ee = 0x807f42;
+  fuel_blend_table_1_ptr = 0x807f42;
   _DAT_008000fa = 400;
-  _DAT_008000f4 = 2;
+  fuel_blend_table_2_base = 2;
   _DAT_008000f6 = 0x807f68;
   _DAT_008000fc = &lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
   _DAT_00800100 = 2;
