@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 18:39:43 MST 2025
+// Thu Nov 27 18:42:04 MST 2025
 
 
 //
@@ -9817,7 +9817,7 @@ void rpmTimingDeltaComparator(void)
     rpm_timing_delta_result_flag_1 = 1;
     return;
   }
-  if (rpm_sample_index == _DAT_0080c7b0) {
+  if (rpm_sample_index == rpm_sample_comparison_index) {
     rpm_timing_capture_delta = rpm_timing_capture_current - rpm_timing_capture_previous;
     if (rpm_timing_capture_current < rpm_timing_capture_previous) {
       uVar1 = rpm_timing_capture_previous - rpm_timing_capture_current;
@@ -9861,7 +9861,7 @@ uint rpmTimingDeltaComparatorWithReturn(void)
     return in_D0;
   }
   uVar1 = CONCAT22((short)(in_D0 >> 0x10),rpm_sample_index);
-  if (rpm_sample_index == _DAT_0080c7b0) {
+  if (rpm_sample_index == rpm_sample_comparison_index) {
     rpm_timing_capture_delta = rpm_timing_capture_current - rpm_timing_capture_previous;
     if (rpm_timing_capture_current < rpm_timing_capture_previous) {
       uVar2 = rpm_timing_capture_previous - rpm_timing_capture_current;
@@ -17910,9 +17910,9 @@ void initTimerCounterDefaults(void)
 
 {
   DAT_00801670 = 1;
-  DAT_00801671 = 1;
+  diagnostic_queue_init_flag = 1;
   fault_code_display_state = 0x7d;
-  DAT_00801672 = 0;
+  diagnostic_queue_active_flag = 0;
   return;
 }
 
@@ -17930,11 +17930,11 @@ void ioControlMaskStateMachine(void)
   word wVar1;
   ushort *puVar2;
   
-  if (DAT_00801671 != '\0') {
+  if (diagnostic_queue_init_flag != 0) {
     for (puVar2 = (ushort *)&DAT_00808768; puVar2 < (ushort *)0x808787; puVar2 = puVar2 + 1) {
       io_control_active_mask = *puVar2 | io_control_active_mask;
     }
-    DAT_00801671 = 0;
+    diagnostic_queue_init_flag = 0;
     io_control_mask_state_1 = 0x28;
     _io_control_mask_state_2 = (ushort *)&DAT_00808768;
     return;
@@ -17946,15 +17946,15 @@ void ioControlMaskStateMachine(void)
     _io_control_mask_state_2 = _io_control_mask_state_2 + 1;
     wVar1 = io_control_mask_state_1 + 10;
     if ((*_io_control_mask_state_2 == 0) || ((ushort *)0x808786 < _io_control_mask_state_2)) {
-      if (DAT_00801672 != '\x01') {
-        DAT_00801672 = 1;
+      if (diagnostic_queue_active_flag != 1) {
+        diagnostic_queue_active_flag = 1;
         io_control_mask_state_1 = io_control_mask_state_1 + 0x1e;
         return;
       }
       DAT_00801670 = 0;
-      DAT_00801685 = 0;
+      diagnostic_queue_counter_1 = 0;
       fault_code_display_counter = 0;
-      DAT_00801687 = 0;
+      diagnostic_queue_counter_2 = 0;
     }
   }
   io_control_mask_state_1 = wVar1;
@@ -17999,8 +17999,8 @@ undefined1 ioControlLampStateMachine(void)
   
   uVar1 = 1;
   if (high_rpm_protection_warning_flag == 0) {
-    if (DAT_0080167e != '\0') {
-      DAT_0080167e = '\0';
+    if (diagnostic_queue_pending_flag_1 != 0) {
+      diagnostic_queue_pending_flag_1 = 0;
       lamp_2_blink_counter = 0;
       io_control_active_mask = io_control_active_mask & 0xfffd;
     }
@@ -18022,11 +18022,11 @@ undefined1 ioControlLampStateMachine(void)
     else {
       lamp_2_blink_counter = lamp_2_blink_counter + 1;
     }
-    DAT_0080167e = '\x01';
+    diagnostic_queue_pending_flag_1 = 1;
   }
   if (lamp_3_blink_trigger == 0) {
-    if (DAT_0080167f != '\0') {
-      DAT_0080167f = '\0';
+    if (diagnostic_queue_pending_flag_2 != 0) {
+      diagnostic_queue_pending_flag_2 = 0;
       lamp_3_blink_counter = 0;
       io_control_active_mask = io_control_active_mask & 0xfffb;
     }
@@ -18048,7 +18048,7 @@ undefined1 ioControlLampStateMachine(void)
     else {
       lamp_3_blink_counter = lamp_3_blink_counter + 1;
     }
-    DAT_0080167f = '\x01';
+    diagnostic_queue_pending_flag_2 = 1;
   }
   return uVar1;
 }
@@ -18198,8 +18198,8 @@ uint faultCodeDisplayController(void)
   uVar3 = (undefined2)((uint)unaff_D2 >> 0x10);
   if (((derate_status_byte & 0x80) != 0) && (engine_operating_mode == IDLE)) {
     fault_code_display_mode = 1;
-    if (((derate_status_byte & 0x80) == 0) || (DAT_00801687 != '\0')) {
-      if (((derate_status_byte & 0x20) == 0) || (DAT_00801685 != '\0')) {
+    if (((derate_status_byte & 0x80) == 0) || (diagnostic_queue_counter_2 != 0)) {
+      if (((derate_status_byte & 0x20) == 0) || (diagnostic_queue_counter_1 != 0)) {
         uVar1 = 0;
         if (((derate_status_byte & 0x40) != 0) && (fault_code_display_counter == 0)) {
           bVar2 = activeFaultCodeIteratorBackward((uint)CONCAT12(fault_code_display_state,uVar3));
@@ -18564,9 +18564,9 @@ void epsSignalQualityValidator(void)
      (engine_operating_mode == HIGH_RPM_RUNNING)) {
     periodicLampFlashController();
   }
-  DAT_00801685 = -((derate_status_byte & 0x20) != 0) & 1;
+  diagnostic_queue_counter_1 = -((derate_status_byte & 0x20) != 0) & 1;
   fault_code_display_counter = -((derate_status_byte & 0x40) != 0) & 1;
-  DAT_00801687 = -((derate_status_byte & 0x80) != 0) & 1;
+  diagnostic_queue_counter_2 = -((derate_status_byte & 0x80) != 0) & 1;
   return;
 }
 
@@ -26497,9 +26497,9 @@ byte retarderConfigDataBuilder(void)
     local_6 = (byte)((ushort)_DAT_0080894e >> 8);
     retarder_speed_point2_high = local_6;
     retarder_percent_torque_point2 = 0x7d - (char)((ushort)_DAT_00808956 >> 8);
-    bStack_5 = (byte)_DAT_0080895e;
+    bStack_5 = (byte)vp44_sensor_value_2;
     retarder_speed_point3_low = bStack_5;
-    local_6 = (byte)((ushort)_DAT_0080895e >> 8);
+    local_6 = (byte)(vp44_sensor_value_2 >> 8);
     retarder_speed_point3_high = local_6;
     retarder_percent_torque_point3 = 0x7d - (char)((ushort)_DAT_00808958 >> 8);
     bStack_5 = (byte)_DAT_00808952;
@@ -26507,9 +26507,9 @@ byte retarderConfigDataBuilder(void)
     local_6 = (byte)((ushort)_DAT_00808952 >> 8);
     retarder_speed_point4_high = local_6;
     retarder_percent_torque_point4 = 0x7d - (char)((ushort)_DAT_0080895a >> 8);
-    bStack_5 = (byte)_DAT_00808954;
+    bStack_5 = (byte)vp44_sensor_value_1;
     retarder_speed_point5_low = bStack_5;
-    local_6 = (byte)((ushort)_DAT_00808954 >> 8);
+    local_6 = (byte)(vp44_sensor_value_1 >> 8);
     retarder_speed_point5_high = local_6;
     retarder_percent_torque_point5 = 0x7d - (char)((ushort)_DAT_0080895c >> 8);
     bStack_5 = (byte)_DAT_00808950;
@@ -26562,7 +26562,7 @@ void vehicleDistanceDataBuilder(void)
   _DAT_008031b8 = byteSwap32(&local_8);
   local_8 = proportionalCalculation(vehicle_distance_statistics_value,0x3268,10000);
   _DAT_008031bc = byteSwap32(&local_8);
-  sendCanMessage((j1939_header_t *)&DAT_008031aa);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65248);
   return;
 }
 
@@ -26577,11 +26577,12 @@ void vehicleDistanceDataBuilder(void)
 void vehicleDistancePGN_65248_Builder(void)
 
 {
-  _DAT_008031aa = CONCAT13((char)((_DAT_008037ea & 7) << 2),0xfee000);
+  j1939_message_buffer_pgn65248 = CONCAT13((char)((_DAT_008037ea & 7) << 2),0xfee000);
   _DAT_008031ae = 8;
   _DAT_008031b0 = &DAT_008031b8;
   _DAT_008031b4 = 0x8031c0;
-  _DAT_008031aa = CONCAT31(_DAT_008031aa,j1939_source_address_primary);
+  j1939_message_buffer_pgn65248 =
+       CONCAT31(j1939_message_buffer_pgn65248._0_3_,j1939_source_address_primary);
   canTransmissionController();
   return;
 }
@@ -26601,7 +26602,7 @@ void retarderDataBuilder(void)
   
   local_6 = (undefined2)((uint)retarder_input_value * 0x14 >> 3);
   _DAT_008031d6 = byteSwap16(&local_6);
-  sendCanMessage((j1939_header_t *)&DAT_008031c2);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65271);
   return;
 }
 
@@ -26616,11 +26617,12 @@ void retarderDataBuilder(void)
 void electronicBrakePGN_65527_Builder(void)
 
 {
-  _DAT_008031c2 = CONCAT13((char)((_DAT_008037ec & 7) << 2),0xfef700);
+  j1939_message_buffer_pgn65271 = CONCAT13((char)((_DAT_008037ec & 7) << 2),0xfef700);
   _DAT_008031c6 = 8;
   _DAT_008031c8 = &DAT_008031d0;
   _DAT_008031cc = 0x8031d8;
-  _DAT_008031c2 = CONCAT31(_DAT_008031c2,j1939_source_address_primary);
+  j1939_message_buffer_pgn65271 =
+       CONCAT31(j1939_message_buffer_pgn65271._0_3_,j1939_source_address_primary);
   DAT_008031d0 = 0xff;
   DAT_008031d1 = 0xff;
   _DAT_008031d2 = 0xffff;
@@ -26645,7 +26647,7 @@ void vehicleHoursDataBuilder(void)
   _DAT_008031e8 = byteSwap32(&local_8);
   local_8 = proportionalCalculation(insite_idle_hours_accumulator,0x14,0x40);
   _DAT_008031ec = byteSwap32(&local_8);
-  sendCanMessage((j1939_header_t *)&DAT_008031da);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65255);
   return;
 }
 
@@ -26660,11 +26662,12 @@ void vehicleHoursDataBuilder(void)
 void vehicleHoursPGN_65255_Builder(void)
 
 {
-  _DAT_008031da = CONCAT13((char)((_DAT_008037ee & 7) << 2),0xfee700);
+  j1939_message_buffer_pgn65255 = CONCAT13((char)((_DAT_008037ee & 7) << 2),0xfee700);
   _DAT_008031de = 8;
   _DAT_008031e0 = &DAT_008031e8;
   _DAT_008031e4 = 0x8031f0;
-  _DAT_008031da = CONCAT31(_DAT_008031da,j1939_source_address_primary);
+  j1939_message_buffer_pgn65255 =
+       CONCAT31(j1939_message_buffer_pgn65255._0_3_,j1939_source_address_primary);
   canTransmissionController();
   return;
 }

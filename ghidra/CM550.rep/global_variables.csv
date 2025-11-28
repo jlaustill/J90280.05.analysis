@@ -5002,3 +5002,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080bd98,speed_difference_interp_result_4,word,Speed difference interpolation result 4 (2 refs),2,0,,result
 0x0080bd9a,manifold_temp_lookup_result_1,word,Manifold temp table lookup result 1 (2 refs),2,0,,result
 0x0080bd9e,manifold_temp_lookup_result_2,word,Manifold temp table lookup result 2 (2 refs),2,0,,result
+0x00801671,diagnostic_queue_init_flag,byte,Diagnostic queue initialization flag (3 refs),1,0,,flag
+0x00801672,diagnostic_queue_active_flag,byte,Diagnostic queue active processing flag (3 refs),1,0,,flag
+0x0080167e,diagnostic_queue_pending_flag_1,byte,Diagnostic queue pending flag 1 (3 refs),1,0,,flag
+0x0080167f,diagnostic_queue_pending_flag_2,byte,Diagnostic queue pending flag 2 (3 refs),1,0,,flag
+0x00801685,diagnostic_queue_counter_1,byte,Diagnostic queue counter 1 (3 refs),1,0,,counter
+0x00801687,diagnostic_queue_counter_2,byte,Diagnostic queue counter 2 (3 refs),1,0,,counter
+0x008031aa,j1939_message_buffer_pgn65248,dword,J1939 CAN message buffer PGN 65248/0xFEE0 (4 refs),4,0,,buffer
+0x008031c2,j1939_message_buffer_pgn65271,dword,J1939 CAN message buffer PGN 65271/0xFEF7 (4 refs),4,0,,buffer
+0x008031da,j1939_message_buffer_pgn65255,dword,J1939 CAN message buffer PGN 65255/0xFEE7 (4 refs),4,0,,buffer
+0x00808954,vp44_sensor_value_1,word,VP44 sensor value 1 for CAN message (2 refs),2,0,,value
+0x0080895e,vp44_sensor_value_2,word,VP44 sensor value 2 for CAN message (2 refs),2,0,,value
+0x0080c7b0,rpm_sample_comparison_index,word,RPM sample array comparison index (2 refs),2,0,,index
