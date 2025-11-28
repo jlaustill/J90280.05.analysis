@@ -5431,3 +5431,57 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008031d4,electronic_brake_reserved_ffff_1,word,Electronic brake reserved 0xffff word 1 (electronicBrakePGN_65527_Builder),2,0,,reserved
 0x008031d6,electronic_brake_data_word,word,Electronic brake data word (electronicBrakePGN_65527_Builder),2,0,,data
 0x008031de,vehicle_hours_pgn65255_size,byte,Vehicle hours PGN 65255 message size 8 (vehicleHoursPGN_65255_Builder),1,0,,size
+0x008031e0,vehicle_hours_pgn65255_data_ptr,dword,Vehicle hours PGN 65255 data pointer (vehicleHoursPGN_65255_Builder),4,0,,pointer
+0x008031e4,vehicle_hours_pgn65255_unused_ptr,dword,Vehicle hours PGN 65255 unused pointer 0x8031f0 (vehicleHoursPGN_65255_Builder),4,0,,pointer
+0x008031ec,vehicle_hours_idle_hours_dword,dword,Vehicle hours idle hours dword (vehicleHoursDataBuilder),4,0,,data
+0x008031f8,engine_trending_load_threshold_ptr,dword,Engine trending load threshold pointer (engineDataTrendingSlowCycle40Coordinator),4,0,,pointer
+0x008031fc,engine_trending_intake_temp_value,word,Engine trending intake manifold temp value (engineDataTrendingSlowCycle40Coordinator),2,0,,value
+0x008031fe,engine_trending_count_min_ptr,dword,Engine trending count minimum pointer (engineDataTrendingSlowCycle40Coordinator),4,0,,pointer
+0x00803208,protection_imt_threshold_ptr,dword,Protection IMT fuel limit threshold pointer (initProtectionTablePointer),4,0,,pointer
+0x0080320c,protection_table_init_value,word,Protection table initialization value 0 (initProtectionTablePointer),2,0,,init
+0x00803214,protection_shutdown_time_ptr,dword,Protection oil pressure shutdown time pointer (engine_protection_init),4,0,,pointer
+0x0080321a,protection_water_in_fuel_ptr,dword,Protection water in fuel threshold pointer (engine_protection_init),4,0,,pointer
+0x0080322a,diagnostic_oil_pressure_max_ptr,dword,Diagnostic oil pressure max threshold pointer (diagnosticParameterPointersInit),4,0,,pointer
+0x00803232,diagnostic_boost_table_ptr,dword,Diagnostic boost pressure table pointer 0x8070e6 (diagnosticParameterPointersInit),4,0,,pointer
+0x00803236,diagnostic_boost_start_ptr,dword,Diagnostic boost pressure start duration pointer (diagnosticParameterPointersInit),4,0,,pointer
+0x00803242,diagnostic_water_fault_ptr,dword,Diagnostic water in fuel fault pointer (diagnosticParameterPointersInit),4,0,,pointer
+0x00803246,diagnostic_water_warn_ptr,dword,Diagnostic water warn before shutdown pointer (diagnosticParameterPointersInit),4,0,,pointer
+0x0080325a,diagnostic_boost_delay_ptr,dword,Diagnostic boost pressure error delay pointer (diagnosticParameterPointersInit),4,0,,pointer
+0x00803318,interpolation_table_1_ptr,dword,Interpolation table 1 pointer 0x80720a (interpolationTableSetup),4,0,,pointer
+0x0080331e,interpolation_wscltatb_ptr,dword,Interpolation WSCLTATB table pointer (interpolationTableSetup),4,0,,pointer
+0x00803324,interpolation_table_2_ptr,dword,Interpolation table 2 pointer 0x807232 (interpolationTableSetup),4,0,,pointer
+0x0080332a,interpolation_table_3_ptr,dword,Interpolation table 3 pointer 0x807246 (interpolationTableSetup),4,0,,pointer
+0x00803348,vp44_timing_coordinator_value,word,VP44 timing coordinator read value (vp44InjectionTimingSlowCycle40Coordinator),2,0,,value
+0x0080336a,output_control_table_1_ptr,dword,Output control table 1 pointer 0x807278 (engineModeOutputControlInit),4,0,,pointer
+0x0080336e,output_control_rpm_workspace_2,word,Output control RPM workspace 2 (outputControlState4Handler),2,0,,workspace
+0x00803370,output_control_table_2_ptr,dword,Output control table 2 pointer 0x807292 (engineModeOutputControlInit),4,0,,pointer
+0x00803376,output_control_table_3_ptr,dword,Output control table 3 pointer 0x8072fe (engineModeOutputControlInit),4,0,,pointer
+0x0080337c,output_control_table_4_ptr,dword,Output control table 4 pointer 0x807318 (engineModeOutputControlInit),4,0,,pointer
+0x00803382,output_control_table_5_ptr,dword,Output control table 5 pointer 0x807332 (engineModeOutputControlInit),4,0,,pointer
+0x00803386,output_control_sequence_state,word,Output control sequence state (outputControlTimingGenerator),2,0,,state
+0x00803388,output_control_table_6_ptr,dword,Output control table 6 pointer 0x80733e (engineModeOutputControlInit),4,0,,pointer
+0x0080338e,output_control_table_7_ptr,dword,Output control table 7 pointer 0x8072ac (engineModeOutputControlInit),4,0,,pointer
+0x00803392,output_control_timing_workspace,word,Output control timing workspace (outputControlState4Handler),2,0,,workspace
+0x00803394,output_control_table_8_size,word,Output control table 8 size 2 (engineModeOutputControlInit),2,0,,size
+0x00803396,output_control_table_8_ptr,dword,Output control table 8 pointer 0x8072bc (engineModeOutputControlInit),4,0,,pointer
+0x0080339a,output_control_index_workspace,word,Output control index workspace (outputControlState4Handler),2,0,,workspace
+0x0080339c,output_control_table_9_ptr,dword,Output control table 9 pointer 0x8072c6 (engineModeOutputControlInit),4,0,,pointer
+0x008033c4,fuel_demand_table_1_ptr,dword,Fuel demand table 1 pointer 0x807352 (fuelDemandTablePointersInit),4,0,,pointer
+0x008033c8,rpm_load_lookup_input,word,RPM load parameter lookup input (rpmLoadParameterLookup),2,0,,input
+0x008033ca,fuel_demand_table_2_size,word,Fuel demand table 2 size 2 (fuelDemandTablePointersInit),2,0,,size
+0x008033cc,fuel_demand_table_2_ptr,dword,Fuel demand table 2 pointer 0x80735c (fuelDemandTablePointersInit),4,0,,pointer
+0x008033d0,rpm_load_lookup_result_ptr,dword,RPM load lookup result pointer (rpmLoadParameterLookup),4,0,,pointer
+0x008033d2,fuel_demand_table_3_ptr,dword,Fuel demand table 3 pointer 0x807366 (fuelDemandTablePointersInit),4,0,,pointer
+0x008033fe,vp44_control_flag_1,byte,VP44 control flag 1 init=1 (vp44ControlFlagsInit),1,0,,flag
+0x00803400,vp44_control_flag_2,byte,VP44 control flag 2 init=1 (vp44ControlFlagsInit),1,0,,flag
+0x00803402,vp44_control_flag_3,byte,VP44 control flag 3 init=1 (vp44ControlFlagsInit),1,0,,flag
+0x00803404,vp44_control_flag_4,byte,VP44 control flag 4 init=0 (vp44ControlFlagsInit),1,0,,flag
+0x00803406,vp44_control_flag_5,byte,VP44 control flag 5 init=1 (vp44ControlFlagsInit),1,0,,flag
+0x00803408,vp44_control_flag_6,byte,VP44 control flag 6 init=0 (vp44ControlFlagsInit),1,0,,flag
+0x0080340a,vp44_control_flag_7,byte,VP44 control flag 7 init=0 (vp44ControlFlagsInit),1,0,,flag
+0x00803426,sensor_history_table_ptr,dword,Sensor history table pointer 0x80784c (sensorHistoryTablePointerInit),4,0,,pointer
+0x0080342a,sensor_history_init_value,dword,Sensor history init value 0x80000000 (sensorHistoryTablePointerInit),4,0,,init
+0x00803446,oil_pressure_table_1_ptr,dword,Oil pressure protection table 1 pointer 0x8036a0 (initOilPressureProtectionPointers),4,0,,pointer
+0x0080344a,oil_pressure_table_2_ptr,dword,Oil pressure protection table 2 pointer 0x8037fe (initOilPressureProtectionPointers),4,0,,pointer
+0x0080344e,oil_pressure_table_3_ptr,dword,Oil pressure protection table 3 pointer 0x803800 (initOilPressureProtectionPointers),4,0,,pointer
+0x00803452,oil_pressure_table_4_ptr,dword,Oil pressure protection table 4 pointer 0x803802 (initOilPressureProtectionPointers),4,0,,pointer
