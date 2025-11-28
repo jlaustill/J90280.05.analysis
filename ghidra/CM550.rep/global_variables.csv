@@ -5607,6 +5607,47 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080734a,sensor_fault_rpm_selector_param,word,Sensor fault RPM source selector param (sensorFaultBasedRpmSourceSelector),2,0,,parameter
 0x00807350,vp44_state2_transition_param,word,VP44 state 2 transition parameter (vp44State2TransitionHandler),2,0,,parameter
 0x00807386,rpm_derate_scale_factor,word,RPM derate scale factor (rpmDerateCalculationController),2,0,,factor
+0x00807396,rpm_derate_calc_offset_1,word,RPM derate calculation offset 1 (rpmDerateCalculationController),2,0,,offset
+0x00807398,rpm_derate_calc_offset_2,word,RPM derate calculation offset 2 (rpmDerateCalculationController),2,0,,offset
+0x0080739a,rpm_derate_calc_multiplier,word,RPM derate calculation multiplier (rpmDerateCalculationController),2,0,,multiplier
+0x008073a0,vp44_can_200_response_byte_0,byte,VP44 CAN message 200 response byte 0 (vp44CanMessage200ResponseBuilder),1,0,,response
+0x008073a1,vp44_can_200_response_byte_1,byte,VP44 CAN message 200 response byte 1 (vp44CanMessage200ResponseBuilder),1,0,,response
+0x008073b8,fso_fault_detection_threshold,word,FSO fault detection threshold (vp44FsoFaultDetectionMonitor),2,0,,threshold
+0x008073c2,fso_fault_delta_threshold,word,FSO fault delta threshold (vp44FsoFaultDetectionMonitor),2,0,,threshold
+0x008073c4,fso_fault_low_threshold,word,FSO fault low threshold (vp44FsoFaultDetectionMonitor),2,0,,threshold
+0x008073c6,fso_fault_delta_calc_threshold,word,FSO fault delta calculation threshold (vp44FsoFaultDetectionMonitor),2,0,,threshold
+0x008073c8,fso_fault_counter_limit,word,FSO fault counter limit (vp44FsoFaultDetectionMonitor),2,0,,limit
+0x008073ec,vp44_can_200_message_byte_4,byte,VP44 CAN message 200 data byte 4 (vp44CanMessage200ResponseBuilder),1,0,,data
+0x008073ed,vp44_can_200_message_byte_5,byte,VP44 CAN message 200 data byte 5 (vp44CanMessage200ResponseBuilder),1,0,,data
+0x008073ee,vp44_can_200_message_byte_6,byte,VP44 CAN message 200 data byte 6 (vp44CanMessage200ResponseBuilder),1,0,,data
+0x008073fe,fso_fuel_command_limit,word,FSO fuel command limit (vp44FsoFaultDetectionMonitor),2,0,,limit
+0x008077b6,vp44_rpm_fault_counter_limit,word,VP44 RPM-based fault counter limit (vp44RpmBasedFaultDetector),2,0,,limit
+0x008077b8,vp44_rpm_fault_state_threshold,word,VP44 RPM fault state threshold (vp44RpmBasedFaultDetector),2,0,,threshold
+0x008077ba,vp44_rpm_fault_fuel_demand_threshold,word,VP44 RPM fault fuel demand threshold (vp44RpmBasedFaultDetector),2,0,,threshold
+0x008077c8,fault_flag_bitmap_table_1_base,word,Fault flag scanner bitmap table 1 base (faultFlagScannerAndProcessor),2,0,,table
+0x008077e8,fault_flag_bitmap_table_2_base,word,Fault flag scanner bitmap table 2 base (faultFlagScannerAndProcessor),2,0,,table
+0x00807808,fault_flag_bitmap_table_3_base,word,Fault flag scanner bitmap table 3 base (faultFlagScannerAndProcessor),2,0,,table
+0x00807828,diagnostic_sensor_rpm_threshold,word,Diagnostic sensor RPM threshold (vp44DiagnosticSensorThresholdMonitor),2,0,,threshold
+0x0080782a,diagnostic_sensor_reading_threshold,word,Diagnostic sensor reading threshold (vp44DiagnosticSensorThresholdMonitor),2,0,,threshold
+0x0080786e,runtime_histogram_base_value,word,Runtime histogram base value (engineRunTimeHistogramAccumulator),2,0,,value
+0x0080787a,runtime_histogram_offset_value,word,Runtime histogram offset value (engineRunTimeHistogramAccumulator),2,0,,value
+0x008087c0,governor_pid_fuel_sum_previous,word,Governor PID fuel sum previous value (governorFuelPidController),2,0,,previous
+0x008087c4,governor_pid_proportional_term,word,Governor PID proportional term (governorFuelPidController/governorPidFuelCalculator),2,0,,pid
+0x008087ca,governor_pid_integral_term,word,Governor PID integral term (governorFuelPidController/governorPidFuelCalculator),2,0,,pid
+0x008087d0,governor_pid_derivative_term,word,Governor PID derivative term (governorFuelPidController),2,0,,pid
+0x008087d4,governor_pid_scale_factor,word,Governor PID scale factor (governorFuelPidController),2,0,,factor
+0x008087d6,governor_pid_error_term,word,Governor PID error term (governorFuelPidController),2,0,,pid
+0x008087d8,governor_pid_output_limit,word,Governor PID output limit (governorFuelPidController),2,0,,limit
+0x008087e4,governor_pid_max_clamp,word,Governor PID maximum clamp value (governorFuelPidController/governorPidFuelCalculator),2,0,,limit
+0x008087e8,governor_pid_min_clamp,word,Governor PID minimum clamp value (governorFuelPidController),2,0,,limit
+0x008087f0,eps_accel_threshold_lower,word,EPS acceleration threshold lower (epsAccelerationMonitor),2,0,,threshold
+0x008087f2,eps_accel_threshold_upper,word,EPS acceleration threshold upper (epsAccelerationMonitor),2,0,,threshold
+0x008087fa,eps_accel_duration_counter,word,EPS acceleration duration counter (epsAccelerationMonitor),2,0,,counter
+0x008087fc,eps_accel_mode_state,word,EPS acceleration mode state (epsAccelerationMonitor),2,0,,state
+0x00808806,eps_control_mode_duration_value,word,EPS control mode duration value (epsControlModeSelector),2,0,,value
+0x00808808,eps_control_mode_selector_state,dword,EPS control mode selector state pointer (epsControlModeSelector),4,0,,pointer
+0x0080880e,eps_diagnostic_lower_limit,word,EPS diagnostic mode lower limit (epsDiagnosticModeHandler),2,0,,limit
+0x00808810,eps_diagnostic_upper_limit,word,EPS diagnostic mode upper limit (epsDiagnosticModeHandler),2,0,,limit
 0x00807388,rpm_derate_base_offset,word,RPM derate base offset (rpmDerateCalculationController),2,0,,offset
 0x00807392,rpm_derate_lower_threshold,word,RPM derate lower threshold (rpmDerateCalculationController),2,0,,threshold
 0x00807394,rpm_derate_upper_threshold,word,RPM derate upper threshold (rpmDerateCalculationController),2,0,,threshold
