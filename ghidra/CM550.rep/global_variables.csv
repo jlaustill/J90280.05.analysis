@@ -5098,3 +5098,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080707a,crank_sync_threshold,word,Crank sync comparison threshold (2 refs),2,0,,threshold
 0x00806e1e,diagnostic_transition_limit,word,Diagnostic state transition counter limit (2 refs),2,0,,limit
 0x00806e1c,diagnostic_exit_limit,word,Diagnostic state exit counter limit (2 refs),2,0,,limit
+0x00803786,insite_diagnostic_lower_bound,word,INSITE diagnostic reading lower bound (2 refs),2,0,,threshold
+0x00803618,engine_operating_mode_flags,word,Engine operating mode flags (2 refs),2,0,,flags
+0x008035dc,diagnostic_status_flags,word,Diagnostic status bit flags (2 refs),2,0,,flags
+0x008054b4,loop_counter_snapshot_1,word,Loop counter snapshot 1 (2 refs),2,0,,snapshot
+0x008054ba,loop_counter_snapshot_2,word,Loop counter snapshot 2 (2 refs),2,0,,snapshot
+0x008054ae,loop_counter_snapshot_0,word,Loop counter snapshot 0 (2 refs),2,0,,snapshot
+0x00805f68,general_increment_counter,word,General incrementing counter (2 refs),2,0,,counter
+0x00803822,fuel_timing_transition_offset,word,Fuel timing transition offset value (2 refs),2,0,,offset
+0x0080385a,qsm_newqp_multiplier,word,QSM NEWQP shift multiplier (2 refs),2,0,,multiplier
+0x00803706,oil_pressure_rpm_target_low,word,Oil pressure RPM target low value (2 refs),2,0,,target
+0x0080370a,oil_pressure_rpm_target_high,word,Oil pressure RPM target high value (2 refs),2,0,,target
+0x008037f6,oil_pressure_rpm_increment,word,Oil pressure RPM limit increment (2 refs),2,0,,increment
