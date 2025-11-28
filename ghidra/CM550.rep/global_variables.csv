@@ -1,11 +1,28 @@
 address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00000000,calibration_download_size_n_a,dword,CALIBRATION DOWNLOAD SIZE,4,0,HEX,parameter
+0x00000008,exception_vector_bus_error,dword,MC68000 Bus Error exception vector - called from systemResetWithDiagnostic,4,0,,vector
 0x00000010,ROM_DATE,byte,CalTerm ROM_DATE: BOOT LOADER RELEASE DATE,6,2,HEX,value
+0x00000014,bootloader_code_end_address,dword,End address of bootloader code - used by flashBootloaderProgrammer for bounds check,4,0,,pointer
+0x00004000,eeprom_primary_base_address,dword,EEPROM primary calibration data base address - copied to RAM by calibrationDataCopyWithChecksum,4,0,,address
+0x00004400,eeprom_insite_data_base_address,dword,EEPROM INSITE version/ID data base - copied to flash_program_block_2_buffer,4,0,,address
+0x00004404,insite_version_string_part_1,byte,INSITE version string part 1 - 5 bytes copied by insiteVersionInfoBuilder,5,2,,string
+0x00004409,insite_version_string_part_2,byte,INSITE version string part 2 - 17 bytes software ID copied by insiteVersionInfoBuilder,17,2,,string
+0x0000441a,insite_version_string_part_3,byte,INSITE version string part 3 - 4 bytes copied by insiteVersionInfoBuilder,4,2,,string
+0x00004445,insite_ecu_command_selector_low,byte,INSITE ECU command selector low byte - used by insiteCommandByteDispatcher,1,0,,parameter
+0x00004446,insite_ecu_command_selector_high,byte,INSITE ECU command selector high byte - used by insiteCommandByteDispatcher,1,0,,parameter
+0x0000444b,insite_ecu_id_part_1,byte,INSITE ECU ID part 1 - 4 bytes copied by insiteEcuIdResponseBuilder,4,2,,string
+0x0000444f,insite_ecu_id_part_2,byte,INSITE ECU ID part 2 - 4 bytes copied by insiteEcuIdResponseBuilder,4,2,,string
+0x0000445f,insite_ecu_id_part_3,byte,INSITE ECU ID part 3 - 12 bytes copied by insiteEcuIdResponseBuilder,12,2,,string
+0x00004caa,fuel_timing_mode_blend_table,word,Fuel timing mode blend lookup table - used by fuelTimingModeBlendCalculator,2,6,,lookup
 0x00004f6c,cold_ambient_air_temperature_threshold_100_255,word,COLD AMBIENT AIR TEMPERATURE THRESHOLD,2,0,DEGF,parameter
 0x00004f6e,overrides_authorized_above_this_limit_100_255,word,OVERRIDES AUTHORIZED ABOVE THIS LIMIT,2,0,DEGF,parameter
 0x00004f70,overrides_authorized_below_this_limit_100_255,word,OVERRIDES AUTHORIZED BELOW THIS LIMIT,2,0,DEGF,parameter
+0x00006000,eeprom_secondary_base_address,dword,EEPROM secondary calibration data base - used by calibrationDataCopySecondary and eepromCalibrationWriteSecondary,4,0,,address
 0x00006400,firmware_vector_table_base,dword,Firmware vector table base address (5 refs),4,0,,pointer
+0x00007e3e,can_memory_pointer_table_entry_2,dword,CAN memory pointer table entry 2 - used by canMemoryPointerTableInit and vp44CommunicationTestAndInit read,4,0,,pointer
 0x0000800e,BLOKDATA,byte[60],NONE,60,2,HEX,data
+0x00008ca0,hour_meter_conversion_table,word,Hour meter conversion lookup table - used by writeHourMeterConversionData and clutchOperatingStatisticsTracker,2,6,,lookup
+0x00009c40,governor_pid_fuel_lookup_table,word,Governor fuel PID lookup table - used by governorFuelPidController governorPidFuelCalculator flashEraseWithWatchdog,2,6,,lookup
 0x0000ec1a,software_build_date_time_0_4294967296,dword,SOFTWARE BUILD DATE & TIME,4,0,CNTS,parameter
 0x00037eae,firmware_data_source,byte,Source address for firmware data copying to working memory (10KB),1,0,,address
 0x00060000,service_tool_adjustable_parameter_range_limits_n_a,word,SERVICE TOOL ADJUSTABLE PARAMETER RANGE LIMITS [CalTerm: ADJ_LIM],2,0,NONE,parameter
@@ -4942,6 +4959,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807c3c,speed_lookup_parameter_value,word,Speed-based parameter lookup input value (3 refs),2,0,,value
 0x0080c78a,duty_cycle_monitor_buffer_ptr,dword,Duty cycle monitor buffer pointer (3 refs),4,0,,pointer
 0x0080c9cc,fuel_timing_clamp_value,word,Fuel timing clamp value (0 or 32000) (3 refs),2,0,,value
+0x00005e3e,can_memory_pointer_table_entry_1,dword,CAN memory pointer table entry - used by canMemoryPointerTableInit and vp44CommunicationTestAndInit,4,0,,pointer
 0x00005e42,calibration_checksum_end_marker,word,Calibration area checksum end marker (0xA1A1) (4 refs),2,0,,marker
 0x008000d7,main_loop_iteration_counter,byte,Main loop iteration counter for timing (4 refs),1,0,,counter
 0x008003f0,interpolation_table_1_base,word,Interpolation lookup table 1 base (4 refs),2,0,,table
