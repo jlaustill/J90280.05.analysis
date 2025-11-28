@@ -4882,3 +4882,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080726c,output_sequence_rpm_threshold,word,RPM threshold for output sequence state transitions (4 refs),2,0,,threshold
 0x00805574,diagnostic_buffer_write_index,word,Diagnostic buffer circular write index (0-4) (4 refs),2,0,,index
 0x0080556c,diagnostic_capture_active_flag,word,Diagnostic data capture active flag (4 refs),2,0,,flag
+0x0080c3fa,circular_buffer_read_index,word,Circular buffer read index (masked to 9 bits) (4 refs),2,0,,index
+0x00808836,fuel_timing_offset_min_limit,word,Minimum fuel timing offset limit (4 refs),2,0,,limit
+0x008087ec,eps_acceleration_timer_threshold,word,EPS acceleration timer comparison threshold (4 refs),2,0,,threshold
+0x008086c6,fuel_table_blend_param_1,word,Fuel table blend interpolation parameter 1 (4 refs),2,0,,parameter
+0x008086c8,fuel_table_blend_param_2,word,Fuel table blend interpolation parameter 2 (4 refs),2,0,,parameter
+0x00807d34,intake_temp_frictional_load_threshold,word,Intake manifold temp threshold for frictional load calc (4 refs),2,0,,threshold
+0x00806fa2,timing_protection_blend_base,word,Timing protection blend base value (4 refs),2,0,,value
+0x0080557c,fuel_timing_offset_state_backup,word,Fuel timing offset state backup (vp44 status) (4 refs),2,0,,state
+0x00804a1c,engine_runtime_total_counter,dword,Total engine runtime counter (max 3600000000) (4 refs),4,0,,counter
+0x00804a18,hour_meter_stored_ticks,word,Hour meter stored tick count (4 refs),2,0,,ticks
+0x00804a1a,histogram_stored_ticks,word,Histogram stored tick count (4 refs),2,0,,ticks
+0x0080972c,shutdown_limit_selector_value,word,Shutdown limit selector calculated value (4 refs),2,0,,value
