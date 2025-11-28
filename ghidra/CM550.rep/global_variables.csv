@@ -5331,3 +5331,48 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00803022,dm11_pgn65234_data_ptr,dword,DM11 PGN 65234 data pointer (diagnosticDM11PGN_65234_Builder),4,0,,pointer
 0x00803024,dm11_pgn65234_unused_ptr,dword,DM11 PGN 65234 unused pointer (diagnosticDM11PGN_65234_Builder),4,0,,pointer
 0x00803048,vp44_cmd_0x100_data_ptr,dword,VP44 command 0x100 data pointer (vp44Command0x100Builder),4,0,,pointer
+0x00803016,diagnostic_byte_response_word,word,Diagnostic byte response word value (diagnosticByteResponseSender),2,0,,response
+0x00803028,dm11_pgn65234_data_buffer_ptr,dword,DM11 PGN 65234 data buffer pointer 0x803034 (diagnosticDM11PGN_65234_Builder),4,0,,pointer
+0x0080302c,dm11_pgn65234_unused_buffer,dword,DM11 PGN 65234 unused buffer address (diagnosticDM11PGN_65234_Builder),4,0,,buffer
+0x0080305a,dm983_proprietary_msg_size,byte,DM983 proprietary message size 3 (cumminsProprietaryDM_983_Builder),1,0,,size
+0x0080305c,dm983_diagnostic_status_ptr,dword,DM983 diagnostic status buffer pointer (cumminsProprietaryDM_983_Builder),4,0,,pointer
+0x00803060,dm983_diagnostic_unused_ptr,dword,DM983 diagnostic unused buffer pointer (cumminsProprietaryDM_983_Builder),4,0,,pointer
+0x00803067,config_param_can_byte_0,byte,Config param CAN message byte 0 (configParamCanBuilder),1,0,,data
+0x00803068,config_param_can_byte_1,byte,Config param CAN message byte 1 (configParamCanBuilder),1,0,,data
+0x00803069,config_param_can_byte_2,byte,Config param CAN message byte 2 (configParamCanBuilder),1,0,,data
+0x00803072,secondary_param_pgn65247_size,byte,Secondary param PGN 65247 message size 4 (secondaryParamPGN_65247_Builder),1,0,,size
+0x00803074,secondary_param_pgn65247_data_ptr,dword,Secondary param PGN 65247 data buffer pointer (secondaryParamPGN_65247_Builder),4,0,,pointer
+0x00803078,secondary_param_pgn65247_unused_ptr,dword,Secondary param PGN 65247 unused buffer pointer 0x80307c (secondaryParamPGN_65247_Builder),4,0,,pointer
+0x00802918,dtc_response_spn_high_byte,byte,DTC response SPN high byte (buildCanMessage),1,0,,data
+0x00802919,dtc_response_spn_mid_byte,byte,DTC response SPN mid byte 0xff (buildCanMessage),1,0,,data
+0x0080291a,dtc_response_spn_low_byte,byte,DTC response SPN low byte 0xff (buildCanMessage),1,0,,data
+0x0080291c,dtc_response_fmi_byte,byte,DTC response FMI byte 0xff (buildCanMessage),1,0,,data
+0x0080307f,fuel_param_gov_rpm_error_high,byte,Fuel param governor RPM error high byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803080,fuel_param_calc_param_offset,byte,Fuel param calculated param offset (fuelParameterCanMessageBuilder),1,0,,data
+0x00803081,fuel_param_offset_blend_low,byte,Fuel param offset blend low byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803082,fuel_param_offset_blend_high,byte,Fuel param offset blend high byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803083,fuel_param_calculated_2_offset,byte,Fuel param calculated 2 offset (fuelParameterCanMessageBuilder),1,0,,data
+0x00803084,fuel_param_table_blend_1_low,byte,Fuel param table blend 1 low byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803085,fuel_param_table_blend_1_high,byte,Fuel param table blend 1 high byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803086,fuel_param_calculated_3_offset,byte,Fuel param calculated 3 offset (fuelParameterCanMessageBuilder),1,0,,data
+0x00803087,fuel_param_table_blend_2_low,byte,Fuel param table blend 2 low byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803088,fuel_param_table_blend_2_high,byte,Fuel param table blend 2 high byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803089,fuel_param_calculated_4_offset,byte,Fuel param calculated 4 offset (fuelParameterCanMessageBuilder),1,0,,data
+0x0080308a,fuel_param_mode_offset_low,byte,Fuel param mode selection offset low byte (fuelParameterCanMessageBuilder),1,0,,data
+0x0080308b,fuel_param_mode_offset_high,byte,Fuel param mode selection offset high byte (fuelParameterCanMessageBuilder),1,0,,data
+0x0080308c,fuel_param_result_buffer_offset,byte,Fuel param result buffer offset (fuelParameterCanMessageBuilder),1,0,,data
+0x0080308d,fuel_param_limit_calc_low,byte,Fuel param limit calc low byte (fuelParameterCanMessageBuilder),1,0,,data
+0x0080308e,fuel_param_limit_calc_high,byte,Fuel param limit calc high byte (fuelParameterCanMessageBuilder),1,0,,data
+0x0080308f,fuel_param_reserved_ff_0,byte,Fuel param reserved 0xff byte 0 (extendedDiagPGN_65251_Builder),1,0,,reserved
+0x00803090,fuel_param_reserved_ff_1,byte,Fuel param reserved 0xff byte 1 (extendedDiagPGN_65251_Builder),1,0,,reserved
+0x00803091,fuel_param_arbitrator_low,byte,Fuel param arbitrator output low byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803092,fuel_param_arbitrator_high,byte,Fuel param arbitrator output high byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803093,fuel_param_diag_mode_low,byte,Fuel param diagnostic mode low byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803094,fuel_param_diag_mode_high,byte,Fuel param diagnostic mode high byte (fuelParameterCanMessageBuilder),1,0,,data
+0x00803095,fuel_param_arb_status_scaled,byte,Fuel param arbitrator status scaled /10 (fuelParameterCanMessageBuilder),1,0,,data
+0x00803096,fuel_param_timing_offset_scaled,byte,Fuel param timing offset min scaled /80 (fuelParameterCanMessageBuilder),1,0,,data
+0x00803098,fuel_param_reserved_7d,byte,Fuel param reserved 0x7d byte (extendedDiagPGN_65251_Builder),1,0,,reserved
+0x00803099,fuel_param_max_calc_offset,byte,Fuel param max calculated offset (fuelParameterCanMessageBuilder),1,0,,data
+0x0080309e,extended_diag_pgn65251_size,byte,Extended diag PGN 65251 message size 28 (extendedDiagPGN_65251_Builder),1,0,,size
+0x008030a0,extended_diag_pgn65251_data_ptr,dword,Extended diag PGN 65251 data pointer 0x80307e (extendedDiagPGN_65251_Builder),4,0,,pointer
+0x008030a4,extended_diag_pgn65251_unused_ptr,dword,Extended diag PGN 65251 unused pointer 0x8030a8 (extendedDiagPGN_65251_Builder),4,0,,pointer
