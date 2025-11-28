@@ -5086,3 +5086,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807f20,intake_temp_upper_threshold,word,Intake temp upper comparison threshold (2 refs),2,0,,threshold
 0x00807cde,engine_fault_timer_init,word,Engine fault timer init value (2 refs),2,0,,init
 0x0080738a,derate_rpm_adjustment_max,word,Derate RPM adjustment upper clamp (2 refs),2,0,,limit
+0x0080740a,fso_protection_fuel_level_1,word,FSO protection fuel limit level 1 (2 refs),2,0,,limit
+0x0080740c,fso_protection_fuel_level_2,word,FSO protection fuel limit level 2 (2 refs),2,0,,limit
+0x0080740e,fso_protection_fuel_level_3,word,FSO protection fuel limit level 3 (2 refs),2,0,,limit
+0x008073a2,derate_output_value,word,Derate output value for message (2 refs),2,0,,value
+0x00807390,rpm_derate_percent_lower,word,RPM derate percent lower threshold (2 refs),2,0,,threshold
+0x0080738e,rpm_derate_percent_upper,word,RPM derate percent upper threshold (2 refs),2,0,,threshold
+0x0080738c,derate_rpm_adjustment_min,word,Derate RPM adjustment lower clamp (2 refs),2,0,,limit
+0x0080725e,vp44_injection_timing_limit,word,VP44 injection timing counter limit (2 refs),2,0,,limit
+0x0080725a,output_control_decrement_step,word,Output control CAN decrement step (2 refs),2,0,,step
+0x0080707a,crank_sync_threshold,word,Crank sync comparison threshold (2 refs),2,0,,threshold
+0x00806e1e,diagnostic_transition_limit,word,Diagnostic state transition counter limit (2 refs),2,0,,limit
+0x00806e1c,diagnostic_exit_limit,word,Diagnostic state exit counter limit (2 refs),2,0,,limit
