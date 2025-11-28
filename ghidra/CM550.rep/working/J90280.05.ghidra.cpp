@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 09:39:22 MST 2025
+// Fri Nov 28 09:48:05 MST 2025
 
 
 //
@@ -3389,8 +3389,8 @@ uint bufferDecreasingPatternCheck(void)
   if (((((int)local_18[4] < 1) || (uVar1 = local_18[3], (int)local_18[2] <= (int)local_18[3])) ||
       (-1 < (int)local_18[2])) ||
      (((uVar1 = local_18[2], (int)local_18[1] <= (int)local_18[2] ||
-       (uVar1 = local_18[0] + _DAT_008079ba, (int)local_18[1] <= (int)uVar1)) ||
-      (uVar1 = (uint)_DAT_008079bc, (int)uVar1 <= (int)local_18[0])))) {
+       (uVar1 = local_18[0] + throttle_buffer_offset_adjust, (int)local_18[1] <= (int)uVar1)) ||
+      (uVar1 = (uint)(short)throttle_buffer_min_delta, (int)uVar1 <= (int)local_18[0])))) {
     uVar1 = uVar1 & 0xffff0000;
   }
   else {
@@ -3427,11 +3427,11 @@ uint bufferThresholdValidator(void)
     uVar3 = _throttle_buffer_validation_value[-1] >> 2;
     uVar2 = _throttle_buffer_validation_value[-2] >> 2;
   }
-  iVar4 = _DAT_008079ce;
-  if (throttle_position_raw < _DAT_008079b8) {
-    iVar4 = _DAT_008079ca;
+  iVar4 = _throttle_buffer_high_threshold;
+  if (throttle_position_raw < throttle_buffer_threshold_low) {
+    iVar4 = _throttle_buffer_low_threshold;
   }
-  uVar1 = uVar2 * _DAT_008079c8 >> 8;
+  uVar1 = uVar2 * throttle_buffer_scale_factor >> 8;
   if (((uVar1 <= _throttle_position_validator_state >> 2) ||
       (uVar1 = uVar3 - uVar2, iVar4 <= (int)uVar1)) && (iVar4 <= (int)uVar3)) {
     return uVar1 & 0xffff0000;
@@ -4013,7 +4013,7 @@ void kickdownSignalSlowCycle40Coordinator(void)
     return;
   }
   kickdown_throttle_input = throttle_position_raw;
-  timing_table_lookup_result = lookupTableInterpolation((short *)&DAT_00800160);
+  timing_table_lookup_result = lookupTableInterpolation((short *)&ac_control_table_size);
   timing_accumulator_flag_mask = 2;
   return;
 }
@@ -4038,14 +4038,12 @@ void timingAccumulatorUpdate(void)
 // Function: initAcControlSystem @ 0x0000ebd2
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void initAcControlSystem(void)
 
 {
   ac_control_kickdown_ptr = (dword)&engine_speed_at_0_fuel_which_activates_kick_down_signal_0_8000;
   ac_control_accel_threshold_ptr = (dword)&accel_threshold_to_disable_a_c_1200_1200;
-  _DAT_00800160 = 2;
+  ac_control_table_size = 2;
   return;
 }
 
@@ -4916,9 +4914,9 @@ LAB_0000fe82:
           cold_start_sensor_reading_sum = diagnostic_sensor_reading;
         }
         cold_start_sensor_sum_saved = cold_start_sensor_reading_sum;
-        uVar4 = lookupTableInterpolation((short *)&DAT_00800184);
-        uVar9 = tableInterpolationLookup((short *)&DAT_00800190);
-        uVar10 = tableInterpolationLookup((short *)&DAT_00800170);
+        uVar4 = lookupTableInterpolation((short *)&anc_altitude_table_1_size);
+        uVar9 = tableInterpolationLookup((short *)&anc_disable_duration_table_size);
+        uVar10 = tableInterpolationLookup((short *)&anc_speed_limit_table_1_size);
         uVar5 = (ushort)((ulonglong)uVar10 >> 0x20);
         uVar3 = proportionalCalculation
                           ((uint)cold_start_sensor_reading_sum,
@@ -5057,7 +5055,7 @@ LAB_0000fff4:
       if ((uint)engine_speed_limit_below_which_the_cold_crank_sync_determina_0_8000 +
           (uint)intake_manifold_temp_raw < (uVar3 & 0xffff)) {
         sVar1 = intake_manifold_temp_raw - rpm_delta_for_timing;
-        uVar4 = lookupTableInterpolation((short *)&DAT_008001a4);
+        uVar4 = lookupTableInterpolation((short *)&anc_altitude_table_3_size);
         iVar8 = rpmFuelCalculation((uint)uVar4,(int)sVar1,0x7800);
         if (iVar8 < 0xab) {
           if (iVar8 < -0xaa) {
@@ -5195,11 +5193,11 @@ void initAncSpeedLimitAndAltitudeDerate(void)
   anc_duty_cycle_ptr = (dword)&duty_cycle_conversion_factor_for_cool_temp_gauge_hot_state_0_9;
   anc_min_active_time_ptr =
        (dword)&minimum_amount_of_time_which_the_anc_speed_limit_will_be_active_0_20;
-  _DAT_00800184 = 2;
+  anc_altitude_table_1_size = 2;
   _DAT_00800196 = current_engine_rpm;
   anc_disable_duration_ptr =
        (dword)&duration_anc_speed_limit_will_be_disabled_after_a_bare_engine_a_0_20;
-  _DAT_00800190 = 2;
+  anc_disable_duration_table_size = 2;
   cold_start_sensor_sum_saved = cold_start_sensor_reading_sum;
   anc_altitude_table_1_ptr = 0x807a66;
   anc_altitude_table_1_base = 2;
@@ -5208,10 +5206,10 @@ void initAncSpeedLimitAndAltitudeDerate(void)
   anc_default_fueling_ptr =
        (dword)&default_fueling_to_be_used_by_altitude_derate_if_ambient_air_p_0_100;
   anc_altitude_table_3_ptr = 0x807ad8;
-  _DAT_008001a4 = 2;
+  anc_altitude_table_3_size = 2;
   _DAT_00800176 = current_engine_rpm;
   anc_speed_limit_table_1_ptr = 0x807af4;
-  _DAT_00800170 = 2;
+  anc_speed_limit_table_1_size = 2;
   _DAT_0080017e = current_fuel_demand_value;
   anc_speed_limit_table_2_ptr = 0x807b10;
   anc_speed_limit_table_2_base = 2;
@@ -5462,13 +5460,13 @@ uint engineRunTimeHistogramAccumulator(void)
         engine_runtime_histogram_accumulator = (word)((ulonglong)uVar9 >> 0x20);
       }
       else if (fuel_timing_mode_blend_factor == 0) {
-        uVar9 = tableInterpolationLookup((short *)&DAT_008001ea);
+        uVar9 = tableInterpolationLookup((short *)&hour_meter_table_3_size);
         engine_runtime_histogram_accumulator = (word)((ulonglong)uVar9 >> 0x20);
       }
       else {
         uVar9 = tableInterpolationLookup((short *)&engine_runtime_histogram_config_type_a);
         hour_meter_tick_divider = (word)((ulonglong)uVar9 >> 0x20);
-        uVar9 = tableInterpolationLookup((short *)&DAT_008001ea);
+        uVar9 = tableInterpolationLookup((short *)&hour_meter_table_3_size);
         engine_runtime_histogram_interpolation_b = (word)((ulonglong)uVar9 >> 0x20);
         engine_runtime_histogram_accumulator =
              (short)((uint)fuel_timing_mode_blend_factor * (uint)hour_meter_tick_divider >> 0xe) +
@@ -5579,8 +5577,6 @@ uint engineRunTimeHistogramAccumulator(void)
 // Function: initHourMeterConversionData @ 0x00010ad8
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void initHourMeterConversionData(void)
 
 {
@@ -5598,7 +5594,7 @@ void initHourMeterConversionData(void)
        (dword)&lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
   engine_rpm_histogram_threshold_select = engine_rpm_histogram_lower_threshold;
   hour_meter_table_3_ptr = 0x808002;
-  _DAT_008001ea = 2;
+  hour_meter_table_3_size = 2;
   hour_meter_table_3_limit = 400;
   hour_meter_table_4_ptr = 0x808028;
   hour_meter_table_4_base = 2;
@@ -7863,13 +7859,13 @@ void fuelTimingModeBlendCalculator(void)
   if (fuel_timing_mode_blend_factor == 0x4000) {
     _DAT_008002a8 = rpm_source_selector_value;
     _DAT_008002b0 = fuel_timing_mode_blend_factor + rpm_fuel_limit_blend_offset;
-    uVar2 = tableInterpolationLookup((short *)&DAT_008002a2);
+    uVar2 = tableInterpolationLookup((short *)&load_trending_table_2_size);
     fuel_timing_blend_rpm_component = (word)((ulonglong)uVar2 >> 0x20);
   }
   else if (fuel_timing_mode_blend_factor == 0) {
     _DAT_008002bc = rpm_source_selector_value;
     _DAT_008002c4 = fuel_timing_mode_blend_factor + rpm_fuel_limit_blend_offset;
-    uVar2 = tableInterpolationLookup((short *)&DAT_008002b6);
+    uVar2 = tableInterpolationLookup((short *)&load_trending_table_4_size);
     fuel_timing_blend_rpm_component =
          (word)((uint)(ushort)((ulonglong)uVar2 >> 0x20) *
                 (0x4000 - (uint)fuel_timing_mode_blend_factor) >> 0xe);
@@ -7877,10 +7873,10 @@ void fuelTimingModeBlendCalculator(void)
   else {
     _DAT_008002a8 = rpm_source_selector_value;
     _DAT_008002b0 = fuel_timing_mode_blend_factor + rpm_fuel_limit_blend_offset;
-    uVar2 = tableInterpolationLookup((short *)&DAT_008002a2);
+    uVar2 = tableInterpolationLookup((short *)&load_trending_table_2_size);
     _DAT_008002bc = rpm_source_selector_value;
     _DAT_008002c4 = fuel_timing_mode_blend_factor + rpm_fuel_limit_blend_offset;
-    uVar3 = tableInterpolationLookup((short *)&DAT_008002b6);
+    uVar3 = tableInterpolationLookup((short *)&load_trending_table_4_size);
     fuel_timing_blend_rpm_component =
          (short)((uint)fuel_timing_mode_blend_factor * (uint)(ushort)((ulonglong)uVar2 >> 0x20) >>
                 0xe) +
@@ -7890,7 +7886,7 @@ void fuelTimingModeBlendCalculator(void)
   if ((uint)fuel_timing_mode_blend_factor + (uint)rpm_fuel_limit_blend_offset <
       (uint)upper_limit_at_which_loading_trigger_is_satisfied_in_trendin_0_127_5) {
     fuel_timing_intake_temp_input = intake_manifold_temp_raw;
-    sVar1 = lookupTableInterpolation((short *)&DAT_00800296);
+    sVar1 = lookupTableInterpolation((short *)&load_trending_lower_limit_size);
     fuel_timing_intake_temp_correction =
          sVar1 - (short)((int)((int)&DAT_00004caa - (uint)rpm_source_selector_init) /
                         (int)(short)rpm_divisor_value);
@@ -7902,7 +7898,7 @@ void fuelTimingModeBlendCalculator(void)
     fuel_timing_intake_temp_correction = 0;
   }
   fuel_timing_blend_throttle_input = throttle_position_raw;
-  fuel_timing_blend_lookup_result = lookupTableInterpolation((short *)&DAT_0080028a);
+  fuel_timing_blend_lookup_result = lookupTableInterpolation((short *)&load_trending_table_1_size);
   if ((ushort)(fuel_timing_blend_lookup_result + fuel_timing_blend_rpm_component) <=
       fuel_timing_intake_temp_correction) {
     fuel_timing_mode_blend_value = fuel_timing_intake_temp_correction;
@@ -8230,7 +8226,7 @@ void frictionalLoadTorqueTransitionHandler(void)
 {
   if (((_engine_mode_previous_2 == 3) && (engine_operating_mode == TRANSITIONAL_MODE_7)) &&
      (engine_running_timer_threshold < engine_running_mode_timer)) {
-    shutdown_protection_state_2 = _DAT_00807d54;
+    shutdown_protection_state_2 = frictional_load_torque_table_value;
     shutdown_protection_state_1 = frictional_load_torque_in_fueling_at_breakpoint_3_engine_rpm_0_100
     ;
   }
@@ -8244,26 +8240,24 @@ void frictionalLoadTorqueTransitionHandler(void)
 // Function: initLoadTrendingSystem @ 0x000140ce
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void initLoadTrendingSystem(void)
 
 {
   load_trending_kickdown_ptr =
        (dword)&engine_speed_at_0_fuel_which_activates_kick_down_signal_0_8000;
   load_trending_accel_ptr = (dword)&accel_threshold_to_disable_a_c_1200_1200;
-  _DAT_0080028a = 2;
+  load_trending_table_1_size = 2;
   load_trending_lower_limit_ptr =
        (dword)&lower_limit_at_which_loading_trigger_is_satisfied_in_trendin_0_127_5;
   load_trending_count_min_ptr = (dword)&count_minimum_for_percent_load_to_be_low_0_100;
-  _DAT_00800296 = 2;
+  load_trending_lower_limit_size = 2;
   load_trending_table_1_ptr = 0x8080c2;
-  _DAT_008002a2 = 2;
+  load_trending_table_2_size = 2;
   load_trending_table_2_ptr = 0x8080e8;
   load_trending_table_2_base = 2;
   load_trending_table_3_ptr = 0x808100;
   load_trending_table_4_ptr = 0x80828c;
-  _DAT_008002b6 = 2;
+  load_trending_table_4_size = 2;
   load_trending_table_5_ptr = 0x8082b2;
   load_trending_table_5_base = 2;
   load_trending_table_6_ptr = 0x8082ca;
@@ -8574,30 +8568,34 @@ void engineProtectionSystemInit(void)
   pwm_timer_output_value = 0x2000;
   _pwm_timer_counter = 0x804c90;
   _pwm_timer_state = &throttle_position_raw;
-  _DAT_0080c84c = &dzg_threshold_level_2;
-  _DAT_0080c850 = &time_abuse_event_must_be_continuously_present_before_it_will_b_0_100;
-  _DAT_0080c854 = &time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000;
-  _DAT_0080c868 = 0x804cb8;
-  _DAT_0080c86c = 0x804cb8;
-  _DAT_0080c870 = &vp44_injection_timing_state;
-  _DAT_0080c87a = &time_abuse_event_must_be_continuously_present_before_it_will_0_100;
-  _DAT_0080c87e = &time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000;
-  _DAT_0080c882 = 0x807db4;
-  _DAT_0080c896 = 0x804ce0;
-  _DAT_0080c89a = 0x804ce0;
-  _DAT_0080c89e = &insite_parameter_display_value;
-  _DAT_0080c8a8 = &dzg_pressure_threshold_high;
-  _DAT_0080c8b0 = &eps_main_lost_duration_0_20;
-  _DAT_0080c8c4 = 0x804d08;
-  _DAT_0080c8c8 = 0x804d30;
-  _DAT_0080c8cc = &rpm_histogram_temp_value;
-  _DAT_0080c8d6 = 0x807df0;
-  _DAT_0080c8da = 0x807df2;
-  _DAT_0080c8f2 = 0x804d58;
-  _DAT_0080c8fa = 0x80c98c;
-  _DAT_0080c904 = 0x80c988;
-  _DAT_0080c956 = &DAT_00809200;
-  _DAT_0080c960 = 0x807e50;
+  engine_protection_oil_pressure_ptr_1 = (dword)&dzg_threshold_level_2;
+  engine_protection_oil_pressure_ptr_2 =
+       (dword)&time_abuse_event_must_be_continuously_present_before_it_will_b_0_100;
+  engine_protection_oil_pressure_ptr_3 =
+       (dword)&time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000;
+  engine_protection_boost_ptr_1 = 0x804cb8;
+  engine_protection_boost_ptr_2 = 0x804cb8;
+  engine_protection_boost_ptr_3 = (dword)&vp44_injection_timing_state;
+  engine_protection_intake_temp_ptr_1 =
+       (dword)&time_abuse_event_must_be_continuously_present_before_it_will_0_100;
+  engine_protection_intake_temp_ptr_2 =
+       (dword)&time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000;
+  engine_protection_intake_temp_ptr_3 = 0x807db4;
+  engine_protection_coolant_ptr_1 = 0x804ce0;
+  engine_protection_coolant_ptr_2 = 0x804ce0;
+  engine_protection_coolant_ptr_3 = (dword)&insite_parameter_display_value;
+  engine_protection_fuel_temp_ptr_1 = (dword)&dzg_pressure_threshold_high;
+  engine_protection_fuel_temp_ptr_2 = (dword)&eps_main_lost_duration_0_20;
+  engine_protection_sensor_ptr_1 = 0x804d08;
+  engine_protection_sensor_ptr_2 = 0x804d30;
+  engine_protection_sensor_ptr_3 = (dword)&rpm_histogram_temp_value;
+  engine_protection_shutdown_ptr_1 = 0x807df0;
+  engine_protection_shutdown_ptr_2 = 0x807df2;
+  engine_protection_derate_ptr_1 = 0x804d58;
+  engine_protection_derate_ptr_2 = 0x80c98c;
+  engine_protection_limit_ptr_1 = 0x80c988;
+  engine_protection_state_ptr_1 = (dword)&DAT_00809200;
+  engine_protection_state_ptr_2 = 0x807e50;
   protectionThresholdPointerInit();
   initShutdownLimitVariables();
   _protection_state_machine_index = 0;
@@ -8708,8 +8706,6 @@ void protectionState0FaultDurationCounter(void)
 // Function: diagnosticProtectionEvaluator @ 0x000148f8
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 uint diagnosticProtectionEvaluator(void)
 
 {
@@ -8725,7 +8721,7 @@ uint diagnosticProtectionEvaluator(void)
        (uVar4 = diagnostic_system_flags_2 & 0x20, (diagnostic_system_flags_2 & 0x20) != 0)) &&
       ((diagnostic_protection_state != 0xff && (diagnostic_protection_state != 3)))) &&
      (uVar4 = (uint)protection_state_4_emergency_counter,
-     _DAT_00807e70 <= protection_state_4_emergency_counter)) {
+     diagnostic_protection_threshold <= protection_state_4_emergency_counter)) {
     puVar5 = &protection_state_config_table + (short)diagnostic_protection_state * 0x10;
     iVar3 = (int)(short)diagnostic_protection_state;
     iVar2 = iVar3 * 0x2e;
@@ -9077,10 +9073,10 @@ ushort protectionState4EmergencyHandler(void)
       uVar4 = (uint)(ushort)((short)uVar4 + 4);
       wVar5 = wVar5 + 1;
     }
-    if (high_rpm_protection_triggered_flag != 0 || _DAT_0080c986 != 0) {
+    if (high_rpm_protection_triggered_flag != 0 || protection_emergency_fuel_value != 0) {
       lamp_3_blink_trigger = 1;
     }
-    uVar2 = high_rpm_protection_triggered_flag | _DAT_0080c984;
+    uVar2 = high_rpm_protection_triggered_flag | protection_emergency_rpm_value;
     if (uVar2 != 0) {
       high_rpm_shutdown_active_flag = 1;
     }
@@ -12415,29 +12411,29 @@ void fuelDemandTableBlendCalculator(void)
   
   if ((diagnostic_status_flags & 0x100) == 0) {
     wVar1 = current_fuel_demand_value;
-    if (_DAT_0080ccf2 == 1) {
+    if (_fuel_demand_blend_mode_select == 1) {
       fuel_demand_blend_input = current_fuel_demand_value;
-      wVar1 = lookupTableInterpolation((short *)&DAT_0080036e);
+      wVar1 = lookupTableInterpolation((short *)&fuel_demand_rating_table_size);
     }
     if (fuel_timing_mode_blend_factor == 0x4000) {
       rpm_snapshot_0 = current_engine_rpm;
       fuel_snapshot_0 = wVar1;
-      tableInterpolationLookup((short *)&DAT_0080037a);
+      tableInterpolationLookup((short *)&fuel_demand_blend_table_1_size);
       fuel_demand_table_output = extraout_D0w;
     }
     else if (fuel_timing_mode_blend_factor == 0) {
       rpm_snapshot_1 = current_engine_rpm;
       fuel_snapshot_1 = wVar1;
-      tableInterpolationLookup((short *)&DAT_0080038e);
+      tableInterpolationLookup((short *)&fuel_demand_blend_table_2_size);
       fuel_demand_table_output = extraout_D0w_00;
     }
     else {
       rpm_snapshot_0 = current_engine_rpm;
       fuel_snapshot_0 = wVar1;
-      tableInterpolationLookup((short *)&DAT_0080037a);
+      tableInterpolationLookup((short *)&fuel_demand_blend_table_1_size);
       rpm_snapshot_1 = current_engine_rpm;
       fuel_snapshot_1 = wVar1;
-      tableInterpolationLookup((short *)&DAT_0080038e);
+      tableInterpolationLookup((short *)&fuel_demand_blend_table_2_size);
       fuel_demand_table_output =
            (short)((uint)fuel_timing_mode_blend_factor * (uint)extraout_D0w_01 >> 0xe) +
            (short)((uint)extraout_D0w_02 * (0x4000 - (uint)fuel_timing_mode_blend_factor) >> 0xe);
@@ -12463,21 +12459,19 @@ void fuelDemandTableBlendCalculator(void)
 // Function: initFuelDemandCalculationSystem @ 0x0001832a
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void initFuelDemandCalculationSystem(void)
 
 {
   fuel_demand_table_1_ptr = 0x807c9a;
   fuel_demand_rating_ptr = (dword)&CCRFRTNG;
-  _DAT_0080036e = 2;
+  fuel_demand_rating_table_size = 2;
   fuel_demand_table_2_ptr = 0x8080c2;
-  _DAT_0080037a = 2;
+  fuel_demand_blend_table_1_size = 2;
   fuel_demand_table_3_ptr = 0x8080e8;
   fuel_demand_table_2_base = 2;
   fuel_demand_table_4_ptr = 0x808100;
   fuel_demand_table_5_ptr = 0x80828c;
-  _DAT_0080038e = 2;
+  fuel_demand_blend_table_2_size = 2;
   fuel_demand_table_6_ptr = 0x8082b2;
   fuel_demand_table_5_base = 2;
   fuel_demand_table_7_ptr = 0x8082ca;
@@ -12712,7 +12706,7 @@ void fuel_delivery_controller(void)
       }
       iVar3 = (int)(short)fuel_delivery_target * (int)(short)(_fuel_delivery_offset_factor << 2) +
               final_fuel_delivery_command;
-      final_fuel_delivery_command._0_2_ = (short)((uint)iVar3 >> 0x10);
+      final_fuel_delivery_command._0_2_ = (word)((uint)iVar3 >> 0x10);
       sVar1 = final_fuel_delivery_command._0_2_ - _fuel_delivery_offset_correction;
       final_fuel_delivery_command = CONCAT22(sVar1,(short)iVar3);
       if (sVar1 < (short)_fuel_delivery_upper_bound) {
@@ -12723,8 +12717,8 @@ void fuel_delivery_controller(void)
       else {
         final_fuel_delivery_command = (uint)_fuel_delivery_upper_bound << 0x10;
       }
-      _DAT_0080cc42 = final_fuel_delivery_command._0_2_;
-      iVar3 = (int)final_fuel_delivery_command._0_2_ +
+      fuel_delivery_state_variable = final_fuel_delivery_command._0_2_;
+      iVar3 = (int)(short)final_fuel_delivery_command._0_2_ +
               (int)_fuel_delivery_rate_delta + (int)_fuel_delivery_scaled;
       if ((int)(uint)intercept_of_rpm_vs_phase_lag_line_defining_time_offset_for_syn_0_16 < iVar3) {
         fuel_delivery_phase_lag_result =
@@ -15094,23 +15088,23 @@ void canMessageFilterInit(void)
 
 {
   byte bVar1;
-  undefined2 *puVar2;
-  undefined2 *puVar3;
-  undefined2 *puVar4;
+  word *pwVar2;
+  word *pwVar3;
+  word *pwVar4;
   dword *pdVar5;
   
   bVar1 = 0;
-  puVar2 = (undefined2 *)((int)&mask_used_for_can_msg_object_15_0_ffffffff + 2);
-  puVar3 = (undefined2 *)&DAT_0080cfc4;
-  puVar4 = (undefined2 *)&DAT_0080cfba;
+  pwVar2 = (word *)((int)&mask_used_for_can_msg_object_15_0_ffffffff + 2);
+  pwVar3 = &can_filter_mask_array_high;
+  pwVar4 = &can_filter_mask_array_low;
   pdVar5 = &the_can_extended_mask_0x0_0xffffffff;
   do {
-    *puVar4 = *(undefined2 *)pdVar5;
-    *puVar3 = *puVar2;
+    *pwVar4 = *(word *)pdVar5;
+    *pwVar3 = *pwVar2;
     bVar1 = bVar1 + 1;
-    puVar2 = puVar2 + 1;
-    puVar3 = puVar3 + 1;
-    puVar4 = puVar4 + 1;
+    pwVar2 = pwVar2 + 1;
+    pwVar3 = pwVar3 + 1;
+    pwVar4 = pwVar4 + 1;
     pdVar5 = (dword *)((int)pdVar5 + 2);
   } while (bVar1 < 4);
   _j1939_multiframe_source_address = can_message_filter_init_value;
@@ -23825,8 +23819,6 @@ void diagnosticDataDump(void)
 // Function: retarderModeThresholdCalculator @ 0x000279ee
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 uint retarderModeThresholdCalculator(undefined4 param_1)
 
 {
@@ -23841,7 +23833,7 @@ uint retarderModeThresholdCalculator(undefined4 param_1)
   if (retarder_mode_threshold_value != 1) {
     retarder_mode3_rpm_input = current_engine_rpm;
     uVar3 = lookupTableInterpolation((short *)&retarder_mode3_threshold_table);
-    uVar1 = ((uint)param_1._0_2_ * (uint)_DAT_00807996) / 0x6400;
+    uVar1 = ((uint)param_1._0_2_ * (uint)retarder_mode_threshold_value) / 0x6400;
     if (uVar3 < (ushort)uVar1) {
       if (retarder_mode_threshold_value == 3) {
         return 1;
@@ -26179,8 +26171,6 @@ void cumminsProprietaryTSC_PGN_15728640_Builder(void)
 // Function: intakeExhaustConditionsDataBuilder @ 0x0002abf2
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void intakeExhaustConditionsDataBuilder(void)
 
 {
@@ -26188,7 +26178,7 @@ void intakeExhaustConditionsDataBuilder(void)
   
   local_8 = proportionalCalculation(clutch_operating_stats_output,0x39c2c3,1000000);
   local_8 = proportionalCalculation(local_8,2,8);
-  _DAT_00803100 = byteSwap32(&local_8);
+  intake_exhaust_clutch_stat_dword = byteSwap32(&local_8);
   local_8 = insite_fuel_statistics_output >> 2;
   local_8 = proportionalCalculation(local_8,0x39c2c3,1000000);
   intake_exhaust_fuel_stat_dword = byteSwap32(&local_8);
@@ -26209,7 +26199,7 @@ void intakeExhaustConditionsPGN_65257_Builder(void)
 {
   j1939_message_buffer_pgn65257 = CONCAT13((char)((_j1939_priority_pgn65257 & 7) << 2),0xfee900);
   _intake_exhaust_pgn65257_size = 8;
-  intake_exhaust_pgn65257_data_ptr = (dword)&DAT_00803100;
+  intake_exhaust_pgn65257_data_ptr = (dword)&intake_exhaust_clutch_stat_dword;
   intake_exhaust_pgn65257_unused_ptr = 0x803108;
   j1939_message_buffer_pgn65257 =
        CONCAT31(j1939_message_buffer_pgn65257._0_3_,j1939_source_address_primary);
@@ -26280,8 +26270,6 @@ void fuelEconomyPGN_65266_Builder(void)
 // Function: ioControlDataBuilder @ 0x0002adec
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ioControlDataBuilder(void)
 
 {
@@ -26289,7 +26277,7 @@ void ioControlDataBuilder(void)
   
   local_8 = insite_command_base_value >> 2;
   local_8 = proportionalCalculation(local_8,0x39c2c3,1000000);
-  _DAT_00803136 = byteSwap32(&local_8);
+  io_control_pgn_data_dword = byteSwap32(&local_8);
   local_8 = proportionalCalculation(insite_runtime_hours_accumulator,0x14,0x40);
   io_control_runtime_hours_dword = byteSwap32(&local_8);
   sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65244);
@@ -26309,7 +26297,7 @@ void ioControlPGN_65244_Builder(void)
 {
   j1939_message_buffer_pgn65244 = CONCAT13((char)((_j1939_priority_pgn65244 & 7) << 2),0xfedc00);
   _io_control_pgn65244_size = 8;
-  io_control_pgn65244_data_ptr = (dword)&DAT_00803136;
+  io_control_pgn65244_data_ptr = (dword)&io_control_pgn_data_dword;
   io_control_pgn65244_unused_ptr = 0x80313e;
   j1939_message_buffer_pgn65244 =
        CONCAT31(j1939_message_buffer_pgn65244._0_3_,j1939_source_address_primary);
@@ -26502,15 +26490,13 @@ void retarderConfigPGN_65249_Builder(void)
 // Function: vehicleDistanceDataBuilder @ 0x0002b23a
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void vehicleDistanceDataBuilder(void)
 
 {
   undefined4 local_8;
   
   local_8 = proportionalCalculation(vehicle_distance_clutch_value,0x3268,10000);
-  _DAT_008031b8 = byteSwap32(&local_8);
+  vehicle_distance_pgn_data_dword = byteSwap32(&local_8);
   local_8 = proportionalCalculation(vehicle_distance_statistics_value,0x3268,10000);
   vehicle_distance_data_dword = byteSwap32(&local_8);
   sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65248);
@@ -26530,7 +26516,7 @@ void vehicleDistancePGN_65248_Builder(void)
 {
   j1939_message_buffer_pgn65248 = CONCAT13((char)((_j1939_priority_pgn65248 & 7) << 2),0xfee000);
   _vehicle_distance_pgn65248_size = 8;
-  vehicle_distance_pgn65248_data_ptr = (dword)&DAT_008031b8;
+  vehicle_distance_pgn65248_data_ptr = (dword)&vehicle_distance_pgn_data_dword;
   vehicle_distance_pgn65248_unused_ptr = 0x8031c0;
   j1939_message_buffer_pgn65248 =
        CONCAT31(j1939_message_buffer_pgn65248._0_3_,j1939_source_address_primary);
@@ -26585,15 +26571,13 @@ void electronicBrakePGN_65527_Builder(void)
 // Function: vehicleHoursDataBuilder @ 0x0002b398
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void vehicleHoursDataBuilder(void)
 
 {
   undefined4 local_8;
   
   local_8 = proportionalCalculation(vehicle_hours_statistics_value,0x14,0x40);
-  _DAT_008031e8 = byteSwap32(&local_8);
+  vehicle_hours_pgn_data_dword = byteSwap32(&local_8);
   local_8 = proportionalCalculation(insite_idle_hours_accumulator,0x14,0x40);
   vehicle_hours_idle_hours_dword = byteSwap32(&local_8);
   sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65255);
@@ -26613,7 +26597,7 @@ void vehicleHoursPGN_65255_Builder(void)
 {
   j1939_message_buffer_pgn65255 = CONCAT13((char)((_j1939_priority_pgn65255 & 7) << 2),0xfee700);
   _vehicle_hours_pgn65255_size = 8;
-  vehicle_hours_pgn65255_data_ptr = (dword)&DAT_008031e8;
+  vehicle_hours_pgn65255_data_ptr = (dword)&vehicle_hours_pgn_data_dword;
   vehicle_hours_pgn65255_unused_ptr = 0x8031f0;
   j1939_message_buffer_pgn65255 =
        CONCAT31(j1939_message_buffer_pgn65255._0_3_,j1939_source_address_primary);
@@ -27046,12 +27030,10 @@ void watchdogServiceLoop(undefined4 param_1)
 // Function: engineDataTrendingSlowCycle40Coordinator @ 0x0002bb6c
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void engineDataTrendingSlowCycle40Coordinator(void)
 
 {
-  _DAT_008031f6 = 2;
+  engine_data_trending_state = 2;
   engine_trending_load_threshold_ptr =
        (dword)&lower_limit_at_which_loading_trigger_is_satisfied_in_trendin_0_127_5;
   engine_trending_intake_temp_value = intake_manifold_temp_raw;
@@ -27061,7 +27043,7 @@ void engineDataTrendingSlowCycle40Coordinator(void)
     fuel_demand_rpm_based_limit = 0;
     return;
   }
-  fuel_demand_rpm_lookup_result = lookupTableInterpolation((short *)&DAT_008031f6);
+  fuel_demand_rpm_lookup_result = lookupTableInterpolation((short *)&engine_data_trending_state);
   return;
 }
 
@@ -28947,7 +28929,8 @@ void fuelArbitratorVariablesInit(void)
   fuel_temp_calculated_limit = threshold_for_fuel_temperature_rpm_limiting_to_initiate_shutdo_0_255;
   _fuel_temp_protection_state =
        (uint)threshold_for_fuel_temperature_rpm_limiting_to_initiate_shutdo_0_255 << 0x10;
-  _DAT_0080328a = &threshold_for_fuel_temperature_fuel_limiting_to_initiate_shutd_0_255;
+  fuel_temp_protection_table_ptr =
+       (dword)&threshold_for_fuel_temperature_fuel_limiting_to_initiate_shutd_0_255;
   fuel_temp_limit_previous = threshold_for_fuel_temperature_rpm_limiting_to_initiate_shutdo_0_255;
   return;
 }
@@ -29859,8 +29842,7 @@ void vp44FaultProtectionController(void)
   ushort uVar3;
   short sVar4;
   word wVar5;
-  undefined *puVar6;
-  dword *pdVar7;
+  dword *pdVar6;
   
   if (vp44_fault_protection_init_flag == 0) {
     if (((((engine_fault_register_a & 0x100) != 0) && ((engine_fault_register_b & 0x100) != 0)) ||
@@ -30002,10 +29984,10 @@ void vp44FaultProtectionController(void)
             }
           }
           if ((vp44_fault_mode_flags & 4) != 0) {
-            puVar6 = &DAT_008032ee;
+            pdVar6 = &oil_pressure_fault_table_ptr;
             wVar5 = current_engine_rpm_raw;
             vp44_fuel_table_lookup_1 = coreTableInterpolation();
-            vp44_fuel_table_lookup_2 = coreTableInterpolation(0x80,wVar5,puVar6);
+            vp44_fuel_table_lookup_2 = coreTableInterpolation(0x80,wVar5,pdVar6);
             if (vp44_fault_counter_limit_1 < vp44_fault_accumulator_1) {
               engine_fault_register_a = engine_fault_register_a | 0x200;
               engine_fault_register_c = engine_fault_register_c | 0x200;
@@ -30022,10 +30004,10 @@ void vp44FaultProtectionController(void)
             }
           }
           if ((vp44_fault_mode_flags & 2) != 0) {
-            pdVar7 = &oil_pressure_table_3_pointer;
+            pdVar6 = &oil_pressure_table_3_pointer;
             wVar5 = current_engine_rpm_raw;
             vp44_timing_table_lookup_1 = coreTableInterpolation();
-            vp44_timing_table_lookup_2 = coreTableInterpolation(0x80,wVar5,pdVar7);
+            vp44_timing_table_lookup_2 = coreTableInterpolation(0x80,wVar5,pdVar6);
             if (_vp44_fault_counter_limit_2 < _vp44_fault_accumulator_2) {
               engine_fault_register_a = engine_fault_register_a | 0x200;
               engine_fault_register_c = engine_fault_register_c | 0x200;
@@ -30092,7 +30074,7 @@ void oilPressureTablePointersInit(void)
 
 {
   _oil_pressure_table_1_offset = 0;
-  _DAT_008032ee = 0x8071ec;
+  oil_pressure_fault_table_ptr = 0x8071ec;
   _oil_pressure_table_2_offset = 0;
   oil_pressure_table_1_pointer = 0x8071ec;
   _oil_pressure_table_3_offset = 0;
@@ -30337,8 +30319,8 @@ void dualTableLookupSum(void)
   
   diagnostic_rpm_setpoint_saved = diagnostic_target_rpm_setpoint;
   diagnostic_throttle_saved = throttle_position_raw;
-  sVar1 = lookupTableInterpolation((short *)&DAT_00803322);
-  sVar2 = lookupTableInterpolation((short *)&DAT_00803316);
+  sVar1 = lookupTableInterpolation((short *)&interpolation_table_2_size);
+  sVar2 = lookupTableInterpolation((short *)&interpolation_wscltatb_size);
   governor_reference_fuel = sVar1 + sVar2;
   return;
 }
@@ -30349,19 +30331,17 @@ void dualTableLookupSum(void)
 // Function: interpolationTableSetup @ 0x0002f920
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void interpolationTableSetup(void)
 
 {
   diagnostic_rpm_setpoint_saved = diagnostic_target_rpm_setpoint;
   interpolation_table_1_ptr = 0x80720a;
   interpolation_wscltatb_ptr = (dword)&WSCLTATB;
-  _DAT_00803316 = 2;
+  interpolation_wscltatb_size = 2;
   diagnostic_throttle_saved = throttle_position_raw;
   interpolation_table_2_ptr = 0x807232;
   interpolation_table_3_ptr = 0x807246;
-  _DAT_00803322 = 2;
+  interpolation_table_2_size = 2;
   return;
 }
 
@@ -30790,8 +30770,6 @@ void vp44TimingValuesInit(void)
 // Function: engineModeOutputControlInit @ 0x0002fe20
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 ushort engineModeOutputControlInit(void)
 
 {
@@ -30806,18 +30784,18 @@ ushort engineModeOutputControlInit(void)
     output_control_idle_timeout_threshold = 10;
     output_control_active_flag = 0;
     output_control_table_2_ptr = 0x807292;
-    _DAT_00803368 = 2;
+    output_control_table_2_size = 2;
     output_control_table_1_ptr = 0x807278;
-    _DAT_0080338c = 2;
+    output_control_table_7_size = 2;
     output_control_table_7_ptr = 0x8072ac;
     output_control_table_8_size = 2;
     output_control_table_8_ptr = 0x8072bc;
     output_control_table_9_ptr = 0x8072c6;
     output_control_table_4_ptr = 0x807318;
-    _DAT_00803374 = 2;
+    output_control_table_4_size = 2;
     output_control_table_3_ptr = 0x8072fe;
     output_control_table_6_ptr = 0x80733e;
-    _DAT_00803380 = 2;
+    output_control_table_6_size = 2;
     output_control_table_5_ptr = 0x807332;
   }
   return vp44_flag_register_1 & 0x40;
@@ -30971,7 +30949,8 @@ void outputControlState1Handler(void)
 
 {
   output_control_sensor_input_cached = sensor_fault_rpm_source_value;
-  output_control_interpolation_result = lookupTableInterpolation((short *)&DAT_00803374);
+  output_control_interpolation_result =
+       lookupTableInterpolation((short *)&output_control_table_4_size);
   if (output_control_interpolation_result != 0) {
     output_timing_config_word_2 = output_control_interpolation_result;
     io_control_flags = io_control_flags | 6;
@@ -31082,7 +31061,7 @@ void outputControlState4Handler(void)
     }
     output_control_state_4_write_flag._0_1_ = !bVar1;
     output_control_rpm_workspace_2 = output_control_rpm_workspace;
-    output_control_timing_value = lookupTableInterpolation((short *)&DAT_00803368);
+    output_control_timing_value = lookupTableInterpolation((short *)&output_control_table_2_size);
     if (output_control_timing_value == 6) {
       if (output_timing_state_selector != 0) {
         output_timing_state_selector = output_timing_state_selector - 1;
@@ -31106,7 +31085,7 @@ void outputControlState4Handler(void)
     do {
       output_control_timing_workspace = output_control_timing_value;
       output_control_index_workspace = (word)bVar2;
-      uVar4 = tableInterpolationLookup((short *)&DAT_0080338c);
+      uVar4 = tableInterpolationLookup((short *)&output_control_table_7_size);
       *pwVar3 = (word)((ulonglong)uVar4 >> 0x20);
       bVar2 = bVar2 + 1;
       pwVar3 = pwVar3 + 1;
@@ -31289,7 +31268,8 @@ void outputControlTimingGenerator(void)
       }
     }
     output_control_sequence_state = output_sequence_state;
-    output_timing_duty_lookup_result = lookupTableInterpolation((short *)&DAT_00803380);
+    output_timing_duty_lookup_result =
+         lookupTableInterpolation((short *)&output_control_table_6_size);
     DAT_008033b0 = 1;
     bVar1 = true;
     output_control_state_4_value = 1;
@@ -31609,14 +31589,12 @@ void engineModeBasedIoController(void)
 // Function: fuelDemandTablePointersInit @ 0x00030c3e
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void fuelDemandTablePointersInit(void)
 
 {
   fuel_demand_table_2_size = 2;
   fuel_demand_table_2_ptr = 0x80735c;
-  _DAT_008033c2 = 2;
+  fuel_demand_table_3_size = 2;
   fuel_demand_table_1_ptr = 0x807352;
   fuel_demand_table_3_ptr = 0x807366;
   fuel_demand_limit_previous = 0;
@@ -31643,7 +31621,7 @@ uint rpmLoadParameterLookup(void)
   if ((vp44_flag_register_1 & 1) != 0) {
     rpm_load_lookup_input = diagnostic_sensor_reading;
     _rpm_load_lookup_result_ptr = current_engine_rpm;
-    uVar2 = tableInterpolationLookup((short *)&DAT_008033c2);
+    uVar2 = tableInterpolationLookup((short *)&fuel_demand_table_3_size);
     uVar1 = (uint)((ulonglong)uVar2 >> 0x20);
     rpm_load_parameter_lookup_result = (word)((ulonglong)uVar2 >> 0x20);
   }
@@ -32827,7 +32805,7 @@ void vp44ControlFlagsInit(void)
 
 {
   vp44_control_flags_state = 0;
-  _DAT_008033fc = 0;
+  vp44_control_flags_init_state = 0;
   _vp44_control_flag_1 = 1;
   _vp44_control_flag_2 = 1;
   _vp44_control_flag_3 = 1;
@@ -32898,7 +32876,7 @@ ushort vp44SensorDiagnosticControl(void)
     if ((DAT_00803412 != '\0') && ((vp44_sensor_diagnostic_state & 0x20) == 0)) {
       vp44_sensor_diag_timer_1 = added_to_final_fuel_command_for_cylinder_2_300_to_300;
     }
-    vp44_sensor_diag_timer_2 = *(word *)(&DAT_008033fc + (short)(ushort)DAT_00803413 * 2);
+    vp44_sensor_diag_timer_2 = (&vp44_control_flags_init_state)[(short)(ushort)DAT_00803413];
     if (vp44_sensor_diag_timer_2 == 1) {
       if (vp44_sensor_diagnostic_read_state < added_to_final_fuel_command_for_cylinder_5_300_to_300)
       {
@@ -33670,8 +33648,8 @@ void vp44FaultProtectionSystemInit(void)
 
 {
   byte bVar1;
-  undefined2 *puVar2;
-  undefined2 *puVar3;
+  word *pwVar2;
+  word *pwVar3;
   undefined *puVar4;
   
   vp44_fault_protection_addr_2 = 0x2240;
@@ -33703,15 +33681,15 @@ void vp44FaultProtectionSystemInit(void)
   vp44_fso_fault_detection_enable = 1;
   shutdown_minimum_init_value = 0x1700;
   bVar1 = 0;
-  puVar2 = (undefined2 *)&DAT_00809a7c;
-  puVar3 = (undefined2 *)&DAT_008077aa;
+  pwVar2 = (word *)&DAT_00809a7c;
+  pwVar3 = &vp44_fault_protection_table_base;
   puVar4 = &DAT_00809aea;
   do {
-    *puVar2 = *puVar3;
+    *pwVar2 = *pwVar3;
     *puVar4 = 1;
     bVar1 = bVar1 + 1;
-    puVar2 = puVar2 + 1;
-    puVar3 = puVar3 + 1;
+    pwVar2 = pwVar2 + 1;
+    pwVar3 = pwVar3 + 1;
     puVar4 = puVar4 + 1;
   } while (bVar1 < 6);
   vp44_timing_intermediate_value = 0;

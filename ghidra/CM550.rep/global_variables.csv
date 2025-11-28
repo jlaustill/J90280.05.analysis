@@ -5841,3 +5841,71 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807388,rpm_derate_base_offset,word,RPM derate base offset (rpmDerateCalculationController),2,0,,offset
 0x00807392,rpm_derate_lower_threshold,word,RPM derate lower threshold (rpmDerateCalculationController),2,0,,threshold
 0x00807394,rpm_derate_upper_threshold,word,RPM derate upper threshold (rpmDerateCalculationController),2,0,,threshold
+0x00800160,ac_control_table_size,word,AC control system table size init (initAcControlSystem),2,0,,config
+0x00800170,anc_speed_limit_table_1_size,word,ANC speed limit table 1 size (initAncSpeedLimitAndAltitudeDerate),2,0,,config
+0x00800184,anc_altitude_table_1_size,word,ANC altitude table 1 size (initAncSpeedLimitAndAltitudeDerate),2,0,,config
+0x00800190,anc_disable_duration_table_size,word,ANC disable duration table size (initAncSpeedLimitAndAltitudeDerate),2,0,,config
+0x008001a4,anc_altitude_table_3_size,word,ANC altitude table 3 size (initAncSpeedLimitAndAltitudeDerate),2,0,,config
+0x008001ea,hour_meter_table_3_size,word,Hour meter table 3 size (initHourMeterConversionData),2,0,,config
+0x0080028a,load_trending_table_1_size,word,Load trending table 1 size (initLoadTrendingSystem),2,0,,config
+0x00800296,load_trending_lower_limit_size,word,Load trending lower limit table size (initLoadTrendingSystem),2,0,,config
+0x008002a2,load_trending_table_2_size,word,Load trending table 2 size (initLoadTrendingSystem),2,0,,config
+0x008002b6,load_trending_table_4_size,word,Load trending table 4 size (initLoadTrendingSystem),2,0,,config
+0x0080036e,fuel_demand_rating_table_size,word,Fuel demand rating table size (initFuelDemandCalculationSystem),2,0,,config
+0x0080037a,fuel_demand_blend_table_1_size,word,Fuel demand blend table 1 size (initFuelDemandCalculationSystem),2,0,,config
+0x0080038e,fuel_demand_blend_table_2_size,word,Fuel demand blend table 2 size (initFuelDemandCalculationSystem),2,0,,config
+0x0080c84c,engine_protection_oil_pressure_ptr_1,dword,Engine protection oil pressure table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c850,engine_protection_oil_pressure_ptr_2,dword,Engine protection oil pressure table ptr 2 (engineProtectionSystemInit),4,0,,pointer
+0x0080c854,engine_protection_oil_pressure_ptr_3,dword,Engine protection oil pressure table ptr 3 (engineProtectionSystemInit),4,0,,pointer
+0x0080c868,engine_protection_boost_ptr_1,dword,Engine protection boost pressure table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c86c,engine_protection_boost_ptr_2,dword,Engine protection boost pressure table ptr 2 (engineProtectionSystemInit),4,0,,pointer
+0x0080c870,engine_protection_boost_ptr_3,dword,Engine protection boost pressure table ptr 3 (engineProtectionSystemInit),4,0,,pointer
+0x0080c87a,engine_protection_intake_temp_ptr_1,dword,Engine protection intake temp table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c87e,engine_protection_intake_temp_ptr_2,dword,Engine protection intake temp table ptr 2 (engineProtectionSystemInit),4,0,,pointer
+0x0080c882,engine_protection_intake_temp_ptr_3,dword,Engine protection intake temp table ptr 3 (engineProtectionSystemInit),4,0,,pointer
+0x0080c896,engine_protection_coolant_ptr_1,dword,Engine protection coolant temp table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c89a,engine_protection_coolant_ptr_2,dword,Engine protection coolant temp table ptr 2 (engineProtectionSystemInit),4,0,,pointer
+0x0080c89e,engine_protection_coolant_ptr_3,dword,Engine protection coolant temp table ptr 3 (engineProtectionSystemInit),4,0,,pointer
+0x0080c8a8,engine_protection_fuel_temp_ptr_1,dword,Engine protection fuel temp table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c8b0,engine_protection_fuel_temp_ptr_2,dword,Engine protection fuel temp table ptr 2 (engineProtectionSystemInit),4,0,,pointer
+0x0080c8c4,engine_protection_sensor_ptr_1,dword,Engine protection sensor table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c8c8,engine_protection_sensor_ptr_2,dword,Engine protection sensor table ptr 2 (engineProtectionSystemInit),4,0,,pointer
+0x0080c8cc,engine_protection_sensor_ptr_3,dword,Engine protection sensor table ptr 3 (engineProtectionSystemInit),4,0,,pointer
+0x0080c8d6,engine_protection_shutdown_ptr_1,dword,Engine protection shutdown table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c8da,engine_protection_shutdown_ptr_2,dword,Engine protection shutdown table ptr 2 (engineProtectionSystemInit),4,0,,pointer
+0x0080c8f2,engine_protection_derate_ptr_1,dword,Engine protection derate table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c8fa,engine_protection_derate_ptr_2,dword,Engine protection derate table ptr 2 (engineProtectionSystemInit),4,0,,pointer
+0x0080c904,engine_protection_limit_ptr_1,dword,Engine protection limit table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c956,engine_protection_state_ptr_1,dword,Engine protection state table ptr 1 (engineProtectionSystemInit),4,0,,pointer
+0x0080c960,engine_protection_state_ptr_2,dword,Engine protection state table ptr 2 (engineProtectionSystemInit),4,0,,pointer
+0x0080c984,protection_emergency_rpm_value,word,Protection emergency RPM value (protectionUpdateHandler),2,0,,value
+0x0080c986,protection_emergency_fuel_value,word,Protection emergency fuel value (protectionUpdateHandler),2,0,,value
+0x0080cc42,fuel_delivery_state_variable,word,Fuel delivery controller state variable (fuel_delivery_controller),2,0,,state
+0x0080ccf2,fuel_demand_blend_mode_select,byte,Fuel demand blend mode selector (fuelDemandTableBlendCalculator),1,0,,selector
+0x0080cfba,can_filter_mask_array_low,word,CAN message filter mask array low word (canMessageFilterInit),2,0,,config
+0x0080cfc4,can_filter_mask_array_high,word,CAN message filter mask array high word (canMessageFilterInit),2,0,,config
+0x00803100,intake_exhaust_clutch_stat_dword,dword,Intake exhaust conditions clutch stat dword (intakeExhaustConditionsDataBuilder),4,0,,data
+0x00803136,io_control_pgn_data_dword,dword,IO control PGN 65244 data dword (ioControlDataBuilder),4,0,,data
+0x008031b8,vehicle_distance_pgn_data_dword,dword,Vehicle distance PGN 65248 data dword (vehicleDistanceDataBuilder),4,0,,data
+0x008031e8,vehicle_hours_pgn_data_dword,dword,Vehicle hours PGN 65255 data dword (vehicleHoursDataBuilder),4,0,,data
+0x008031f6,engine_data_trending_state,word,Engine data trending state (engineDataTrendingSlowCycle40Coordinator),2,0,,state
+0x0080328a,fuel_temp_protection_table_ptr,dword,Fuel temp protection table pointer (fuelArbitratorVariablesInit),4,0,,pointer
+0x008032ee,oil_pressure_fault_table_ptr,dword,Oil pressure fault table pointer (oilPressureTablePointersInit),4,0,,pointer
+0x00803316,interpolation_wscltatb_size,word,Interpolation WSCLTATB table size (interpolationTableSetup),2,0,,config
+0x00803322,interpolation_table_2_size,word,Interpolation table 2 size (interpolationTableSetup),2,0,,config
+0x00803368,output_control_table_2_size,word,Output control table 2 size (engineModeOutputControlInit),2,0,,config
+0x00803374,output_control_table_4_size,word,Output control table 4 size (engineModeOutputControlInit),2,0,,config
+0x00803380,output_control_table_6_size,word,Output control table 6 size (engineModeOutputControlInit),2,0,,config
+0x0080338c,output_control_table_7_size,word,Output control table 7 size (engineModeOutputControlInit),2,0,,config
+0x008033c2,fuel_demand_table_3_size,word,Fuel demand table 3 size (fuelDemandTablePointersInit),2,0,,config
+0x008033fc,vp44_control_flags_init_state,word,VP44 control flags init state (vp44ControlFlagsInit),2,0,,state
+0x008077aa,vp44_fault_protection_table_base,word,VP44 fault protection table base address (vp44FaultProtectionSystemInit),2,0,,config
+0x00807996,retarder_mode_threshold_value,word,Retarder mode threshold value (retarderModeThresholdCalculator),2,0,,threshold
+0x008079b8,throttle_buffer_threshold_low,word,Throttle buffer low threshold (bufferThresholdValidator),2,0,,threshold
+0x008079ba,throttle_buffer_offset_adjust,word,Throttle buffer offset adjustment (bufferDecreasingPatternCheck),2,0,,offset
+0x008079bc,throttle_buffer_min_delta,word,Throttle buffer minimum delta (bufferDecreasingPatternCheck),2,0,,threshold
+0x008079c8,throttle_buffer_scale_factor,word,Throttle buffer scale factor (bufferThresholdValidator),2,0,,scale
+0x008079ca,throttle_buffer_low_threshold,word,Throttle buffer low threshold value (bufferThresholdValidator),2,0,,threshold
+0x008079ce,throttle_buffer_high_threshold,word,Throttle buffer high threshold value (bufferThresholdValidator),2,0,,threshold
+0x00807d54,frictional_load_torque_table_value,word,Frictional load torque table value (frictionalLoadTorqueTransitionHandler),2,0,,value
+0x00807e70,diagnostic_protection_threshold,word,Diagnostic protection threshold (diagnosticProtectionEvaluator),2,0,,threshold
