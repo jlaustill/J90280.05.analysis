@@ -759,7 +759,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00803416,dzg_timing_accumulator_value,word,DZG timing accumulator calculation value (23 refs),2,0,,value
 0x00803418,dzg_timing_state_variable,word,DZG timing and pressure control state variable (10 refs),2,0,,state
 0x0080341a,dzg_timing_state_machine_value,word,DZG timing state machine control value (8 refs),2,0,,state
-0x0080341c,dzg_timing_state_index,word,DZG timing state machine index 0-3 (8 refs),2,0,,state
+0x0080341c,dzg_timing_state_index,DZG_TIMING_STATE,DZG timing state machine index 0-2 (8 refs),2,0,,state
 0x0080341e,dzg_state_transition_counter,word,DZG state machine transition counter,2,0,,counter
 0x00803420,dzg_pressure_ramp_rate,word,DZG pressure control ramp rate value (9 refs),2,0,,value
 0x00803422,dzg_pressure_target_value,word,DZG pressure control target value (6 refs),2,0,,value
@@ -3756,7 +3756,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080d176,oil_pressure_fuel_max_threshold_high,word,Oil pressure fuel max threshold high byte (unused),2,0,,reserved
 0x0080d178,oil_pressure_rpm_limit_threshold,word,Oil pressure RPM limit threshold value (10 refs),2,0,RPM,value
 0x0080d17a,oil_pressure_protection_enabled,word,Oil pressure protection system enable flag,2,0,,flag
-0x0080d17c,sensor_history_state_machine,word,Sensor status history state machine [CalTerm: EPO2EREN],2,0,,state
+0x0080d17c,sensor_history_state_machine,SENSOR_HISTORY_STATE,Sensor status history state machine [CalTerm: EPO2EREN],2,0,,state
 0x0080d17e,true_oil_pressure_precrank_error_1_true_0_false,word,TRUE = OIL PRESSURE PRECRANK ERROR,2,0,,parameter
 0x0080d180,amount_of_time_over_oil_pressure_fuel_shutdown_threshold_0_65535,word,AMOUNT OF TIME OVER OIL PRESSURE FUEL SHUTDOWN THRESHOLD,2,0,SEC,parameter
 0x0080d182,amount_of_time_over_oil_pressure_rpm_shutdown_threshold_0_65535,word,AMOUNT OF TIME OVER OIL PRESSURE RPM SHUTDOWN THRESHOLD,2,0,SEC,parameter

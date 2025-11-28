@@ -462,3 +462,12 @@ OUTPUT_CONTROL_TIMER_STATE,2,OUTPUT_TIMER_STATE_2,Output timer state 2,1
 OUTPUT_CONTROL_TIMER_STATE,3,OUTPUT_TIMER_STATE_3,Output timer state 3,1
 OUTPUT_CONTROL_TIMER_STATE,4,OUTPUT_TIMER_STATE_4,Output timer state 4,1
 OUTPUT_CONTROL_TIMER_STATE,5,OUTPUT_TIMER_STATE_5,Output timer state 5,1
+# DZG Timing State - crankshaft sensor timing control state machine
+DZG_TIMING_STATE,0,INITIAL,Initial state check angle threshold,2
+DZG_TIMING_STATE,1,ACTIVE,Active state monitor for transitions,2
+DZG_TIMING_STATE,2,ALTERNATE,Alternative mode state,2
+# Sensor History State - sensor/oil pressure monitoring state machine
+SENSOR_HISTORY_STATE,0,IDLE,Initial monitoring state,2
+SENSOR_HISTORY_STATE,1,ACTIVE,Sensor actively being monitored,2
+SENSOR_HISTORY_STATE,2,FAULT_DETECTED,Fault condition detected,2
+SENSOR_HISTORY_STATE,3,RECOVERY,Recovery countdown state,2
