@@ -4966,3 +4966,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008033ae,output_timing_duty_lookup_result,word,Output timing duty cycle lookup result (3 refs),2,0,,value
 0x008054ac,rpm_histogram_bin_1_counter,word,RPM histogram bin 1 counter (3 refs),2,0,,counter
 0x008054b2,rpm_histogram_bin_2_counter,word,RPM histogram bin 2 counter (3 refs),2,0,,counter
+0x008003fe,derate_interpolation_value_1,word,Derate interpolation input value 1 (3 refs),2,0,,value
+0x00800412,derate_interpolation_value_2,word,Derate interpolation input value 2 (3 refs),2,0,,value
+0x0080076a,throttle_histogram_bin_index_1,word,Throttle histogram bin index counter 1 (3 refs),2,0,,index
+0x0080076c,throttle_histogram_bin_index_2,word,Throttle histogram bin index counter 2 (3 refs),2,0,,index
+0x008007ac,fuel_arbitrator_previous_rpm_target,word,Fuel arbitrator previous RPM target value (3 refs),2,0,,value
+0x008007ae,fuel_arbitrator_previous_state_2,word,Fuel arbitrator previous state for comparison 2 (3 refs),2,0,,state
+0x0080301e,j1939_message_buffer_pgn65234,dword,J1939 CAN message buffer PGN 65234/0xFED2 (3 refs),4,0,,buffer
+0x00803140,j1939_message_buffer_pgn65252,dword,J1939 CAN message buffer PGN 65252/0xFEE4 (3 refs),4,0,,buffer
+0x00803170,j1939_message_buffer_pgn65264,dword,J1939 CAN message buffer PGN 65264/0xFEF0 (3 refs),4,0,,buffer
+0x00808804,eps_control_mode_duration_value,word,EPS control mode duration calculation value (3 refs),2,0,,value
+0x00808962,insite_parameter_table_start,byte,INSITE parameter table start address (3 refs),1,0,,table
+0x008062d2,can_memory_table_start,dword,CAN memory synchronization table start (3 refs),4,0,,table
