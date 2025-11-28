@@ -315,6 +315,40 @@ CSVs are the source of truth. Before committing:
 
 ---
 
+## **📊 Reverse Engineering Progress**
+
+### **Overall Summary**
+| Category | Named | Unnamed | Progress |
+|----------|-------|---------|----------|
+| Functions | 793 | 0 | **100%** |
+| Global Variables | 4,859 | 2,104 | **70%** |
+| Local Variables | 42 | 90 | **32%** |
+| Function Parameters | 9 | 4 | **69%** |
+
+### **Global Variables Breakdown**
+| Type | Count | Notes |
+|------|-------|-------|
+| Named (in CSV) | 4,859 | Documented in global_variables.csv |
+| Unnamed `_DAT_*` | 886 | Pointers/references needing names |
+| Unnamed `DAT_*` | 1,218 | Direct data needing names |
+| **Total** | **6,963** | |
+
+### **Type Information**
+| Metric | Count |
+|--------|-------|
+| `undefined` usages | 1,202 |
+| Structure fields | 432 |
+| Enum entries | 293 |
+| Constants | 73 |
+| Labels | 3,495 |
+
+### **Biggest Opportunities**
+1. **2,104 unnamed global variables** - DAT_ and _DAT_ prefixes
+2. **1,202 undefined type usages** - Variables needing proper typing
+3. **90 unnamed local variables** - xVarN and local_XX patterns
+
+---
+
 ## **⚠️ Important Notes on Reference Data**
 
 ### **docs/common_parameters.json - Address Verification Status**
