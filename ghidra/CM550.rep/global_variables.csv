@@ -4894,3 +4894,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00804a18,hour_meter_stored_ticks,word,Hour meter stored tick count (4 refs),2,0,,ticks
 0x00804a1a,histogram_stored_ticks,word,Histogram stored tick count (4 refs),2,0,,ticks
 0x0080972c,shutdown_limit_selector_value,word,Shutdown limit selector calculated value (4 refs),2,0,,value
+0x00808924,oil_pressure_rpm_limit_step,word,Oil pressure RPM limit step adjustment value (4 refs),2,0,,step
+0x008037fa,oil_pressure_rpm_limit_min,word,Oil pressure RPM limit minimum value (4 refs),2,0,,limit
+0x008036a2,oil_pressure_rpm_limit_max,word,Oil pressure RPM limit maximum value (4 refs),2,0,,limit
+0x0080340e,vp44_sensor_diagnostic_countdown,word,VP44 sensor diagnostic state countdown timer (4 refs),2,0,,countdown
+0x0080290a,diagnostic_dtc_response_length,word,Diagnostic DTC response message length (4 refs),2,0,,length
+0x00801afe,diagnostic_pending_response_offset,word,Diagnostic pending code response offset (4 refs),2,0,,offset
+0x008019b4,torque_control_priority_value,word,Torque control message priority comparison value (4 refs),2,0,,value
+0x008018a2,oil_pressure_fuel_calc_low_word,word,Oil pressure fuel calculation low word (4 refs),2,0,,value
+0x0080169e,lamp_flash_cycle_counter,word,Lamp flash controller cycle counter (4 refs),2,0,,counter
+0x008007b0,fuel_arbitrator_previous_state,word,Fuel arbitrator previous state for comparison (4 refs),2,0,,state
+0x008001f0,engine_rpm_histogram_threshold_select,word,Selected RPM threshold for histogram binning (4 refs),2,0,,threshold
+0x00800004,high_rpm_threshold_countdown,word,High RPM threshold countdown timer (4 refs),2,0,,countdown
