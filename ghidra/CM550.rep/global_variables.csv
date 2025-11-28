@@ -5050,3 +5050,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080882a,fuel_timing_offset_max,word,Fuel timing offset upper limit (2 refs),2,0,,limit
 0x0080882c,fuel_timing_offset_min,word,Fuel timing offset lower limit (2 refs),2,0,,limit
 0x00808838,fuel_timing_offset_limit,word,Fuel timing offset value limit (2 refs),2,0,,limit
+0x008087e0,governor_rpm_target_max,word,Governor RPM target upper clamp (2 refs),2,0,,limit
+0x008087d2,governor_pid_integral_min,word,Governor PID integral minimum (2 refs),2,0,,limit
+0x008087f4,throttle_position_threshold,word,Throttle position comparison threshold (2 refs),2,0,,threshold
+0x008087f8,eps_duration_upper_limit,word,EPS duration upper comparison (2 refs),2,0,,limit
+0x008087f6,eps_duration_lower_limit,word,EPS duration lower comparison (2 refs),2,0,,limit
+0x008087ee,rpm_offset_adjustment,word,RPM offset for EPS calculation (2 refs),2,0,,offset
+0x00808812,eps_diagnostic_counter_limit,word,EPS diagnostic counter comparison (2 refs),2,0,,limit
+0x0080880a,eps_fuel_demand_upper,word,EPS fuel demand upper comparison (2 refs),2,0,,limit
+0x0080880c,eps_fuel_demand_threshold,word,EPS fuel demand flags threshold (2 refs),2,0,,threshold
+0x00808814,eps_fuel_demand_delta,word,EPS fuel demand delta subtractor (2 refs),2,0,,delta
+0x00808832,fuel_arbitrator_timer_threshold,word,Fuel arbitrator timer threshold (2 refs),2,0,,threshold
+0x00808834,engine_timing_decrement_step,word,Engine timing adjuster decrement step (2 refs),2,0,,step
