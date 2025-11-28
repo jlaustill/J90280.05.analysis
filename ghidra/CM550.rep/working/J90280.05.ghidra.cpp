@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 12:04:29 MST 2025
+// Fri Nov 28 14:07:43 MST 2025
 
 
 //
@@ -8438,46 +8438,44 @@ void engineOperatingModeInit(void)
 // Function: engineProtectionMultiStateSlowCycle40Coordinator @ 0x00014546
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 ushort engineProtectionMultiStateSlowCycle40Coordinator(void)
 
 {
-  ushort uVar1;
+  PROTECTION_STATE PVar1;
   
   if ((diagnostic_system_flags_2 & 0x10) == 0) {
     fuel_arbitrator_threshold_1 = oil_pressure_precrank_status;
     protection_shutdown_fuel_limit = max_number_of_shutdowns_before_restart_is_not_allowed_0_255;
     protection_mode_state = 0;
     lamp_3_blink_trigger = 0;
-    uVar1 = 0;
+    PVar1 = FAULT_DURATION_COUNT;
   }
   else {
-    uVar1 = _protection_state_machine_index;
-    switch(_protection_state_machine_index) {
-    case 0:
-      uVar1 = protectionState0FaultDurationCounter();
+    PVar1 = protection_state_machine_index;
+    switch(protection_state_machine_index) {
+    case FAULT_DURATION_COUNT:
+      PVar1 = protectionState0FaultDurationCounter();
       break;
-    case 1:
-      uVar1 = protectionState1DiagnosticValidator();
+    case DIAGNOSTIC_VALIDATE:
+      PVar1 = protectionState1DiagnosticValidator();
       break;
-    case 2:
-      uVar1 = protectionState2ThresholdCalculator();
+    case THRESHOLD_CALC:
+      PVar1 = protectionState2ThresholdCalculator();
       break;
-    case 3:
+    case PRIMARY_RPM_MONITOR:
       protectionState3aPrimaryCoordinator();
-      uVar1 = protectionState3bRpmMonitor();
+      PVar1 = protectionState3bRpmMonitor();
       break;
-    case 4:
-      uVar1 = protectionState4EmergencyHandler();
+    case EMERGENCY_HANDLER:
+      PVar1 = protectionState4EmergencyHandler();
     }
-    _protection_state_machine_index = _protection_state_machine_index + 1;
-    if (4 < _protection_state_machine_index) {
-      _protection_state_machine_index = 0;
-      return uVar1;
+    protection_state_machine_index = protection_state_machine_index + DIAGNOSTIC_VALIDATE;
+    if (EMERGENCY_HANDLER < protection_state_machine_index) {
+      protection_state_machine_index = FAULT_DURATION_COUNT;
+      return PVar1;
     }
   }
-  return uVar1;
+  return PVar1;
 }
 
 
@@ -8593,7 +8591,7 @@ void engineProtectionSystemInit(void)
   engine_protection_state_ptr_2 = 0x807e50;
   protectionThresholdPointerInit();
   initShutdownLimitVariables();
-  _protection_state_machine_index = 0;
+  protection_state_machine_index = FAULT_DURATION_COUNT;
   return;
 }
 
@@ -11533,7 +11531,7 @@ undefined8 main_loop(void)
   
   mainLoopTaskSchedulerInit();
   switch(main_loop_phase_index) {
-  case 0:
+  case PHASE_0_VP44_RPM:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
@@ -11542,9 +11540,9 @@ undefined8 main_loop(void)
     vp44ControlSystemCoordinator();
     incrementCounters();
     scheduler_phase_pointer = (dword)&scheduler_phase_table;
-    main_loop_phase_index = 1;
+    main_loop_phase_index = PHASE_1_ENGINE_FUEL;
     break;
-  case 1:
+  case PHASE_1_ENGINE_FUEL:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
@@ -11552,9 +11550,9 @@ undefined8 main_loop(void)
     rpmBasedFuelLimiterCoordinator();
     vp44ExtendedFaultDetectionCoordinator();
     periodicIoAndCanFaultMonitor();
-    main_loop_phase_index = 2;
+    main_loop_phase_index = PHASE_2_DIAG_AUX;
     break;
-  case 2:
+  case PHASE_2_DIAG_AUX:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
@@ -11562,18 +11560,18 @@ undefined8 main_loop(void)
     secondaryMonitoringWrapper();
     advancedEngineProtectionCoordinator();
     engineRpmHardwareTimerSetup();
-    main_loop_phase_index = 3;
+    main_loop_phase_index = PHASE_3_SLOW_CYCLES;
     break;
-  case 3:
+  case PHASE_3_SLOW_CYCLES:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
     slowCycle8Coordinator();
     slowCycle10Coordinator();
     slowCycle20Coordinator();
-    main_loop_phase_index = 4;
+    main_loop_phase_index = PHASE_4_BOOST_DIAG;
     break;
-  case 4:
+  case PHASE_4_BOOST_DIAG:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
@@ -11581,18 +11579,18 @@ undefined8 main_loop(void)
     diagnosticMonitoringCoordinator();
     fuelTimingCoordinator();
     canMessageMemorySyncController();
-    main_loop_phase_index = 5;
+    main_loop_phase_index = PHASE_5_EPS_SLOW20;
     break;
-  case 5:
+  case PHASE_5_EPS_SLOW20:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     boost_pressure_control_wrapper();
     epsSignalMonitoringCoordinator();
     slowCycle20ExtendedCoordinator();
-    main_loop_phase_index = 6;
+    main_loop_phase_index = PHASE_6_FUEL_CALC;
     break;
-  case 6:
+  case PHASE_6_FUEL_CALC:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
@@ -11600,9 +11598,9 @@ undefined8 main_loop(void)
     ioControlSlowCycle10Coordinator();
     fuelCalculationSlowCycle20Coordinator();
     kickdownSignalSlowCycle40Coordinator();
-    main_loop_phase_index = 7;
+    main_loop_phase_index = PHASE_7_SHUTDOWN;
     break;
-  case 7:
+  case PHASE_7_SHUTDOWN:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
@@ -11610,9 +11608,9 @@ undefined8 main_loop(void)
     shutdownProtectionSlowCycle10Coordinator();
     sensorStatusHistorySlowCycle20Coordinator();
     engineDataTrendingSlowCycle40Coordinator();
-    main_loop_phase_index = 8;
+    main_loop_phase_index = PHASE_8_DIAG_COMM;
     break;
-  case 8:
+  case PHASE_8_DIAG_COMM:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
@@ -11620,9 +11618,9 @@ undefined8 main_loop(void)
     diagnosticCommunicationSlowCycle10Coordinator();
     fuelSmokeLimiterSlowCycle20Coordinator();
     coldStartFuelControlSlowCycle40Coordinator();
-    main_loop_phase_index = 9;
+    main_loop_phase_index = PHASE_9_CAM_TIMING;
     break;
-  case 9:
+  case PHASE_9_CAM_TIMING:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
@@ -11630,9 +11628,9 @@ undefined8 main_loop(void)
     diagnosticDataTransmissionSlowCycle10Coordinator();
     camSyncDiagnosticProcessingSlowCycle20Coordinator();
     fuelTimingModeArbitrationSlowCycle40Coordinator();
-    main_loop_phase_index = 10;
+    main_loop_phase_index = PHASE_10_DERATE;
     break;
-  case 10:
+  case PHASE_10_DERATE:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
@@ -11640,9 +11638,9 @@ undefined8 main_loop(void)
     rpm_control_system();
     derateProtectionSlowCycle20Coordinator();
     ioOutputFlagMappingSlowCycle40Coordinator();
-    main_loop_phase_index = 0xb;
+    main_loop_phase_index = PHASE_11_VP44_PROT;
     break;
-  case 0xb:
+  case PHASE_11_VP44_PROT:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
@@ -11650,9 +11648,9 @@ undefined8 main_loop(void)
     rpmBasedFuelLimiterCoordinator();
     vp44ProtectionSlowCycle20Coordinator();
     shutdownProtectionSlowCycle40Coordinator();
-    main_loop_phase_index = 0xc;
+    main_loop_phase_index = PHASE_12_FSO_FRIC;
     break;
-  case 0xc:
+  case PHASE_12_FSO_FRIC:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
@@ -11660,9 +11658,9 @@ undefined8 main_loop(void)
     secondaryMonitoringWrapper();
     vp44FsoFaultDetectionSlowCycle20Coordinator();
     frictionalLoadTorqueManagementSlowCycle40Coordinator();
-    main_loop_phase_index = 0xd;
+    main_loop_phase_index = PHASE_13_DIAG_FAULT;
     break;
-  case 0xd:
+  case PHASE_13_DIAG_FAULT:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
@@ -11670,9 +11668,9 @@ undefined8 main_loop(void)
     slowCycle10Coordinator();
     vp44DiagnosticFaultMonitoringSlowCycle20Coordinator();
     engineOperatingModeStateTrackingSlowCycle40Coordinator();
-    main_loop_phase_index = 0xe;
+    main_loop_phase_index = PHASE_14_FSO_MON;
     break;
-  case 0xe:
+  case PHASE_14_FSO_MON:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
@@ -11680,9 +11678,9 @@ undefined8 main_loop(void)
     diagnosticMonitoringCoordinator();
     vp44FsoFaultMonitoringSlowCycle20Coordinator();
     fuelDemandProportionalCalculationSlowCycle40Coordinator();
-    main_loop_phase_index = 0xf;
+    main_loop_phase_index = PHASE_15_EPS_TIMING;
     break;
-  case 0xf:
+  case PHASE_15_EPS_TIMING:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
@@ -11692,9 +11690,9 @@ undefined8 main_loop(void)
     epsTimingCalculationSlowCycle40Coordinator();
     vp44InjectionTimingSlowCycle40Coordinator();
     engineProtectionMultiStateSlowCycle40Coordinator();
-    main_loop_phase_index = 0x10;
+    main_loop_phase_index = PHASE_16_DZG_TIMING;
     break;
-  case 0x10:
+  case PHASE_16_DZG_TIMING:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
@@ -11702,18 +11700,18 @@ undefined8 main_loop(void)
     ioControlSlowCycle10Coordinator();
     dzgTimingAndPressureSlowCycle10Coordinator();
     emptySlowCycle20PlaceholderCase16();
-    main_loop_phase_index = 0x11;
+    main_loop_phase_index = PHASE_17_OUTPUT_CTRL;
     break;
-  case 0x11:
+  case PHASE_17_OUTPUT_CTRL:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     engineParameterAndBoostControlWrapper();
     shutdownProtectionSlowCycle10Coordinator();
     engineModeBasedOutputControlSlowCycle20Coordinator();
-    main_loop_phase_index = 0x12;
+    main_loop_phase_index = PHASE_18_DIAG_TEMP;
     break;
-  case 0x12:
+  case PHASE_18_DIAG_TEMP:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
@@ -11721,199 +11719,199 @@ undefined8 main_loop(void)
     diagnosticCommunicationSlowCycle10Coordinator();
     vp44DiagnosticControlSlowCycle20Coordinator();
     fuelTemperatureProtectionSlowCycle40Coordinator();
-    main_loop_phase_index = 0x13;
+    main_loop_phase_index = PHASE_19_DIAG_STATS;
     break;
-  case 0x13:
+  case PHASE_19_DIAG_STATS:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
     slowCycle8Coordinator();
     diagnosticDataTransmissionSlowCycle10Coordinator();
     diagnosticStatisticsSlowCycle20Coordinator();
-    main_loop_phase_index = 0x14;
+    main_loop_phase_index = PHASE_20_RPM_VP44;
     break;
-  case 0x14:
+  case PHASE_20_RPM_VP44:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
     boostPressureControlCoordinator();
     rpm_control_system();
     vp44ControlSystemCoordinator();
-    main_loop_phase_index = 0x15;
+    main_loop_phase_index = PHASE_21_EXT_FAULT;
     break;
-  case 0x15:
+  case PHASE_21_EXT_FAULT:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     boost_pressure_control_wrapper();
     rpmBasedFuelLimiterCoordinator();
     vp44ExtendedFaultDetectionCoordinator();
-    main_loop_phase_index = 0x16;
+    main_loop_phase_index = PHASE_22_ADV_PROT;
     break;
-  case 0x16:
+  case PHASE_22_ADV_PROT:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
     emptySlowCycle8Placeholder();
     secondaryMonitoringWrapper();
     advancedEngineProtectionCoordinator();
-    main_loop_phase_index = 0x17;
+    main_loop_phase_index = PHASE_23_SLOW_ALL;
     break;
-  case 0x17:
+  case PHASE_23_SLOW_ALL:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
     emptySlowCycle8PlaceholderCase7();
     slowCycle10Coordinator();
     slowCycle20Coordinator();
-    main_loop_phase_index = 0x18;
+    main_loop_phase_index = PHASE_24_FUEL_TIME;
     break;
-  case 0x18:
+  case PHASE_24_FUEL_TIME:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
     empty_debug_hook();
     diagnosticMonitoringCoordinator();
     fuelTimingCoordinator();
-    main_loop_phase_index = 0x19;
+    main_loop_phase_index = PHASE_25_EPS_EXT;
     break;
-  case 0x19:
+  case PHASE_25_EPS_EXT:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     engineParameterAndBoostControlWrapper();
     epsSignalMonitoringCoordinator();
     slowCycle20ExtendedCoordinator();
-    main_loop_phase_index = 0x1a;
+    main_loop_phase_index = PHASE_26_IO_FUEL;
     break;
-  case 0x1a:
+  case PHASE_26_IO_FUEL:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
     auxiliarySystemControlWrapper();
     ioControlSlowCycle10Coordinator();
     fuelCalculationSlowCycle20Coordinator();
-    main_loop_phase_index = 0x1b;
+    main_loop_phase_index = PHASE_27_SENSOR_HIST;
     break;
-  case 0x1b:
+  case PHASE_27_SENSOR_HIST:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
     slowCycle8Coordinator();
     shutdownProtectionSlowCycle10Coordinator();
     sensorStatusHistorySlowCycle20Coordinator();
-    main_loop_phase_index = 0x1c;
+    main_loop_phase_index = PHASE_28_SMOKE_LIM;
     break;
-  case 0x1c:
+  case PHASE_28_SMOKE_LIM:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
     boostPressureControlCoordinator();
     diagnosticCommunicationSlowCycle10Coordinator();
     fuelSmokeLimiterSlowCycle20Coordinator();
-    main_loop_phase_index = 0x1d;
+    main_loop_phase_index = PHASE_29_CAM_SYNC;
     break;
-  case 0x1d:
+  case PHASE_29_CAM_SYNC:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     boost_pressure_control_wrapper();
     diagnosticDataTransmissionSlowCycle10Coordinator();
     camSyncDiagnosticProcessingSlowCycle20Coordinator();
-    main_loop_phase_index = 0x1e;
+    main_loop_phase_index = PHASE_30_DERATE2;
     break;
-  case 0x1e:
+  case PHASE_30_DERATE2:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
     emptySlowCycle8Placeholder();
     rpm_control_system();
     derateProtectionSlowCycle20Coordinator();
-    main_loop_phase_index = 0x1f;
+    main_loop_phase_index = PHASE_31_VP44_PROT2;
     break;
-  case 0x1f:
+  case PHASE_31_VP44_PROT2:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
     emptySlowCycle8PlaceholderCase7();
     rpmBasedFuelLimiterCoordinator();
     vp44ProtectionSlowCycle20Coordinator();
-    main_loop_phase_index = 0x20;
+    main_loop_phase_index = PHASE_32_FSO_DET;
     break;
-  case 0x20:
+  case PHASE_32_FSO_DET:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
     empty_debug_hook();
     secondaryMonitoringWrapper();
     vp44FsoFaultDetectionSlowCycle20Coordinator();
-    main_loop_phase_index = 0x21;
+    main_loop_phase_index = PHASE_33_DIAG_MON;
     break;
-  case 0x21:
+  case PHASE_33_DIAG_MON:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     engineParameterAndBoostControlWrapper();
     slowCycle10Coordinator();
     vp44DiagnosticFaultMonitoringSlowCycle20Coordinator();
-    main_loop_phase_index = 0x22;
+    main_loop_phase_index = PHASE_34_FSO_MON2;
     break;
-  case 0x22:
+  case PHASE_34_FSO_MON2:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
     auxiliarySystemControlWrapper();
     diagnosticMonitoringCoordinator();
     vp44FsoFaultMonitoringSlowCycle20Coordinator();
-    main_loop_phase_index = 0x23;
+    main_loop_phase_index = PHASE_35_EPS_EMPTY;
     break;
-  case 0x23:
+  case PHASE_35_EPS_EMPTY:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
     slowCycle8Coordinator();
     epsSignalMonitoringCoordinator();
     emptySlowCycle20PlaceholderCase15();
-    main_loop_phase_index = 0x24;
+    main_loop_phase_index = PHASE_36_DZG_IO;
     break;
-  case 0x24:
+  case PHASE_36_DZG_IO:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     vp44_engine_management_system();
     boostPressureControlCoordinator();
     ioControlSlowCycle10Coordinator();
     dzgTimingAndPressureSlowCycle10Coordinator();
-    main_loop_phase_index = 0x25;
+    main_loop_phase_index = PHASE_37_OUTPUT2;
     break;
-  case 0x25:
+  case PHASE_37_OUTPUT2:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     engine_control_cycle();
     boost_pressure_control_wrapper();
     shutdownProtectionSlowCycle10Coordinator();
     engineModeBasedOutputControlSlowCycle20Coordinator();
-    main_loop_phase_index = 0x26;
+    main_loop_phase_index = PHASE_38_VP44_DIAG;
     break;
-  case 0x26:
+  case PHASE_38_VP44_DIAG:
     ioControlAndCanPinSwitchingWrapper();
     evenPhaseSchedulerTaskSet();
     engineDiagnosticSystemCoordinator();
     emptySlowCycle8Placeholder();
     diagnosticCommunicationSlowCycle10Coordinator();
     vp44DiagnosticControlSlowCycle20Coordinator();
-    main_loop_phase_index = 0x27;
+    main_loop_phase_index = PHASE_39_FINAL;
     break;
-  case 0x27:
+  case PHASE_39_FINAL:
     ioControlAndCanPinSwitchingWrapper();
     oddPhaseSchedulerTaskSet();
     slowCycle4Coordinator();
     emptySlowCycle8PlaceholderCase7();
     diagnosticDataTransmissionSlowCycle10Coordinator();
     diagnosticStatisticsSlowCycle20Coordinator();
-    main_loop_phase_index = 0;
+    main_loop_phase_index = PHASE_0_VP44_RPM;
     break;
   default:
-    main_loop_phase_index = 0;
+    main_loop_phase_index = PHASE_0_VP44_RPM;
   }
   schedulerPerformanceMonitor();
   REG_SIM_SWSR = 0xaa;
@@ -11938,7 +11936,7 @@ void scheduler_init(void)
   scheduler_overrun_threshold = 0x9b7;
   scheduler_tick_interval = 500;
   scheduler_wait_loop_limit = 0;
-  _main_loop_counter = 0;
+  main_loop_counter = 0;
   sim_csor0 = 0x152;
   _main_loop_callback = main_loop;
   sim_csbar1 = 0x27;
@@ -11959,7 +11957,7 @@ void mainLoopTaskSchedulerInit(void)
   scheduler_phase_table_t *psVar1;
   
   if (schedule_armed != 0) {
-    if (_main_loop_counter == 0) {
+    if (main_loop_counter == 0) {
       for (psVar1 = &scheduler_phase_table; psVar1 < (scheduler_phase_table_t *)0x809a02;
           psVar1 = psVar1 + 1) {
         (psVar1->phase_slots).last_execution_time = 0;
@@ -11970,12 +11968,12 @@ void mainLoopTaskSchedulerInit(void)
       }
       scheduler_overrun_counter = 0;
       _scheduler_wait_loop_counter = 0;
-      _main_loop_counter = 1;
+      main_loop_counter = 1;
     }
     main_loop_reserved = hardware_timer_register._0_2_;
     return;
   }
-  _main_loop_counter = 0;
+  main_loop_counter = 0;
   return;
 }
 
@@ -12119,27 +12117,27 @@ ushort fuelDemandModeSelector(void)
   }
   if (engine_operating_mode == IDLE) {
     current_fuel_demand_value = 0;
-    vp44_engine_state = 0x1a;
+    vp44_engine_state = IDLE_STATE;
   }
   else {
     if (engine_operating_mode == FAULT_EMERGENCY) {
-      vp44_engine_state = 0x1b;
+      vp44_engine_state = FAULT_EMERGENCY_STATE;
       current_fuel_demand_value = mask_used_for_can_msg_object_15_0_ffffffff;
     }
     else if (engine_operating_mode == HIGH_PERFORMANCE) {
-      vp44_engine_state = 0x19;
+      vp44_engine_state = HIGH_PERFORMANCE_MODE;
       current_fuel_demand_value = intercept_fueling_between_hsg_brkpt_and_the_epf_curve_0_100;
     }
     else {
       uVar1 = fuel_demand_control_flags & 2;
       if (uVar1 == 0) {
         if (engine_operating_mode == VP44_INJECTION_ACTIVE) {
-          vp44_engine_state = 0x18;
+          vp44_engine_state = VP44_ACTIVE_MODE;
           current_fuel_demand_value = intercept_fueling_between_lsg_ref_and_the_epf_curve_0_100;
         }
         else if ((engine_operating_mode == LOW_RPM_RUNNING) ||
                 (engine_operating_mode == TRANSITIONAL_MODE_6)) {
-          vp44_engine_state = 0x16;
+          vp44_engine_state = LOW_RPM_OR_TRANSITIONAL;
           current_fuel_demand_value = fuel_demand_override;
         }
         else if (engine_operating_mode == HIGH_RPM_RUNNING) {
@@ -12172,14 +12170,14 @@ ushort fuelDemandModeSelector(void)
               current_fuel_demand_value = shutdown_limit_accumulator;
             }
             if (current_fuel_demand_value < fuel_demand_override) {
-              vp44_engine_state = 0x16;
+              vp44_engine_state = LOW_RPM_OR_TRANSITIONAL;
               current_fuel_demand_value = fuel_demand_override;
             }
           }
         }
       }
       else {
-        vp44_engine_state = 0x17;
+        vp44_engine_state = MANUAL_OVERRIDE;
         current_fuel_demand_value = fuel_demand_mode_override;
       }
     }
@@ -23882,8 +23880,8 @@ void retarderControlModeHandler(int param_1)
 
 {
   byte bVar1;
-  byte bVar2;
-  byte bVar3;
+  RETARDER_MODE_STATE RVar2;
+  RETARDER_MODE_STATE RVar3;
   uint uVar4;
   word wVar6;
   ushort uVar7;
@@ -23896,13 +23894,13 @@ void retarderControlModeHandler(int param_1)
   
   uVar8 = (undefined2)((uint)unaff_D2 >> 0x10);
   if ((retarder_mode_threshold_value != 0) && (*(short *)(param_1 + 4) == 8)) {
-    retarder_mode_control_byte_mirror = **(byte **)(param_1 + 6);
-    bVar3 = retarder_mode_control_byte_mirror & 3;
-    if (bVar3 != 1) {
-      bVar2 = retarder_mode_control_byte_mirror & 0x30;
+    retarder_mode_control_byte_mirror = **(RETARDER_MODE_STATE **)(param_1 + 6);
+    RVar3 = retarder_mode_control_byte_mirror & RETARDER_PROPORTIONAL;
+    if (RVar3 != RETARDER_SPEED_SYNC) {
+      RVar2 = retarder_mode_control_byte_mirror & 0x30;
       retarder_control_priority_byte = *(byte *)(*(int *)(param_1 + 6) + 3);
       bVar1 = *(byte *)(param_1 + 3);
-      if (bVar3 == 0) {
+      if (RVar3 == RETARDER_DISABLED) {
         uVar4 = ioControlEntryRemove((uint)CONCAT12(bVar1,uVar8));
       }
       else {
@@ -23919,31 +23917,32 @@ void retarderControlModeHandler(int param_1)
         _retarder_control_mode_state = _fuel_arbitrator_control_mode;
       }
       else if (bVar1 != _retarder_control_can_source) {
-        if (bVar3 == 0) {
+        if (RVar3 == RETARDER_DISABLED) {
           return;
         }
         uVar4 = diagnosticSessionValidator(CONCAT22(1,(ushort)bVar1));
         if ((short)uVar4 != 0) {
           return;
         }
-        if (retarder_mode_priority_level < bVar2) {
+        if (retarder_mode_priority_level < RVar2) {
           return;
         }
-        if (bVar2 == retarder_mode_priority_level) {
+        if (RVar2 == retarder_mode_priority_level) {
           if (fuel_arbitrator_state == 2) {
             return;
           }
-          if ((bVar3 == 3) && (retarder_control_priority_byte <= retarder_control_priority_prev)) {
+          if ((RVar3 == RETARDER_PROPORTIONAL) &&
+             (retarder_control_priority_byte <= retarder_control_priority_prev)) {
             return;
           }
         }
         _retarder_control_mode_state = _fuel_arbitrator_control_mode;
       }
-      retarder_mode_priority_level = bVar2;
+      retarder_mode_priority_level = RVar2;
       retarder_control_priority_prev = retarder_control_priority_byte;
       _retarder_control_can_source = (ushort)bVar1;
       retarder_mode_control_byte_cached = (word)retarder_mode_control_byte_mirror;
-      if (bVar3 == 0) {
+      if (RVar3 == RETARDER_DISABLED) {
         retarder_control_mode_timer = 0;
         fuel_arbitrator_state = 0;
         retarder_mode_can_source_priority = 0;
@@ -23952,7 +23951,7 @@ void retarderControlModeHandler(int param_1)
         fuel_arbitrator_diag_t_0080cff8.throttle_mode = 0;
         return;
       }
-      if (bVar3 == 2) {
+      if (RVar3 == RETARDER_LOAD_BASED) {
         wVar6 = retarderPercentageScaler((uint)CONCAT12(retarder_control_priority_byte,uVar8));
         retarder_percentage_scaled_output = wVar6;
         if (((((diagnostic_system_flags_2 & 0x1000) == 0) ||
@@ -23989,7 +23988,7 @@ void retarderControlModeHandler(int param_1)
         _retarder_mode_override_flag = 0;
         return;
       }
-      if (bVar3 != 3) {
+      if (RVar3 != RETARDER_PROPORTIONAL) {
         return;
       }
       fuel_arbitrator_state = 3;
@@ -24166,7 +24165,7 @@ void diagnosticTableSnapshotCapture(undefined4 param_1)
     *(undefined2 *)(sVar1 + 0x805a3c) = _fault_flag_snapshot_register_3;
     *(undefined2 *)(sVar1 + 0x805a4a) = _fault_flag_snapshot_register_2;
     *(undefined4 *)(sVar1 + 0x805a4c) = _engineRunCounter;
-    *(word *)(sVar1 + 0x805a50) = vp44_engine_state;
+    *(VP44_ENGINE_STATE *)(sVar1 + 0x805a50) = vp44_engine_state;
     *(word *)(sVar1 + 0x805a52) = retarder_input_value;
     *(word *)(sVar1 + 0x805a54) = current_fuel_demand_value;
     *(word *)(sVar1 + 0x805a56) = diagnostic_fuel_arbitration_output;
@@ -24191,7 +24190,7 @@ void diagnosticTableSnapshotCapture(undefined4 param_1)
     *(undefined2 *)(sVar1 + 0x80567c) = _fault_flag_snapshot_register_3;
     *(undefined2 *)(sVar1 + 0x80568a) = _fault_flag_snapshot_register_2;
     *(undefined4 *)(sVar1 + 0x80568c) = _engineRunCounter;
-    *(word *)(sVar1 + 0x805690) = vp44_engine_state;
+    *(VP44_ENGINE_STATE *)(sVar1 + 0x805690) = vp44_engine_state;
     *(word *)(sVar1 + 0x805692) = retarder_input_value;
     *(word *)(sVar1 + 0x805694) = current_fuel_demand_value;
     *(word *)(sVar1 + 0x805696) = diagnostic_fuel_arbitration_output;
@@ -25691,7 +25690,7 @@ void buildPgn61444_ProprietarySpeed(void)
     case 0x15:
       j1939_tx_msg_buffer = 0xf8;
       break;
-    case 0x18:
+    case VP44_ACTIVE_MODE:
       j1939_tx_msg_buffer = 0xfa;
     }
   }
@@ -30192,17 +30191,17 @@ void diagnosticModeFuelArbitrationHandler(void)
 
 {
   diagnostic_fuel_arbitration_state = fuel_limit_minimum_value;
-  if (vp44_engine_state == 0x1b) {
+  if (vp44_engine_state == FAULT_EMERGENCY_STATE) {
     diagnostic_fuel_arbitration_output = diagnostic_fuel_arbitration_state_10_value;
     diagnostic_fuel_arbitration_state = 10;
     fuel_adjustment_active_flag = 0;
   }
-  else if (vp44_engine_state == 0x19) {
+  else if (vp44_engine_state == HIGH_PERFORMANCE_MODE) {
     diagnostic_fuel_arbitration_output = diagnostic_fuel_arbitration_state_9_value;
     diagnostic_fuel_arbitration_state = 9;
     fuel_adjustment_active_flag = 0;
   }
-  else if (vp44_engine_state == 0x1a) {
+  else if (vp44_engine_state == IDLE_STATE) {
     diagnostic_fuel_arbitration_output = 0;
     diagnostic_fuel_arbitration_state = 8;
     fuel_adjustment_active_flag = 0;
@@ -32133,15 +32132,13 @@ ushort fuelDemandLimitOrchestrator(void)
 // Function: fuelPressureSyncStateMachine @ 0x000315f6
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void fuelPressureSyncStateMachine(void)
 
 {
   bool bVar1;
   
-  switch(_fuel_pressure_sync_state_machine) {
-  case 0:
+  switch(fuel_pressure_sync_state_machine) {
+  case IDLE:
     if (vp44_diagnostic_fault_state != 0) {
       if (((fault_status_flags_2 & 0x400) == 0) && ((fault_status_flags_2 & 0x200) == 0)) {
         bVar1 = false;
@@ -32150,40 +32147,40 @@ void fuelPressureSyncStateMachine(void)
         bVar1 = true;
       }
       if ((bVar1) && (fault_when_epf_engine_sync_fuel_pressure_fuel_error_found_0_65535 != 0)) {
-        _fuel_pressure_sync_state_machine = 1;
+        fuel_pressure_sync_state_machine = FAULT_COUNTING;
         fuel_pressure_sync_counter = 0;
       }
       else if (((uint)(&vp44_status_flags_1)[(short)((int)(uint)EPFPRPSS >> 4)] &
                1 << (EPFPRPSS & 0xf)) == 0) {
-        _fuel_pressure_sync_state_machine = 3;
+        fuel_pressure_sync_state_machine = FAULT_CONFIRMED;
       }
       else {
-        _fuel_pressure_sync_state_machine = 2;
+        fuel_pressure_sync_state_machine = STATUS_MONITORING;
       }
     }
     break;
-  case 1:
+  case FAULT_COUNTING:
     if (vp44_diagnostic_fault_state == 0) {
       if (delay_after_rpm_is_reached_before_eng_sync_fuel_pressure_errors_0_8000 == 0) {
-        _fuel_pressure_sync_state_machine = 0;
+        fuel_pressure_sync_state_machine = IDLE;
       }
       else {
-        _fuel_pressure_sync_state_machine = 4;
+        fuel_pressure_sync_state_machine = DELAY_RECOVERY;
         fuel_pressure_sync_counter = 0;
       }
     }
     else if (fault_when_epf_engine_sync_fuel_pressure_fuel_error_found_0_65535 <=
              fuel_pressure_sync_counter) {
-      _fuel_pressure_sync_state_machine = 3;
+      fuel_pressure_sync_state_machine = FAULT_CONFIRMED;
     }
     break;
-  case 2:
+  case STATUS_MONITORING:
     if (vp44_diagnostic_fault_state == 0) {
       if (delay_after_rpm_is_reached_before_eng_sync_fuel_pressure_errors_0_8000 == 0) {
-        _fuel_pressure_sync_state_machine = 0;
+        fuel_pressure_sync_state_machine = IDLE;
       }
       else {
-        _fuel_pressure_sync_state_machine = 4;
+        fuel_pressure_sync_state_machine = DELAY_RECOVERY;
         fuel_pressure_sync_counter = 0;
       }
     }
@@ -32195,31 +32192,31 @@ void fuelPressureSyncStateMachine(void)
         bVar1 = true;
       }
       if ((bVar1) && (fault_when_epf_engine_sync_fuel_pressure_fuel_error_found_0_65535 != 0)) {
-        _fuel_pressure_sync_state_machine = 1;
+        fuel_pressure_sync_state_machine = FAULT_COUNTING;
         fuel_pressure_sync_counter = 0;
       }
       else if ((fuel_pressure_rpm_flag != 0) &&
               ((fuel_pressure_sync_param <= current_engine_rpm ||
                (fuel_pressure_injection_flag != 0)))) {
-        _fuel_pressure_sync_state_machine = 3;
+        fuel_pressure_sync_state_machine = FAULT_CONFIRMED;
       }
     }
     break;
-  case 3:
+  case FAULT_CONFIRMED:
     if (vp44_diagnostic_fault_state == 0) {
       if (delay_after_rpm_is_reached_before_eng_sync_fuel_pressure_errors_0_8000 == 0) {
-        _fuel_pressure_sync_state_machine = 0;
+        fuel_pressure_sync_state_machine = IDLE;
       }
       else {
-        _fuel_pressure_sync_state_machine = 4;
+        fuel_pressure_sync_state_machine = DELAY_RECOVERY;
         fuel_pressure_sync_counter = 0;
       }
     }
     break;
-  case 4:
+  case DELAY_RECOVERY:
     if (delay_after_rpm_is_reached_before_eng_sync_fuel_pressure_errors_0_8000 <=
         fuel_pressure_sync_counter) {
-      _fuel_pressure_sync_state_machine = 0;
+      fuel_pressure_sync_state_machine = IDLE;
     }
   }
   fuel_pressure_sync_counter = fuel_pressure_sync_counter + 1;
@@ -32232,8 +32229,6 @@ void fuelPressureSyncStateMachine(void)
 // Function: vp44InjectionSystemStateController @ 0x00031768
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void vp44InjectionSystemStateController(void)
 
 {
@@ -32244,8 +32239,8 @@ void vp44InjectionSystemStateController(void)
   fuelDemandOverrideStateSelector();
   fuelDemandLimitOrchestrator();
   fuelPressureSyncStateMachine();
-  vp44_injection_system_active = (word)(_fuel_pressure_sync_state_machine != 0);
-  if (_fuel_pressure_sync_state_machine == 3) {
+  vp44_injection_system_active = (word)(fuel_pressure_sync_state_machine != IDLE);
+  if (fuel_pressure_sync_state_machine == FAULT_CONFIRMED) {
     fuelDemandFaultFlagUpdater(CONCAT22(vp44_diagnostic_fault_state,uVar1));
   }
   else {
@@ -32265,7 +32260,7 @@ void vp44InjectionSystemStateController(void)
 void fuelDemandState24Override(void)
 
 {
-  if (vp44_engine_state == 0x18) {
+  if (vp44_engine_state == VP44_ACTIVE_MODE) {
     fuel_demand_state_24_write_flag = fuel_limit_minimum_value;
     fuel_limit_minimum_value = fuel_demand_state_24_override_value;
     fuel_demand_source_id = 6;
@@ -32280,8 +32275,6 @@ void fuelDemandState24Override(void)
 // Function: fuelDemandControllerInit @ 0x000317ee
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void fuelDemandControllerInit(void)
 
 {
@@ -32289,7 +32282,7 @@ void fuelDemandControllerInit(void)
   
   vp44_injection_system_active = 0;
   fuelDemandFaultFlagUpdater((uint)in_stack_00000000);
-  _fuel_pressure_sync_state_machine = 0;
+  fuel_pressure_sync_state_machine = IDLE;
   fuel_demand_override_state = 5;
   fuel_demand_limit_source = 5;
   return;

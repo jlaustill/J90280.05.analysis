@@ -370,8 +370,12 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00800243,vp44_buffer_index_reserved,byte,VP44 buffer index reserved byte,1,0,,reserved
 0x00800244,vp44_status_data_table,dword,VP44 status data collection table base,4,0,,table
 0x00800288,peak_torque_correction_applied_flag,word,Peak torque correction applied one-shot flag,2,0,,flag
+0x008002d1,protection_reserved_1,byte,Reserved padding byte,1,0,,reserved
 0x008002d2,engine_mode_previous_state,word,Engine mode previous state for transition detection,2,0,,state
+0x008002d5,protection_reserved_2,byte,Reserved padding byte,1,0,,reserved
 0x008002d6,engine_overspeed_counter,word,Engine overspeed detection counter,2,0,,counter
+0x008002d9,protection_reserved_3,byte,Reserved padding byte,1,0,,reserved
+0x008002dc,protection_reserved_5,word,Reserved padding word,2,0,,reserved
 0x008002ee,protection_fault_id_table,word,Table of protection fault IDs,10,0,,array
 0x008002f2,engine_state_timer,word,Engine state transition timer,2,0,,timer
 0x008002f6,engine_mode_transition_timer,word,Engine mode transition timer,2,0,,timer
@@ -384,7 +388,8 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00800322,throttle_zero_position_counter,word,Throttle zero position sample counter (5 refs),2,0,,counter
 0x0080032a,throttle_timer_capture_backup,dword,Throttle timer capture backup value (2 refs),4,0,,value
 0x00800354,scheduler_phase_execution_time,word,Scheduler phase execution time measurement (7 refs),2,0,,value
-0x00800358,main_loop_phase_index,word,Main loop scheduler phase index 0-39 (41 refs),2,0,,index
+0x00800356,scheduler_reserved_padding,word,Reserved padding before phase index,2,0,,reserved
+0x00800358,main_loop_phase_index,MAIN_LOOP_PHASE,Main loop scheduler phase index 0-39 (41 refs),2,0,,index
 0x0080035a,main_loop_reserved,word,Reserved padding after phase index,2,0,,reserved
 0x0080035c,scheduler_phase_pointer,dword,Pointer to current scheduler phase table entry (1 ref),4,0,,pointer
 0x008003e0,fuel_delivery_pid_integral,dword,Fuel delivery PID controller integral term,4,0,,value
@@ -735,7 +740,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008033d8,fuel_pressure_sync_counter,word,Fuel pressure sync countdown counter,2,0,,counter
 0x008033da,fuel_pressure_rpm_flag,word,Fuel pressure RPM condition flag,2,0,,flag
 0x008033dc,fuel_pressure_injection_flag,word,Fuel pressure injection condition flag,2,0,,flag
-0x008033de,fuel_pressure_sync_state_machine,word,Fuel pressure sync state machine state,2,0,,state
+0x008033de,fuel_pressure_sync_state_machine,FUEL_SYNC_STATE,Fuel pressure sync state machine state,4,0,,state
 0x008033e2,fuel_temp_protection_state,word,Fuel temp protection state,2,0,,state
 0x008033e4,fuel_temp_protection_active_flag,word,Fuel temp protection active flag (4 refs),2,0,,flag
 0x008033e6,fuel_temp_vp44_state_flag,word,Fuel temp VP44 state flag (4 refs),2,0,,flag
@@ -3540,7 +3545,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080c996,high_rpm_shutdown_active_flag,word,High RPM shutdown active flag,2,0,,flag
 0x0080c998,lamp_3_blink_trigger,word,Lamp 3 blink trigger flag,2,0,,flag
 0x0080c9a4,fuel_demand_command,word,Current fuel demand value set by fuelDemandModeSelector,2,0,,value
-0x0080c9a6,vp44_engine_state,word,VP44 engine operating state - determines status byte in 0x100 command (case 3-24 in buildPgn61444),2,0,,state
+0x0080c9a6,vp44_engine_state,VP44_ENGINE_STATE,VP44 engine operating state - determines status byte in 0x100 command (case 3-24 in buildPgn61444),2,0,,state
 0x0080c9a8,diagnostic_parameter_buffer,word,Buffer for diagnostic parameter values,2,0,,data
 0x0080c9aa,fuel_timing_blend_factor,word,Fuel timing blend factor 0-16384,2,0,,value
 0x0080c9ac,fuel_demand_table_output,word,Fuel demand table calculation output,2,0,,value
@@ -4814,7 +4819,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080cfb0,retarder_mode_threshold_result,byte,Retarder mode threshold calculation result,1,0,,result
 0x0080cfb4,retarder_percentage_scaled_output,word,Result from retarderPercentageScaler (0x6400 or scaled %),2,0,,value
 0x0080d038,retarder_mode_override_flag,byte,Cleared during state transitions in mode 2/3,1,0,,flag
-0x00801a38,retarder_mode_priority_level,byte,Previous mode priority for arbitration,1,0,,priority
+0x00801a38,retarder_mode_priority_level,RETARDER_MODE_STATE,Previous mode priority for arbitration,1,0,,priority
 0x00801a3a,retarder_mode_control_byte_mirror,byte,Mirror of control byte (bit0-1: mode bit4-5: priority),1,0,,mirror
 0x00807260,output_timing_interpolation_base_ptr,word,Base pointer for timing table lookups,2,0,,pointer
 0x00807266,output_control_timing_reset_countdown,word,Countdown timer for output control reset,2,0,,countdown
@@ -4871,7 +4876,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00809d40,retarder_scaled_percentage_output,word,Retarder percentage scaled output (0-32000) (7 refs),2,0,,output
 0x00807cdc,rpm_fault_limit_calibration,word,RPM-based fault limit calibration value (7 refs),2,0,,calibration
 0x00805f6c,crank_timing_state_current,dword,Current crank timing state for delta calculations (8 refs),4,0,,state
-0x008002da,protection_state_machine_index,byte,Protection state machine cycle index (0-4) (7 refs),1,0,,index
+0x008002da,protection_state_machine_index,PROTECTION_STATE,Protection state machine cycle index (0-4) (7 refs),2,0,,index
 0x00800000,rpm_rate_limit_countdown,word,RPM rate limit threshold countdown timer (7 refs),2,0,,countdown
 0x0080011c,retarder_lookup_table_ptr,dword,Pointer to retarder mode lookup table (7 refs),4,0,,pointer
 0x00804f44,diagnostic_active_fault_counter,word,Active diagnostic fault count tracker (7 refs),2,0,,counter
