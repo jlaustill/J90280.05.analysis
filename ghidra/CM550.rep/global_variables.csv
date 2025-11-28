@@ -4870,3 +4870,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080c994,high_rpm_protection_triggered_flag,word,High RPM protection triggered flag (4 refs),2,0,,flag
 0x0080c7e4,can1_init_state_flag,word,CAN1 initialization state flag (4 refs),2,0,,flag
 0x0080cc3a,fuel_delivery_phase_lag_result,word,Fuel delivery phase lag calculation result (4 refs),2,0,,result
+0x008084ca,diagnostic_status_flags_word,word,Diagnostic status flags for response builder (6 refs),2,0,,flags
+0x0080967e,vp44_status_threshold_flag,word,VP44 status threshold comparison flag (4 refs),2,0,,flag
+0x00808eea,rpm_timer_interrupt_handler_ptr,dword,Pointer to active RPM timer interrupt handler (4 refs),4,0,,pointer
+0x00807d2e,throttle_frictional_load_upper_threshold,word,Upper throttle threshold for frictional load calc (4 refs),2,0,,threshold
+0x00807d30,throttle_frictional_load_lower_threshold,word,Lower throttle threshold for frictional load calc (4 refs),2,0,,threshold
+0x00807854,engine_rpm_histogram_lower_threshold,word,Lower RPM threshold for histogram binning (4 refs),2,0,,threshold
+0x00807852,engine_rpm_histogram_upper_threshold,word,Upper RPM threshold for histogram binning (4 refs),2,0,,threshold
+0x0080734e,vp44_state_processing_timeout_reload,word,VP44 state processing timeout reload value (4 refs),2,0,,timeout
+0x0080734c,vp44_state_debounce_threshold,word,VP44 state debounce threshold value (4 refs),2,0,,threshold
+0x0080726c,output_sequence_rpm_threshold,word,RPM threshold for output sequence state transitions (4 refs),2,0,,threshold
+0x00805574,diagnostic_buffer_write_index,word,Diagnostic buffer circular write index (0-4) (4 refs),2,0,,index
+0x0080556c,diagnostic_capture_active_flag,word,Diagnostic data capture active flag (4 refs),2,0,,flag
