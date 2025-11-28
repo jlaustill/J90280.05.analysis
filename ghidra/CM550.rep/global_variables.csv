@@ -5122,3 +5122,21 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00801748,snapshot_throttle_position,word,Throttle position snapshot value (2 refs),2,0,,snapshot
 0x00800638,arbitrated_fuel_previous,word,Arbitrated fuel limit previous value (2 refs),2,0,,previous
 0x0080063a,governor_rpm_error_previous,word,Governor RPM error previous value (2 refs),2,0,,previous
+0x00800344,engine_rpm_previous_sample,word,Engine RPM previous sample for delta (2 refs),2,0,,previous
+0x00800366,flash_write_data_pointer,dword,Flash write data source pointer (2 refs),4,0,,pointer
+0x0080036a,flash_write_end_address,dword,Flash write end address limit (2 refs),4,0,,address
+0x00800380,rpm_snapshot_0,word,Engine RPM snapshot 0 (2 refs),2,0,,snapshot
+0x00800388,fuel_snapshot_0,word,Fuel value snapshot 0 (2 refs),2,0,,snapshot
+0x00800394,rpm_snapshot_1,word,Engine RPM snapshot 1 (2 refs),2,0,,snapshot
+0x0080039c,fuel_snapshot_1,word,Fuel value snapshot 1 (2 refs),2,0,,snapshot
+0x00800418,general_counter_0,word,General purpose counter 0 (2 refs),2,0,,counter
+0x0080061a,general_counter_1,word,General purpose counter 1 (2 refs),2,0,,counter
+0x008001aa,cold_start_rpm_snapshot,word,Cold start engine RPM snapshot (2 refs),2,0,,snapshot
+0x0080019e,cold_start_sensor_sum_saved,word,Cold start sensor reading sum saved (2 refs),2,0,,saved
+0x008001dc,rpm_histogram_threshold_saved,word,RPM histogram threshold saved (2 refs),2,0,,saved
+0x008002ce,engine_mode_previous_0,byte,Engine operating mode previous 0 (2 refs),1,0,,previous
+0x008002d0,engine_mode_previous_1,byte,Engine operating mode previous 1 (2 refs),1,0,,previous
+0x008002d4,engine_mode_previous_2,byte,Engine operating mode previous 2 (2 refs),1,0,,previous
+0x008002e6,engine_rpm_previous_nonzero,word,Engine RPM previous nonzero check (2 refs),2,0,,previous
+0x008002e8,high_rpm_shutdown_previous,byte,High RPM shutdown flag previous (2 refs),1,0,,previous
+0x008002ea,diagnostic_protection_previous,byte,Diagnostic protection state previous (2 refs),1,0,,previous

@@ -321,17 +321,17 @@ CSVs are the source of truth. Before committing:
 | Category | Named | Unnamed | Progress |
 |----------|-------|---------|----------|
 | Functions | 793 | 0 | **100%** |
-| Global Variables | 4,919 | 1,985 | **71%** |
+| Global Variables | 5,141 | 978 | **84%** |
 | Local Variables | 42 | 90 | **32%** |
 | Function Parameters | 9 | 4 | **69%** |
 
 ### **Global Variables Breakdown**
 | Type | Count | Notes |
 |------|-------|-------|
-| Named (in CSV) | 4,919 | Documented in global_variables.csv |
-| Unnamed `_DAT_*` | 827 | Pointers/references needing names |
-| Unnamed `DAT_*` | 1,158 | Direct data needing names |
-| **Total** | **6,904** | |
+| Named (in CSV) | 5,141 | Documented in global_variables.csv |
+| Unnamed `_DAT_*` | 645 | Pointers/references needing names |
+| Unnamed `DAT_*` | 333 | Direct data needing names |
+| **Total** | **6,119** | |
 
 ### **Type Information**
 | Metric | Count |
@@ -343,7 +343,7 @@ CSVs are the source of truth. Before committing:
 | Labels | 3,495 |
 
 ### **Biggest Opportunities**
-1. **1,985 unnamed global variables** - DAT_ and _DAT_ prefixes
+1. **978 unnamed global variables** - DAT_ and _DAT_ prefixes
 2. **1,202 undefined type usages** - Variables needing proper typing
 3. **90 unnamed local variables** - xVarN and local_XX patterns
 
