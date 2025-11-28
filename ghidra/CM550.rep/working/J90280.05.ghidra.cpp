@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 14:07:43 MST 2025
+// Fri Nov 28 14:30:18 MST 2025
 
 
 //
@@ -32905,7 +32905,7 @@ void dzgTimingStateVariablesInit(void)
   dzg_state_transition_counter = 0;
   dzg_timing_state_variable = 7;
   dzg_pressure_ramp_rate = 7;
-  dzg_timing_state_index = 0;
+  dzg_timing_state_index = INITIAL;
   dzg_pressure_state_index = 0;
   dzg_timing_state_machine_value =
        _dzg_angular_duration_angular_high_duration_of_dzg_pulse_at_tpu_0_60;
@@ -32937,14 +32937,14 @@ uint dzgTimingAndPressureControlStateMachine(void)
     uVar6 = 0x10;
   }
   switch(dzg_timing_state_index) {
-  case 0:
+  case INITIAL:
     if (dzg_angle_after_cyl_tdc_angle_after_cyl_tdc_to_put_dzg_first_60_60._2_2_ <
         throttle_position_raw) {
       bVar7 = _index_of_first_tdc_after_missed_pulse_1_6 < dzg_timing_accumulator_value;
       dzg_timing_accumulator_value = dzg_timing_accumulator_value + 1;
       if (bVar7) {
         dzg_timing_accumulator_value = 0;
-        dzg_timing_state_index = 1;
+        dzg_timing_state_index = ACTIVE;
         if ((int)((uint)dzg_timing_control_params -
                  (uint)_dzg_angular_duration_angular_high_duration_of_dzg_pulse_at_tpu_0_60) < 0) {
           iVar3 = -((uint)dzg_timing_control_params -
@@ -32964,14 +32964,14 @@ uint dzgTimingAndPressureControlStateMachine(void)
       dzg_timing_accumulator_value = 0;
     }
     break;
-  case 1:
+  case ACTIVE:
     if (throttle_position_raw <
         dzg_angle_after_cyl_tdc_angle_after_cyl_tdc_to_put_dzg_first_60_60._2_2_) {
       bVar7 = _index_of_first_tdc_after_missed_pulse_1_6 < dzg_timing_accumulator_value;
       dzg_timing_accumulator_value = dzg_timing_accumulator_value + 1;
       if (bVar7) {
         dzg_timing_accumulator_value = 0;
-        dzg_timing_state_index = 0;
+        dzg_timing_state_index = INITIAL;
         if ((int)((uint)dzg_timing_control_params -
                  (uint)_dzg_angular_duration_angular_high_duration_of_dzg_pulse_at_tpu_0_60) < 0) {
           iVar3 = -((uint)dzg_timing_control_params -
@@ -32994,7 +32994,7 @@ uint dzgTimingAndPressureControlStateMachine(void)
       dzg_timing_accumulator_value = dzg_timing_accumulator_value + 1;
       if (bVar7) {
         dzg_timing_accumulator_value = 0;
-        dzg_timing_state_index = 2;
+        dzg_timing_state_index = ALTERNATE;
         if ((int)((uint)watchdog_fueling_debounce_counts_0_to_255 - (uint)dzg_timing_control_params)
             < 0) {
           iVar3 = -((uint)watchdog_fueling_debounce_counts_0_to_255 -
@@ -33013,7 +33013,7 @@ uint dzgTimingAndPressureControlStateMachine(void)
       dzg_timing_accumulator_value = 0;
     }
     break;
-  case 2:
+  case ALTERNATE:
     if ((throttle_position_raw <
          time_that_must_elasp_since_last_event_to_consider_an_abuse_0_100000._0_2_) &&
        (throttle_position_raw < dzg_threshold_level_2)) {
@@ -33021,7 +33021,7 @@ uint dzgTimingAndPressureControlStateMachine(void)
       dzg_timing_accumulator_value = dzg_timing_accumulator_value + 1;
       if (bVar7) {
         dzg_timing_accumulator_value = 0;
-        dzg_timing_state_index = 1;
+        dzg_timing_state_index = ACTIVE;
         if ((int)((uint)watchdog_fueling_debounce_counts_0_to_255 - (uint)dzg_timing_control_params)
             < 0) {
           iVar3 = -((uint)watchdog_fueling_debounce_counts_0_to_255 -
@@ -33042,7 +33042,7 @@ uint dzgTimingAndPressureControlStateMachine(void)
       dzg_timing_accumulator_value = dzg_timing_accumulator_value + 1;
       if (bVar7) {
         dzg_timing_accumulator_value = 0;
-        dzg_timing_state_index = 3;
+        dzg_timing_state_index = ALTERNATE|ACTIVE;
         if ((int)((uint)max_allowed_fueling_at_high_rpm_and_min_throttle_0_to_200 -
                  (uint)watchdog_fueling_debounce_counts_0_to_255) < 0) {
           iVar3 = -((uint)max_allowed_fueling_at_high_rpm_and_min_throttle_0_to_200 -
@@ -33062,14 +33062,14 @@ uint dzgTimingAndPressureControlStateMachine(void)
       dzg_timing_accumulator_value = 0;
     }
     break;
-  case 3:
+  case ALTERNATE|ACTIVE:
     if (throttle_position_raw < time_abuse_event_must_be_continuously_present_before_it_will_b_0_100
        ) {
       bVar7 = _index_of_first_tdc_after_missed_pulse_1_6 < dzg_timing_accumulator_value;
       dzg_timing_accumulator_value = dzg_timing_accumulator_value + 1;
       if (bVar7) {
         dzg_timing_accumulator_value = 0;
-        dzg_timing_state_index = 2;
+        dzg_timing_state_index = ALTERNATE;
         if ((int)((uint)max_allowed_fueling_at_high_rpm_and_min_throttle_0_to_200 -
                  (uint)watchdog_fueling_debounce_counts_0_to_255) < 0) {
           iVar3 = -((uint)max_allowed_fueling_at_high_rpm_and_min_throttle_0_to_200 -
@@ -33372,7 +33372,7 @@ void sensorStatusHistoryTracker(void)
     sensor_status_history_bits = sensor_status_history_bits | 0x4000;
   }
   switch(sensor_history_state_machine) {
-  case 0:
+  case IDLE:
     if ((((diagnostic_system_flags_1 & 0x10) == 0) ||
         (oil_pressure_validation_timer <= oil_pressure_validation_threshold)) ||
        (oil_pressure_state_index == 0)) {
@@ -33382,7 +33382,7 @@ void sensorStatusHistoryTracker(void)
            (((engine_fault_register_a & 0x200) != 0 && ((engine_fault_register_b & 0x200) != 0))))))
          || (((engine_fault_register_a & 0x100) != 0 && ((engine_fault_register_b & 0x100) != 0))))
       {
-        sensor_history_state_machine = 2;
+        sensor_history_state_machine = FAULT_DETECTED;
       }
       else if ((oil_pressure_rpm_limit_previous == 0) ||
               (sensor_status_validation_counter <= oil_pressure_validation_threshold)) {
@@ -33400,25 +33400,25 @@ void sensorStatusHistoryTracker(void)
         }
       }
       else {
-        sensor_history_state_machine = 3;
+        sensor_history_state_machine = RECOVERY;
         oil_pressure_rpm_limit_target = oil_pressure_rpm_limit_previous;
       }
     }
     else {
-      sensor_history_state_machine = 1;
+      sensor_history_state_machine = ACTIVE;
       oil_pressure_rpm_limit_target =
            *(word *)(&oil_pressure_protection_table_ptr)[(short)oil_pressure_state_index];
     }
     break;
-  case 1:
+  case ACTIVE:
     if ((sensor_status_history_bits & 0x1000) == 0) {
-      sensor_history_state_machine = 0;
+      sensor_history_state_machine = IDLE;
       oil_pressure_state_index = 0;
     }
     else if ((sensor_status_history_pointer < throttle_position_value) ||
             (((engine_fault_register_a & 0x100) != 0 && ((engine_fault_register_b & 0x100) != 0))))
     {
-      sensor_history_state_machine = 2;
+      sensor_history_state_machine = FAULT_DETECTED;
     }
     else {
       sensor_status_validation_counter = 0;
@@ -33426,7 +33426,7 @@ void sensorStatusHistoryTracker(void)
       oil_pressure_state_index = 0;
     }
     break;
-  case 2:
+  case FAULT_DETECTED:
     if (((throttle_position_value < sensor_status_history_pointer) &&
         (rpm_range_lower_limit <= current_engine_rpm)) &&
        (current_engine_rpm <= rpm_range_upper_limit)) {
@@ -33444,7 +33444,7 @@ void sensorStatusHistoryTracker(void)
           bVar1 = true;
         }
         if ((!bVar1) && ((sensor_status_history_bits & 0x1000) != 0)) {
-          sensor_history_state_machine = 0;
+          sensor_history_state_machine = IDLE;
           oil_pressure_state_index = oil_pressure_state_index + 1;
           break;
         }
@@ -33478,7 +33478,7 @@ void sensorStatusHistoryTracker(void)
             ((((sensor_status_history_bits & 0x800) == 0 &&
               ((sensor_status_history_bits & 0x400) != 0)) && ((vp44_status_flags_2 & 0x8000) != 0))
             )))) {
-          sensor_history_state_machine = 3;
+          sensor_history_state_machine = RECOVERY;
           if ((sensor_status_history_bits & 0x400) == 0) {
             if (((sensor_status_history_bits & 0x80) == 0) ||
                ((sensor_status_history_bits & 0x40) != 0)) {
@@ -33501,7 +33501,7 @@ void sensorStatusHistoryTracker(void)
     oil_pressure_validation_timer = 0;
     oil_pressure_rpm_limit_previous = 0;
     break;
-  case 3:
+  case RECOVERY:
     if (throttle_position_value <= sensor_status_history_pointer) {
       if (((engine_fault_register_a & 0x200) == 0) || ((engine_fault_register_b & 0x200) == 0)) {
         bVar1 = false;
@@ -33517,7 +33517,7 @@ void sensorStatusHistoryTracker(void)
           bVar1 = true;
         }
         if ((!bVar1) && ((sensor_status_history_bits & 0x1000) != 0)) {
-          sensor_history_state_machine = 0;
+          sensor_history_state_machine = IDLE;
           oil_pressure_state_index = oil_pressure_state_index + 1;
           oil_pressure_rpm_limit_previous = oil_pressure_rpm_limit_target;
           break;
@@ -33529,7 +33529,7 @@ void sensorStatusHistoryTracker(void)
          (((engine_fault_register_a & 0x100) != 0 && ((engine_fault_register_b & 0x100) != 0)))) ||
         (((vp44_status_flags_2 & 0x1000) != 0 && ((sensor_status_history_bits & 0x4000) != 0)))) ||
        (((vp44_status_flags_2 & 0x800) != 0 && ((sensor_status_history_bits & 0x10000) != 0)))) {
-      sensor_history_state_machine = 2;
+      sensor_history_state_machine = FAULT_DETECTED;
     }
     else {
       sensor_status_validation_counter = 0;
@@ -33580,7 +33580,7 @@ void sensorStatusHistoryTracker(void)
     oil_pressure_rpm_ramp_complete = 1;
   }
   pointer_to_oil_pressure_rpm_limit_threshold_0_2_32 = oil_pressure_rpm_limit_current;
-  if ((sensor_history_state_machine != 3) && (sensor_history_state_machine != 1)) {
+  if ((sensor_history_state_machine != RECOVERY) && (sensor_history_state_machine != ACTIVE)) {
     oil_pressure_protection_enabled = 0;
     return;
   }
@@ -33597,7 +33597,7 @@ void sensorStatusHistoryTracker(void)
 void initOilPressureProtectionPointers(void)
 
 {
-  sensor_history_state_machine = 2;
+  sensor_history_state_machine = FAULT_DETECTED;
   oil_pressure_protection_enabled = 0;
   pointer_to_oil_pressure_rpm_limit_threshold_0_2_32 = 0;
   oil_pressure_protection_table_ptr = 0x8036a0;
