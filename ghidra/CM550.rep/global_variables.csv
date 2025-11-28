@@ -5110,3 +5110,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00803706,oil_pressure_rpm_target_low,word,Oil pressure RPM target low value (2 refs),2,0,,target
 0x0080370a,oil_pressure_rpm_target_high,word,Oil pressure RPM target high value (2 refs),2,0,,target
 0x008037f6,oil_pressure_rpm_increment,word,Oil pressure RPM limit increment (2 refs),2,0,,increment
+0x00803500,calibration_checksum_expected_1,word,Calibration checksum expected value 1 (2 refs),2,0,,checksum
+0x00803502,calibration_checksum_expected_2,word,Calibration checksum expected value 2 (2 refs),2,0,,checksum
+0x008034ae,derate_threshold_previous,word,Derate threshold previous value (2 refs),2,0,,previous
+0x0080342e,clutch_rpm_accumulator_previous,word,Clutch RPM accumulator previous value (2 refs),2,0,,previous
+0x00803410,dzg_pressure_state_saved,word,DZG pressure control state saved (2 refs),2,0,,saved
+0x0080331c,diagnostic_rpm_setpoint_saved,word,Diagnostic RPM setpoint saved value (2 refs),2,0,,saved
+0x00803328,diagnostic_throttle_saved,word,Diagnostic throttle position saved (2 refs),2,0,,saved
+0x00803210,oil_pressure_mode_previous,word,Oil pressure mode selector previous (2 refs),2,0,,previous
+0x0080173c,snapshot_engine_rpm,word,Engine RPM snapshot value (2 refs),2,0,,snapshot
+0x00801748,snapshot_throttle_position,word,Throttle position snapshot value (2 refs),2,0,,snapshot
+0x00800638,arbitrated_fuel_previous,word,Arbitrated fuel limit previous value (2 refs),2,0,,previous
+0x0080063a,governor_rpm_error_previous,word,Governor RPM error previous value (2 refs),2,0,,previous
