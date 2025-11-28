@@ -5485,3 +5485,40 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080344a,oil_pressure_table_2_ptr,dword,Oil pressure protection table 2 pointer 0x8037fe (initOilPressureProtectionPointers),4,0,,pointer
 0x0080344e,oil_pressure_table_3_ptr,dword,Oil pressure protection table 3 pointer 0x803800 (initOilPressureProtectionPointers),4,0,,pointer
 0x00803452,oil_pressure_table_4_ptr,dword,Oil pressure protection table 4 pointer 0x803802 (initOilPressureProtectionPointers),4,0,,pointer
+0x00803456,oil_pressure_table_5_ptr,dword,Oil pressure protection table 5 pointer 0x803804 (initOilPressureProtectionPointers),4,0,,pointer
+0x0080345c,vp44_timing_idle_cmd_ptr,dword,VP44 timing idle command pointer (vp44FaultProtectionSystemInit),4,0,,pointer
+0x00803462,vp44_timing_table_size,word,VP44 timing table size 2 (vp44FaultProtectionSystemInit),2,0,,size
+0x00803464,vp44_timing_fault_limit_ptr,dword,VP44 timing fault fuel limit pointer (vp44FaultProtectionSystemInit),4,0,,pointer
+0x0080346a,vp44_stuck_pump_threshold_ptr,dword,VP44 stuck pump max messages threshold pointer (vp44FaultProtectionSystemInit),4,0,,pointer
+0x00803474,vp44_lift_pump_table_ptr,dword,VP44 lift pump table pointer 0x807656 (vp44FaultProtectionSystemInit),4,0,,pointer
+0x0080347a,vp44_lift_pump_table_2_size,word,VP44 lift pump table 2 size 2 (vp44FaultProtectionSystemInit),2,0,,size
+0x0080347c,vp44_lift_pump_table_2_ptr,dword,VP44 lift pump table 2 pointer 0x807670 (vp44FaultProtectionSystemInit),4,0,,pointer
+0x00803482,vp44_lift_pump_table_3_ptr,dword,VP44 lift pump table 3 pointer 0x80768a (vp44FaultProtectionSystemInit),4,0,,pointer
+0x00803490,vp44_timing_expected_table_ptr,dword,VP44 timing expected table pointer 0x807404 (vp44FaultProtectionSystemInit),4,0,,pointer
+0x00803494,vp44_timing_expected_init,dword,VP44 timing expected init value 0x28f0000 (vp44FaultProtectionSystemInit),4,0,,init
+0x00803498,vp44_timing_actual_table_ptr,dword,VP44 timing actual table pointer 0x807404 (vp44FaultProtectionSystemInit),4,0,,pointer
+0x0080349c,vp44_timing_actual_init,dword,VP44 timing actual init value 0x28f0000 (vp44FaultProtectionSystemInit),4,0,,init
+0x008034dc,vp44_fso_multibit_clear_flag,word,VP44 FSO multibit fault clear flag (vp44FsoMultiBitFaultMonitor),2,0,,flag
+0x008034fa,calibration_validation_buffer,byte,Calibration validation buffer base (calibrationDataValidatorInit),1,0,,buffer
+0x00803678,vp44_comm_bit0_counter,word,VP44 comm bit0 transition counter (vp44_status_data_collector),2,0,,counter
+0x00803680,protection_flag_source_1,word,Protection flag accumulator source 1 (protectionFlagAccumulator),2,0,,flag
+0x00803692,protection_flag_source_2,word,Protection flag accumulator source 2 (protectionFlagAccumulator),2,0,,flag
+0x0080373c,eps_signal_quality_threshold,word,EPS signal quality validator threshold (epsSignalQualityValidator),2,0,,threshold
+0x00803750,sensor_fault_debounce_limit,word,Sensor fault debounce monitor limit (sensorFaultDebounceMonitor),2,0,,limit
+0x00803782,fuel_timing_mode_arb_value,word,Fuel timing mode arbitration value (fuelTimingModeArbitrationSlowCycle40Coordinator),2,0,,value
+0x00803784,vp44_timing_condition_value,word,VP44 timing condition checker value (vp44TimingConditionChecker),2,0,,value
+0x00803790,vp44_forced_status_7,byte,VP44 forced status 7 (vp44_status_data_collector),1,0,,status
+0x00803791,vp44_forced_status_8,byte,VP44 forced status 8 (vp44_status_data_collector),1,0,,status
+0x00803792,vp44_forced_status_9,byte,VP44 forced status 9 (vp44_status_data_collector),1,0,,status
+0x0080379e,fuel_demand_mode_selector_value,word,Fuel demand mode selector value (fuelDemandModeSelector),2,0,,value
+0x008037a0,fuel_demand_mode_override,word,Fuel demand mode override value (fuelDemandModeSelector),2,0,,value
+0x008037b0,fuel_demand_blend_param_1,word,Fuel demand table blend parameter 1 (fuelDemandTableBlendCalculator),2,0,,parameter
+0x008037b2,fuel_demand_blend_param_2,word,Fuel demand table blend parameter 2 (fuelDemandTableBlendCalculator),2,0,,parameter
+0x008037b8,j1939_priority_pgn65269,byte,J1939 priority byte for PGN 65269 ambient conditions (ambientConditionsPGN_65269_Builder),1,0,,priority
+0x008037c8,j1939_priority_pgn65234,byte,J1939 priority byte for PGN 65234 DM11 (diagnosticDM11PGN_65234_Builder),1,0,,priority
+0x008037d0,j1939_priority_pgn65251,byte,J1939 priority byte for PGN 65251 extended diag (extendedDiagPGN_65251_Builder),1,0,,priority
+0x008037d8,j1939_priority_pgn65262,byte,J1939 priority byte for PGN 65262 engine temp (engineTemperaturePGN_65262_Builder),1,0,,priority
+0x008037e0,j1939_priority_pgn65252,byte,J1939 priority byte for PGN 65252 engine hours (engineHoursPGN_65252_Builder),1,0,,priority
+0x008037e6,j1939_priority_pgn65264,byte,J1939 priority byte for PGN 65264 cruise control (cruiseControlPGN_65264_Builder),1,0,,priority
+0x008037ec,j1939_priority_pgn65527,byte,J1939 priority byte for PGN 65527 electronic brake (electronicBrakePGN_65527_Builder),1,0,,priority
+0x008037ee,j1939_priority_pgn65255,byte,J1939 priority byte for PGN 65255 vehicle hours (vehicleHoursPGN_65255_Builder),1,0,,priority
