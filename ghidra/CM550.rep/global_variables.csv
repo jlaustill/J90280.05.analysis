@@ -5272,3 +5272,30 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00800ed2,multi_packet_small_data_ptr,dword,Multi-packet small data pointer 0x800edc (multiPacketBufferAllocator),4,0,,pointer
 0x00800ed6,multi_packet_small_status_ptr,dword,Multi-packet small status pointer 0x800eda (multiPacketBufferAllocator),4,0,,pointer
 0x00800f1c,vp44_diag_buffer_2_ptr,dword,VP44 diagnostic buffer 2 pointer 0x800f2c (vp44DiagnosticBufferPointersInit),4,0,,pointer
+0x008016bc,eps_timing_table_1_ptr,dword,EPS timing table 1 pointer 0x808796 (initLookupTablePointers1),4,0,,pointer
+0x008016c0,eps_timing_rpm_input_1,word,EPS timing RPM input 1 (epsTimingCalculationSlowCycle40Coordinator),2,0,RPM,input
+0x008016c2,eps_timing_table_2_ptr,dword,EPS timing table 2 pointer 0x8087a4 (initLookupTablePointers1),4,0,,pointer
+0x008016c8,eps_timing_table_3_ptr,dword,EPS timing table 3 pointer 0x808796 (initLookupTablePointers1),4,0,,pointer
+0x008016cc,eps_timing_rpm_input_2,word,EPS timing RPM input 2 (epsTimingCalculationSlowCycle40Coordinator),2,0,RPM,input
+0x008016ce,eps_timing_table_4_ptr,dword,EPS timing table 4 pointer 0x8087b2 (initLookupTablePointers1),4,0,,pointer
+0x008016de,governor_pid_fuel_scaled,dword,Governor PID fuel scaled value shifted (governorPidFuelCalculator),4,0,,value
+0x00801738,rpm_lookup_table_1_ptr,dword,RPM lookup table 1 pointer 0x80883a (initRpmLookupTables),4,0,,pointer
+0x0080173e,rpm_lookup_table_2_ptr,dword,RPM lookup table 2 pointer 0x80884e (initRpmLookupTables),4,0,,pointer
+0x00801744,rpm_lookup_table_3_ptr,dword,RPM lookup table 3 pointer 0x808862 (initRpmLookupTables),4,0,,pointer
+0x0080174a,rpm_lookup_table_4_ptr,dword,RPM lookup table 4 pointer 0x808876 (initRpmLookupTables),4,0,,pointer
+0x00801777,insite_version_buffer_start,byte,INSITE version info buffer start (insiteVersionInfoBuilder),1,0,,buffer
+0x00801794,data_buffer_copy_dest,byte,Data buffer copy destination start (dataBufferCopy),1,0,,buffer
+0x00801898,fuel_demand_scale_table_ptr,dword,Fuel demand scale factor table pointer 0x808916 (fuelDemandScaleFactorCalculator),4,0,,pointer
+0x008018a6,fuel_demand_scale_table_2_ptr,dword,Fuel demand scale table 2 pointer 0x808928 (fuelDemandTablePointerInit),4,0,,pointer
+0x008018d8,diagnostic_service_dispatch_ptr,dword,Diagnostic service dispatch table pointer (diagnosticServiceDispatcher),4,0,,pointer
+0x00801a48,retarder_mode1_rpm_input,word,Retarder mode 1 threshold RPM input (retarderModeThresholdCalculator),2,0,RPM,input
+0x00801a54,retarder_mode2_rpm_input,word,Retarder mode 2 threshold RPM input (retarderModeThresholdCalculator),2,0,RPM,input
+0x00801a60,retarder_mode3_rpm_input,word,Retarder mode 3 threshold RPM input (retarderModeThresholdCalculator),2,0,RPM,input
+0x00801a88,diag_can_response_pgn,word,Diagnostic CAN response PGN bytes (diagnosticCanResponseSender),2,0,,value
+0x00801a95,can_buffer_1_reserved_0,byte,CAN buffer 1 reserved byte 0 0xff (canBufferSetup1),1,0,,reserved
+0x00801a96,can_buffer_1_reserved_1,byte,CAN buffer 1 reserved byte 1 0xff (canBufferSetup1),1,0,,reserved
+0x00801a97,can_buffer_1_reserved_2,byte,CAN buffer 1 reserved byte 2 0xff (canBufferSetup1),1,0,,reserved
+0x00801a98,can_buffer_1_reserved_3,byte,CAN buffer 1 reserved byte 3 0xff (canBufferSetup1),1,0,,reserved
+0x00801a99,diag_can_response_data_0,byte,Diagnostic CAN response data byte 0 (diagnosticCanResponseSender),1,0,,data
+0x00801a9a,diag_can_response_data_1,byte,Diagnostic CAN response data byte 1 (diagnosticCanResponseSender),1,0,,data
+0x00801a9b,diag_can_response_data_2,byte,Diagnostic CAN response data byte 2 (diagnosticCanResponseSender),1,0,,data
