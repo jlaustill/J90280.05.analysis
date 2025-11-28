@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 20:08:41 MST 2025
+// Fri Nov 28 08:00:53 MST 2025
 
 
 //
@@ -72,7 +72,7 @@ ushort rpm_system_state_controller(void)
       rpm_control_timer_2 = can_memory_table_start._2_2_;
     }
     if (rpm_system_mode_flag == 1) {
-      _DAT_00800014 = current_engine_rpm_raw;
+      rpm_state_lookup_input = current_engine_rpm_raw;
       fuel_limit_shutdown = lookupTableInterpolation((short *)&dma_descriptor_base1);
       return fuel_limit_shutdown;
     }
@@ -159,7 +159,7 @@ ushort highRpmFuelControlLimiter(void)
       rpm_control_timer_previous = high_rpm_calibration_t_008062ea.high_rpm_timer_reload;
     }
     if (high_rpm_fuel_accumulator == 1) {
-      _DAT_00800020 = current_engine_rpm_raw;
+      high_rpm_lookup_input = current_engine_rpm_raw;
       high_rpm_fuel_limit = lookupTableInterpolation((short *)&dma_descriptor_base2);
       return high_rpm_fuel_limit;
     }
@@ -289,16 +289,14 @@ void dmaControllerSetup1(void)
 // Function: dmaDescriptorSetup1 @ 0x0000a56e
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void dmaDescriptorSetup1(void)
 
 {
   dma_descriptor_base1 = 2;
                     /* Constant: DMA_SOURCE_ADDR_1 = 0x806304 */
-  _DAT_00800010 = &dma_desc_source_addr2;
+  dma_desc1_source_ptr = (dword)&dma_desc_source_addr2;
                     /* Constant: DMA_DEST_ADDR_1 = 0x806318 */
-  _DAT_00800016 = &dma_desc_dest_addr2;
+  dma_desc1_dest_ptr = (dword)&dma_desc_dest_addr2;
   fuel_limit_shutdown = max_number_of_shutdowns_before_restart_is_not_allowed_0_255;
   return;
 }
@@ -309,16 +307,14 @@ void dmaDescriptorSetup1(void)
 // Function: dmaDescriptorSetup2 @ 0x0000a598
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void dmaDescriptorSetup2(void)
 
 {
   dma_descriptor_base2 = 2;
                     /* Constant: DMA_SOURCE_ADDR_2 = 0x80632C */
-  _DAT_0080001c = &dma_desc_source_addr3;
+  dma_desc2_source_ptr = (dword)&dma_desc_source_addr3;
                     /* Constant: DMA_DEST_ADDR_2 = 0x806340 */
-  _DAT_00800022 = &dma_desc_dest_addr3;
+  dma_desc2_dest_ptr = (dword)&dma_desc_dest_addr3;
   high_rpm_fuel_limit = 0x400;
   return;
 }
@@ -799,14 +795,14 @@ ushort diagnostic_fuel_calculation_with_vp44_monitoring(void)
 void timingParameterPointerSetup(void)
 
 {
-  _DAT_00800052 = 0x806e34;
+  timing_table_1_ptr = 0x806e34;
   _diagnostic_fuel_table_base = 2;
-  _DAT_0080005a = 0x806e20;
-  _DAT_00800058 = 2;
-  _DAT_00800060 = 0x806e5a;
+  timing_table_2_ptr = 0x806e20;
+  timing_table_2_base = 2;
+  timing_table_3_ptr = 0x806e5a;
   _diagnostic_correction_input = throttle_position_raw;
-  _DAT_00800066 = 0x808862;
-  _DAT_0080006c = 0x808876;
+  timing_table_4_ptr = 0x808862;
+  timing_table_5_ptr = 0x808876;
   _diagnostic_correction_table_base = 2;
   return;
 }

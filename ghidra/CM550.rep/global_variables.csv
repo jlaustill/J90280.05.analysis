@@ -5140,3 +5140,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008002e6,engine_rpm_previous_nonzero,word,Engine RPM previous nonzero check (2 refs),2,0,,previous
 0x008002e8,high_rpm_shutdown_previous,byte,High RPM shutdown flag previous (2 refs),1,0,,previous
 0x008002ea,diagnostic_protection_previous,byte,Diagnostic protection state previous (2 refs),1,0,,previous
+0x00800010,dma_desc1_source_ptr,dword,DMA descriptor 1 source address pointer (dmaDescriptorSetup1),4,0,,pointer
+0x00800014,rpm_state_lookup_input,word,RPM input for fuel lookup in rpm_system_state_controller,2,0,RPM,input
+0x00800016,dma_desc1_dest_ptr,dword,DMA descriptor 1 destination address pointer (dmaDescriptorSetup1),4,0,,pointer
+0x0080001c,dma_desc2_source_ptr,dword,DMA descriptor 2 source address pointer (dmaDescriptorSetup2),4,0,,pointer
+0x00800020,high_rpm_lookup_input,word,RPM input for fuel lookup in highRpmFuelControlLimiter,2,0,RPM,input
+0x00800022,dma_desc2_dest_ptr,dword,DMA descriptor 2 destination address pointer (dmaDescriptorSetup2),4,0,,pointer
+0x00800052,timing_table_1_ptr,dword,Timing parameter table 1 pointer 0x806e34 (timingParameterPointerSetup),4,0,,pointer
+0x00800058,timing_table_2_base,word,Timing parameter table 2 base value (timingParameterPointerSetup),2,0,,lookup
+0x0080005a,timing_table_2_ptr,dword,Timing parameter table 2 pointer 0x806e20 (timingParameterPointerSetup),4,0,,pointer
+0x00800060,timing_table_3_ptr,dword,Timing parameter table 3 pointer 0x806e5a (timingParameterPointerSetup),4,0,,pointer
+0x00800066,timing_table_4_ptr,dword,Timing parameter table 4 pointer 0x808862 (timingParameterPointerSetup),4,0,,pointer
+0x0080006c,timing_table_5_ptr,dword,Timing parameter table 5 pointer 0x808876 (timingParameterPointerSetup),4,0,,pointer
