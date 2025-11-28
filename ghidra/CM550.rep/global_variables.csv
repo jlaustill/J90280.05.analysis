@@ -5376,3 +5376,58 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080309e,extended_diag_pgn65251_size,byte,Extended diag PGN 65251 message size 28 (extendedDiagPGN_65251_Builder),1,0,,size
 0x008030a0,extended_diag_pgn65251_data_ptr,dword,Extended diag PGN 65251 data pointer 0x80307e (extendedDiagPGN_65251_Builder),4,0,,pointer
 0x008030a4,extended_diag_pgn65251_unused_ptr,dword,Extended diag PGN 65251 unused pointer 0x8030a8 (extendedDiagPGN_65251_Builder),4,0,,pointer
+0x008030c6,engine_temp_pgn65262_size,byte,Engine temperature PGN 65262 message size 8 (engineTemperaturePGN_65262_Builder),1,0,,size
+0x008030c8,engine_temp_pgn65262_data_ptr,dword,Engine temperature PGN 65262 data pointer (engineTemperaturePGN_65262_Builder),4,0,,pointer
+0x008030cc,engine_temp_pgn65262_unused_ptr,dword,Engine temperature PGN 65262 unused pointer 0x8030d8 (engineTemperaturePGN_65262_Builder),4,0,,pointer
+0x008030d4,engine_temp_reserved_ffff,word,Engine temperature reserved 0xffff (engineTemperaturePGN_65262_Builder),2,0,,reserved
+0x008030d6,engine_temp_reserved_ff_0,byte,Engine temperature reserved 0xff byte 0 (engineTemperaturePGN_65262_Builder),1,0,,reserved
+0x008030d7,engine_temp_reserved_ff_1,byte,Engine temperature reserved 0xff byte 1 (engineTemperaturePGN_65262_Builder),1,0,,reserved
+0x008030f6,intake_exhaust_pgn65257_size,byte,Intake/exhaust conditions PGN 65257 message size 8 (intakeExhaustConditionsPGN_65257_Builder),1,0,,size
+0x008030f8,intake_exhaust_pgn65257_data_ptr,dword,Intake/exhaust conditions PGN 65257 data pointer (intakeExhaustConditionsPGN_65257_Builder),4,0,,pointer
+0x008030fc,intake_exhaust_pgn65257_unused_ptr,dword,Intake/exhaust conditions PGN 65257 unused pointer 0x803108 (intakeExhaustConditionsPGN_65257_Builder),4,0,,pointer
+0x00803104,intake_exhaust_fuel_stat_dword,dword,Intake/exhaust fuel statistics dword (intakeExhaustConditionsDataBuilder),4,0,,data
+0x0080312c,io_control_pgn65244_size,byte,I/O control PGN 65244 message size 8 (ioControlPGN_65244_Builder),1,0,,size
+0x0080312e,io_control_pgn65244_data_ptr,dword,I/O control PGN 65244 data pointer (ioControlPGN_65244_Builder),4,0,,pointer
+0x00803132,io_control_pgn65244_unused_ptr,dword,I/O control PGN 65244 unused pointer 0x80313e (ioControlPGN_65244_Builder),4,0,,pointer
+0x0080313a,io_control_runtime_hours_dword,dword,I/O control runtime hours dword (ioControlDataBuilder),4,0,,data
+0x00803144,engine_hours_pgn65252_size,byte,Engine hours PGN 65252 message size 8 (engineHoursPGN_65252_Builder),1,0,,size
+0x00803146,engine_hours_pgn65252_data_ptr,dword,Engine hours PGN 65252 data pointer (engineHoursPGN_65252_Builder),4,0,,pointer
+0x0080314a,engine_hours_pgn65252_unused_ptr,dword,Engine hours PGN 65252 unused pointer 0x803156 (engineHoursPGN_65252_Builder),4,0,,pointer
+0x0080314e,engine_hours_data_byte_0,byte,Engine hours data byte 0 (engineHoursPGN_65252_Builder),1,0,,data
+0x0080314f,engine_hours_reserved_3f,byte,Engine hours reserved 0x3f byte (engineHoursPGN_65252_Builder),1,0,,reserved
+0x00803150,engine_hours_reserved_ff_0,byte,Engine hours reserved 0xff byte 0 (engineHoursPGN_65252_Builder),1,0,,reserved
+0x00803151,engine_hours_reserved_ff_1,byte,Engine hours reserved 0xff byte 1 (engineHoursPGN_65252_Builder),1,0,,reserved
+0x00803152,engine_hours_reserved_ff_2,byte,Engine hours reserved 0xff byte 2 (engineHoursPGN_65252_Builder),1,0,,reserved
+0x00803153,engine_hours_reserved_ff_3,byte,Engine hours reserved 0xff byte 3 (engineHoursPGN_65252_Builder),1,0,,reserved
+0x00803154,engine_hours_reserved_ff_4,byte,Engine hours reserved 0xff byte 4 (engineHoursPGN_65252_Builder),1,0,,reserved
+0x00803155,engine_hours_reserved_ff_5,byte,Engine hours reserved 0xff byte 5 (engineHoursPGN_65252_Builder),1,0,,reserved
+0x0080315c,intake_manifold_pgn65526_size,byte,Intake manifold PGN 65526 message size 8 (intakeManifoldPGN_65526_Builder),1,0,,size
+0x0080315e,intake_manifold_pgn65526_data_ptr,dword,Intake manifold PGN 65526 data pointer (intakeManifoldPGN_65526_Builder),4,0,,pointer
+0x00803162,intake_manifold_pgn65526_unused_ptr,dword,Intake manifold PGN 65526 unused pointer 0x80316e (intakeManifoldPGN_65526_Builder),4,0,,pointer
+0x00803167,intake_manifold_data_byte_1,byte,Intake manifold data byte 1 (intakeManifoldDataBuilder),1,0,,data
+0x00803168,intake_manifold_data_byte_2,byte,Intake manifold data byte 2 (intakeManifoldDataBuilder),1,0,,data
+0x00803169,intake_manifold_reserved_ff_0,byte,Intake manifold reserved 0xff byte 0 (intakeManifoldPGN_65526_Builder),1,0,,reserved
+0x0080316a,intake_manifold_reserved_ff_1,byte,Intake manifold reserved 0xff byte 1 (intakeManifoldPGN_65526_Builder),1,0,,reserved
+0x0080316b,intake_manifold_reserved_ff_2,byte,Intake manifold reserved 0xff byte 2 (intakeManifoldPGN_65526_Builder),1,0,,reserved
+0x0080316c,intake_manifold_reserved_ff_3,byte,Intake manifold reserved 0xff byte 3 (intakeManifoldPGN_65526_Builder),1,0,,reserved
+0x0080316d,intake_manifold_reserved_ff_4,byte,Intake manifold reserved 0xff byte 4 (intakeManifoldPGN_65526_Builder),1,0,,reserved
+0x00803174,cruise_control_pgn65264_size,byte,Cruise control PGN 65264 message size 8 (cruiseControlPGN_65264_Builder),1,0,,size
+0x00803176,cruise_control_pgn65264_data_ptr,dword,Cruise control PGN 65264 data pointer (cruiseControlPGN_65264_Builder),4,0,,pointer
+0x0080317a,cruise_control_pgn65264_unused_ptr,dword,Cruise control PGN 65264 unused pointer 0x803186 (cruiseControlPGN_65264_Builder),4,0,,pointer
+0x0080317f,cruise_control_reserved_ff_0,byte,Cruise control reserved 0xff byte 0 (cruiseControlPGN_65264_Builder),1,0,,reserved
+0x00803180,cruise_control_reserved_ff_1,byte,Cruise control reserved 0xff byte 1 (cruiseControlPGN_65264_Builder),1,0,,reserved
+0x00803183,cruise_control_reserved_ff_2,byte,Cruise control reserved 0xff byte 2 (cruiseControlPGN_65264_Builder),1,0,,reserved
+0x00803184,cruise_control_reserved_ff_3,byte,Cruise control reserved 0xff byte 3 (cruiseControlPGN_65264_Builder),1,0,,reserved
+0x00803185,cruise_control_reserved_ff_4,byte,Cruise control reserved 0xff byte 4 (cruiseControlPGN_65264_Builder),1,0,,reserved
+0x008031ae,vehicle_distance_pgn65248_size,byte,Vehicle distance PGN 65248 message size 8 (vehicleDistancePGN_65248_Builder),1,0,,size
+0x008031b0,vehicle_distance_pgn65248_data_ptr,dword,Vehicle distance PGN 65248 data pointer (vehicleDistancePGN_65248_Builder),4,0,,pointer
+0x008031b4,vehicle_distance_pgn65248_unused_ptr,dword,Vehicle distance PGN 65248 unused pointer 0x8031c0 (vehicleDistancePGN_65248_Builder),4,0,,pointer
+0x008031bc,vehicle_distance_data_dword,dword,Vehicle distance data dword (vehicleDistanceDataBuilder),4,0,,data
+0x008031c6,electronic_brake_pgn65527_size,byte,Electronic brake PGN 65527 message size 8 (electronicBrakePGN_65527_Builder),1,0,,size
+0x008031c8,electronic_brake_pgn65527_data_ptr,dword,Electronic brake PGN 65527 data pointer (electronicBrakePGN_65527_Builder),4,0,,pointer
+0x008031cc,electronic_brake_pgn65527_unused_ptr,dword,Electronic brake PGN 65527 unused pointer 0x8031d8 (electronicBrakePGN_65527_Builder),4,0,,pointer
+0x008031d1,electronic_brake_reserved_ff,byte,Electronic brake reserved 0xff byte (electronicBrakePGN_65527_Builder),1,0,,reserved
+0x008031d2,electronic_brake_reserved_ffff_0,word,Electronic brake reserved 0xffff word 0 (electronicBrakePGN_65527_Builder),2,0,,reserved
+0x008031d4,electronic_brake_reserved_ffff_1,word,Electronic brake reserved 0xffff word 1 (electronicBrakePGN_65527_Builder),2,0,,reserved
+0x008031d6,electronic_brake_data_word,word,Electronic brake data word (electronicBrakePGN_65527_Builder),2,0,,data
+0x008031de,vehicle_hours_pgn65255_size,byte,Vehicle hours PGN 65255 message size 8 (vehicleHoursPGN_65255_Builder),1,0,,size
