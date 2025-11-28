@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 08:27:52 MST 2025
+// Fri Nov 28 08:32:19 MST 2025
 
 
 //
@@ -8082,7 +8082,7 @@ void peakTorqueFuelCorrection(void)
   if (current_engine_rpm == 0) {
     peak_torque_correction_state = JCPKT0RP;
   }
-  _DAT_008002ca = engine_operating_mode;
+  _peak_torque_engine_mode_input = engine_operating_mode;
   return;
 }
 
@@ -8917,13 +8917,11 @@ void protectionState3aPrimaryCoordinator(void)
 // Function: protectionThresholdPointerInit @ 0x00014cfc
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void protectionThresholdPointerInit(void)
 
 {
-  _DAT_008002e2 = (uint)oil_pressure_precrank_status << 0x10;
-  _DAT_008002de = 0x807e6e;
+  protection_threshold_status_shifted = (uint)oil_pressure_precrank_status << 0x10;
+  protection_threshold_table_ptr = 0x807e6e;
   fuel_arbitrator_threshold_1 = oil_pressure_precrank_status;
   return;
 }
@@ -10384,14 +10382,12 @@ ushort fuelTimingOilPressureModeController(void)
 // Function: initOilPressureModeSystem @ 0x00016af2
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void initOilPressureModeSystem(void)
 
 {
   oil_pressure_mode_selector = 0;
-  _DAT_0080033e = 0x80000000;
-  _DAT_0080033a = &crank_exit_time_0_13107;
+  oil_pressure_mode_init_flag = 0x80000000;
+  oil_pressure_crank_exit_ptr = (dword)&crank_exit_time_0_13107;
   return;
 }
 
@@ -12472,19 +12468,19 @@ void fuelDemandTableBlendCalculator(void)
 void initFuelDemandCalculationSystem(void)
 
 {
-  _DAT_00800370 = 0x807c9a;
-  _DAT_00800376 = &CCRFRTNG;
+  fuel_demand_table_1_ptr = 0x807c9a;
+  fuel_demand_rating_ptr = (dword)&CCRFRTNG;
   _DAT_0080036e = 2;
-  _DAT_0080037c = 0x8080c2;
+  fuel_demand_table_2_ptr = 0x8080c2;
   _DAT_0080037a = 2;
-  _DAT_00800384 = 0x8080e8;
-  _DAT_00800382 = 2;
-  _DAT_0080038a = 0x808100;
-  _DAT_00800390 = 0x80828c;
+  fuel_demand_table_3_ptr = 0x8080e8;
+  fuel_demand_table_2_base = 2;
+  fuel_demand_table_4_ptr = 0x808100;
+  fuel_demand_table_5_ptr = 0x80828c;
   _DAT_0080038e = 2;
-  _DAT_00800398 = 0x8082b2;
-  _DAT_00800396 = 2;
-  _DAT_0080039e = 0x8082ca;
+  fuel_demand_table_6_ptr = 0x8082b2;
+  fuel_demand_table_5_base = 2;
+  fuel_demand_table_7_ptr = 0x8082ca;
   return;
 }
 
@@ -15332,45 +15328,44 @@ uint timerBasedTaskScheduler(void)
   bool bVar2;
   ushort uVar3;
   undefined4 in_D0;
-  dword *pdVar4;
-  byte bVar5;
-  char *pcVar6;
-  short *psVar7;
-  byte *pbVar8;
+  byte bVar4;
+  char *pcVar5;
+  dword *pdVar6;
+  byte *pbVar7;
   undefined2 local_6;
   
   uVar3 = hardware_timer_register._0_2_;
-  pdVar4 = (dword *)(CONCAT22((short)((uint)in_D0 >> 0x10),_diagnostic_service_enable_flags) &
+  pdVar6 = (dword *)(CONCAT22((short)((uint)in_D0 >> 0x10),_diagnostic_service_enable_flags) &
                     0xffff0008);
   if ((_diagnostic_service_enable_flags & 8) != 0) {
-    while ((pdVar4 = (dword *)((uint)hardware_timer_register._0_2_ - (uint)uVar3),
+    while ((pdVar6 = (dword *)((uint)hardware_timer_register._0_2_ - (uint)uVar3),
            (int)((uint)hardware_timer_register._0_2_ - (uint)uVar3) < 0xfa &&
            ((_serial_receive_buffer_state != _timer_task_scheduler_state ||
-            (pdVar4 = _serial_receive_buffer_state, serial_receive_timer == 1))))) {
-      bVar5 = *(byte *)((int)_timer_task_scheduler_state + 1);
-      if (bVar5 < 0xf0) {
-        local_6 = (ushort)bVar5 << 8;
+            (pdVar6 = _serial_receive_buffer_state, serial_receive_timer == 1))))) {
+      bVar4 = *(byte *)((int)_timer_task_scheduler_state + 1);
+      if (bVar4 < 0xf0) {
+        local_6 = (ushort)bVar4 << 8;
       }
       else {
-        local_6 = CONCAT11(bVar5,*(undefined1 *)((int)_timer_task_scheduler_state + 2));
+        local_6 = CONCAT11(bVar4,*(undefined1 *)((int)_timer_task_scheduler_state + 2));
       }
       bVar2 = false;
-      pcVar6 = &DAT_0080cfa4;
+      pcVar5 = &DAT_0080cfa4;
       do {
-        if (*pcVar6 == -2) goto LAB_0001b262;
-        cVar1 = *pcVar6;
-        pcVar6 = pcVar6 + 1;
+        if (*pcVar5 == -2) goto LAB_0001b262;
+        cVar1 = *pcVar5;
+        pcVar5 = pcVar5 + 1;
       } while ((char)*_timer_task_scheduler_state != cVar1);
       bVar2 = true;
 LAB_0001b262:
       if (!bVar2) {
-        psVar7 = (short *)&DAT_0080076e;
-        for (bVar5 = 0; bVar5 < DAT_008007aa; bVar5 = bVar5 + 1) {
-          if (*psVar7 == local_6) {
-            (**(code **)(psVar7 + 1))(_timer_task_scheduler_state);
+        pdVar6 = &task_scheduler_dispatch_table_ptr;
+        for (bVar4 = 0; bVar4 < task_scheduler_dispatch_count; bVar4 = bVar4 + 1) {
+          if (*(short *)pdVar6 == local_6) {
+            (**(code **)((int)pdVar6 + 2))(_timer_task_scheduler_state);
             break;
           }
-          psVar7 = psVar7 + 3;
+          pdVar6 = (dword *)((int)pdVar6 + 6);
         }
       }
       _timer_task_scheduler_state = (dword *)((int)_timer_task_scheduler_state + 0x12);
@@ -15380,16 +15375,16 @@ LAB_0001b262:
       }
       if (serial_receive_timer == 1) {
         serial_receive_timer = 0;
-        pbVar8 = &can_controller_config_register + (uint)serial_node_address_state * 0x10;
-        bVar5 = (byte)serial_node_address_state;
-        while (bVar5 = bVar5 + 1, bVar5 <= serial_node_address_limit) {
-          *pbVar8 = 0xfb;
-          pbVar8 = pbVar8 + 0x10;
+        pbVar7 = &can_controller_config_register + (uint)serial_node_address_state * 0x10;
+        bVar4 = (byte)serial_node_address_state;
+        while (bVar4 = bVar4 + 1, bVar4 <= serial_node_address_limit) {
+          *pbVar7 = 0xfb;
+          pbVar7 = pbVar7 + 0x10;
         }
       }
     }
   }
-  return (uint)pdVar4;
+  return (uint)pdVar6;
 }
 
 
@@ -17004,15 +16999,13 @@ void messageQueueDispatcher(void)
 // Function: multiPacketBufferAllocator @ 0x0001cb18
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 multiPacketBufferAllocator(undefined4 param_1)
 
 {
   if (param_1._0_2_ < 9) {
-    _DAT_00800ed2 = 0x800edc;
-    _DAT_00800ed0 = param_1._0_2_;
-    _DAT_00800ed6 = 0x800eda;
+    multi_packet_small_data_ptr = 0x800edc;
+    multi_packet_small_size = param_1._0_2_;
+    multi_packet_small_status_ptr = 0x800eda;
     return 0x800ecc;
   }
   if ((DAT_008007c2 & 0xf0) != 0) {
@@ -17036,7 +17029,7 @@ void vp44DiagnosticBufferPointersInit(void)
 
 {
   _DAT_00800efc = 0x800f24;
-  _DAT_00800f1c = 0x800f2c;
+  vp44_diag_buffer_2_ptr = 0x800f2c;
   diag_tp_state_t_00800f34.tx_cm_buf = (byte *)0x800f56;
   serial_buffer_pointer = 0x800f78;
   coreSystemControlFunction();

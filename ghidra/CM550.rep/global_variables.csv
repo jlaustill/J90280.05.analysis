@@ -5251,3 +5251,24 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008007b8,multi_packet_buffer_size,word,Multi-packet buffer size (multiPacketBufferAllocator),2,0,,size
 0x008007ba,multi_packet_data_ptr,dword,Multi-packet data pointer 0x8007c4 (multiPacketBufferAllocator),4,0,,pointer
 0x008007be,multi_packet_status_ptr,dword,Multi-packet status pointer 0x8007c2 (multiPacketBufferAllocator),4,0,,pointer
+0x008002ca,peak_torque_engine_mode_input,byte,Engine mode snapshot for peak torque correction (peakTorqueFuelCorrection),1,0,,input
+0x008002de,protection_threshold_table_ptr,dword,Protection threshold table pointer 0x807e6e (protectionThresholdPointerInit),4,0,,pointer
+0x008002e2,protection_threshold_status_shifted,dword,Protection threshold status shifted value (protectionThresholdPointerInit),4,0,,status
+0x0080033a,oil_pressure_crank_exit_ptr,dword,Oil pressure crank exit time pointer (initOilPressureModeSystem),4,0,,pointer
+0x0080033e,oil_pressure_mode_init_flag,dword,Oil pressure mode init flag 0x80000000 (initOilPressureModeSystem),4,0,,flag
+0x00800370,fuel_demand_table_1_ptr,dword,Fuel demand table 1 pointer 0x807c9a (initFuelDemandCalculationSystem),4,0,,pointer
+0x00800376,fuel_demand_rating_ptr,dword,Fuel demand rating parameter pointer CCRFRTNG (initFuelDemandCalculationSystem),4,0,,pointer
+0x0080037c,fuel_demand_table_2_ptr,dword,Fuel demand table 2 pointer 0x8080c2 (initFuelDemandCalculationSystem),4,0,,pointer
+0x00800382,fuel_demand_table_2_base,word,Fuel demand table 2 base value (initFuelDemandCalculationSystem),2,0,,lookup
+0x00800384,fuel_demand_table_3_ptr,dword,Fuel demand table 3 pointer 0x8080e8 (initFuelDemandCalculationSystem),4,0,,pointer
+0x0080038a,fuel_demand_table_4_ptr,dword,Fuel demand table 4 pointer 0x808100 (initFuelDemandCalculationSystem),4,0,,pointer
+0x00800390,fuel_demand_table_5_ptr,dword,Fuel demand table 5 pointer 0x80828c (initFuelDemandCalculationSystem),4,0,,pointer
+0x00800396,fuel_demand_table_5_base,word,Fuel demand table 5 base value (initFuelDemandCalculationSystem),2,0,,lookup
+0x00800398,fuel_demand_table_6_ptr,dword,Fuel demand table 6 pointer 0x8082b2 (initFuelDemandCalculationSystem),4,0,,pointer
+0x0080039e,fuel_demand_table_7_ptr,dword,Fuel demand table 7 pointer 0x8082ca (initFuelDemandCalculationSystem),4,0,,pointer
+0x0080076e,task_scheduler_dispatch_table_ptr,dword,Task scheduler dispatch table pointer (timerBasedTaskScheduler),4,0,,pointer
+0x008007aa,task_scheduler_dispatch_count,byte,Task scheduler dispatch handler count (timerBasedTaskScheduler),1,0,,count
+0x00800ed0,multi_packet_small_size,word,Multi-packet small buffer size (multiPacketBufferAllocator),2,0,,size
+0x00800ed2,multi_packet_small_data_ptr,dword,Multi-packet small data pointer 0x800edc (multiPacketBufferAllocator),4,0,,pointer
+0x00800ed6,multi_packet_small_status_ptr,dword,Multi-packet small status pointer 0x800eda (multiPacketBufferAllocator),4,0,,pointer
+0x00800f1c,vp44_diag_buffer_2_ptr,dword,VP44 diagnostic buffer 2 pointer 0x800f2c (vp44DiagnosticBufferPointersInit),4,0,,pointer
