@@ -2817,7 +2817,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080969c,boost_pressure_accumulator,word,Boost pressure protection accumulator,2,0,,value
 0x0080969e,vp44_injection_system_active,word,VP44 injection system active flag - forces emergency pins when set,2,0,,flag
 0x008096a0,retarder_input_flags,word,Retarder input mode flags,2,0,,flag
-0x008096a2,fuel_demand_limit_source,word,Fuel demand limit source selector,2,0,,value
+0x008096a2,fuel_demand_limit_source,FUEL_DEMAND_LIMIT,Fuel demand limit source state machine,2,0,,state
 0x008096a6,throttle_position_value,word,Throttle position value,2,0,,value
 0x008096a8,throttle_position_filtered,word,Throttle position filtered value,2,0,,value
 0x008096aa,fuel_temp_protection_threshold_flag,word,Fuel temperature protection threshold flag,2,0,,flag
@@ -2825,7 +2825,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008096ae,fuel_limit_rpm_based,word,RPM-based fuel limit,2,0,,value
 0x008096b2,fuel_demand_limit_source_2_flag,byte,Fuel demand limit source 2 selector flag (6 refs),1,0,,flag
 0x008096b4,vp44_operating_condition_value,word,VP44 operating condition check value,2,0,,value
-0x008096b6,vp44_diagnostic_mode_state,word,VP44 diagnostic mode state machine value,2,0,,state
+0x008096b6,vp44_diagnostic_mode_state,VP44_DIAG_MODE,VP44 diagnostic mode state machine,2,0,,state
 0x008096c2,protection_param_2,word,Protection table parameter 2 (2 refs),2,0,,value
 0x008096c4,diagnostic_mode_fuel_adjustment,word,Diagnostic mode fuel adjustment value,2,0,,value
 0x008096c6,diagnostic_fuel_gain_factor,word,Diagnostic fuel gain from protection table lookup (3 refs),2,0,,factor
@@ -2843,7 +2843,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x008096f6,diagnostic_mode_boost_state,word,Diagnostic mode boost control state (4 refs),2,0,,state
 0x008096f8,diagnostic_mode_fuel_state,word,Diagnostic mode fuel adjustment state (39 refs),2,0,,state
 0x008096fa,boost_pressure_protection_state,word,Boost pressure protection state machine value (10 refs),2,0,,state
-0x008096fc,vp44_diagnostic_mode_state,word,VP44 diagnostic mode state machine value (11 refs),2,0,,state
+0x008096fc,vp44_diagnostic_mode_state_2,VP44_DIAG_MODE,VP44 diagnostic mode state machine 2 (11 refs),2,0,,state
 0x008096fe,vp44_diagnostic_fault_state,word,VP44 diagnostic fault monitor state (9 refs),2,0,,state
 0x00809700,fuel_demand_override_state,word,Fuel demand override state selector (4 refs),2,0,,state
 0x00809702,fuel_temp_limit_state_2,word,Fuel temp limit state 2,2,0,,state
@@ -3550,7 +3550,7 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080c9aa,fuel_timing_blend_factor,word,Fuel timing blend factor 0-16384,2,0,,value
 0x0080c9ac,fuel_demand_table_output,word,Fuel demand table calculation output,2,0,,value
 0x0080c9ae,fuel_limit_minimum_value,word,Fuel limit minimum selected value,2,0,,value
-0x0080c9b0,fuel_demand_source_id,word,Fuel demand source identifier,2,0,,value
+0x0080c9b0,fuel_demand_source_id,FUEL_DEMAND_SOURCE,Fuel demand source - identifies which limiter/calc won,2,0,,value
 0x0080c9b2,fuel_adjustment_active_flag,word,Fuel adjustment active flag,2,0,,flag
 0x0080c9b4,diagnostic_fuel_arbitration_state,word,Diagnostic mode fuel arbitration handler state (5 refs),2,0,,state
 0x0080c9c6,engine_control_system_ready,word,Engine control system ready flag - must be 0 for normal pin operation,2,0,,flag
@@ -3976,10 +3976,10 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080d490,insite_parameter_lookup_state,word,INSITE parameter lookup and PID handler state (8 refs),2,0,,state
 0x0080d492,diagnostic_code_clear_handler_state,word,Diagnostic code clear handler state (13 refs),2,0,,state
 0x0080d494,shutdown_limit_accumulator,word,Shutdown limit accumulator value (24 refs),2,0,,accumulator
-0x0080d496,shutdown_minimum_selector_value,word,Shutdown minimum selector calculated value (17 refs),2,0,,value
+0x0080d496,shutdown_minimum_selector_value,SHUTDOWN_SELECTOR_SOURCE,Shutdown minimum selector - identifies winning fuel limiter source,2,0,,value
 0x0080d498,shutdown_minimum_init_value,word,Shutdown minimum selector init value (5 refs),2,0,,value
 0x0080d49a,cached_parameter_value,word,Cached parameter value for diagnostic responses,2,0,,value
-0x0080d49c,diagnostic_status_register,word,Diagnostic operation status and mode flags,2,0,,flag
+0x0080d49c,diagnostic_status_register,DIAGNOSTIC_STATUS,Diagnostic operation mode state machine,2,0,,state
 0x0080d49e,pwm_timer_cycle_advance_state,byte,PWM timer cycle advance state - accessed via move.b,1,0,,state
 0x0080d4c4,system_loop_counter,dword,System main loop iteration counter,4,0,,counter
 0x0080d4c6,system_time_seconds_counter,word,System time seconds counter for elapsed time,2,0,,counter

@@ -471,3 +471,56 @@ SENSOR_HISTORY_STATE,0,IDLE,Initial monitoring state,2
 SENSOR_HISTORY_STATE,1,ACTIVE,Sensor actively being monitored,2
 SENSOR_HISTORY_STATE,2,FAULT_DETECTED,Fault condition detected,2
 SENSOR_HISTORY_STATE,3,RECOVERY,Recovery countdown state,2
+# Shutdown Minimum Selector Source - identifies which limiter won the minimum selection
+# Values set by shutdownMinimumSelector* functions, tracked in shutdown_minimum_selector_value
+SHUTDOWN_SELECTOR_SOURCE,13,FUEL_DEMAND_MODE_OVERRIDE,Fuel demand mode selector override (fuelDemandModeSelector),2
+SHUTDOWN_SELECTOR_SOURCE,15,SHUTDOWN_PROTECTION_LIMIT,Shutdown protection fuel limit (shutdownMinimumSelector15),2
+SHUTDOWN_SELECTOR_SOURCE,16,DIAGNOSTIC_MODE_BUFFER,Diagnostic mode buffer limit (shutdownMinimumSelector16),2
+SHUTDOWN_SELECTOR_SOURCE,17,FUEL_LIMIT_SHUTDOWN,Fuel limit from shutdown calc (shutdownMinimumSelector17),2
+SHUTDOWN_SELECTOR_SOURCE,19,CALCULATED_FUEL_TIMING,Calculated fuel timing value (shutdownMinimumSelector19),2
+SHUTDOWN_SELECTOR_SOURCE,20,FUEL_ARBITRATOR_DIAG,Fuel arbitrator diagnostic mode (shutdownMinimumSelector20),2
+SHUTDOWN_SELECTOR_SOURCE,21,SHUTDOWN_LIMIT_SELECTOR,Shutdown limit selector value (shutdownMinimumSelector21),2
+SHUTDOWN_SELECTOR_SOURCE,28,SHUTDOWN_MINIMUM_INIT,Shutdown minimum init value (shutdownMinimumSelector28),2
+SHUTDOWN_SELECTOR_SOURCE,29,PROTECTION_SHUTDOWN_LIMIT,Protection shutdown fuel limit (shutdownMinimumSelector29),2
+SHUTDOWN_SELECTOR_SOURCE,34,OIL_PRESSURE_PROTECTION,Oil pressure protection limit (oilPressureProtection),2
+# Fuel Demand Source ID - identifies which calculation/limiter is providing fuel demand
+# Tracked in fuel_demand_source_id, set by various fuelDemandLimit* and selector functions
+FUEL_DEMAND_SOURCE,0,TABLE_BLEND_CALC,Table interpolation blend calculation result,2
+FUEL_DEMAND_SOURCE,1,RPM_BASED_LIMIT,RPM-based fuel demand limit (fuelDemandLimitMinimumUpdater),2
+FUEL_DEMAND_SOURCE,2,BLEND_PARAM_FALLBACK,Blend parameter 2 fallback value,2
+FUEL_DEMAND_SOURCE,3,HIGH_RPM_FUEL_LIMIT,High RPM fuel limit (fuelLimitMinimumSelector),2
+FUEL_DEMAND_SOURCE,4,FUEL_LIMIT_FLOOR,Fuel limit floor value (fuelDemandLimitSelector4),2
+FUEL_DEMAND_SOURCE,5,ENGINE_MODE_TRANSITION,Engine mode transition timing (engineModeTransitionStateUpdater),2
+FUEL_DEMAND_SOURCE,6,STATE_24_OVERRIDE,VP44 active mode state 24 override (fuelDemandState24Override),2
+FUEL_DEMAND_SOURCE,11,VP44_FLAG_REGISTER,VP44 flag register RPM load lookup (fuelDemandLimitSelector11),2
+# Fuel Demand Limit Source - state machine for fuel limiting in fuelDemandFaultStateBuilder
+# Tracked in fuel_demand_limit_source, switch statement at torqueControlStatusBuilder
+FUEL_DEMAND_LIMIT,0,NO_LIMIT_ACTIVE,No fuel limit active / cleared state,2
+FUEL_DEMAND_LIMIT,1,OVERRIDE_STATE_ACTIVE,Override state active from fuel_demand_override_state,2
+FUEL_DEMAND_LIMIT,2,VP44_DIAGNOSTIC_FAULT,VP44 diagnostic fault limit (fuelDemandLimitSource2Selector),2
+FUEL_DEMAND_LIMIT,3,RETARDER_INPUT_LIMIT,Retarder input flags based limit (fuelDemandLimitSource3Selector),2
+FUEL_DEMAND_LIMIT,4,RETARDER_MODE_TABLE,Retarder mode table count limit (fuelDemandLimitSource4Selector),2
+FUEL_DEMAND_LIMIT,5,PROTECTION_OVERRIDE,Protection/override state - init and fault recovery,2
+# Diagnostic Status Register - diagnostic operation mode state machine
+# Tracked in diagnostic_status_register, controls governor PID and parameter behavior
+DIAGNOSTIC_STATUS,0,NORMAL_OPERATION,No diagnostic mode active - normal operation,2
+DIAGNOSTIC_STATUS,1,FUEL_ARBITRATOR_SOURCE,Fuel arbitrator rpm_target==2 (setDiagnosticSourceFromFuelArbitrator),2
+DIAGNOSTIC_STATUS,2,DERATE_CONDITION_2,Derate condition 2 active (diagnosticStatus2Initializer),2
+DIAGNOSTIC_STATUS,3,DERATE_CONDITION_3,Derate condition 3 - governor PID active mode,2
+DIAGNOSTIC_STATUS,5,ENGINE_FLAGS_SOURCE,Engine flags diagnostic source (setDiagnosticSourceFromEngineFlags),2
+DIAGNOSTIC_STATUS,6,EPS_FAULT_MODE,EPS diagnostic mode from fault registers (epsDiagnosticModeChecker),2
+DIAGNOSTIC_STATUS,7,DIAGNOSTIC_MODE_7,Diagnostic mode 7 - target RPM rate limiting active,2
+DIAGNOSTIC_STATUS,8,DEFAULT_DIAGNOSTIC,Default diagnostic mode (diagnosticStatusDefaultSetter),2
+DIAGNOSTIC_STATUS,30,DERATE_CONDITION_30,Derate condition 0x1e active (diagnosticStatus30Setter),2
+# VP44 Diagnostic Mode State - state machine in vp44DiagnosticModeStateMachine and switch handler
+# Tracked in vp44_diagnostic_mode_state, controls protection system behavior
+VP44_DIAG_MODE,0,INACTIVE,Diagnostic mode inactive / cleared,2
+VP44_DIAG_MODE,1,BOOST_PRESSURE_INIT,Boost pressure threshold check init (set protection_system_enable_flag=1),2
+VP44_DIAG_MODE,2,BOOST_PRESSURE_MONITOR,Boost pressure monitoring active,2
+VP44_DIAG_MODE,3,SENSOR_BIT8_TRIGGERED,Sensor status bit 8 triggered protection,2
+VP44_DIAG_MODE,4,SENSOR_BIT2_PROTECTION,Sensor status bit 2 protection active,2
+VP44_DIAG_MODE,5,SENSOR_TYPE_0_MODE,Sensor type 0 mode (vp44_sensor_type_selector==0),2
+VP44_DIAG_MODE,6,SENSOR_TYPE_1_MODE,Sensor type 1 mode (vp44_sensor_type_selector!=0),2
+VP44_DIAG_MODE,7,PROTECTION_CONTINUE,Protection system continue state,2
+VP44_DIAG_MODE,8,EXIT_DISABLED,Exit/disabled state - protection clearing,2
+VP44_DIAG_MODE,256,UNINITIALIZED,Transitional/uninitialized state (0x100),2
