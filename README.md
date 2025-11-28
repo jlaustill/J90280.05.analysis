@@ -32,10 +32,10 @@ This automatically executes all analysis:
 - ✅ Memory map setup (MC68336 architecture)
 - ✅ Function renaming (793 functions)
 - ✅ Global variable creation (6,087 variables)
-- ✅ Structure application (432 structure fields)
+- ✅ Structure application (433 structure fields)
 - ✅ Label creation (3,495 control flow labels)
 - ✅ Constant documentation (73 magic numbers)
-- ✅ Enum creation (293 enum entries)
+- ✅ Enum creation (464 enum entries)
 
 **Result**: Firmware goes from cryptic to human-readable instantly.
 
@@ -70,6 +70,26 @@ Your discoveries are stored in **9 CSV files** in `ghidra/CM550.rep/` - these AR
 - ✅ **Predictable ordering** makes entries easy to find
 - ✅ **Code reviewable** discoveries in consistent format
 - ✅ **Scalable to large teams** with systematic organization
+
+### **⚠️ Enum Sizing Requirements (Critical)**
+
+Enum sizes in `enums.csv` **must match the assembly instruction operand size**:
+- `move.b` (byte operations) → enum size = **1**
+- `move.w` (word operations) → enum size = **2**
+- `move.l` (long/dword operations) → enum size = **4**
+
+**Why this matters**: If enum size doesn't match the variable size, Ghidra creates overlapping symbols (shown with underscore prefix like `_variable_name`), and enum member names won't appear in switch statements.
+
+**How to verify**: Check the disassembly for how the variable is accessed:
+```assembly
+move.w  d0,(main_loop_phase_index).w   ; Variable is 2 bytes → enum size = 2
+move.l  d1,(fuel_sync_state).l         ; Variable is 4 bytes → enum size = 4
+```
+
+**Example fix**: If `switch(_my_variable)` shows underscore:
+1. Find the variable in `global_variables.csv`
+2. Check assembly to determine actual operand size
+3. Update both variable size AND enum size to match
 
 ### **🤖 Automated CSV Sorting**
 
@@ -321,8 +341,16 @@ CSVs are the source of truth. Before committing:
 
 ### **Network Architecture:**
 - **J1939 functions**: sendJ1939Msg, sendJ1939SingleFrame, sendJ1939MultiFrame
-- **VP44 network**: Separate CAN bus for injection pump communication  
+- **VP44 network**: Separate CAN bus for injection pump communication
 - **Message formats**: 8-byte J1939 frames with engine sensor data
+
+### **State Machine Enums** (switch statements now show readable names):
+- **MAIN_LOOP_PHASE** (40 phases) - Main scheduler task phases (PHASE_0_VP44_RPM through PHASE_39)
+- **ENGINE_OPERATING_MODE** (9 states) - IDLE, LOW_RPM_RUNNING, HIGH_RPM_RUNNING, CRANKING, etc.
+- **VP44_ENGINE_STATE** (12 states) - VP44 injection pump state machine
+- **PROTECTION_STATE** (5 states) - Engine protection coordinator (FAULT_DURATION_COUNT, DIAGNOSTIC_VALIDATE, etc.)
+- **FUEL_SYNC_STATE** (5 states) - Fuel pressure synchronization state machine
+- **RETARDER_MODE_STATE** (6 states) - Retarder/engine brake control
 
 **The CSV files contain the complete reverse engineered knowledge base for this firmware.**
 
@@ -345,9 +373,9 @@ CSVs are the source of truth. Before committing:
 |----------|---------|-------------|
 | `function_renames.csv` | 793 | All functions named |
 | `global_variables.csv` | 6,087 | All global variables documented |
-| `structure_definitions.csv` | 432 | Structure field definitions |
+| `structure_definitions.csv` | 433 | Structure field definitions |
 | `labels.csv` | 3,495 | Control flow labels |
-| `enums.csv` | 293 | Enumeration entries |
+| `enums.csv` | 464 | Enumeration entries |
 | `constants.csv` | 73 | Magic number documentation |
 | `local_variables.csv` | 42 | Local variable renames |
 | `function_parameters.csv` | 9 | Function parameter names |
