@@ -5062,3 +5062,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808814,eps_fuel_demand_delta,word,EPS fuel demand delta subtractor (2 refs),2,0,,delta
 0x00808832,fuel_arbitrator_timer_threshold,word,Fuel arbitrator timer threshold (2 refs),2,0,,threshold
 0x00808834,engine_timing_decrement_step,word,Engine timing adjuster decrement step (2 refs),2,0,,step
+0x0080845a,fuel_demand_offset_threshold,word,Fuel demand comparison offset threshold (2 refs),2,0,,threshold
+0x00808478,final_fuel_command_max,word,Final fuel delivery upper clamp (2 refs),2,0,,limit
+0x00808476,final_fuel_command_min,word,Final fuel delivery lower clamp (2 refs),2,0,,limit
+0x0080848a,arbitrated_fuel_limit_min,word,Arbitrated fuel lower limit (2 refs),2,0,,limit
+0x008086e8,fuel_arbitrator_increment,word,Fuel arbitrator counter increment (2 refs),2,0,,increment
+0x008086ee,fuel_arbitrator_session_init,word,Fuel arbitrator session counter init (2 refs),2,0,,init
+0x008086e6,fuel_arbitrator_status_init,word,Fuel arbitrator status timer init (2 refs),2,0,,init
+0x008086c4,fuel_arbitrator_output_value,word,Fuel arbitrator output for message (2 refs),2,0,,value
+0x0080875e,io_control_index_limit,word,I/O control index comparison limit (2 refs),2,0,,limit
+0x008087c2,eps_backup_duration_init,word,EPS backup duration init value (2 refs),2,0,,init
+0x008087c6,governor_pid_integral_max,word,Governor PID integral upper limit (2 refs),2,0,,limit
+0x00807d52,engine_running_timer_threshold,word,Engine running mode timer threshold (2 refs),2,0,,threshold
