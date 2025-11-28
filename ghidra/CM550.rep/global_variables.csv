@@ -4978,3 +4978,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808804,eps_control_mode_duration_value,word,EPS control mode duration calculation value (3 refs),2,0,,value
 0x00808962,insite_parameter_table_start,byte,INSITE parameter table start address (3 refs),1,0,,table
 0x008062d2,can_memory_table_start,dword,CAN memory synchronization table start (3 refs),4,0,,table
+0x00800116,retarder_mode_lookup_table_pointer,dword,Retarder mode lookup table pointer (0x807952/0x80797a) (3 refs),4,0,,pointer
+0x008002cc,engine_operating_mode_previous,byte,Previous engine operating mode for transition detection (3 refs),1,0,,mode
+0x008002ec,engine_mode_transition_flag,word,Engine mode transition detection flag (3 refs),2,0,,flag
+0x00800342,crank_exit_rpm_threshold,word,Crank exit RPM threshold value (3 refs),2,0,,threshold
+0x00800360,engine_operating_mode_cached,byte,Cached engine operating mode for comparison (3 refs),1,0,,mode
+0x00804a20,runtime_histogram_array_1,word,Runtime histogram array 1 base (3 refs),2,0,,array
+0x00804a86,runtime_histogram_array_2,word,Runtime histogram array 2 base (3 refs),2,0,,array
+0x00805540,fuel_arbitrator_rpm_target_history,word,Fuel arbitrator RPM target history array (3 refs),2,0,,array
+0x00805548,fuel_arbitrator_rpm_history_index,word,Fuel arbitrator RPM history array index (3 refs),2,0,,index
+0x0080555a,fuel_arbitrator_state_history,word,Fuel arbitrator state history array (3 refs),2,0,,array
+0x0080894a,vp44_fuel_temperature_raw,word,VP44 fuel temperature raw sensor value (3 refs),2,0,,value
+0x0080d03c,crank_state_transition_flag,byte,Crank state transition detection flag (3 refs),1,0,,flag
