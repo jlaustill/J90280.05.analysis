@@ -444,3 +444,34 @@ table_interp_args_t,,current_index,word,2,Current interpolation index into table
 table_interp_args_t,,x_axis_ptr,dword,4,Pointer to X-axis table (input values),,verified
 table_interp_args_t,,input_value,word,2,Input value for table lookup,,verified
 table_interp_args_t,,y_axis_ptr,dword,4,Pointer to Y-axis table (output values),,verified
+# Sensor Fault Configuration Table Entry - used by sensorFaultDebounceMonitor
+# 24 bytes per entry, base address 0x8068ea, 16 entries (iterates with sVar5 0-15)
+# NOTE: Structure defined for documentation only - do NOT apply to global variable
+# iVar7 iterates through this table with stride 0x18 (24 bytes)
+sensor_fault_config_t,,reserved_00,word,2,Reserved/padding at offset 0x00,,verified
+sensor_fault_config_t,,default_value,word,2,Default sensor value on fault (offset 0x02),,verified
+sensor_fault_config_t,,clear_threshold,word,2,Threshold for fault clear (offset 0x04),,verified
+sensor_fault_config_t,,decrement_value,word,2,Debounce counter decrement (offset 0x06),,verified
+sensor_fault_config_t,,increment_value,word,2,Debounce counter increment (offset 0x08),,verified
+sensor_fault_config_t,,set_threshold,word,2,Threshold for fault set (offset 0x0a),,verified
+sensor_fault_config_t,,high_limit,word,2,High error limit (offset 0x0c),,verified
+sensor_fault_config_t,,low_limit,word,2,Low error limit (offset 0x0e),,verified
+sensor_fault_config_t,,adc_lookup_index,word,2,A/D channel lookup table index (offset 0x10),,verified
+sensor_fault_config_t,,reserved_12,byte,1,Reserved byte at offset 0x12,,verified
+sensor_fault_config_t,,alt_fault_enable,byte,1,Alternative fault enable flag (offset 0x13),,verified
+sensor_fault_config_t,,primary_fault_id,byte,1,Primary fault code packed bit/word (offset 0x14),,verified
+sensor_fault_config_t,,secondary_fault_id,byte,1,Secondary fault code (offset 0x15),,verified
+sensor_fault_config_t,,tertiary_fault_id,byte,1,Tertiary fault code (offset 0x16),,verified
+sensor_fault_config_t,,debounce_max,byte,1,Maximum debounce count (offset 0x17),,verified
+# Sensor Debounce State Table Entry - paired with sensor_fault_config_t
+# 22 bytes per entry (0x16 stride), base at request_to_strobe_set_0_then_set_1_cold_start_aid_1_driver_0_1
+# NOTE: Structure defined for documentation only - do NOT apply to global variable
+# pbVar8 iterates through this table with stride 0x16 (22 bytes)
+sensor_debounce_state_t,,reserved_00,byte,8,Reserved bytes at offset 0x00-0x07,,verified
+sensor_debounce_state_t,,interpolated_value,word,2,Interpolated sensor value (offset 0x08),,verified
+sensor_debounce_state_t,,lookup_result,word,2,Table lookup result (offset 0x0a),,verified
+sensor_debounce_state_t,,debounce_counter,word,2,Current debounce count (offset 0x0c),,verified
+sensor_debounce_state_t,,fault_active_flag,byte,1,Fault currently active flag (offset 0x0e),,verified
+sensor_debounce_state_t,,sample_counter,byte,1,Sample phase counter (offset 0x0f),,verified
+sensor_debounce_state_t,,adc_raw_value,word,2,Raw A/D conversion value (offset 0x10),,verified
+sensor_debounce_state_t,,reserved_12,byte,4,Reserved bytes at offset 0x12-0x15,,verified
