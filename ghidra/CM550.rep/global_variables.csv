@@ -5974,3 +5974,102 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00ffd82f,sim_tpu_mb1_data_7,byte,SIM/TPU Message Buffer 1 Data Byte 7,1,0,,hw_register
 0x00ffd83f,sim_tpu_mb2_data_7,byte,SIM/TPU Message Buffer 2 Data Byte 7,1,0,,hw_register
 0x00ffd84f,sim_tpu_mb3_data_7,byte,SIM/TPU Message Buffer 3 Data Byte 7,1,0,,hw_register
+0x008000d6,diagnostic_message_alternation_counter,byte,Alternates between diagnostic message 45 and 53 builders (diagnosticMessageTransmissionManager),1,0,,counter
+0x00800114,io_control_fuel_table_1_lookup_arg,word,IO control fuel calculation table 1 lookup argument (ioControlBasedFuelCalculator),2,0,,lookup_arg
+0x00800120,io_control_fuel_table_2_lookup_arg,word,IO control fuel calculation table 2 lookup argument (ioControlBasedFuelCalculator),2,0,,lookup_arg
+0x00800176,cold_start_rpm_snapshot_1,word,Cold start RPM snapshot 1 for fuel control (coldStartFuelControlSlowCycle40Coordinator),2,0,RPM,snapshot
+0x0080017e,cold_start_fuel_demand_snapshot,word,Cold start fuel demand snapshot (coldStartFuelControlSlowCycle40Coordinator),2,0,,snapshot
+0x0080018a,cold_start_rpm_snapshot_2,word,Cold start RPM snapshot 2 for fuel control (coldStartFuelControlSlowCycle40Coordinator),2,0,RPM,snapshot
+0x00800196,cold_start_rpm_snapshot_3,word,Cold start RPM snapshot 3 for fuel control (coldStartFuelControlSlowCycle40Coordinator),2,0,RPM,snapshot
+0x0080022a,speed_difference_interpolation_result,word,Speed difference interpolation result (multiSpeedParameterInterpolation),2,0,,value
+0x00800268,vp44_third_array_1,dword,VP44 third status array element 1 (vp44_status_data_collector),4,0,,status
+0x0080026c,vp44_third_array_2,dword,VP44 third status array element 2 (vp44_status_data_collector),4,0,,status
+0x00800270,vp44_third_array_3,dword,VP44 third status array element 3 (vp44_status_data_collector),4,0,,status
+0x008002a8,fuel_timing_blend_rpm_input_1,word,Fuel timing blend RPM input 1 (fuelTimingModeBlendCalculator),2,0,RPM,input
+0x008002b0,fuel_timing_blend_offset_input_1,word,Fuel timing blend offset input 1 (fuelTimingModeBlendCalculator),2,0,,input
+0x008002bc,fuel_timing_blend_rpm_input_2,word,Fuel timing blend RPM input 2 (fuelTimingModeBlendCalculator),2,0,RPM,input
+0x008002c4,fuel_timing_blend_offset_input_2,word,Fuel timing blend offset input 2 (fuelTimingModeBlendCalculator),2,0,,input
+0x008002d8,vp44_communication_status_latch,byte,VP44 communication status latch flag (engineOperatingModeStateMachine),1,0,,flag
+0x00800768,timer_scheduler_phase3_count_1,byte,Timer scheduler phase 3 count 1 (phase3_periodic_task_scheduler),1,0,,counter
+0x00800769,timer_scheduler_phase3_count_2,byte,Timer scheduler phase 3 count 2 (phase3_periodic_task_scheduler),1,0,,counter
+0x008007b2,fuel_arbitrator_limited_value_prev,byte,Previous fuel arbitrator limited value (memoryRegisterController),1,0,,previous
+0x008007c2,multi_packet_status_byte,byte,Multi-packet transmission status byte (multiPacketBufferAllocator),1,0,,status
+0x0080171a,derate_bit5_status_latch,byte,Derate status byte bit 5 latch (fuelTimingOffsetCalculator),1,0,,flag
+0x0080171b,derate_bit6_status_latch,byte,Derate status byte bit 6 latch (fuelTimingOffsetCalculator),1,0,,flag
+0x00801760,insite_ecu_id_response_buffer,byte,INSITE ECU ID response buffer start (insiteEcuIdResponseBuilder),1,0,,buffer
+0x00801776,insite_version_response_buffer,byte,INSITE version response buffer start (insiteVersionInfoBuilder),1,0,,buffer
+0x0080bdcd,vp44_extended_status_byte_4,byte,VP44 extended status collection byte 4 (vp44_status_data_collector),1,0,,status
+0x00800ee5,j1939_multi_frame_debounce_state,byte,J1939 multi-frame debounce state array element (sendJ1939MultiFrame),1,0,,state
+0x00800ee8,j1939_multi_frame_retry_counter,word,J1939 multi-frame retry counter array (sendJ1939MultiFrame),2,0,,counter
+0x00800eeb,j1939_multi_frame_sequence_number,byte,J1939 multi-frame sequence number array (sendJ1939MultiFrame),1,0,,counter
+0x00800ef6,j1939_multi_frame_pgn_data,dword,J1939 multi-frame PGN data array (sendJ1939MultiFrame),4,0,,data
+0x00800efa,j1939_multi_frame_timeout_counter,word,J1939 multi-frame timeout counter array (sendJ1939MultiFrame),2,0,,counter
+0x00800efc,j1939_multi_frame_buffer_ptr,dword,J1939 multi-frame buffer pointer array (sendJ1939MultiFrame),4,0,,pointer
+0x00800f04,j1939_multi_frame_active_flag,byte,J1939 multi-frame transmission active flag (messageQueueDispatcher),1,0,,flag
+0x0080165c,io_control_timeout_table_entry,word,IO control timeout table entry array (ioControlTimeoutTableLookup),2,0,,table
+0x00801670,io_control_mask_state_active,byte,IO control mask state machine active flag (ioControlMaskStateMachine),1,0,,flag
+0x008016ba,dzg_pressure_lookup_table_arg,word,DZG pressure threshold lookup table argument (initLookupTablePointers1),2,0,,lookup_arg
+0x008016c6,eps_main_lookup_table_arg,word,EPS main lost duration lookup table argument (initLookupTablePointers1),2,0,,lookup_arg
+0x00801730,qadc_circular_buffer_dest_ptr,dword,QADC circular buffer destination pointer (qadcDataCollectionStateMachine),4,0,,pointer
+0x00801734,qadc_data_collection_ready_flag,byte,QADC data collection ready flag (qadcDataCollectionStateMachine),1,0,,flag
+0x00801736,rpm_lookup_table_1_arg,word,RPM lookup table 1 argument (initRpmLookupTables),2,0,,lookup_arg
+0x00801742,rpm_lookup_table_2_arg,word,RPM lookup table 2 argument (initRpmLookupTables),2,0,,lookup_arg
+0x0080189c,fuel_demand_proportional_calc_result,dword,Fuel demand proportional calculation result (fuelDemandProportionalCalculator),4,0,,value
+0x00801998,diagnostic_service_state_counter,byte,Diagnostic service state counter (diagnosticServiceDispatcher/coreSystemFunction),1,0,,counter
+0x00801a36,can_transmission_active_count,byte,CAN transmission active count (canTransmissionController),1,0,,counter
+0x00801a39,retarder_control_priority_prev,byte,Previous retarder control priority byte (retarderControlModeHandler),1,0,,previous
+0x00801a86,diagnostic_can_response_header,dword,Diagnostic CAN response header buffer (diagnosticCanResponseSender),4,0,,buffer
+0x00801adc,engine_serial_number_buffer,byte,Engine serial number data buffer start (engineSerialNumberDataBuilder),1,0,,buffer
+0x00808b00,diagnostic_tx_buffer_base,byte,Diagnostic transmit buffer base address (diagnosticBufferPointerInit),1,0,,buffer
+0x00808c00,diagnostic_rx_buffer_base,byte,Diagnostic receive buffer base address (diagnosticBufferPointerInit),1,0,,buffer
+0x00801b04,active_dtc_list_header_ptr,dword,Active DTC list header pointer (activeDtcListBuilder),4,0,,pointer
+0x00801b0a,active_dtc_list_data_buffer,dword,Active DTC list data buffer (activeDtcListBuilder),4,0,,buffer
+0x00801b0d,engine_coolant_pgn65226_status,byte,Engine coolant PGN 65226 status byte (engineCoolantPGN_65226_Builder),1,0,,status
+0x0080220e,dm2_pgn65227_data_byte,byte,DM2 PGN 65227 data byte (previousDtcListBuilder),1,0,,data
+0x00802210,dm2_pgn65227_data_buffer,dword,DM2 PGN 65227 data buffer (previousDtcListBuilder),4,0,,buffer
+0x00802213,dm2_pgn65227_control_byte,byte,DM2 PGN 65227 control byte (diagnosticDM2PGN_65227_Builder),1,0,,control
+0x00802904,dm2_pgn65227_unused_byte,byte,DM2 PGN 65227 unused byte (previousDtcListBuilder),1,0,,data
+0x00802fec,dm4_pgn65229_status_byte,byte,DM4 PGN 65229 status byte (buildCanMessage/diagnosticDM4PGN_65229_Builder),1,0,,status
+0x00802ffc,dm5_pgn65230_pending_code_count,byte,DM5 PGN 65230 pending code count (diagnosticDM5DataBuilder),1,0,,counter
+0x00803014,dm8_pgn65232_data_byte,byte,DM8 PGN 65232 data byte (diagnosticByteResponseSender),1,0,,data
+0x0080307e,extended_diag_pgn65251_data_start,byte,Extended diagnostic PGN 65251 data buffer start (fuelParameterCanMessageBuilder),1,0,,buffer
+0x00803097,extended_diag_torque_limit_byte,byte,Extended diagnostic torque limit change byte (fuelParameterCanMessageBuilder),1,0,,data
+0x008030a8,extended_diag_pgn65251_status,byte,Extended diagnostic PGN 65251 status byte (fuelParameterCanMessageBuilder),1,0,,status
+0x00803166,intake_manifold_pgn65526_data,byte,Intake manifold PGN 65526 data byte (intakeManifoldPGN_65526_Builder),1,0,,data
+0x0080317e,cruise_control_pgn65264_data,byte,Cruise control PGN 65264 data byte (cruiseControlPGN_65264_Builder),1,0,,data
+0x008031d0,electronic_brake_pgn65527_data,byte,Electronic brake PGN 65527 data byte (electronicBrakePGN_65527_Builder),1,0,,data
+0x008033b0,output_control_timing_state,byte,Output control timing generator state (outputControlTimingGenerator),1,0,,state
+0x00803412,vp44_sensor_diag_state_prev,byte,VP44 sensor diagnostic previous state (vp44SensorDiagnosticControl),1,0,,previous
+0x00803413,vp44_sensor_diag_index,byte,VP44 sensor diagnostic index (vp44SensorDiagnosticControl),1,0,,index
+0x00803442,oil_pressure_protection_table_ptr,dword,Oil pressure protection lookup table pointer (initOilPressureProtectionPointers),4,0,,pointer
+0x0080345a,base_timing_table_lookup_arg,word,Base timing table lookup argument (vp44FaultProtectionSystemInit),2,0,,lookup_arg
+0x00803472,lift_pump_table_lookup_arg,word,Lift pump table lookup argument (vp44FaultProtectionSystemInit),2,0,,lookup_arg
+0x00805554,diagnostic_snapshot_position_flag,byte,Diagnostic group snapshot position flag (diagnosticGroupSnapshotCapture),1,0,,flag
+0x00805576,serial_transmit_ready_flag,byte,Serial transmit handler ready flag (serialTransmitHandler/sendCanSingleFrame),1,0,,flag
+0x00805620,hour_meter_event_log_array,byte,Hour meter event log array start (hourMeterEventLogger),2,0,,array
+0x00805621,hour_meter_event_log_array_1,byte,Hour meter event log array element 1 (hourMeterEventLogger),1,0,,array
+0x00805a38,diagnostic_snapshot_throttle_value,word,Diagnostic snapshot throttle position value (diagnosticTableSnapshotCapture),2,0,,snapshot
+0x00805a3e,diagnostic_snapshot_fuel_value,word,Diagnostic snapshot fuel calc input value (diagnosticTableSnapshotCapture),2,0,,snapshot
+0x00805a42,diagnostic_snapshot_sensor_reading,word,Diagnostic snapshot sensor reading (diagnosticTableSnapshotCapture),2,0,,snapshot
+0x00805a44,diagnostic_snapshot_throttle_raw,word,Diagnostic snapshot throttle position raw (diagnosticTableSnapshotCapture),2,0,,snapshot
+0x008062cc,can_memory_vp44_comm_ptr,word,CAN memory VP44 communication pointer (vp44CommunicationTestAndInit/canMemoryPointerTableInit),2,0,,pointer
+0x008068ec,vp44_injection_timing_state_copy,word,VP44 injection timing state copy (vp44InjectionTimingSlowCycle40Coordinator/sensorFaultDebounceMonitor),2,0,,state
+0x00807c86,port_pin_test_result,byte,Port pin test sequence 2 result (portPinTestSequence2),1,0,,result
+0x00807cda,can1_timer_buffer_config,byte,CAN1 timer buffer configuration value (can1TimerBufferInit),1,0,,config
+0x00807d03,can1_message_transmit_config,byte,CAN1 message transmit configuration value (can1MessageTransmitInit),1,0,,config
+0x00807d20,rpm_timer_interrupt_threshold,byte,RPM timer interrupt threshold value (rpmTimerInterruptHandler),1,0,,threshold
+0x00808768,io_control_mask_state_array,word,IO control mask state array start (ioControlMaskStateMachine),2,0,,array
+0x008088c3,can_controller_1_status_byte,byte,CAN controller 1 status byte (dualCanControllerInit),1,0,,status
+0x008088d1,can_controller_2_status_byte,byte,CAN controller 2 status byte (dualCanControllerInit),1,0,,status
+0x00809200,engine_fluid_level_temp_data,word,Engine fluid level temperature data (engineFluidLevelDataBuilder/engineProtectionSystemInit),2,0,,data
+0x00809526,adc_channel_config_buffer,word,ADC channel configuration buffer (initADCChannelConfiguration/sensorFaultDebounceMonitor),2,0,,buffer
+0x00809a7c,vp44_timing_range_table_ptr,word,VP44 timing range validation table pointer (vp44FaultProtectionSystemInit),2,0,,pointer
+0x00809a8c,vp44_timing_system_monitor_ptr,word,VP44 timing system monitor pointer (vp44FaultProtectionSystemInit/vp44TimingRangeValidation),2,0,,pointer
+0x00809aea,vp44_fault_protection_state_array,byte,VP44 fault protection state array (vp44FaultProtectionSystemInit),1,0,,array
+0x00809b1e,hour_meter_conversion_data_1,dword,Hour meter conversion data buffer 1 (writeHourMeterConversionData/initHourMeterConversionData),4,0,,buffer
+0x00809be8,hour_meter_conversion_data_2,dword,Hour meter conversion data buffer 2 (writeHourMeterConversionData/initHourMeterConversionData),4,0,,buffer
+0x0080c82c,protection_state_3b_rpm_array,word,Protection state 3b RPM monitor array (protectionState3bRpmMonitor),2,0,,array
+0x0080cf88,can_single_frame_transmit_flag,byte,CAN single frame transmit flag (sendCanSingleFrame/serialTransmitHandler),1,0,,flag
+0x0080cfa4,can_transmission_scheduler_data,dword,CAN transmission scheduler data buffer (canTransmissionScheduler/timerBasedTaskScheduler),4,0,,buffer
+0x0080cfad,retarder_control_source_byte,byte,Retarder control source status byte (diagnosticGroupSnapshotCapture/memoryRegisterController),1,0,,status
+0x0080d422,insite_parameter_checksum_buffer,word,INSITE parameter checksum buffer (insiteParameterTableIterator/initDiagnosticProtocol),2,0,,buffer
