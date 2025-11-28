@@ -5648,6 +5648,66 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808808,eps_control_mode_selector_state,dword,EPS control mode selector state pointer (epsControlModeSelector),4,0,,pointer
 0x0080880e,eps_diagnostic_lower_limit,word,EPS diagnostic mode lower limit (epsDiagnosticModeHandler),2,0,,limit
 0x00808810,eps_diagnostic_upper_limit,word,EPS diagnostic mode upper limit (epsDiagnosticModeHandler),2,0,,limit
+0x0080845c,fuel_demand_proportional_param,word,Fuel demand proportional calculation param (fuelDemandProportionalCalculationSlowCycle40Coordinator),2,0,,parameter
+0x0080845e,fuel_delivery_gain_factor_init,word,Fuel delivery gain factor init value (fuelDeliverySystemInit),2,0,,init
+0x00808460,fuel_delivery_rate_limit_gain_init,word,Fuel delivery rate limit gain init (fuelDeliverySystemInit),2,0,,init
+0x00808462,fuel_delivery_offset_factor_init,word,Fuel delivery offset factor init (fuelDeliverySystemInit),2,0,,init
+0x00808466,fuel_delivery_rpm_deviation_param,word,Fuel delivery RPM deviation param (fuel_delivery_controller/fuelRpmDeviationCalculator),2,0,,parameter
+0x0080847e,fuel_rpm_deviation_calc_param,word,Fuel RPM deviation calculation param (fuelRpmDeviationCalculator),2,0,,parameter
+0x008084a0,can_message_filter_init_value,word,CAN message filter init value (canMessageFilterInit),2,0,,init
+0x008084c3,dtc_conversion_mode_flag,byte,DTC conversion mode flag (buildCanMessage),1,0,,flag
+0x008084c4,dtc_timestamp_format_flag,byte,DTC timestamp format flag (buildCanMessage),1,0,,flag
+0x008084c7,dm5_active_code_count_byte,byte,DM5 active diagnostic code count byte (diagnosticDM5DataBuilder),1,0,,count
+0x008084c9,dm5_pending_code_count_byte,byte,DM5 pending diagnostic code count byte (diagnosticDM5DataBuilder),1,0,,count
+0x008086e4,fuel_arbitrator_message_param,word,Fuel arbitrator message handler param (fuelArbitratorMessageHandler),2,0,,parameter
+0x008086ec,fuel_arbitrator_timeout_param,word,Fuel arbitrator timeout param (fuelArbitratorMessageHandler),2,0,,parameter
+0x008086f2,j1939_timeout_clear_value,word,J1939 timeout data clear value (j1939TimeoutDataClearHandler),2,0,,value
+0x008086f8,diagnostic_session_validator_param,word,Diagnostic session validator param (diagnosticSessionValidator),2,0,,parameter
+0x00808794,eps_diagnostic_mode_checker_param,word,EPS diagnostic mode checker param (epsDiagnosticModeChecker),2,0,,parameter
+0x0080882e,engine_mode_timing_adjust_param_1,word,Engine mode timing adjuster param 1 (engineModeTimingAdjuster),2,0,,parameter
+0x00808830,engine_mode_timing_adjust_param_2,word,Engine mode timing adjuster param 2 (engineModeTimingAdjuster),2,0,,parameter
+0x008088b0,pwm_output_frequency_divisor,word,PWM output frequency divisor (pwmOutputInit),2,0,,divisor
+0x008088b2,pwm_output_period_multiplier,word,PWM output period multiplier (pwmOutputInit),2,0,,multiplier
+0x008088b3,pwm_output_channel_select,byte,PWM output channel select bits (pwmOutputInit),1,0,,config
+0x008088b4,pwm_output_enable_flag,byte,PWM output enable flag (pwmOutputInit),1,0,,flag
+0x008088c5,can_controller_1_filter_byte_1,byte,CAN controller 1 filter byte 1 (dualCanControllerInit),1,0,,config
+0x008088c7,can_controller_1_filter_byte_2,byte,CAN controller 1 filter byte 2 (dualCanControllerInit),1,0,,config
+0x008088c9,can_controller_1_filter_byte_3,byte,CAN controller 1 filter byte 3 (dualCanControllerInit),1,0,,config
+0x008088ca,can_controller_1_baud_byte_0,byte,CAN controller 1 baud rate byte 0 (dualCanControllerInit),1,0,,config
+0x008088cb,can_controller_1_baud_byte_1,byte,CAN controller 1 baud rate byte 1 (dualCanControllerInit),1,0,,config
+0x008088ce,can_controller_1_timing_word,word,CAN controller 1 timing config word (dualCanControllerInit),2,0,,config
+0x008088d3,can_controller_2_filter_byte_1,byte,CAN controller 2 filter byte 1 (dualCanControllerInit),1,0,,config
+0x008088d5,can_controller_2_filter_byte_2,byte,CAN controller 2 filter byte 2 (dualCanControllerInit),1,0,,config
+0x008088d7,can_controller_2_filter_byte_3,byte,CAN controller 2 filter byte 3 (dualCanControllerInit),1,0,,config
+0x008088d8,can_controller_2_baud_byte_0,byte,CAN controller 2 baud rate byte 0 (dualCanControllerInit),1,0,,config
+0x008088d9,can_controller_2_baud_byte_1,byte,CAN controller 2 baud rate byte 1 (dualCanControllerInit),1,0,,config
+0x008088da,can_controller_2_baud_byte_2,byte,CAN controller 2 baud rate byte 2 (dualCanControllerInit),1,0,,config
+0x008088db,can_controller_2_baud_byte_3,byte,CAN controller 2 baud rate byte 3 (dualCanControllerInit),1,0,,config
+0x008088dc,can_controller_2_timing_word,word,CAN controller 2 timing config word (dualCanControllerInit),2,0,,config
+0x00808912,flash_bootloader_param,word,Flash bootloader programmer param (flashBootloaderProgrammer),2,0,,parameter
+0x00808956,retarder_torque_point_2_value,word,Retarder torque point 2 value (retarderConfigDataBuilder),2,0,,value
+0x00808958,retarder_torque_point_3_value,word,Retarder torque point 3 value (retarderConfigDataBuilder),2,0,,value
+0x0080895a,retarder_torque_point_4_value,word,Retarder torque point 4 value (retarderConfigDataBuilder),2,0,,value
+0x0080895c,retarder_torque_point_5_value,word,Retarder torque point 5 value (retarderConfigDataBuilder),2,0,,value
+0x008089e0,insite_live_data_offset,word,INSITE live data handler offset (insiteLiveDataHandler),2,0,,offset
+0x00808a70,diagnostic_fuel_arbitration_state_9_value,word,Diagnostic fuel arbitration state 9 value (diagnosticModeFuelArbitrationHandler),2,0,,value
+0x00808a72,fuel_demand_state_24_override_value,word,Fuel demand state 24 override value (fuelDemandState24Override),2,0,,value
+0x00808a76,diagnostic_fuel_arbitration_state_10_value,word,Diagnostic fuel arbitration state 10 value (diagnosticModeFuelArbitrationHandler),2,0,,value
+0x00808a79,pwm_timer_cycle_advance_param,byte,PWM timer cycle advance param (pwmTimerCycleAdvance),1,0,,parameter
+0x00808dc2,vector_table_init_address,dword,Vector table init address (initVectorTable),4,0,,address
+0x00808e32,can_message_isr_register_address,dword,CAN message ISR register address (canMessageInterruptHandlerSetup),4,0,,address
+0x00808e36,serial_comm_isr_register_address,dword,Serial communication ISR register address (serialCommunicationIsrRegister),4,0,,address
+0x00808eca,timer_capture_hardware_init_address,dword,Timer capture hardware init address (timerCaptureHardwareInit),4,0,,address
+0x00808ece,pwm_timer_mode_1_update_address,dword,PWM timer mode 1 update address (pwmTimerMode1Update),4,0,,address
+0x00808f02,tpu_channel_isr_register_address,dword,TPU channel ISR register address (tpuChannelIsrRegister),4,0,,address
+0x00808f06,tpu_init_address,dword,TPU init address (initTPU),4,0,,address
+0x00808fee,engine_speed_isr_register_address,dword,Engine speed ISR register address (engineSpeedIsrRegister),4,0,,address
+0x008093a2,vp44_fault_register_bit2_threshold,word,VP44 fault register bit 2 threshold (vp44FaultRegisterBit2Monitor),2,0,,threshold
+0x00809528,adc_oil_pressure_filter_ptr,dword,ADC oil pressure filter constant pointer (initADCChannelConfiguration),4,0,,pointer
+0x0080952e,adc_coolant_temp_fault_clear_ptr,dword,ADC coolant temp fault clear counts pointer (initADCChannelConfiguration),4,0,,pointer
+0x00809532,adc_throttle_fault_increment_ptr,dword,ADC throttle fault increment pointer (initADCChannelConfiguration),4,0,,pointer
+0x00809534,adc_throttle_fault_set_ptr,dword,ADC sampled throttle fault clear counts pointer (initADCChannelConfiguration),4,0,,pointer
+0x0080953a,adc_sampled_throttle_fault_clear_ptr,dword,ADC sampled throttle fault clear ptr (initADCChannelConfiguration),4,0,,pointer
 0x00807388,rpm_derate_base_offset,word,RPM derate base offset (rpmDerateCalculationController),2,0,,offset
 0x00807392,rpm_derate_lower_threshold,word,RPM derate lower threshold (rpmDerateCalculationController),2,0,,threshold
 0x00807394,rpm_derate_upper_threshold,word,RPM derate upper threshold (rpmDerateCalculationController),2,0,,threshold
