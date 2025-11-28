@@ -431,3 +431,10 @@ shutdown_minimum_selector_t,0x0080d494,previous_value,word,2,Previous minimum va
 # Diagnostic Source Tracking @ 0x0080d49a-0x0080d49e
 diagnostic_source_t,0x0080d49a,value,word,2,Data/threshold value associated with the diagnostic source,verified
 diagnostic_source_t,0x0080d49a,code,word,2,Subsystem code that triggered diagnostic (see DIAGNOSTIC_SOURCE_CODE enum),verified
+# Q16.16 Fixed Point Structure - 32-bit value with 16-bit integer and 16-bit fractional parts
+# Used for PID controllers and accumulators that need fractional precision
+q16_fixed_point_t,,integer_part,word,2,High 16 bits - integer/whole number portion (._0_2_),,new
+q16_fixed_point_t,,fractional_part,word,2,Low 16 bits - fractional portion (._2_2_),,new
+# Governor PID Integral @ 0x008016e2 - Q16.16 fixed point accumulator
+governor_pid_integral_t,0x008016e2,integer_part,word,2,Integer portion of PID integral (governor_fuel_pid_integral._0_2_),,new
+governor_pid_integral_t,0x008016e2,fractional_part,word,2,Fractional portion of PID integral (governor_fuel_pid_integral._2_2_),,new
