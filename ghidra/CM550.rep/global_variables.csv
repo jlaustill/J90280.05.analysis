@@ -4954,3 +4954,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080554a,loop_counter_capture_start_2,dword,Loop counter capture start for timing measurement 2 (3 refs),4,0,,capture
 0x0080554e,loop_counter_elapsed_time_2,dword,Loop counter elapsed time measurement 2 (3 refs),4,0,,elapsed
 0x008054b8,rpm_histogram_overflow_counter,word,RPM histogram overflow bin counter (3 refs),2,0,,counter
+0x00004650,hour_meter_conversion_base,dword,Hour meter conversion calculation base value (4 refs),4,0,,value
+0x00804882,flash_program_block_1_buffer,dword,Flash program block 1 RAM buffer start (4 refs),4,0,,buffer
+0x0080488e,flash_program_block_2_buffer,word,Flash program block 2 RAM buffer start (4 refs),2,0,,buffer
+0x00804d86,engine_mode_transition_timer_array,word,Engine mode transition timer array base (4 refs),2,0,,array
+0x00805e72,diagnostic_fault_group_bitmask_array,word,Diagnostic fault group bitmask array base (4 refs),2,0,,array
+0x008065cc,diagnostic_fault_parameter_array,word,Diagnostic fault parameter lookup array (4 refs),2,0,,array
+0x00800f6a,serial_port_config_value,word,Serial port configuration value (3 refs),2,0,,config
+0x00800f6c,serial_buffer_pointer,dword,Serial port buffer pointer (3 refs),4,0,,pointer
+0x008031f4,fuel_demand_rpm_lookup_result,word,Fuel demand RPM-based lookup result (3 refs),2,0,,value
+0x008033ae,output_timing_duty_lookup_result,word,Output timing duty cycle lookup result (3 refs),2,0,,value
+0x008054ac,rpm_histogram_bin_1_counter,word,RPM histogram bin 1 counter (3 refs),2,0,,counter
+0x008054b2,rpm_histogram_bin_2_counter,word,RPM histogram bin 2 counter (3 refs),2,0,,counter

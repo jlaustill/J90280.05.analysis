@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 18:30:31 MST 2025
+// Thu Nov 27 18:32:46 MST 2025
 
 
 //
@@ -4068,28 +4068,29 @@ undefined4 calibrationDataCopyWithChecksum(void)
 {
   ushort extraout_D0u;
   short sVar1;
-  undefined4 *puVar2;
+  dword *pdVar2;
   word *pwVar3;
-  undefined4 *puVar4;
+  dword *pdVar4;
+  undefined4 *puVar5;
   
   sVar1 = arrayRangeSum((short *)&DAT_00004000,(short *)&calibration_checksum_end_marker);
   if ((sVar1 != _DAT_00803500) && (calibration_checksum_end_marker != 0xa1a1)) {
     return 1;
   }
-  puVar4 = (undefined4 *)&DAT_00004000;
-  for (puVar2 = (undefined4 *)&DAT_00804882; puVar2 < (undefined4 *)0x80488c; puVar2 = puVar2 + 1) {
-    *puVar2 = *puVar4;
+  pdVar4 = (dword *)&DAT_00004000;
+  for (pdVar2 = &flash_program_block_1_buffer; pdVar2 < (dword *)0x80488c; pdVar2 = pdVar2 + 1) {
+    *pdVar2 = *pdVar4;
     REG_SIM_SWSR = 0xaa;
     external_watchdog_service = 0xaa;
-    puVar4 = puVar4 + 1;
+    pdVar4 = pdVar4 + 1;
   }
-  puVar4 = &DAT_00004400;
-  for (pwVar3 = (word *)&DAT_0080488e; pwVar3 < &calibration_data_copy_status; pwVar3 = pwVar3 + 2)
-  {
-    *(undefined4 *)pwVar3 = *puVar4;
+  puVar5 = &DAT_00004400;
+  for (pwVar3 = &flash_program_block_2_buffer; pwVar3 < &calibration_data_copy_status;
+      pwVar3 = pwVar3 + 2) {
+    *(undefined4 *)pwVar3 = *puVar5;
     REG_SIM_SWSR = 0xaa;
     external_watchdog_service = 0xaa;
-    puVar4 = puVar4 + 1;
+    puVar5 = puVar5 + 1;
   }
   calibration_checksum_workspace._0_2_ = 1;
   return (uint)extraout_D0u << 0x10;
@@ -4108,29 +4109,28 @@ undefined4 calibrationDataCopySecondary(void)
 {
   ushort extraout_D0u;
   short sVar1;
-  undefined4 *puVar2;
-  dword *pdVar3;
-  undefined4 *puVar4;
-  dword *pdVar5;
+  dword *pdVar2;
+  word *pwVar3;
+  dword *pdVar4;
   
   sVar1 = arrayRangeSum((short *)&DAT_00006000,(short *)0x7e42);
   if (sVar1 != _DAT_00803502) {
     return 1;
   }
-  puVar4 = (undefined4 *)&DAT_00006000;
-  for (puVar2 = (undefined4 *)&DAT_00804882; puVar2 < (undefined4 *)0x80488c; puVar2 = puVar2 + 1) {
-    *puVar2 = *puVar4;
+  pdVar4 = (dword *)&DAT_00006000;
+  for (pdVar2 = &flash_program_block_1_buffer; pdVar2 < (dword *)0x80488c; pdVar2 = pdVar2 + 1) {
+    *pdVar2 = *pdVar4;
     REG_SIM_SWSR = 0xaa;
     external_watchdog_service = 0xaa;
-    puVar4 = puVar4 + 1;
+    pdVar4 = pdVar4 + 1;
   }
-  pdVar5 = &firmware_vector_table_base;
-  for (pdVar3 = (dword *)&DAT_0080488e; pdVar3 < &calibration_data_copy_status; pdVar3 = pdVar3 + 1)
-  {
-    *pdVar3 = *pdVar5;
+  pdVar4 = &firmware_vector_table_base;
+  for (pwVar3 = &flash_program_block_2_buffer; pwVar3 < &calibration_data_copy_status;
+      pwVar3 = (word *)((int)pwVar3 + 4)) {
+    *(dword *)pwVar3 = *pdVar4;
     REG_SIM_SWSR = 0xaa;
     external_watchdog_service = 0xaa;
-    pdVar5 = pdVar5 + 1;
+    pdVar4 = pdVar4 + 1;
   }
   calibration_checksum_workspace._0_2_ = 2;
   return (uint)extraout_D0u << 0x10;
@@ -4181,11 +4181,11 @@ int eepromCalibrationWritePrimary(void)
   if (iVar1 == 0) {
     REG_SIM_SWSR = 0xaa;
     external_watchdog_service = 0xaa;
-    sVar2 = flashProgramFromRam(0x4000,&DAT_00804882,CONCAT22(10,uVar6));
+    sVar2 = flashProgramFromRam(0x4000,&flash_program_block_1_buffer,CONCAT22(10,uVar6));
     if (sVar2 == 1) {
       REG_SIM_SWSR = 0xaa;
       external_watchdog_service = 0xaa;
-      sVar2 = flashProgramFromRam(0x4400,&DAT_0080488e,CONCAT22(0x1a42,uVar6));
+      sVar2 = flashProgramFromRam(0x4400,&flash_program_block_2_buffer,CONCAT22(0x1a42,uVar6));
       cVar3 = sVar2 == 0;
       if (sVar2 == 1) {
         REG_SIM_SWSR = 0xaa;
@@ -4272,11 +4272,11 @@ int eepromCalibrationWriteSecondary(void)
   if (iVar1 == 0) {
     REG_SIM_SWSR = 0xaa;
     external_watchdog_service = 0xaa;
-    sVar2 = flashProgramFromRam(0x6000,&DAT_00804882,CONCAT22(10,uVar6));
+    sVar2 = flashProgramFromRam(0x6000,&flash_program_block_1_buffer,CONCAT22(10,uVar6));
     if (sVar2 == 1) {
       REG_SIM_SWSR = 0xaa;
       external_watchdog_service = 0xaa;
-      sVar2 = flashProgramFromRam(0x6400,&DAT_0080488e,CONCAT22(0x1a42,uVar6));
+      sVar2 = flashProgramFromRam(0x6400,&flash_program_block_2_buffer,CONCAT22(0x1a42,uVar6));
       cVar3 = sVar2 == 0;
       if (sVar2 == 1) {
         REG_SIM_SWSR = 0xaa;
@@ -5650,14 +5650,15 @@ void writeHourMeterConversionData(void)
   
   if (hour_meter_conversion_data < hour_meter_conversion_state) {
     hour_meter_stored_ticks =
-         (word)((uint)(&DAT_00004650 + hour_meter_conversion_data * 0x3c) / 36000);
+         (word)((uint)(&hour_meter_conversion_base + hour_meter_conversion_data * 0xf) / 36000);
   }
   else {
     hour_meter_stored_ticks = hour_meter_tick_counter;
   }
   if (engine_runtime_histogram_counter < hour_meter_conversion_state) {
     histogram_stored_ticks =
-         (word)((uint)(&DAT_00004650 + engine_runtime_histogram_counter * 0x3c) / 36000);
+         (word)((uint)(&hour_meter_conversion_base + engine_runtime_histogram_counter * 0xf) / 36000
+               );
   }
   else {
     histogram_stored_ticks = hour_meter_tick_counter;
@@ -5667,9 +5668,9 @@ void writeHourMeterConversionData(void)
   piVar3 = (int *)&DAT_00809be8;
   do {
     *(short *)(&DAT_00804a20 + (short)(ushort)bVar1 * 2) =
-         (short)((uint)(&DAT_00004650 + *piVar2 * 0x3c) / 36000);
+         (short)((uint)(&hour_meter_conversion_base + *piVar2 * 0xf) / 36000);
     *(short *)(&DAT_00804a86 + (short)(ushort)bVar1 * 2) =
-         (short)((uint)(&DAT_00004650 + *piVar3 * 0x3c) / 36000);
+         (short)((uint)(&hour_meter_conversion_base + *piVar3 * 0xf) / 36000);
     bVar1 = bVar1 + 1;
     piVar2 = piVar2 + 1;
     piVar3 = piVar3 + 1;
@@ -6189,7 +6190,8 @@ void diagnosticStateMachineProcessor(void)
   uVar8 = 0;
   do {
     if ((uVar7 & (uVar3 | uVar2)) == 0) {
-      if (((((uVar7 & *(ushort *)(&DAT_00805e72 + (short)diagnostic_fault_group_index * 2)) != 0) &&
+      if (((((uVar7 & (&diagnostic_fault_group_bitmask_array)[(short)diagnostic_fault_group_index])
+             != 0) &&
            (uVar4 = *(ushort *)((short)(uVar8 + diagnostic_fault_group_index * 0x10) * 2 + 0x806374)
            , uVar4 < 0x7d)) &&
           ((uVar7 & (&fault_flags_enabled_base)[(short)diagnostic_fault_group_index]) != 0)) &&
@@ -6230,7 +6232,7 @@ void diagnosticStateMachineProcessor(void)
           diagnostic_queue_iterator_index = diagnostic_queue_iterator_index + 1;
           (&diagnostic_active_code_count)[(short)diagnostic_queue_iterator_index] = (byte)uVar4;
           (&diagnostic_code_status_count)[(short)diagnostic_queue_iterator_index] =
-               *(word *)(&DAT_008065cc + (uint)uVar4 * 6);
+               (&diagnostic_fault_parameter_array)[(uint)uVar4 * 3];
           if ((*(char *)((int)&diagnostic_sensor_data_ptr + (uint)uVar4 * 6) != '\0') &&
              ((*(ushort *)(&dtc_fault_table_base + (uint)uVar4 * 6) & 0x40) == 0)) {
             insite_fault_detail_index = insite_fault_detail_index + 1;
@@ -6242,8 +6244,8 @@ void diagnosticStateMachineProcessor(void)
     else {
       uVar4 = *(ushort *)((short)(uVar8 + diagnostic_fault_group_index * 0x10) * 2 + 0x806374);
       if ((((uVar4 < 0x7d) &&
-           ((uVar7 & *(ushort *)(&DAT_00805e72 + (short)diagnostic_fault_group_index * 2)) == 0)) &&
-          (diagnostic_pending_code_count != 0x1f)) &&
+           ((uVar7 & (&diagnostic_fault_group_bitmask_array)[(short)diagnostic_fault_group_index])
+            == 0)) && (diagnostic_pending_code_count != 0x1f)) &&
          ((uVar7 & (&fault_flags_enabled_base)[(short)diagnostic_fault_group_index]) != 0)) {
         if ((&diagnostic_pid_dtc_index)[(short)(uVar4 * 5) * 2] != 0xff) {
           (&diagnostic_pid_dtc_index)[(short)(uVar4 * 5) * 2] =
@@ -6285,7 +6287,7 @@ void diagnosticStateMachineProcessor(void)
           diagnostic_state_machine_index = diagnostic_state_machine_index + 1;
           (&diagnostic_pending_code_count)[(short)diagnostic_state_machine_index] = (byte)uVar4;
           (&diagnostic_pending_list_count)[(short)diagnostic_state_machine_index] =
-               *(word *)(&DAT_008065cc + (uint)uVar4 * 6);
+               (&diagnostic_fault_parameter_array)[(uint)uVar4 * 3];
           if ((*(char *)((int)&diagnostic_sensor_data_ptr + (uint)uVar4 * 6) != '\0') &&
              ((*(ushort *)(&dtc_fault_table_base + (uint)uVar4 * 6) & 0x40) == 0)) {
             insite_fault_detail_state = insite_fault_detail_state + 1;
@@ -6302,7 +6304,7 @@ void diagnosticStateMachineProcessor(void)
     uVar7 = uVar7 * 2;
     uVar8 = uVar8 + 1;
   } while (uVar8 < 0x10);
-  *(ushort *)(&DAT_00805e72 + (short)diagnostic_fault_group_index * 2) = uVar3 | uVar2;
+  (&diagnostic_fault_group_bitmask_array)[(short)diagnostic_fault_group_index] = uVar3 | uVar2;
   return;
 }
 
@@ -6325,8 +6327,8 @@ void faultFlagScannerAndProcessor(void)
   for (iVar2 = 0;
       ((((&fault_flags_active_base)[(short)diagnostic_fault_group_index] == 0 &&
         ((&fault_flags_history_base)[(short)diagnostic_fault_group_index] == 0)) &&
-       (*(short *)(&DAT_00805e72 + (short)diagnostic_fault_group_index * 2) == 0)) && (iVar2 < 0x20)
-      ); iVar2 = iVar2 + 1) {
+       ((&diagnostic_fault_group_bitmask_array)[(short)diagnostic_fault_group_index] == 0)) &&
+      (iVar2 < 0x20)); iVar2 = iVar2 + 1) {
     diagnostic_fault_group_index = diagnostic_fault_group_index + 1;
     if (0x1f < diagnostic_fault_group_index) {
       diagnostic_fault_group_index = 0;
@@ -6414,7 +6416,7 @@ void insitePidDtcHandler(undefined4 param_1)
   
   bVar1 = false;
   insite_parameter_lookup_state = 0;
-  pwVar4 = (word *)&DAT_008065cc;
+  pwVar4 = &diagnostic_fault_parameter_array;
   sVar2 = 0;
   for (bVar3 = 0; (!bVar1 && (bVar3 < 0x7d)); bVar3 = bVar3 + 1) {
     if (((char)((uint)param_1 >> 0x10) == *(char *)(pwVar4 + 2)) &&
@@ -8823,7 +8825,7 @@ ushort protectionState1DiagnosticValidator(void)
   ushort uVar1;
   ushort uVar2;
   ushort uVar3;
-  undefined *puVar4;
+  word *pwVar4;
   word *pwVar5;
   word *pwVar6;
   
@@ -8832,7 +8834,7 @@ ushort protectionState1DiagnosticValidator(void)
       (uVar1 = diagnostic_system_flags_2 & 0x20, (diagnostic_system_flags_2 & 0x20) != 0)) &&
      (diagnostic_protection_state != 0xff)) {
     pwVar6 = &protection_state_rpm_threshold;
-    puVar4 = &DAT_00804d86;
+    pwVar4 = &engine_mode_transition_timer_array;
     uVar2 = 0x70;
     uVar3 = 0;
     for (pwVar5 = &protection_state_config_table; pwVar5 < &protection_state2_config;
@@ -8842,16 +8844,16 @@ ushort protectionState1DiagnosticValidator(void)
            != 0)) &&
          (((uint)(&vp44_status_flags_1)[(short)((int)(uVar2 + 3) >> 4)] & 1 << (uVar2 + 3) % 0x10)
           != 0)) {
-        diagnosticProtectionProcessor(pwVar5,(undefined4 *)pwVar6,(int)puVar4);
+        diagnosticProtectionProcessor(pwVar5,(undefined4 *)pwVar6,(int)pwVar4);
         protectionUpdateHandler();
       }
       else {
-        *(undefined2 *)(puVar4 + 4) = 0;
-        *(undefined2 *)(puVar4 + 6) = 0;
+        pwVar4[2] = 0;
+        pwVar4[3] = 0;
       }
       pwVar6 = pwVar6 + 0x17;
       uVar1 = 0x1e;
-      puVar4 = puVar4 + 0x1e;
+      pwVar4 = pwVar4 + 0xf;
       uVar2 = uVar2 + 4;
       uVar3 = uVar3 + 1;
     }
@@ -8879,14 +8881,14 @@ void protectionState3aPrimaryCoordinator(void)
   undefined4 unaff_D2;
   uint uVar2;
   ushort uVar3;
-  ushort *puVar4;
+  word *pwVar4;
   word *pwVar5;
   word *pwVar6;
   undefined2 uVar7;
   
   uVar7 = (undefined2)((uint)unaff_D2 >> 0x10);
   pwVar6 = &protection_state_rpm_threshold;
-  puVar4 = (ushort *)&DAT_00804d86;
+  pwVar4 = &engine_mode_transition_timer_array;
   uVar2 = 0x71;
   uVar3 = 0;
   for (pwVar5 = &protection_state_config_table; pwVar5 < &protection_state2_config;
@@ -8897,18 +8899,18 @@ void protectionState3aPrimaryCoordinator(void)
       }
       else {
         uVar1 = protectionThresholdCalculationHelper
-                          ((int)pwVar5,(int)pwVar6,puVar4,CONCAT22(1,uVar7));
-        if (uVar1 < puVar4[3]) {
-          uVar1 = puVar4[3];
+                          ((int)pwVar5,(int)pwVar6,pwVar4,CONCAT22(1,uVar7));
+        if (uVar1 < pwVar4[3]) {
+          uVar1 = pwVar4[3];
         }
       }
-      puVar4[1] = uVar1;
+      pwVar4[1] = uVar1;
       if (uVar3 < uVar1) {
-        uVar3 = puVar4[1];
+        uVar3 = pwVar4[1];
       }
     }
     pwVar6 = pwVar6 + 0x17;
-    puVar4 = puVar4 + 0xf;
+    pwVar4 = pwVar4 + 0xf;
     uVar2 = (uint)(ushort)((short)uVar2 + 4);
   }
   fuel_arbitrator_threshold_1 = coreTableInterpolation(0x80);
@@ -9265,7 +9267,7 @@ void protectionState3bRpmMonitor(void)
 
 {
   ushort uVar1;
-  short sVar2;
+  word wVar2;
   bool bVar3;
   bool bVar4;
   uint uVar5;
@@ -9274,7 +9276,7 @@ void protectionState3bRpmMonitor(void)
   
   uVar6 = (ushort)((uint)unaff_D2 >> 0x10);
   _engine_state_timer = &protection_state_rpm_threshold;
-  _engine_mode_transition_timer = (short *)&DAT_00804d86;
+  _engine_mode_transition_timer = &engine_mode_transition_timer_array;
   for (_protection_fault_id_table = &protection_state_config_table;
       _protection_fault_id_table < &protection_state2_config;
       _protection_fault_id_table = _protection_fault_id_table + 0x10) {
@@ -9346,11 +9348,11 @@ void protectionState3bRpmMonitor(void)
         protectionStateValidator((uint)uVar6);
       }
       if ((uVar1 & 0xc) != 0) {
-        sVar2 = **(short **)_engine_state_timer;
+        wVar2 = **(word **)_engine_state_timer;
         uVar5 = protectionCalculationHelper
-                          (CONCAT22(sVar2,_engine_mode_transition_timer[4]),CONCAT22(uVar1,uVar6));
+                          (CONCAT22(wVar2,_engine_mode_transition_timer[4]),CONCAT22(uVar1,uVar6));
         if ((short)uVar5 != 0) {
-          _engine_mode_transition_timer[4] = sVar2;
+          _engine_mode_transition_timer[4] = wVar2;
           *(undefined4 *)(_engine_mode_transition_timer + 5) = _loopCounter;
         }
       }
@@ -9395,12 +9397,12 @@ void protectionState2ThresholdCalculator(void)
   ushort uVar6;
   word *pwVar7;
   word *pwVar8;
-  ushort *puVar9;
+  word *pwVar9;
   ushort uVar10;
   
   uVar10 = (ushort)((uint)unaff_D2 >> 0x10);
   pwVar7 = &protection_state_rpm_threshold;
-  puVar9 = (ushort *)&DAT_00804d86;
+  pwVar9 = &engine_mode_transition_timer_array;
   uVar5 = 0x70;
   uVar6 = 0;
   for (pwVar8 = &protection_state_config_table; pwVar8 < &protection_state2_config;
@@ -9422,19 +9424,19 @@ void protectionState2ThresholdCalculator(void)
           }
         }
         else {
-          uVar3 = protectionThresholdCalculationHelper((int)pwVar8,(int)pwVar7,puVar9,(uint)uVar10);
+          uVar3 = protectionThresholdCalculationHelper((int)pwVar8,(int)pwVar7,pwVar9,(uint)uVar10);
         }
-        if (uVar3 < puVar9[2]) {
-          uVar3 = puVar9[2];
+        if (uVar3 < pwVar9[2]) {
+          uVar3 = pwVar9[2];
         }
       }
-      *puVar9 = uVar3;
+      *pwVar9 = uVar3;
       if (uVar6 < uVar3) {
-        uVar6 = *puVar9;
+        uVar6 = *pwVar9;
       }
     }
     pwVar7 = pwVar7 + 0x17;
-    puVar9 = puVar9 + 0xf;
+    pwVar9 = pwVar9 + 0xf;
     uVar5 = (uint)(ushort)((short)uVar5 + 4);
   }
   if ((protection_state_enable_flags & 0x1000) != 0) {
@@ -15056,11 +15058,11 @@ uint j1939TimeoutDataClearHandler(void)
      (uVar1 = _DAT_008086f2 + _vp44_sensor_diag_counter, uVar1 < _loopCounter)) {
     j1939_message_type_total_counter = 0;
     _vp44_sensor_diag_counter = 0;
-    _DAT_008054b2 = 0;
+    rpm_histogram_bin_2_counter = 0;
     _DAT_008054b4 = 0;
     rpm_histogram_overflow_counter = 0;
     _DAT_008054ba = 0;
-    _DAT_008054ac = 0;
+    rpm_histogram_bin_1_counter = 0;
     _DAT_008054ae = 0;
   }
   return uVar1;
@@ -15084,7 +15086,7 @@ uint j1939MessageTypeCounter(undefined4 param_1)
   if ((diagnostic_system_flags_2 & 0x80) != 0) {
     if (param_1._0_2_ == 1) {
       j1939_message_type_total_counter = j1939_message_type_total_counter + 1;
-      _DAT_008054b2 = _DAT_008054b2 + 1;
+      rpm_histogram_bin_2_counter = rpm_histogram_bin_2_counter + 1;
       _DAT_008054b4 = _loopCounter;
       _vp44_sensor_diag_counter = _loopCounter;
       return _loopCounter;
@@ -15100,7 +15102,7 @@ uint j1939MessageTypeCounter(undefined4 param_1)
       return (int)param_1._0_2_;
     }
     j1939_message_type_total_counter = j1939_message_type_total_counter + 1;
-    _DAT_008054ac = _DAT_008054ac + 1;
+    rpm_histogram_bin_1_counter = rpm_histogram_bin_1_counter + 1;
     _DAT_008054ae = _loopCounter;
     _vp44_sensor_diag_counter = _loopCounter;
     uVar1 = _loopCounter;
@@ -16478,8 +16480,6 @@ void messageErrorHandler(undefined4 param_1)
 // Function: vp44CanFrameBuilder @ 0x0001c440
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void vp44CanFrameBuilder(undefined4 param_1)
 
 {
@@ -16502,9 +16502,9 @@ void vp44CanFrameBuilder(undefined4 param_1)
   local_e = 8;
   local_c = &uStack_1c;
   uStack_1c = 0x13;
-  uStack_1f = (undefined1)_DAT_00800f6a;
+  uStack_1f = (undefined1)serial_port_config_value;
   uStack_1b = uStack_1f;
-  local_20 = (undefined1)((ushort)_DAT_00800f6a >> 8);
+  local_20 = (undefined1)(serial_port_config_value >> 8);
   uStack_1a = local_20;
   bStack_19 = vp44_sequence_number;
   uStack_18 = 0xff;
@@ -16589,7 +16589,7 @@ void vp44FuelTempHandler(can_std_rx_desc_t *rx_msg)
     _vp44_message_data = rx_msg->id;
     vp44_message_id = local_6;
     vp44_sequence_number = pbVar1[3];
-    _DAT_00800f6a = local_8;
+    serial_port_config_value = local_8;
                     /* Constant: VP44_FUEL_TEMP_OFFSET = 112 */
     _vp44_timeout_counter = 0x70;
     vp44_retry_flag = 1;
@@ -16636,13 +16636,13 @@ void vp44MultiFrameResponseHandler(int param_1)
     bVar1 = **(byte **)(param_1 + 6);
     if (bVar1 == vp44_retry_flag) {
       if (bVar1 == vp44_sequence_number) {
-        bVar8 = DAT_00800f6b + bVar1 * -7 + 7;
+        bVar8 = (char)serial_port_config_value + bVar1 * -7 + 7;
       }
       else {
         bVar8 = 7;
       }
       puVar10 = *(undefined1 **)(param_1 + 6);
-      puVar3 = (undefined1 *)(_DAT_00800f6c + (uint)bVar1 * 7 + -7);
+      puVar3 = (undefined1 *)(serial_buffer_pointer + (uint)bVar1 * 7 + -7);
       puVar9 = puVar3;
       for (bVar7 = 0; puVar10 = puVar10 + 1, bVar7 < bVar8; bVar7 = bVar7 + 1) {
         *puVar9 = *puVar10;
@@ -16655,7 +16655,7 @@ void vp44MultiFrameResponseHandler(int param_1)
           vp44CanFrameBuilder(CONCAT22((short)CONCAT31((int3)((uint)puVar3 >> 8),bVar2),
                                        vp44_message_id));
           vp44_response_buffer = 0;
-          _DAT_00800f6c = 0x800f78;
+          serial_buffer_pointer = 0x800f78;
           diagnosticServiceDispatcher(&vp44_message_data);
           return;
         }
@@ -17055,7 +17055,7 @@ void vp44DiagnosticBufferPointersInit(void)
   _DAT_00800efc = 0x800f24;
   _DAT_00800f1c = 0x800f2c;
   diag_tp_state_t_00800f34.tx_cm_buf = (byte *)0x800f56;
-  _DAT_00800f6c = 0x800f78;
+  serial_buffer_pointer = 0x800f78;
   coreSystemControlFunction();
   coreSystemControlFunction();
   return;
@@ -18241,8 +18241,8 @@ uint faultCodeDisplayController(void)
     }
     else {
       uVar1 = ioControlDigitDisplaySequencer
-                        (CONCAT22(*(undefined2 *)
-                                   (&DAT_008065cc + (uint)fault_code_display_state * 6),uVar3));
+                        (CONCAT22((&diagnostic_fault_parameter_array)
+                                  [(uint)fault_code_display_state * 3],uVar3));
     }
     return uVar1 & 0xffffff00;
   }
@@ -27104,7 +27104,7 @@ void engineDataTrendingSlowCycle40Coordinator(void)
     fuel_demand_rpm_based_limit = 0;
     return;
   }
-  _DAT_008031f4 = lookupTableInterpolation((short *)&DAT_008031f6);
+  fuel_demand_rpm_lookup_result = lookupTableInterpolation((short *)&DAT_008031f6);
   return;
 }
 
@@ -27114,14 +27114,12 @@ void engineDataTrendingSlowCycle40Coordinator(void)
 // Function: trendingDataTableLookup @ 0x0002bbac
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void trendingDataTableLookup(void)
 
 {
   short *unaff_A2;
   
-  _DAT_008031f4 = lookupTableInterpolation(unaff_A2);
+  fuel_demand_rpm_lookup_result = lookupTableInterpolation(unaff_A2);
   return;
 }
 
@@ -27141,7 +27139,8 @@ void fuelDemandBasedParameterCalculator(void)
     fuel_demand_rpm_based_limit = 0;
     return;
   }
-  fuel_demand_rpm_based_limit = current_engine_rpm / _DAT_00808a82 + _DAT_008031f4 + -0xc4;
+  fuel_demand_rpm_based_limit =
+       current_engine_rpm / _DAT_00808a82 + (fuel_demand_rpm_lookup_result - 0xc4);
   if ((short)fuel_demand_rpm_based_limit < 0) {
     fuel_demand_rpm_based_limit = 0;
   }
@@ -31337,7 +31336,7 @@ void outputControlTimingGenerator(void)
       }
     }
     _DAT_00803386 = output_sequence_state;
-    _DAT_008033ae = lookupTableInterpolation((short *)&DAT_00803380);
+    output_timing_duty_lookup_result = lookupTableInterpolation((short *)&DAT_00803380);
     DAT_008033b0 = 1;
     bVar1 = true;
     output_control_state_4_value = 1;
@@ -31345,7 +31344,8 @@ void outputControlTimingGenerator(void)
   if (bVar1) {
     output_timing_duration_countdown = output_timing_interpolation_result;
     output_timing_cycle_divider = 0x65;
-    output_timing_duty_cycle_counter = (short)(((uint)_DAT_008033ae * 100) / 100) + 1;
+    output_timing_duty_cycle_counter =
+         (short)(((uint)output_timing_duty_lookup_result * 100) / 100) + 1;
     if (output_control_timing_state == 1) {
       output_control_timing_state = 2;
     }
@@ -31364,7 +31364,7 @@ void outputControlTimingGenerator(void)
   output_timing_cycle_divider = output_timing_cycle_divider - 1;
   if (output_timing_cycle_divider == 0) {
     output_timing_cycle_divider = 100;
-    output_timing_duty_cycle_counter = (word)(((uint)_DAT_008033ae * 100) / 100);
+    output_timing_duty_cycle_counter = (word)(((uint)output_timing_duty_lookup_result * 100) / 100);
     if (output_control_timing_state == 1) {
       output_control_timing_state = 2;
     }
