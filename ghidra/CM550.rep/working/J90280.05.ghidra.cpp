@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 18:25:11 MST 2025
+// Thu Nov 27 18:27:31 MST 2025
 
 
 //
@@ -5737,7 +5737,7 @@ void speedBasedParameterLookup(void)
 {
   speed_based_parameter_lookup_result = governor_rpm_error_value;
   _DAT_0080bd9a = lookupTableInterpolation((short *)&manifold_temp_table_2_type);
-  speed_based_parameter_lookup_result = _DAT_00807c3c;
+  speed_based_parameter_lookup_result = speed_lookup_parameter_value;
   _DAT_0080bd9e = lookupTableInterpolation((short *)&manifold_temp_table_2_type);
   speed_based_parameter_lookup_result = CRACSWAC;
   boost_pressure_protection_state = lookupTableInterpolation((short *)&manifold_temp_table_2_type);
@@ -5768,7 +5768,7 @@ void multiSpeedParameterInterpolation(void)
        speedDifferenceInterpolator
                  (CONCAT22(the_minimum_speed_a_customer_may_program_to_correspond_with_s_1_5_15,
                            _DAT_0080bd9c));
-  _DAT_0080bd90 = speedDifferenceInterpolator(CONCAT22(_DAT_00807c3c,_DAT_0080bd9e));
+  _DAT_0080bd90 = speedDifferenceInterpolator(CONCAT22(speed_lookup_parameter_value,_DAT_0080bd9e));
   _DAT_0080bd92 = speedDifferenceInterpolator(CONCAT22(CRACSWAC,boost_pressure_protection_state));
   _DAT_0080bd94 = speedDifferenceInterpolator(CONCAT22(CRCNDTRF,DPFLPSWD));
   return;
@@ -10470,7 +10470,7 @@ void dutyCycleMonitorCanInit(void)
       pdVar1 = pdVar1 + 1) {
     *pdVar1 = _duty_cycle_monitor_config;
   }
-  _DAT_0080c78a = &duty_cycle_monitor_buffer_start;
+  duty_cycle_monitor_buffer_ptr = (dword)&duty_cycle_monitor_buffer_start;
   if (can1_timer_buffer_config_reserved < 2) {
     duty_cycle_buffer_current_ptr = (dword)&duty_cycle_monitor_buffer_start;
   }
@@ -10630,7 +10630,7 @@ uint dutyCycleMonitorAltCanInit(void)
       pdVar1 = pdVar1 + 1) {
     *pdVar1 = _duty_cycle_monitor_config;
   }
-  _DAT_0080c78a = &duty_cycle_monitor_buffer_start;
+  duty_cycle_monitor_buffer_ptr = (dword)&duty_cycle_monitor_buffer_start;
   if (can1_timer_buffer_config_reserved < 2) {
     duty_cycle_buffer_current_ptr = (dword)&duty_cycle_monitor_buffer_start;
   }
@@ -10712,7 +10712,7 @@ void dutyCycleMonitorBufferInit(void)
       pdVar1 = pdVar1 + 1) {
     *pdVar1 = _duty_cycle_monitor_config;
   }
-  _DAT_0080c78a = &duty_cycle_monitor_buffer_start;
+  duty_cycle_monitor_buffer_ptr = (dword)&duty_cycle_monitor_buffer_start;
   if (can1_timer_buffer_config_reserved < 2) {
     duty_cycle_buffer_current_ptr = (dword)&duty_cycle_monitor_buffer_start;
   }
@@ -12511,7 +12511,7 @@ void fuelDemandProportionalCalculationSlowCycle40Coordinator(void)
   uint uVar1;
   
   if (current_fuel_demand_value < _DAT_0080845a) {
-    _DAT_0080c9cc = 0;
+    fuel_timing_clamp_value = 0;
     return;
   }
   uVar1 = proportionalCalculation
@@ -12519,10 +12519,10 @@ void fuelDemandProportionalCalculationSlowCycle40Coordinator(void)
                      (uint)current_fuel_demand_value - (uint)_DAT_0080845a,
                      (uint)_DAT_0080845c * 0x1d7);
   if (31999 < uVar1) {
-    _DAT_0080c9cc = 32000;
+    fuel_timing_clamp_value = 32000;
     return;
   }
-  _DAT_0080c9cc = (short)uVar1;
+  fuel_timing_clamp_value = (word)uVar1;
   return;
 }
 
@@ -14496,7 +14496,7 @@ void diagnosticMessage46Builder(void)
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\a');
     *local_8 = (char)((ushort)_DAT_0080bd98 >> 8);
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\b');
-    sVar1 = _DAT_00807c3c * 2;
+    sVar1 = speed_lookup_parameter_value * 2;
     uStack_d = (undefined1)sVar1;
     *local_8 = uStack_d;
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\t');
@@ -23652,7 +23652,7 @@ void torqueControlModeHandler(int param_1)
     bVar4 = torque_control_mode_byte & 3;
     bVar3 = torque_control_mode_byte & 3;
     bVar2 = torque_control_mode_byte & 0x30;
-    DAT_008019ac = *(undefined1 *)(*(int *)(param_1 + 6) + 1);
+    torque_control_source_address = *(byte *)(*(int *)(param_1 + 6) + 1);
     DAT_008019ab = *(undefined1 *)(*(int *)(param_1 + 6) + 2);
     torque_control_message_byte_4 = *(byte *)(*(int *)(param_1 + 6) + 3);
     cVar1 = *(char *)(param_1 + 3);
@@ -23693,11 +23693,12 @@ void torqueControlModeHandler(int param_1)
             return;
           }
           if (bVar3 == 3) {
-            if (DAT_008019b6 < torque_control_message_byte_4) {
+            if (torque_control_priority_byte < torque_control_message_byte_4) {
               return;
             }
-            if ((DAT_008019b6 == torque_control_message_byte_4) &&
-               (torque_control_priority_value <= CONCAT11(DAT_008019ab,DAT_008019ac))) {
+            if ((torque_control_priority_byte == torque_control_message_byte_4) &&
+               (torque_control_priority_value <=
+                CONCAT11(DAT_008019ab,torque_control_source_address))) {
               return;
             }
           }
@@ -23734,7 +23735,8 @@ void torqueControlModeHandler(int param_1)
                                            *(undefined1 *)(param_1 + 3)),uVar8));
       fuel_arbitrator_diag_t_0080cff8.fuel_mode = (word)uVar7;
       fuel_arbitrator_diag_t_0080cff8._20_2_ = 1;
-      fuel_arbitrator_diag_t_0080cff8.state_pointer._1_2_ = CONCAT11(DAT_008019ab,DAT_008019ac);
+      fuel_arbitrator_diag_t_0080cff8.state_pointer._1_2_ =
+           CONCAT11(DAT_008019ab,torque_control_source_address);
       torque_control_priority_value = fuel_arbitrator_diag_t_0080cff8.state_pointer._1_2_;
       if (24000 < fuel_arbitrator_diag_t_0080cff8.state_pointer._1_2_) {
         fuel_arbitrator_diag_t_0080cff8.state_pointer._1_2_ = 24000;
@@ -23749,7 +23751,7 @@ void torqueControlModeHandler(int param_1)
                                            *(undefined1 *)(param_1 + 3)),uVar8));
       fuel_arbitrator_diag_t_0080cff8.fuel_mode = (word)uVar7;
       fuel_arbitrator_diag_t_0080cff8._20_2_ = 0;
-      DAT_008019b6 = torque_control_message_byte_4;
+      torque_control_priority_byte = torque_control_message_byte_4;
       fuel_arbitrator_diag_t_0080cff8._16_2_ =
            (ushort)torque_control_message_byte_4 * 0x100 + -32000;
       fuel_arbitrator_diag_t_0080cff8._24_2_ =
@@ -23769,9 +23771,9 @@ void torqueControlModeHandler(int param_1)
                                            *(undefined1 *)(param_1 + 3)),uVar8));
       fuel_arbitrator_diag_t_0080cff8.fuel_mode = (word)uVar7;
       fuel_arbitrator_diag_t_0080cff8._20_2_ = 0;
-      torque_control_priority_value = CONCAT11(DAT_008019ab,DAT_008019ac);
+      torque_control_priority_value = CONCAT11(DAT_008019ab,torque_control_source_address);
       fuel_arbitrator_diag_t_0080cff8.command_counter = torque_control_priority_value;
-      DAT_008019b6 = torque_control_message_byte_4;
+      torque_control_priority_byte = torque_control_message_byte_4;
       fuel_arbitrator_diag_t_0080cff8.prev_state_pointer._1_2_ =
            param_ref_base +
            (short)(((int)(short)((ushort)torque_control_message_byte_4 * 0x100 + -32000) *
@@ -24160,7 +24162,7 @@ void diagnosticTableEntryRemover(undefined4 param_1)
   while ((unaff_D3w < 0x14 && (!bVar1))) {
     if (param_1._0_2_ == *(short *)((int)&dtc_timestamp_array + (int)sVar2)) {
       *(undefined2 *)((int)&dtc_timestamp_array + (int)sVar2) = 0x7d;
-      *(undefined2 *)(&DAT_00805a36 + sVar2) = 0x7d;
+      *(undefined2 *)((int)&diagnostic_fault_status_array + (int)sVar2) = 0x7d;
       bVar1 = true;
     }
     sVar2 = sVar2 + 0x30;
@@ -24208,7 +24210,7 @@ void diagnosticTableSnapshotCapture(undefined4 param_1)
   
   if ((*(ushort *)(&dtc_fault_table_base + (short)(param_1._2_2_ * 3) * 2) & 0x10) != 0) {
     sVar1 = param_1._0_2_ * 0x30;
-    *(short *)(&DAT_00805a36 + sVar1) = param_1._2_2_;
+    *(short *)((int)&diagnostic_fault_status_array + (int)sVar1) = param_1._2_2_;
     *(word *)(&DAT_00805a3e + sVar1) = asthrfes_calc_input;
     *(word *)(&DAT_00805a38 + sVar1) = throttle_position_value;
     *(word *)(sVar1 + 0x805a3a) = current_engine_rpm_raw;
@@ -24278,7 +24280,7 @@ void initSensorDataArrays(void)
     sVar2 = 0;
     for (; cVar1 != '\x14'; cVar1 = cVar1 + '\x01') {
       *(undefined2 *)((int)&dtc_timestamp_array + (int)sVar2) = 0x7d;
-      *(undefined2 *)(&DAT_00805a36 + sVar2) = 0x7d;
+      *(undefined2 *)((int)&diagnostic_fault_status_array + (int)sVar2) = 0x7d;
       sVar2 = sVar2 + 0x30;
     }
   }
@@ -25178,7 +25180,7 @@ void engineSerialNumberDataBuilder(void)
     puVar2 = puVar2 + 1;
     puVar3 = puVar3 + 1;
   } while (bVar1 < 4);
-  sendCanMessage((j1939_header_t *)&DAT_00801ace);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65259);
   return;
 }
 
@@ -25193,11 +25195,12 @@ void engineSerialNumberDataBuilder(void)
 void engineSerialNumberPGN_65259_Builder(void)
 
 {
-  _DAT_00801ace = CONCAT13((char)((_DAT_008037bc & 7) << 2),0xfeeb00);
+  j1939_message_buffer_pgn65259 = CONCAT13((char)((_DAT_008037bc & 7) << 2),0xfeeb00);
   _DAT_00801ad2 = 0x1c;
   _DAT_00801ad4 = &DAT_00801adc;
   _DAT_00801ad8 = 0x801af8;
-  _DAT_00801ace = CONCAT31(_DAT_00801ace,j1939_source_address_primary);
+  j1939_message_buffer_pgn65259 =
+       CONCAT31(j1939_message_buffer_pgn65259._0_3_,j1939_source_address_primary);
   canTransmissionController();
   return;
 }
@@ -25309,7 +25312,7 @@ byte activeDtcListBuilder(void)
         puVar5 = puVar5 + 1;
       }
     }
-    bVar3 = sendCanMessage((j1939_header_t *)&DAT_00801afa);
+    bVar3 = sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65226);
   }
   return bVar3;
 }
@@ -25325,10 +25328,11 @@ byte activeDtcListBuilder(void)
 void engineCoolantPGN_65226_Builder(void)
 
 {
-  _DAT_00801afa = CONCAT13((char)((_DAT_008037be & 7) << 2),0xfeca00);
+  j1939_message_buffer_pgn65226 = CONCAT13((char)((_DAT_008037be & 7) << 2),0xfeca00);
   _DAT_00801b00 = &DAT_00801b08;
   _DAT_00801b04 = &DAT_008021fe;
-  _DAT_00801afa = CONCAT31(_DAT_00801afa,j1939_source_address_primary);
+  j1939_message_buffer_pgn65226 =
+       CONCAT31(j1939_message_buffer_pgn65226._0_3_,j1939_source_address_primary);
   DAT_00801b09 = 0xff;
   DAT_00801b0d = DAT_00801b0d & 0x7f;
   canTransmissionController();
@@ -25385,7 +25389,7 @@ byte previousDtcListBuilder(void)
         puVar5 = puVar5 + 1;
       }
     }
-    bVar3 = sendCanMessage((j1939_header_t *)&DAT_00802200);
+    bVar3 = sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65227);
   }
   return bVar3;
 }
@@ -25401,10 +25405,11 @@ byte previousDtcListBuilder(void)
 void diagnosticDM2PGN_65227_Builder(void)
 
 {
-  _DAT_00802200 = CONCAT13((char)((_DAT_008037c0 & 7) << 2),0xfecb00);
+  j1939_message_buffer_pgn65227 = CONCAT13((char)((_DAT_008037c0 & 7) << 2),0xfecb00);
   _DAT_00802206 = &DAT_0080220e;
   _DAT_0080220a = &DAT_00802904;
-  _DAT_00802200 = CONCAT31(_DAT_00802200,j1939_source_address_primary);
+  j1939_message_buffer_pgn65227 =
+       CONCAT31(j1939_message_buffer_pgn65227._0_3_,j1939_source_address_primary);
   DAT_0080220f = 0xff;
   DAT_00802213 = DAT_00802213 & 0x7f;
   canTransmissionController();
@@ -25431,17 +25436,18 @@ byte buildCanMessage(void)
   byte bVar7;
   int iVar8;
   short sVar9;
-  undefined *puVar10;
+  uint uVar10;
+  dword *pdVar11;
   undefined2 local_6;
   
   bVar5 = DAT_00802fec & 0xf0;
   if (bVar5 == 0) {
     diagnostic_dtc_response_length = 0;
     if ((diagnostic_pending_code_count == 0) && (diagnostic_active_code_count == 0)) {
-      DAT_00802914 = 0;
-      DAT_00802915 = 0;
-      DAT_00802916 = 0;
-      DAT_00802917 = 0;
+      j1939_multiframe_data_buffer._0_1_ = 0;
+      j1939_multiframe_data_buffer._1_1_ = 0;
+      j1939_multiframe_data_buffer._2_1_ = 0;
+      j1939_multiframe_data_buffer._3_1_ = 0;
       DAT_00802918 = 0;
       DAT_00802919 = 0xff;
       DAT_0080291a = 0xff;
@@ -25450,99 +25456,103 @@ byte buildCanMessage(void)
     }
     else {
       bVar5 = 0;
-      puVar10 = &DAT_00802914;
+      pdVar11 = &j1939_multiframe_data_buffer;
       iVar8 = 0;
       do {
         sVar9 = (short)iVar8;
         if (*(short *)((int)&dtc_timestamp_array + (int)sVar9) != 0x7d) {
-          iVar2 = (uint)(*(short *)(&DAT_00805a36 + sVar9) != 0x7d) * 0x3c0;
+          iVar2 = (uint)(*(short *)((int)&diagnostic_fault_status_array + (int)sVar9) != 0x7d) *
+                  0x3c0;
           sVar3 = (short)iVar2;
           uVar6 = (ushort)((uint)(((int)(uint)*(ushort *)((short)(sVar9 + sVar3) + 0x805682) >> 7) *
                                  0x1afa) / 1000);
           if (500 < uVar6) {
             uVar6 = 500;
           }
-          puVar10[6] = (char)((int)(uint)uVar6 >> 1);
+          *(char *)((int)pdVar11 + 6) = (char)((int)(uint)uVar6 >> 1);
           uVar4 = byteSwap16((undefined2 *)(iVar8 + iVar2 + 0x80567a));
-          puVar10[8] = (char)uVar4;
-          puVar10[7] = (char)((ushort)uVar4 >> 8);
-          puVar10[9] = (char)((ushort)*(undefined2 *)((short)(sVar9 + sVar3) + 0x80567e) >> 8);
-          puVar10[10] = (char)(((short)((int)(uint)*(ushort *)((short)(sVar9 + sVar3) + 0x805684) >>
-                                       7) * 5 + -0xa0) / 9) + '(';
+          *(char *)(pdVar11 + 2) = (char)uVar4;
+          *(char *)((int)pdVar11 + 7) = (char)((ushort)uVar4 >> 8);
+          *(char *)((int)pdVar11 + 9) =
+               (char)((ushort)*(undefined2 *)((short)(sVar9 + sVar3) + 0x80567e) >> 8);
+          *(char *)((int)pdVar11 + 10) =
+               (char)(((short)((int)(uint)*(ushort *)((short)(sVar9 + sVar3) + 0x805684) >> 7) * 5 +
+                      -0xa0) / 9) + '(';
           if (_DAT_008084c4 == 1) {
             local_6 = (undefined2)
                       ((uint)*(ushort *)((int)&dtc_timestamp_array + (short)(sVar9 + sVar3) + 2) *
                        0x19c >> 8);
             uVar4 = byteSwap16(&local_6);
-            puVar10[0xc] = (char)uVar4;
-            puVar10[0xb] = (char)((ushort)uVar4 >> 8);
+            *(char *)(pdVar11 + 3) = (char)uVar4;
+            *(char *)((int)pdVar11 + 0xb) = (char)((ushort)uVar4 >> 8);
           }
           else {
-            puVar10[0xb] = 0xff;
-            puVar10[0xc] = 0xff;
+            *(undefined1 *)((int)pdVar11 + 0xb) = 0xff;
+            *(undefined1 *)(pdVar11 + 3) = 0xff;
           }
-          puVar10[0xd] = (char)*(undefined2 *)
-                                ((int)&dtc_timestamp_array + (int)(short)(sVar9 + sVar3));
-          puVar10[0xe] = (char)((ushort)*(undefined2 *)
-                                         ((int)&dtc_timestamp_array + (int)(short)(sVar9 + sVar3))
-                               >> 8);
-          puVar10[0xf] = 0;
-          puVar10[0x10] = DAT_008084c3;
+          *(char *)((int)pdVar11 + 0xd) =
+               (char)*(undefined2 *)((int)&dtc_timestamp_array + (int)(short)(sVar9 + sVar3));
+          *(char *)((int)pdVar11 + 0xe) =
+               (char)((ushort)*(undefined2 *)
+                               ((int)&dtc_timestamp_array + (int)(short)(sVar9 + sVar3)) >> 8);
+          *(undefined1 *)((int)pdVar11 + 0xf) = 0;
+          *(undefined1 *)(pdVar11 + 4) = DAT_008084c3;
           bVar7 = 0;
           do {
-            iVar2 = (uint)bVar7 * 0x1c;
+            uVar10 = (uint)bVar7;
+            iVar2 = uVar10 * 0x1c;
             uVar1 = *(undefined4 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x805672);
-            puVar10[iVar2 + 0x14] = (char)uVar1;
-            puVar10[iVar2 + 0x13] = (char)((uint)uVar1 >> 8);
-            puVar10[iVar2 + 0x12] = (char)((uint)uVar1 >> 0x10);
-            puVar10[iVar2 + 0x11] = (char)((uint)uVar1 >> 0x18);
+            *(char *)(pdVar11 + uVar10 * 7 + 5) = (char)uVar1;
+            *(char *)((int)pdVar11 + iVar2 + 0x13) = (char)((uint)uVar1 >> 8);
+            *(char *)((int)pdVar11 + iVar2 + 0x12) = (char)((uint)uVar1 >> 0x10);
+            *(char *)((int)pdVar11 + iVar2 + 0x11) = (char)((uint)uVar1 >> 0x18);
             uVar4 = *(undefined2 *)
                      ((int)&dtc_timestamp_array + (int)(short)(sVar9 + (ushort)bVar7 * 0x3c0));
-            puVar10[iVar2 + 0x16] = (char)uVar4;
-            puVar10[iVar2 + 0x15] = (char)((ushort)uVar4 >> 8);
+            *(char *)((int)pdVar11 + iVar2 + 0x16) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x15) = (char)((ushort)uVar4 >> 8);
             uVar4 = *(undefined2 *)
                      ((int)&dtc_timestamp_array + (short)(sVar9 + (ushort)bVar7 * 0x3c0) + 2);
-            puVar10[iVar2 + 0x18] = (char)uVar4;
-            puVar10[iVar2 + 0x17] = (char)((ushort)uVar4 >> 8);
+            *(char *)(pdVar11 + uVar10 * 7 + 6) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x17) = (char)((ushort)uVar4 >> 8);
             uVar4 = *(undefined2 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x80567a);
-            puVar10[iVar2 + 0x1a] = (char)uVar4;
-            puVar10[iVar2 + 0x19] = (char)((ushort)uVar4 >> 8);
+            *(char *)((int)pdVar11 + iVar2 + 0x1a) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x19) = (char)((ushort)uVar4 >> 8);
             uVar4 = *(undefined2 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x80567c);
-            puVar10[iVar2 + 0x1c] = (char)uVar4;
-            puVar10[iVar2 + 0x1b] = (char)((ushort)uVar4 >> 8);
+            *(char *)(pdVar11 + uVar10 * 7 + 7) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x1b) = (char)((ushort)uVar4 >> 8);
             uVar4 = *(undefined2 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x80567e);
-            puVar10[iVar2 + 0x1e] = (char)uVar4;
-            puVar10[iVar2 + 0x1d] = (char)((ushort)uVar4 >> 8);
+            *(char *)((int)pdVar11 + iVar2 + 0x1e) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x1d) = (char)((ushort)uVar4 >> 8);
             uVar4 = *(undefined2 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x805680);
-            puVar10[iVar2 + 0x20] = (char)uVar4;
-            puVar10[iVar2 + 0x1f] = (char)((ushort)uVar4 >> 8);
+            *(char *)(pdVar11 + uVar10 * 7 + 8) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x1f) = (char)((ushort)uVar4 >> 8);
             uVar4 = *(undefined2 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x805682);
-            puVar10[iVar2 + 0x22] = (char)uVar4;
-            puVar10[iVar2 + 0x21] = (char)((ushort)uVar4 >> 8);
+            *(char *)((int)pdVar11 + iVar2 + 0x22) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x21) = (char)((ushort)uVar4 >> 8);
             uVar4 = *(undefined2 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x805684);
-            puVar10[iVar2 + 0x24] = (char)uVar4;
-            puVar10[iVar2 + 0x23] = (char)((ushort)uVar4 >> 8);
+            *(char *)(pdVar11 + uVar10 * 7 + 9) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x23) = (char)((ushort)uVar4 >> 8);
             uVar4 = *(undefined2 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x805686);
-            puVar10[iVar2 + 0x26] = (char)uVar4;
-            puVar10[iVar2 + 0x25] = (char)((ushort)uVar4 >> 8);
-            puVar10[iVar2 + 0x27] = 0;
-            puVar10[iVar2 + 0x28] = 0;
+            *(char *)((int)pdVar11 + iVar2 + 0x26) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x25) = (char)((ushort)uVar4 >> 8);
+            *(undefined1 *)((int)pdVar11 + iVar2 + 0x27) = 0;
+            *(undefined1 *)(pdVar11 + uVar10 * 7 + 10) = 0;
             uVar4 = *(undefined2 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x805688);
-            puVar10[iVar2 + 0x2a] = (char)uVar4;
-            puVar10[iVar2 + 0x29] = (char)((ushort)uVar4 >> 8);
+            *(char *)((int)pdVar11 + iVar2 + 0x2a) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x29) = (char)((ushort)uVar4 >> 8);
             uVar4 = *(undefined2 *)((short)(sVar9 + (ushort)bVar7 * 0x3c0) + 0x80568a);
-            puVar10[iVar2 + 0x2c] = (char)uVar4;
-            puVar10[iVar2 + 0x2b] = (char)((ushort)uVar4 >> 8);
+            *(char *)(pdVar11 + uVar10 * 7 + 0xb) = (char)uVar4;
+            *(char *)((int)pdVar11 + iVar2 + 0x2b) = (char)((ushort)uVar4 >> 8);
             bVar7 = bVar7 + 1;
           } while (bVar7 < 2);
         }
         diagnostic_dtc_response_length = diagnostic_dtc_response_length + 0x49;
         iVar8 = iVar8 + 0x30;
-        puVar10 = puVar10 + 0x49;
+        pdVar11 = (dword *)((int)pdVar11 + 0x49);
         bVar5 = bVar5 + 1;
       } while (bVar5 < 0x14);
     }
-    bVar5 = sendCanMessage((j1939_header_t *)&DAT_00802906);
+    bVar5 = sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65229);
   }
   return bVar5;
 }
@@ -25559,18 +25569,19 @@ void diagnosticDM4PGN_65229_Builder(void)
 
 {
   byte bVar1;
-  undefined *puVar2;
+  dword *pdVar2;
   
-  _DAT_00802906 = CONCAT13((char)((_DAT_008037c2 & 7) << 2),0xfecd00);
-  _DAT_0080290c = &DAT_00802914;
+  j1939_message_buffer_pgn65229 = CONCAT13((char)((_DAT_008037c2 & 7) << 2),0xfecd00);
+  _DAT_0080290c = &j1939_multiframe_data_buffer;
   _DAT_00802910 = &DAT_00802fec;
-  _DAT_00802906 = CONCAT31(_DAT_00802906,j1939_source_address_primary);
+  j1939_message_buffer_pgn65229 =
+       CONCAT31(j1939_message_buffer_pgn65229._0_3_,j1939_source_address_primary);
   bVar1 = 0;
-  puVar2 = &DAT_00802914;
+  pdVar2 = &j1939_multiframe_data_buffer;
   do {
-    *puVar2 = 0x49;
-    puVar2[5] = 0xff;
-    puVar2 = puVar2 + 0x49;
+    *(undefined1 *)pdVar2 = 0x49;
+    *(undefined1 *)((int)pdVar2 + 5) = 0xff;
+    pdVar2 = (dword *)((int)pdVar2 + 0x49);
     bVar1 = bVar1 + 1;
   } while (bVar1 < 0x14);
   canTransmissionController();
@@ -25606,7 +25617,7 @@ void diagnosticDM5DataBuilder(void)
     local_6 = local_6 | 0x100;
   }
   _DAT_00803002 = byteSwap16(&local_6);
-  sendCanMessage((j1939_header_t *)&DAT_00802fee);
+  sendCanMessage((j1939_header_t *)&j1939_message_buffer_pgn65230);
   return;
 }
 
@@ -25621,11 +25632,12 @@ void diagnosticDM5DataBuilder(void)
 void diagnosticDM5PGN_65230_Builder(void)
 
 {
-  _DAT_00802fee = CONCAT13((char)((_DAT_008037c4 & 7) << 2),0xfece00);
+  j1939_message_buffer_pgn65230 = CONCAT13((char)((_DAT_008037c4 & 7) << 2),0xfece00);
   _DAT_00802ff2 = 8;
   _DAT_00802ff4 = &DAT_00802ffc;
   _DAT_00802ff8 = 0x803004;
-  _DAT_00802fee = CONCAT31(_DAT_00802fee,j1939_source_address_primary);
+  j1939_message_buffer_pgn65230 =
+       CONCAT31(j1939_message_buffer_pgn65230._0_3_,j1939_source_address_primary);
   canTransmissionController();
   return;
 }
