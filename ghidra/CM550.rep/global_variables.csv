@@ -5026,3 +5026,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080894c,cached_parameter_upper_limit,word,Cached parameter upper limit comparison (2 refs),2,0,,limit
 0x0080894e,vp44_sensor_value_3,word,VP44 sensor value 3 for CAN message (2 refs),2,0,,value
 0x00808950,vp44_sensor_value_4,word,VP44 sensor value 4 for CAN message (2 refs),2,0,,value
+0x0080352c,loop_counter_reference,word,Loop counter comparison reference value (3 refs),2,0,,counter
+0x00804e7a,retry_counter_byte,byte,Retry counter incremented to max 0xff (3 refs),1,0,,counter
+0x008088e0,histogram_bin_count_0,byte,Histogram bin 0 iteration count (2 refs),1,0,,count
+0x008088e2,histogram_bin_count_1,byte,Histogram bin 1 iteration count (2 refs),1,0,,count
+0x008088e4,histogram_bin_count_2,byte,Histogram bin 2 iteration count (2 refs),1,0,,count
+0x0080891c,rpm_multiplier_0,word,RPM calculation multiplier 0 (2 refs),2,0,,multiplier
+0x0080891e,rpm_multiplier_1,word,RPM calculation multiplier 1 (2 refs),2,0,,multiplier
+0x00808932,oil_pressure_validation_threshold,word,Oil pressure validation timer threshold (3 refs),2,0,,threshold
+0x00808952,vp44_sensor_value_5,word,VP44 sensor value 5 for CAN message (2 refs),2,0,,value
+0x00808a74,fuel_limit_floor_value,word,Fuel limit minimum clamp value (2 refs),2,0,,limit
+0x00808a82,rpm_divisor_value,word,RPM divisor for fuel calculations (2 refs),2,0,,divisor
+0x00808ec2,state_machine_return_address,dword,State machine return address pointer (3 refs),4,0,,pointer
