@@ -4990,3 +4990,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x0080555a,fuel_arbitrator_state_history,word,Fuel arbitrator state history array (3 refs),2,0,,array
 0x0080894a,vp44_fuel_temperature_raw,word,VP44 fuel temperature raw sensor value (3 refs),2,0,,value
 0x0080d03c,crank_state_transition_flag,byte,Crank state transition detection flag (3 refs),1,0,,flag
+0x0080169b,diagnostic_pending_flag,byte,Diagnostic pending code flag (0/1) (3 refs),1,0,,flag
+0x008019a2,torque_control_message_flags,byte,Torque control message flags byte (3 refs),1,0,,flags
+0x008019b2,torque_control_comparison_byte,byte,Torque control comparison byte value (3 refs),1,0,,value
+0x008021fe,j1939_transport_protocol_header,byte,J1939 transport protocol message header (3 refs),1,0,,header
+0x00801b08,j1939_transport_sequence_counter,word,J1939 transport protocol sequence counter (3 refs),2,0,,counter
+0x00808a78,pwm_timing_cycle_count,byte,PWM timing advance cycle count (3 refs),1,0,,count
+0x0080bd92,speed_difference_interp_result_1,word,Speed difference interpolation result 1 (2 refs),2,0,,result
+0x0080bd94,speed_difference_interp_result_2,word,Speed difference interpolation result 2 (2 refs),2,0,,result
+0x0080bd96,speed_difference_interp_result_3,word,Speed difference interpolation result 3 (2 refs),2,0,,result
+0x0080bd98,speed_difference_interp_result_4,word,Speed difference interpolation result 4 (2 refs),2,0,,result
+0x0080bd9a,manifold_temp_lookup_result_1,word,Manifold temp table lookup result 1 (2 refs),2,0,,result
+0x0080bd9e,manifold_temp_lookup_result_2,word,Manifold temp table lookup result 2 (2 refs),2,0,,result

@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Thu Nov 27 18:37:32 MST 2025
+// Thu Nov 27 18:39:43 MST 2025
 
 
 //
@@ -5737,9 +5737,9 @@ void speedBasedParameterLookup(void)
 
 {
   speed_based_parameter_lookup_result = governor_rpm_error_value;
-  _DAT_0080bd9a = lookupTableInterpolation((short *)&manifold_temp_table_2_type);
+  manifold_temp_lookup_result_1 = lookupTableInterpolation((short *)&manifold_temp_table_2_type);
   speed_based_parameter_lookup_result = speed_lookup_parameter_value;
-  _DAT_0080bd9e = lookupTableInterpolation((short *)&manifold_temp_table_2_type);
+  manifold_temp_lookup_result_2 = lookupTableInterpolation((short *)&manifold_temp_table_2_type);
   speed_based_parameter_lookup_result = CRACSWAC;
   boost_pressure_protection_state = lookupTableInterpolation((short *)&manifold_temp_table_2_type);
   speed_based_parameter_lookup_result = CRCNDTRF;
@@ -5764,14 +5764,19 @@ void multiSpeedParameterInterpolation(void)
   _DAT_00800224 = throttle_position_raw;
   _DAT_0080022a = lookupTableInterpolation((short *)&manifold_temp_table_3_type);
   speedBasedParameterLookup();
-  _DAT_0080bd96 = speedDifferenceInterpolator(CONCAT22(governor_rpm_error_value,_DAT_0080bd9a));
-  _DAT_0080bd98 =
+  speed_difference_interp_result_3 =
+       speedDifferenceInterpolator(CONCAT22(governor_rpm_error_value,manifold_temp_lookup_result_1))
+  ;
+  speed_difference_interp_result_4 =
        speedDifferenceInterpolator
                  (CONCAT22(the_minimum_speed_a_customer_may_program_to_correspond_with_s_1_5_15,
                            _DAT_0080bd9c));
-  _DAT_0080bd90 = speedDifferenceInterpolator(CONCAT22(speed_lookup_parameter_value,_DAT_0080bd9e));
-  _DAT_0080bd92 = speedDifferenceInterpolator(CONCAT22(CRACSWAC,boost_pressure_protection_state));
-  _DAT_0080bd94 = speedDifferenceInterpolator(CONCAT22(CRCNDTRF,DPFLPSWD));
+  _DAT_0080bd90 =
+       speedDifferenceInterpolator
+                 (CONCAT22(speed_lookup_parameter_value,manifold_temp_lookup_result_2));
+  speed_difference_interp_result_1 =
+       speedDifferenceInterpolator(CONCAT22(CRACSWAC,boost_pressure_protection_state));
+  speed_difference_interp_result_2 = speedDifferenceInterpolator(CONCAT22(CRCNDTRF,DPFLPSWD));
   return;
 }
 
@@ -14485,7 +14490,7 @@ void diagnosticMessage46Builder(void)
     *local_8 = local_e;
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\x04');
     multiSpeedParameterInterpolation();
-    *local_8 = (char)((ushort)_DAT_0080bd96 >> 8);
+    *local_8 = (char)(speed_difference_interp_result_3 >> 8);
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\x05');
     sVar1 = the_minimum_speed_a_customer_may_program_to_correspond_with_s_1_5_15 * 2;
     uStack_d = (undefined1)sVar1;
@@ -14494,7 +14499,7 @@ void diagnosticMessage46Builder(void)
     local_e = (undefined1)((ushort)sVar1 >> 8);
     *local_8 = local_e;
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\a');
-    *local_8 = (char)((ushort)_DAT_0080bd98 >> 8);
+    *local_8 = (char)(speed_difference_interp_result_4 >> 8);
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\b');
     sVar1 = speed_lookup_parameter_value * 2;
     uStack_d = (undefined1)sVar1;
@@ -14512,7 +14517,7 @@ void diagnosticMessage46Builder(void)
     local_e = (undefined1)((ushort)sVar1 >> 8);
     *local_8 = local_e;
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\r');
-    *local_8 = (char)((ushort)_DAT_0080bd92 >> 8);
+    *local_8 = (char)(speed_difference_interp_result_1 >> 8);
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\x0e');
     sVar1 = CRCNDTRF * 2;
     uStack_d = (undefined1)sVar1;
@@ -14521,7 +14526,7 @@ void diagnosticMessage46Builder(void)
     local_e = (undefined1)((ushort)sVar1 >> 8);
     *local_8 = local_e;
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\x10');
-    *local_8 = (char)((ushort)_DAT_0080bd94 >> 8);
+    *local_8 = (char)(speed_difference_interp_result_2 >> 8);
     local_8 = (undefined1 *)CONCAT31(local_8._0_3_,cVar3 + '\x11');
     sVar1 = the_maximum_speed_a_customer_may_program_to_correspond_with_10_10_25 * 2;
     uStack_d = (undefined1)sVar1;
@@ -18489,10 +18494,10 @@ void waitToStartLampBlinkPattern(void)
 void periodicLampFlashController(void)
 
 {
-  if (DAT_0080169b == '\0') {
+  if (diagnostic_pending_flag == 0) {
     lamp_flash_controller_state = lamp_flash_controller_state + 1;
     if (36000 < lamp_flash_controller_state) {
-      DAT_0080169b = 1;
+      diagnostic_pending_flag = 1;
       lamp_flash_controller_state = 0;
       return;
     }
@@ -18510,7 +18515,7 @@ void periodicLampFlashController(void)
     }
     lamp_flash_controller_state = lamp_flash_controller_state + 1;
     if (3 < lamp_flash_cycle_counter) {
-      DAT_0080169b = '\0';
+      diagnostic_pending_flag = 0;
       lamp_flash_controller_state = 0;
       lamp_flash_cycle_counter = 0;
     }
@@ -23576,7 +23581,7 @@ void fuelArbitratorMessageHandler(int param_1)
 {
   if (((*(byte *)(param_1 + 3) == the_can_bus_configuration_register_0_255) ||
       (the_can_bus_configuration_register_0_255 == 0xff)) && (*(short *)(param_1 + 4) == 8)) {
-    DAT_008019a2 = **(byte **)(param_1 + 6);
+    torque_control_message_flags = **(byte **)(param_1 + 6);
     torque_control_status_byte = *(byte *)(*(int *)(param_1 + 6) + 4);
     if (_crank_state_transition_flag == 0) {
       if ((torque_control_status_byte & 3) == 1) {
@@ -23600,7 +23605,8 @@ void fuelArbitratorMessageHandler(int param_1)
       fuel_arbitrator_diag_t_0080cff8.session_counter = 0;
       fuel_arbitrator_session_counter = 0;
     }
-    if (((DAT_008019a2 & 0x30) == 0x10) || ((DAT_008019a2 & 3) == 1)) {
+    if (((torque_control_message_flags & 0x30) == 0x10) || ((torque_control_message_flags & 3) == 1)
+       ) {
       fuel_arbitrator_diag_t_0080cff8.fuel_limit = 0;
       fuel_arbitrator_session_timer = 0;
       return;
@@ -23686,10 +23692,10 @@ void torqueControlModeHandler(int param_1)
         if ((short)uVar6 != 0) {
           return;
         }
-        if (DAT_008019b2 < bVar2) {
+        if (torque_control_comparison_byte < bVar2) {
           return;
         }
-        if (bVar2 == DAT_008019b2) {
+        if (bVar2 == torque_control_comparison_byte) {
           if (fuel_arbitrator_diag_t_0080cff8.rpm_target != 3) {
             return;
           }
@@ -23718,7 +23724,7 @@ void torqueControlModeHandler(int param_1)
       _timer_capture_value = _fuel_arbitrator_control_mode;
     }
     fuel_arbitrator_diag_t_0080cff8.control_flags = (word)torque_control_mode_byte;
-    DAT_008019b2 = bVar2;
+    torque_control_comparison_byte = bVar2;
     fuel_arbitrator_diag_t_0080cff8._28_2_ = 1;
     fuel_arbitrator_diag_t_0080cff8.limited_value._1_1_ = cVar1;
     switch(bVar3) {
@@ -25282,18 +25288,18 @@ byte activeDtcListBuilder(void)
   byte bVar4;
   uint *puVar5;
   
-  _DAT_00801b04 = &DAT_008021fe;
-  bVar3 = DAT_008021fe & 0xf0;
+  _DAT_00801b04 = &j1939_transport_protocol_header;
+  bVar3 = j1939_transport_protocol_header & 0xf0;
   if (bVar3 == 0) {
     diagnostic_pending_response_offset = 2;
     if (diagnostic_pending_code_count == 0) {
-      DAT_00801b08 = 0;
+      j1939_transport_sequence_counter._0_1_ = 0;
       _DAT_00801b0a = 0xffffffff;
       diagnostic_pending_response_offset = 6;
     }
     else {
       uVar2 = ioControlBitMapper();
-      DAT_00801b08 = (undefined1)uVar2;
+      j1939_transport_sequence_counter._0_1_ = (undefined1)uVar2;
       puVar5 = (uint *)&DAT_00801b0a;
       for (bVar3 = 1; bVar3 <= diagnostic_pending_code_count; bVar3 = bVar3 + 1) {
         bVar1 = (&diagnostic_pending_code_count)[(short)(ushort)bVar3];
@@ -25331,11 +25337,11 @@ void engineCoolantPGN_65226_Builder(void)
 
 {
   j1939_message_buffer_pgn65226 = CONCAT13((char)((_DAT_008037be & 7) << 2),0xfeca00);
-  _DAT_00801b00 = &DAT_00801b08;
-  _DAT_00801b04 = &DAT_008021fe;
+  _DAT_00801b00 = &j1939_transport_sequence_counter;
+  _DAT_00801b04 = &j1939_transport_protocol_header;
   j1939_message_buffer_pgn65226 =
        CONCAT31(j1939_message_buffer_pgn65226._0_3_,j1939_source_address_primary);
-  DAT_00801b09 = 0xff;
+  j1939_transport_sequence_counter._1_1_ = 0xff;
   DAT_00801b0d = DAT_00801b0d & 0x7f;
   canTransmissionController();
   return;
@@ -26842,7 +26848,7 @@ void pwmTimerMode0Init(void)
   if ((char)time_fault_conditions_must_exist_before_logging_a_throttle_faul_0_2000 != '\x01') {
     return;
   }
-  pwm_timer_cycle_advance_state = DAT_00808a78 - 1;
+  pwm_timer_cycle_advance_state = pwm_timing_cycle_count - 1;
   iVar1 = 0;
   iVar2 = 0;
   uVar3 = (uint)intake_manifold_temperature_at_maximum_fueling_condition_50_293._0_1_;
@@ -26898,12 +26904,12 @@ void pwmTimerMode1ChannelSetup(void)
   ushort uVar3;
   uint uVar4;
   
-  pwm_timer_cycle_advance_state = DAT_00808a78 - 1U;
+  pwm_timer_cycle_advance_state = pwm_timing_cycle_count - 1;
   iVar1 = pwm_temperature_shifted_workspace +
           _user_specified_number_of_engine_data_samples_taken_by_trending_f_0_100 +
           _enable_flag_that_indicates_presence_of_an_ambient_air_press_true_false +
-          *(int *)(&pwm_timing_advance_lookup_table + (short)(ushort)(byte)(DAT_00808a78 - 1U) * 2)
-          + 0x100;
+          *(int *)(&pwm_timing_advance_lookup_table +
+                  (short)(ushort)(byte)(pwm_timing_cycle_count - 1) * 2) + 0x100;
   uVar4 = (iVar1 >> 0x10 & 0xffffU) % (maximum_allowed_timing_advance_for_this_algorithm_0_20 + 2);
   uVar3 = (ushort)uVar4;
   uVar2 = (ushort)(iVar1 >> 1) & 0x7f00;
