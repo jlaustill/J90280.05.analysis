@@ -4942,3 +4942,15 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00807c3c,speed_lookup_parameter_value,word,Speed-based parameter lookup input value (3 refs),2,0,,value
 0x0080c78a,duty_cycle_monitor_buffer_ptr,dword,Duty cycle monitor buffer pointer (3 refs),4,0,,pointer
 0x0080c9cc,fuel_timing_clamp_value,word,Fuel timing clamp value (0 or 32000) (3 refs),2,0,,value
+0x00005e42,calibration_checksum_end_marker,word,Calibration area checksum end marker (0xA1A1) (4 refs),2,0,,marker
+0x008000d7,main_loop_iteration_counter,byte,Main loop iteration counter for timing (4 refs),1,0,,counter
+0x008003f0,interpolation_table_1_base,word,Interpolation lookup table 1 base (4 refs),2,0,,table
+0x00800404,interpolation_table_2_base,word,Interpolation lookup table 2 base (4 refs),2,0,,table
+0x00800eea,debounce_state_array_current,byte,Debounce state array current values (4 refs),1,0,,array
+0x00800ef4,debounce_countdown_array,word,Debounce countdown timer array (4 refs),2,0,,array
+0x0080165a,diagnostic_queue_data_array,byte,Diagnostic queue data array base (4 refs),1,0,,array
+0x008019ab,torque_control_priority_high_byte,byte,Torque control priority high byte (4 refs),1,0,,priority
+0x0080199a,diagnostic_security_access_mode,byte,Diagnostic security access mode byte (4 refs),1,0,,mode
+0x0080554a,loop_counter_capture_start_2,dword,Loop counter capture start for timing measurement 2 (3 refs),4,0,,capture
+0x0080554e,loop_counter_elapsed_time_2,dword,Loop counter elapsed time measurement 2 (3 refs),4,0,,elapsed
+0x008054b8,rpm_histogram_overflow_counter,word,RPM histogram overflow bin counter (3 refs),2,0,,counter
