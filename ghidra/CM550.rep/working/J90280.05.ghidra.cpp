@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 08:10:20 MST 2025
+// Fri Nov 28 08:20:32 MST 2025
 
 
 //
@@ -5198,12 +5198,13 @@ void initAncSpeedLimitAndAltitudeDerate(void)
        (dword)&duration_anc_speed_limit_will_be_disabled_after_a_bare_engine_a_0_20;
   _DAT_00800190 = 2;
   cold_start_sensor_sum_saved = cold_start_sensor_reading_sum;
-  _DAT_0080019a = 0x807a66;
-  _DAT_00800198 = 2;
-  _DAT_008001a0 = 0x807a6e;
+  anc_altitude_table_1_ptr = 0x807a66;
+  anc_altitude_table_1_base = 2;
+  anc_altitude_table_2_ptr = 0x807a6e;
   cold_start_rpm_snapshot = current_engine_rpm;
-  _DAT_008001a6 = &default_fueling_to_be_used_by_altitude_derate_if_ambient_air_p_0_100;
-  _DAT_008001ac = 0x807ad8;
+  anc_default_fueling_ptr =
+       (dword)&default_fueling_to_be_used_by_altitude_derate_if_ambient_air_p_0_100;
+  anc_altitude_table_3_ptr = 0x807ad8;
   _DAT_008001a4 = 2;
   _DAT_00800176 = current_engine_rpm;
   anc_speed_limit_table_1_ptr = 0x807af4;
@@ -5586,19 +5587,20 @@ void initHourMeterConversionData(void)
   uint *puVar3;
   
   rpm_histogram_threshold_saved = engine_rpm_histogram_lower_threshold;
-  _DAT_008001d8 = 0x807f42;
+  hour_meter_table_1_ptr = 0x807f42;
   engine_runtime_histogram_config_type_a = 2;
-  _DAT_008001e4 = 400;
-  _DAT_008001e0 = 0x807f68;
-  _DAT_008001de = 2;
-  _DAT_008001e6 = &lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
+  hour_meter_table_1_limit = 400;
+  hour_meter_table_2_ptr = 0x807f68;
+  hour_meter_table_2_base = 2;
+  hour_meter_intake_temp_ptr =
+       (dword)&lower_limitation_of_intake_manifold_temperature_to_inhibit_50_to_293;
   engine_rpm_histogram_threshold_select = engine_rpm_histogram_lower_threshold;
-  _DAT_008001ec = 0x808002;
+  hour_meter_table_3_ptr = 0x808002;
   _DAT_008001ea = 2;
-  _DAT_008001f8 = 400;
-  _DAT_008001f4 = 0x808028;
-  _DAT_008001f2 = 2;
-  _DAT_008001fa = 0x808032;
+  hour_meter_table_3_limit = 400;
+  hour_meter_table_4_ptr = 0x808028;
+  hour_meter_table_4_base = 2;
+  hour_meter_table_5_ptr = 0x808032;
   hour_meter_conversion_state = (uint)hour_meter_multiplier * 36000;
   hour_meter_tick_counter = hour_meter_multiplier * 0x3c;
   hour_meter_conversion_data = hour_meter_conversion_state;
@@ -5705,7 +5707,7 @@ void speedDifferenceInterpolator(undefined4 param_1)
   undefined8 uVar1;
   undefined2 uVar2;
   
-  _DAT_00800204 = param_1._0_2_;
+  speed_diff_interp_input = param_1._0_2_;
   uVar2 = 0x80;
   uVar1 = tableInterpolationLookup((short *)&manifold_temp_table_1_type);
   safeDivideWithClamp((short)((short)((ulonglong)uVar1 >> 0x20) - (_DAT_0080022a + param_1._2_2_)) *
@@ -5748,7 +5750,7 @@ void speedBasedParameterLookup(void)
 void multiSpeedParameterInterpolation(void)
 
 {
-  _DAT_00800224 = throttle_position_raw;
+  multi_speed_throttle_input = throttle_position_raw;
   _DAT_0080022a = lookupTableInterpolation((short *)&manifold_temp_table_3_type);
   speedBasedParameterLookup();
   speed_difference_interp_result_3 =
@@ -7739,8 +7741,8 @@ uint engine_fault_monitoring_and_rpm_calculation(void)
 void engineRpmSourceInit(void)
 
 {
-  _DAT_00800284 = 0;
-  _DAT_00800280 = &CCMXFLLM;
+  _engine_rpm_source_init_value = 0;
+  engine_rpm_source_max_ptr = (dword)&CCMXFLLM;
   engine_fault_rpm_source_value = CCMNFLLM;
   _engine_callback_function_ptr = &LAB_000137d8;
   engine_rpm_source_selector = 0;
@@ -7885,7 +7887,7 @@ void fuelTimingModeBlendCalculator(void)
   }
   if ((uint)fuel_timing_mode_blend_factor + (uint)rpm_fuel_limit_blend_offset <
       (uint)upper_limit_at_which_loading_trigger_is_satisfied_in_trendin_0_127_5) {
-    _DAT_0080029c = intake_manifold_temp_raw;
+    fuel_timing_intake_temp_input = intake_manifold_temp_raw;
     sVar1 = lookupTableInterpolation((short *)&DAT_00800296);
     fuel_timing_intake_temp_correction =
          sVar1 - (short)((int)((int)&DAT_00004caa - (uint)rpm_source_selector_init) /
@@ -7897,7 +7899,7 @@ void fuelTimingModeBlendCalculator(void)
   else {
     fuel_timing_intake_temp_correction = 0;
   }
-  _DAT_00800290 = throttle_position_raw;
+  fuel_timing_blend_throttle_input = throttle_position_raw;
   fuel_timing_blend_lookup_result = lookupTableInterpolation((short *)&DAT_0080028a);
   if ((ushort)(fuel_timing_blend_lookup_result + fuel_timing_blend_rpm_component) <=
       fuel_timing_intake_temp_correction) {
@@ -8247,22 +8249,24 @@ void frictionalLoadTorqueTransitionHandler(void)
 void initLoadTrendingSystem(void)
 
 {
-  _DAT_0080028c = &engine_speed_at_0_fuel_which_activates_kick_down_signal_0_8000;
-  _DAT_00800292 = &accel_threshold_to_disable_a_c_1200_1200;
+  load_trending_kickdown_ptr =
+       (dword)&engine_speed_at_0_fuel_which_activates_kick_down_signal_0_8000;
+  load_trending_accel_ptr = (dword)&accel_threshold_to_disable_a_c_1200_1200;
   _DAT_0080028a = 2;
-  _DAT_00800298 = &lower_limit_at_which_loading_trigger_is_satisfied_in_trendin_0_127_5;
-  _DAT_0080029e = &count_minimum_for_percent_load_to_be_low_0_100;
+  load_trending_lower_limit_ptr =
+       (dword)&lower_limit_at_which_loading_trigger_is_satisfied_in_trendin_0_127_5;
+  load_trending_count_min_ptr = (dword)&count_minimum_for_percent_load_to_be_low_0_100;
   _DAT_00800296 = 2;
-  _DAT_008002a4 = 0x8080c2;
+  load_trending_table_1_ptr = 0x8080c2;
   _DAT_008002a2 = 2;
-  _DAT_008002ac = 0x8080e8;
+  load_trending_table_2_ptr = 0x8080e8;
   _DAT_008002aa = 2;
-  _DAT_008002b2 = 0x808100;
-  _DAT_008002b8 = 0x80828c;
+  load_trending_table_3_ptr = 0x808100;
+  load_trending_table_4_ptr = 0x80828c;
   _DAT_008002b6 = 2;
-  _DAT_008002c0 = 0x8082b2;
+  load_trending_table_5_ptr = 0x8082b2;
   _DAT_008002be = 2;
-  _DAT_008002c6 = 0x8082ca;
+  load_trending_table_6_ptr = 0x8082ca;
   return;
 }
 

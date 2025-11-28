@@ -5188,3 +5188,34 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00800186,anc_duty_cycle_ptr,dword,ANC duty cycle conversion factor pointer (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
 0x0080018c,anc_min_active_time_ptr,dword,ANC minimum active time parameter pointer (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
 0x00800192,anc_disable_duration_ptr,dword,ANC disable duration parameter pointer (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x00800198,anc_altitude_table_1_base,word,ANC altitude derate table 1 base (initAncSpeedLimitAndAltitudeDerate),2,0,,lookup
+0x0080019a,anc_altitude_table_1_ptr,dword,ANC altitude derate table 1 pointer 0x807a66 (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x008001a0,anc_altitude_table_2_ptr,dword,ANC altitude derate table 2 pointer 0x807a6e (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x008001a6,anc_default_fueling_ptr,dword,ANC default fueling parameter pointer (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x008001ac,anc_altitude_table_3_ptr,dword,ANC altitude derate table 3 pointer 0x807ad8 (initAncSpeedLimitAndAltitudeDerate),4,0,,pointer
+0x008001d8,hour_meter_table_1_ptr,dword,Hour meter conversion table 1 pointer 0x807f42 (initHourMeterConversionData),4,0,,pointer
+0x008001de,hour_meter_table_2_base,word,Hour meter conversion table 2 base (initHourMeterConversionData),2,0,,lookup
+0x008001e0,hour_meter_table_2_ptr,dword,Hour meter conversion table 2 pointer 0x807f68 (initHourMeterConversionData),4,0,,pointer
+0x008001e4,hour_meter_table_1_limit,word,Hour meter conversion table 1 limit 400 (initHourMeterConversionData),2,0,,limit
+0x008001e6,hour_meter_intake_temp_ptr,dword,Hour meter intake temp limit pointer (initHourMeterConversionData),4,0,,pointer
+0x008001ec,hour_meter_table_3_ptr,dword,Hour meter conversion table 3 pointer 0x808002 (initHourMeterConversionData),4,0,,pointer
+0x008001f2,hour_meter_table_4_base,word,Hour meter conversion table 4 base (initHourMeterConversionData),2,0,,lookup
+0x008001f4,hour_meter_table_4_ptr,dword,Hour meter conversion table 4 pointer 0x808028 (initHourMeterConversionData),4,0,,pointer
+0x008001f8,hour_meter_table_3_limit,word,Hour meter conversion table 3 limit 400 (initHourMeterConversionData),2,0,,limit
+0x008001fa,hour_meter_table_5_ptr,dword,Hour meter conversion table 5 pointer 0x808032 (initHourMeterConversionData),4,0,,pointer
+0x00800204,speed_diff_interp_input,word,Speed difference interpolator input (speedDifferenceInterpolator),2,0,,input
+0x00800224,multi_speed_throttle_input,word,Multi-speed parameter throttle input (multiSpeedParameterInterpolation),2,0,,input
+0x00800280,engine_rpm_source_max_ptr,dword,Engine RPM source max fuel limit pointer (engineRpmSourceInit),4,0,,pointer
+0x00800284,engine_rpm_source_init_value,word,Engine RPM source initial value (engineRpmSourceInit),2,0,,value
+0x0080028c,load_trending_kickdown_ptr,dword,Load trending kickdown speed pointer (initLoadTrendingSystem),4,0,,pointer
+0x00800290,fuel_timing_blend_throttle_input,word,Fuel timing blend throttle input (fuelTimingModeBlendCalculator),2,0,,input
+0x00800292,load_trending_accel_ptr,dword,Load trending accel threshold pointer (initLoadTrendingSystem),4,0,,pointer
+0x00800298,load_trending_lower_limit_ptr,dword,Load trending lower limit pointer (initLoadTrendingSystem),4,0,,pointer
+0x0080029c,fuel_timing_intake_temp_input,word,Fuel timing intake temp input (fuelTimingModeBlendCalculator),2,0,,input
+0x0080029e,load_trending_count_min_ptr,dword,Load trending count minimum pointer (initLoadTrendingSystem),4,0,,pointer
+0x008002a4,load_trending_table_1_ptr,dword,Load trending table 1 pointer 0x8080c2 (initLoadTrendingSystem),4,0,,pointer
+0x008002ac,load_trending_table_2_ptr,dword,Load trending table 2 pointer 0x8080e8 (initLoadTrendingSystem),4,0,,pointer
+0x008002b2,load_trending_table_3_ptr,dword,Load trending table 3 pointer 0x808100 (initLoadTrendingSystem),4,0,,pointer
+0x008002b8,load_trending_table_4_ptr,dword,Load trending table 4 pointer 0x80828c (initLoadTrendingSystem),4,0,,pointer
+0x008002c0,load_trending_table_5_ptr,dword,Load trending table 5 pointer 0x8082b2 (initLoadTrendingSystem),4,0,,pointer
+0x008002c6,load_trending_table_6_ptr,dword,Load trending table 6 pointer 0x8082ca (initLoadTrendingSystem),4,0,,pointer
