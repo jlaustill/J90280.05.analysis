@@ -2,7 +2,7 @@
  * Ghidra Decompilation Export - J90280.05 Firmware
  * Cummins CM550 ECU - MC68000 Architecture (Big-Endian)
  *
- * Generated: Sat Nov 29 10:14:27 MST 2025
+ * Generated: Sat Nov 29 10:52:22 MST 2025
  *
  * Data Sources:
  *   - enums.csv (503 entries)
@@ -1598,6 +1598,62 @@ struct sensor_debounce_state_t {
     uint16_t adc_raw_value; /* Raw A/D conversion value (offset 0x10) */
     uint8_t reserved_12[4]; /* Reserved bytes at offset 0x12-0x15 */
 } __attribute__((packed));
+
+/* ============================================================ */
+/* Struct Instance Macros (for Ghidra structtype_t_ADDRESS refs) */
+/* ============================================================ */
+
+#define diagnostic_state_buffer_t_00809654 (*(volatile diagnostic_state_buffer_t*)0X809654UL)
+#define derate_table_EPFLTB_008071a8 (*(volatile derate_table_EPFLTB*)0X8071A8UL)
+#define duty_cycle_monitor_DCMNESTB_00807d1e (*(volatile duty_cycle_monitor_DCMNESTB*)0X807D1EUL)
+#define desired_cylinder_pressure_CPDSZA_000606a4 (*(volatile desired_cylinder_pressure_CPDSZA*)0X606A4UL)
+#define j1939_vp44_msg_t_00803036 (*(volatile j1939_vp44_msg_t*)0X803036UL)
+#define reference_table_t_008086f6 (*(volatile reference_table_t*)0X8086F6UL)
+#define j1939_tx_msg_buffer_t_00803036 (*(volatile j1939_tx_msg_buffer_t*)0X803036UL)
+#define cummins_data_plate_header_t_0100003a (*(volatile cummins_data_plate_header_t*)0X0100003AUL)
+#define cummins_data_plate_t_010002c0 (*(volatile cummins_data_plate_t*)0X010002C0UL)
+#define circular_buffer_t_0080c3fc (*(volatile circular_buffer_t*)0X80C3FCUL)
+#define can_message_log_buffer_t_008034f8 (*(volatile can_message_log_buffer_t*)0X8034F8UL)
+#define system_protected_area_t_008062cb (*(volatile system_protected_area_t*)0X8062CBUL)
+#define dma_control_block_t_00800026 (*(volatile dma_control_block_t*)0X800026UL)
+#define j1939_diagnostic_buffer_t_00803056 (*(volatile j1939_diagnostic_buffer_t*)0X803056UL)
+#define can_priority_lookup_table_t_008037b6 (*(volatile can_priority_lookup_table_t*)0X8037B6UL)
+#define scheduler_phase_slot_t_00809782 (*(volatile scheduler_phase_slot_t*)0X809782UL)
+#define scheduler_phase_table_t_00809782 (*(volatile scheduler_phase_table_t*)0X809782UL)
+#define vp44_message_t_00800f5f (*(volatile vp44_message_t*)0X800F5FUL)
+#define diag_tp_state_t_00800f34 (*(volatile diag_tp_state_t*)0X800F34UL)
+#define fuel_governor_state_t_0080d05c (*(volatile fuel_governor_state_t*)0X80D05CUL)
+#define ad_sensor_config_t_00806c00 (*(volatile ad_sensor_config_t*)0X00806C00UL)
+#define timing_table_4dta_t_00060d1e (*(volatile timing_table_4dta_t*)0X00060D1EUL)
+#define fueling_table_5dfl_t_00060982 (*(volatile fueling_table_5dfl_t*)0X00060982UL)
+#define diag_service_request_t_0080d2c0 (*(volatile diag_service_request_t*)0X80D2C0UL)
+#define diag_transfer_state_t_0080d3f8 (*(volatile diag_transfer_state_t*)0X80D3F8UL)
+#define insite_session_t_0080d407 (*(volatile insite_session_t*)0X80D407UL)
+#define fuel_arbitrator_diag_t_0080cff8 (*(volatile fuel_arbitrator_diag_t*)0X80CFF8UL)
+#define fault_persistence_counters_t_008000c8 (*(volatile fault_persistence_counters_t*)0X008000C8UL)
+#define fault_status_registers_t_00805df2 (*(volatile fault_status_registers_t*)0X00805DF2UL)
+#define fault_latch_registers_t_00805e32 (*(volatile fault_latch_registers_t*)0X00805E32UL)
+#define engine_operating_mode_t_0080c810 (*(volatile engine_operating_mode_t*)0X0080C810UL)
+#define high_rpm_protection_t_0080cc6a (*(volatile high_rpm_protection_t*)0X0080CC6AUL)
+#define boost_pressure_control_t_00809746 (*(volatile boost_pressure_control_t*)0X00809746UL)
+#define fuel_limit_arbitration_t_0080cc4a (*(volatile fuel_limit_arbitration_t*)0X0080CC4AUL)
+#define fuel_demand_state_t_0080c9a4 (*(volatile fuel_demand_state_t*)0X0080C9A4UL)
+#define vp44_fault_state_t_00805e14 (*(volatile vp44_fault_state_t*)0X00805E14UL)
+#define timing_mode_control_t_0080965a (*(volatile timing_mode_control_t*)0X0080965AUL)
+#define rpm_fuel_protection_t_008091c4 (*(volatile rpm_fuel_protection_t*)0X008091C4UL)
+#define engine_control_flags_t_008035d6 (*(volatile engine_control_flags_t*)0X008035D6UL)
+#define oil_pressure_protection_t_00803430 (*(volatile oil_pressure_protection_t*)0X00803430UL)
+#define rpm_control_timers_t_00800000 (*(volatile rpm_control_timers_t*)0X00800000UL)
+#define shutdown_fuel_lookup_args_t_0080000e (*(volatile shutdown_fuel_lookup_args_t*)0X0080000EUL)
+#define high_rpm_fuel_lookup_args_t_0080001a (*(volatile high_rpm_fuel_lookup_args_t*)0X0080001AUL)
+#define rpm_calibration_params_t_008062d4 (*(volatile rpm_calibration_params_t*)0X008062D4UL)
+#define low_rpm_calibration_t_008062de (*(volatile low_rpm_calibration_t*)0X008062DEUL)
+#define high_rpm_calibration_t_008062ea (*(volatile high_rpm_calibration_t*)0X008062EAUL)
+#define rpm_rate_limits_t_008062f8 (*(volatile rpm_rate_limits_t*)0X008062F8UL)
+#define high_rpm_threshold_calibration_t_00806300 (*(volatile high_rpm_threshold_calibration_t*)0X00806300UL)
+#define shutdown_minimum_selector_t_0080d494 (*(volatile shutdown_minimum_selector_t*)0X0080D494UL)
+#define diagnostic_source_t_0080d49a (*(volatile diagnostic_source_t*)0X0080D49AUL)
+#define governor_pid_integral_t_008016e2 (*(volatile governor_pid_integral_t*)0X008016E2UL)
 
 /* ============================================================ */
 /* Global Variables (Memory-Mapped via Pointer Macros)         */

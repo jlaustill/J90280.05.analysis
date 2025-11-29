@@ -211,6 +211,7 @@ public class ExportCompilableC extends GhidraScript {
             writeEnumDefinitions(writer, enums);
             writeStructForwardDeclarations(writer, structs.keySet());
             writeStructDefinitions(writer, structs, structOrder);
+            writeStructInstanceMacros(writer, structs);
             writeGlobalVariables(writer, globals);
             writeFunctionForwardDeclarations(writer, functions, decompiler);
             writeFunctionBodies(writer, functions, decompiler);
@@ -605,15 +606,12 @@ public class ExportCompilableC extends GhidraScript {
     }
 
     /**
-     * Escape C reserved keywords and fix invalid identifiers
+     * Escape C reserved keywords only
+     * Note: Identifiers starting with digits should be fixed in CSV files, not here
      */
     private String escapeCKeyword(String name) {
         if (name == null || name.isEmpty()) {
             return "_unnamed";
-        }
-        // C identifiers cannot start with a digit
-        if (Character.isDigit(name.charAt(0))) {
-            name = "_" + name;
         }
         // Check for reserved keywords
         if (C_KEYWORDS.contains(name)) {
@@ -741,6 +739,10 @@ public class ExportCompilableC extends GhidraScript {
         writer.write("typedef uint8_t undefined7[7];\n");
         writer.write("typedef uint64_t undefined8;\n");
         writer.write("\n");
+        writer.write("/* Ghidra decompiler type aliases */\n");
+        writer.write("typedef uint64_t ulonglong;\n");
+        writer.write("typedef uint8_t int3[3];  /* 3-byte integer (Ghidra artifact) */\n");
+        writer.write("\n");
     }
 
     private void writeEnumDefinitions(FileWriter writer, Map<String, List<EnumEntry>> enums)
@@ -766,6 +768,7 @@ public class ExportCompilableC extends GhidraScript {
 
             for (int i = 0; i < sortedMembers.size(); i++) {
                 EnumEntry member = sortedMembers.get(i);
+                // Use member name directly - CSV should have unique names
                 String safeName = escapeCKeyword(member.memberName);
                 String valueStr;
 
@@ -869,6 +872,48 @@ public class ExportCompilableC extends GhidraScript {
 
             writer.write("} __attribute__((packed));\n\n");
         }
+    }
+
+    private void writeStructInstanceMacros(FileWriter writer, Map<String, StructDef> structs)
+            throws IOException {
+        writer.write("/* ============================================================ */\n");
+        writer.write("/* Struct Instance Macros (for Ghidra structtype_t_ADDRESS refs) */\n");
+        writer.write("/* ============================================================ */\n\n");
+
+        int instanceCount = 0;
+        for (Map.Entry<String, StructDef> entry : structs.entrySet()) {
+            String structName = entry.getKey();
+            StructDef structDef = entry.getValue();
+
+            // Only generate if struct has a non-empty address
+            if (structDef.address != null && !structDef.address.isEmpty()
+                    && !structDef.address.equals("0x00000000")) {
+                // Generate instance name: structname_t_ADDRESS (lowercase address, no 0x prefix)
+                String addrLower = structDef.address.toLowerCase();
+                if (addrLower.startsWith("0x")) {
+                    addrLower = addrLower.substring(2);
+                }
+                // Pad to 8 chars
+                while (addrLower.length() < 8) {
+                    addrLower = "0" + addrLower;
+                }
+                String instanceName = structName + "_" + addrLower;
+
+                // Generate macro
+                String addrUpper = structDef.address.toUpperCase();
+                if (!addrUpper.startsWith("0x") && !addrUpper.startsWith("0X")) {
+                    addrUpper = "0x" + addrUpper;
+                }
+                writer.write(String.format("#define %s (*(volatile %s*)%sUL)\n",
+                        instanceName, structName, addrUpper));
+                instanceCount++;
+            }
+        }
+
+        if (instanceCount > 0) {
+            writer.write("\n");
+        }
+        println("  Generated " + instanceCount + " struct instance macros");
     }
 
     private void writeGlobalVariables(FileWriter writer, List<GlobalVariable> globals)

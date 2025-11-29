@@ -54,7 +54,7 @@ public class ApplyAndExport extends GhidraScript {
             logAndPrint("");
 
             // Step 0: Clear any MCP/manual local variable overrides first
-            logAndPrint("🧹 [0/3] Clearing local variable overrides...");
+            logAndPrint("🧹 [0/4] Clearing local variable overrides...");
             logAndPrint("────────────────────────────────────────────");
             log(">>> Running ClearLocalVariableOverrides.java...");
             log("    This ensures CSV is the sole source of truth");
@@ -67,7 +67,7 @@ public class ApplyAndExport extends GhidraScript {
             logAndPrint("");
 
             // Step 1: Apply all CSV changes to Ghidra project
-            logAndPrint("📥 [1/3] Applying CSV changes to Ghidra...");
+            logAndPrint("📥 [1/4] Applying CSV changes to Ghidra...");
             logAndPrint("─────────────────────────────────────────");
             log(">>> Running MasterAnalysisSetup.java...");
             log("    (Detailed output appears in Ghidra console)");
@@ -80,7 +80,7 @@ public class ApplyAndExport extends GhidraScript {
             logAndPrint("");
 
             // Step 2: Export updated analysis for Claude Code
-            logAndPrint("📤 [2/3] Exporting analysis for Claude Code...");
+            logAndPrint("📤 [2/4] Exporting analysis for Claude Code...");
             logAndPrint("───────────────────────────────────────────────");
             log(">>> Running ExportAnalysisResults.java...");
             log("    (Detailed output appears in Ghidra console)");
@@ -89,7 +89,20 @@ public class ApplyAndExport extends GhidraScript {
             runScript("ExportAnalysisResults.java");
 
             logAndPrint("");
-            logAndPrint("✓ Export complete");
+            logAndPrint("✓ Export complete (.cpp/.asm)");
+            logAndPrint("");
+
+            // Step 3: Export compilable C file
+            logAndPrint("📤 [3/4] Exporting compilable C file...");
+            logAndPrint("────────────────────────────────────────");
+            log(">>> Running ExportCompilableC.java...");
+            log("    (Detailed output appears in Ghidra console)");
+            log("");
+
+            runScript("ExportCompilableC.java");
+
+            logAndPrint("");
+            logAndPrint("✓ Compilable C export complete (.c)");
             logAndPrint("");
 
             // Success summary
@@ -109,6 +122,7 @@ public class ApplyAndExport extends GhidraScript {
             logAndPrint("📁 Exported files:");
             logAndPrint("  • working/J90280.05.ghidra.asm");
             logAndPrint("  • working/J90280.05.ghidra.cpp");
+            logAndPrint("  • working/J90280.05.ghidra.c (compilable)");
             logAndPrint("");
             logAndPrint("📋 Log file: " + logFilePath);
             logAndPrint("   (Note: Sub-script details are in Ghidra console)");
