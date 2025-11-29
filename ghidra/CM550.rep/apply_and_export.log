@@ -1,5 +1,5 @@
 ════════════════════════════════════════════════════════════
-ApplyAndExport Log - 2025-11-28 15:13:25
+ApplyAndExport Log - 2025-11-28 19:53:48
 ════════════════════════════════════════════════════════════
 
 Project: J90280.05
@@ -7,9 +7,17 @@ Log file: /home/jlaustill/code/J90280.05_analysis/ghidra/CM550.rep/apply_and_exp
 
 ⚡ QUICK UPDATE: APPLY & EXPORT
 ================================
-Running MasterAnalysisSetup + ExportAnalysisResults...
+Running ClearLocalVariableOverrides + MasterAnalysisSetup + ExportAnalysisResults...
 
-📥 [1/2] Applying CSV changes to Ghidra...
+🧹 [0/3] Clearing local variable overrides...
+────────────────────────────────────────────
+>>> Running ClearLocalVariableOverrides.java...
+    This ensures CSV is the sole source of truth
+
+
+✓ Local variable overrides cleared
+
+📥 [1/3] Applying CSV changes to Ghidra...
 ─────────────────────────────────────────
 >>> Running MasterAnalysisSetup.java...
     (Detailed output appears in Ghidra console)
@@ -17,7 +25,7 @@ Running MasterAnalysisSetup + ExportAnalysisResults...
 
 ✓ CSV changes applied
 
-📤 [2/2] Exporting analysis for Claude Code...
+📤 [2/3] Exporting analysis for Claude Code...
 ───────────────────────────────────────────────
 >>> Running ExportAnalysisResults.java...
     (Detailed output appears in Ghidra console)
@@ -29,6 +37,7 @@ Running MasterAnalysisSetup + ExportAnalysisResults...
 🎉 QUICK UPDATE COMPLETE!
 ═══════════════════════════════════════════════
 
+✅ Local variable overrides cleared (MCP safety)
 ✅ All CSV changes applied to Ghidra
 ✅ Latest analysis exported to working/
 

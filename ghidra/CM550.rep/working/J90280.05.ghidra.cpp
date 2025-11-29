@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Fri Nov 28 16:36:18 MST 2025
+// Fri Nov 28 19:53:52 MST 2025
 
 
 //
@@ -662,38 +662,38 @@ void initADCChannelConfiguration(void)
   adc_channel_14_mux_ptr = (dword)&channel_mux_setting_0_255;
   adc_channel_14_error_limit_ptr = (dword)&a_d_high_error_limit_0_1023;
   adc_channel_14_config_value = 2;
-  adc_channel_15_table_ptr_2 = 0x806d40;
-  adc_channel_15_table_ptr_1 = 0x806d3a;
+  adc_channel_15_table_ptr_2 = (dword)&linearization_table_ch15_y_axis;
+  adc_channel_15_table_ptr_1 = (dword)&linearization_table_ch15_x_axis;
   adc_channel_15_config_value = 2;
-  adc_channel_16_table_ptr_2 = 0x806d4c;
-  adc_channel_16_table_ptr_1 = 0x806d46;
+  adc_channel_16_table_ptr_2 = (dword)&linearization_table_ch16_y_axis;
+  adc_channel_16_table_ptr_1 = (dword)&linearization_table_ch16_x_axis;
   adc_channel_16_config_value = 2;
-  adc_channel_17_table_ptr_2 = 0x806d58;
-  adc_channel_17_table_ptr_1 = 0x806d52;
+  adc_channel_17_table_ptr_2 = (dword)&linearization_table_ch17_y_axis;
+  adc_channel_17_table_ptr_1 = (dword)&linearization_table_ch17_x_axis;
   adc_channel_17_config_value = 2;
-  adc_channel_18_table_ptr_2 = 0x806d64;
-  adc_channel_18_table_ptr_1 = 0x806d5e;
+  adc_channel_18_table_ptr_2 = (dword)&linearization_table_ch18_y_axis;
+  adc_channel_18_table_ptr_1 = (dword)&linearization_table_ch18_x_axis;
   adc_channel_18_config_value = 2;
-  adc_channel_19_table_ptr_2 = 0x806d70;
-  adc_channel_19_table_ptr_1 = 0x806d6a;
+  adc_channel_19_table_ptr_2 = (dword)&linearization_table_ch19_y_axis;
+  adc_channel_19_table_ptr_1 = (dword)&linearization_table_ch19_x_axis;
   adc_channel_19_config_value = 2;
-  adc_channel_20_table_ptr_2 = 0x806d9c;
-  adc_channel_20_table_ptr_1 = 0x806d76;
+  adc_channel_20_table_ptr_2 = (dword)&linearization_table_ch20_y_axis;
+  adc_channel_20_table_ptr_1 = (dword)&linearization_table_ch20_x_axis;
   adc_channel_20_config_value = 2;
-  adc_channel_21_table_ptr_2 = 0x806dd4;
-  adc_channel_21_table_ptr_1 = 0x806dc2;
+  adc_channel_21_table_ptr_2 = (dword)&linearization_table_ch21_y_axis;
+  adc_channel_21_table_ptr_1 = (dword)&linearization_table_ch21_x_axis;
   adc_channel_21_config_value = 2;
-  adc_channel_22_table_ptr_2 = 0x806dee;
-  adc_channel_22_table_ptr_1 = 0x806de6;
+  adc_channel_22_table_ptr_2 = (dword)&linearization_table_ch22_y_axis;
+  adc_channel_22_table_ptr_1 = (dword)&linearization_table_ch22_x_axis;
   adc_channel_22_config_value = 2;
-  adc_channel_23_table_ptr_2 = 0x806dfc;
-  adc_channel_23_table_ptr_1 = 0x806df6;
+  adc_channel_23_table_ptr_2 = (dword)&linearization_table_ch23_y_axis;
+  adc_channel_23_table_ptr_1 = (dword)&linearization_table_ch23_x_axis;
   adc_channel_23_config_value = 2;
-  adc_channel_24_table_ptr_2 = 0x806e08;
-  adc_channel_24_table_ptr_1 = 0x806e02;
+  adc_channel_24_table_ptr_2 = (dword)&linearization_table_ch24_y_axis;
+  adc_channel_24_table_ptr_1 = (dword)&linearization_table_ch24_x_axis;
   adc_channel_24_config_value = 2;
-  adc_channel_25_table_ptr_2 = 0x806e14;
-  adc_channel_25_table_ptr_1 = 0x806e0e;
+  adc_channel_25_table_ptr_2 = (dword)&linearization_table_ch25_y_axis;
+  adc_channel_25_table_ptr_1 = (dword)&linearization_table_ch25_x_axis;
   adc_channel_25_config_value = 2;
   pbVar2 = &request_to_strobe_set_0_then_set_1_cold_start_aid_1_driver_0_1;
   iVar3 = 0x8068ea;

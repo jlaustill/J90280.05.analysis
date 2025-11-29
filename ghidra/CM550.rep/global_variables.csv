@@ -1484,17 +1484,16 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00806c47,error_number_storage_for_engine_speed_sv_low_error_0_255,byte,ERROR NUMBER STORAGE FOR ENGINE_SPEED_SV_LOW_ERROR [CalTerm: ADESSVLE],1,0,NONE,parameter
 0x00806c48,tri_state_error_none,byte,TRI STATE ERROR [CalTerm: ADESSVTE],1,0,NONE,parameter
 0x00806c49,ADESSVSR,byte,A/D SAMPLE PERIOD,1,0,MSEC,data
-0x00806c4a,a_d_digital_filter_constant_0_1,word,A/D DIGITAL FILTER CONSTANT [CalTerm: ADTHSVCS],2,0,,parameter
-0x00806c4c,global_default_value,word,GLOBAL DEFAULT VALUE [CalTerm: ADTHSVGD],2,0,NONE,parameter
-0x00806c4e,a_d_fault_clear_counts_0_32767,word,A/D FAULT CLEAR COUNTS [CalTerm: ADTHSVFC],2,0,,parameter
-0x00806c50,a_d_fault_decrement_0_32767,word,A/D FAULT DECREMENT [CalTerm: ADTHSVFD],2,0,CNTS,parameter
-0x00806c52,a_d_fault_increment_0_32767,word,A/D FAULT INCREMENT [CalTerm: ADTHSVFI],2,0,CNTS,parameter
-0x00806c54,a_d_fault_set_0_32767,word,A/D FAULT SET [CalTerm: ADTHSVFS],2,0,CNTS,parameter
-0x00806c56,a_d_high_error_limit_0_1023,word,A/D HIGH ERROR LIMIT [CalTerm: ADTHSVHL],2,0,,parameter
-0x00806c58,a_d_low_error_limit_0_1023,word,A/D LOW ERROR LIMIT [CalTerm: ADTHSVLL],2,0,,parameter
-0x00806c5a,throttle_position_sensor_sv_channel_address_none,word,THROTTLE_POSITION_SENSOR_SV_CHANNEL_ADDRESS [CalTerm: ADTHSVCA],2,0,NONE,parameter
-0x00806c5c,channel_mux_setting_0_255,byte,CHANNEL MUX SETTING [CalTerm: ADTHSVMU],1,0,NONE,parameter
-0x00806c5d,tri_state_error_enable_disable,byte,TRI STATE ERROR [CalTerm: ADTHSVTS],1,0,,parameter
+0x00806c4a,ADBSPRXA,word,BOOST PRESSURE LINEARIZATION X-AXIS (5 entries) [CalTerm: ADBSPRXA] - Sensor 5 x_axis_ptr from initADCChannelConfiguration,10,5,CNTS,axis
+0x00806c4c,ADBSPRXA_entry_1,word,BOOST PRESSURE X-AXIS ENTRY 1 (part of ADBSPRXA table at 0x806C4A) - ADTHSVGD label was incorrect,2,0,CNTS,table_data
+0x00806c4e,ADBSPRXA_entry_2,word,BOOST PRESSURE X-AXIS ENTRY 2 (part of ADBSPRXA table at 0x806C4A) - ADTHSVFC label was incorrect,2,0,CNTS,table_data
+0x00806c50,ADBSPRXA_entry_3,word,BOOST PRESSURE X-AXIS ENTRY 3 (part of ADBSPRXA table at 0x806C4A) - ADTHSVFD label was incorrect,2,0,CNTS,table_data
+0x00806c52,ADBSPRXA_entry_4,word,BOOST PRESSURE X-AXIS ENTRY 4 (part of ADBSPRXA table at 0x806C4A) - ADTHSVFI label was incorrect,2,0,CNTS,table_data
+0x00806c54,ADBSPRYA,word,BOOST PRESSURE LINEARIZATION Y-AXIS (5 entries) [CalTerm: ADBSPRYA] - Sensor 5 y_axis_ptr from initADCChannelConfiguration,10,5,INHG,axis
+0x00806c56,ADBSPRYA_entry_1,word,BOOST PRESSURE Y-AXIS ENTRY 1 (part of ADBSPRYA table at 0x806C54) - ADTHSVHL label was incorrect,2,0,INHG,table_data
+0x00806c58,ADBSPRYA_entry_2,word,BOOST PRESSURE Y-AXIS ENTRY 2 (part of ADBSPRYA table at 0x806C54) - ADTHSVLL label was incorrect,2,0,INHG,table_data
+0x00806c5a,ADBSPRYA_entry_3,word,BOOST PRESSURE Y-AXIS ENTRY 3 (part of ADBSPRYA table at 0x806C54) - ADTHSVCA label was incorrect,2,0,INHG,table_data
+0x00806c5c,ADBSPRYA_entry_4,word,BOOST PRESSURE Y-AXIS ENTRY 4 (part of ADBSPRYA table at 0x806C54) - includes byte at 0x806C5D,2,0,INHG,table_data
 0x00806c5e,error_number_storage_for_throttle_position_sv_high_error_0_255,byte,ERROR NUMBER STORAGE FOR THROTTLE_POSITION_SV_HIGH_ERROR [CalTerm: ADTHSVHE],1,0,NONE,parameter
 0x00806c5f,error_number_storage_for_throttle_position_sv_low_error_0_255,byte,ERROR NUMBER STORAGE FOR THROTTLE_POSITION_SV_LOW_ERROR [CalTerm: ADTHSVLE],1,0,NONE,parameter
 0x00806c60,tri_state_error_none,byte,TRI STATE ERROR [CalTerm: ADTHSVTE],1,0,NONE,parameter
@@ -1634,9 +1633,28 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00806d37,error_number_storage_for_op_amps_and_comparators_sv_low_error_0_255,byte,ERROR NUMBER STORAGE FOR OP_AMPS_AND_COMPARATORS_SV_LOW_ERROR [CalTerm: ADOCSVLE],1,0,NONE,parameter
 0x00806d38,tri_state_error_none,byte,TRI STATE ERROR [CalTerm: ADOCSVTE],1,0,NONE,parameter
 0x00806d39,ADOCSVSR,byte,A/D SAMPLE PERIOD,1,0,MSEC,data
-0x00806d6e,(null),word,,2,0,,data
-0x00806dce,(null),word,,2,0,,data
-0x00806e0c,ADCVXA,qword,COOLANT LEVEL X-AXIS,8,4,CNTS,axis
+0x00806d3a,linearization_table_ch15_x_axis,word,ADC Channel 15 linearization X-axis (3 entries) [CalTerm: unknown],6,3,CNTS,axis
+0x00806d40,linearization_table_ch15_y_axis,word,ADC Channel 15 linearization Y-axis (3 entries),6,3,,axis
+0x00806d46,linearization_table_ch16_x_axis,word,ADC Channel 16 linearization X-axis (3 entries) [CalTerm: unknown],6,3,CNTS,axis
+0x00806d4c,linearization_table_ch16_y_axis,word,ADC Channel 16 linearization Y-axis (3 entries),6,3,,axis
+0x00806d52,linearization_table_ch17_x_axis,word,ADC Channel 17 linearization X-axis (3 entries) [CalTerm: unknown],6,3,CNTS,axis
+0x00806d58,linearization_table_ch17_y_axis,word,ADC Channel 17 linearization Y-axis (3 entries),6,3,,axis
+0x00806d5e,linearization_table_ch18_x_axis,word,ADC Channel 18 linearization X-axis (3 entries) [CalTerm: unknown],6,3,CNTS,axis
+0x00806d64,linearization_table_ch18_y_axis,word,ADC Channel 18 linearization Y-axis (3 entries),6,3,,axis
+0x00806d6a,linearization_table_ch19_x_axis,word,ADC Channel 19 linearization X-axis (3 entries) [CalTerm: unknown],6,3,CNTS,axis
+0x00806d70,linearization_table_ch19_y_axis,word,ADC Channel 19 linearization Y-axis (3 entries),6,3,,axis
+0x00806d76,linearization_table_ch20_x_axis,word,ADC Channel 20 linearization X-axis (19 entries) [CalTerm: unknown],38,19,CNTS,axis
+0x00806d9c,linearization_table_ch20_y_axis,word,ADC Channel 20 linearization Y-axis (19 entries),38,19,,axis
+0x00806dc2,linearization_table_ch21_x_axis,word,ADC Channel 21 linearization X-axis (9 entries) - Used by sensor 20 (water-in-fuel per sensor_linearization_tables.csv),18,9,CNTS,axis
+0x00806dd4,linearization_table_ch21_y_axis,word,ADC Channel 21 linearization Y-axis (9 entries) - Used by sensor 20 (water-in-fuel),18,9,,axis
+0x00806de6,linearization_table_ch22_x_axis,word,ADC Channel 22 linearization X-axis (4 entries) - Used by sensor 21,8,4,CNTS,axis
+0x00806dee,linearization_table_ch22_y_axis,word,ADC Channel 22 linearization Y-axis (4 entries),8,4,,axis
+0x00806df6,linearization_table_ch23_x_axis,word,ADC Channel 23 linearization X-axis (3 entries) - Used by sensor 22,6,3,CNTS,axis
+0x00806dfc,linearization_table_ch23_y_axis,word,ADC Channel 23 linearization Y-axis (3 entries),6,3,,axis
+0x00806e02,linearization_table_ch24_x_axis,word,ADC Channel 24 linearization X-axis (3 entries) - Used by sensor 23 (h-bridge SV),6,3,CNTS,axis
+0x00806e08,linearization_table_ch24_y_axis,word,ADC Channel 24 linearization Y-axis (3 entries),6,3,,axis
+0x00806e0e,linearization_table_ch25_x_axis,word,ADC Channel 25 linearization X-axis (3 entries) - Used by sensor 24,6,3,CNTS,axis
+0x00806e14,linearization_table_ch25_y_axis,word,ADC Channel 25 linearization Y-axis (3 entries),6,3,,axis
 0x00806e24,(null),word,,2,0,,data
 0x00806e36,(null),word,,2,0,,data
 0x00806e4c,(null),word,,2,0,,data
