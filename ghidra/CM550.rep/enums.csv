@@ -4,7 +4,7 @@ CAN_TIMER_INIT_MODE,0,BASIC_DELAY,Basic timer + delay with watchdog (can1TimerBu
 CAN_TIMER_INIT_MODE,1,ALT_TRANSMIT,Alt timer + message transmit init (can1TimerBufferInitAlt),1
 CAN_TIMER_INIT_MODE,2,DIVIDED_TRANSMIT,Divided timer + message transmit init 2 (can1TimerBufferInitDivided),1
 CAN_TIMER_INIT_MODE,3,CONDITIONAL_DELAY,Conditional timer + watchdog delay 2 (can1TimerBufferInitConditional),1
-CAN_BUFFER_OFFSETS,0x36,STATUS_BYTE,CAN message status byte offset
+CAN_BUFFER_OFFSETS,0x36,CAN_STATUS_BYTE,CAN message status byte offset
 CAN_BUFFER_OFFSETS,0x37,PARAM_BYTE_1,First parameter byte offset
 CAN_BUFFER_OFFSETS,0x38,PARAM_BYTE_2,Second parameter byte offset
 CAN_BUFFER_OFFSETS,0x39,PARAM_BYTE_3,Third parameter byte offset
@@ -21,7 +21,7 @@ VP44_STATUS_BITS,0x10,STATUS_BIT4,VP44 status bit 4 - affects fuel timing contro
 VP44_STATUS_BITS,0x20,STATUS_BIT5,VP44 status bit 5
 VP44_STATUS_BITS,0x40,STATUS_BIT6,VP44 status bit 6
 VP44_STATUS_BITS,0x80,STATUS_BIT7,VP44 status bit 7
-ENGINE_OPERATING_MODE,1,IDLE,Engine idle/startup mode,2
+ENGINE_OPERATING_MODE,1,ENGINE_IDLE,Engine idle/startup mode,2
 ENGINE_OPERATING_MODE,2,LOW_RPM_RUNNING,Low RPM running mode,2
 ENGINE_OPERATING_MODE,3,HIGH_RPM_RUNNING,High RPM running mode,2
 ENGINE_OPERATING_MODE,4,VP44_INJECTION_ACTIVE,VP44 injection system active mode,2
@@ -31,7 +31,7 @@ ENGINE_OPERATING_MODE,7,TRANSITIONAL_MODE_7,Transitional operating mode 7,2
 ENGINE_OPERATING_MODE,8,FAULT_EMERGENCY,Fault/emergency mode,2
 CAN_PARAM_BUILDERS,2,CONFIG_BUILDER,configParamCanBuilder function (0x2a57e)
 DIAGNOSTIC_MESSAGE_TYPES,16,VP44Handler,VP44 pump communication handler
-DIAGNOSTIC_MESSAGE_TYPES,17,ParameterRequestHandler,Alternative handler for parameter requests
+DIAGNOSTIC_MESSAGE_TYPES,17,DiagParamRequestHandler,Alternative handler for parameter requests
 DIAGNOSTIC_MESSAGE_TYPES,19,StatusRequestHandler,Third handler for status/diagnostic requests
 DIAGNOSTIC_MESSAGE_TYPES,255,ErrorDefaultHandler,Error/default case handler
 VP44_DATA_FIELDS,1,FUEL_HIGH_BYTE,Fuel amount high byte (param_table_aux>>8 + 125)
@@ -65,7 +65,7 @@ J1939_CRUISE_CONTROL_ENABLE,4,SpeedControlBrakingInteraction_JCRDTXEA,Enable spe
 J1939_DIAGNOSTIC_PROTOCOL,1,CalTermCommunication,CalTerm parameter read/write via J1939
 J1939_DIAGNOSTIC_PROTOCOL,2,InsiteCommunication,Insite live data monitoring via J1939
 J1939_DIAGNOSTIC_PROTOCOL,3,DiagnosticMessageDispatcher,Routes diagnostic requests by message type
-J1939_DIAGNOSTIC_PROTOCOL,4,ParameterRequestHandler,Processes EEPROM parameter read requests
+J1939_DIAGNOSTIC_PROTOCOL,4,J1939ParamRequestHandler,Processes EEPROM parameter read requests
 J1939_DIAGNOSTIC_PROTOCOL,5,ParameterResponseBuilder,Formats parameter values for J1939 response
 J1939_THROTTLE_ENABLE,1,TorqueSpeedControlReceiveEnable_JCCNRXFT,TSC1 message reception enable (0x07F00400)
 J1939_THROTTLE_ENABLE,2,JC39ENFG,J1939 message enable flags table
@@ -226,7 +226,7 @@ INSITE_PARAM_CODE,0x4A,BOOST_PRESSURE_TARGET,Boost pressure target pointer (scal
 INSITE_PARAM_CODE,0x53,DIAGNOSTIC_FUEL_MODE_FLAG,Diagnostic fuel control mode flag (0x80 if mode==10),1
 # Single-byte scaled values (0x54-0x58)
 INSITE_PARAM_CODE,0x54,THROTTLE_POSITION,Throttle position value (scaled >>7),1
-INSITE_PARAM_CODE,0x55,STATUS_BYTE,Combined status byte with sensor/derate flags,1
+INSITE_PARAM_CODE,0x55,INSITE_STATUS_BYTE,Combined status byte with sensor/derate flags,1
 INSITE_PARAM_CODE,0x56,BOOST_PRESSURE_BASE,Target boost pressure base (scaled >>7),1
 INSITE_PARAM_CODE,0x57,FUEL_TIMING_LIMIT,Fuel timing transition limit (scaled >>7),1
 INSITE_PARAM_CODE,0x58,FUEL_TIMING_DISPLAY,INSITE fuel timing display (scaled >>7),1
@@ -286,7 +286,7 @@ INSITE_COMMAND,0xC3,PID_DTC_REQUEST,PID/DTC diagnostic request
 INSITE_COMMAND,0xC4,PID_DTC_ACK,PID/DTC acknowledgment
 # Diagnostic Response Codes
 DIAG_RESPONSE_CODE,0,SUCCESS,Operation successful
-DIAG_RESPONSE_CODE,2,INVALID_LENGTH,Invalid message length
+DIAG_RESPONSE_CODE,2,DIAG_INVALID_LENGTH,Invalid message length
 DIAG_RESPONSE_CODE,3,SECURITY_FAILED,Security check failed
 DIAG_RESPONSE_CODE,4,BUFFER_OVERFLOW,Buffer overflow or unsupported
 DIAG_RESPONSE_CODE,8,ADDR_VALIDATION_FAIL,Address validation failed
@@ -310,7 +310,7 @@ SECURITY_BYPASS_FLAG,0xB522,BYPASS_MAGIC,Alternative bypass magic value (-0x4ADE
 SECURITY_BYPASS_FLAG,0x00,SECURITY_ACTIVE,Normal security - checks enforced
 # Security Check Return Values
 SECURITY_RESULT,0x00,AUTH_SUCCESS,Security check passed - operation authorized
-SECURITY_RESULT,0x02,INVALID_LENGTH,Invalid message length for service
+SECURITY_RESULT,0x02,SECURITY_INVALID_LENGTH,Invalid message length for service
 SECURITY_RESULT,0x03,AUTH_FAILED,Security check failed - access denied
 SECURITY_RESULT,0x07,CONDITION_NOT_MET,Pre-condition not satisfied
 SECURITY_RESULT,0x0A,INVALID_ADDR,Invalid memory address range
@@ -323,7 +323,7 @@ SECURED_SERVICE_ID,4,SERVICE_SYSTEM_CONTROL,System control operations (length=3)
 VP44_COMM_STATE,0,INIT,Initialize transmission - setup buffers and addresses,1
 VP44_COMM_STATE,1,WRITE_BUFFER,Write buffer data with circular buffer,1
 VP44_COMM_STATE,2,TRANSMIT,Execute circular buffer write transmission,1
-VP44_COMM_STATE,3,IDLE,Idle/complete - transmission inactive,1
+VP44_COMM_STATE,3,VP44_COMM_IDLE,Idle/complete - transmission inactive,1
 # VP44 Communication Mode - _vp44_comm_state sub-state within state machine
 VP44_COMM_MODE,0,MODE_IDLE,Idle mode - transition to state 3,1
 VP44_COMM_MODE,1,MODE_ACTIVE,Active mode - perform mid-buffer transmission,1
@@ -344,10 +344,10 @@ DIAGNOSTIC_SYSTEM_FLAGS_1,0x4000,DIAG_FLAG_BIT14,Diagnostic flag bit 14,2
 DIAGNOSTIC_SYSTEM_FLAGS_1,0x2000,DIAG_FLAG_BIT13,Diagnostic flag bit 13,2
 DIAGNOSTIC_SYSTEM_FLAGS_1,0x1000,DIAG_FLAG_BIT12,Diagnostic flag bit 12,2
 DIAGNOSTIC_SYSTEM_FLAGS_1,0x04,DIAG_FLAG_BIT2,Diagnostic flag bit 2 - used with high RPM protection,1
-DIAGNOSTIC_SYSTEM_FLAGS_1,0x02,DIAG_FLAG_BIT1,Diagnostic flag bit 1 - high RPM protection check,1
+DIAGNOSTIC_SYSTEM_FLAGS_1,0x02,DIAG_SYS_FLAG_BIT1,Diagnostic flag bit 1 - high RPM protection check,1
 # VP44 Command Message (0x100) Status Byte Values - buildPgn61444_ProprietarySpeed
 VP44_CMD_STATUS,0xF0,STATUS_F0,Engine state 11 (0x0B case)
-VP44_CMD_STATUS,0xF1,STATUS_F1,Engine state 3/7/8
+VP44_CMD_STATUS,0xF1,VP44_STATUS_F1,Engine state 3/7/8
 VP44_CMD_STATUS,0xF2,STATUS_F2,Engine state 9
 VP44_CMD_STATUS,0xF3,STATUS_F3,Engine state 4
 VP44_CMD_STATUS,0xF4,STATUS_F4,Engine state 10 (0x0A case)
@@ -359,7 +359,7 @@ VP44_CMD_STATUS,0xF9,STATUS_F9,Engine state 12 (0x0C case)
 VP44_CMD_STATUS,0xFA,STATUS_FA,Engine state 24 (0x18 case)
 VP44_CMD_STATUS,0xFE,STATUS_FE,Default/error state
 # VP44 Command Message Structure (0x100 to pump)
-VP44_CMD_BYTE,0,STATUS_BYTE,Engine status/mode byte (0xF0-0xFE values)
+VP44_CMD_BYTE,0,VP44_STATUS_BYTE,Engine status/mode byte (0xF0-0xFE values)
 VP44_CMD_BYTE,1,FUEL_HIGH,Fuel amount high byte (param_table_aux>>8 + 125)
 VP44_CMD_BYTE,2,FUEL_LOW,Fuel amount low byte (param_table_main>>8 + 125)
 VP44_CMD_BYTE,3,TIMING_3,Timing advance data byte 3
@@ -396,22 +396,22 @@ PROTECTION_STATE,3,PRIMARY_RPM_MONITOR,Primary coordinator + RPM monitor (protec
 PROTECTION_STATE,4,EMERGENCY_HANDLER,Emergency shutdown handler (protectionState4EmergencyHandler),2
 # Proprietary Diagnostic Status Byte Values - buildProprietaryLoadStatusMessage
 PROP_DIAG_STATUS,0xF0,STATUS_NORMAL,Normal operation - load below threshold
-PROP_DIAG_STATUS,0xF1,STATUS_F1,Status F1 - specific condition
+PROP_DIAG_STATUS,0xF1,PROP_DIAG_STATUS_F1,Status F1 - specific condition
 PROP_DIAG_STATUS,0xF4,STATUS_LOAD_HIGH,Load above threshold
 PROP_DIAG_STATUS,0xF8,STATUS_FAULT_ACTIVE,Critical fault active (fault 67 or 69)
 PROP_DIAG_STATUS,0x01,STATUS_BIT0_LOAD_INACTIVE,Bit 0 set when load calculation inactive
 # High RPM Protection Status Flags - response byte for INSITE command 0x47
 HIGH_RPM_PROTECTION_FLAGS,0x80,TIMER_ACTIVE,High RPM protection timer is running,1
-HIGH_RPM_PROTECTION_FLAGS,0x08,DIAG_FLAG_BIT1,Diagnostic system flags bit 1 (0x02) is set,1
+HIGH_RPM_PROTECTION_FLAGS,0x08,HIGH_RPM_DIAG_FLAG_BIT1,Diagnostic system flags bit 1 (0x02) is set,1
 HIGH_RPM_PROTECTION_FLAGS,0x04,FAULT_WITH_DIAG,High RPM fault + diagnostic flag bit 2,1
 HIGH_RPM_PROTECTION_FLAGS,0x02,SHUTDOWN_TIMER_ZERO,Shutdown active and timer expired,1
-HIGH_RPM_PROTECTION_FLAGS,0x01,WARNING_ACTIVE,High RPM protection warning flag set,1
+HIGH_RPM_PROTECTION_FLAGS,0x01,HIGH_RPM_WARNING_ACTIVE,High RPM protection warning flag set,1
 # Fault Flag Array Indices (fault word 4 at offset 0x08 from base)
 FAULT_WORD_4_BITS,0x08,FAULT_67_BIT,Fault ID 67 - critical fault affecting load status
 FAULT_WORD_4_BITS,0x10,FAULT_68_BIT,Fault ID 68 - affects FSO detection
 FAULT_WORD_4_BITS,0x20,FAULT_69_BIT,Fault ID 69 - critical fault affecting load status
 # Fuel Pressure Sync State Machine - _fuel_pressure_sync_state_machine in fuelPressureSyncStateMachine
-FUEL_SYNC_STATE,0,IDLE,Idle - waiting for VP44 diagnostic fault,4
+FUEL_SYNC_STATE,0,FUEL_SYNC_IDLE,Idle - waiting for VP44 diagnostic fault,4
 FUEL_SYNC_STATE,1,FAULT_COUNTING,Fault counting - increment until threshold reached,4
 FUEL_SYNC_STATE,2,STATUS_MONITORING,Status monitoring - check RPM and injection flags,4
 FUEL_SYNC_STATE,3,FAULT_CONFIRMED,Fault confirmed - wait for VP44 fault clear,4
@@ -464,12 +464,12 @@ OUTPUT_CONTROL_TIMER_STATE,4,OUTPUT_TIMER_STATE_4,Output timer state 4,1
 OUTPUT_CONTROL_TIMER_STATE,5,OUTPUT_TIMER_STATE_5,Output timer state 5,1
 # DZG Timing State - crankshaft sensor timing control state machine
 DZG_TIMING_STATE,0,INITIAL,Initial state check angle threshold,2
-DZG_TIMING_STATE,1,ACTIVE,Active state monitor for transitions,2
+DZG_TIMING_STATE,1,DZG_ACTIVE,Active state monitor for transitions,2
 DZG_TIMING_STATE,2,ALTERNATE,Alternative mode state,2
 # Sensor History State - sensor/oil pressure monitoring state machine
-SENSOR_HISTORY_STATE,0,IDLE,Initial monitoring state,2
-SENSOR_HISTORY_STATE,1,ACTIVE,Sensor actively being monitored,2
-SENSOR_HISTORY_STATE,2,FAULT_DETECTED,Fault condition detected,2
+SENSOR_HISTORY_STATE,0,SENSOR_IDLE,Initial monitoring state,2
+SENSOR_HISTORY_STATE,1,SENSOR_ACTIVE,Sensor actively being monitored,2
+SENSOR_HISTORY_STATE,2,SENSOR_FAULT_DETECTED,Fault condition detected,2
 SENSOR_HISTORY_STATE,3,RECOVERY,Recovery countdown state,2
 # Shutdown Minimum Selector Source - identifies which limiter won the minimum selection
 # Values set by shutdownMinimumSelector* functions, tracked in shutdown_minimum_selector_value
@@ -528,7 +528,7 @@ VP44_DIAG_MODE,256,UNINITIALIZED,Transitional/uninitialized state (0x100),2
 # Tracked in high_rpm_protection_state, manages high RPM warning and shutdown sequence
 HIGH_RPM_PROTECTION_STATE,0,MONITORING,Initial state - monitoring conditions for entry,2
 HIGH_RPM_PROTECTION_STATE,1,TIMER_COUNTING,Timer countdown active - conditions met,2
-HIGH_RPM_PROTECTION_STATE,2,WARNING_ACTIVE,Warning threshold reached - protection active,2
+HIGH_RPM_PROTECTION_STATE,2,RPM_PROTECTION_WARNING_ACTIVE,Warning threshold reached - protection active,2
 HIGH_RPM_PROTECTION_STATE,3,FAULT_TRIGGERED,Fault triggered - derate change detected during protection,2
 HIGH_RPM_PROTECTION_STATE,4,SHUTDOWN_PENDING,Shutdown pending - timer expired waiting for idle,2
 # TPU Transmission State Machine - CAN/serial transmission state machine
@@ -559,7 +559,7 @@ IO_CONTROL_STATE,2,ON_ACTIVE,Output on/active - condition met,1
 # Tracked in rpm_timer_capture_state, controls crank/cam pulse processing
 RPM_CAPTURE_STATE,0,INITIALIZING,Initial state - buffers being configured,1
 RPM_CAPTURE_STATE,1,CAPTURING,Actively capturing timer pulses,1
-RPM_CAPTURE_STATE,2,FAULT_DETECTED,Fault detected in capture sequence,1
+RPM_CAPTURE_STATE,2,RPM_FAULT_DETECTED,Fault detected in capture sequence,1
 # Timing Mode Source Selector - identifies fuel timing blend source
 # Tracked in timing_mode_source_selector, set in fuel timing arbitration
 TIMING_MODE_SOURCE,0,BLEND_RAMP_DEFAULT,Default timing protection blend ramp,2
@@ -584,6 +584,6 @@ VP44_STATE,4,STATE_4_DEFAULT,State 4 - default init state (set in vp44StateVaria
 VP44_STATE,5,STATE_5_FAULT,State 5 - fault/error state (returns 1 from mapper),2
 # Engine Runtime Histogram Mode - hour meter and runtime tracking mode
 # Used by engine_runtime_histogram_mode in hourMeterConversionProcessor
-ENGINE_HISTOGRAM_MODE,0,IDLE,No histogram update needed,1
+ENGINE_HISTOGRAM_MODE,0,HISTOGRAM_IDLE,No histogram update needed,1
 ENGINE_HISTOGRAM_MODE,1,INCREMENT,Increment histogram index (data < conversion state),1
 ENGINE_HISTOGRAM_MODE,2,DECREMENT,Decrement histogram index (counter < conversion state),1
