@@ -5727,8 +5727,6 @@ address,name,type,comment,length,calterm_type,unit,data_pattern
 0x00808e36,serial_comm_isr_register_address,dword,Serial communication ISR register address (serialCommunicationIsrRegister),4,0,,address
 0x00808eca,timer_capture_hardware_init_address,dword,Timer capture hardware init address (timerCaptureHardwareInit),4,0,,address
 0x00808ece,pwm_timer_mode_1_update_address,dword,PWM timer mode 1 update address (pwmTimerMode1Update),4,0,,address
-0x00808f02,tpu_channel_isr_register_address,dword,TPU channel ISR register address (tpuChannelIsrRegister),4,0,,address
-0x00808f06,tpu_init_address,dword,TPU init address (initTPU),4,0,,address
 0x00808fee,engine_speed_isr_register_address,dword,Engine speed ISR register address (engineSpeedIsrRegister),4,0,,address
 0x008093a2,vp44_fault_register_bit2_threshold,word,VP44 fault register bit 2 threshold (vp44FaultRegisterBit2Monitor),2,0,,threshold
 0x00809528,adc_oil_pressure_filter_ptr,dword,ADC oil pressure filter constant pointer (initADCChannelConfiguration),4,0,,pointer

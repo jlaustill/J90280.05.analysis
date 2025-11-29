@@ -1,6 +1,6 @@
 // Ghidra C++ Decompilation Export - J90280.05 Firmware
 // Generated with renamed functions, variables, and meaningful types
-// Sat Nov 29 10:52:15 MST 2025
+// Sat Nov 29 12:53:06 MST 2025
 
 
 //
@@ -11945,8 +11945,6 @@ undefined8 main_loop(void)
 // Function: scheduler_init @ 0x00017b3a
 //
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void scheduler_init(void)
 
 {
@@ -11958,7 +11956,7 @@ void scheduler_init(void)
   scheduler_wait_loop_limit = 0;
   main_loop_counter = 0;
   sim_csor0 = 0x152;
-  _main_loop_callback = main_loop;
+  system_callback_table_t_00808f02.main_loop_callback = (dword)main_loop;
   sim_csbar1 = 0x27;
   return;
 }
@@ -13601,7 +13599,7 @@ undefined8 epsPositionSensorIsrHandler(void)
 void tpuChannelIsrRegister(void)
 
 {
-  tpu_channel_isr_register_address = (dword)epsPositionSensorIsrHandler;
+  system_callback_table_t_00808f02.engine_position_sensor_isr = (dword)epsPositionSensorIsrHandler;
   return;
 }
 
@@ -19467,7 +19465,7 @@ void initTPU(void)
   ushort uVar1;
   
   emptyStubWrapper2();
-  tpu_init_address = (dword)tpuQadcInterruptHandler;
+  system_callback_table_t_00808f02.tpu_adc_isr = (dword)tpuQadcInterruptHandler;
   tpu_hsqr1 = 0x7b;
   TPU_HSRR0_H = 0xfe;
   TPU_HSQR1_H = 0xff;

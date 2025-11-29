@@ -421,6 +421,11 @@ high_rpm_calibration_t,0x008062EA,reserved_0a,word,2,Reserved/gap,,needs_review
 rpm_rate_limits_t,0x008062F8,maximum,word,2,Maximum RPM rate of change limit,,needs_review
 rpm_rate_limits_t,0x008062F8,minimum,word,2,Minimum RPM rate of change limit,,needs_review
 rpm_rate_limits_t,0x008062F8,threshold_timer_reload,word,2,Timer reload when RPM threshold exceeded,,needs_review
+# System Callback Table (12 bytes) - 0x00808f02 to 0x00808f0e
+# Function pointers for core system handlers
+system_callback_table_t,0x00808f02,engine_position_sensor_isr,dword,4,EPS position sensor ISR handler (epsPositionSensorIsrHandler),,verified
+system_callback_table_t,0x00808f02,tpu_adc_isr,dword,4,TPU/QADC interrupt handler (tpuQadcInterruptHandler),,verified
+system_callback_table_t,0x00808f02,main_loop_callback,dword,4,Main scheduler loop callback (main_loop),,verified
 # High RPM Threshold Calibration (4 bytes) - 0x00806300 to 0x00806304
 high_rpm_threshold_calibration_t,0x00806300,threshold_timer_reload,word,2,Timer reload when high RPM threshold exceeded,,needs_review
 high_rpm_threshold_calibration_t,0x00806300,rate_threshold,word,2,RPM rate threshold for high RPM detection,,needs_review

@@ -2,12 +2,12 @@
  * Ghidra Decompilation Export - J90280.05 Firmware
  * Cummins CM550 ECU - MC68000 Architecture (Big-Endian)
  *
- * Generated: Sat Nov 29 10:52:22 MST 2025
+ * Generated: Sat Nov 29 12:53:12 MST 2025
  *
  * Data Sources:
  *   - enums.csv (503 entries)
- *   - structure_definitions.csv (71 types)
- *   - global_variables.csv (6097 variables)
+ *   - structure_definitions.csv (72 types)
+ *   - global_variables.csv (6095 variables)
  *   - Ghidra decompiler (789 functions)
  *
  * Target: m68k-elf-gcc
@@ -900,6 +900,7 @@ typedef struct sensor_debounce_state_t sensor_debounce_state_t;
 typedef struct sensor_fault_config_t sensor_fault_config_t;
 typedef struct shutdown_fuel_lookup_args_t shutdown_fuel_lookup_args_t;
 typedef struct shutdown_minimum_selector_t shutdown_minimum_selector_t;
+typedef struct system_callback_table_t system_callback_table_t;
 typedef struct system_protected_area_t system_protected_area_t;
 typedef struct table_interp_args_t table_interp_args_t;
 typedef struct timing_mode_control_t timing_mode_control_t;
@@ -1533,6 +1534,13 @@ struct rpm_rate_limits_t {
     uint16_t threshold_timer_reload; /* Timer reload when RPM threshold exceeded */
 } __attribute__((packed));
 
+/* Instance at 0x00808f02 */
+struct system_callback_table_t {
+    uint32_t engine_position_sensor_isr; /* EPS position sensor ISR handler (epsPositionSen... */
+    uint32_t tpu_adc_isr; /* TPU/QADC interrupt handler (tpuQadcInterruptHan... */
+    uint32_t main_loop_callback; /* Main scheduler loop callback (main_loop) */
+} __attribute__((packed));
+
 /* Instance at 0x00806300 */
 struct high_rpm_threshold_calibration_t {
     uint16_t threshold_timer_reload; /* Timer reload when high RPM threshold exceeded */
@@ -1650,6 +1658,7 @@ struct sensor_debounce_state_t {
 #define low_rpm_calibration_t_008062de (*(volatile low_rpm_calibration_t*)0X008062DEUL)
 #define high_rpm_calibration_t_008062ea (*(volatile high_rpm_calibration_t*)0X008062EAUL)
 #define rpm_rate_limits_t_008062f8 (*(volatile rpm_rate_limits_t*)0X008062F8UL)
+#define system_callback_table_t_00808f02 (*(volatile system_callback_table_t*)0X00808F02UL)
 #define high_rpm_threshold_calibration_t_00806300 (*(volatile high_rpm_threshold_calibration_t*)0X00806300UL)
 #define shutdown_minimum_selector_t_0080d494 (*(volatile shutdown_minimum_selector_t*)0X0080D494UL)
 #define diagnostic_source_t_0080d49a (*(volatile diagnostic_source_t*)0X0080D49AUL)
@@ -5409,8 +5418,6 @@ struct sensor_debounce_state_t {
 #define timer_capture_hardware_init_address (*(volatile uint32_t*)0x00808ECAUL) /* Timer capture hardware init address (timerCaptu... */
 #define pwm_timer_mode_1_update_address (*(volatile uint32_t*)0x00808ECEUL) /* PWM timer mode 1 update address (pwmTimerMode1U... */
 #define rpm_timer_interrupt_handler_ptr (*(volatile uint32_t*)0x00808EEAUL) /* Pointer to active RPM timer interrupt handler (... */
-#define tpu_channel_isr_register_address (*(volatile uint32_t*)0x00808F02UL) /* TPU channel ISR register address (tpuChannelIsr... */
-#define tpu_init_address (*(volatile uint32_t*)0x00808F06UL) /* TPU init address (initTPU) */
 #define engine_speed_isr_register_address (*(volatile uint32_t*)0x00808FEEUL) /* Engine speed ISR register address (engineSpeedI... */
 #define fuel_limit_shutdown (*(volatile uint16_t*)0x008091C4UL) /* Fuel limit during shutdown */
 #define high_rpm_fuel_limit (*(volatile uint16_t*)0x008091C6UL) /* High RPM fuel control limit */
@@ -20513,8 +20520,6 @@ undefined8 main_loop(void)
  * Function: scheduler_init @ 0x00017b3a
  */
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void scheduler_init(void)
 
 {
@@ -20526,7 +20531,7 @@ void scheduler_init(void)
   scheduler_wait_loop_limit = 0;
   main_loop_counter = 0;
   sim_csor0 = 0x152;
-  _main_loop_callback = main_loop;
+  system_callback_table_t_00808f02.main_loop_callback = (dword)main_loop;
   sim_csbar1 = 0x27;
   return;
 }
@@ -22173,7 +22178,7 @@ undefined8 epsPositionSensorIsrHandler(void)
 void tpuChannelIsrRegister(void)
 
 {
-  tpu_channel_isr_register_address = (dword)epsPositionSensorIsrHandler;
+  system_callback_table_t_00808f02.engine_position_sensor_isr = (dword)epsPositionSensorIsrHandler;
   return;
 }
 
@@ -28055,7 +28060,7 @@ void initTPU(void)
   ushort uVar1;
   
   emptyStubWrapper2();
-  tpu_init_address = (dword)tpuQadcInterruptHandler;
+  system_callback_table_t_00808f02.tpu_adc_isr = (dword)tpuQadcInterruptHandler;
   tpu_hsqr1 = 0x7b;
   TPU_HSRR0_H = 0xfe;
   TPU_HSQR1_H = 0xff;
