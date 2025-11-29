@@ -1,5 +1,5 @@
 ════════════════════════════════════════════════════════════
-ApplyAndExport Log - 2025-11-28 19:53:48
+ApplyAndExport Log - 2025-11-29 10:52:12
 ════════════════════════════════════════════════════════════
 
 Project: J90280.05
@@ -9,7 +9,7 @@ Log file: /home/jlaustill/code/J90280.05_analysis/ghidra/CM550.rep/apply_and_exp
 ================================
 Running ClearLocalVariableOverrides + MasterAnalysisSetup + ExportAnalysisResults...
 
-🧹 [0/3] Clearing local variable overrides...
+🧹 [0/4] Clearing local variable overrides...
 ────────────────────────────────────────────
 >>> Running ClearLocalVariableOverrides.java...
     This ensures CSV is the sole source of truth
@@ -17,7 +17,7 @@ Running ClearLocalVariableOverrides + MasterAnalysisSetup + ExportAnalysisResult
 
 ✓ Local variable overrides cleared
 
-📥 [1/3] Applying CSV changes to Ghidra...
+📥 [1/4] Applying CSV changes to Ghidra...
 ─────────────────────────────────────────
 >>> Running MasterAnalysisSetup.java...
     (Detailed output appears in Ghidra console)
@@ -25,13 +25,21 @@ Running ClearLocalVariableOverrides + MasterAnalysisSetup + ExportAnalysisResult
 
 ✓ CSV changes applied
 
-📤 [2/3] Exporting analysis for Claude Code...
+📤 [2/4] Exporting analysis for Claude Code...
 ───────────────────────────────────────────────
 >>> Running ExportAnalysisResults.java...
     (Detailed output appears in Ghidra console)
 
 
-✓ Export complete
+✓ Export complete (.cpp/.asm)
+
+📤 [3/4] Exporting compilable C file...
+────────────────────────────────────────
+>>> Running ExportCompilableC.java...
+    (Detailed output appears in Ghidra console)
+
+
+✓ Compilable C export complete (.c)
 
 ═══════════════════════════════════════════════
 🎉 QUICK UPDATE COMPLETE!
@@ -49,6 +57,7 @@ Running ClearLocalVariableOverrides + MasterAnalysisSetup + ExportAnalysisResult
 📁 Exported files:
   • working/J90280.05.ghidra.asm
   • working/J90280.05.ghidra.cpp
+  • working/J90280.05.ghidra.c (compilable)
 
 📋 Log file: /home/jlaustill/code/J90280.05_analysis/ghidra/CM550.rep/apply_and_export.log
    (Note: Sub-script details are in Ghidra console)
