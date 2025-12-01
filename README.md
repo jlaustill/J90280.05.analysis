@@ -17,6 +17,108 @@ The firmware is now fully navigable with meaningful names throughout. Every func
 
 ---
 
+# 🧠 **BOOT MEMORY INITIALIZATION**
+
+**Understanding boot-time memory initialization is fundamental to reverse engineering this firmware.** At startup, the ECU copies critical data from flash/EEPROM to working RAM. This is where everything begins.
+
+## **Flash-to-RAM Copy Operations**
+
+| Region | Flash Address | RAM Address | Size | Copy Function |
+|--------|---------------|-------------|------|---------------|
+| Calibration Block 1 Header | 0x4000-0x400B | 0x804882-0x80488D | 12 bytes | `calibrationDataCopyWithChecksum` |
+| Calibration Block 2 Data | 0x4400-0x5A41 | 0x80488E-0x8062CF | 6,722 bytes | `calibrationDataCopyWithChecksum` |
+| Calibration Block 1 Backup | 0x6000-0x600B | 0x804882-0x80488D | 12 bytes | `calibrationDataCopySecondary` |
+| Calibration Block 2 Backup | 0x6400-0x7A41 | 0x80488E-0x8062CF | 6,722 bytes | `calibrationDataCopySecondary` |
+| Firmware Tables | 0x37EAE-0x3A68D | 0x8062D2-0x808AB1 | 10,208 bytes | `firmwareDataCopyToWorkingMemory` |
+| EBI Memory Controller | 0x28C10-0x28E9B | 0xFFE000-0xFFE68B | 652 bytes | `initInternalRamAndCAN1` |
+| CAN1 Mailboxes | 0x2929C-0x293FB | 0xFFE700-0xFFE7FE | 256 bytes | `initInternalRamAndCAN1` |
+
+**Total: ~24,584 bytes copied at boot**
+
+<details>
+<summary><b>Memory Map Overview (click to expand)</b></summary>
+
+```
+FLASH MEMORY (256KB)
+┌──────────────────────────────────────────────────────────────┐
+│ 0x00000000-0x00003FFF  Firmware Code (16KB)                  │
+├──────────────────────────────────────────────────────────────┤
+│ 0x00004000-0x00005A41  EEPROM Calibration Block 1 (Primary)  │ ──┐
+│ 0x00006000-0x00007A41  EEPROM Calibration Block 2 (Backup)   │   │ Copied to
+├──────────────────────────────────────────────────────────────┤   │ 0x804882-0x8062CF
+│ 0x00028C10-0x000293FB  Peripheral Init Data                  │ ──┼─→ 0xFFE000-0xFFE7FE
+├──────────────────────────────────────────────────────────────┤   │
+│ 0x00037EAE-0x0003A68D  Firmware Parameter Tables             │ ──┘─→ 0x8062D2-0x808AB1
+└──────────────────────────────────────────────────────────────┘
+
+EXTERNAL RAM (1MB @ 0x800000)
+┌──────────────────────────────────────────────────────────────┐
+│ 0x00804882-0x008062CF  Calibration Data (working copy)       │
+│ 0x008062D2-0x00808AB1  Firmware Tables (working copy)        │
+│ 0x0080CFD6-0x0080CFE6  Parameter Tables (runtime)            │
+│ 0x008086F6-0x008086xx  Reference Tables (scaling factors)    │
+└──────────────────────────────────────────────────────────────┘
+
+INTERNAL REGISTERS (256B @ 0xFFE000)
+┌──────────────────────────────────────────────────────────────┐
+│ 0x00FFE000-0x00FFE68B  EBI Memory Controller Config          │
+│ 0x00FFE700-0x00FFE7FE  CAN1 Controller Mailboxes             │
+└──────────────────────────────────────────────────────────────┘
+```
+
+</details>
+
+<details>
+<summary><b>Boot Sequence (click to expand)</b></summary>
+
+1. **Hardware Reset** - MC68336 starts execution
+2. **Memory Controller Init** - `initInternalRamAndCAN1` copies EBI config (652 bytes) to 0xFFE000
+3. **CAN Controller Init** - `initInternalRamAndCAN1` copies CAN1 mailbox config (256 bytes) to 0xFFE700
+4. **Primary Calibration Copy** - `calibrationDataCopyWithChecksum` copies EEPROM data with checksum validation
+5. **Fallback on Failure** - If primary checksum fails, `calibrationDataCopySecondary` loads backup block
+6. **Firmware Tables Copy** - `firmwareDataCopyToWorkingMemory` copies CAN/parameter lookup tables
+7. **Parameter Initialization** - `param_interpolate` (0xd8b4) calculates defaults for blank/corrupted EEPROM
+8. **Sensor System Init** - `initADCChannelConfiguration` (0xAC1C) sets up sensor linearization tables
+
+</details>
+
+<details>
+<summary><b>Parameter System Architecture (click to expand)</b></summary>
+
+The parameter system uses a **Block×256+Offset** addressing scheme:
+
+**Core Functions:**
+- `param_address_calc` (0x12AFA) - Address calculation engine
+- `param_lookup_1/2/3` (0xD632/0xD69C/0xD756) - Parameter retrieval with validation
+- `param_interpolate` (0xD8B4) - **EEPROM default value calculator** (key initialization function)
+
+**Memory Layout:**
+- **Parameter Tables**: 0x80CFD6, 0x80CFDA, 0x80CFDE - Runtime parameter storage
+- **Reference Tables**: 0x8086F6+ - Scaling factors and parameter definitions
+- **Safety Limit**: All parameters capped at 32,000
+
+**Initialization Flow:**
+```
+param_interpolate (0xd8b4)
+    ├─ Reads reference tables (0x8086xx)
+    ├─ Calculates default values using Block×256 formula
+    ├─ Stores results in parameter tables (0x80CFDx)
+    └─ Populates defaults when EEPROM is blank/corrupted
+```
+
+</details>
+
+## **Detailed Analysis Files**
+
+| File | Description |
+|------|-------------|
+| [`ghidra/CM550.rep/flash_to_ram_mappings.csv`](ghidra/CM550.rep/flash_to_ram_mappings.csv) | Source of truth for all copy operations |
+| [`analysis/complete_parameter_system_map.md`](analysis/complete_parameter_system_map.md) | Full parameter system reverse engineering |
+| [`analysis/memory_range_analysis.md`](analysis/memory_range_analysis.md) | Memory range verification |
+| [`ghidra/CM550.rep/sensor_system_architecture.md`](ghidra/CM550.rep/sensor_system_architecture.md) | ADC sensor initialization details |
+
+---
+
 # 🚀 **GHIDRA AUTOMATION WORKFLOW** 
 
 **This project features a complete CSV-driven automation system that transforms raw firmware into fully analyzed, human-readable code through Ghidra scripting.**
